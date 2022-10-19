@@ -1,0 +1,265 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>geomutils &#8212; QHG4 4.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jody.css" />
+    
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    
+    <link rel="shortcut icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Permutator" href="Permutator.html" />
+    <link rel="prev" title="PolyLine" href="PolyLine.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="Permutator.html" title="Permutator"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="PolyLine.html" title="PolyLine"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../utils.html" accesskey="U">utils</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">geomutils</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="geomutils">
+<span id="geomutils-ref"></span><h1>geomutils<a class="headerlink" href="#geomutils" title="Permalink to this heading">¶</a></h1>
+<p class="hidden">This page describes the module <span class="target" id="index-0"></span>geomutils</p>
+<p>The module <code class="docutils literal notranslate"><span class="pre">geomutils</span></code> contains functions for geometric calculations.</p>
+<p>Some of the functions  need the typ DPOINT
+.. code-block:: c++</p>
+<blockquote>
+<div><p>typedef std::pair&lt;double, double&gt;  DPOINT;</p>
+</div></blockquote>
+<p>which is defined in <code class="docutils literal notranslate"><span class="pre">types.h</span></code></p>
+<p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/geomutils.h">geomutils.h</a>, <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/geomutils.cpp">geomutils.cpp</a></p>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this heading">¶</a></h2>
+<section id="spherinterpol">
+<h3><code class="docutils literal notranslate"><span class="pre">spherInterpol</span></code><a class="headerlink" href="#spherinterpol" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">sphercoord</span><span class="w"> </span><span class="nf">spherInterpol</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">sphercoord</span><span class="w"> </span><span class="o">&amp;</span><span class="n">dP1</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">sphercoord</span><span class="w"> </span><span class="o">&amp;</span><span class="n">dP2</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dT</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Finds the point at a fraction dT of thSpherical interpolation beetween the the two points</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">dP1</span></code></dt><dd><p>longitude and latitude of first point (in degrees).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">dP2</span></code></dt><dd><p>longitude and latitude of second point (in degrees).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">dT</span></code></dt><dd><p>Fraction of the great circle through <code class="docutils literal notranslate"><span class="pre">dP1</span></code> and <code class="docutils literal notranslate"><span class="pre">dP2</span></code> to reach resultig point.</p>
+</dd>
+</dl>
+<p>Returns the coordinates (longitude&amp;latitude) of the resulting point.</p>
+</section>
+<section id="id1">
+<h3><code class="docutils literal notranslate"><span class="pre">spherInterpol</span></code><a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Vec3D</span><span class="w"> </span><span class="nf">spherInterpol</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Vec3D</span><span class="w"> </span><span class="o">&amp;</span><span class="n">v1</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Vec3D</span><span class="w"> </span><span class="o">&amp;</span><span class="n">v2</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dT</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Finds the point at a fraction dT of thSpherical interpolation beetween the the two points.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">v1</span></code></dt><dd><p>3D vector to first point.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">v2</span></code></dt><dd><p>3D vector to second point.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">dT</span></code></dt><dd><p>Fraction of the great circle through <code class="docutils literal notranslate"><span class="pre">v1</span></code> and <code class="docutils literal notranslate"><span class="pre">v2</span></code> to reach resultig point.</p>
+</dd>
+</dl>
+<p>Returns the 3D vector to the resulting point.</p>
+</section>
+<section id="cart2polard">
+<h3><code class="docutils literal notranslate"><span class="pre">cart2polarD</span></code><a class="headerlink" href="#cart2polard" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">sphercoord</span><span class="w"> </span><span class="nf">cart2PolarD</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Vec3D</span><span class="w"> </span><span class="o">&amp;</span><span class="n">v</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Convert a 3D vector to polar coordinates (degrees).</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">v</span></code></dt><dd><p>vector to convert.</p>
+</dd>
+</dl>
+<p>Returns  the coordinates (longitude&amp;latitude) corresponding to <code class="docutils literal notranslate"><span class="pre">v</span></code>.</p>
+</section>
+<section id="polard2cart">
+<h3><code class="docutils literal notranslate"><span class="pre">polarD2cart</span></code><a class="headerlink" href="#polard2cart" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Vec3D</span><span class="w"> </span><span class="nf">polarD2Cart</span><span class="p">(</span><span class="n">sphercoord</span><span class="w"> </span><span class="o">&amp;</span><span class="n">p</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Convert spherical coordinates (in degrees) to a 3D vector.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">p</span></code></dt><dd><p>spherical coordinates to convert.</p>
+</dd>
+</dl>
+<p>Returns 3D vector corresponding to the spherical coordinatesin <code class="docutils literal notranslate"><span class="pre">p</span></code>.</p>
+</section>
+<section id="cart2polar">
+<h3><code class="docutils literal notranslate"><span class="pre">cart2polar</span></code><a class="headerlink" href="#cart2polar" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">sphercoord</span><span class="w"> </span><span class="nf">cart2Polar</span><span class="p">(</span><span class="n">cosnt</span><span class="w"> </span><span class="n">Vec3D</span><span class="w"> </span><span class="o">&amp;</span><span class="n">v</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Convert a 3D vector to polar coordinates (radians).</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">v</span></code></dt><dd><p>vector to convert.</p>
+</dd>
+</dl>
+<p>Returns the spherical coordinates (radians) corresponding to <code class="docutils literal notranslate"><span class="pre">v</span></code>.</p>
+</section>
+<section id="polar2cart">
+<h3><code class="docutils literal notranslate"><span class="pre">polar2cart</span></code><a class="headerlink" href="#polar2cart" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Vec3D</span><span class="w"> </span><span class="nf">polar2Cart</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">sphercoord</span><span class="w"> </span><span class="o">&amp;</span><span class="n">p</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Convert spherical coordinates (in radians) to a 3D vector.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">p</span></code></dt><dd><p>spherical coordinates to convert.</p>
+</dd>
+</dl>
+<p>Returns 3D ector corresponding to the spherical coordinates.</p>
+</section>
+<section id="spherdist">
+<h3><code class="docutils literal notranslate"><span class="pre">spherdist</span></code><a class="headerlink" href="#spherdist" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span><span class="w"> </span><span class="nf">spherdist</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">dLon1</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w">  </span><span class="n">dLat1</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dLon2</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dLat2</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dR</span><span class="p">);</span><span class="w"></span>
+<span class="kt">double</span><span class="w"> </span><span class="nf">spherdist</span><span class="p">(</span><span class="n">Vec3D</span><span class="w"> </span><span class="o">*</span><span class="n">v1</span><span class="p">,</span><span class="w"> </span><span class="n">Vec3D</span><span class="w"> </span><span class="o">*</span><span class="n">v2</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dR</span><span class="p">);</span><span class="w"></span>
+<span class="kt">double</span><span class="w"> </span><span class="nf">spherdist</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">dX0</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dY0</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dZ0</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dX1</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dY1</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dZ1</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dR</span><span class="p">);</span><span class="w"></span>
+<span class="kt">double</span><span class="w"> </span><span class="nf">spherdist</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">dX0</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dY0</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dZ0</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dLon2</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dLat2</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dR</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Calculate the distance between two points which are specified in different ways.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">dLon1,</span> <span class="pre">dLat1</span></code></dt><dd><p>spherical coordinates (radians) of first point.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">dLon2,</span> <span class="pre">dLat2</span></code></dt><dd><p>spherical coordinates (radians) of second point.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">dX1,</span> <span class="pre">dY1,</span> <span class="pre">dZ1</span></code></dt><dd><p>3D coordinates of first point.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">dX2,</span> <span class="pre">dY2,</span> <span class="pre">dZ2</span></code></dt><dd><p>3D coordinates of second point.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">dR</span></code></dt><dd><p>Earth (or sphere) radius.</p>
+</dd>
+</dl>
+<p>Retrurns the distance between thee two points along a great circle.</p>
+</section>
+<section id="spherdistdeg">
+<h3><code class="docutils literal notranslate"><span class="pre">spherdistDeg</span></code><a class="headerlink" href="#spherdistdeg" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span><span class="w"> </span><span class="nf">spherdistDeg</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">dLon1</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w">  </span><span class="n">dLat1</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dLon2</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dLat2</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dR</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Calculate the distance between two points whose spherical coordinates are given in degrees.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">dLon1,</span> <span class="pre">dLat1</span></code></dt><dd><p>spherical coordinates (degrees) of first point.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">dLon2,</span> <span class="pre">dLat2</span></code></dt><dd><p>spherical coordinates (degrees) of second point.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">dR</span></code></dt><dd><p>Earth (or sphere) radius.</p>
+</dd>
+</dl>
+<p>Retrurns distance along great circle.</p>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">geomutils</a><ul>
+<li><a class="reference internal" href="#functions">Functions</a><ul>
+<li><a class="reference internal" href="#spherinterpol"><code class="docutils literal notranslate"><span class="pre">spherInterpol</span></code></a></li>
+<li><a class="reference internal" href="#id1"><code class="docutils literal notranslate"><span class="pre">spherInterpol</span></code></a></li>
+<li><a class="reference internal" href="#cart2polard"><code class="docutils literal notranslate"><span class="pre">cart2polarD</span></code></a></li>
+<li><a class="reference internal" href="#polard2cart"><code class="docutils literal notranslate"><span class="pre">polarD2cart</span></code></a></li>
+<li><a class="reference internal" href="#cart2polar"><code class="docutils literal notranslate"><span class="pre">cart2polar</span></code></a></li>
+<li><a class="reference internal" href="#polar2cart"><code class="docutils literal notranslate"><span class="pre">polar2cart</span></code></a></li>
+<li><a class="reference internal" href="#spherdist"><code class="docutils literal notranslate"><span class="pre">spherdist</span></code></a></li>
+<li><a class="reference internal" href="#spherdistdeg"><code class="docutils literal notranslate"><span class="pre">spherdistDeg</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="PolyLine.html"
+                          title="previous chapter">PolyLine</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="Permutator.html"
+                          title="next chapter">Permutator</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/code_doc/utils/geomutils.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="Permutator.html" title="Permutator"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="PolyLine.html" title="PolyLine"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../utils.html" >utils</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">geomutils</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+    </div>
+  </body>
+</html>

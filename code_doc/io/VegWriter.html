@@ -1,0 +1,191 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>VegWriter &#8212; QHG4 4.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jody.css" />
+    
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    
+    <link rel="shortcut icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="NavWriter" href="NavWriter.html" />
+    <link rel="prev" title="ClimateWriter" href="ClimateWriter.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="NavWriter.html" title="NavWriter"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="ClimateWriter.html" title="ClimateWriter"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../io.html" accesskey="U">io</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">VegWriter</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="vegwriter">
+<span id="vegwriter-ref"></span><h1>VegWriter<a class="headerlink" href="#vegwriter" title="Permalink to this heading">¶</a></h1>
+<p class="hidden">This page desctibes the class <span class="target" id="index-0"></span>VegWriter</p>
+<p>The class <code class="docutils literal notranslate"><span class="pre">VegWriter</span></code> is used to write the <a class="reference internal" href="../core/Vegetation.html#vegetation-ref"><span class="std std-ref">vegetation data</span></a> to a <a class="reference internal" href="../../formats/qdf/VegGroup.html#veggroup-ref"><span class="std std-ref">vegetation group</span></a> in a qdf file.</p>
+<p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/io/VegWriter.h">VegWriter.h</a>, <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/io/VegWriter.cpp">VegWriter.cpp</a></p>
+<section id="public-methods">
+<h2>Public Methods<a class="headerlink" href="#public-methods" title="Permalink to this heading">¶</a></h2>
+<section id="constructor">
+<h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#constructor" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">VegWriter</span><span class="p">(</span><span class="n">Vegetation</span><span class="w"> </span><span class="o">*</span><span class="n">pVeg</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The constructor.</p>
+</section>
+<section id="write">
+<h3><code class="docutils literal notranslate"><span class="pre">write</span></code><a class="headerlink" href="#write" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">write</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hFile</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Write the vegetation data to an open qdf file.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">hFile</span></code></dt><dd><p>HDF handle to the opened file.</p>
+</dd>
+</dl>
+</section>
+<section id="writetoqdf">
+<h3><code class="docutils literal notranslate"><span class="pre">writeToQDF</span></code><a class="headerlink" href="#writetoqdf" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">writeToQDF</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sFileName</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iStep</span><span class="p">,</span><span class="w"></span>
+<span class="w">               </span><span class="kt">float</span><span class="w"> </span><span class="n">fStartTime</span><span class="p">,</span><span class="w">            </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sInfoString</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Creates a new qdf file, creates a <a class="reference internal" href="../../formats/qdf/VegGroup.html#veggroup-ref"><span class="std std-ref">vegetation group</span></a> and writes the vegetation  data to it.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">sFileName</span></code></dt><dd><p>Name of output file.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iStep</span></code></dt><dd><p>The current simulation step. This number is saved as an attribute in the output file’s root group.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">fStartTime</span></code></dt><dd><p>The start time of the simulation (i.e. the ‘real’ time at step 0). This number is also saved as an attribute in the output file’s root group.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sInfoString</span></code></dt><dd><p>An arbitrary string which will be saved as an attribute in the output file’s root group.</p>
+</dd>
+</dl>
+<p>Returns 0 on success, -1 on failure.</p>
+</section>
+</section>
+<section id="protected-methods">
+<h2>Protected Methods<a class="headerlink" href="#protected-methods" title="Permalink to this heading">¶</a></h2>
+<section id="writevegattributes">
+<h3><code class="docutils literal notranslate"><span class="pre">writeVegAttributes</span></code><a class="headerlink" href="#writevegattributes" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">writeVegAttributes</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hClimateGroup</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Writes the vegetation attributes to the  <a class="reference internal" href="../../formats/qdf/VegGroup.html#veggroup-ref"><span class="std std-ref">vegetation group</span></a> in the qdf file.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">hClimateGroup</span></code></dt><dd><p>HDF pointer to the climate group in the qdf file.</p>
+</dd>
+</dl>
+<p>Returns 0 on success, -1 on failure.</p>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">VegWriter</a><ul>
+<li><a class="reference internal" href="#public-methods">Public Methods</a><ul>
+<li><a class="reference internal" href="#constructor"><code class="docutils literal notranslate"><span class="pre">constructor</span></code></a></li>
+<li><a class="reference internal" href="#write"><code class="docutils literal notranslate"><span class="pre">write</span></code></a></li>
+<li><a class="reference internal" href="#writetoqdf"><code class="docutils literal notranslate"><span class="pre">writeToQDF</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#protected-methods">Protected Methods</a><ul>
+<li><a class="reference internal" href="#writevegattributes"><code class="docutils literal notranslate"><span class="pre">writeVegAttributes</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="ClimateWriter.html"
+                          title="previous chapter">ClimateWriter</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="NavWriter.html"
+                          title="next chapter">NavWriter</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/code_doc/io/VegWriter.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="NavWriter.html" title="NavWriter"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="ClimateWriter.html" title="ClimateWriter"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../io.html" >io</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">VegWriter</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+    </div>
+  </body>
+</html>

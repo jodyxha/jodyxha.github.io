@@ -1,0 +1,239 @@
+.. _Quat_ref:
+
+Quat
+====
+
+.. rst-class:: hidden
+
+   This page describes the class :index:`Quat`
+
+The class ``Quat`` represents quaternions.
+
+Quaternions are very handy to calculate and perform rotations.
+
+Code: `Quat.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/Quat.h>`_, `Quat.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/Quat.cpp>`_
+
+
+Public Methods
+--------------
+
+``constructors``
+^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    Quat(double fR, double fI, double fJ, double fK);
+    Quat(const Quat *pq);
+    Quat(const Quat &q);
+    Quat(double fI, double fJ, double fK);
+    Quat(const Vec3D) *pv;
+    Quat(const Vec3D &v;
+    Quat(double fR);
+    Quat();
+
+Apart from the component-wise constructor, you can create ``Quat`` objects with a real part only, or such with imaginary parts only. There are copy cnsturctors for ``Quat`` objects, and "almost" copy contructor which create a purely imaginary quaternion from a ``Vec3D``". The empty constructor is equivalent to ``Quat(0)``.
+
+.. -----------------------------------------------------------------------------
+
+``rotations``
+^^^^^^^^^^^^^
+.. code-block:: c++
+
+    Quat *createRotation(double fAngle, double fX, double fY, double fZ);
+    Quat *createRotation(double fAngle, const Vec3D &v);
+    Quat *createRotation(const  Vec3D *pvFrom, const Vec3D *pvTo);
+    Quat makeRotation(double fAngle, double fX, double fY, double fZ);
+    Quat makeRotation(double fAngle, const Vec3D &v);
+    Quat makeRotation(const  Vec3D &vFrom, const Vec3D &vTo);
+
+The ``createRotation`` methods and the``makeRotation`` methods is that the former allocate space for the result and return a pointer, while the latter return an object.
+A rotation is given by rotation angle and axis (components or ``Vec3D), or else by two ``Vec3D`` ojects. in the latter case a quaternion  is returned which corresponds to a rotatio arund an axis perpendicular to both ``vFrom`` and ``vTo``, which transforms ``vFrom`` to ``vTo``.
+
+.. -----------------------------------------------------------------------------
+
+``addition``
+^^^^^^^^^^^^
+.. code-block:: c++
+
+    add(const Quat *q);
+    inline Quat operator+=(const Quat &q);
+    inline Quat operator+(const Quat &q1, const Quat &q2);
+
+The ``add()`` function and ``operator+=`` change the value of ``this``; ``operator+`` returns a new ``Quat``.
+
+.. -----------------------------------------------------------------------------
+
+``subtraction``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    sub(const Quat *q);
+    inline Quat operator-=(const Quat &q);
+    inline Quat operator-(const Quat &q1, const Quat &q2);
+
+The ``sub()`` function and ``operator-=`` change the value of ``this``; ``operator-`` returns a new ``Quat``.
+
+.. -----------------------------------------------------------------------------
+
+``multiplication``
+^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    mult(const Quat *q);
+    Quat operator*=(const Quat &q);
+    Quat operator*(const Quat &q1, const Quat &q2);
+
+The ``mult()`` function and ``operator*=`` change the value of ``this``; ``operator*`` returns a new ``Quat``.
+
+.. -----------------------------------------------------------------------------
+
+``division``
+^^^^^^^^^^^^
+.. code-block:: c++
+
+    Quat operator/(const Quat &q1, const Quat &q2);
+    Quat operator/=(const Quat &q);
+
+The  ``operator/=`` changes the value of ``this``; ``operator/`` returns a new ``Quat``.
+
+.. code-block:: c++
+
+    invert();
+    Quat operator!(const Quat &q1);
+
+The method ``invert()`` inverts ``this``, while ``operator!`` returns the invers of this.
+
+.. -----------------------------------------------------------------------------
+
+``scaling``
+^^^^^^^^^^^
+.. code-block:: c++
+
+    scale(double f);
+    Quat operator*=(double d);
+    inline Quat operator*(const Quat &q, double d);
+    inline Quat operator*(double d, const Quat &q);
+
+.. -----------------------------------------------------------------------------
+
+``conjugation``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    conjugate();
+    Quat operator^(const Quat &q1);
+
+The method ``conjugate()`` inverts ``this``, while ``operator^`` returns the conjugate of this.
+
+.. -----------------------------------------------------------------------------
+
+``norm``
+^^^^^^^^
+.. code-block:: c++
+
+    double calcNorm() const;
+
+Returns the norm of this quaternion.
+
+.. code-block:: c++
+
+
+    normalize();
+
+Normalizes this quaternion (i.e. divides it by its norm).
+
+
+.. -----------------------------------------------------------------------------
+
+``application``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+   Quat *apply(const Quat *q) const;
+   Vec3D *apply(const Vec3D *v) const;
+   Vec3D operator^(const Vec3D &v) const; 
+   Quat  operator^(const Quat &q) const;
+
+In order to rotate a vector, you apply a (unit) quaternion to it. 
+  
+p' = q * p * q :sup:`-1`
+
+.. -----------------------------------------------------------------------------
+      
+
+Example
+"""""""
+
+Compile with 
+
+.. code-block:: bash
+
+ g++ quat_example.cpp Vec3D.cpp -o quat_example
+
+Code for ``quat_example``:
+
+.. code-block:: c++
+
+    #include <cstdio>
+    #include <cmath>
+    #include "Vec3D.h"
+    #include "Quat.h"
+
+    void showVec(const Vec3D &v, const char *pCaption) {
+        printf("%s: (%f, %f, %f)\n", pCaption, v.m_fX, v.m_fY, v.m_fZ);
+    }
+
+    void showQuat(Quat q, const char *pCaption) {
+        printf("%s: (%f, %f, %f, %f)\n", pCaption, q.m_fR, q.m_fI, q.m_fJ, q.m_fK);
+    }
+
+
+    int main(int iArgC, char *apArgV[])  {
+
+        Quat q1(1,2,3,4);
+        q1.normalize();
+        Quat q2=!q1;
+        
+        showQuat(q1, "q1");
+        showQuat(q2, "q2");
+
+        q1.mult(&q2);
+        showQuat(q1, "q1*q2");
+        Quat e = q1/q1;
+        showQuat(e, "q1/q1");
+
+        Vec3D v1(1,3,6);
+
+        Vec3D v2 = q2^v1;
+
+        showVec(v1, "v1");
+        showVec(v2,"v2");
+
+        Quat qrot = Quat::makeRotation(2*M_PI/3, (1.0/sqrt(3.0))*Vec3D(1, 1, 1));
+
+        Vec3D x(1,0,0);
+        Vec3D y(0,1,0);
+        Vec3D z(0,0,1);
+
+        Vec3D xr = qrot^x;
+        Vec3D yr = qrot^y;
+        Vec3D zr = qrot^z;
+        showVec(x,  "x ");
+        showVec(xr, "xr ");
+        showVec(y,  "y ");
+        showVec(yr, "yr ");
+        showVec(z,  "z ");
+        showVec(zr, "zr ");
+
+        q2 *= qrot;
+        showQuat(q2, "q2*qrot");
+        q2 /= qrot;
+        showQuat(q2, "(q2*qrot)/qrot");
+        showQuat(3*q2, "(3*q2*qrot)/qrot");
+ 
+        return 0;
+    }
+
+ 
+
+
+

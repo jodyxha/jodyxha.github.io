@@ -1,0 +1,371 @@
+.. _LBController_ref:
+
+LBController
+============
+
+.. rst-class:: hidden
+
+   This page describes the class :index:`LBController`
+
+| The class ``LBController`` manages a number of related ``LBBase`` objects (i.e. :ref:`LayerBuf <LayerBuf_ref>` or :ref:`LayerArrBuf <LayerArrBuf_ref>`). 
+| Each of the ``LBBase`` objects must have the same number of layers and the same layer size. 
+| A vector of :ref:`L2List <L2List_ref>` objects is used to control usage of the elements of the managed ``LBBase`` objects.
+| 
+
+.. figure:: ../../../images/LBController_full.png
+
+    Schematic representation of an ``LBController`` controlling two ``LayerBuf`` objects and one ``LayerArrBuf`` object. 
+    The red cells in the ``L2List`` denote the nodes of the ACTIVE chain, the red arrows point to the elements in the ``LayerBuf`` objects that are in use.
+    The green cells in the ``L2List`` denote the nodes of the PASSIVE chain, the white boxes represent currently unused elements.
+
+  
+Code: `LBController.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/LBController.h>`_, `LBController.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/LBController.cpp>`_
+
+
+
+Public Methods
+--------------
+
+``constructor``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    LBController(uint iLayerSize);
+
+Creates a LBController with the specified layer size. The layer size must ve a power of two.
+
+``iLayerSize``
+    Layer size.
+
+.. -----------------------------------------------------------------------------
+
+``constructor``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    LBController();
+
+Empty constructor.
+
+.. -----------------------------------------------------------------------------
+
+``destructor``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    ~LBController();
+
+The destructor.
+
+.. -----------------------------------------------------------------------------
+
+``init``
+^^^^^^^^
+.. code-block:: c++
+
+    int init(int iLayerSize);
+
+Initializes the LBController with the specified layer size. The layer size must ve a power of two.
+
+``iLayerSize``
+    Layer size.
+
+.. -----------------------------------------------------------------------------
+
+``addBuffer``
+^^^^^^^^^^^^^
+.. code-block:: c++
+
+    int addBuffer(LBBase *pLB);
+
+Adds a ``LBBase`` object to be managed. This object must have the same layer size as the one the ``LBController`` was created for.
+Furthermore, it must have the same number of layers as any ``LBBase`` object that has been addered before.
+
+``pLB``
+    The LBBase object to be added.
+
+Returns 0 on success, or negative value at failure.
+
+.. -----------------------------------------------------------------------------
+
+``removeBuffer``
+^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    int removeBuffer(LBBase *pLB);
+
+Remove the specified LBBase.
+
+``pLB``
+    The LBBase object to be removed.
+
+Returns 0 on success, or negative value at failure.
+
+.. -----------------------------------------------------------------------------
+
+..  layer managenent
+
+``addLayer``
+^^^^^^^^^^^^
+.. code-block:: c++
+
+    int addLayer();
+
+Add a new layer to the managed buffers. 
+This entails adding a new layer to each buffer and to add an :ref:`L2List <L2List_ref>` object for it for the new layer.
+
+Returns 0 on success, or negative value at failure.
+ 
+.. -----------------------------------------------------------------------------
+
+``removeLayer``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    int removeLayer(uint iLayer);
+
+Remove the specified layer from all buffers, as well as the L2List needed for it.
+
+Returns 0 on success, or negative value at failure.
+
+.. -----------------------------------------------------------------------------
+
+..  element management
+
+``getFreeIndex``
+^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    uint getFreeIndex();
+
+Returns the first free index in the buffers.
+
+.. -----------------------------------------------------------------------------
+
+``deleteElement``
+^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    int  deleteElement(uint lIndex);
+
+Deletes element with given index (i.e. move the correponding node from the ACTIVE to the PASSIVE chain of the L2List)
+
+``iIndex``
+    Index of the element to be removed.
+
+Returns 0 on success, or negative value at failure.
+
+.. -----------------------------------------------------------------------------
+
+``int compactData``
+^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    int compactData();
+
+Compactify all buffers.
+
+
+Returns 0 on success, or negative value at failure.
+
+.. -----------------------------------------------------------------------------
+
+``clear``
+^^^^^^^^^
+.. code-block:: c++
+
+    void clear();
+
+Clear all '``LBBase`` objects (i.e. mark their elements as PASSIVE in the ``L2List``).
+
+.. -----------------------------------------------------------------------------
+
+``reserveSpace2``
+^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    uint reserveSpace2(uint iNum);
+
+Reserve iNum spaces in each buffer. In fact only L2List is manipulated for this.
+
+``iNum``
+    Number of spaces to reserve.
+
+Returns index to first of the reserved element.
+
+.. -----------------------------------------------------------------------------
+
+.. iterating
+
+``getFirstIndex``
+^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    int getFirstIndex(uchar uState) const;
+
+Get the first element of the specified chain.
+
+``uState``
+    Either ``LBController::ACTIVE`` or ``LBController::PASSIVE``
+
+Retuns the first element of the specified chain.
+
+.. -----------------------------------------------------------------------------
+
+``getNextIndex``
+^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    int getNextIndex(uchar uState, int iCur) const;
+
+Get the next element after ``iCur`` in the specified chain.
+
+``uState``
+    Either ``LBController::ACTIVE`` or ``LBController::PASSIVE``
+
+``iCur``
+    Index of element of interest.
+
+Returns the next element after ``iCur`` in the specified chain.
+
+.. -----------------------------------------------------------------------------
+
+``getLastIndex``
+^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    int getLastIndex(uchar uState) const;
+
+Get the last element of the specified chain.
+
+``uState``
+    Either ``LBController::ACTIVE`` or ``LBController::PASSIVE``
+
+Retuns the last element of the specified chain.
+
+.. -----------------------------------------------------------------------------
+
+.. info
+
+``getLayerSize``
+^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    uint getLayerSize() const;
+
+Returns the layer size.
+
+.. -----------------------------------------------------------------------------
+
+``getNumLayers``
+^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    uint getNumLayers() const;
+
+Returns number of layers.
+
+.. -----------------------------------------------------------------------------
+
+``getNumUsed``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    uint getNumUsed() const;
+
+Returns number used indexes,
+ 
+.. -----------------------------------------------------------------------------
+
+``getNumFree``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    uint getNumFree() const;
+
+Returns number of unused indexes.
+
+.. -----------------------------------------------------------------------------
+
+.. info for hdf5 
+
+``getNumUsed``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    uint getNumUsed(int i) const;
+
+Returns number of used elements in layer i.
+
+.. -----------------------------------------------------------------------------
+
+``getNumUnused``
+^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    uint getNumUnused(int i) const;
+
+Returns number of unused elements in layer i.
+
+.. -----------------------------------------------------------------------------
+
+.. serialising
+
+``getBufSize``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    int getBufSize(int iDumpMode);
+
+Calculate buffer size required to serialize the LBController with specified dump mode.
+
+``iDumpMode``
+    | Mode for :ref:`dumping <dump_restore_ref>`. 
+    | Possible values: ``LBController::DUMP_MODE_FLAT`` or ``LBController::DUMP_MODE_SMART``.
+
+.. -----------------------------------------------------------------------------
+
+``serialize``
+^^^^^^^^^^^^^
+.. code-block:: c++
+
+    uchar *serialize(uchar *pBuf);
+
+Write the serialized ``LBController`` into the specified buffer.
+
+``pBuf``
+    Buffer to serialize into.
+
+Returns pointer to one position after the end of the serialized data.
+
+.. -----------------------------------------------------------------------------
+
+``deserialize``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    int deserialize(uchar *pBuf);
+
+Creates ``LBController`` from serialized data in ``pBuf``.
+
+
+``pBuf``
+
+    Buffer containing serialized ``LBController`` data.
+
+Returns pointer to one position after the end of the serialized data.
+
+.. -----------------------------------------------------------------------------
+
+.. for debugging
+
+..
+  int checkLists(bool bDisplayArray=false);
+  void calcHolyness();
+  void displayArray(uint iLayer, int iFirst, int iLast);
+  bool hasState(int iState, int iIndex);
+
+   const L2List *getL2List(uint iLayer);
+  int setL2List(const L2List *pL2List, uint iLayer);
+
+

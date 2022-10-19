@@ -1,0 +1,197 @@
+.. _Navigate_ref:
+
+Navigate
+========
+
+.. rst-class:: hidden
+  
+    This page describes the class :index:`Navigate`
+
+The class ``Navigate`` is derived from ``Action`` and handles the sea crossing of agents.
+It manages the "bridges" between landmasses and calculates the crossing probabilities using a sampling distance :math:`d_0`, a crossing probability :math:`p_0` for that distance and a decay :math:`D`:
+
+.. math:: p_C = A \cdot e^{D * d_0}
+
+where :math:`A =  p_0/e^{D*d_0}`
+
+In other words the probability for a crossing diminishes with growing distance between land masses.
+The values :math:`d_0`, :math:`p_0` and :math:`D` model the population's ability to navigate the open sea.
+
+Code: `Navigate.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/Navigate.h>`_ `Navigate.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/Navigate.cpp>`_
+
+**Attributes:**
+
++----------------------------------+----------------------+-----------------------------------+
+| ``ATTR_NAVIGATE_NAME``           | "Navigate"           | action name                       |
++----------------------------------+----------------------+-----------------------------------+
+| ``ATTR_NAVIGATE_DECAY_NAME``     | "Navigate_decay"     | probability decay                 |
++----------------------------------+----------------------+-----------------------------------+
+| ``ATTR_NAVIGATE_DIST0_NAME``     | "Navigate_dist0"     | sampling distance                 |
++----------------------------------+----------------------+-----------------------------------+
+| ``ATTR_NAVIGATE_PROB0_NAME``     | "Navigate_prob0"     | probability for sampling distance |
++----------------------------------+----------------------+-----------------------------------+
+| ``ATTR_NAVIGATE_MIN_DENS_NAME``  | "Navigate_min_dens"  | minimum density for crossing      |
++----------------------------------+----------------------+-----------------------------------+
+
+Public Methods
+--------------
+
+
+
+.. -----------------------------------------------------------------------------
+
+``constructor``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    Navigate(SPopulation<T> *pPop, SCellGrid *pCG, std::string sID, WELL512 **apWELL);
+
+``pPop``
+    A pointer to the :ref:`SPopulation<SPopulation_ref>` object performing this action.
+
+``pCG``
+    A pointer to the  :ref:`SCellGrid<SCellGrid_ref>` object on which the simulation runs.
+
+``sID``
+    An ID for this action.
+
+``apWELL``
+    A pointer to an array of :ref:`WELL512 random number generators<WELL512_ref>` (one for each thread). 
+
+
+Adds itself to the observers of the population.
+
+.. -----------------------------------------------------------------------------
+
+``destructor``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    ~Navigate();
+
+Some cleaning up.
+
+.. -----------------------------------------------------------------------------
+
+``recalculate``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    void recalculate();
+
+Recalculate the crossing probabilities for the bridges.
+
+.. -----------------------------------------------------------------------------
+
+``cleanup``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    void cleanup();
+
+Clearing aome containiers and deletingh some allocated arrays.
+
+.. -----------------------------------------------------------------------------
+
+``execute``
+^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int execute(int iA, float fT);
+
+``iAgentIndex``
+    Current agent's index.
+
+``fT``
+    Current simulation step.
+
+| This method is called for all agents (in parallel). 
+| For each agent and each crossing originating from its cell, a random number is drawn. If it is less than the calculated crossing probability for this bridge, it is moved to the endpoint of the crossing.
+
+
+.. -----------------------------------------------------------------------------
+
+``preLoop``
+^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int preLoop(); 
+ 
+Makes sure there is a ``Geography`` object and a ``Navigation`` object.
+
+.. -----------------------------------------------------------------------------
+
+``extractAttributesQDF``
+^^^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+   virtual int extractAttributesQDF(hid_t hSpeciesGroup);
+
+``hSpeciesGroup``
+    HDF handle for the species group to read from.
+
+This method reads the action's attributes from the specified group in a QDF file.
+
+.. -----------------------------------------------------------------------------
+
+``writeAttributesQDF``
+^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int writeAttributesQDF(hid_t hSpeciesGroup);
+
+``hSpeciesGroup``
+    HDF handle for the species group to write to.
+
+This method writes the action's attributes to the specified group in a QDF file.
+
+.. -----------------------------------------------------------------------------
+
+``tryGetAttributes``
+^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int tryGetAttributes(const ModuleComplex *pMC);
+
+``pMC``
+    A ``ModuleComplex`` object.
+
+Extracts the action's attributes from the ``ModuleComplex`` object.
+
+
+.. -----------------------------------------------------------------------------
+
+``notify``
+^^^^^^^^^^
+.. code-block:: c++
+
+    void notify(Observable *pObs, int iEvent, const void *pData);
+
+
+``pObs``
+    Pointer to the observed object.
+
+``iType``
+    Type of the notification (an integer).
+
+``pCom``
+    pointer to some data which has to be cast to the correct type.
+
+This method is an implementation of the :ref:`Observer<Observer_ref>` interfacxe, and is called by an :ref:`Observable<Observable_ref>` object. This action is only interested in events related to ``Geography`` or ``Navigation``.
+
+.. -----------------------------------------------------------------------------
+
+``isEqual``
+^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual bool isEqual(Action<T> *pAction, bool bStrict);
+
+``pAction``
+    Pointer to an action object to compare with this.
+
+``bStrict``
+    Strictness of comparisons (ignored here).
+
+``pAction`` is equal to ``this``, if it is a ``Navigate`` object and all their attributes match.
+    

@@ -1,0 +1,304 @@
+.. _LayerBuf_ref:
+
+LayerBuf
+========
+
+.. rst-class:: hidden
+
+   This page describes the class :index:`LayerBuf`
+
+The class ``LayerBuf`` provides resizable arrays of arbitrary type.
+It is derived from the abstract base class :ref:`LBBase <LBBase_ref>`.
+It is implemented as ``std::vector`` of arrays of T. When more space is needed, new layers are added to the vector.
+
+.. figure:: ../../../images/LayerBuf_full.png
+
+Code: `LayerBuf.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/LayerBuf.h>`_, `LayerBuf.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/LayerBuf.cpp>`_
+
+Public Methods
+--------------
+
+``constructor``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    LayerBuf(uint iLayerSize, int iStrategy=MB_DESTROY_DELAY1);
+
+Creates a ``LayerBuf`` object with layer size ``iLayerSize`` and garbage specified garbage strategy.
+
+``iLayerSize``
+    Size of the layers.
+
+``iStrategy``
+    Deletion strategy for empty layers. Possible values are:
+
++------------------------+---------------------------------+ 
+| ``MB_DESTROY_EAGER``   | immediately delete empty layers |
++------------------------+---------------------------------+
+| ``MB_DESTROY_DELAY``   | keep at most one empty layer    |
++------------------------+---------------------------------+
+| ``MB_DESTROY_DELAY1``  | keep at most two empty layers   |
++------------------------+---------------------------------+
+| ``MB_DESTROY_LAZY``    | keep at most 128 empty layers   |
++------------------------+---------------------------------+
+
+
+``constructor``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    LayerBuf();
+
+Empty constructor.
+
+.. -----------------------------------------------------------------------------
+
+``destructor``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    ~LayerBuf();
+
+The destructor deletes all layers.
+
+.. -----------------------------------------------------------------------------
+
+``init``
+^^^^^^^^
+.. code-block:: c++
+
+    void init(uint iLayerSize, int iStrategy=MB_DESTROY_DELAY1);
+
+Initializes the layers.
+
+``iLayerSize``
+    Size of the layers.
+
+``iStrategy``
+    see above.
+
+.. -----------------------------------------------------------------------------
+
+``operator[]``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+    
+    template<typename T>
+    T &operator[](uint i) const;
+
+Transparent element access over all layers.
+
+``i``
+    Index of element to get.
+
+.. -----------------------------------------------------------------------------
+
+``size``
+^^^^^^^^
+.. code-block:: c++
+
+    size_t size();
+
+Returns total capacity of all layers.
+
+.. -----------------------------------------------------------------------------
+
+``freeLayer``
+^^^^^^^^^^^^^
+.. code-block:: c++
+
+    void freeLayer(uint iIndex);
+
+Mark the layer as unused ot delete it if the strategy requires it.
+
+``iIndex``
+    Index of the layer to be freed.
+
+.. -----------------------------------------------------------------------------
+
+``freeAllLayers``
+^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    void freeAllLayers();
+
+Frees all layers and deletes them if necessary.
+
+.. -----------------------------------------------------------------------------
+
+``showUsedLayers``
+^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    showUsedLayers();
+
+Display the pointers to all used layers (debugging)
+
+.. -----------------------------------------------------------------------------
+
+``showFreeLayers``
+^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    void showFreeLayers();
+
+Display the pointers to all free layers (debugging)
+
+.. -----------------------------------------------------------------------------
+
+``createLayer``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    void createLayer();
+
+Create a new layer or reuse an existing free one.
+
+.. -----------------------------------------------------------------------------
+
+``getNumLayers``
+^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    uint getNumLayers() const;
+
+Returns number of free layers.
+
+.. -----------------------------------------------------------------------------
+
+``getLayerSize``
+^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    uint getLayerSize() const;
+
+Returns layer size.
+
+.. -----------------------------------------------------------------------------
+
+``elementShift``
+^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    void elementShift(uint iTo, uint iFrom);
+
+Moves an element to a different location.
+
+``iTo``
+   Destination index.
+
+``iFrom`` 
+    Original index of element.
+
+.. -----------------------------------------------------------------------------
+
+``moveElements``
+^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    void moveElements(uint iToLayer, uint iToIndex, uint iFromLayer, uint iFromIndex, uint iNum);
+
+Move ``iNum`` elements to a different location.
+
+``iToLayer``
+    Index of destination layer.
+
+``iToIndex``
+    Destination index in destination layer.
+
+``iFromLayer``
+    Index of orignal layer.
+
+``iFromIndex``
+    Original index of first element in original layer,
+
+``iNum``
+    Number of elements to move.
+
+.. -----------------------------------------------------------------------------
+
+..  for hdf5 writing
+
+
+``getNumUsedLayers``
+^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    size_t getNumUsedLayers() const;
+
+Returns number of used layers.
+
+.. -----------------------------------------------------------------------------
+
+``copyBlock``
+^^^^^^^^^^^^^
+.. code-block:: c++
+
+    template<typename T>
+    virtual int copyBlock(uint iStart, T *pBlock, uint iSize);
+
+Copy an array of ``iSize`` elements to specified position. It is the callers responsibility to avoid overwriting.
+
+`iStart`
+    Target index.
+
+``pBlock``
+    Array of elements.
+
+``iSize``
+    Size of arrays.
+
+.. -----------------------------------------------------------------------------
+
+``copyBlock``
+^^^^^^^^^^^^^
+.. code-block:: c++
+
+    template<typename T>
+    virtual int copyBlock(uint iDest, LayerBuf<T> *pBuf, uint iOrig, uint iSize);
+
+Copies parts from a different ``LayerBuf`` to a destination in this ``LayerBuf``.
+
+``iDest``
+    Destination index in this ``LayerBuf``.
+
+``pBuf``
+    Pointer to other ``LayerBuf``.
+
+``iOrig``
+    Start index to copy from.
+
+``iSize``
+    Number of elements to copy.
+
+.. -----------------------------------------------------------------------------
+
+``getLayer``
+^^^^^^^^^^^^
+.. code-block:: c++
+
+    const T *getLayer(uint i);
+
+Returns pointer tp specified layer.
+
+``i``
+    Index of layer in vector.
+
+.. -----------------------------------------------------------------------------
+
+``copyLayer``
+^^^^^^^^^^^^^
+.. code-block:: c++
+
+    int copyLayer(int iDestLayer, const T *pData);
+
+Copy the contents of ``pData`` to the specified layer. 
+
+``iDestLayer``
+    Index of destination layer in vector.
+
+``pData``
+    Array of elements. We expect ``pData`` to contain at least ``m_iLayerSize`` elements.
+
+.. -----------------------------------------------------------------------------
+

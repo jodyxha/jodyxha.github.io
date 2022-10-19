@@ -1,0 +1,64 @@
+.. _WELLDumpRestore_ref:
+
+
+WELLDumpRestore
+===============
+
+.. rst-class:: hidden
+
+   This page gives an overview of the module :index:`WELLDumpRestorefile formats`
+
+
+This module contains only two functions to deal with dumping and restoring the internal state of the randomm number generator :ref:`WELL512<WELL512_ref>`. 
+
+Public Functions
+----------------
+
+``dumpWELL``
+^^^^^^^^^^^^
+.. code-block:: c++
+
+    int dumpWELL(WELL512 **apWELL, int iNumWELL, const std::string sOwner, hid_t hSpeciesGroup);
+
+Dump the internal state of the random number generators.
+
+``apWELL``
+    Array of pointers to the RWNGs.
+
+``iNumWELL``
+    Number of RNGs in the array.
+
+``sOwner``
+    Name of the owner (e.g. species name for the population's RNGS, or action name ofr specific actions like genetocs) or any other identifying string.
+
+``hSpeciesGroup``
+    HDF handle to the group for this species.
+
+The data will be written as attributes to the species group.
+
+Returns 0 on succes, -1 on failure.
+
+.. -----------------------------------------------------------------------------
+
+``restoreWELL``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    int restoreWELL(WELL512 **apWELL, int iNumWELL, const std::string sOwner, hid_t hSpeciesGroup);
+
+Restore the internal state of the random number generators.
+
+``apWELL``
+    Array of pointers to the RNGs.
+
+``iNumWELL``
+    Number of RNGs in the array.
+
+``sOwner``
+    Name of the owner (e.g. species name for the population's RNGS, or action name ofr specific actions like genetocs) or any other identifying string. IMPORTANT: must be the same name as the one used with the dump command.
+
+``hSpeciesGroup``
+    HDF handle to the group for this species.
+
+Returns 0 on succes, -1 on failure.
+

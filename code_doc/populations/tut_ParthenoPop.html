@@ -1,0 +1,236 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>tut_ParthenoPop &#8212; QHG4 4.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jody.css" />
+    
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    
+    <link rel="shortcut icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="tut_SexualPop" href="tut_SexualPop.html" />
+    <link rel="prev" title="tut_MovePop" href="tut_MovePop.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="tut_SexualPop.html" title="tut_SexualPop"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="tut_MovePop.html" title="tut_MovePop"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../populations.html" accesskey="U">populations</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">tut_ParthenoPop</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="tut-parthenopop">
+<span id="tut-parthenopop-ref"></span><h1>tut_ParthenoPop<a class="headerlink" href="#tut-parthenopop" title="Permalink to this heading">¶</a></h1>
+<p class="hidden">This page describes the class <span class="target" id="index-0"></span>tut_ParhenoPop</p>
+<p>The class <code class="docutils literal notranslate"><span class="pre">tut_ParthenoPop</span></code> is derived from <a class="reference internal" href="../core/SPopulation.html#spopulation-ref"><span class="std std-ref">SPopulation</span></a>.</p>
+<p>Apart from aging, dyining and moving, the agents can asexually reproduce.</p>
+<p>For this the actions</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../actions/GetOld.html#getold-ref"><span class="std std-ref">GetOld</span></a></p></li>
+<li><p><a class="reference internal" href="../actions/OldAgeDeath.html#oldagedeath-ref"><span class="std std-ref">OldAgeDeath</span></a></p></li>
+<li><p><a class="reference internal" href="../actions/RandomMove.html#randommove-ref"><span class="std std-ref">RandomMove</span></a></p></li>
+<li><p><a class="reference internal" href="../actions/Fertility.html#fertility-ref"><span class="std std-ref">Fertility</span></a></p></li>
+<li><p><a class="reference internal" href="../actions/Verhulst.html#verhulst-ref"><span class="std std-ref">Verhulst</span></a></p></li>
+</ul>
+<p>are required.</p>
+<p>(The class <code class="docutils literal notranslate"><span class="pre">tut_ParthenoPop</span></code> is described in detail in the <a class="reference internal" href="../../tutorial/tutorial_04_partheno.html#tutorialpartheno-ref"><span class="std std-ref">fourth part</span></a> of the <a class="reference internal" href="../../tutorial.html#tutorial-ref"><span class="std std-ref">tutorial</span></a>).</p>
+<p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_ParthenoPop.h">tut_ParthenoPop.h</a>, <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_ParthenoPop.cpp">tut_ParthenoPop.cpp</a></p>
+<section id="data-types">
+<h2>Data types<a class="headerlink" href="#data-types" title="Permalink to this heading">¶</a></h2>
+<p>The actions <code class="docutils literal notranslate"><span class="pre">GetOld</span></code> and <code class="docutils literal notranslate"><span class="pre">OldAgeDeath</span></code> expect the agents to have a float member <code class="docutils literal notranslate"><span class="pre">m_fAge</span></code>,
+the action <code class="docutils literal notranslate"><span class="pre">Fertility</span></code> additionally requires a float member <code class="docutils literal notranslate"><span class="pre">m_fLastBirth</span></code>,
+and the action <code class="docutils literal notranslate"><span class="pre">Verhulst</span></code> requires an int member <code class="docutils literal notranslate"><span class="pre">m_iMateIndex</span></code>.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">tut_ParthenoAgent</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Agent</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">m_fAge</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">m_fLastBirth</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">m_iMateIndex</span><span class="p">;</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="public-methods">
+<h2>Public Methods<a class="headerlink" href="#public-methods" title="Permalink to this heading">¶</a></h2>
+<section id="constructor">
+<h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#constructor" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">tut_ParthenoPop</span><span class="p">(</span><span class="n">SCellGrid</span><span class="w"> </span><span class="o">*</span><span class="n">pCG</span><span class="p">,</span><span class="w"> </span><span class="n">PopFinder</span><span class="w"> </span><span class="o">*</span><span class="n">pPopFinder</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iLayerSize</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="n">IDGen</span><span class="w"> </span><span class="o">**</span><span class="n">apIDG</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="o">*</span><span class="n">aulState</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="o">*</span><span class="n">aiSeeds</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">pCG</span></code></dt><dd><p>Pointer to the <a class="reference internal" href="../core/SCellGrid.html#scellgrid-ref"><span class="std std-ref">cell grid</span></a>  the simulation runs on.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">pPopFinder</span></code></dt><dd><p>A pointer to an instance of a <a class="reference internal" href="../core/PopFinder.html#popfinder-ref"><span class="std std-ref">PopFinder</span></a> population container.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iLayerSize</span></code></dt><dd><p>The layer size used by the <a class="reference internal" href="../../AgentManagement.html#agentmanagement-ref"><span class="std std-ref">agent management system</span></a>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">apIDG</span></code></dt><dd><p>An array of pointers to the <a class="reference internal" href="../core/IDGen.html#idgen-ref"><span class="std std-ref">ID generators</span></a>, one for each thread.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">aulState</span></code></dt><dd><p>An array of <code class="docutils literal notranslate"><span class="pre">uint</span></code> used to initalize the <a class="reference internal" href="../utils/WELL512.html#well512-ref"><span class="std std-ref">WELL512 random number generators</span></a>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">aiSeeds</span></code></dt><dd><p>Seeds for other WELL512 instances <strong>not used for moving and breeding</strong>, e.g. for genetics.</p>
+</dd>
+</dl>
+<p>This creates an instance each of <a class="reference internal" href="../actions/GetOld.html#getold-ref"><span class="std std-ref">GetOld</span></a>, <a class="reference internal" href="../actions/OldAgeDeath.html#oldagedeath-ref"><span class="std std-ref">OldAgeDeath</span></a>, <a class="reference internal" href="../actions/RandomMove.html#randommove-ref"><span class="std std-ref">RandomMove</span></a>,
+<a class="reference internal" href="../actions/Fertility.html#fertility-ref"><span class="std std-ref">Fertility</span></a> and <a class="reference internal" href="../actions/Verhulst.html#verhulst-ref"><span class="std std-ref">Verhulst</span></a>, and registers them with the <a class="reference internal" href="../core/Prioritizer.html#prioritizer-ref"><span class="std std-ref">Prioritizer</span></a>.</p>
+</section>
+<section id="destructor">
+<h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="o">~</span><span class="n">tut_ParthenoPop</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The destructor deletes the action objects created in the constructor.</p>
+</section>
+<section id="addpopspecificagentdata">
+<h3><code class="docutils literal notranslate"><span class="pre">addPopSpecificAgentData</span></code><a class="headerlink" href="#addpopspecificagentdata" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">addPopSpecificAgentData</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iAgentIndex</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">ppData</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">iAgentIndex</span></code></dt><dd><p>Index of agent whose data is being read.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ppData</span></code></dt><dd><p>pointer to a string containing textual representation of data (see <a class="reference internal" href="../../formats/pop/pop_dat.html#pop-dat-ref"><span class="std std-ref">DAT-files</span></a>).</p>
+</dd>
+</dl>
+<div class="line-block">
+<div class="line">This method expects the next two words to be the age of the agent, and the step of its last birth.</div>
+<div class="line">The next two words are converted to float (this may of course fail) and assigned to the corresponding agent variables, and ppData is modified to point to the following word.</div>
+</div>
+</section>
+<section id="addpopspecificagentdata-typeqdf">
+<h3><code class="docutils literal notranslate"><span class="pre">addPopSpecificAgentData`TypeQDF</span></code><a class="headerlink" href="#addpopspecificagentdata-typeqdf" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">addPopSpecificAgentDataTypeQDF</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="o">*</span><span class="n">hAgentDataType</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">hAgentDataType</span></code></dt><dd><p>HDF5 handle for a existin HDF data type.</p>
+</dd>
+</dl>
+<p>This method extends the existing HDF data type, by entriues for the agent’s age member, and the last birth.</p>
+</section>
+<section id="makepopspecificoffspring">
+<h3><code class="docutils literal notranslate"><span class="pre">makePopSpecificOffspring</span></code><a class="headerlink" href="#makepopspecificoffspring" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">makePopSpecificOffspring</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iAgent</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iMother</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iFather</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">iAgent</span></code></dt><dd><p>Index of new born agent.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iMother</span></code></dt><dd><p>Index of the baby’s mother.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iFather</span></code></dt><dd><p>Index of the baby’s father.</p>
+</dd>
+</dl>
+<p>Initializes the members of the new agent. In particular, the mate index is set to the agent’s own index and the gender set to 0 (female) - this enable asexual reproduction.</p>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">tut_ParthenoPop</a><ul>
+<li><a class="reference internal" href="#data-types">Data types</a></li>
+<li><a class="reference internal" href="#public-methods">Public Methods</a><ul>
+<li><a class="reference internal" href="#constructor"><code class="docutils literal notranslate"><span class="pre">constructor</span></code></a></li>
+<li><a class="reference internal" href="#destructor"><code class="docutils literal notranslate"><span class="pre">destructor</span></code></a></li>
+<li><a class="reference internal" href="#addpopspecificagentdata"><code class="docutils literal notranslate"><span class="pre">addPopSpecificAgentData</span></code></a></li>
+<li><a class="reference internal" href="#addpopspecificagentdata-typeqdf"><code class="docutils literal notranslate"><span class="pre">addPopSpecificAgentData`TypeQDF</span></code></a></li>
+<li><a class="reference internal" href="#makepopspecificoffspring"><code class="docutils literal notranslate"><span class="pre">makePopSpecificOffspring</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="tut_MovePop.html"
+                          title="previous chapter">tut_MovePop</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="tut_SexualPop.html"
+                          title="next chapter">tut_SexualPop</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/code_doc/populations/tut_ParthenoPop.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="tut_SexualPop.html" title="tut_SexualPop"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="tut_MovePop.html" title="tut_MovePop"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../populations.html" >populations</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">tut_ParthenoPop</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+    </div>
+  </body>
+</html>

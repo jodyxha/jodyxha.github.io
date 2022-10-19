@@ -1,0 +1,382 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>LayerBuf &#8212; QHG4 4.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jody.css" />
+    
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    
+    <link rel="shortcut icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="LBBase" href="LBBase.html" />
+    <link rel="prev" title="LayerArrBuf" href="LayerArrBuf.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="LBBase.html" title="LBBase"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="LayerArrBuf.html" title="LayerArrBuf"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../utils.html" accesskey="U">utils</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">LayerBuf</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="layerbuf">
+<span id="layerbuf-ref"></span><h1>LayerBuf<a class="headerlink" href="#layerbuf" title="Permalink to this heading">¶</a></h1>
+<p class="hidden">This page describes the class <span class="target" id="index-0"></span>LayerBuf</p>
+<p>The class <code class="docutils literal notranslate"><span class="pre">LayerBuf</span></code> provides resizable arrays of arbitrary type.
+It is derived from the abstract base class <a class="reference internal" href="LBBase.html#lbbase-ref"><span class="std std-ref">LBBase</span></a>.
+It is implemented as <code class="docutils literal notranslate"><span class="pre">std::vector</span></code> of arrays of T. When more space is needed, new layers are added to the vector.</p>
+<figure class="align-default">
+<img alt="../../_images/LayerBuf_full.png" src="../../_images/LayerBuf_full.png" />
+</figure>
+<p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/LayerBuf.h">LayerBuf.h</a>, <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/LayerBuf.cpp">LayerBuf.cpp</a></p>
+<section id="public-methods">
+<h2>Public Methods<a class="headerlink" href="#public-methods" title="Permalink to this heading">¶</a></h2>
+<section id="constructor">
+<h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#constructor" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">LayerBuf</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">iLayerSize</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iStrategy</span><span class="o">=</span><span class="n">MB_DESTROY_DELAY1</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Creates a <code class="docutils literal notranslate"><span class="pre">LayerBuf</span></code> object with layer size <code class="docutils literal notranslate"><span class="pre">iLayerSize</span></code> and garbage specified garbage strategy.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">iLayerSize</span></code></dt><dd><p>Size of the layers.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iStrategy</span></code></dt><dd><p>Deletion strategy for empty layers. Possible values are:</p>
+</dd>
+</dl>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">MB_DESTROY_EAGER</span></code></p></td>
+<td><p>immediately delete empty layers</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">MB_DESTROY_DELAY</span></code></p></td>
+<td><p>keep at most one empty layer</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">MB_DESTROY_DELAY1</span></code></p></td>
+<td><p>keep at most two empty layers</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">MB_DESTROY_LAZY</span></code></p></td>
+<td><p>keep at most 128 empty layers</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id1">
+<h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">LayerBuf</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Empty constructor.</p>
+</section>
+<section id="destructor">
+<h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="o">~</span><span class="n">LayerBuf</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The destructor deletes all layers.</p>
+</section>
+<section id="init">
+<h3><code class="docutils literal notranslate"><span class="pre">init</span></code><a class="headerlink" href="#init" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">init</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">iLayerSize</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iStrategy</span><span class="o">=</span><span class="n">MB_DESTROY_DELAY1</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Initializes the layers.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">iLayerSize</span></code></dt><dd><p>Size of the layers.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iStrategy</span></code></dt><dd><p>see above.</p>
+</dd>
+</dl>
+</section>
+<section id="operator">
+<h3><code class="docutils literal notranslate"><span class="pre">operator[]</span></code><a class="headerlink" href="#operator" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span><span class="w"></span>
+<span class="n">T</span><span class="w"> </span><span class="o">&amp;</span><span class="k">operator</span><span class="p">[](</span><span class="n">uint</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Transparent element access over all layers.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">i</span></code></dt><dd><p>Index of element to get.</p>
+</dd>
+</dl>
+</section>
+<section id="size">
+<h3><code class="docutils literal notranslate"><span class="pre">size</span></code><a class="headerlink" href="#size" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">size_t</span><span class="w"> </span><span class="nf">size</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Returns total capacity of all layers.</p>
+</section>
+<section id="freelayer">
+<h3><code class="docutils literal notranslate"><span class="pre">freeLayer</span></code><a class="headerlink" href="#freelayer" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">freeLayer</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">iIndex</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Mark the layer as unused ot delete it if the strategy requires it.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">iIndex</span></code></dt><dd><p>Index of the layer to be freed.</p>
+</dd>
+</dl>
+</section>
+<section id="freealllayers">
+<h3><code class="docutils literal notranslate"><span class="pre">freeAllLayers</span></code><a class="headerlink" href="#freealllayers" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">freeAllLayers</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Frees all layers and deletes them if necessary.</p>
+</section>
+<section id="showusedlayers">
+<h3><code class="docutils literal notranslate"><span class="pre">showUsedLayers</span></code><a class="headerlink" href="#showusedlayers" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">showUsedLayers</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Display the pointers to all used layers (debugging)</p>
+</section>
+<section id="showfreelayers">
+<h3><code class="docutils literal notranslate"><span class="pre">showFreeLayers</span></code><a class="headerlink" href="#showfreelayers" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">showFreeLayers</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Display the pointers to all free layers (debugging)</p>
+</section>
+<section id="createlayer">
+<h3><code class="docutils literal notranslate"><span class="pre">createLayer</span></code><a class="headerlink" href="#createlayer" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">createLayer</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Create a new layer or reuse an existing free one.</p>
+</section>
+<section id="getnumlayers">
+<h3><code class="docutils literal notranslate"><span class="pre">getNumLayers</span></code><a class="headerlink" href="#getnumlayers" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">uint</span><span class="w"> </span><span class="nf">getNumLayers</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Returns number of free layers.</p>
+</section>
+<section id="getlayersize">
+<h3><code class="docutils literal notranslate"><span class="pre">getLayerSize</span></code><a class="headerlink" href="#getlayersize" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">uint</span><span class="w"> </span><span class="nf">getLayerSize</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Returns layer size.</p>
+</section>
+<section id="elementshift">
+<h3><code class="docutils literal notranslate"><span class="pre">elementShift</span></code><a class="headerlink" href="#elementshift" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">elementShift</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">iTo</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="n">iFrom</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Moves an element to a different location.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">iTo</span></code></dt><dd><p>Destination index.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iFrom</span></code></dt><dd><p>Original index of element.</p>
+</dd>
+</dl>
+</section>
+<section id="moveelements">
+<h3><code class="docutils literal notranslate"><span class="pre">moveElements</span></code><a class="headerlink" href="#moveelements" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">moveElements</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">iToLayer</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="n">iToIndex</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="n">iFromLayer</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="n">iFromIndex</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="n">iNum</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Move <code class="docutils literal notranslate"><span class="pre">iNum</span></code> elements to a different location.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">iToLayer</span></code></dt><dd><p>Index of destination layer.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iToIndex</span></code></dt><dd><p>Destination index in destination layer.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iFromLayer</span></code></dt><dd><p>Index of orignal layer.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iFromIndex</span></code></dt><dd><p>Original index of first element in original layer,</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iNum</span></code></dt><dd><p>Number of elements to move.</p>
+</dd>
+</dl>
+</section>
+<section id="getnumusedlayers">
+<h3><code class="docutils literal notranslate"><span class="pre">getNumUsedLayers</span></code><a class="headerlink" href="#getnumusedlayers" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">size_t</span><span class="w"> </span><span class="nf">getNumUsedLayers</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Returns number of used layers.</p>
+</section>
+<section id="copyblock">
+<h3><code class="docutils literal notranslate"><span class="pre">copyBlock</span></code><a class="headerlink" href="#copyblock" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span><span class="w"></span>
+<span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">copyBlock</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">iStart</span><span class="p">,</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="o">*</span><span class="n">pBlock</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="n">iSize</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Copy an array of <code class="docutils literal notranslate"><span class="pre">iSize</span></code> elements to specified position. It is the callers responsibility to avoid overwriting.</p>
+<dl class="simple">
+<dt><cite>iStart</cite></dt><dd><p>Target index.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">pBlock</span></code></dt><dd><p>Array of elements.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iSize</span></code></dt><dd><p>Size of arrays.</p>
+</dd>
+</dl>
+</section>
+<section id="id2">
+<h3><code class="docutils literal notranslate"><span class="pre">copyBlock</span></code><a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span><span class="w"></span>
+<span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">copyBlock</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">iDest</span><span class="p">,</span><span class="w"> </span><span class="n">LayerBuf</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="o">*</span><span class="n">pBuf</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="n">iOrig</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="n">iSize</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Copies parts from a different <code class="docutils literal notranslate"><span class="pre">LayerBuf</span></code> to a destination in this <code class="docutils literal notranslate"><span class="pre">LayerBuf</span></code>.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">iDest</span></code></dt><dd><p>Destination index in this <code class="docutils literal notranslate"><span class="pre">LayerBuf</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">pBuf</span></code></dt><dd><p>Pointer to other <code class="docutils literal notranslate"><span class="pre">LayerBuf</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iOrig</span></code></dt><dd><p>Start index to copy from.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iSize</span></code></dt><dd><p>Number of elements to copy.</p>
+</dd>
+</dl>
+</section>
+<section id="getlayer">
+<h3><code class="docutils literal notranslate"><span class="pre">getLayer</span></code><a class="headerlink" href="#getlayer" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="o">*</span><span class="nf">getLayer</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">i</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Returns pointer tp specified layer.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">i</span></code></dt><dd><p>Index of layer in vector.</p>
+</dd>
+</dl>
+</section>
+<section id="copylayer">
+<h3><code class="docutils literal notranslate"><span class="pre">copyLayer</span></code><a class="headerlink" href="#copylayer" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">copyLayer</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iDestLayer</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="o">*</span><span class="n">pData</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Copy the contents of <code class="docutils literal notranslate"><span class="pre">pData</span></code> to the specified layer.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">iDestLayer</span></code></dt><dd><p>Index of destination layer in vector.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">pData</span></code></dt><dd><p>Array of elements. We expect <code class="docutils literal notranslate"><span class="pre">pData</span></code> to contain at least <code class="docutils literal notranslate"><span class="pre">m_iLayerSize</span></code> elements.</p>
+</dd>
+</dl>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">LayerBuf</a><ul>
+<li><a class="reference internal" href="#public-methods">Public Methods</a><ul>
+<li><a class="reference internal" href="#constructor"><code class="docutils literal notranslate"><span class="pre">constructor</span></code></a></li>
+<li><a class="reference internal" href="#id1"><code class="docutils literal notranslate"><span class="pre">constructor</span></code></a></li>
+<li><a class="reference internal" href="#destructor"><code class="docutils literal notranslate"><span class="pre">destructor</span></code></a></li>
+<li><a class="reference internal" href="#init"><code class="docutils literal notranslate"><span class="pre">init</span></code></a></li>
+<li><a class="reference internal" href="#operator"><code class="docutils literal notranslate"><span class="pre">operator[]</span></code></a></li>
+<li><a class="reference internal" href="#size"><code class="docutils literal notranslate"><span class="pre">size</span></code></a></li>
+<li><a class="reference internal" href="#freelayer"><code class="docutils literal notranslate"><span class="pre">freeLayer</span></code></a></li>
+<li><a class="reference internal" href="#freealllayers"><code class="docutils literal notranslate"><span class="pre">freeAllLayers</span></code></a></li>
+<li><a class="reference internal" href="#showusedlayers"><code class="docutils literal notranslate"><span class="pre">showUsedLayers</span></code></a></li>
+<li><a class="reference internal" href="#showfreelayers"><code class="docutils literal notranslate"><span class="pre">showFreeLayers</span></code></a></li>
+<li><a class="reference internal" href="#createlayer"><code class="docutils literal notranslate"><span class="pre">createLayer</span></code></a></li>
+<li><a class="reference internal" href="#getnumlayers"><code class="docutils literal notranslate"><span class="pre">getNumLayers</span></code></a></li>
+<li><a class="reference internal" href="#getlayersize"><code class="docutils literal notranslate"><span class="pre">getLayerSize</span></code></a></li>
+<li><a class="reference internal" href="#elementshift"><code class="docutils literal notranslate"><span class="pre">elementShift</span></code></a></li>
+<li><a class="reference internal" href="#moveelements"><code class="docutils literal notranslate"><span class="pre">moveElements</span></code></a></li>
+<li><a class="reference internal" href="#getnumusedlayers"><code class="docutils literal notranslate"><span class="pre">getNumUsedLayers</span></code></a></li>
+<li><a class="reference internal" href="#copyblock"><code class="docutils literal notranslate"><span class="pre">copyBlock</span></code></a></li>
+<li><a class="reference internal" href="#id2"><code class="docutils literal notranslate"><span class="pre">copyBlock</span></code></a></li>
+<li><a class="reference internal" href="#getlayer"><code class="docutils literal notranslate"><span class="pre">getLayer</span></code></a></li>
+<li><a class="reference internal" href="#copylayer"><code class="docutils literal notranslate"><span class="pre">copyLayer</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="LayerArrBuf.html"
+                          title="previous chapter">LayerArrBuf</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="LBBase.html"
+                          title="next chapter">LBBase</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/code_doc/utils/LayerBuf.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="LBBase.html" title="LBBase"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="LayerArrBuf.html" title="LayerArrBuf"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../utils.html" >utils</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">LayerBuf</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,356 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>QDF2PNGNew &#8212; QHG4 4.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jody.css" />
+    
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    
+    <link rel="shortcut icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="QHG Tutorial" href="../tutorial.html" />
+    <link rel="prev" title="build_tut_dirs.py" href="build_tut_dirs.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../tutorial.html" title="QHG Tutorial"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="build_tut_dirs.html" title="build_tut_dirs.py"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../tools.html" accesskey="U">Tools</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">QDF2PNGNew</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="qdf2pngnew">
+<span id="qdf2pngnew-ref"></span><h1>QDF2PNGNew<a class="headerlink" href="#qdf2pngnew" title="Permalink to this heading">¶</a></h1>
+<p>This tool creates a rectilinear projection of data saved in qdf files.</p>
+<p>Code:  <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/tools_io/QDF2PNGNew.cpp">QDF2PNGNew.cpp</a> <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/tools_io/QDFImageExtractor.cpp">QDFImageExtractor</a></p>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./QDF2PNGNew -g &lt;qdf_grid&gt; -q &lt;qdf_data&gt;<span class="o">[</span>,&lt;qdf_data&gt;<span class="o">]</span>*<span class="o">]</span>
+   -s &lt;w&gt;x&lt;h&gt; -o &lt;outpat&gt;  -a &lt;arrayspec&gt;,<span class="o">[</span>&lt;arrayspec&gt;<span class="o">]</span>*
+  <span class="o">[</span>-c &lt;operation&gt;<span class="o">]</span> <span class="o">[</span>-r &lt;lon_roll&gt;<span class="o">]</span> <span class="o">[</span>-w &lt;ww&gt;x&lt;hw&gt;+&lt;ox&gt;+&lt;oy&gt; <span class="o">][</span>-t &lt;text&gt;<span class="o">[</span>:&lt;pos&gt;<span class="o">]</span> <span class="o">[</span>-v<span class="o">]</span>
+</pre></div>
+</div>
+<p>or</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./QDF2PNGNew -g &lt;qdf_grid&gt; -f &lt;batch_file&gt;
+   -s &lt;w&gt;x&lt;h&gt;  -a &lt;arrayspec&gt;,<span class="o">[</span>&lt;arrayspec&gt;<span class="o">]</span>*
+  <span class="o">[</span>-c &lt;operation&gt;<span class="o">]</span> <span class="o">[</span>-r &lt;lon_roll&gt;<span class="o">]</span> <span class="o">[</span>-t &lt;text&gt;<span class="o">[</span>:&lt;pos&gt;<span class="o">]]</span> <span class="o">[</span>-v<span class="o">]</span>
+</pre></div>
+</div>
+<p>where</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">qdf_grid</span></code></dt><dd><p>QDF containing a grid and geography</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">qdf_data</span></code></dt><dd><p>QDF file containing data to be extracted which is not contained in &lt;qdf_grid&gt;</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">batch_file</span></code></dt><dd><p>File containing lines of the form:</p>
+</dd>
+</dl>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&lt;timestamp&gt;&quot;:&quot;&lt;qdf_data&gt;[,&lt;qdf_data&gt;]*&quot;:&quot;&lt;output&gt;
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">w</span></code></dt><dd><p>Width  of output png</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">h</span></code></dt><dd><p>Height of output png</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ww</span></code></dt><dd><p>Width  of depicted area in degrees (default 360)</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">hw</span></code></dt><dd><p>Height of depicted area in degrees (default 180)</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ox</span></code></dt><dd><p>Longitude offset of depicted area (default 0)</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">oy</span></code></dt><dd><p>Latitude offset of depicted area (default -90)</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">outpat</span></code></dt><dd><p>Pattern for output pngs: the substring ‘###’ will be replaced with the array name</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">arrayspec</span></code></dt><dd><p>Array specification. Format:</p>
+</dd>
+</dl>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>array_spec ::= &lt;array_name&gt;[@&lt;index&gt;][|&lt;lookup&gt;]
+array_name  :   name of array (s. below)
+index       :   index of qdf in which to look (0: qdf_geogrid, 1-N: qdf-data in given order)
+lookup      :   info for lookup, with format &lt;lookup_name&gt;[:&lt;data&gt;]* (s. below)
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">operation</span></code></dt><dd><p>Compositing operator (currenly only: ‘over’ (simple alpha compositing))</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">longroll</span></code></dt><dd><p>Longitude for smallest x value (rolls image). To have all of africa on the left side of the image you should set roll to -25.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">text</span></code></dt><dd><p>Text to be rendered on image</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">pos</span></code></dt><dd><p>position of text in image (<code class="docutils literal notranslate"><span class="pre">BL</span></code>, <code class="docutils literal notranslate"><span class="pre">CL</span></code>, <code class="docutils literal notranslate"><span class="pre">UL</span></code>, <code class="docutils literal notranslate"><span class="pre">BC</span></code>,  <code class="docutils literal notranslate"><span class="pre">CC</span></code>, <code class="docutils literal notranslate"><span class="pre">UC</span></code>, <code class="docutils literal notranslate"><span class="pre">BR</span></code>, <code class="docutils literal notranslate"><span class="pre">CR</span></code>, <code class="docutils literal notranslate"><span class="pre">UR</span></code></p>
+</dd>
+</dl>
+<img alt="../_images/textlayout.png" src="../_images/textlayout.png" />
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">-v</span></code></dt><dd><p>Verbose</p>
+</dd>
+</dl>
+<p><strong>Array Names</strong></p>
+<p>These are the array names used im array_spec along with their meaning, and the array’s location in the qdf file  (if it exists):</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>array name</p></th>
+<th class="head"><p>meaning</p></th>
+<th class="head"><p>dataset</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>lon</p></td>
+<td><p>longitude</p></td>
+<td><p>Geography/Longitude</p></td>
+</tr>
+<tr class="row-odd"><td><p>lat</p></td>
+<td><p>latitude</p></td>
+<td><p>Geography/Latitude</p></td>
+</tr>
+<tr class="row-even"><td><p>alt</p></td>
+<td><p>altitudes</p></td>
+<td><p>Geography/Altitude</p></td>
+</tr>
+<tr class="row-odd"><td><p>ice</p></td>
+<td><p>ice cover</p></td>
+<td><p>Geography/IceCover</p></td>
+</tr>
+<tr class="row-even"><td><p>water</p></td>
+<td><p>water</p></td>
+<td><p>Geography/Water</p></td>
+</tr>
+<tr class="row-odd"><td><p>coastal</p></td>
+<td><p>coastal</p></td>
+<td><p>Geography/Coastal</p></td>
+</tr>
+<tr class="row-even"><td><p>temp</p></td>
+<td><p>temperature</p></td>
+<td><p>Climate/AnnualMeanTemp</p></td>
+</tr>
+<tr class="row-odd"><td><p>rain</p></td>
+<td><p>rainfall</p></td>
+<td><p>Climate/AnnualRainfall</p></td>
+</tr>
+<tr class="row-even"><td><p>npp</p></td>
+<td><p>total npp</p></td>
+<td><p>NPPVegetation/NPP</p></td>
+</tr>
+<tr class="row-odd"><td><p>npp_b</p></td>
+<td><p>base npp</p></td>
+<td><p>NPPVegetation/BaseNPP</p></td>
+</tr>
+<tr class="row-even"><td><p>dist</p></td>
+<td><p>travel distance</p></td>
+<td><p>MoveStats/Dist</p></td>
+</tr>
+<tr class="row-odd"><td><p>time</p></td>
+<td><p>travel time</p></td>
+<td><p>MoveStats/Time</p></td>
+</tr>
+<tr class="row-even"><td><p>pop</p></td>
+<td><p>population count</p></td>
+<td><p>(calculated)</p></td>
+</tr>
+<tr class="row-odd"><td><p>agent</p></td>
+<td><p>average of an agent variable</p></td>
+<td><p>(calculated)</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Lookups</strong></p>
+<p>The available Lookups and their parameters:</p>
+<p><strong>rainbow</strong></p>
+<img alt="../_images/xxx_rainbow.png" class="align-left" src="../_images/xxx_rainbow.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><div class="line-block">
+<div class="line">Prameters: min, max</div>
+<div class="line">A rainbow  going from blue (min) over green to red (max),</div>
+<div class="line">with  values &gt; max being magenta and values &lt; min being cyan</div>
+<div class="line"><br /></div>
+</div>
+</div></blockquote>
+<p><strong>rainbow2</strong></p>
+<img alt="../_images/xxx_rainbow2.png" class="align-left" src="../_images/xxx_rainbow2.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><div class="line-block">
+<div class="line">Parameters: min, max</div>
+<div class="line">A rainbow  going from red (min) over green to blue (max),</div>
+<div class="line">with  values &gt; max being magenta and values &lt; min being cyan</div>
+<div class="line"><br /></div>
+</div>
+</div></blockquote>
+<p><strong>geo</strong></p>
+<img alt="../_images/xxx_geo.png" class="align-left" src="../_images/xxx_geo.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><div class="line-block">
+<div class="line">Prameters: min, sealevel, max</div>
+<div class="line">Values below sealevel are blue, above sealevel from green to magenta</div>
+<div class="line"><br /></div>
+</div>
+</div></blockquote>
+<p><strong>geo2</strong></p>
+<img alt="../_images/xxx_geo2.png" class="align-left" src="../_images/xxx_geo2.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><div class="line-block">
+<div class="line">Parameters: min, sealevel, max</div>
+<div class="line">Values below sealevel are blue, above sealevel from green to red, values abvove max are white.</div>
+<div class="line"><br /></div>
+</div>
+</div></blockquote>
+<p><strong>twotone</strong></p>
+<img alt="../_images/xxx_twotone.png" class="align-left" src="../_images/xxx_twotone.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><div class="line-block">
+<div class="line">Parameters: SepValue, RGBA1, RGBA2</div>
+<div class="line">Values below SepValue are drawn with color RGBA1, values above with RGBA2.</div>
+<div class="line">(Color format: <code class="docutils literal notranslate"><span class="pre">#RRGGBBAA</span></code> where <code class="docutils literal notranslate"><span class="pre">RR</span></code>, <code class="docutils literal notranslate"><span class="pre">GG</span></code>, <code class="docutils literal notranslate"><span class="pre">BB</span></code> and <code class="docutils literal notranslate"><span class="pre">AA</span></code> are hex values)</div>
+<div class="line"><br /></div>
+</div>
+</div></blockquote>
+<p><strong>fadeout</strong></p>
+<img alt="../_images/xxx_fadeout.png" class="align-left" src="../_images/xxx_fadeout.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><div class="line-block">
+<div class="line">Parameters: min, max, RGBAmax.</div>
+<div class="line">Goes linearly from totally transparent to RGBAmax.</div>
+<div class="line"><br /></div>
+</div>
+</div></blockquote>
+<p><strong>fadeto</strong></p>
+<img alt="../_images/xxx_fadeto.png" class="align-left" src="../_images/xxx_fadeto.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><div class="line-block">
+<div class="line">Prameters: min, max, RGBAmin, RGBAmax.</div>
+<div class="line">Goes linearly from RGBAmin to RGBAmax.</div>
+<div class="line"><br /></div>
+</div>
+</div></blockquote>
+<p><strong>Call example</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>QDF2PNGNew -g <span class="si">${</span><span class="nv">TUT_TOP</span><span class="si">}</span>/tutorial_06/output/tutorial_06/tut_pop-sapiens_SG_005000.qdf <span class="se">\</span>
+           -q <span class="si">${</span><span class="nv">TUT_TOP</span><span class="si">}</span>/tutorial_06/output/tutorial_06/tut_pop-sapiens_SG_005000.qdf <span class="se">\</span>
+           -s 720x360 -o step_005000.png <span class="se">\</span>
+           -a <span class="s1">&#39;alt|geo:-6000:0:6000,pop_sapiens|fadeout:0:10:#FFFF00FF&#39;</span>  <span class="se">\</span>
+           -r -25 -c over -t <span class="s2">&quot;step 5000&quot;</span>:BL:20
+</pre></div>
+</div>
+<p>This creates this image</p>
+<img alt="../_images/step_005000.png" src="../_images/step_005000.png" />
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">QDF2PNGNew</a><ul>
+<li><a class="reference internal" href="#usage">Usage</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="build_tut_dirs.html"
+                          title="previous chapter">build_tut_dirs.py</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="../tutorial.html"
+                          title="next chapter">QHG Tutorial</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/tools/QDF2PNGNew.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../tutorial.html" title="QHG Tutorial"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="build_tut_dirs.html" title="build_tut_dirs.py"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../tools.html" >Tools</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">QDF2PNGNew</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,179 @@
+.. _AutoInterpolator_ref:
+
+AutoInterpolator
+================
+
+.. rst-class:: hidden
+
+    This page describes the class :index:`AutoInterpolator`
+
+The ``AutoInterpolator`` is used to interpolate between arrays in the environment files at different times.
+
+In particular ``AutoInterpolator`` uses an event file containing environment data loads.
+Typically, these load events happen every 1000 steps or so.
+``AutoInterpolator`` calculates the changes in the data for one step between the currently loaded data and the next data to be loaded.
+In regular intervals, the differences are added to the arrays, and the populations are made aware of the changes.
+  
+
+Code: `AutoInterpolator.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/core/AutoInterpolator.h>`_ `AutoInterpolator.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/core/AutoInterpolator.cpp>`_
+
+Type Definitions
+----------------
+.. code-block:: c++
+
+    typedef std::pair<uint, double*>            length_array;
+    typedef std::map<std::string, length_array> named_arrays;
+
+    typedef struct group_file {
+        std::set<std::string> vGroups;
+        std::string           sFile;
+    } group_file;
+    typedef std::map<int, group_file>           timed_files;
+
+    typedef struct target_info {
+        std::string           sFullName;
+        std::string           sGroup;
+        std::string           sArray;
+    } target_info;
+    typedef std::vector<target_info>            target_list;
+
+    typedef std::map<std::string, uint>         array_sizes;
+
+    typedef std::vector<int>                    event_list;
+
+The type ``named_arrays``  associates a name with an array and its length.
+
+The type ``target_info`` holds information about an array in a QDF file. ``sFullName`` is the full path to the array, ``sGroup`` is the group containing the array, ``sArray`` is the name of the array,
+
+
+
+Public Methods 
+--------------
+
+
+.. -----------------------------------------------------------------------------
+
+``createInstance``
+^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+     static AutoInterpolator *createInstance(SCellGrid *pCG,const std::string sEnvEventFile, double fStartTime, target_list &vTargets);
+
+``pCG``
+     Pointer to the cell grid of this simulation.
+
+``sEnvEventFile``
+     Event file like containing environment load events. 
+
+``fStartTime``
+     "real" time at step 0.
+
+``vTargets``
+    Information about the arrays to be interpolated.
+
+Creates an `AutoInterpolator`` object from the rovided data.
+
+.. -----------------------------------------------------------------------------
+
+``destructor``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+     virtual ~AutoInterpolator();
+
+The destructor deletes arrays that have been allocated.
+
+ 
+.. -----------------------------------------------------------------------------
+
+``interpolate``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    int interpolate(int iSteps);
+
+``iSteps``
+    Number of steps between interpolation calls.
+
+Adds the the differences calculated in ``calcNextDIff()`` to the arrays in question.
+
+.. -----------------------------------------------------------------------------
+
+``startInterpolations``
+^^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+     int startInterpolations(int iFirstStep);
+
+Loads the arrays to be interpolated. If the current time is less than the time stamp of the first file in the list,
+the currently used arrays are loaded from the ``SCellGrid::m_pGeography``  or ``SCellGrid::m_pVegetation``.
+Otherwise the file list is searched for the first file with a timestamp greater than the current time and its arrays are loaded.
+
+.. -----------------------------------------------------------------------------
+
+``calcNextDiff``
+^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+     int calcNextDiff();
+
+Calculatesthe  differences betwee the values of the next array and those of the current array,
+
+.. -----------------------------------------------------------------------------
+
+``getCurStep``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+     int getCurStep();
+
+Returns the step of the next file to be loaded.
+ 
+.. -----------------------------------------------------------------------------
+
+``getEvents``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    const event_list &getEvents();
+ 
+Returns the current vector of events (basically a vector of integers such as EVENT_ID_GEO or EVENT_ID_VEG).
+
+.. -----------------------------------------------------------------------------
+
+``checkNewInterpolation``
+^^^^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    int checkNewInterpolation(int iCheckStep);
+
+``iCheckStep``
+    Cirrent simulation step.
+
+Checks if new differences must be calculated.
+
+Returns 0 if no new differences had to be calculated, 1 if there are new differences, -1 on error.
+    
+
+.. -----------------------------------------------------------------------------
+
+``displayFiles``
+^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+     void displayFiles();
+
+| (used for debugging only)
+| Displays the environment files in the list.
+
+.. -----------------------------------------------------------------------------
+
+``displayArrays``
+^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+     void displayArrays();
+
+| (used for debugging only)
+| Displays the first few elements of the input and difference arrays. 
+

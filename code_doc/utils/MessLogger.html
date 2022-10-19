@@ -1,0 +1,418 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>MessLogger &#8212; QHG4 4.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jody.css" />
+    
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    
+    <link rel="shortcut icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="LineReader" href="LineReader.html" />
+    <link rel="prev" title="ParamReader" href="ParamReader.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="LineReader.html" title="LineReader"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="ParamReader.html" title="ParamReader"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../utils.html" accesskey="U">utils</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">MessLogger</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="messlogger">
+<span id="messlogger-ref"></span><h1>MessLogger<a class="headerlink" href="#messlogger" title="Permalink to this heading">¶</a></h1>
+<p class="hidden">This page describes the class <span class="target" id="index-0"></span>MessLogger</p>
+<p>The class <code class="docutils literal notranslate"><span class="pre">MessLogger</span></code> provides methods for logging messages of different types,
+“status”, “warning”, “error”, “display”.</p>
+<p>In the log file, these messages can have different colors and different prefixes.</p>
+<p>All the logXXX() methods can be called like <code class="docutils literal notranslate"><span class="pre">printf</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">MessLogger</span></code> is realized as a singleton.</p>
+<p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/MessLogger.h">MessLogger.h</a>, <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/MessLogger.cpp">MessLogger.cpp</a></p>
+<section id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">¶</a></h2>
+<section id="create">
+<h3><code class="docutils literal notranslate"><span class="pre">create</span></code><a class="headerlink" href="#create" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="n">MessLogger</span><span class="w"> </span><span class="o">*</span><span class="n">create</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sFileName</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Create the MessLogger singleton for output to <code class="docutils literal notranslate"><span class="pre">sFileName</span></code>.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">sFileName</span></code></dt><dd><p>File to write to.</p>
+</dd>
+</dl>
+</section>
+<section id="free">
+<h3><code class="docutils literal notranslate"><span class="pre">free</span></code><a class="headerlink" href="#free" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">free</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Delete the singleton (closes the log file).</p>
+</section>
+<section id="logstatus">
+<h3><code class="docutils literal notranslate"><span class="pre">logStatus</span></code><a class="headerlink" href="#logstatus" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="p">...</span><span class="w"> </span><span class="n">Args</span><span class="o">&gt;</span><span class="w"></span>
+<span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">logStatus</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sFormat</span><span class="p">,</span><span class="w"> </span><span class="n">Args</span><span class="p">...</span><span class="w"> </span><span class="n">args</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line">Writes a status message to the log file. If colors are set, it is green. If prefixes are set, a “S:” will be prepended to the message.</div>
+<div class="line">Instead of <code class="docutils literal notranslate"><span class="pre">MessLogger::logStatus</span></code> you can use <code class="docutils literal notranslate"><span class="pre">LOG_STATUS</span></code>.</div>
+</div>
+</section>
+<section id="logwarning">
+<h3><code class="docutils literal notranslate"><span class="pre">logWarning</span></code><a class="headerlink" href="#logwarning" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="p">...</span><span class="w"> </span><span class="n">Args</span><span class="o">&gt;</span><span class="w"></span>
+<span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">logWarning</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sFormat</span><span class="p">,</span><span class="w"> </span><span class="n">Args</span><span class="p">...</span><span class="w"> </span><span class="n">args</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line">Writes a warning message to the log file. If colors are set, it is blue. If prefixes are set, a “W:” will be prepended to the message.</div>
+<div class="line">Instead of <code class="docutils literal notranslate"><span class="pre">MessLogger::logWarning</span></code> you can use <code class="docutils literal notranslate"><span class="pre">LOG_WARNING</span></code>.</div>
+</div>
+</section>
+<section id="logerror">
+<h3><code class="docutils literal notranslate"><span class="pre">logError</span></code><a class="headerlink" href="#logerror" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="p">...</span><span class="w"> </span><span class="n">Args</span><span class="o">&gt;</span><span class="w"></span>
+<span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">logError</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sFormat</span><span class="p">,</span><span class="w"> </span><span class="n">Args</span><span class="p">...</span><span class="w"> </span><span class="n">args</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line">Writes an error message to the log file. If colors are set, it is red. If prefixes are set, a “E:” will be prepended to the message.</div>
+<div class="line">Instead of <code class="docutils literal notranslate"><span class="pre">MessLogger::logError</span></code> you can use <code class="docutils literal notranslate"><span class="pre">LOG_ERROR</span></code>.</div>
+</div>
+</section>
+<section id="logdisp">
+<h3><code class="docutils literal notranslate"><span class="pre">logDisp</span></code><a class="headerlink" href="#logdisp" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="p">...</span><span class="w"> </span><span class="n">Args</span><span class="o">&gt;</span><span class="w"></span>
+<span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">logDisp</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sFormat</span><span class="p">,</span><span class="w"> </span><span class="n">Args</span><span class="p">...</span><span class="w"> </span><span class="n">args</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line">Writes a display message to the log file. If colors are set, it is purple. If prefixes are set, a “D:” will be prepended to the message.</div>
+<div class="line">Instead of <code class="docutils literal notranslate"><span class="pre">MessLogger::logDisp</span></code> you can use <code class="docutils literal notranslate"><span class="pre">LOG_DISP</span></code>.</div>
+</div>
+</section>
+<section id="logstatus2">
+<h3><code class="docutils literal notranslate"><span class="pre">logStatus2</span></code><a class="headerlink" href="#logstatus2" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="p">...</span><span class="w"> </span><span class="n">Args</span><span class="o">&gt;</span><span class="w"></span>
+<span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">logStatus2</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sFormat</span><span class="p">,</span><span class="w"> </span><span class="n">Args</span><span class="p">...</span><span class="w"> </span><span class="n">args</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line">Writes a status message to the log file and to stdout. If colors are set, it is green. If prefixes are set, a “S:” will be prepended to the message.</div>
+<div class="line">Instead of <code class="docutils literal notranslate"><span class="pre">MessLogger::logStatus2</span></code> you can use <code class="docutils literal notranslate"><span class="pre">LOG_STATUS2</span></code>.</div>
+</div>
+</section>
+<section id="logwarning2">
+<h3><code class="docutils literal notranslate"><span class="pre">logWarning2</span></code><a class="headerlink" href="#logwarning2" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="p">...</span><span class="w"> </span><span class="n">Args</span><span class="o">&gt;</span><span class="w"></span>
+<span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">logWarning2</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sFormat</span><span class="p">,</span><span class="w"> </span><span class="n">Args</span><span class="p">...</span><span class="w"> </span><span class="n">args</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line">Writes a warning message to the log file <cite>and</cite> to <code class="docutils literal notranslate"><span class="pre">stdout</span></code>. If colors are set, it is blue. If prefixes are set, a “W:” will be prepended to the message.</div>
+<div class="line">Instead of <code class="docutils literal notranslate"><span class="pre">MessLogger::logWarning2</span></code> you can use <code class="docutils literal notranslate"><span class="pre">LOG_WARNING2</span></code>.</div>
+</div>
+</section>
+<section id="logerror2">
+<h3><code class="docutils literal notranslate"><span class="pre">logError2</span></code><a class="headerlink" href="#logerror2" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="p">...</span><span class="w"> </span><span class="n">Args</span><span class="o">&gt;</span><span class="w"></span>
+<span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">logError2</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sFormat</span><span class="p">,</span><span class="w"> </span><span class="n">Args</span><span class="p">...</span><span class="w"> </span><span class="n">args</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line">Writes an error message to the log file <cite>and</cite> to <code class="docutils literal notranslate"><span class="pre">stdout</span></code>. If colors are set, it is red. If prefixes are set, a “E:” will be prepended to the message.</div>
+<div class="line">Instead of <code class="docutils literal notranslate"><span class="pre">MessLogger::logError2</span></code> you can use <code class="docutils literal notranslate"><span class="pre">LOG_ERROR2</span></code>.</div>
+</div>
+</section>
+<section id="logdisp2">
+<h3><code class="docutils literal notranslate"><span class="pre">logDisp2</span></code><a class="headerlink" href="#logdisp2" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="p">...</span><span class="w"> </span><span class="n">Args</span><span class="o">&gt;</span><span class="w"></span>
+<span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">logDisp2</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sFormat</span><span class="p">,</span><span class="w"> </span><span class="n">Args</span><span class="p">...</span><span class="w"> </span><span class="n">args</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line">Writes a display message to the log file <cite>and</cite> to <code class="docutils literal notranslate"><span class="pre">stdout</span></code>. If colors are set, it is purple. If prefixes are set, a “D:” will be prepended to the message.</div>
+<div class="line">Instead of <code class="docutils literal notranslate"><span class="pre">MessLogger::logDisp2</span></code> you can use <code class="docutils literal notranslate"><span class="pre">LOG_DISP2</span></code>.</div>
+</div>
+</section>
+<section id="showlog">
+<h3><code class="docutils literal notranslate"><span class="pre">showLog</span></code><a class="headerlink" href="#showlog" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">showLog</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sLogFile</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iWhat</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Prints the specified log file to <code class="docutils literal notranslate"><span class="pre">stdout</span></code>.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">sLogFile</span></code></dt><dd><p>The log file do display.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iWhat</span></code></dt><dd><p>Which types of messages to show. <code class="docutils literal notranslate"><span class="pre">iWhat</span></code> can be MessLogger::SHOW_NONE, MessLogger::SHOW_ALL or an or-ed combination of any of MessLogger::SHOW_STATUS, MessLogger::SHOW_WARNING, MessLogger::SHOW_ERROR, and MessLogger::SHOW_DISP.</p>
+</dd>
+</dl>
+</section>
+<section id="id1">
+<h3><code class="docutils literal notranslate"><span class="pre">showLog</span></code><a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">showLog</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iWhat</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Prints the current log file to <code class="docutils literal notranslate"><span class="pre">stdout</span></code>.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">iWhat</span></code></dt><dd><p>Which types of messages to show. <code class="docutils literal notranslate"><span class="pre">iWhat</span></code> can be MessLogger::SHOW_NONE, MessLogger::SHOW_ALL or an or-ed combination of any of MessLogger::SHOW_STATUS, MessLogger::SHOW_WARNING, MessLogger::SHOW_ERROR, and MessLogger::SHOW_DISP.</p>
+</dd>
+</dl>
+</section>
+<section id="getnumstatus">
+<h3><code class="docutils literal notranslate"><span class="pre">getNumStatus</span></code><a class="headerlink" href="#getnumstatus" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">getNumStatus</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Returns the number of logged status messages.</p>
+</section>
+<section id="getnumwarning">
+<h3><code class="docutils literal notranslate"><span class="pre">getNumWarning</span></code><a class="headerlink" href="#getnumwarning" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">getNumWarning</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Returns the number of logged warning messages.</p>
+</section>
+<section id="getnumerror">
+<h3><code class="docutils literal notranslate"><span class="pre">getNumError</span></code><a class="headerlink" href="#getnumerror" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">getNumError</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Returns the number of logged error messages.</p>
+</section>
+<section id="getnumdisp">
+<h3><code class="docutils literal notranslate"><span class="pre">getNumDisp</span></code><a class="headerlink" href="#getnumdisp" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">getNumDisp</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Returns the number of logged disp messages.</p>
+</section>
+<section id="protected-methods">
+<h3><code class="docutils literal notranslate"><span class="pre">Protected</span> <span class="pre">Methods</span></code><a class="headerlink" href="#protected-methods" title="Permalink to this heading">¶</a></h3>
+</section>
+<section id="constructor">
+<h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#constructor" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">MessLogger</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sLogFileName</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The constructor open the output file for writing.</p>
+</section>
+<section id="destructor">
+<h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="o">~</span><span class="n">MessLogger</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The destructor closes the output file.</p>
+</section>
+<section id="write">
+<h3><code class="docutils literal notranslate"><span class="pre">write</span></code><a class="headerlink" href="#write" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">write</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sLine0</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sPre</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sPost</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Writes a line with specified prefx and suffix. Usually prefix and suffix arte color codes.</p>
+</section>
+<section id="coloredline">
+<h3><code class="docutils literal notranslate"><span class="pre">coloredLine</span></code><a class="headerlink" href="#coloredline" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">coloredLine</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sLine</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iWhat</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Colors a line depending on the prefix.</p>
+</section>
+<section id="logspecial">
+<h3><code class="docutils literal notranslate"><span class="pre">logSpecial</span></code><a class="headerlink" href="#logspecial" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="p">...</span><span class="w"> </span><span class="n">Args</span><span class="o">&gt;</span><span class="w"></span>
+<span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">logSpecial</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sHeader</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sColor</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sFormat</span><span class="p">,</span><span class="w"> </span><span class="n">Args</span><span class="p">...</span><span class="w"> </span><span class="n">args</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Writes a colored line to the log file.</p>
+<section id="example">
+<h4>Example<a class="headerlink" href="#example" title="Permalink to this heading">¶</a></h4>
+<p>Compile with</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>g++ ml_example.cpp stdstrutils.cpp stdstrutilsT.h -std<span class="o">=</span>c++20 -o ml_example
+</pre></div>
+</div>
+<p>Code for <code class="docutils literal notranslate"><span class="pre">ml_example.cpp</span></code>:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;MessLoggerT.h&quot;</span><span class="cp"></span>
+
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">logBlock</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sMode</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">LOG_STATUS</span><span class="p">(</span><span class="s">&quot;a normal status message (%s)</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sMode</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">LOG_WARNING</span><span class="p">(</span><span class="s">&quot;a normal warning message (%s)</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sMode</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">LOG_ERROR</span><span class="p">(</span><span class="s">&quot;a normal error message (%s)</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sMode</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">LOG_DISP</span><span class="p">(</span><span class="s">&quot;a normal disp message (%s)</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sMode</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">LOG_STATUS2</span><span class="p">(</span><span class="s">&quot;a dual status message (%s)</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sMode</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">LOG_WARNING2</span><span class="p">(</span><span class="s">&quot;a dual warning message (%s)</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sMode</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">LOG_ERROR2</span><span class="p">(</span><span class="s">&quot;a dual error message (%s)</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sMode</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">LOG_DISP2</span><span class="p">(</span><span class="s">&quot;a dual disp message (%s)</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sMode</span><span class="p">);</span><span class="w"></span>
+
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iArgC</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">apArgV</span><span class="p">[])</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">iResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">MessLogger</span><span class="o">::</span><span class="n">create</span><span class="p">(</span><span class="s">&quot;glubber.log&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">MessLogger</span><span class="o">::</span><span class="n">usePrefix</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">MessLogger</span><span class="o">::</span><span class="n">useColors</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">logBlock</span><span class="p">(</span><span class="s">&quot;prefix:off, color:off&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">MessLogger</span><span class="o">::</span><span class="n">useColors</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">logBlock</span><span class="p">(</span><span class="s">&quot;prefix:off, color:on&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">MessLogger</span><span class="o">::</span><span class="n">usePrefix</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">logBlock</span><span class="p">(</span><span class="s">&quot;prefix:on, color_on&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">MessLogger</span><span class="o">::</span><span class="n">useColors</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">logBlock</span><span class="p">(</span><span class="s">&quot;prefix:on, color:off&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">MessLogger</span><span class="o">::</span><span class="n">usePrefix</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">logBlock</span><span class="p">(</span><span class="s">&quot;prefix:off, color:off&quot;</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">stdprintf</span><span class="p">(</span><span class="s">&quot;so far:</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">stdprintf</span><span class="p">(</span><span class="s">&quot;  %d status messages</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w">  </span><span class="n">MessLogger</span><span class="o">::</span><span class="n">getNumStatus</span><span class="p">());</span><span class="w"></span>
+<span class="w">    </span><span class="n">stdprintf</span><span class="p">(</span><span class="s">&quot;  %d warning messages</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">MessLogger</span><span class="o">::</span><span class="n">getNumWarning</span><span class="p">());</span><span class="w"></span>
+<span class="w">    </span><span class="n">stdprintf</span><span class="p">(</span><span class="s">&quot;  %d error messages</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w">   </span><span class="n">MessLogger</span><span class="o">::</span><span class="n">getNumError</span><span class="p">());</span><span class="w"></span>
+<span class="w">    </span><span class="n">stdprintf</span><span class="p">(</span><span class="s">&quot;  %d disp messages</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w">    </span><span class="n">MessLogger</span><span class="o">::</span><span class="n">getNumDisp</span><span class="p">());</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">stdprintf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">stdprintf</span><span class="p">(</span><span class="s">&quot;The contents of the log file so far</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// we must set prefixes so that the display function recognizes the message type (if it exists)</span>
+<span class="w">    </span><span class="n">MessLogger</span><span class="o">::</span><span class="n">usePrefix</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">MessLogger</span><span class="o">::</span><span class="n">showLog</span><span class="p">(</span><span class="n">MessLogger</span><span class="o">::</span><span class="n">SHOW_WARNING</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">MessLogger</span><span class="o">::</span><span class="n">SHOW_ERROR</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">MessLogger</span><span class="o">::</span><span class="n">free</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="n">stdprintf</span><span class="p">(</span><span class="s">&quot;just checking...</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">iResult</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">MessLogger</a><ul>
+<li><a class="reference internal" href="#methods">Methods</a><ul>
+<li><a class="reference internal" href="#create"><code class="docutils literal notranslate"><span class="pre">create</span></code></a></li>
+<li><a class="reference internal" href="#free"><code class="docutils literal notranslate"><span class="pre">free</span></code></a></li>
+<li><a class="reference internal" href="#logstatus"><code class="docutils literal notranslate"><span class="pre">logStatus</span></code></a></li>
+<li><a class="reference internal" href="#logwarning"><code class="docutils literal notranslate"><span class="pre">logWarning</span></code></a></li>
+<li><a class="reference internal" href="#logerror"><code class="docutils literal notranslate"><span class="pre">logError</span></code></a></li>
+<li><a class="reference internal" href="#logdisp"><code class="docutils literal notranslate"><span class="pre">logDisp</span></code></a></li>
+<li><a class="reference internal" href="#logstatus2"><code class="docutils literal notranslate"><span class="pre">logStatus2</span></code></a></li>
+<li><a class="reference internal" href="#logwarning2"><code class="docutils literal notranslate"><span class="pre">logWarning2</span></code></a></li>
+<li><a class="reference internal" href="#logerror2"><code class="docutils literal notranslate"><span class="pre">logError2</span></code></a></li>
+<li><a class="reference internal" href="#logdisp2"><code class="docutils literal notranslate"><span class="pre">logDisp2</span></code></a></li>
+<li><a class="reference internal" href="#showlog"><code class="docutils literal notranslate"><span class="pre">showLog</span></code></a></li>
+<li><a class="reference internal" href="#id1"><code class="docutils literal notranslate"><span class="pre">showLog</span></code></a></li>
+<li><a class="reference internal" href="#getnumstatus"><code class="docutils literal notranslate"><span class="pre">getNumStatus</span></code></a></li>
+<li><a class="reference internal" href="#getnumwarning"><code class="docutils literal notranslate"><span class="pre">getNumWarning</span></code></a></li>
+<li><a class="reference internal" href="#getnumerror"><code class="docutils literal notranslate"><span class="pre">getNumError</span></code></a></li>
+<li><a class="reference internal" href="#getnumdisp"><code class="docutils literal notranslate"><span class="pre">getNumDisp</span></code></a></li>
+<li><a class="reference internal" href="#protected-methods"><code class="docutils literal notranslate"><span class="pre">Protected</span> <span class="pre">Methods</span></code></a></li>
+<li><a class="reference internal" href="#constructor"><code class="docutils literal notranslate"><span class="pre">constructor</span></code></a></li>
+<li><a class="reference internal" href="#destructor"><code class="docutils literal notranslate"><span class="pre">destructor</span></code></a></li>
+<li><a class="reference internal" href="#write"><code class="docutils literal notranslate"><span class="pre">write</span></code></a></li>
+<li><a class="reference internal" href="#coloredline"><code class="docutils literal notranslate"><span class="pre">coloredLine</span></code></a></li>
+<li><a class="reference internal" href="#logspecial"><code class="docutils literal notranslate"><span class="pre">logSpecial</span></code></a><ul>
+<li><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="ParamReader.html"
+                          title="previous chapter">ParamReader</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="LineReader.html"
+                          title="next chapter">LineReader</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/code_doc/utils/MessLogger.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="LineReader.html" title="LineReader"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="ParamReader.html" title="ParamReader"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../utils.html" >utils</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">MessLogger</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+    </div>
+  </body>
+</html>

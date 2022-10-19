@@ -1,0 +1,105 @@
+.. _PopsGroup_ref:
+
+"Populations"
+-------------
+
+.. rst-class:: hidden
+
+   This page describes :index:`populations group`
+
+The **populations group** is a container for all population groups; it has no attributes or data sets.
+
+The names of any population group is simply the name of the species.
+
+A population group contains some attributes as well as a subgroup for each of the population's actions. 
+Those action subgroups contain attributes (whose names are the corresponding parameter names) and their values.
+
+This is an example of an action subgroup:
+
+.. code-block:: c++
+
+    GROUP "OldAgeDeath" {
+        ATTRIBUTE "OAD_max_age" {
+           DATATYPE  H5T_IEEE_F64LE
+           DATASPACE  SIMPLE { ( 1 ) / ( 1 ) }
+           DATA {
+           (0): 64.1699
+           }
+        }
+        ATTRIBUTE "OAD_uncertainty" {
+           DATATYPE  H5T_IEEE_F64LE
+           DATASPACE  SIMPLE { ( 1 ) / ( 1 ) }
+           DATA {
+           (0): 0.1
+           }
+        }
+     }
+
+The following figure shows an example for the structue of the group "Populations" for two populations with different actions.
+
+.. figure:: ../../../images/popgroups.png
+
+  The QDF Group "Populations" with subgroups for species "Population_A" and "Population_B". 
+  Both populations have data sets, action subgroups and some attributes. 
+
+Population Group Attributes
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+- **NumCells**
+    Number of nodes
+
+- **ClassName**
+    Name of the population class
+
+- **SpeciesName**
+    Name of the species (two discern two different types of species based on the same population class)
+
+- **PrioInfo**
+    Priority information for the actions. This attribute's value is a small array of action names and their values.
+
+- **InitialSeed**
+    The seed used to initialize this population's random number generator.
+
+- **QDFVersion**
+    The version of the QDF format used (there was a big difference of the population group formats between versions 3 and 4).
+
+Population Group Dataset
+^^^^^^^^^^^^^^^^^^^^^^^^
+**AgentDataSet**
+  The format of a population's data set depends on the personal parameters of the agents.
+  Conceptually, this data set is an array of structuress containing the agents' parameters.
+
+Example:
+
+.. code-block:: c++
+
+    DATASET "AgentDataSet" {
+        DATATYPE  H5T_COMPOUND {
+            H5T_STD_I32LE "LifeState";
+            H5T_STD_I32LE "CellIdx";
+            H5T_STD_I32LE "CellID";
+            H5T_STD_I64LE "AgentID";
+            H5T_IEEE_F32LE "BirthTime";
+            H5T_STD_U8LE "Gender";
+        }
+        DATASPACE  SIMPLE { ( 101 ) / ( 101 ) }
+            DATA {
+            (0): {
+                  1,
+                  151,
+                  151,
+                  1,
+                  -6,
+                  0,
+            },
+            (1): {
+                  1,
+                  92,
+                  92,
+                  2,
+                  -7,
+                  1,
+            },
+            ...
+        }
+    }

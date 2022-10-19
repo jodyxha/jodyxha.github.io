@@ -1,0 +1,178 @@
+
+.. _BufReader_ref:
+
+BufReader
+=========
+
+.. rst-class:: hidden
+
+   This page describes the class :index:`BufReader`
+
+The class ``BufReader`` provides an interface for buffered reading from a file.
+
+Typedefs
+--------
+
+.. code-block:: c++
+
+  typedef unsigned int uint;
+
+Code: `BufReader.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/BufReader.h>`_, `BufReader.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/BufReader.cpp>`_
+
+
+Public Methods
+--------------
+
+``createInstance``
+^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    static BufReader *createInstance(const char *pFile, uint iBufSize);
+
+Create an instance of ``BufReader`` to read from the specified file.
+
+``pFile``
+    Name of file to read from.
+
+``iBufSize`` 
+    Size of buffer to use
+
+.. -----------------------------------------------------------------------------
+
+``createInstance``
+^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    static BufReader *createInstance(FILE *fIn, uint iBufSize);
+
+Create an instance of ``BufReader`` to read from the specified file.
+
+``fIn``
+   File handle for input file.
+
+``iBufSize`` 
+    Size of buffer to use
+
+.. -----------------------------------------------------------------------------
+
+``destructor``
+^^^^^^^^^^^^^^    
+.. code-block:: c++
+
+    ~BufReader();
+
+The destructor.
+
+.. -----------------------------------------------------------------------------
+
+``getNextChar``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    char *getNextChar();
+
+Gets the next character and moves the internal cursor by 1.
+If the end of the buffer has been reached, the next block is read from the file.
+
+Returns the next character.
+
+.. -----------------------------------------------------------------------------
+
+``getBlock``
+^^^^^^^^^^^^
+.. code-block:: c++
+
+    int getBlock(char *p, uint iSize);
+
+Reads a block of the specified size to the proveded buffer.
+
+``p``
+    Pointer to a ``char`` array.
+
+
+``iSize``
+    Number of characters to read into ``p``
+
+Returns 0 on success, -1 on failure.
+
+.. -----------------------------------------------------------------------------
+
+``getBlock``
+^^^^^^^^^^^^
+.. code-block:: c++
+
+    int getBlock(char *p, uint *piSize, const char *pLim);
+
+Reads a block until the string ``pLim`` has been read, but at most the specified number of characters.
+
+``p``
+    Pointer to a ``char`` array.
+
+
+``iSize``
+    Maximum number of characters to read into ``p``.
+
+``pLim``
+    Limiting string.
+
+Returns 0 on success, -1 on failure.
+
+.. -----------------------------------------------------------------------------
+
+``skip``
+^^^^^^^^
+.. code-block:: c++
+
+    char *skip(uint iSkip);
+
+Skip ove the next ``iSkip`` characters
+
+Returns 0 on success, -1 on error
+
+.. -----------------------------------------------------------------------------
+
+``getPos``
+^^^^^^^^^^
+.. code-block:: c++
+
+    long getPos();
+
+Get current position in file.
+
+Returns current  position in file.
+
+.. -----------------------------------------------------------------------------
+
+``getCurPos``
+^^^^^^^^^^^^^
+.. code-block:: c++
+
+    long getCurPos();
+
+Get current position in buffer.
+
+Returns current position in buffer.
+
+.. -----------------------------------------------------------------------------
+
+``loadFromCurrentPos``
+^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    int loadFromCurrentPos();
+
+Load the buffer from current file position.
+
+Returns 0 on success, -1 on failure.
+
+
+Protected Methods
+-----------------
+
+@@TODO 
+:ref:`Bufreadertotototo<bufreader_todododododo>`
+
+``BufReader()``
+``int initialize(const char *pFile, uint iBufSize)``
+``int initialize(FILE *fIn, uint iBufSize, bool bCloseFile)``
+

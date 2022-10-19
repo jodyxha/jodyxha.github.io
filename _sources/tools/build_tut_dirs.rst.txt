@@ -1,0 +1,32 @@
+.. _build_tut_dirs_ref:
+
+build_tut_dirs.py
+=================
+
+This tool creates a directory-tree for the tutorial containing code and resources for the tutorials.
+:ref:`"short" compilations<Compiling_QHG_alternate_ref>` of QHGMain with one or more population classes.
+
+Code: `build_tut_dirs.py <https://github.com/jodyxha/QHG4/blob/main/QHG4/useful_stuff/build_tut_dirs.py>`_
+
+Usage
+-----
+
+.. code-block:: bash
+
+    ${QHG4_DIR}/useful_stuff/build_tut_dirs.py <top_tut_dir>
+
+where
+
+``top_tut_dir``
+     path to directory in which to place the tutorial subdirectories.
+
+
+Example
+-------
+
+.. code-block:: bash
+
+    ${QHG4_DIR}/useful_stuff/build_tut_dirs /data/QHG_tutorial
+
+This will create the directories ``/data/QHG_tutorial`` containing the subdirectories for the tutorial examples.
+

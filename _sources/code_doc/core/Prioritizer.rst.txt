@@ -1,0 +1,276 @@
+.. _Prioritizer_ref:
+
+Prioritizer
+===========
+
+
+.. rst-class:: hidden
+
+   This page describes the class :index:`PopLooper`
+
+The class ``Prioritizer`` is used to manage an :ref:`SPopulation<Spopulation_ref>`'s actions based on their priority level.
+In qhg an action with lower priority level is exec uted *before* an action with a higher priority level (cf. :ref:`Actions and Priorities<ActionsAndPriorities_ref>`).
+
+Code: `Prioritizer.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/core/Prioritizer.h>`_ `Prioritizer.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/core/Prioritizer.cpp>`_
+
+Type Definitions
+----------------
+.. code-block:: c++
+
+    typedef std::map<uint, std::vector< Action<A>* > > actlist;
+    typedef std::map<std::string, Action<A>* > namelist;
+
+| ``actlist``  is a map associating a vector of actions o a priority level.
+| ``namelist`` is a map associating an action to a name.
+
+Public Methods
+--------------
+
+
+``constructor``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    Prioritizer();
+
+The constructor does nothing.
+
+.. -----------------------------------------------------------------------------
+
+``destructor``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual ~Prioritizer() {};
+
+The destructor does nothing.
+
+.. -----------------------------------------------------------------------------
+
+``setPrio``
+^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int setPrio(uint iPrio, std::string name);
+
+``iPrio``
+    Priority level.
+
+``name``
+    Name of the action tpo be associated with the priotiy level.
+
+ Aassociates a  names with a prority level. An action with this name must have prevrioously been registered with a call to ``addAction()``.
+
+
+.. -----------------------------------------------------------------------------
+
+``addAction``
+^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int addAction(Action<A> *act);
+
+``act``
+    Pointer to action to be registered.
+
+
+
+.. -----------------------------------------------------------------------------
+
+``removeAction``
+^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int removeAction(std::string name);
+
+
+``name``
+    Name of action to be removed.
+
+
+.. -----------------------------------------------------------------------------
+
+`hasAction``
+^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual bool hasAction(std::string name);
+
+``name``
+    Name of action to check.
+
+Returns true if an action with this name exists.        
+
+.. -----------------------------------------------------------------------------
+
+``hasParam``
+^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual bool hasParam(std::string name);
+
+``name``
+    Name of attribute to check.
+
+Returns true if one or more actions have an attribute with the specified name.
+
+.. -----------------------------------------------------------------------------
+
+``getMaxPrio``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual uint getMaxPrio();
+
+Returns the highest priority level.
+
+.. -----------------------------------------------------------------------------
+
+``getPrios``
+^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual uint getPrios( std::set<uint> &vPrios);
+
+``vPrios``
+    A vector to hold the priority levels of the regitered actions.
+
+Fills the provided vector with the priority levels of the registered actions.
+
+Returns the number of elements in the vector.
+
+.. -----------------------------------------------------------------------------
+
+``getNumActionsForPrio``
+^^^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    uint getNumActionsForPrio(uint iPrio);
+
+``iPrio``
+    Priority level for which to count the actions.
+
+Returns the number of actions registered for this priority level.
+
+.. -----------------------------------------------------------------------------
+
+``getAction``
+^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    Action<A> *getAction(int iPrio, int iWhich);
+
+``iPrio``
+    Priority level of interest.
+
+``iWhich``
+    Index of the wanted action in the list of registered actions
+
+Returns the action at position ``iWhich`` in the vector assopciated with the priority level.
+
+.. -----------------------------------------------------------------------------
+
+``extractActionParamsQDF``
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    int extractActionParamsQDF(hid_t hSpeciesGroup);
+
+``hSpeciesGroup``
+    HDF5 handle for a species group.
+
+Calls the ``extractAttributesQDF()`` method for all registered agents. 
+
+.. -----------------------------------------------------------------------------
+
+``writeActionParamsQDF``
+^^^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    int writeActionParamsQDF(hid_t hSpeciesGroup);
+
+``hSpeciesGroup``
+    HDF5 handle for a species group.
+
+Calls the ``writeAttributesQDF()`` method for all registered agents. 
+
+
+.. -----------------------------------------------------------------------------
+
+``getActionAttributes``
+^^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    int getActionAttributes(const modulemap &mModules); 
+
+``mModules``
+    A :ref:`modulemap<ParamProvider2_ref>` holding actions and their attributes.
+
+Sets the attribute values for all actions found in ``mModules``.
+
+.. -----------------------------------------------------------------------------
+
+``dumpActionStatesQDF``
+^^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    int dumpActionStatesQDF(hid_t hSpeciesGroup); 
+
+``hSpeciesGroup``
+    HDF5 handle for a species group.
+
+Dumps the states of all registered actions to the specified species grouo.
+
+
+.. -----------------------------------------------------------------------------
+
+``restoreActionStatesQDF``
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    int restoreActionStatesQDF(hid_t hSpeciesGroup); // for qdf
+
+Restores the states of all registered actions fromthe specified species grouo.
+
+.. -----------------------------------------------------------------------------
+
+``modifyAttribute``
+^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    int modifyAttribute(const std::string sAttrName, double dValue);
+    
+``sAttrName``
+    Name of attribute to change.
+
+``dValue``
+    New value for attribute.
+
+Loops through registered actions until one has an attribute with the specified name. The attribute wiil be set to the new value.
+
+.. -----------------------------------------------------------------------------
+
+``isEqual``
+^^^^^^^^^^^
+.. code-block:: c++
+
+    bool isEqual(Prioritizer<A> *pP, bool bStrict);
+
+``pP``
+    Prooritizer to compare this with.
+
+``bStrict``
+    Strict comparison if true.
+
+Returns true if ``pP`` is equal to this. Two ``Prioritizer`` objects are equal, if they have the same actions with the same values.
+
+
+.. -----------------------------------------------------------------------------
+
+``showAttributes``
+^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    void showAttributes();
+
+Displays the attributes of all registerd actions.

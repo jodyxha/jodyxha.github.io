@@ -1,0 +1,123 @@
+.. _PolyLine_ref:
+
+PolyLine
+========
+
+.. rst-class:: hidden
+  
+    This page describes the class :index:`PolyLine`
+
+The class ``PolyLine`` implements a piecewise linear function.
+
+.. figure:: ../../../images/PolyLine.png
+
+Given a sequence of coordinate pairs :math:`(x_i,v_i)` the ``PolyLine`` is constructed by the line segments between :math:`(x_i,v_i)` and :math:`(x_{i+1},v_{i+1})` for :math:`i < N`, where :math:`N` is the number of coordinate pairs.
+
+We define 
+
+| :math:`f(x) = v_0` for :math:`x < x_0`, 
+| :math:`f(x) = v_N` for :math:`x >= x_{N-1}`,
+| :math:`f(x) = v_{i-1} + (x - x_{i-1})(v_i - v_{i-1})/(x_i - x_{i-1})` for :math:`x_{i-1} <= x < x_i` (linear interpolation)
+ 
+
+
+Code: `PolyLine.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/PolyLine.h>`_ `PolyLine.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/PolyLine.cpp>`_
+
+Public Methods
+--------------
+
+``constructors``
+^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    PolyLine(unsigned int iNumSegments);
+    PolyLine(PolyLine *pPL);
+
+``iNumSegments``
+   Number of segments of poly line.
+
+``pPL`` 
+    Pointer to a poly line.
+
+The constructors allocate memory for the x-cordinates, the y-coordinates and the slopes.
+
+.. -----------------------------------------------------------------------------
+
+``destructor``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+   ~PolyLine();
+    
+.. -----------------------------------------------------------------------------
+
+``addPoint``
+^^^^^^^^^^^^
+.. code-block:: c++
+
+    void addPoint(unsigned int i, double fX, double fV);
+
+``i``
+  index of the new point.
+
+``fX``
+  x-coordinate of the new point.
+
+``fV``
+  y -coordinate of the point (value).
+
+Adds the i-th point as (fX, fV), and calculates the slope of the line from the previous point.
+
+.. -----------------------------------------------------------------------------
+
+``constructor``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    double getVal(double fX);
+   
+``fX``
+    x-coordinate
+
+Calculates the value of the poly line by interpolating the segment whose projection to the x-axis contains x.
+
+.. -----------------------------------------------------------------------------
+
+``write``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    void write(FILE *fOut);
+
+``fOut``
+    Output file handle.
+
+Writes a simple textfile containing the coordinate pairs of the poly line.
+
+.. -----------------------------------------------------------------------------
+
+
+``diplay``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    void display(const char *pIndent, const std::string sCaption);
+
+``pIndent``
+    Indentation of output.
+
+``sCaption``
+    Caption for output.
+
+Writes the poly line data to screen (used for debugging)
+
+.. -----------------------------------------------------------------------------
+
+``readFromString``
+^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    static PolyLine *readFromString(const std::string sData);
+
+``sData``
+    String containing ``PolyLine`` data in a suitable format ( <x1> <v1> <x2> <v2> ... <xn> <vn>).

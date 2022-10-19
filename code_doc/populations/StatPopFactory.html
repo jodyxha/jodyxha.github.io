@@ -1,0 +1,199 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>StatPopFactory &#8212; QHG4 4.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jody.css" />
+    
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    
+    <link rel="shortcut icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="DynPopFactory" href="DynPopFactory.html" />
+    <link rel="prev" title="PopulationFactory" href="PopulationFactory.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="DynPopFactory.html" title="DynPopFactory"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="PopulationFactory.html" title="PopulationFactory"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../populations.html" accesskey="U">populations</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">StatPopFactory</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="statpopfactory">
+<span id="statpopfactory-ref"></span><h1>StatPopFactory<a class="headerlink" href="#statpopfactory" title="Permalink to this heading">¶</a></h1>
+<p class="hidden">This page describes the class <span class="target" id="index-0"></span>StatPopFactory</p>
+<p>The class <code class="docutils literal notranslate"><span class="pre">StatPopFactory</span></code> is derived from the abstract base classs <a class="reference internal" href="PopulationFactory.html#populationfactory-ref"><span class="std std-ref">PopulationFactory</span></a>.</p>
+<p>It is used in <a class="reference internal" href="../app/SimParams.html#simparams-ref"><span class="std std-ref">SimParams</span></a> to read populations from QDF files and XML files.</p>
+<p>A peculiarity of <code class="docutils literal notranslate"><span class="pre">StatPopFactory.cpp</span></code> code is that it is generated from a template (<code class="docutils literal notranslate"><span class="pre">StatPopFactory.cpp_for_configure</span></code>) by the script <code class="docutils literal notranslate"><span class="pre">configure.sh</span></code>
+The reason for this is to have <code class="docutils literal notranslate"><span class="pre">new</span></code> statements for all population classes (or a subset thereof, see <a class="reference internal" href="../../qhg4_compile.html#compiling-qhg-alternate-ref"><span class="std std-ref">Alternative Population anf Action directories</span></a>).</p>
+<p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/StatPopFactory.h">StatPopFactory.h</a> ,`StatPopFactory.cpp_template &lt;<a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/StatPopFactory.cpp_template">https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/StatPopFactory.cpp_template</a>&gt;`_</p>
+<section id="publicmethods">
+<h2>PublicMethods<a class="headerlink" href="#publicmethods" title="Permalink to this heading">¶</a></h2>
+<section id="constructor">
+<h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#constructor" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">StatPopFactory</span><span class="p">(</span><span class="n">SCellGrid</span><span class="w"> </span><span class="o">*</span><span class="n">pCG</span><span class="p">,</span><span class="w"> </span><span class="n">PopFinder</span><span class="w"> </span><span class="o">*</span><span class="n">pPopFinder</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iLayerSize</span><span class="p">,</span><span class="w"></span>
+<span class="w">               </span><span class="n">IDGen</span><span class="w"> </span><span class="o">**</span><span class="n">apIDG</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="o">*</span><span class="n">aulState</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="o">*</span><span class="n">aiSeeds</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">pCG</span></code></dt><dd><p>The <a class="reference internal" href="../core/SCellGrid.html#scellgrid-ref"><span class="std std-ref">SCellGrid</span></a> for the current simulation.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">pPopFinder</span></code></dt><dd><p>A <a class="reference internal" href="../core/PopLooper.html#poplooper-ref"><span class="std std-ref">PopLooper</span></a> object. Such an object knows all population objects being used in this simulation.
+Useful for predator-prey relation ships because predators must be able to find their prey.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iLayerSize</span></code></dt><dd><p>Size of the layers of the agent storage (see <a class="reference internal" href="../utils/LayerBuf.html#layerbuf-ref"><span class="std std-ref">LayerBuf</span></a>).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">apIDGen</span></code></dt><dd><p>An array of id generators (one for each thread), capable of creating unique ids for agents.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">aulState</span></code></dt><dd><p>The initial state for the <a class="reference internal" href="../utils/WELL512.html#well512-ref"><span class="std std-ref">WELL random number generators`</span></a>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">aiSeeds</span></code></dt><dd><p>Additional <code class="docutils literal notranslate"><span class="pre">uint</span></code> s to seed WELL RNGs not used for moving and mating</p>
+</dd>
+</dl>
+<p>Initializes the members of <code class="docutils literal notranslate"><span class="pre">StatPopFactory</span></code> so that they can later be used to create populations.</p>
+</section>
+<section id="createpopulationbyname">
+<h3><code class="docutils literal notranslate"><span class="pre">createPopulationByName</span></code><a class="headerlink" href="#createpopulationbyname" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">PopBase</span><span class="w"> </span><span class="o">*</span><span class="nf">createPopulationByName</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sClassName</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">sClassName</span></code></dt><dd><p>Name of the class to be created.</p>
+</dd>
+</dl>
+<p>Creates a <code class="docutils literal notranslate"><span class="pre">PopBase</span></code> object corresponding to the provided name
+(usually called when reading a population from a QDF file).</p>
+<p>The big <code class="docutils literal notranslate"><span class="pre">if-else</span></code> statement used to determine the correct population is generated at compile time:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sClassName</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">stdprintf</span><span class="p">(</span><span class="s">&quot;empty Class ID</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="p">...</span><span class="w"></span>
+<span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sClassName</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;tut_EnvironAltPop&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">     </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">bVerbose</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;PopulationFactory is creating tut_EnvironAltPop</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="w">     </span><span class="n">pPop</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">tut_EnvironAltPop</span><span class="p">(</span><span class="n">m_pCG</span><span class="p">,</span><span class="n">m_pPopFinder</span><span class="p">,</span><span class="n">m_iLayerSize</span><span class="p">,</span><span class="n">m_apIDG</span><span class="p">,</span><span class="n">m_aulState</span><span class="p">,</span><span class="n">m_aiSeeds</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sClassName</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;tut_EnvironCapAltPop&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="p">...</span><span class="w"></span>
+<span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">stdprintf</span><span class="p">(</span><span class="s">&quot;unknown  Class Name [%s]</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sClassName</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="readpopulation">
+<h3><code class="docutils literal notranslate"><span class="pre">readPopulation</span></code><a class="headerlink" href="#readpopulation" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="n">PopBase</span><span class="w"> </span><span class="o">*</span><span class="nf">readPopulation</span><span class="p">(</span><span class="n">ParamProvider2</span><span class="w"> </span><span class="o">*</span><span class="n">pPP</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">pPP</span></code></dt><dd><p>A <code class="docutils literal notranslate"><span class="pre">ParamProvider2</span></code> object</p>
+</dd>
+</dl>
+<p>Reads the parameters for a population from <code class="docutils literal notranslate"><span class="pre">pPP</span></code> and returns a pointer to the population
+(usually called when reading a population from an xml file).</p>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">StatPopFactory</a><ul>
+<li><a class="reference internal" href="#publicmethods">PublicMethods</a><ul>
+<li><a class="reference internal" href="#constructor"><code class="docutils literal notranslate"><span class="pre">constructor</span></code></a></li>
+<li><a class="reference internal" href="#createpopulationbyname"><code class="docutils literal notranslate"><span class="pre">createPopulationByName</span></code></a></li>
+<li><a class="reference internal" href="#readpopulation"><code class="docutils literal notranslate"><span class="pre">readPopulation</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="PopulationFactory.html"
+                          title="previous chapter">PopulationFactory</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="DynPopFactory.html"
+                          title="next chapter">DynPopFactory</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/code_doc/populations/StatPopFactory.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="DynPopFactory.html" title="DynPopFactory"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="PopulationFactory.html" title="PopulationFactory"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../populations.html" >populations</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">StatPopFactory</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+    </div>
+  </body>
+</html>

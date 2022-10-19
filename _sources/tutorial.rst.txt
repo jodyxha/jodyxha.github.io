@@ -1,0 +1,49 @@
+.. _Tutorial_ref:
+
+QHG Tutorial
+============
+
+This tutorial explains how to implement populations, and how to compile and run QHG for them.
+
+Preparations
+------------
+We assume you have downloaded the code for QHG4.
+
+Make sure the environmental variable QHG4_DIR contains the full path to the top directory of QHG.
+
+Next create a small directory tree for the tutorials in which all subdirectories contain the necessary data for one tutorial chapter.
+To do this, use the script :ref:`build_tut_dirs.py<build_tut_dirs_ref>`.
+
+.. code-block:: c++
+
+    ${QHG4_DIR}/useful_stuff/build_tut_dirs.py tutorial
+
+This will build the tutorial tree in the directory from which you call the script. Alternatively use a full path:
+
+.. code-block:: c++
+
+    ${QHG4_DIR}/useful_stuff/build_tut_dirs.py /data/QHG4/tutorial
+
+In the tutorial we will refer to the directory you specified here as "top tutorial directory"
+
+
+Tutorials
+---------
+
+In each chapter the code of increasingly complex population classes is described in detail.
+
+All populations used in QHG are derived from :ref:`SPopulation<SPopulation_ref>`. The population classes usually have a constructor and override one or more methods.
+ 
+must set QHG4_DIR to QHG root directory
+
+
+.. toctree::
+   :maxdepth: 1
+
+   tutorial/tutorial_01_static
+   tutorial/tutorial_02_oldagedie
+   tutorial/tutorial_03_move
+   tutorial/tutorial_04_partheno
+   tutorial/tutorial_05_sexual
+   tutorial/tutorial_06_environalt
+   tutorial/tutorial_07_environcapalt

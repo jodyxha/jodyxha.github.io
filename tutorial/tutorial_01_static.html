@@ -1,0 +1,319 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>QHG Tutorial 01 - A Static Population &#8212; QHG4 4.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jody.css" />
+    
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    
+    <link rel="shortcut icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="QHG Tutorial 02 - Aging and Death" href="tutorial_02_oldagedie.html" />
+    <link rel="prev" title="QHG Tutorial" href="../tutorial.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="tutorial_02_oldagedie.html" title="QHG Tutorial 02 - Aging and Death"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../tutorial.html" title="QHG Tutorial"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../tutorial.html" accesskey="U">QHG Tutorial</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">QHG Tutorial 01 - A Static Population</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="qhg-tutorial-01-a-static-population">
+<span id="tutorialstatic-ref"></span><h1>QHG Tutorial 01 - A Static Population<a class="headerlink" href="#qhg-tutorial-01-a-static-population" title="Permalink to this heading">¶</a></h1>
+<p>In this chapter we describe a class for the simplest agents possible:
+they just exist - no agents die, no agents are born, and no agents move.</p>
+<p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_StaticPop.h">tut_StaticPop.h</a> <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_StaticPop.cpp">tut_StaticPop.cpp</a></p>
+<section id="the-header-file">
+<h2>The Header File<a class="headerlink" href="#the-header-file" title="Permalink to this heading">¶</a></h2>
+<p>This class makes use of the <a class="reference internal" href="../code_doc/core/SPopulation.html#spopulation-ref"><span class="std std-ref">agent structure</span></a> declared in <code class="docutils literal notranslate"><span class="pre">SPopulation</span></code>,
+so there is no need to declare a paqrticular agent class for this population.
+And since the agents don’t do anything, no action classes are rquired.</p>
+<p>The header file is accordingly simple:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef __TUT_STATICPOP_H__</span>
+<span class="cp">#define __TUT_STATICPOP_H__</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;SPopulation.h&quot;</span><span class="cp"></span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">tut_StaticPop</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">SPopulation</span><span class="o">&lt;</span><span class="n">Agent</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="k">public</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span><span class="n">tut_StaticPop</span><span class="p">(</span><span class="n">SCellGrid</span><span class="w"> </span><span class="o">*</span><span class="n">pCG</span><span class="p">,</span><span class="w"> </span><span class="n">PopFinder</span><span class="w"> </span><span class="o">*</span><span class="n">pPopFinder</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iLayerSize</span><span class="p">,</span><span class="w"> </span><span class="n">IDGen</span><span class="w"> </span><span class="o">**</span><span class="n">apIDG</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="o">*</span><span class="n">aulState</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="o">*</span><span class="n">aiSeeds</span><span class="p">);</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
+
+<span class="cp">#endif</span>
+</pre></div>
+</div>
+<p>The parameters required for this constructor will be provided by an <a class="reference internal" href="../code_doc/populations/StatPopFactory.html#statpopfactory-ref"><span class="std std-ref">agent factory</span></a>.</p>
+<p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_StaticPop.h">tut_StaticPop.h</a></p>
+</section>
+<section id="the-implementation">
+<h2>The Implementation<a class="headerlink" href="#the-implementation" title="Permalink to this heading">¶</a></h2>
+<p>The implementation of the constructor is also very simple:
+it just calls the constructor of its parent class <code class="docutils literal notranslate"><span class="pre">SPopulation</span></code>.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Prioritizer.cpp&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;LayerBuf.cpp&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Action.cpp&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;SPopulation.cpp&quot;</span><span class="cp"></span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;tut_StaticPop.h&quot;</span><span class="cp"></span>
+
+<span class="c1">//----------------------------------------------------------------------------</span>
+<span class="c1">// constructor</span>
+<span class="c1">//</span>
+<span class="n">tut_StaticPop</span><span class="o">::</span><span class="n">tut_StaticPop</span><span class="p">(</span><span class="n">SCellGrid</span><span class="w"> </span><span class="o">*</span><span class="n">pCG</span><span class="p">,</span><span class="w"> </span><span class="n">PopFinder</span><span class="w"> </span><span class="o">*</span><span class="n">pPopFinder</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iLayerSize</span><span class="p">,</span><span class="w"> </span><span class="n">IDGen</span><span class="w"> </span><span class="o">**</span><span class="n">apIDG</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="o">*</span><span class="n">aulState</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="o">*</span><span class="n">aiSeeds</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="o">:</span><span class="w"> </span><span class="n">SPopulation</span><span class="o">&lt;</span><span class="n">Agent</span><span class="o">&gt;</span><span class="p">(</span><span class="n">pCG</span><span class="p">,</span><span class="w"> </span><span class="n">pPopFinder</span><span class="p">,</span><span class="w"> </span><span class="n">iLayerSize</span><span class="p">,</span><span class="w"> </span><span class="n">apIDG</span><span class="p">,</span><span class="w"> </span><span class="n">aulState</span><span class="p">,</span><span class="w"> </span><span class="n">aiSeeds</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<section id="the-includes">
+<h3>The #includes<a class="headerlink" href="#the-includes" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Action.cpp&quot;</span><span class="cp"></span>
+</pre></div>
+</div>
+<p>For completing the <code class="docutils literal notranslate"><span class="pre">Action</span></code> templates.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Prioritizer.cpp&quot;</span><span class="cp"></span>
+</pre></div>
+</div>
+<p>For completing the <code class="docutils literal notranslate"><span class="pre">Prioritizer</span></code> templates</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;LayerBuf.cpp&quot;</span><span class="cp"></span>
+</pre></div>
+</div>
+<p>For completing the <code class="docutils literal notranslate"><span class="pre">LayerBuf</span></code> templates</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;SPopulation.cpp&quot;</span><span class="cp"></span>
+</pre></div>
+</div>
+<p>For completing the <code class="docutils literal notranslate"><span class="pre">SPopulation</span></code> templates</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;tut_StaticPop.h&quot;</span><span class="cp"></span>
+</pre></div>
+</div>
+<p>Declaration of the <code class="docutils literal notranslate"><span class="pre">tut_StaticPop</span></code> class.</p>
+<p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_StaticPop.cpp">tut_StaticPop.cpp</a></p>
+</section>
+</section>
+<section id="xml-and-dat">
+<h2>XML and DAT<a class="headerlink" href="#xml-and-dat" title="Permalink to this heading">¶</a></h2>
+<p>In order to run a simulation we must provide the actions with some parameters by means of an <a class="reference internal" href="../formats/pop/pop_xml.html#pop-xml-ref"><span class="std std-ref">XML file</span></a>.
+Furthermore we have to provide the positions and attributes of the initial agents with a <a class="reference internal" href="../formats/pop/pop_dat.html#pop-dat-ref"><span class="std std-ref">DAT file</span></a></p>
+<p>Since this simple population class does nothing, it has no need of any action and therefore the XML file <code class="docutils literal notranslate"><span class="pre">tut_Static.xml</span></code> is quite simple:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;class</span> <span class="na">name=</span><span class="s">&quot;tut_StaticPop&quot;</span> <span class="na">species_name=</span><span class="s">&quot;sapiens&quot;</span> <span class="na">species_id=</span><span class="s">&quot;104&quot;</span> <span class="nt">/&gt;</span>
+</pre></div>
+</div>
+<p>which is a shorthand notation of</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;class</span> <span class="na">name=</span><span class="s">&quot;tut_StaticPop&quot;</span> <span class="na">species_name=</span><span class="s">&quot;sapiens&quot;</span> <span class="na">species_id=</span><span class="s">&quot;104&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/class&gt;</span>
+</pre></div>
+</div>
+<p>The dat file <code class="docutils literal notranslate"><span class="pre">tut_Static.dat</span></code> defines positions and attributes for 20 agents.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#Longitude;Latitude;LifeState;AgentID;BirthTime;Gender</span>
+<span class="mi">8</span><span class="p">;</span><span class="mi">47</span><span class="p">;</span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="mf">-10.0</span><span class="p">;</span><span class="mi">0</span><span class="w"></span>
+<span class="mi">8</span><span class="p">;</span><span class="mi">47</span><span class="p">;</span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="mf">-10.0</span><span class="p">;</span><span class="mi">0</span><span class="w"></span>
+<span class="mi">8</span><span class="p">;</span><span class="mi">47</span><span class="p">;</span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="mf">-10.0</span><span class="p">;</span><span class="mi">0</span><span class="w"></span>
+<span class="p">...</span><span class="w"></span>
+<span class="mi">8</span><span class="p">;</span><span class="mi">47</span><span class="p">;</span><span class="mi">1</span><span class="p">;</span><span class="mi">20</span><span class="p">;</span><span class="mf">-10.0</span><span class="p">;</span><span class="mi">0</span><span class="w"></span>
+</pre></div>
+</div>
+<p>In this example all agents are placed at the same location, and all agents are female (Gender: 0=female, 1=male)</p>
+</section>
+<section id="grid">
+<h2>Grid<a class="headerlink" href="#grid" title="Permalink to this heading">¶</a></h2>
+<p>For this example we use a subdivided icosahedron</p>
+</section>
+<section id="compiling-and-running">
+<h2>Compiling and Running<a class="headerlink" href="#compiling-and-running" title="Permalink to this heading">¶</a></h2>
+<p>We assume that you have created the tutorial directories with the script <a class="reference internal" href="../tools/build_tut_dirs.html#build-tut-dirs-ref"><span class="std std-ref">build_tut_dirs.py</span></a>.
+This copies all relevant files to the tutorial subdirectories.</p>
+<p>First lets create alternative population and action directories with the script <a class="reference internal" href="../tools/build_alt_modpop.html#build-alt-modpop-ref"><span class="std std-ref">build_alt_modpop.py</span></a>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="si">${</span><span class="nv">QHG4_DIR</span><span class="si">}</span>/useful_stuff/build_alt_modpop.py tut_01 tut_StaticPop
+</pre></div>
+</div>
+<p>This builds alternative population directories <code class="docutils literal notranslate"><span class="pre">tut_01_pop</span></code> and <code class="docutils literal notranslate"><span class="pre">tut_01_mod</span></code>.</p>
+<p>To compile, cd to the QHG4 root directory and start the compilation:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="si">${</span><span class="nv">QHG4_DIR</span><span class="si">}</span>
+<span class="nv">SHORT</span><span class="o">=</span>tut_01 make clean QHGMain
+</pre></div>
+</div>
+<p>This is the simplest way to compile QHG (for more information see <a class="reference internal" href="../qhg4_compile.html#compiling-qhg-ref"><span class="std std-ref">Compiling QHG</span></a>)</p>
+<p>Now cd to the tutorial subdirectory “tutorial_01’ and start QHGMain</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="si">${</span><span class="nv">QHG4_DIR</span><span class="si">}</span>/app/QHGMain --read-config<span class="o">=</span>tutorial_01.cfg &gt; tutorial_01.out
+</pre></div>
+</div>
+<p>This tells QHGMain to read the parameters from  the file <code class="docutils literal notranslate"><span class="pre">tutorial_01.cfg</span></code> and write all output to the file <code class="docutils literal notranslate"><span class="pre">tutorial_01.out</span></code> (this output contains more information than the logfile)</p>
+<p>The config file <code class="docutils literal notranslate"><span class="pre">tutorial_01.cfg</span></code> was created when the tutorial directories were created with <code class="docutils literal notranslate"><span class="pre">build_tut_dirs.py</span></code>.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>--data-dirs=${QHG4_DIR}/tutorial_data/grids/
+--events=&#39;write|grid+geo+pop:sapiens@20000&#39;
+--grid=ico32s.qdf
+--log-file=tutorial_01.log
+--num-iters=200
+--output-dir=output/tutorial_01
+--output-prefix=nnn
+--pops=&#39;tut_Static.xml:tut_Static.dat&#39;
+--shuffle=92244
+--start-time=-200
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">data-dirs</span></code></dt><dd><p>A list of directories to search for data (not relevant for the static populations).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">events</span></code></dt><dd><p>A list of events (see <a class="reference internal" href="../Events.html#events-ref"><span class="std std-ref">Events</span></a>). Here a single event is defined: write output at step 20000 (or at the end of the simulation run).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">grid</span></code></dt><dd><p>Path to the grid on which to run the simulation.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">log-file</span></code></dt><dd><p>Log file for ‘high level’ messages.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">num-iters</span></code></dt><dd><p>Number of iterations for the simulation.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">output-dir</span></code></dt><dd><p>Output directory for qdf files.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">output-prefix</span></code></dt><dd><p>A prefix prepended to the names of all output files</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">pops</span></code></dt><dd><p>The files for population attributes (<code class="docutils literal notranslate"><span class="pre">tut_Static.xml</span></code>) and agent attributes (<code class="docutils literal notranslate"><span class="pre">tut_Static.dat</span></code>). These files were created by <code class="docutils literal notranslate"><span class="pre">build_tut_dirs.py</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">shuffle</span></code></dt><dd><p>A kiind of seed for the random nummber generators. Same <code class="docutils literal notranslate"><span class="pre">shuffle</span></code> values result in idfentical simulations.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">start-time</span></code></dt><dd><p>The ‘real’ time corresponding to step 0.</p>
+</dd>
+</dl>
+</section>
+<section id="the-output-file">
+<h2>The Output File<a class="headerlink" href="#the-output-file" title="Permalink to this heading">¶</a></h2>
+<p>The output files, in this case <code class="docutils literal notranslate"><span class="pre">tutorial_02.out</span></code>, always have the same structure.
+First there are messages concerning the start of the program and intialisation.
+If the simulation does not run, there’s a chance that you find th readoon why here.</p>
+<p>The second part is a list of every step describing the numbers of births, deaths and moves, as well as the time the step took to execute.</p>
+<p>At the end there is a short summary of the state at the end of the program: number of iterations, total time of execution, nuber of surviving agents.
+This is follwed by the contents of the log file.</p>
+<p>If you look at the output for the steps, you see tat there are no births, no moves, and no deaths:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>After step 55 (0.000368 s): total       20 agents
+  sapiens       0 births r
+  sapiens       0 deaths r
+  sapiens       0 moves
+After step 56 (0.000363 s): total       20 agents
+  sapiens       0 births r
+  sapiens       0 deaths r
+  sapiens       0 moves
+After step 57 (0.000369 s): total       20 agents
+  sapiens       0 births r
+  sapiens       0 deaths r
+  sapiens       0 moves
+</pre></div>
+</div>
+<p>And at the beginning of the last part:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>-----
+Finished Simulation
+Number of threads: 36
+Number of iterations: 200
+Used time: 0.095966 (00:00:00)
+Number of agents after last step
+  sapiens:        20
+    total:        20
++++success+++
+</pre></div>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">QHG Tutorial 01 - A Static Population</a><ul>
+<li><a class="reference internal" href="#the-header-file">The Header File</a></li>
+<li><a class="reference internal" href="#the-implementation">The Implementation</a><ul>
+<li><a class="reference internal" href="#the-includes">The #includes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#xml-and-dat">XML and DAT</a></li>
+<li><a class="reference internal" href="#grid">Grid</a></li>
+<li><a class="reference internal" href="#compiling-and-running">Compiling and Running</a></li>
+<li><a class="reference internal" href="#the-output-file">The Output File</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="../tutorial.html"
+                          title="previous chapter">QHG Tutorial</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="tutorial_02_oldagedie.html"
+                          title="next chapter">QHG Tutorial 02 - Aging and Death</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/tutorial/tutorial_01_static.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="tutorial_02_oldagedie.html" title="QHG Tutorial 02 - Aging and Death"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../tutorial.html" title="QHG Tutorial"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../tutorial.html" >QHG Tutorial</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">QHG Tutorial 01 - A Static Population</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,1074 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>SPopulation &#8212; QHG4 4.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jody.css" />
+    
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    
+    <link rel="shortcut icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="PopFinder" href="PopFinder.html" />
+    <link rel="prev" title="PopBase" href="PopBase.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="PopFinder.html" title="PopFinder"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="PopBase.html" title="PopBase"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../core.html" accesskey="U">core</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">SPopulation</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="spopulation">
+<span id="spopulation-ref"></span><h1>SPopulation<a class="headerlink" href="#spopulation" title="Permalink to this heading">¶</a></h1>
+<p class="hidden">This page describes the class <span class="target" id="index-0"></span>SPopulation</p>
+<p>The class <code class="docutils literal notranslate"><span class="pre">SPopulation</span></code> is derived from <a class="reference internal" href="PopBase.html#popbase-ref"><span class="std std-ref">PopBase</span></a>, and serves as base class for concrete populations.</p>
+<p>Generally every concrete population is associated with an agent data structure which it has to define.
+The agent data struct represents the individual agent properties, such as id, gender etc.</p>
+<p>An important feature of a population are its actions. These actions (derived from <a class="reference internal" href="../actions/Action.html#action-ref"><span class="std std-ref">Action</span></a>) define species-specific propertoes and behaviour,
+such as mating, producing offspring, movement etc.</p>
+<p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/core/SPopulation.h">SPopulation.h</a> <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/core/SPopulation.cpp">SPopulation.cpp</a></p>
+<section id="the-agent-structure">
+<h2>The agent structure<a class="headerlink" href="#the-agent-structure" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">Agent</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">uint</span><span class="w">     </span><span class="n">m_iLifeState</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w">      </span><span class="n">m_iCellIndex</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">idtype</span><span class="w">   </span><span class="n">m_ulID</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">gridtype</span><span class="w"> </span><span class="n">m_ulCellID</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">float</span><span class="w">    </span><span class="n">m_fBirthTime</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">uchar</span><span class="w">    </span><span class="n">m_iGender</span><span class="p">;</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">m_iLifeState</span></code></dt><dd><p>The life state of the agent, one of these values</p>
+</dd>
+</dl>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Name</p></td>
+<td><p>Value</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>LIFE_STATE_DEAD</p></td>
+<td><p>0</p></td>
+<td><p>the agent is dead</p></td>
+</tr>
+<tr class="row-odd"><td><p>LIFE_STATE_ALIVE</p></td>
+<td><p>1</p></td>
+<td><p>the agent is alive</p></td>
+</tr>
+<tr class="row-even"><td><p>LIFE_STATE_FERTILE</p></td>
+<td><p>5</p></td>
+<td><p>the agenmt is live and fertile</p></td>
+</tr>
+<tr class="row-odd"><td><p>LIFE_STATE_MOVING</p></td>
+<td><p>8</p></td>
+<td><p>the agent is moving</p></td>
+</tr>
+<tr class="row-even"><td><p>LIFE_STATE_SAILING</p></td>
+<td><p>16</p></td>
+<td><p>(currently not used)</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">m_iCellIndex</span></code></dt><dd><p>The index of the cell tha agent is currently inhabiting.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">m_ulID</span></code></dt><dd><p>The agent’s ID.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">m_ulCellID</span></code></dt><dd><p>The cell’s ID. For single computer applications this is equal to the cell index.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">m_fBirthTime</span></code></dt><dd><p>Step number at which the agent was born.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">m_iGender</span></code></dt><dd><p>The gender of the agent (0:female, 1:male).</p>
+</dd>
+</dl>
+<p>Populations derived from <code class="docutils literal notranslate"><span class="pre">SPopulation</span></code> must derive their agent structures from <code class="docutils literal notranslate"><span class="pre">Agent</span></code>.</p>
+</section>
+<section id="public-methods">
+<h2>Public Methods<a class="headerlink" href="#public-methods" title="Permalink to this heading">¶</a></h2>
+<section id="constructor">
+<h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#constructor" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">SPopulation</span><span class="p">(</span><span class="n">SCellGrid</span><span class="w"> </span><span class="o">*</span><span class="n">pCG</span><span class="p">,</span><span class="w"> </span><span class="n">PopFinder</span><span class="w"> </span><span class="o">*</span><span class="n">pPopLooper</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iLayerSize</span><span class="p">,</span><span class="w"> </span><span class="n">IDGen</span><span class="w"> </span><span class="o">**</span><span class="n">apIDGen</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="o">*</span><span class="n">aulState</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">pCG</span></code></dt><dd><p>The <a class="reference internal" href="SCellGrid.html#scellgrid-ref"><span class="std std-ref">SCellGrid</span></a> for the current simulation.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">pPopFinder</span></code></dt><dd><p>A <a class="reference internal" href="PopLooper.html#poplooper-ref"><span class="std std-ref">PopLooper</span></a> object. Such an object knows all population objects being used in this simulation.
+Useful for predator-prey relation ships because predators must be able to find their prey.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">apIDGen</span></code></dt><dd><p>An array of id generators (one for each thread), capable of creating unique ids for agents.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">aulState</span></code></dt><dd><p>The initial state for the <a class="reference internal" href="../utils/WELL512.html#well512-ref"><span class="std std-ref">WELL random number generators`</span></a>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">aiSeeds</span></code></dt><dd><p>Additional uints to seed WELL RNGs not used for moving and mating.</p>
+</dd>
+</dl>
+</section>
+<section id="destructor">
+<h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">SPopulation</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>the destructor deletes all created objects and arrays.</p>
+</section>
+<section id="setpriolist">
+<h3><code class="docutils literal notranslate"><span class="pre">setPrioList</span></code><a class="headerlink" href="#setpriolist" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w">  </span><span class="nf">setPrioList</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Saves priority level data read from the input file.</p>
+<blockquote>
+<div></div></blockquote>
+</section>
+<section id="preloop">
+<h3><code class="docutils literal notranslate"><span class="pre">preLoop</span></code><a class="headerlink" href="#preloop" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w">  </span><span class="nf">preLoop</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>This methood is called immediately before the simulation loop starts. Useful to do calculations not possible in the constructor.</p>
+</section>
+<section id="postloop">
+<h3><code class="docutils literal notranslate"><span class="pre">postLoop</span></code><a class="headerlink" href="#postloop" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w">  </span><span class="nf">postLoop</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>This method is called immediatel after the simulation loop stops. Useful fo some cleanup operations.</p>
+<blockquote>
+<div></div></blockquote>
+</section>
+<section id="prewrite">
+<h3><code class="docutils literal notranslate"><span class="pre">preWrite</span></code><a class="headerlink" href="#prewrite" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w">  </span><span class="nf">preWrite</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">fTime</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">fTime</span></code></dt><dd><p>Current simulation step.</p>
+</dd>
+</dl>
+<p>This method is called before data is written to the output file. Useful to prepare data for output.</p>
+<blockquote>
+<div></div></blockquote>
+</section>
+<section id="doactions">
+<h3><code class="docutils literal notranslate"><span class="pre">doActions</span></code><a class="headerlink" href="#doactions" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">doActions</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">iPrio</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">fTime</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">iPrio</span></code></dt><dd><p>Current priority level.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">fTime</span></code></dt><dd><p>Current simulation step.</p>
+</dd>
+</dl>
+<p>This method loops through all ctions of the specified priority level and applies them to all agents of the  population.</p>
+</section>
+<section id="initializestep">
+<h3><code class="docutils literal notranslate"><span class="pre">initializeStep</span></code><a class="headerlink" href="#initializestep" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">initializeStep</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">fTime</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">fTime</span></code></dt><dd><p>Current simulation step.</p>
+</dd>
+</dl>
+<p>This method is called at the beginning of a simulation step before <code class="docutils literal notranslate"><span class="pre">doActions()</span></code> is invoked.</p>
+</section>
+<section id="initlistidx">
+<h3><code class="docutils literal notranslate"><span class="pre">initListIdx</span></code><a class="headerlink" href="#initlistidx" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">initListIdx</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>This method clears the nirth, death and move registration lists.</p>
+</section>
+<section id="finalizestep">
+<h3><code class="docutils literal notranslate"><span class="pre">finalizeStep</span></code><a class="headerlink" href="#finalizestep" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">finalizeStep</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>This method is called just afer <code class="docutils literal notranslate"><span class="pre">doActions()</span></code> at the end of the simulation step.
+.
+.. —————————————————————————–</p>
+</section>
+<section id="registerbirth">
+<h3><code class="docutils literal notranslate"><span class="pre">registerBirth</span></code><a class="headerlink" href="#registerbirth" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">registerBirth</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iCellIndex</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iMotherIndex</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iFatherIndex</span><span class="o">=</span><span class="mi">-1</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">iCellIndex</span></code></dt><dd><p>ID of Cell in which a birth occurs.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iMotherIndex</span></code></dt><dd><p>Index of the mother agent.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iFatherIndex</span></code></dt><dd><p>Index of the Father agent.</p>
+</dd>
+</dl>
+<p>Since births occur in the parallelized loop in <code class="docutils literal notranslate"><span class="pre">doActions()</span></code> we can’t make the changes immediately, or else we have to deal with race conditions.
+For this reason, every birth is registered (i.e. the relevant data is put into a list), and only in <code class="docutils literal notranslate"><span class="pre">finalizeStep()</span></code> are the births performed.</p>
+</section>
+<section id="registerdeath">
+<h3><code class="docutils literal notranslate"><span class="pre">registerDeath</span></code><a class="headerlink" href="#registerdeath" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">registerDeath</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iCellIndex</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iAgentIndex</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">iCellIndex</span></code></dt><dd><p>ID of Cell in which a death occurs.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iAgentIndex</span></code></dt><dd><p>Index of the dead agent.</p>
+</dd>
+</dl>
+<p>Since deaths occur in the parallelized loop in <code class="docutils literal notranslate"><span class="pre">doActions()</span></code> we can’t make the changes immediately, or else we have to deal with race conditions.
+For this reason, every death is registered (i.e. the relevant data is put into a list), and only in <code class="docutils literal notranslate"><span class="pre">finalizeStep()</span></code> are the deaths performed.</p>
+</section>
+<section id="registermove">
+<h3><code class="docutils literal notranslate"><span class="pre">registerMove</span></code><a class="headerlink" href="#registermove" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">registerMove</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iCellIndexFrom</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iAgentIndex</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iCellIndexTo</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">iCellIndexFrom</span></code></dt><dd><p>Index of cell the agent currently inhabits.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iAgentIndex</span></code></dt><dd><p>Index of Agent wanting to move.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iCellIndexTo</span></code></dt><dd><p>Index of the cell the agent wants to move to.</p>
+</dd>
+</dl>
+<p>Since moves occur in the parallelized loop in <code class="docutils literal notranslate"><span class="pre">doActions()</span></code> we can’t make the changes immediately, or else we have to deal with race conditions.
+For this reason, every move is registered (i.e. the relevant data is put into a list), and only in <code class="docutils literal notranslate"><span class="pre">finalizeStep()</span></code> are the moves performed.</p>
+</section>
+<section id="reserveagentspace">
+<h3><code class="docutils literal notranslate"><span class="pre">reserveAgentSpace</span></code><a class="headerlink" href="#reserveagentspace" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w">  </span><span class="nf">reserveAgentSpace</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iNumAgents</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">iNumAgents</span></code></dt><dd><p>Number of spaces to reserve in the agent container.</p>
+</dd>
+</dl>
+<p>Makes sure there are at least <code class="docutils literal notranslate"><span class="pre">iNumAgents</span></code> contiguous unused locations in the ACTIVE state.</p>
+<p>Rerturns the firt index of the reserved region.</p>
+</section>
+<section id="updateevent">
+<h3><code class="docutils literal notranslate"><span class="pre">updateEvent</span></code><a class="headerlink" href="#updateevent" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w">  </span><span class="nf">updateEvent</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iEventID</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">pData</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">fT</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">iEventID</span></code></dt><dd><p>ID of the event.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">pData</span></code></dt><dd><p>Additional data.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">fT</span></code></dt><dd><p>Current time step.</p>
+</dd>
+</dl>
+<p>Handling of events. This method is called from within the simulation loop.</p>
+<p>This method does nothing, but can be overwritten by derived classes.</p>
+</section>
+<section id="flushevents">
+<h3><code class="docutils literal notranslate"><span class="pre">flushEvents</span></code><a class="headerlink" href="#flushevents" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">flushEvents</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">fT</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">fT</span></code></dt><dd><p>Current time step.</p>
+</dd>
+</dl>
+<p>This method is called from within the simulation loop when no more events are to be expected for this step.
+This can be used to minimize the updates by storing the events in <code class="docutils literal notranslate"><span class="pre">updatEvent()</span></code>, and actually handle them all in <code class="docutils literal notranslate"><span class="pre">flushEvents()</span></code>.</p>
+</section>
+<section id="compactdata">
+<h3><code class="docutils literal notranslate"><span class="pre">compactData</span></code><a class="headerlink" href="#compactdata" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">compactData</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Rearranges the agents in the <a class="reference internal" href="../utils/LayerBuf.html#layerbuf-ref"><span class="std std-ref">LayerBuf</span></a> containers so that there is no hole between the first and the last agent.
+Usually this is only used when writing the agent data to file: each layer is compacted anf then written.</p>
+</section>
+<section id="getmaxloadedid">
+<h3><code class="docutils literal notranslate"><span class="pre">getMaxLoadedID</span></code><a class="headerlink" href="#getmaxloadedid" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="n">idtype</span><span class="w"> </span><span class="nf">getMaxLoadedID</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Return the highest agent ID that has been loaded.
+This is needed to initialize the <a class="reference internal" href="IDGen.html#idgen-ref"><span class="std std-ref">ID generator</span></a> correctly.</p>
+</section>
+<section id="getuid">
+<h3><code class="docutils literal notranslate"><span class="pre">getUID</span></code><a class="headerlink" href="#getuid" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="n">idtype</span><span class="w"> </span><span class="nf">getUID</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Returns a new unique Agent ID.</p>
+</section>
+<section id="readspeciesdata">
+<h3><code class="docutils literal notranslate"><span class="pre">readSpeciesData</span></code><a class="headerlink" href="#readspeciesdata" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">readSpeciesData</span><span class="p">(</span><span class="n">ParamProvider2</span><span class="w"> </span><span class="o">*</span><span class="n">pPP</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">pPP</span></code></dt><dd><p>A <a class="reference internal" href="../io/ParamProvider2.html#paramprovider2-ref"><span class="std std-ref">ParamProvider2</span></a></p>
+</dd>
+</dl>
+<p>Extracts class name, species name and priority levels from the <code class="docutils literal notranslate"><span class="pre">ParamProvider2</span></code> object.</p>
+</section>
+<section id="addagent">
+<h3><code class="docutils literal notranslate"><span class="pre">addAgent</span></code><a class="headerlink" href="#addagent" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">addAgent</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iCellIndex</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">pData</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">bUpdateCount</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="addagentdata">
+<h3><code class="docutils literal notranslate"><span class="pre">addAgentData</span></code><a class="headerlink" href="#addagentdata" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">addAgentData</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iCellIndex</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iAgentIndex</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">ppData</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">iCellIndex</span></code></dt><dd><p>Cell of the agent.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iAgentIndex</span></code></dt><dd><p>The agent’s index.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ppData</span></code></dt><dd><p>Pointer to a C-style string containing the values for agent attributes.</p>
+</dd>
+</dl>
+<p>Tries to get the life state, the agent ID, the birth time and the gender from the string.</p>
+<p>On exit of this function <code class="docutils literal notranslate"><span class="pre">*ppData</span></code> points to the beginning of the next data item.</p>
+</section>
+<section id="addagentdatasingle">
+<h3><code class="docutils literal notranslate"><span class="pre">addAgentDataSingle</span></code><a class="headerlink" href="#addagentdatasingle" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T1</span><span class="o">&gt;</span><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">addAgentDataSingle</span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">ppData</span><span class="p">,</span><span class="w"> </span><span class="n">T1</span><span class="w"> </span><span class="o">*</span><span class="n">pAgentDataMember</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">ppData</span></code></dt><dd><p>Pointer to a C-style string containing the values for agent attributes.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">pAgentMember</span></code></dt><dd><p>A pointer to a data member.</p>
+</dd>
+</dl>
+<p>Reads a single item from the string, then advances <code class="docutils literal notranslate"><span class="pre">*ppData</span></code> to point at the next item.
+For numerical items only.</p>
+</section>
+<section id="addpopspecificagentdata">
+<h3><code class="docutils literal notranslate"><span class="pre">addPopSpecificAgentData</span></code><a class="headerlink" href="#addpopspecificagentdata" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">addPopSpecificAgentData</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iAgentIndex</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">ppData</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">iAgentIndex</span></code></dt><dd><p>The agent’s index.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ppData</span></code></dt><dd><p>Pointer to a C-style string containing the values for agent attributes.</p>
+</dd>
+</dl>
+<p>This method is called after the basic agent items have been read.
+Here, this method does nothing, but should be implemented by derived population classes to continue reading agent data from <code class="docutils literal notranslate"><span class="pre">ppData</span></code>.</p>
+</section>
+<section id="createagentatindex">
+<h3><code class="docutils literal notranslate"><span class="pre">createAgentAtIndex</span></code><a class="headerlink" href="#createagentatindex" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">createAgentAtIndex</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iAgentIndex</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iCellIndex</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">iAgentIndex</span></code></dt><dd><p>The agent’s index.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iCellIndex</span></code></dt><dd><p>Cell in which to create agent.</p>
+</dd>
+</dl>
+<p>In particular, the birth time is the current time step, and the gender is randomly chosen. The life state is set to <code class="docutils literal notranslate"><span class="pre">LIFE_STATE_ALIVE</span></code>.</p>
+</section>
+<section id="id1">
+<h3><code class="docutils literal notranslate"><span class="pre">reserveAgentSpace</span></code><a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setAgentBasic</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iAgentIndex</span><span class="p">,</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">pBasic</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">iAgentIndex</span></code></dt><dd><p>Index of the agent to modify.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">pBasic</span></code></dt><dd><p>Pointer to an object of a derived agent struct.</p>
+</dd>
+</dl>
+<p>Copies the basic items of <code class="docutils literal notranslate"><span class="pre">pBasic</span></code> to the agent at the specified index.</p>
+</section>
+<section id="mergepop">
+<h3><code class="docutils literal notranslate"><span class="pre">mergePop</span></code><a class="headerlink" href="#mergepop" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">mergePop</span><span class="p">(</span><span class="n">PopBase</span><span class="w"> </span><span class="o">*</span><span class="n">pPop</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">pPop</span></code></dt><dd><p>Pointer to a population object.</p>
+</dd>
+</dl>
+<p>If the population’s callss and species names match, the agents have the same type, and the population’s actions are all equal to this objects actions, then the populatiuon is merged to <code class="docutils literal notranslate"><span class="pre">this</span></code>.</p>
+<p>Useful if the agents of the same type are injected at a later phase of the simulation.</p>
+</section>
+<section id="getclassname">
+<h3><code class="docutils literal notranslate"><span class="pre">getClassName</span></code><a class="headerlink" href="#getclassname" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">getClassName</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Returns the class name.</p>
+</section>
+<section id="getspeciesname">
+<h3><code class="docutils literal notranslate"><span class="pre">getSpeciesName</span></code><a class="headerlink" href="#getspeciesname" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">getSpeciesName</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Return the species name.</p>
+</section>
+<section id="getnumagentsarray">
+<h3><code class="docutils literal notranslate"><span class="pre">getNumAgentsArray</span></code><a class="headerlink" href="#getnumagentsarray" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">ulong</span><span class="w"> </span><span class="o">*</span><span class="nf">getNumAgentsArray</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Returnsan array containing the number of agent in each cell.</p>
+</section>
+<section id="getnumagents">
+<h3><code class="docutils literal notranslate"><span class="pre">getNumAgents</span></code><a class="headerlink" href="#getnumagents" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="n">ulong</span><span class="w"> </span><span class="nf">getNumAgents</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iCellIndex</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">iCellIndex</span></code></dt><dd><p>Index of a cell.</p>
+</dd>
+</dl>
+<p>Returns the number of agents in this cell.</p>
+</section>
+<section id="getnumagentstotal">
+<h3><code class="docutils literal notranslate"><span class="pre">getNumAgentsTotal</span></code><a class="headerlink" href="#getnumagentstotal" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="n">ulong</span><span class="w"> </span><span class="nf">getNumAgentsTotal</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Return the total number of agents in the simulation (actually, the number of ACTIVE locations).</p>
+</section>
+<section id="getnumagentseffective">
+<h3><code class="docutils literal notranslate"><span class="pre">getNumAgentsEffective</span></code><a class="headerlink" href="#getnumagentseffective" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="n">ulong</span><span class="w"> </span><span class="nf">getNumAgentsEffective</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Return the total number of agents in the simulation (minus the number of agents in the death list).</p>
+</section>
+<section id="getnumagentsmax">
+<h3><code class="docutils literal notranslate"><span class="pre">getNumAgentsMax</span></code><a class="headerlink" href="#getnumagentsmax" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="n">ulong</span><span class="w"> </span><span class="nf">getNumAgentsMax</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Returns the maximum nbumber of agents that can be held in the <code class="docutils literal notranslate"><span class="pre">LayerBuf</span></code> (without adding a new layer).</p>
+</section>
+<section id="updatenumagentspercell">
+<h3><code class="docutils literal notranslate"><span class="pre">updateNumAgentsPerCell</span></code><a class="headerlink" href="#updatenumagentspercell" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">updateNumAgentsPerCell</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Recount the agents in each cell.</p>
+</section>
+<section id="updatetotal">
+<h3><code class="docutils literal notranslate"><span class="pre">updateTotal</span></code><a class="headerlink" href="#updatetotal" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">updateTotal</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Update the total count of <code class="docutils literal notranslate"><span class="pre">ACTIVE</span></code> locations.</p>
+</section>
+<section id="checklists">
+<h3><code class="docutils literal notranslate"><span class="pre">checkLists</span></code><a class="headerlink" href="#checklists" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">checkLists</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Checks the validity of the linked lists. Returns a negative number on error.</p>
+</section>
+<section id="getfreeindex">
+<h3><code class="docutils literal notranslate"><span class="pre">getFreeIndex</span></code><a class="headerlink" href="#getfreeindex" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">getFreeIndex</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Returns the index of an unused location.</p>
+</section>
+<section id="getfirstagentindex">
+<h3><code class="docutils literal notranslate"><span class="pre">getFirstAgentIndex</span></code><a class="headerlink" href="#getfirstagentindex" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">getFirstAgentIndex</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Returns the index of the first agent in the ACTIVE list.</p>
+</section>
+<section id="getlastagentindex">
+<h3><code class="docutils literal notranslate"><span class="pre">getLastAgentIndex</span></code><a class="headerlink" href="#getlastagentindex" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">getLastAgentIndex</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Returns the index of the last agent in the ACTIVE list.</p>
+</section>
+<section id="getmovelist">
+<h3><code class="docutils literal notranslate"><span class="pre">getMoveList</span></code><a class="headerlink" href="#getmovelist" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;**</span><span class="w"> </span><span class="n">getMoveList</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Returns the mmove lists. This is needed by actions who must read or manipulate the list of moving agents.</p>
+</section>
+<section id="getwell">
+<h3><code class="docutils literal notranslate"><span class="pre">getWELL</span></code><a class="headerlink" href="#getwell" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="n">WELL512</span><span class="w"> </span><span class="o">**</span><span class="nf">getWELL</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Returns the array of WELL random number generators.</p>
+</section>
+<section id="getcg">
+<h3><code class="docutils literal notranslate"><span class="pre">getCG</span></code><a class="headerlink" href="#getcg" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="n">SCellGrid</span><span class="w"> </span><span class="o">*</span><span class="nf">getCG</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Returns a ponter to the <code class="docutils literal notranslate"><span class="pre">SCellGrid</span></code>.</p>
+</section>
+<section id="randomize">
+<h3><code class="docutils literal notranslate"><span class="pre">randomize</span></code><a class="headerlink" href="#randomize" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">randomize</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Gets <code class="docutils literal notranslate"><span class="pre">i</span></code> random numbers from each WELL.</p>
+</section>
+<section id="flushdeadspace">
+<h3><code class="docutils literal notranslate"><span class="pre">flushDeadSpace</span></code><a class="headerlink" href="#flushdeadspace" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">flushDeadSpace</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Calls the normal death procedure for all agents in the previous death list.</p>
+</section>
+<section id="setparams">
+<h3><code class="docutils literal notranslate"><span class="pre">setParams</span></code><a class="headerlink" href="#setparams" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">setParams</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sParams</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">sParams</span></code></dt><dd><p>A string specifying a parameter value.</p>
+</dd>
+</dl>
+<p>Tries to interpret and set the specified parameter (as passed for the <code class="docutils literal notranslate"><span class="pre">--pop-params</span></code> option).</p>
+</section>
+<section id="getagentlifestate">
+<h3><code class="docutils literal notranslate"><span class="pre">getAgentLifeState</span></code><a class="headerlink" href="#getagentlifestate" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="n">uint</span><span class="w">     </span><span class="nf">getAgentLifeState</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iAgentIndex</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Returns the life state of the agent at index <code class="docutils literal notranslate"><span class="pre">iAgentIndex</span></code>.</p>
+</section>
+<section id="getagentcellindex">
+<h3><code class="docutils literal notranslate"><span class="pre">getAgentCellIndex</span></code><a class="headerlink" href="#getagentcellindex" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w">      </span><span class="nf">getAgentCellIndex</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iAgentIndex</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Returns the cell index of the agent at index <code class="docutils literal notranslate"><span class="pre">iAgentIndex</span></code>.</p>
+</section>
+<section id="getagentid">
+<h3><code class="docutils literal notranslate"><span class="pre">getAgentID</span></code><a class="headerlink" href="#getagentid" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="n">idtype</span><span class="w">   </span><span class="nf">getAgentID</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iAgentIndex</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Returns the ID of the agent at index <code class="docutils literal notranslate"><span class="pre">iAgentIndex</span></code>.</p>
+</section>
+<section id="getagentcellid">
+<h3><code class="docutils literal notranslate"><span class="pre">getAgentCellID</span></code><a class="headerlink" href="#getagentcellid" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="n">gridtype</span><span class="w"> </span><span class="nf">getAgentCellID</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iAgentIndex</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Returns the ID of the cell of the agent at index <code class="docutils literal notranslate"><span class="pre">iAgentIndex</span></code>.</p>
+</section>
+<section id="getagentbirthtime">
+<h3><code class="docutils literal notranslate"><span class="pre">getAgentBirthTime</span></code><a class="headerlink" href="#getagentbirthtime" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">float</span><span class="w">    </span><span class="nf">getAgentBirthTime</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iAgentIndex</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Returns the birth time of the agent at index <code class="docutils literal notranslate"><span class="pre">iAgentIndex</span></code>.</p>
+</section>
+<section id="getagentgender">
+<h3><code class="docutils literal notranslate"><span class="pre">getAgentGender</span></code><a class="headerlink" href="#getagentgender" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="n">uchar</span><span class="w">    </span><span class="nf">getAgentGender</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iAgentIndex</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Returns the gender of the agent at index <code class="docutils literal notranslate"><span class="pre">iAgentIndex</span></code> (0: female, 1:male).</p>
+</section>
+<section id="id2">
+<h3><code class="docutils literal notranslate"><span class="pre">reserveAgentSpace</span></code><a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setAgentDataType</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Cerates and stores the HDF5 type for the agents.</p>
+</section>
+</section>
+<section id="some-protected-members">
+<h2>Some Protected Members<a class="headerlink" href="#some-protected-members" title="Permalink to this heading">¶</a></h2>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">LayerBuf&lt;T&gt;</span> <span class="pre">m_aAgents;</span></code></dt><dd><p>The array of agent structs.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">LBController</span> <span class="pre">*m_pAgentController;</span></code></dt><dd><p>The controller for the agent array.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">LayerBuf&lt;T&gt;</span> <span class="pre">m_aWriteCopy;</span></code></dt><dd><p>Auxiliary layerbuf for writing.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">LBController</span> <span class="pre">*m_pWriteCopyController;</span></code></dt><dd><p>The controller for the auxiliary layerbuf.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">SCellGrid</span>&#160;&#160; <span class="pre">*m_pCG;</span></code></dt><dd><p>The cell grid for this simulation.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Prioritizer&lt;T&gt;</span> <span class="pre">m_prio;</span></code></dt><dd><p>Priority level info for the populations actions.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">PopFinder</span> <span class="pre">*m_pPopFinder;</span></code></dt><dd><p>A container holding all ppopulations.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">std::vector&lt;int&gt;**</span> <span class="pre">m_vBirthList;</span></code></dt><dd><p>List of registered births (consecutive triples of cell index, mother’s index, father’s index).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">std::vector&lt;int&gt;**</span> <span class="pre">m_vDeathList;</span></code></dt><dd><p>A list of the agent indexes registered for death.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">std::vector&lt;int&gt;**</span> <span class="pre">m_vMoveList;</span></code></dt><dd><p>A list of registered moves (consecutive triples of index of origin cell, agent index, index of target cell).</p>
+</dd>
+</dl>
+</section>
+<section id="some-protected-methods">
+<h2>Some Protected Methods<a class="headerlink" href="#some-protected-methods" title="Permalink to this heading">¶</a></h2>
+<section id="recycledeadspacenew">
+<h3><code class="docutils literal notranslate"><span class="pre">recycleDeadSpaceNew</span></code><a class="headerlink" href="#recycledeadspacenew" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">recycleDeadSpaceNew</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Fills as many locations of previously died agents as possible with the data of new born agents.
+This reduces the number of unparallelizable list operations.</p>
+</section>
+<section id="moveagent">
+<h3><code class="docutils literal notranslate"><span class="pre">moveAgent</span></code><a class="headerlink" href="#moveagent" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">moveAgent</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iCellIndexFrom</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iAgentIndex</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iCellIndexTo</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">iCellIndexFrom</span></code></dt><dd><p>Index of origint cell.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iAgentIndex</span></code></dt><dd><p>Agent index.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iCellTo</span></code></dt><dd><p>Index of target cell.</p>
+</dd>
+</dl>
+<p>This method performs the actual move of the agent by changing the agent’s <code class="docutils literal notranslate"><span class="pre">m_iCellIndex</span></code> member.</p>
+</section>
+<section id="performmoves">
+<h3><code class="docutils literal notranslate"><span class="pre">performMoves</span></code><a class="headerlink" href="#performmoves" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">performMoves</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Processes the registered moves in parallel.
+This is ok, because every move only affects one agent,
+no agent makes more than one move per step.</p>
+</section>
+<section id="makepopspecificmove">
+<h3><code class="docutils literal notranslate"><span class="pre">makePopSpecificMove</span></code><a class="headerlink" href="#makepopspecificmove" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">makePopSpecificMove</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iCellIndexFrom</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iAgentIndex</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iCellIndexTo</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Can be overridden to do specific actions just after an agent has moved.</p>
+<blockquote>
+<div><p>// not used</p>
+</div></blockquote>
+</section>
+<section id="performbirths">
+<h3><code class="docutils literal notranslate"><span class="pre">performBirths</span></code><a class="headerlink" href="#performbirths" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">performBirths</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Calls the method <code class="docutils literal notranslate"><span class="pre">makeOffspring()</span></code> for all registered birth entries.</p>
+</section>
+<section id="id3">
+<h3><code class="docutils literal notranslate"><span class="pre">performBirths</span></code><a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">performBirths</span><span class="p">(</span><span class="n">ulong</span><span class="w"> </span><span class="n">iNumBirths</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">piBirthData</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Calls the method <code class="docutils literal notranslate"><span class="pre">makeOffspringAtIndex()</span></code> for all birth data entries in <code class="docutils literal notranslate"><span class="pre">piBirthData</span></code>.</p>
+</section>
+<section id="makeoffspring">
+<h3><code class="docutils literal notranslate"><span class="pre">makeOffspring</span></code><a class="headerlink" href="#makeoffspring" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">makeOffspring</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iCellIndex</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iMotherIndex</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iFatherIndex</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">iCellIndex</span></code></dt><dd><p>Location of birth.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iMotherIndex</span></code></dt><dd><p>Index of new agent’s mother.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iFatherIndex</span></code></dt><dd><p>Index of new agent’s father.</p>
+</dd>
+</dl>
+<p>Creates a new agent in specified cell, then calls <code class="docutils literal notranslate"><span class="pre">makePopSpecificOffspring()</span></code> for population specific post-natal operations.</p>
+</section>
+<section id="makeoffspringatindex">
+<h3><code class="docutils literal notranslate"><span class="pre">makeOffspringAtIndex</span></code><a class="headerlink" href="#makeoffspringatindex" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">makeOffspringAtIndex</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iAgentIndex</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iCellIndex</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iMotherIndex</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iFatherIndex</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">iAgentIndex</span></code></dt><dd><p>Index of new Agent.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iCellIndex</span></code></dt><dd><p>Location of birth.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iMotherIndex</span></code></dt><dd><p>Index of new agent’s mother.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iFatherIndex</span></code></dt><dd><p>Index of new agent’s father.</p>
+</dd>
+</dl>
+<p>Creates an agent with at specified index in the specified cell, then calls <code class="docutils literal notranslate"><span class="pre">makePopSpecificOffspring()</span></code> for population specific post-natal operations.</p>
+</section>
+<section id="makepopspecificoffspring">
+<h3><code class="docutils literal notranslate"><span class="pre">makePopSpecificOffspring</span></code><a class="headerlink" href="#makepopspecificoffspring" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">makePopSpecificOffspring</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iAgentIndex</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iMotherIndex</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iFatherIndex</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">iAgentIndex</span></code></dt><dd><p>Index of new agent birth.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iMotherIndex</span></code></dt><dd><p>Index of new agent’s mother.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iFatherIndex</span></code></dt><dd><p>Index of new agent’s father.</p>
+</dd>
+</dl>
+<p>This method can be overridden by derived populations to implement specific operations just after the birth of an agent.</p>
+</section>
+<section id="performdeaths">
+<h3><code class="docutils literal notranslate"><span class="pre">performDeaths</span></code><a class="headerlink" href="#performdeaths" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">performDeaths</span><span class="p">(</span><span class="n">ulong</span><span class="w"> </span><span class="n">iNumDeaths</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">piDeathData</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">iNumDeaths</span></code></dt><dd><p>Number of entries in the death list.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">piDeathData</span></code></dt><dd><p>Pointer to the death list.</p>
+</dd>
+</dl>
+<p>Calls <code class="docutils literal notranslate"><span class="pre">makePopSpecificDeath()</span></code> for each agent in the death list and moves their locations to the PASSIVE list.</p>
+</section>
+<section id="makepopspecificdeath">
+<h3><code class="docutils literal notranslate"><span class="pre">makePopSpecificDeath</span></code><a class="headerlink" href="#makepopspecificdeath" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">makePopSpecificDeath</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iAgentIndex</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">iAgentIndex</span></code></dt><dd><p>Index of dead agent.</p>
+</dd>
+</dl>
+<p>This method can be overridden by derived populations to implement specific operations just after the death of an agent.</p>
+</section>
+<section id="agentrealsizeqdf">
+<h3><code class="docutils literal notranslate"><span class="pre">agentRealSizeQDF</span></code><a class="headerlink" href="#agentrealsizeqdf" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">size_t</span><span class="w"> </span><span class="nf">agentRealSizeQDF</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="k">return</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">T</span><span class="p">);};</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Returns the size of the agent structure.</p>
+</section>
+<section id="createagentdatatypeqdf">
+<h3><code class="docutils literal notranslate"><span class="pre">createAgentDataTypeQDF</span></code><a class="headerlink" href="#createagentdatatypeqdf" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="n">hid_t</span><span class="w"> </span><span class="nf">createAgentDataTypeQDF</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Creates a HDF data type for the agent structure and returns a handle to it.</p>
+</section>
+<section id="addpopspecificagentdatatypeqdf">
+<h3><code class="docutils literal notranslate"><span class="pre">addPopSpecificAgentDataTypeQDF</span></code><a class="headerlink" href="#addpopspecificagentdatatypeqdf" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">addPopSpecificAgentDataTypeQDF</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="o">*</span><span class="n">hAgentDataType</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">hAgentDataType</span></code></dt><dd><p>HDF5 handle for agent datatype to be modified</p>
+</dd>
+</dl>
+<p>This method can be used to extend the HDF5 data type of the agent structure.
+It should be overriden by population classes whose agents have additional members.</p>
+</section>
+<section id="writeagentdataqdf">
+<h3><code class="docutils literal notranslate"><span class="pre">writeAgentDataQDF</span></code><a class="headerlink" href="#writeagentdataqdf" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">writeAgentDataQDF</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">dataspace_id</span><span class="p">,</span><span class="w"> </span><span class="n">hid_t</span><span class="w"> </span><span class="n">dataset_id</span><span class="p">,</span><span class="w"> </span><span class="n">hid_t</span><span class="w"> </span><span class="n">hAgentType</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">dataspace_id</span></code></dt><dd><p>HDF5 handle to data space into which to write agent data.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">dataset_id</span></code></dt><dd><p>HDF5 handle to data set for the agent data.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">hAgentType</span></code></dt><dd><p>HDF5 handle to data type of the agent structure.</p>
+</dd>
+</dl>
+<p>Currently this method simply calls <code class="docutils literal notranslate"><span class="pre">writeAgentDataQDFSafe()</span></code>.</p>
+</section>
+<section id="writeagentdataqdfsafe">
+<h3><code class="docutils literal notranslate"><span class="pre">writeAgentDataQDFSafe</span></code><a class="headerlink" href="#writeagentdataqdfsafe" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">writeAgentDataQDFSafe</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hDataSpace_id</span><span class="p">,</span><span class="w"> </span><span class="n">hid_t</span><span class="w"> </span><span class="n">hDataSet_id</span><span class="p">,</span><span class="w"> </span><span class="n">hid_t</span><span class="w"> </span><span class="n">hAgentType</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">hDataSpace</span></code></dt><dd><p>HDF5 handle to data space into which to write agent data.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">hDataSet</span></code></dt><dd><p>HDF5 handle to data set for the agent data.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">hAgentType</span></code></dt><dd><p>HDF5 handle to data type of the agent structure.</p>
+</dd>
+</dl>
+<p>This method writes the agent data compactly, but without modifying the LayerBuf.
+This is done by using a separate <a class="reference internal" href="../utils/LBController.html#lbcontroller-ref"><span class="std std-ref">LBController</span></a> with only one layer to which the
+data of each layer of the actual agent data is copied and written in turn.
+This ensures that a simulation with output runs identically to one without.</p>
+</section>
+<section id="writespeciesdataqdf">
+<h3><code class="docutils literal notranslate"><span class="pre">writeSpeciesDataQDF</span></code><a class="headerlink" href="#writespeciesdataqdf" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">writeSpeciesDataQDF</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hSpeciesGroup</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">hSpeciesGroup</span></code></dt><dd><p>HDF5 handle to the group to write to.</p>
+</dd>
+</dl>
+<p>Writes the attributes of <code class="docutils literal notranslate"><span class="pre">SPopulation</span></code>.</p>
+</section>
+<section id="readagentdataqdf">
+<h3><code class="docutils literal notranslate"><span class="pre">readAgentDataQDF</span></code><a class="headerlink" href="#readagentdataqdf" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">readAgentDataQDF</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hDataSpace</span><span class="p">,</span><span class="w"> </span><span class="n">hid_t</span><span class="w"> </span><span class="n">hDataSet</span><span class="p">,</span><span class="w"> </span><span class="n">hid_t</span><span class="w"> </span><span class="n">hAgentType</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">hDataSpace</span></code></dt><dd><p>HDF5 handle to data space from which to read agent data.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">hDataSet</span></code></dt><dd><p>HDF5 handle to data set for the agent data.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">hAgentType</span></code></dt><dd><p>HDF5 handle to data type of the agent structure.</p>
+</dd>
+</dl>
+<p><code class="docutils literal notranslate"><span class="pre">hDataSpace</span></code></p>
+</section>
+<section id="readspeciesdataqdf">
+<h3><code class="docutils literal notranslate"><span class="pre">readSpeciesDataQDF</span></code><a class="headerlink" href="#readspeciesdataqdf" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">readSpeciesDataQDF</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hSpeciesGroup</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">hSpeciesGroup</span></code></dt><dd><p>HDF5 handle to the group to read from.</p>
+</dd>
+</dl>
+<p>Reads the attributes of <code class="docutils literal notranslate"><span class="pre">SPopulation</span></code>.</p>
+</section>
+<section id="writestatarrsqdf">
+<h3><code class="docutils literal notranslate"><span class="pre">writeStatArrsQDF</span></code><a class="headerlink" href="#writestatarrsqdf" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">writeStatArrsQDF</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hSpeciesGroup</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">hSpeciesGroup</span></code></dt><dd><p>HDF5 handle to the group to write to.</p>
+</dd>
+</dl>
+<p>Can be overridden to write additional arrays into the species group.</p>
+<p>WILL PROBABLY BE DELETED AS IT DUPLICATES <code class="docutils literal notranslate"><span class="pre">writeAdditionalDataQDF()</span></code>.</p>
+</section>
+<section id="readstatarrsqdf">
+<h3><code class="docutils literal notranslate"><span class="pre">readStatArrsQDF</span></code><a class="headerlink" href="#readstatarrsqdf" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">readStatArrsQDF</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hSpeciesGroup</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">hSpeciesGroup</span></code></dt><dd><p>HDF5 handle to the group to read from.</p>
+</dd>
+</dl>
+<p>Can be overridden to read additional arrays from the species group.</p>
+<p>WILL PROBABLY BE DELETED AS IT DUPLICATES <code class="docutils literal notranslate"><span class="pre">readAdditionalDataQDF()</span></code>.</p>
+</section>
+<section id="writeadditionaldataqdf">
+<h3><code class="docutils literal notranslate"><span class="pre">writeAdditionalDataQDF</span></code><a class="headerlink" href="#writeadditionaldataqdf" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">writeAdditionalDataQDF</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hSpeciesGroup</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">hSpeciesGroup</span></code></dt><dd><p>HDF5 handle to the group to write to.</p>
+</dd>
+</dl>
+<p>Can be overridden to write additional data to the species group.</p>
+</section>
+<section id="readadditionaldataqdf">
+<h3><code class="docutils literal notranslate"><span class="pre">readAdditionalDataQDF</span></code><a class="headerlink" href="#readadditionaldataqdf" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">readAdditionalDataQDF</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hSpeciesGroup</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">hSpeciesGroup</span></code></dt><dd><p>HDF5 handle to the group to read from.</p>
+</dd>
+</dl>
+<p>Can be overridden to read additional data.</p>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">SPopulation</a><ul>
+<li><a class="reference internal" href="#the-agent-structure">The agent structure</a></li>
+<li><a class="reference internal" href="#public-methods">Public Methods</a><ul>
+<li><a class="reference internal" href="#constructor"><code class="docutils literal notranslate"><span class="pre">constructor</span></code></a></li>
+<li><a class="reference internal" href="#destructor"><code class="docutils literal notranslate"><span class="pre">destructor</span></code></a></li>
+<li><a class="reference internal" href="#setpriolist"><code class="docutils literal notranslate"><span class="pre">setPrioList</span></code></a></li>
+<li><a class="reference internal" href="#preloop"><code class="docutils literal notranslate"><span class="pre">preLoop</span></code></a></li>
+<li><a class="reference internal" href="#postloop"><code class="docutils literal notranslate"><span class="pre">postLoop</span></code></a></li>
+<li><a class="reference internal" href="#prewrite"><code class="docutils literal notranslate"><span class="pre">preWrite</span></code></a></li>
+<li><a class="reference internal" href="#doactions"><code class="docutils literal notranslate"><span class="pre">doActions</span></code></a></li>
+<li><a class="reference internal" href="#initializestep"><code class="docutils literal notranslate"><span class="pre">initializeStep</span></code></a></li>
+<li><a class="reference internal" href="#initlistidx"><code class="docutils literal notranslate"><span class="pre">initListIdx</span></code></a></li>
+<li><a class="reference internal" href="#finalizestep"><code class="docutils literal notranslate"><span class="pre">finalizeStep</span></code></a></li>
+<li><a class="reference internal" href="#registerbirth"><code class="docutils literal notranslate"><span class="pre">registerBirth</span></code></a></li>
+<li><a class="reference internal" href="#registerdeath"><code class="docutils literal notranslate"><span class="pre">registerDeath</span></code></a></li>
+<li><a class="reference internal" href="#registermove"><code class="docutils literal notranslate"><span class="pre">registerMove</span></code></a></li>
+<li><a class="reference internal" href="#reserveagentspace"><code class="docutils literal notranslate"><span class="pre">reserveAgentSpace</span></code></a></li>
+<li><a class="reference internal" href="#updateevent"><code class="docutils literal notranslate"><span class="pre">updateEvent</span></code></a></li>
+<li><a class="reference internal" href="#flushevents"><code class="docutils literal notranslate"><span class="pre">flushEvents</span></code></a></li>
+<li><a class="reference internal" href="#compactdata"><code class="docutils literal notranslate"><span class="pre">compactData</span></code></a></li>
+<li><a class="reference internal" href="#getmaxloadedid"><code class="docutils literal notranslate"><span class="pre">getMaxLoadedID</span></code></a></li>
+<li><a class="reference internal" href="#getuid"><code class="docutils literal notranslate"><span class="pre">getUID</span></code></a></li>
+<li><a class="reference internal" href="#readspeciesdata"><code class="docutils literal notranslate"><span class="pre">readSpeciesData</span></code></a></li>
+<li><a class="reference internal" href="#addagent"><code class="docutils literal notranslate"><span class="pre">addAgent</span></code></a></li>
+<li><a class="reference internal" href="#addagentdata"><code class="docutils literal notranslate"><span class="pre">addAgentData</span></code></a></li>
+<li><a class="reference internal" href="#addagentdatasingle"><code class="docutils literal notranslate"><span class="pre">addAgentDataSingle</span></code></a></li>
+<li><a class="reference internal" href="#addpopspecificagentdata"><code class="docutils literal notranslate"><span class="pre">addPopSpecificAgentData</span></code></a></li>
+<li><a class="reference internal" href="#createagentatindex"><code class="docutils literal notranslate"><span class="pre">createAgentAtIndex</span></code></a></li>
+<li><a class="reference internal" href="#id1"><code class="docutils literal notranslate"><span class="pre">reserveAgentSpace</span></code></a></li>
+<li><a class="reference internal" href="#mergepop"><code class="docutils literal notranslate"><span class="pre">mergePop</span></code></a></li>
+<li><a class="reference internal" href="#getclassname"><code class="docutils literal notranslate"><span class="pre">getClassName</span></code></a></li>
+<li><a class="reference internal" href="#getspeciesname"><code class="docutils literal notranslate"><span class="pre">getSpeciesName</span></code></a></li>
+<li><a class="reference internal" href="#getnumagentsarray"><code class="docutils literal notranslate"><span class="pre">getNumAgentsArray</span></code></a></li>
+<li><a class="reference internal" href="#getnumagents"><code class="docutils literal notranslate"><span class="pre">getNumAgents</span></code></a></li>
+<li><a class="reference internal" href="#getnumagentstotal"><code class="docutils literal notranslate"><span class="pre">getNumAgentsTotal</span></code></a></li>
+<li><a class="reference internal" href="#getnumagentseffective"><code class="docutils literal notranslate"><span class="pre">getNumAgentsEffective</span></code></a></li>
+<li><a class="reference internal" href="#getnumagentsmax"><code class="docutils literal notranslate"><span class="pre">getNumAgentsMax</span></code></a></li>
+<li><a class="reference internal" href="#updatenumagentspercell"><code class="docutils literal notranslate"><span class="pre">updateNumAgentsPerCell</span></code></a></li>
+<li><a class="reference internal" href="#updatetotal"><code class="docutils literal notranslate"><span class="pre">updateTotal</span></code></a></li>
+<li><a class="reference internal" href="#checklists"><code class="docutils literal notranslate"><span class="pre">checkLists</span></code></a></li>
+<li><a class="reference internal" href="#getfreeindex"><code class="docutils literal notranslate"><span class="pre">getFreeIndex</span></code></a></li>
+<li><a class="reference internal" href="#getfirstagentindex"><code class="docutils literal notranslate"><span class="pre">getFirstAgentIndex</span></code></a></li>
+<li><a class="reference internal" href="#getlastagentindex"><code class="docutils literal notranslate"><span class="pre">getLastAgentIndex</span></code></a></li>
+<li><a class="reference internal" href="#getmovelist"><code class="docutils literal notranslate"><span class="pre">getMoveList</span></code></a></li>
+<li><a class="reference internal" href="#getwell"><code class="docutils literal notranslate"><span class="pre">getWELL</span></code></a></li>
+<li><a class="reference internal" href="#getcg"><code class="docutils literal notranslate"><span class="pre">getCG</span></code></a></li>
+<li><a class="reference internal" href="#randomize"><code class="docutils literal notranslate"><span class="pre">randomize</span></code></a></li>
+<li><a class="reference internal" href="#flushdeadspace"><code class="docutils literal notranslate"><span class="pre">flushDeadSpace</span></code></a></li>
+<li><a class="reference internal" href="#setparams"><code class="docutils literal notranslate"><span class="pre">setParams</span></code></a></li>
+<li><a class="reference internal" href="#getagentlifestate"><code class="docutils literal notranslate"><span class="pre">getAgentLifeState</span></code></a></li>
+<li><a class="reference internal" href="#getagentcellindex"><code class="docutils literal notranslate"><span class="pre">getAgentCellIndex</span></code></a></li>
+<li><a class="reference internal" href="#getagentid"><code class="docutils literal notranslate"><span class="pre">getAgentID</span></code></a></li>
+<li><a class="reference internal" href="#getagentcellid"><code class="docutils literal notranslate"><span class="pre">getAgentCellID</span></code></a></li>
+<li><a class="reference internal" href="#getagentbirthtime"><code class="docutils literal notranslate"><span class="pre">getAgentBirthTime</span></code></a></li>
+<li><a class="reference internal" href="#getagentgender"><code class="docutils literal notranslate"><span class="pre">getAgentGender</span></code></a></li>
+<li><a class="reference internal" href="#id2"><code class="docutils literal notranslate"><span class="pre">reserveAgentSpace</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#some-protected-members">Some Protected Members</a></li>
+<li><a class="reference internal" href="#some-protected-methods">Some Protected Methods</a><ul>
+<li><a class="reference internal" href="#recycledeadspacenew"><code class="docutils literal notranslate"><span class="pre">recycleDeadSpaceNew</span></code></a></li>
+<li><a class="reference internal" href="#moveagent"><code class="docutils literal notranslate"><span class="pre">moveAgent</span></code></a></li>
+<li><a class="reference internal" href="#performmoves"><code class="docutils literal notranslate"><span class="pre">performMoves</span></code></a></li>
+<li><a class="reference internal" href="#makepopspecificmove"><code class="docutils literal notranslate"><span class="pre">makePopSpecificMove</span></code></a></li>
+<li><a class="reference internal" href="#performbirths"><code class="docutils literal notranslate"><span class="pre">performBirths</span></code></a></li>
+<li><a class="reference internal" href="#id3"><code class="docutils literal notranslate"><span class="pre">performBirths</span></code></a></li>
+<li><a class="reference internal" href="#makeoffspring"><code class="docutils literal notranslate"><span class="pre">makeOffspring</span></code></a></li>
+<li><a class="reference internal" href="#makeoffspringatindex"><code class="docutils literal notranslate"><span class="pre">makeOffspringAtIndex</span></code></a></li>
+<li><a class="reference internal" href="#makepopspecificoffspring"><code class="docutils literal notranslate"><span class="pre">makePopSpecificOffspring</span></code></a></li>
+<li><a class="reference internal" href="#performdeaths"><code class="docutils literal notranslate"><span class="pre">performDeaths</span></code></a></li>
+<li><a class="reference internal" href="#makepopspecificdeath"><code class="docutils literal notranslate"><span class="pre">makePopSpecificDeath</span></code></a></li>
+<li><a class="reference internal" href="#agentrealsizeqdf"><code class="docutils literal notranslate"><span class="pre">agentRealSizeQDF</span></code></a></li>
+<li><a class="reference internal" href="#createagentdatatypeqdf"><code class="docutils literal notranslate"><span class="pre">createAgentDataTypeQDF</span></code></a></li>
+<li><a class="reference internal" href="#addpopspecificagentdatatypeqdf"><code class="docutils literal notranslate"><span class="pre">addPopSpecificAgentDataTypeQDF</span></code></a></li>
+<li><a class="reference internal" href="#writeagentdataqdf"><code class="docutils literal notranslate"><span class="pre">writeAgentDataQDF</span></code></a></li>
+<li><a class="reference internal" href="#writeagentdataqdfsafe"><code class="docutils literal notranslate"><span class="pre">writeAgentDataQDFSafe</span></code></a></li>
+<li><a class="reference internal" href="#writespeciesdataqdf"><code class="docutils literal notranslate"><span class="pre">writeSpeciesDataQDF</span></code></a></li>
+<li><a class="reference internal" href="#readagentdataqdf"><code class="docutils literal notranslate"><span class="pre">readAgentDataQDF</span></code></a></li>
+<li><a class="reference internal" href="#readspeciesdataqdf"><code class="docutils literal notranslate"><span class="pre">readSpeciesDataQDF</span></code></a></li>
+<li><a class="reference internal" href="#writestatarrsqdf"><code class="docutils literal notranslate"><span class="pre">writeStatArrsQDF</span></code></a></li>
+<li><a class="reference internal" href="#readstatarrsqdf"><code class="docutils literal notranslate"><span class="pre">readStatArrsQDF</span></code></a></li>
+<li><a class="reference internal" href="#writeadditionaldataqdf"><code class="docutils literal notranslate"><span class="pre">writeAdditionalDataQDF</span></code></a></li>
+<li><a class="reference internal" href="#readadditionaldataqdf"><code class="docutils literal notranslate"><span class="pre">readAdditionalDataQDF</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="PopBase.html"
+                          title="previous chapter">PopBase</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="PopFinder.html"
+                          title="next chapter">PopFinder</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/code_doc/core/SPopulation.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="PopFinder.html" title="PopFinder"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="PopBase.html" title="PopBase"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../core.html" >core</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">SPopulation</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+    </div>
+  </body>
+</html>

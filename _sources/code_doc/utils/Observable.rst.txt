@@ -1,0 +1,65 @@
+.. _Observable_ref:
+
+Observable
+==========
+
+.. rst-class:: hidden
+  
+    This page describes the class :index:`Observable``
+
+The class ``Observable`` provides a minimal implementation needed for an observable in the  :ref:`observer pattern<ObserverPattern_ref>`.
+
+An observable can have more than one :ref:`observer<Observer_ref>`.
+
+When an important value changes in the observable, it sends notifications to all its observers. 
+
+Usually ``Observable`` serves as a parent class for multiple inheritance,  e.g. 
+
+.. code-block:: c++
+
+    class MultiEvaluator : public Evaluator<T>, public Observable
+
+Code:  `Observable.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/Observable.h>`_ `Observable.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/Observable.cpp>`_
+
+
+Public Methods
+==============
+
+``constructor``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+     Observable();
+
+The constructor does nothing.
+    
+.. -----------------------------------------------------------------------------
+
+``addObserver``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+         void addObserver(Observer *pObs);
+
+``pObs``
+    Observer object to be added to observer list.
+
+.. -----------------------------------------------------------------------------
+
+``notifyObservers``
+^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+         void notifyObservers(int iType, const void *pCom);
+
+``iType``
+    Type of event.
+
+``pCom``
+   A pointer to any kind of data which might be needed.
+
+Notifies all ``Observer`` objects by calling their ``notify`` method, passing ``this`` as the first parameter:
+
+ .. code-block:: c++
+
+     m_vObservers[i]->notify(this, iType, pCom) 

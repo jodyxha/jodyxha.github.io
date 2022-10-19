@@ -1,0 +1,240 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>The Population XML Format &#8212; QHG4 4.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jody.css" />
+    
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    
+    <link rel="shortcut icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="The Population DAT Format" href="pop_dat.html" />
+    <link rel="prev" title="“Populations”" href="../qdf/PopsGroup.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="pop_dat.html" title="The Population DAT Format"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../qdf/PopsGroup.html" title="“Populations”"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../formats.html" accesskey="U">File Formats</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">The Population XML Format</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="the-population-xml-format">
+<span id="pop-xml-ref"></span><h1>The Population XML Format<a class="headerlink" href="#the-population-xml-format" title="Permalink to this heading">¶</a></h1>
+<p class="hidden">This page gives an overview of <span class="target" id="index-0"></span>population XML file format</p>
+<div class="line-block">
+<div class="line">Population xml files are only used to load population properties onto QHG.</div>
+<div class="line">They are obviously text file and easily created or modified.</div>
+</div>
+<p>The format of a population xml file:</p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">qhgxml</span>&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">::=</span> <span class="pre">&lt;line&gt;*</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">line</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">::=</span> <span class="pre">&lt;tag&gt;</span> <span class="pre">&lt;CR&gt;</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">tag</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">::=</span> <span class="pre">&quot;&lt;&quot;</span> <span class="pre">&lt;tag_contents&gt;</span> <span class="pre">&quot;&gt;&quot;</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">tag_contents</span> <span class="pre">::=</span>&#160; <span class="pre">&lt;start_tag&gt;</span> <span class="pre">&lt;tag&gt;*</span> <span class="pre">&lt;end_tag&gt;</span> <span class="pre">|</span> <span class="pre">&lt;empty_tag&gt;</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">end_tag</span>&#160;&#160;&#160;&#160;&#160; <span class="pre">::=</span> <span class="pre">&quot;/&quot;</span> <span class="pre">&lt;tag_name&gt;</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">start_tag</span>&#160;&#160;&#160; <span class="pre">::=</span> <span class="pre">&lt;tag_name&gt;</span> <span class="pre">[&lt;attribute&gt;]*</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">empty_tag</span>&#160;&#160;&#160; <span class="pre">::=</span> <span class="pre">&lt;start_tag&gt;</span> <span class="pre">&quot;/&quot;</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">attribute</span>&#160;&#160;&#160; <span class="pre">::=</span> <span class="pre">&lt;att_name&gt;</span> <span class="pre">&quot;=&quot;</span> <span class="pre">&lt;att_value&gt;</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">tag_name</span>&#160;&#160;&#160;&#160; <span class="pre">::=</span> <span class="pre">&lt;word&gt;</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">att_name</span>&#160;&#160;&#160;&#160; <span class="pre">::=</span> <span class="pre">&lt;word&gt;</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">attvalue</span>&#160;&#160;&#160;&#160; <span class="pre">::=</span> <span class="pre">&quot;\&quot;&quot;</span> <span class="pre">&lt;ascii&gt;*</span> <span class="pre">&quot;\&quot;&quot;</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">word</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">::=</span> <span class="pre">&lt;word_start&gt;</span> <span class="pre">[&lt;word_cont&gt;]*</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">word_start</span>&#160;&#160; <span class="pre">::=</span> <span class="pre">&lt;alpha&gt;</span> <span class="pre">|</span> <span class="pre">&quot;_&quot;</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">word_cont</span>&#160;&#160;&#160; <span class="pre">::=</span> <span class="pre">&lt;word_start&gt;</span> <span class="pre">|</span> <span class="pre">&lt;digit&gt;</span> <span class="pre">|</span> <span class="pre">&quot;+&quot;</span>&#160; <span class="pre">|</span> <span class="pre">&quot;-&quot;</span> <span class="pre">|</span> <span class="pre">&quot;$&quot;</span></code></div>
+</div>
+<p>The DTD for population xml files:</p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">&lt;!ELEMENT</span> <span class="pre">class</span>&#160; <span class="pre">(module+,</span> <span class="pre">priorities?)</span> <span class="pre">&gt;</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">&lt;!ELEMENT</span> <span class="pre">module</span> <span class="pre">(param*)</span> <span class="pre">(module*)</span> <span class="pre">&gt;</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">&lt;!ELEMENT</span> <span class="pre">param</span> <span class="pre">EMPTY</span> <span class="pre">&gt;</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">&lt;!ELEMENT</span> <span class="pre">priorities</span> <span class="pre">(prio*)</span> <span class="pre">&gt;</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">&lt;!ELEMENT</span> <span class="pre">prio</span>&#160; <span class="pre">EMPTY</span> <span class="pre">&gt;</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">&lt;!ATTLIST</span> <span class="pre">class</span>&#160;&#160;&#160;&#160; <span class="pre">name</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">CDATA</span> <span class="pre">#REQUIRED</span> <span class="pre">&gt;</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">&lt;!ATTLIST</span> <span class="pre">class</span>&#160;&#160;&#160;&#160; <span class="pre">species_name</span> <span class="pre">CDATA</span> <span class="pre">#REQUIRED</span> <span class="pre">&gt;</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">&lt;!ATTLIST</span> <span class="pre">class</span>&#160;&#160;&#160;&#160; <span class="pre">species_id</span>&#160;&#160; <span class="pre">CDATA</span> <span class="pre">#REQUIRED</span> <span class="pre">&gt;</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">&lt;!ATTLIST</span> <span class="pre">module</span>&#160;&#160;&#160; <span class="pre">name</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">CDATA</span> <span class="pre">#REQUIRED</span> <span class="pre">&gt;</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">&lt;!ATTLIST</span> <span class="pre">module</span>&#160;&#160;&#160; <span class="pre">id</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">CDATA</span> <span class="pre">#IMPLIED</span>&#160; <span class="pre">&gt;</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">&lt;!ATTLIST</span> <span class="pre">param</span>&#160;&#160;&#160;&#160; <span class="pre">name</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">CDATA</span> <span class="pre">#REQUIRED</span> <span class="pre">&gt;</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">&lt;!ATTLIST</span> <span class="pre">param</span>&#160;&#160;&#160;&#160; <span class="pre">value</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">CDATA</span> <span class="pre">#REQUIRED</span> <span class="pre">&gt;</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">&lt;!ATTLIST</span> <span class="pre">prio</span>&#160;&#160;&#160;&#160;&#160; <span class="pre">name</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">CDATA</span> <span class="pre">#REQUIRED</span> <span class="pre">&gt;</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">&lt;!ATTLIST</span> <span class="pre">prio</span>&#160;&#160;&#160;&#160;&#160; <span class="pre">value</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">CDATA</span> <span class="pre">#REQUIRED</span> <span class="pre">&gt;</span></code></div>
+</div>
+<div class="line-block">
+<div class="line">An xml file contains one <code class="docutils literal notranslate"><span class="pre">class</span></code> tag, which contains one or more <code class="docutils literal notranslate"><span class="pre">module</span></code> tags and zero or one <code class="docutils literal notranslate"><span class="pre">priorities</span></code> tags.</div>
+<div class="line">A <code class="docutils literal notranslate"><span class="pre">class</span></code> tag must contain attributes denoting the population name, the species name and the species id.</div>
+</div>
+<div class="line-block">
+<div class="line">Each <code class="docutils literal notranslate"><span class="pre">module</span></code> corresponds to an action of the population. It may contain <code class="docutils literal notranslate"><span class="pre">param</span></code> tags or nested <code class="docutils literal notranslate"><span class="pre">modules</span></code>.</div>
+<div class="line">A <code class="docutils literal notranslate"><span class="pre">module</span></code> tag must contain an attribute denoting the action name and optionally an attribute for an id.</div>
+</div>
+<div class="line-block">
+<div class="line">A <code class="docutils literal notranslate"><span class="pre">param</span></code> tag contains no subtags, but must have two attribute, one giving the name of the action’s parameter and one giving its value.</div>
+</div>
+<div class="line-block">
+<div class="line">The <code class="docutils literal notranslate"><span class="pre">priorities</span></code> tag bundles the <code class="docutils literal notranslate"><span class="pre">prio</span></code> tags which define the priority values for the different actions.</div>
+<div class="line">A <code class="docutils literal notranslate"><span class="pre">prio</span></code> tags contains no subtags, but must have two attributes, one giving the name of the action and one giving its priority value.</div>
+</div>
+<section id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this heading">¶</a></h2>
+<p>These are the contents of a population xml file:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;class</span> <span class="na">name=</span><span class="s">&quot;OoANavRelCompPop&quot;</span> <span class="na">species_name=</span><span class="s">&quot;sapiens&quot;</span> <span class="na">species_id=</span><span class="s">&quot;119&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;module</span> <span class="na">name=</span><span class="s">&quot;BirthDeathRelComp&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;param</span>  <span class="na">name=</span><span class="s">&quot;BirthDeathRelComp_b0&quot;</span> <span class="na">value=</span><span class="s">&quot;0.3&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;param</span>  <span class="na">name=</span><span class="s">&quot;BirthDeathRelComp_d0&quot;</span> <span class="na">value=</span><span class="s">&quot;0.001&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;param</span>  <span class="na">name=</span><span class="s">&quot;BirthDeathRelComp_other&quot;</span> <span class="na">value=</span><span class="s">&quot;neandos&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;param</span>  <span class="na">name=</span><span class="s">&quot;BirthDeathRelComp_theta&quot;</span> <span class="na">value=</span><span class="s">&quot;0.02&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;param</span>  <span class="na">name=</span><span class="s">&quot;BirthDeathRelComp_this&quot;</span> <span class="na">value=</span><span class="s">&quot;humanos&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;/module&gt;</span>
+  <span class="nt">&lt;module</span> <span class="na">name=</span><span class="s">&quot;Fertility&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;param</span>  <span class="na">name=</span><span class="s">&quot;Fertility_interbirth&quot;</span> <span class="na">value=</span><span class="s">&quot;2.0&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;param</span>  <span class="na">name=</span><span class="s">&quot;Fertility_max_age&quot;</span> <span class="na">value=</span><span class="s">&quot;50.0&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;param</span>  <span class="na">name=</span><span class="s">&quot;Fertility_min_age&quot;</span> <span class="na">value=</span><span class="s">&quot;15.0&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;/module&gt;</span>
+  <span class="nt">&lt;module</span> <span class="na">name=</span><span class="s">&quot;MultiEvaluator&quot;</span> <span class="na">id=</span><span class="s">&quot;Alt+NPP&quot;</span> <span class="nt">&gt;</span>
+    <span class="nt">&lt;param</span>  <span class="na">name=</span><span class="s">&quot;Multi_weight_alt&quot;</span> <span class="na">value=</span><span class="s">&quot;0.2&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;param</span>  <span class="na">name=</span><span class="s">&quot;Multi_weight_npp&quot;</span> <span class="na">value=</span><span class="s">&quot;0.8&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;module</span> <span class="na">name=</span><span class="s">&quot;SingleEvaluator&quot;</span> <span class="na">id=</span><span class="s">&quot;Alt&quot;</span> <span class="nt">&gt;</span>
+      <span class="nt">&lt;param</span>  <span class="na">name=</span><span class="s">&quot;AltCapPref&quot;</span> <span class="na">value=</span><span class="s">&quot;-0.1 0 0.1 0.01 1500 1.0 2000 1 3000 -9999&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/module&gt;</span>
+    <span class="nt">&lt;module</span> <span class="na">name=</span><span class="s">&quot;SingleEvaluator&quot;</span> <span class="na">id=</span><span class="s">&quot;NPP&quot;</span> <span class="nt">&gt;</span>
+    <span class="nt">&lt;/module&gt;</span>
+  <span class="nt">&lt;/module&gt;</span>
+  <span class="nt">&lt;module</span> <span class="na">name=</span><span class="s">&quot;NPPCapacity&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;param</span>  <span class="na">name=</span><span class="s">&quot;NPPCap_K_max&quot;</span> <span class="na">value=</span><span class="s">&quot;80.0&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;param</span>  <span class="na">name=</span><span class="s">&quot;NPPCap_K_min&quot;</span> <span class="na">value=</span><span class="s">&quot;3.0&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;param</span>  <span class="na">name=</span><span class="s">&quot;NPPCap_NPP_max&quot;</span> <span class="na">value=</span><span class="s">&quot;1.2&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;param</span>  <span class="na">name=</span><span class="s">&quot;NPPCap_NPP_min&quot;</span> <span class="na">value=</span><span class="s">&quot;0.1&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;param</span>  <span class="na">name=</span><span class="s">&quot;NPPCap_coastal_factor&quot;</span> <span class="na">value=</span><span class="s">&quot;0.4&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;param</span>  <span class="na">name=</span><span class="s">&quot;NPPCap_coastal_max_latitude&quot;</span> <span class="na">value=</span><span class="s">&quot;66.0&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;param</span>  <span class="na">name=</span><span class="s">&quot;NPPCap_coastal_min_latitude&quot;</span> <span class="na">value=</span><span class="s">&quot;50.0&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;param</span>  <span class="na">name=</span><span class="s">&quot;NPPCap_water_factor&quot;</span> <span class="na">value=</span><span class="s">&quot;0.8&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;param</span>  <span class="na">name=</span><span class="s">&quot;NPPCap_efficiency&quot;</span> <span class="na">value=</span><span class="s">&quot;1&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;/module&gt;</span>
+  <span class="nt">&lt;module</span> <span class="na">name=</span><span class="s">&quot;Navigate&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;param</span>  <span class="na">name=</span><span class="s">&quot;Navigate_decay&quot;</span> <span class="na">value=</span><span class="s">&quot;-0.001&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;param</span>  <span class="na">name=</span><span class="s">&quot;Navigate_dist0&quot;</span> <span class="na">value=</span><span class="s">&quot;150.0&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;param</span>  <span class="na">name=</span><span class="s">&quot;Navigate_prob0&quot;</span> <span class="na">value=</span><span class="s">&quot;0.1&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;param</span>  <span class="na">name=</span><span class="s">&quot;Navigate_min_dens&quot;</span> <span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;/module&gt;</span>
+  <span class="nt">&lt;module</span> <span class="na">name=</span><span class="s">&quot;OldAgeDeath&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;param</span>  <span class="na">name=</span><span class="s">&quot;OAD_max_age&quot;</span> <span class="na">value=</span><span class="s">&quot;60.0&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;param</span>  <span class="na">name=</span><span class="s">&quot;OAD_uncertainty&quot;</span> <span class="na">value=</span><span class="s">&quot;0.1&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;/module&gt;</span>
+  <span class="nt">&lt;module</span> <span class="na">name=</span><span class="s">&quot;WeightedMove&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;param</span>  <span class="na">name=</span><span class="s">&quot;WeightedMove_prob&quot;</span> <span class="na">value=</span><span class="s">&quot;0.2&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;/module&gt;</span>
+  <span class="nt">&lt;priorities&gt;</span>
+    <span class="nt">&lt;prio</span>  <span class="na">name=</span><span class="s">&quot;BirthDeathRelComp&quot;</span> <span class="na">value=</span><span class="s">&quot;6&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;prio</span>  <span class="na">name=</span><span class="s">&quot;Fertility&quot;</span> <span class="na">value=</span><span class="s">&quot;2&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;prio</span>  <span class="na">name=</span><span class="s">&quot;GetOld&quot;</span> <span class="na">value=</span><span class="s">&quot;9&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;prio</span>  <span class="na">name=</span><span class="s">&quot;MultiEvaluator[Alt+NPP]&quot;</span> <span class="na">value=</span><span class="s">&quot;5&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;prio</span>  <span class="na">name=</span><span class="s">&quot;NPPCapacity&quot;</span> <span class="na">value=</span><span class="s">&quot;1&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;prio</span>  <span class="na">name=</span><span class="s">&quot;Navigate&quot;</span> <span class="na">value=</span><span class="s">&quot;8&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;prio</span>  <span class="na">name=</span><span class="s">&quot;OldAgeDeath&quot;</span> <span class="na">value=</span><span class="s">&quot;10&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;prio</span>  <span class="na">name=</span><span class="s">&quot;RandomPair&quot;</span> <span class="na">value=</span><span class="s">&quot;3&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;prio</span>  <span class="na">name=</span><span class="s">&quot;WeightedMove&quot;</span> <span class="na">value=</span><span class="s">&quot;7&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;/priorities&gt;</span>
+<span class="nt">&lt;/class&gt;</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">The Population XML Format</a><ul>
+<li><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="../qdf/PopsGroup.html"
+                          title="previous chapter">“Populations”</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="pop_dat.html"
+                          title="next chapter">The Population DAT Format</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/formats/pop/pop_xml.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="pop_dat.html" title="The Population DAT Format"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../qdf/PopsGroup.html" title="“Populations”"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../formats.html" >File Formats</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">The Population XML Format</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+    </div>
+  </body>
+</html>

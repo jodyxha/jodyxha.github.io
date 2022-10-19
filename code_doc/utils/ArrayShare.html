@@ -1,0 +1,321 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>ArrayShare &#8212; QHG4 4.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jody.css" />
+    
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    
+    <link rel="shortcut icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="BufReader" href="BufReader.html" />
+    <link rel="prev" title="utils" href="../utils.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="BufReader.html" title="BufReader"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../utils.html" title="utils"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../utils.html" accesskey="U">utils</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">ArrayShare</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="arrayshare">
+<span id="arrayshare-ref"></span><h1>ArrayShare<a class="headerlink" href="#arrayshare" title="Permalink to this heading">¶</a></h1>
+<p class="hidden">This page describes the class <span class="target" id="index-0"></span>ArrayShare</p>
+<p>The class <code class="docutils literal notranslate"><span class="pre">ArrayShare</span></code> can be used to share arrays between different objects, e.g. populations.</p>
+<p>It is implemented as a singleton.</p>
+<p>The caller of <code class="docutils literal notranslate"><span class="pre">getArray()</span></code> should know the type of the array.</p>
+<p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/ArrayShare.h">ArrayShare.h</a>, <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/ArrayShare.cpp">ArrayShare.cpp</a></p>
+<section id="typedefs">
+<h2>Typedefs<a class="headerlink" href="#typedefs" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">stringlist</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="structures">
+<h2>Structures<a class="headerlink" href="#structures" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">arraystruct</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">m_iSize</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">m_pdArr</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// constructor</span>
+<span class="w">    </span><span class="n">arraystruct</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iSize</span><span class="p">,</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">pdArr</span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">m_iSize</span><span class="p">(</span><span class="n">iSize</span><span class="p">),</span><span class="w"> </span><span class="n">m_pdArr</span><span class="p">(</span><span class="n">pdArr</span><span class="p">)</span><span class="w"> </span><span class="p">{};</span><span class="w"></span>
+<span class="p">}</span><span class="w"> </span><span class="n">arraystruct</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="public-methods">
+<h2>Public Methods<a class="headerlink" href="#public-methods" title="Permalink to this heading">¶</a></h2>
+<section id="constructor">
+<h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#constructor" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">ArrayShare</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The constructor. It is usually not used directly.</p>
+</section>
+<section id="destructor">
+<h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="o">~</span><span class="n">ArrayShare</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The destructor. It is usually not used directly.</p>
+</section>
+<section id="sharearray">
+<h3><code class="docutils literal notranslate"><span class="pre">shareArray</span></code><a class="headerlink" href="#sharearray" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">shareArray</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sName</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iSize</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sType</span><span class="p">,</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">pdArr</span><span class="p">);</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">shareArray</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sName</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iSize</span><span class="p">,</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">pdArr</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Register an array for sharing.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">sName</span></code></dt><dd><p>A name for the array.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iSize</span></code></dt><dd><p>The array’s size.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sType</span></code></dt><dd><p>An arbitrary string for the array’s type. If <code class="docutils literal notranslate"><span class="pre">sType</span></code> is omitted, the type string is “”.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">pdArr</span></code></dt><dd><p>A pointer to the array.</p>
+</dd>
+</dl>
+<p>Returns 0 on success, -1 on failure</p>
+</section>
+<section id="getsize">
+<h3><code class="docutils literal notranslate"><span class="pre">getSize</span></code><a class="headerlink" href="#getsize" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">getSize</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sName</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Get the size of the array with the specified name.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">sName</span></code></dt><dd><p>The array’s name.</p>
+</dd>
+</dl>
+<p>Returns size.</p>
+</section>
+<section id="gettype">
+<h3><code class="docutils literal notranslate"><span class="pre">getType</span></code><a class="headerlink" href="#gettype" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">getType</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sName</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Get the type string of the array with the specified name.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">sName</span></code></dt><dd><p>The array’s name.</p>
+</dd>
+</dl>
+<p>Returns the type string.</p>
+</section>
+<section id="getarray">
+<h3><code class="docutils literal notranslate"><span class="pre">getArray</span></code><a class="headerlink" href="#getarray" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="nf">getArray</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sName</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Get a pointer to the array with specified name.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">sName</span></code></dt><dd><p>The array’s name.</p>
+</dd>
+</dl>
+<p>Returns a void pointer to the array, or NuULL on failure.</p>
+</section>
+<section id="getarraystruct">
+<h3><code class="docutils literal notranslate"><span class="pre">getArrayStruct</span></code><a class="headerlink" href="#getarraystruct" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="n">arraystruct</span><span class="w"> </span><span class="o">*</span><span class="nf">getArrayStruct</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sName</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Get the entire array struct for the speicified name.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">sName</span></code></dt><dd><p>The array’s name.</p>
+</dd>
+</dl>
+<p>Retruns an the ArrayStruct for the given name, or NULL on failure</p>
+</section>
+<section id="removearray">
+<h3><code class="docutils literal notranslate"><span class="pre">removeArray</span></code><a class="headerlink" href="#removearray" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">removeArray</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sName</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Unregister array with specified name.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">sName</span></code></dt><dd><p>The array’s name</p>
+</dd>
+</dl>
+<p>Returns 0 on success, -1 on failure</p>
+</section>
+<section id="getnameslike">
+<h3><code class="docutils literal notranslate"><span class="pre">getNamesLike</span></code><a class="headerlink" href="#getnameslike" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="n">stringlist</span><span class="w"> </span><span class="o">&amp;</span><span class="nf">getNamesLike</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sNamePattern</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Find registered array wiht names matching a pattern</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">sNamePattern</span></code></dt><dd><p>A regular expression to search for.</p>
+</dd>
+</dl>
+<p>Returns a vector of strings</p>
+</section>
+<section id="display">
+<h3><code class="docutils literal notranslate"><span class="pre">display</span></code><a class="headerlink" href="#display" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">display</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Prints a list of all registered arrays and their sizes.</p>
+</section>
+<section id="getinstance">
+<h3><code class="docutils literal notranslate"><span class="pre">getInstance</span></code><a class="headerlink" href="#getinstance" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="n">ArrayShare</span><span class="w"> </span><span class="o">*</span><span class="nf">getInstance</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Returns a pointer to the ArrayShare singleton. If it doesn’t exist yet, it is created</p>
+</section>
+<section id="freeinstance">
+<h3><code class="docutils literal notranslate"><span class="pre">freeInstance()</span></code><a class="headerlink" href="#freeinstance" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="nf">freeInstance</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Deletes the singleton and frees resources.</p>
+<section id="example">
+<h4>Example<a class="headerlink" href="#example" title="Permalink to this heading">¶</a></h4>
+<p>In this example, class A shares an integer array under the name “Array_A”, and class B gets the array and does something with it.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">A</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="k">public</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span><span class="n">A</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iC</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">m_pArr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">int</span><span class="p">[</span><span class="n">iC</span><span class="p">];</span><span class="w"></span>
+<span class="w">        </span><span class="n">ArrayShare</span><span class="o">::</span><span class="n">getInstance</span><span class="o">-&gt;</span><span class="n">shareArray</span><span class="p">(</span><span class="s">&quot;Array_A&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">iC</span><span class="p">,</span><span class="w"> </span><span class="n">m_pArr</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="c1">//...</span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">B</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="k">public</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">action</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">iSize</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">ArrayShare</span><span class="o">::</span><span class="n">getInstance</span><span class="o">-&gt;</span><span class="n">getSize</span><span class="p">(</span><span class="s">&quot;Array_A&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// ArrayShare provides a void pointer to the array,</span>
+<span class="w">        </span><span class="c1">// so B must cast it to the correct type</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">pTemp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">ArrayShare</span><span class="o">::</span><span class="n">getInstance</span><span class="o">-&gt;</span><span class="n">getArray</span><span class="p">(</span><span class="s">&quot;Array_A&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// do something with it</span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="c1">// ...</span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">ArrayShare</a><ul>
+<li><a class="reference internal" href="#typedefs">Typedefs</a></li>
+<li><a class="reference internal" href="#structures">Structures</a></li>
+<li><a class="reference internal" href="#public-methods">Public Methods</a><ul>
+<li><a class="reference internal" href="#constructor"><code class="docutils literal notranslate"><span class="pre">constructor</span></code></a></li>
+<li><a class="reference internal" href="#destructor"><code class="docutils literal notranslate"><span class="pre">destructor</span></code></a></li>
+<li><a class="reference internal" href="#sharearray"><code class="docutils literal notranslate"><span class="pre">shareArray</span></code></a></li>
+<li><a class="reference internal" href="#getsize"><code class="docutils literal notranslate"><span class="pre">getSize</span></code></a></li>
+<li><a class="reference internal" href="#gettype"><code class="docutils literal notranslate"><span class="pre">getType</span></code></a></li>
+<li><a class="reference internal" href="#getarray"><code class="docutils literal notranslate"><span class="pre">getArray</span></code></a></li>
+<li><a class="reference internal" href="#getarraystruct"><code class="docutils literal notranslate"><span class="pre">getArrayStruct</span></code></a></li>
+<li><a class="reference internal" href="#removearray"><code class="docutils literal notranslate"><span class="pre">removeArray</span></code></a></li>
+<li><a class="reference internal" href="#getnameslike"><code class="docutils literal notranslate"><span class="pre">getNamesLike</span></code></a></li>
+<li><a class="reference internal" href="#display"><code class="docutils literal notranslate"><span class="pre">display</span></code></a></li>
+<li><a class="reference internal" href="#getinstance"><code class="docutils literal notranslate"><span class="pre">getInstance</span></code></a></li>
+<li><a class="reference internal" href="#freeinstance"><code class="docutils literal notranslate"><span class="pre">freeInstance()</span></code></a><ul>
+<li><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="../utils.html"
+                          title="previous chapter">utils</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="BufReader.html"
+                          title="next chapter">BufReader</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/code_doc/utils/ArrayShare.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="BufReader.html" title="BufReader"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../utils.html" title="utils"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../utils.html" >utils</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">ArrayShare</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+    </div>
+  </body>
+</html>

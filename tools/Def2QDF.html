@@ -1,0 +1,212 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Def2QDF &#8212; QHG4 4.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jody.css" />
+    
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    
+    <link rel="shortcut icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="build_alt_modpop.py" href="build_alt_modpop.html" />
+    <link rel="prev" title="Tools" href="../tools.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="build_alt_modpop.html" title="build_alt_modpop.py"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../tools.html" title="Tools"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../tools.html" accesskey="U">Tools</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Def2QDF</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="def2qdf">
+<span id="def2qdf-ref"></span><h1>Def2QDF<a class="headerlink" href="#def2qdf" title="Permalink to this heading">¶</a></h1>
+<p>This tool is used to create grids
+(optionally including <a class="reference internal" href="../code_doc/core/Geography.html#geography-ref"><span class="std std-ref">Geography</span></a>, <a class="reference internal" href="../code_doc/core/Climate.html#climate-ref"><span class="std std-ref">Climate</span></a>, <a class="reference internal" href="../code_doc/core/Vegetation.html#vegetation-ref"><span class="std std-ref">Vegetatioon</span></a>)
+from a textual description (def file)</p>
+<dl class="simple">
+<dt>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/tools_io/Def2QDF.cpp">Def2QDF.cpp</a></dt><dd><p><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/tools_io/GridFactory.cpp">GridFactory.cpp</a></p>
+</dd>
+</dl>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Def2QDF &lt;grid-def-file&gt; <span class="o">[</span>&lt;specifiers&gt;<span class="o">]</span> &lt;output-QDF-name&gt;
+</pre></div>
+</div>
+<p>where</p>
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">grid-def-file</span></code></dt><dd><div class="line-block">
+<div class="line">Name of the grid definition file (one command per line)</div>
+<div class="line">format: see below</div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">output-QDF-name</span></code></dt><dd><p>Name for output QDF file</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">specifiers</span></code></dt><dd><dl class="simple">
+<dt>codes for groups to add:</dt><dd><ul class="simple">
+<li><p>S : grid data</p></li>
+<li><p>G : geography data</p></li>
+<li><p>C : climate data</p></li>
+<li><p>V : vegetation data</p></li>
+<li><p>N : empty naviigation data</p></li>
+</ul>
+</dd>
+</dl>
+<p>if ignored, all groups are added.</p>
+</dd>
+</dl>
+</section>
+<section id="grid-file-format">
+<h2>Grid File Format<a class="headerlink" href="#grid-file-format" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>grid_def_file ::= &lt;grid_cmd&gt;[&lt;NL&gt; &lt;def_cmd&gt;]*
+grid_cmd      ::= &lt;ico_cmd&gt; | &lt;flat_cmd&gt;
+ico_cmd       ::= &quot;GRID_TYPE ICO&quot; &lt;type&gt;:&lt;subdivs&gt; [&lt;radius&gt;]
+  subdivs     :   number of subdivisions
+  type        ::= &quot;eq&quot; | &quot;std&quot;
+  radius      :   radius of icosahedron, default:6371.3
+flat_cmd      ::= &quot;GRID_TYPE&quot; &lt;conn&gt; &lt;width&gt;&quot;x&quot;&lt;height&gt; [&quot;PERIODIC&quot;]
+  conn        ::= &quot;HEX&quot; | &quot;RECT&quot;
+  width       :   width of grid
+  height      :   height of grid
+  PERIODIC    :   use periodic boundary conditions
+
+def_cmd  ::= &lt;ddir_cmd&gt; | &lt;env_cmd&gt;
+ddir_cmd ::= &quot;DATA_DIR&quot; &lt;path&gt;[:&lt;path&gt;]*
+env_cmd  ::= &lt;env_type&gt; &quot;FLAT&quot; &lt;value&gt; | &lt;env_type&gt; &quot;NETCDF&quot;  (&lt;nc_file&gt; | &quot;DEFAULT&quot;) &lt;time&gt;  | &lt;env_type&gt; &quot;QMAP&quot;  &lt;valqmap&gt;
+env_type ::= &quot;ALT&quot;  | &quot;ICE&quot; | &quot;NPP&quot; | &quot;TEMP&quot; | &quot;RAIN&quot;
+</pre></div>
+</div>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h2>
+<p><strong>DEF file for a rectangular grid with constant altitude and NPP</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>GRID_TYPE RECT 30x30 PERIODIC
+ALT FLAT 100
+NPP FLAT 1.2
+</pre></div>
+</div>
+<p>In this grid every cell has an altitude value of 100, and an npp value of 1.2
+The ‘PERIODIC’ key word causes the topology of the grid to ne a torus.</p>
+<p><strong>DEF file for an icosahedral grid with “real” topography and constant NPP</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>GRID_TYPE ICO eq:64
+ALT NETCDF ETOPO1_Bed_g_gmt4.grd 0
+NPP FLAT 1.2
+</pre></div>
+</div>
+<p>Creates an equal area icosahedron with 64 subdivisions.
+Each cell has an altitude value corresponding to the earth’s altitude at that coordinate.
+The valus are taken from the NETCDF file <code class="docutils literal notranslate"><span class="pre">ETOPO1_Bed_g_gmt4.grd</span></code>.
+The “0” means we want altitudes above sea level for the present day.</p>
+<p><strong>DEF file for an icosahedral grid with “real” topography and NPP</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>DATA_DIR /home/jody/qdf_data
+GRID_TYPE ICO eq:256
+ALT NETCDF ETOPO1_Bed_g_gmt4.grd -20
+NPP NETCDF npp_timmermann.nc -20
+</pre></div>
+</div>
+<p>Creates an equal area icosahedron with 256 subdivisions.
+Each cell has an altitude and npp values corresponding to the earth’s altitude and npp at that coordinate.
+If the data file can’t be found in the current directory, the directories listed under <code class="docutils literal notranslate"><span class="pre">DATA_DIR</span></code> are searched.
+The -20 tin the ‘’ALT’’ and ‘’NPP’’ lines means we are interested in the data for the world 20#000 years ago.</p>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Def2QDF</a><ul>
+<li><a class="reference internal" href="#usage">Usage</a></li>
+<li><a class="reference internal" href="#grid-file-format">Grid File Format</a></li>
+<li><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="../tools.html"
+                          title="previous chapter">Tools</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="build_alt_modpop.html"
+                          title="next chapter">build_alt_modpop.py</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/tools/Def2QDF.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="build_alt_modpop.html" title="build_alt_modpop.py"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../tools.html" title="Tools"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../tools.html" >Tools</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Def2QDF</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+    </div>
+  </body>
+</html>

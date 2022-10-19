@@ -1,0 +1,134 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>The Observer Pattern &#8212; QHG4 4.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/jody.css" />
+    
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    
+    <link rel="shortcut icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Code Documentation" href="code_doc.html" />
+    <link rel="prev" title="Agents: Parallelisation and Management" href="AgentManagement.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="code_doc.html" title="Code Documentation"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="AgentManagement.html" title="Agents: Parallelisation and Management"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">QHG4 4.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">The Observer Pattern</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="the-observer-pattern">
+<span id="observerpattern-ref"></span><h1>The Observer Pattern<a class="headerlink" href="#the-observer-pattern" title="Permalink to this heading">¶</a></h1>
+<p>The intent of this pattern is to define a one-to-many dependency between objects so that when one object changes state, all its dependents are notified and updated automatically (see “Design Patterns”, E.Gamma et.al.).</p>
+<figure class="align-default">
+<img alt="_images/observer_pat.png" src="_images/observer_pat.png" />
+</figure>
+<p>In our implementation we have a class <code class="docutils literal notranslate"><span class="pre">Observable</span></code>, and an interface <code class="docutils literal notranslate"><span class="pre">Observer</span></code>, basically derclaring a virtual <code class="docutils literal notranslate"><span class="pre">notify()</span></code> method.
+The <code class="docutils literal notranslate"><span class="pre">Observable</span></code> maintains a list of registered <code class="docutils literal notranslate"><span class="pre">Oserver</span></code> objects and has a method <code class="docutils literal notranslate"><span class="pre">notifyObservers()</span></code> which sends a notification to all registered <code class="docutils literal notranslate"><span class="pre">Observer</span></code> implementations.</p>
+<p>Relevant code:  <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/Observer.h">Observer.h</a>, <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/Observable.h">Observable.h</a>, <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/Observable.cpp">Observable.cpp</a></p>
+<p>For a more detailed description of the classes see <a class="reference internal" href="code_doc/utils/Observable.html#observable-ref"><span class="std std-ref">Observable</span></a> and <a class="reference internal" href="code_doc/utils/Observer.html#observer-ref"><span class="std std-ref">Observer</span></a>.</p>
+<p>Usually, to make an object observable, you either derive it from <code class="docutils literal notranslate"><span class="pre">Observable</span></code> or use multiple inheritance:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">DerivedObservable</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Base</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Observable</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="p">...</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>To make an object an <code class="docutils literal notranslate"><span class="pre">Observer</span></code> you use mutiple inheritance:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">DerivedObserver</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Base</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Observer</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="p">...</span><span class="w"></span>
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">notify</span><span class="p">(</span><span class="n">Observable</span><span class="w"> </span><span class="o">*</span><span class="n">pObs</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iType</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">pCom</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// implementation for notify, e.g. reload data, or redraw etc.</span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">...</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="AgentManagement.html"
+                          title="previous chapter">Agents: Parallelisation and Management</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="code_doc.html"
+                          title="next chapter">Code Documentation</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/ObserverPattern.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="code_doc.html" title="Code Documentation"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="AgentManagement.html" title="Agents: Parallelisation and Management"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">QHG4 4.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">The Observer Pattern</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,629 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>qhgXMLNode and qhgXMLTree &#8212; QHG4 4.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jody.css" />
+    
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    
+    <link rel="shortcut icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="ParamProvider2 and ModuleComplex" href="ParamProvider2.html" />
+    <link rel="prev" title="QDFArray" href="QDFArray.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="ParamProvider2.html" title="ParamProvider2 and ModuleComplex"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="QDFArray.html" title="QDFArray"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../io.html" accesskey="U">io</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">qhgXMLNode and qhgXMLTree</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="qhgxmlnode-and-qhgxmltree">
+<span id="qhgxml-ref"></span><h1>qhgXMLNode and qhgXMLTree<a class="headerlink" href="#qhgxmlnode-and-qhgxmltree" title="Permalink to this heading">¶</a></h1>
+<p class="hidden">This page describes the classes <span class="target" id="index-0"></span>qhgXMLNode and <span class="target" id="index-1"></span>qhgXMLTree</p>
+<p>The class <code class="docutils literal notranslate"><span class="pre">qhgXMLTree</span></code> represents the document tree generated from a <a class="reference internal" href="../../formats/pop/pop_xml.html#pop-xml-ref"><span class="std std-ref">simplified XML</span></a> file normally used for population input.</p>
+<p>The class <code class="docutils literal notranslate"><span class="pre">qhgNode</span></code> represents a node in such an document tree, and provides methods for reading and writing.</p>
+<section id="public-methods-qhgnode">
+<h2>Public Methods (<code class="docutils literal notranslate"><span class="pre">qhgNode</span></code>)<a class="headerlink" href="#public-methods-qhgnode" title="Permalink to this heading">¶</a></h2>
+<section id="createinstance">
+<h3><code class="docutils literal notranslate"><span class="pre">createInstance</span></code><a class="headerlink" href="#createinstance" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="n">qhgNode</span><span class="w"> </span><span class="o">*</span><span class="nf">createInstance</span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">pLine</span><span class="p">,</span><span class="w"> </span><span class="n">LineReader</span><span class="w"> </span><span class="o">*</span><span class="n">pLR</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iLevel</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Creates a new <code class="docutils literal notranslate"><span class="pre">qhgNode</span></code> object from a current line.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">pLine</span></code></dt><dd><p>Current line to be parsed.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">pLR</span></code></dt><dd><p>A <a class="reference internal" href="../utils/LineReader.html#linereader-ref"><span class="std std-ref">LineReader object</span></a> which delivers the lines of the XML file.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iLevel</span></code></dt><dd><p>The level of the new node</p>
+</dd>
+</dl>
+<p>Returns the new <code class="docutils literal notranslate"><span class="pre">qhgNode</span></code> object resulting from the parsing of the XML file.</p>
+</section>
+<section id="createroot">
+<h3><code class="docutils literal notranslate"><span class="pre">createRoot</span></code><a class="headerlink" href="#createroot" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="n">qhgNode</span><span class="w"> </span><span class="o">*</span><span class="nf">createRoot</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Returns an empty QHGNode.</p>
+</section>
+<section id="destructor">
+<h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="o">~</span><span class="n">qhgNode</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The destructor.</p>
+</section>
+<section id="getname">
+<h3><code class="docutils literal notranslate"><span class="pre">getName</span></code><a class="headerlink" href="#getname" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">getName</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Returns this <code class="docutils literal notranslate"><span class="pre">qhgNode</span></code>’s name.</p>
+</section>
+<section id="id1">
+<h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">qhgNode</span><span class="w">  </span><span class="o">*</span><span class="nf">getNext</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Returns this <code class="docutils literal notranslate"><span class="pre">qhgNode</span></code>’s next sibling.</p>
+</section>
+<section id="getchild">
+<h3><code class="docutils literal notranslate"><span class="pre">getChild</span></code><a class="headerlink" href="#getchild" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">qhgNode</span><span class="w">  </span><span class="o">*</span><span class="nf">getChild</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Returns this <code class="docutils literal notranslate"><span class="pre">qhgNode</span></code>’s first child.</p>
+</section>
+<section id="getattrs">
+<h3><code class="docutils literal notranslate"><span class="pre">getAttrs</span></code><a class="headerlink" href="#getattrs" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">stringmap</span><span class="w"> </span><span class="o">&amp;</span><span class="nf">getAttrs</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Returns this <code class="docutils literal notranslate"><span class="pre">qhgNode</span></code>’s attributes as a map {attribute_name =&gt; attribute_value}.</p>
+</section>
+<section id="gettagtype">
+<h3><code class="docutils literal notranslate"><span class="pre">getTagType</span></code><a class="headerlink" href="#gettagtype" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">getTagType</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line">Returns this <code class="docutils literal notranslate"><span class="pre">qhgNode</span></code>’s tag type.</div>
+<div class="line">Possible types:</div>
+</div>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Value</p></th>
+<th class="head"><p>Meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>TYPE_NO_TAG</p></td>
+<td><p>0</p></td>
+<td><p>No tag</p></td>
+</tr>
+<tr class="row-odd"><td><p>TYPE_START_TAG</p></td>
+<td><p>1</p></td>
+<td><p>A start tag, e.g. <code class="docutils literal notranslate"><span class="pre">&lt;param</span> <span class="pre">name=&quot;x1&quot;&gt;</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>TYPE_EMPTY_TAG</p></td>
+<td><p>2</p></td>
+<td><p>An empty tag, e.g. <code class="docutils literal notranslate"><span class="pre">&lt;param</span> <span class="pre">name=&quot;x1&quot;</span> <span class="pre">/&gt;</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>TYPE_END_TAG</p></td>
+<td><p>3</p></td>
+<td><p>An end tag, e.g. <code class="docutils literal notranslate"><span class="pre">&lt;/param&gt;</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="setname">
+<h3><code class="docutils literal notranslate"><span class="pre">setName</span></code><a class="headerlink" href="#setname" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">setName</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sName</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Set the name of the this <code class="docutils literal notranslate"><span class="pre">qhgNode</span></code>.</p>
+</section>
+<section id="id2">
+<h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">setNext</span><span class="p">(</span><span class="n">qhgNode</span><span class="w"> </span><span class="o">*</span><span class="n">pNext</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Set the next <code class="docutils literal notranslate"><span class="pre">qhgNode`</span> <span class="pre">for</span> <span class="pre">this</span> <span class="pre">``qhgNode</span></code>.</p>
+</section>
+<section id="id3">
+<h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">setChild</span><span class="p">(</span><span class="n">qhgNode</span><span class="w"> </span><span class="o">*</span><span class="n">pChild</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Set the first child for this <code class="docutils literal notranslate"><span class="pre">qhgNode</span></code>.</p>
+</section>
+<section id="getcurword">
+<h3><code class="docutils literal notranslate"><span class="pre">getCurWord</span></code><a class="headerlink" href="#getcurword" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="nf">getCurWord</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line">Returns the scanner’s current word. A word satrts with a letter or an underscore followed by letter, numbers, underscores and some other special characters.</div>
+<div class="line">In this context a word is usually the name of a tag, or an attribute.</div>
+</div>
+</section>
+<section id="id4">
+<h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="nf">getCurString</span><span class="p">()</span><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">m_sCurString</span><span class="p">;};</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line">Returns the scanner’s current string. A string is a character sequence enclosed by double quotes.</div>
+<div class="line">In this context a string is usually the value of an attribute.</div>
+</div>
+</section>
+</section>
+<section id="protected-methodes-qhgnode">
+<h2>Protected Methodes (<code class="docutils literal notranslate"><span class="pre">qhgNode</span></code>)<a class="headerlink" href="#protected-methodes-qhgnode" title="Permalink to this heading">¶</a></h2>
+<section id="constructor">
+<h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#constructor" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">qhgNode</span><span class="p">(</span><span class="n">LineReader</span><span class="w"> </span><span class="o">*</span><span class="n">pLR</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iLevel</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The constructor stores the <code class="docutils literal notranslate"><span class="pre">LineReader</span></code> and the level for later use.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">pLR</span></code></dt><dd><p>A <a class="reference internal" href="../utils/LineReader.html#linereader-ref"><span class="std std-ref">LineReader object</span></a> which delivers the lines of the XML file.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iLevel</span></code></dt><dd><p>The level of the new node.</p>
+</dd>
+</dl>
+</section>
+<section id="init">
+<h3><code class="docutils literal notranslate"><span class="pre">init</span></code><a class="headerlink" href="#init" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">init</span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">pLine</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Parses the specified line. This creates a <code class="docutils literal notranslate"><span class="pre">qhgNode</span></code> for the tag and all enclosed tags.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">pLine</span></code></dt><dd><p>A string containing a tag to be parsed.</p>
+</dd>
+</dl>
+<p>Returns 0 on success, -1 on failure.</p>
+</section>
+<section id="parsenode">
+<h3><code class="docutils literal notranslate"><span class="pre">parseNode</span></code><a class="headerlink" href="#parsenode" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">parseNode</span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">pLine</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Parses the node defined in the specified string. This will create a node from the data collected by <code class="docutils literal notranslate"><span class="pre">parseTag()</span></code>.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">pLine</span></code></dt><dd><p>A string containing a tag to be parsed.</p>
+</dd>
+</dl>
+<p>Returns 0 on success, -1 on failure.</p>
+</section>
+<section id="parsetag">
+<h3><code class="docutils literal notranslate"><span class="pre">parseTag</span></code><a class="headerlink" href="#parsetag" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">parseTag</span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">pLine</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Parse the tag from the specified string. This will extract the name, the tag type and the attributes.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">pLine</span></code></dt><dd><p>A string containing a tag to be parsed.</p>
+</dd>
+</dl>
+<p>Returns 0 on success, -1 on failure.</p>
+</section>
+<section id="skipblanks">
+<h3><code class="docutils literal notranslate"><span class="pre">skipBlanks</span></code><a class="headerlink" href="#skipblanks" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="nf">skipBlanks</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Skips blanks in the input (scanner).</p>
+<p>Retruns the current character in the input.</p>
+</section>
+<section id="getnextsym">
+<h3><code class="docutils literal notranslate"><span class="pre">getNextSym</span></code><a class="headerlink" href="#getnextsym" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w">   </span><span class="nf">getNextSym</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Finds and returns the next symbol in the input (Scanner):</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Value</p></th>
+<th class="head"><p>Meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>SYM_NONE</p></td>
+<td><p>0</p></td>
+<td><p>No (known) symbol</p></td>
+</tr>
+<tr class="row-odd"><td><p>SYM_WORD</p></td>
+<td><p>1</p></td>
+<td><p>A word*</p></td>
+</tr>
+<tr class="row-even"><td><p>SYM_OPEN_BRA</p></td>
+<td><p>2</p></td>
+<td><p>The character ‘&lt;’</p></td>
+</tr>
+<tr class="row-odd"><td><p>SYM_CLOSE_BRA</p></td>
+<td><p>3</p></td>
+<td><p>The character ‘&gt;’</p></td>
+</tr>
+<tr class="row-even"><td><p>SYM_OPEN_SLASH_BRA</p></td>
+<td><p>4</p></td>
+<td><p>The string “&lt;/”</p></td>
+</tr>
+<tr class="row-odd"><td><p>SYM_CLOSE_SLASH_BRA</p></td>
+<td><p>5</p></td>
+<td><p>The string “/&gt;”</p></td>
+</tr>
+<tr class="row-even"><td><p>SYM_QUOTE</p></td>
+<td><p>6</p></td>
+<td><p>The character ‘”’</p></td>
+</tr>
+<tr class="row-odd"><td><p>SYM_EQUALS</p></td>
+<td><p>7</p></td>
+<td><p>The character ‘=’</p></td>
+</tr>
+<tr class="row-even"><td><p>SYM_SLASH</p></td>
+<td><p>8</p></td>
+<td><p>The character ‘/’</p></td>
+</tr>
+</tbody>
+</table>
+<p>*A word is a character sequence consisting of letters, numbers, underscores, as well as ‘-’, ‘+’, and ‘$’.</p>
+</section>
+<section id="readword">
+<h3><code class="docutils literal notranslate"><span class="pre">readWord</span></code><a class="headerlink" href="#readword" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="nf">readWord</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Read the next characters as a word.</p>
+<p>Returns the word.</p>
+</section>
+<section id="readstring">
+<h3><code class="docutils literal notranslate"><span class="pre">readString</span></code><a class="headerlink" href="#readstring" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="nf">readString</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Read the next characters as a string (i.e. all characters until a double quote is reached).</p>
+<p>Returns the string.</p>
+</section>
+</section>
+<section id="public-methods-qhgxmltree">
+<h2>Public Methods (<code class="docutils literal notranslate"><span class="pre">qhgXMLTree</span></code>)<a class="headerlink" href="#public-methods-qhgxmltree" title="Permalink to this heading">¶</a></h2>
+<section id="id5">
+<h3><code class="docutils literal notranslate"><span class="pre">createInstance</span></code><a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="n">qhgXMLTree</span><span class="w"> </span><span class="o">*</span><span class="nf">createInstance</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sFile</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Creates a qhgXMLTree object for the specified file.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">sFile</span></code></dt><dd><p>Name of the file to be read.</p>
+</dd>
+</dl>
+</section>
+<section id="id6">
+<h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#id6" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="o">~</span><span class="n">qhgXMLTree</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The destructor.</p>
+</section>
+<section id="getroot">
+<h3><code class="docutils literal notranslate"><span class="pre">getRoot</span></code><a class="headerlink" href="#getroot" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">qhgNode</span><span class="w"> </span><span class="o">*</span><span class="nf">getRoot</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Returns the root of the document tree.</p>
+</section>
+<section id="id7">
+<h3><code class="docutils literal notranslate"><span class="pre">init</span></code><a class="headerlink" href="#id7" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">init</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sFile</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Creates a <code class="docutils literal notranslate"><span class="pre">LineReader</span></code> object from the file creates a root node and processes al top level tags.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">sFile</span></code></dt><dd><p>Name of the file to be read.</p>
+</dd>
+</dl>
+<p>Returns 0 on success, -1 on failure.</p>
+</section>
+</section>
+<section id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this heading">¶</a></h2>
+<p>This example reads from an XML file and prints out all elements of the document tree.</p>
+<p>Compile with</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>g++ qhgxml_example.cpp qhgXML.cpp -o qhgxml_example -I ../io -I ../utils -L../utils -lUtils -lz -std<span class="o">=</span>c++20
+</pre></div>
+</div>
+<p>Code for <code class="docutils literal notranslate"><span class="pre">qhgxml_example</span></code>:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cstdio&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;qhgXML.h&quot;</span><span class="cp"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">showNode</span><span class="p">(</span><span class="n">qhgXMLNode</span><span class="w"> </span><span class="o">*</span><span class="n">pN</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sIndent</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%sName %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sIndent</span><span class="p">.</span><span class="n">c_str</span><span class="p">(),</span><span class="w"> </span><span class="n">pN</span><span class="o">-&gt;</span><span class="n">getName</span><span class="p">().</span><span class="n">c_str</span><span class="p">());</span><span class="w"></span>
+<span class="w">    </span><span class="n">stringmap</span><span class="w"> </span><span class="o">&amp;</span><span class="n">mA</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pN</span><span class="o">-&gt;</span><span class="n">getAttrs</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%s  Attrs (%zd):</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sIndent</span><span class="p">.</span><span class="n">c_str</span><span class="p">(),</span><span class="w"> </span><span class="n">mA</span><span class="p">.</span><span class="n">size</span><span class="p">());</span><span class="w"></span>
+<span class="w">    </span><span class="n">stringmap</span><span class="o">::</span><span class="n">const_iterator</span><span class="w"> </span><span class="n">it</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">it</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mA</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">mA</span><span class="p">.</span><span class="n">end</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">it</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%s    %s : %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sIndent</span><span class="p">.</span><span class="n">c_str</span><span class="p">(),</span><span class="w"> </span><span class="n">it</span><span class="o">-&gt;</span><span class="n">first</span><span class="p">.</span><span class="n">c_str</span><span class="p">(),</span><span class="w"> </span><span class="n">it</span><span class="o">-&gt;</span><span class="n">second</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// count children</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">iNC</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">qhgXMLNode</span><span class="w"> </span><span class="o">*</span><span class="n">pC1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pN</span><span class="o">-&gt;</span><span class="n">getChild</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">pC1</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">iNC</span><span class="o">++</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">pC1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pC1</span><span class="o">-&gt;</span><span class="n">getNext</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%s  Children (%d)%s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sIndent</span><span class="p">.</span><span class="n">c_str</span><span class="p">(),</span><span class="w"> </span><span class="n">iNC</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">iNC</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span><span class="o">?</span><span class="s">&quot;:&quot;</span><span class="o">:</span><span class="s">&quot;&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">iNC</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="c1">//char sIndent[256];</span>
+<span class="w">        </span><span class="c1">//        sprintf(sIndent, &quot;%s    &quot;, pIndent);</span>
+<span class="w">        </span><span class="n">sIndent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sIndent</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;    &quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">qhgXMLNode</span><span class="w"> </span><span class="o">*</span><span class="n">pC</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pN</span><span class="o">-&gt;</span><span class="n">getChild</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">pC</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">showNode</span><span class="p">(</span><span class="n">pC</span><span class="p">,</span><span class="w"> </span><span class="n">sIndent</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="n">pC</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pC</span><span class="o">-&gt;</span><span class="n">getNext</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iArgC</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">apArgV</span><span class="p">[])</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">stringmap</span><span class="w"> </span><span class="n">mAttr</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">mAttr</span><span class="p">[</span><span class="s">&quot;name&quot;</span><span class="p">]</span><span class="o">=</span><span class="s">&quot;value&quot;</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">iResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">iArgC</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">qhgXMLTree</span><span class="w"> </span><span class="o">*</span><span class="n">pQX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">qhgXMLTree</span><span class="o">::</span><span class="n">createInstance</span><span class="p">(</span><span class="n">apArgV</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">pQX</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;qhgXMLTree finished</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="n">showNode</span><span class="p">(</span><span class="n">pQX</span><span class="o">-&gt;</span><span class="n">getRoot</span><span class="p">(),</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="k">delete</span><span class="w"> </span><span class="n">pQX</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Couldn&#39;t create qhgXML</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;usage %s &lt;xmlfile&gt;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">apArgV</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">iResult</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Example for a  qhg XML file:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;class</span> <span class="na">name=</span><span class="s">&quot;OoANavSHybYchMTDPop&quot;</span> <span class="na">species_name=</span><span class="s">&quot;sapiens&quot;</span> <span class="na">species_id=</span><span class="s">&quot;117&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;module</span> <span class="na">name=</span><span class="s">&quot;NPersZHybBirthDeathRel&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;param</span>  <span class="na">name=</span><span class="s">&quot;HybBirthDeathRel_hybminprob&quot;</span> <span class="na">value=</span><span class="s">&quot;0.2021484375&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;/module&gt;</span>
+  <span class="nt">&lt;module</span> <span class="na">name=</span><span class="s">&quot;LocEnv&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;param</span>  <span class="na">name=</span><span class="s">&quot;NPPCap_K_max_sapiens&quot;</span> <span class="na">value=</span><span class="s">&quot;44.74609375&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;param</span>  <span class="na">name=</span><span class="s">&quot;NPPCap_K_min_sapiens&quot;</span> <span class="na">value=</span><span class="s">&quot;0.0&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;/module&gt;</span>
+  <span class="nt">&lt;module</span> <span class="na">name=</span><span class="s">&quot;PrivParamMix&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;param</span>  <span class="na">name=</span><span class="s">&quot;NPersHybBirthDeathRel_b0_sapiens&quot;</span> <span class="na">value=</span><span class="s">&quot;0.3099609375&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;param</span>  <span class="na">name=</span><span class="s">&quot;NPersHybBirthDeathRel_d0_sapiens&quot;</span> <span class="na">value=</span><span class="s">&quot;0&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;param</span>  <span class="na">name=</span><span class="s">&quot;NPersHybBirthDeathRel_theta_sapiens&quot;</span> <span class="na">value=</span><span class="s">&quot;0.3099609375&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;/module&gt;</span>
+  <span class="nt">&lt;priorities&gt;</span>
+    <span class="nt">&lt;prio</span>  <span class="na">name=</span><span class="s">&quot;PersFertility&quot;</span> <span class="na">value=</span><span class="s">&quot;2&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;prio</span>  <span class="na">name=</span><span class="s">&quot;GetOld&quot;</span> <span class="na">value=</span><span class="s">&quot;9&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;/priorities&gt;</span>
+<span class="nt">&lt;/class&gt;</span>
+</pre></div>
+</div>
+<p>The call</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./qhgxml_example test_file.xml
+</pre></div>
+</div>
+<p>will give the output</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>qhgXMLTree finished
+Name root
+  Attrs (0):
+  Children (1):
+    Name class
+      Attrs (3):
+        name : OoANavSHybYchMTDPop
+        species_id : 117
+        species_name : sapiens
+      Children (4):
+        Name module
+          Attrs (1):
+            name : NPersZHybBirthDeathRel
+          Children (1):
+            Name param
+              Attrs (2):
+                name : HybBirthDeathRel_hybminprob
+                value : 0.2021484375
+              Children (0)
+        Name module
+          Attrs (1):
+            name : LocEnv
+          Children (2):
+            Name param
+              Attrs (2):
+                name : NPPCap_K_max_sapiens
+                value : 44.74609375
+              Children (0)
+            Name param
+              Attrs (2):
+                name : NPPCap_K_min_sapiens
+                value : 0.0
+              Children (0)
+        Name module
+          Attrs (1):
+            name : PrivParamMix
+          Children (3):
+            Name param
+              Attrs (2):
+                name : NPersHybBirthDeathRel_b0_sapiens
+                value : 0.3099609375
+              Children (0)
+            Name param
+              Attrs (2):
+                name : NPersHybBirthDeathRel_d0_sapiens
+                value : 0
+              Children (0)
+            Name param
+              Attrs (2):
+                name : NPersHybBirthDeathRel_theta_sapiens
+                value : 0.3099609375
+              Children (0)
+        Name priorities
+          Attrs (0):
+          Children (2):
+            Name prio
+              Attrs (2):
+                name : PersFertility
+                value : 2
+              Children (0)
+            Name prio
+              Attrs (2):
+                name : GetOld
+                value : 9
+              Children (0)
+</pre></div>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">qhgXMLNode and qhgXMLTree</a><ul>
+<li><a class="reference internal" href="#public-methods-qhgnode">Public Methods (<code class="docutils literal notranslate"><span class="pre">qhgNode</span></code>)</a><ul>
+<li><a class="reference internal" href="#createinstance"><code class="docutils literal notranslate"><span class="pre">createInstance</span></code></a></li>
+<li><a class="reference internal" href="#createroot"><code class="docutils literal notranslate"><span class="pre">createRoot</span></code></a></li>
+<li><a class="reference internal" href="#destructor"><code class="docutils literal notranslate"><span class="pre">destructor</span></code></a></li>
+<li><a class="reference internal" href="#getname"><code class="docutils literal notranslate"><span class="pre">getName</span></code></a></li>
+<li><a class="reference internal" href="#id1"><code class="docutils literal notranslate"><span class="pre">destructor</span></code></a></li>
+<li><a class="reference internal" href="#getchild"><code class="docutils literal notranslate"><span class="pre">getChild</span></code></a></li>
+<li><a class="reference internal" href="#getattrs"><code class="docutils literal notranslate"><span class="pre">getAttrs</span></code></a></li>
+<li><a class="reference internal" href="#gettagtype"><code class="docutils literal notranslate"><span class="pre">getTagType</span></code></a></li>
+<li><a class="reference internal" href="#setname"><code class="docutils literal notranslate"><span class="pre">setName</span></code></a></li>
+<li><a class="reference internal" href="#id2"><code class="docutils literal notranslate"><span class="pre">destructor</span></code></a></li>
+<li><a class="reference internal" href="#id3"><code class="docutils literal notranslate"><span class="pre">destructor</span></code></a></li>
+<li><a class="reference internal" href="#getcurword"><code class="docutils literal notranslate"><span class="pre">getCurWord</span></code></a></li>
+<li><a class="reference internal" href="#id4"><code class="docutils literal notranslate"><span class="pre">destructor</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#protected-methodes-qhgnode">Protected Methodes (<code class="docutils literal notranslate"><span class="pre">qhgNode</span></code>)</a><ul>
+<li><a class="reference internal" href="#constructor"><code class="docutils literal notranslate"><span class="pre">constructor</span></code></a></li>
+<li><a class="reference internal" href="#init"><code class="docutils literal notranslate"><span class="pre">init</span></code></a></li>
+<li><a class="reference internal" href="#parsenode"><code class="docutils literal notranslate"><span class="pre">parseNode</span></code></a></li>
+<li><a class="reference internal" href="#parsetag"><code class="docutils literal notranslate"><span class="pre">parseTag</span></code></a></li>
+<li><a class="reference internal" href="#skipblanks"><code class="docutils literal notranslate"><span class="pre">skipBlanks</span></code></a></li>
+<li><a class="reference internal" href="#getnextsym"><code class="docutils literal notranslate"><span class="pre">getNextSym</span></code></a></li>
+<li><a class="reference internal" href="#readword"><code class="docutils literal notranslate"><span class="pre">readWord</span></code></a></li>
+<li><a class="reference internal" href="#readstring"><code class="docutils literal notranslate"><span class="pre">readString</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#public-methods-qhgxmltree">Public Methods (<code class="docutils literal notranslate"><span class="pre">qhgXMLTree</span></code>)</a><ul>
+<li><a class="reference internal" href="#id5"><code class="docutils literal notranslate"><span class="pre">createInstance</span></code></a></li>
+<li><a class="reference internal" href="#id6"><code class="docutils literal notranslate"><span class="pre">destructor</span></code></a></li>
+<li><a class="reference internal" href="#getroot"><code class="docutils literal notranslate"><span class="pre">getRoot</span></code></a></li>
+<li><a class="reference internal" href="#id7"><code class="docutils literal notranslate"><span class="pre">init</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="QDFArray.html"
+                          title="previous chapter">QDFArray</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="ParamProvider2.html"
+                          title="next chapter">ParamProvider2 and ModuleComplex</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/code_doc/io/qhgXML.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="ParamProvider2.html" title="ParamProvider2 and ModuleComplex"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="QDFArray.html" title="QDFArray"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../io.html" >io</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">qhgXMLNode and qhgXMLTree</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,203 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>GridGroupReader &#8212; QHG4 4.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jody.css" />
+    
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    
+    <link rel="shortcut icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="GeoGroupReader" href="GeoGroupReader.html" />
+    <link rel="prev" title="GroupReader" href="GroupReader.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="GeoGroupReader.html" title="GeoGroupReader"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="GroupReader.html" title="GroupReader"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../io.html" accesskey="U">io</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">GridGroupReader</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="gridgroupreader">
+<span id="gridgroupreader-ref"></span><h1>GridGroupReader<a class="headerlink" href="#gridgroupreader" title="Permalink to this heading">¶</a></h1>
+<p class="hidden">This page describes the class  <span class="target" id="index-0"></span>GridGroupReader</p>
+<p>The class <code class="docutils literal notranslate"><span class="pre">GridGroupReader</span></code> reads attributes and arrays from the <a class="reference internal" href="../../formats/qdf/GridGroup.html#gridgroup-ref"><span class="std std-ref">grid group</span></a> of a qdf file.</p>
+<p>This file extends the attribute structure:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">GridAttributes</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Attributes</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">stringmap</span><span class="w"> </span><span class="n">smData</span><span class="p">;</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/io/GridGroupReader.h">GridGroupReader.h</a>, <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/io/GridGroupReader.cpp">GridGroupReader.cpp</a></p>
+<section id="public-methods">
+<h2>Public Methods<a class="headerlink" href="#public-methods" title="Permalink to this heading">¶</a></h2>
+<section id="creategridgroupreader">
+<h3><code class="docutils literal notranslate"><span class="pre">createGridGroupReader</span></code><a class="headerlink" href="#creategridgroupreader" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="n">GridGroupReader</span><span class="w"> </span><span class="o">*</span><span class="nf">createGridGroupReader</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sFileName</span><span class="p">);</span><span class="w"></span>
+<span class="k">static</span><span class="w"> </span><span class="n">GridGroupReader</span><span class="w"> </span><span class="o">*</span><span class="nf">createGridGroupReader</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hFile</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Creates a <code class="docutils literal notranslate"><span class="pre">GridGroupReader</span></code> object for a qdf file.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">sFileName</span></code></dt><dd><p>Name of the file to read the grid from.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">hFile</span></code></dt><dd><p>HDF5 handle for the file to read the grid from.</p>
+</dd>
+</dl>
+<p>Returns a pointer to the <code class="docutils literal notranslate"><span class="pre">GridGroupReader</span></code> object or <code class="docutils literal notranslate"><span class="pre">NULL</span></code> on failure.</p>
+</section>
+<section id="tryreadattributes">
+<h3><code class="docutils literal notranslate"><span class="pre">tryReadAttributes</span></code><a class="headerlink" href="#tryreadattributes" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">tryReadAttributes</span><span class="p">(</span><span class="n">GridAttributes</span><span class="w"> </span><span class="o">*</span><span class="n">pAttributes</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Reads all attributes in the grid group into the attribute structure.
+It first calls the parent class’ version of <code class="docutils literal notranslate"><span class="pre">tryReadAttributes()</span></code> and then goes on loading the gtid specific data.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">pAttributes</span></code></dt><dd><p>A pointer  <code class="docutils literal notranslate"><span class="pre">GridAttributes</span></code> object to hold the attributes.</p>
+</dd>
+</dl>
+<p>Returns 0 on success, -1 on failure.</p>
+</section>
+<section id="readarray">
+<h3><code class="docutils literal notranslate"><span class="pre">readArray</span></code><a class="headerlink" href="#readarray" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">readArray</span><span class="p">(</span><span class="n">SCellGrid</span><span class="w"> </span><span class="o">*</span><span class="n">pGroup</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sArrayName</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+<p>For <code class="docutils literal notranslate"><span class="pre">GridGroupReader</span></code> this method does nothing.</p>
+<p>Returns 0.</p>
+</section>
+<section id="readdata">
+<h3><code class="docutils literal notranslate"><span class="pre">readData</span></code><a class="headerlink" href="#readdata" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">readData</span><span class="p">(</span><span class="n">SCellGrid</span><span class="w"> </span><span class="o">*</span><span class="n">pGroup</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Reads the <code class="docutils literal notranslate"><span class="pre">CellDataSet</span></code> from the grid group of the qdf file into the <code class="docutils literal notranslate"><span class="pre">GridGroupObject</span></code>.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">pGroup</span></code></dt><dd><p>A Pointer to <a class="reference internal" href="../core/SCellGrid.html#scellgrid-ref"><span class="std std-ref">SCellGrid</span></a> object.</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="protected-methods">
+<h2>Protected Methods<a class="headerlink" href="#protected-methods" title="Permalink to this heading">¶</a></h2>
+<section id="constructor">
+<h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#constructor" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">GridGroupReader</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The constructor</p>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">GridGroupReader</a><ul>
+<li><a class="reference internal" href="#public-methods">Public Methods</a><ul>
+<li><a class="reference internal" href="#creategridgroupreader"><code class="docutils literal notranslate"><span class="pre">createGridGroupReader</span></code></a></li>
+<li><a class="reference internal" href="#tryreadattributes"><code class="docutils literal notranslate"><span class="pre">tryReadAttributes</span></code></a></li>
+<li><a class="reference internal" href="#readarray"><code class="docutils literal notranslate"><span class="pre">readArray</span></code></a></li>
+<li><a class="reference internal" href="#readdata"><code class="docutils literal notranslate"><span class="pre">readData</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#protected-methods">Protected Methods</a><ul>
+<li><a class="reference internal" href="#constructor"><code class="docutils literal notranslate"><span class="pre">constructor</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="GroupReader.html"
+                          title="previous chapter">GroupReader</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="GeoGroupReader.html"
+                          title="next chapter">GeoGroupReader</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/code_doc/io/GridGroupReader.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="GeoGroupReader.html" title="GeoGroupReader"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="GroupReader.html" title="GroupReader"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../io.html" >io</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">GridGroupReader</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+    </div>
+  </body>
+</html>

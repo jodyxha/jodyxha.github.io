@@ -1,0 +1,183 @@
+.. _Geography_ref:
+
+Geography
+=========
+
+.. rst-class:: hidden
+
+    This page describes the class :index:`Geography`
+
+The ``Geography`` incorporates geographical data such as lobitude, latitude, altitude, ice covering etc.
+All data items are associated with a node of the :ref:`SCellGrid<SCellGrid_ref>`.
+
+Code: `Geography.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/core/Geography.h>`_ `Geography.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/core/Geography.cpp>`_
+
+Public Members
+--------------
+ 
+.. code-block:: c++
+
+   uint m_iNumCells;
+
+Number of cells.
+
+.. -----------------------------------------------------------------------------
+
+.. code-block:: c++
+
+    uint m_iMaxNeighbors;
+
+Maximum number of neighbors (usually 4 or 6).
+
+.. -----------------------------------------------------------------------------
+
+.. code-block:: c++
+
+    geonumber   m_dRadius;      
+
+"Real" earth radius.
+
+.. -----------------------------------------------------------------------------
+
+.. code-block:: c++
+
+    geonumber   m_dSeaLevel;
+
+Sea level (may change, depending on climate).
+
+.. -----------------------------------------------------------------------------
+
+.. code-block:: c++
+
+    geonumber  *m_adLatitude;   
+
+"Real" latitude of cell center  (radians). 
+
+.. -----------------------------------------------------------------------------
+
+.. code-block:: c++
+
+    geonumber  *m_adLongitude;  
+
+"Real" longitude of cell center (radians). 
+
+.. -----------------------------------------------------------------------------
+
+.. code-block:: c++
+
+    geonumber  *m_adAltitude;   
+
+"Real" altitude of cell center  (meters).
+
+.. -----------------------------------------------------------------------------
+
+.. code-block:: c++
+
+    geonumber  *m_adDistances;  
+
+Distances to neighbors: distances from cell ``k`` at ``m_adDistances[N*k, N*k+N-1]``, where ``N`` = max #neighbors.
+
+.. -----------------------------------------------------------------------------
+
+.. code-block:: c++
+
+    geonumber  *m_adArea;       
+
+Area of cell.
+
+.. -----------------------------------------------------------------------------
+
+.. code-block:: c++
+
+    bool       *m_abIce;        
+
+Ice coverage. One ``bool`` per cell: ice (1) or no ice (0).
+
+.. -----------------------------------------------------------------------------
+
+.. code-block:: c++
+
+    geonumber  *m_adWater;      
+
+Presence of water (rivers in cell). One ``double`` per cell.
+
+.. -----------------------------------------------------------------------------
+
+.. code-block:: c++
+
+    bool       *m_abCoastal; 
+
+Coast in neighborhood. One bool per cell: coast near (1) or no coast (0)
+
+.. -----------------------------------------------------------------------------
+
+.. code-block:: c++
+
+    geonumber  *m_adAngles;  
+
+Orientation of direction to neighbors: 
+  :math:`0` -> east, 
+  :math:`\pi/2` -> north, 
+  :math:`\pi` -> west, 
+  :math:`3\pi/2` -> south. 
+
+Direction of cell ``k`` to neighbor ``j`` is in ``m_adAngles[N*k+j]`` , where ``N`` = max #neighbors.
+
+This must be explicily calculated with ``calcAngles()``.
+
+.. -----------------------------------------------------------------------------
+
+.. code-block:: c++
+
+    bool m_bUpdated;
+
+Update flag.
+
+ 
+Public Methods
+--------------
+
+``constructors``
+^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    Geography(uint iNumCells, uint iMaxNeighbors, geonumber dRadius, geonumber dSeaLevel=0);
+    Geography();
+
+``iNumCells``
+    Number of grid cells.
+
+``iMaxNeighbors``
+    Maximum number of neighbors for a cell (usually 4 or 6 ).
+
+``dRadius``
+    Sphere Radius (only makes sense for spherical grids).
+
+``dSeaLevel``
+    Initial sea level.
+
+The constructor allocates the arrays.
+
+.. -----------------------------------------------------------------------------
+
+``destructor``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual ~Geography();
+
+The destructors deletes all allocated arrays.
+
+.. -----------------------------------------------------------------------------
+
+
+``calcAngles``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    void calcAngles(SCellGrid* pCG);
+
+``pCG``
+    ``SCellGrid`` object to calculate the angles on.
+
+Calculates the orientation of the direction each cell to each of its neoghbors.

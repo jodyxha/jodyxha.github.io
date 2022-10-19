@@ -1,0 +1,877 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>QDFUtils &#8212; QHG4 4.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jody.css" />
+    
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    
+    <link rel="shortcut icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="QDFUtils Constants" href="QDFUtilConsts.html" />
+    <link rel="prev" title="PopWriter" href="PopWriter.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="QDFUtilConsts.html" title="QDFUtils Constants"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="PopWriter.html" title="PopWriter"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../io.html" accesskey="U">io</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">QDFUtils</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="qdfutils">
+<h1>QDFUtils<a class="headerlink" href="#qdfutils" title="Permalink to this heading">¶</a></h1>
+<p class="hidden">This page describes the module <span class="target" id="index-0"></span>QDFUtils</p>
+<p>The module <code class="docutils literal notranslate"><span class="pre">QDFUtils</span></code> contain functions to simplify interactions with QDF files.</p>
+<p>It als contains string constants for the names of HDF datasets and groups used in QDF files.</p>
+<p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/io/QDFUtils.h">QDFUtils.h</a>, <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/io/QDFUtils.cpp">QDFUtils.cpp</a>, <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/io/QDFUtilsT.h">QDFUtilsT.h</a></p>
+<section id="constants">
+<h2>Constants<a class="headerlink" href="#constants" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="QDFUtilConsts.html#qdfutils-groupnameconsts-ref"><span class="std std-ref">Group Names</span></a></p></li>
+<li><p><a class="reference internal" href="QDFUtilConsts.html#qdfutils-datasetnameconsts-ref"><span class="std std-ref">Dataset Names</span></a></p></li>
+<li><p><a class="reference internal" href="QDFUtilConsts.html#qdfutils-rootattributeconsts-ref"><span class="std std-ref">Root Attributes</span></a></p></li>
+<li><p><a class="reference internal" href="QDFUtilConsts.html#qdfutils-gridgroupconsts-ref"><span class="std std-ref">Grid Group Constants</span></a></p></li>
+<li><p><a class="reference internal" href="QDFUtilConsts.html#qdfutils-geographygroupconsts-ref"><span class="std std-ref">Geography Group Constants</span></a></p></li>
+<li><p><a class="reference internal" href="QDFUtilConsts.html#qdfutils-climategroupconsts-ref"><span class="std std-ref">Climate Group Constants</span></a></p></li>
+<li><p><a class="reference internal" href="QDFUtilConsts.html#qdfutils-vegetationgroupconsts-ref"><span class="std std-ref">Vegetation Group Constants</span></a></p></li>
+<li><p><a class="reference internal" href="QDFUtilConsts.html#qdfutils-navigationgroupconsts-ref"><span class="std std-ref">Navigation Group Constants</span></a></p></li>
+<li><p><a class="reference internal" href="QDFUtilConsts.html#qdfutils-movestatsgroupconsts-ref"><span class="std std-ref">MoveStats Group Constants</span></a></p></li>
+<li><p><a class="reference internal" href="QDFUtilConsts.html#qdfutils-populationgroupconsts-ref"><span class="std std-ref">Population Group Constants</span></a></p></li>
+</ul>
+</section>
+<section id="public-methods">
+<h2>Public Methods<a class="headerlink" href="#public-methods" title="Permalink to this heading">¶</a></h2>
+<section id="handling-files">
+<h3>Handling files<a class="headerlink" href="#handling-files" title="Permalink to this heading">¶</a></h3>
+<section id="qdf-createfile">
+<h4><code class="docutils literal notranslate"><span class="pre">qdf_createFile</span></code><a class="headerlink" href="#qdf-createfile" title="Permalink to this heading">¶</a></h4>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">hid_t</span><span class="w"> </span><span class="nf">qdf_createFile</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sFileName</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">fStep</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">fStartTime</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sInfoString</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">sFileName</span></code></dt><dd><p>Name of file to be created.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">fStep</span></code></dt><dd><p>Current step of simulation.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">fStartTime</span></code></dt><dd><p>Start time of simulation.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sInfoString</span></code></dt><dd><p>String containing additional info.</p>
+</dd>
+</dl>
+<div class="line-block">
+<div class="line">Creates a qdf file qith the given name and sets the attributes “Step”, “StartTime”, “Info”.</div>
+<div class="line">Returns handle to file on succes, H5P_DEFAULT on failure.</div>
+</div>
+</section>
+<section id="qdf-openfile">
+<h4><code class="docutils literal notranslate"><span class="pre">qdf_openFile</span></code><a class="headerlink" href="#qdf-openfile" title="Permalink to this heading">¶</a></h4>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">hid_t</span><span class="w"> </span><span class="nf">qdf_openFile</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sFileName</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">bRW</span><span class="o">=</span><span class="nb">false</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">sFileName</span></code></dt><dd><p>Name of file to be opened.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">bRW</span></code></dt><dd><p>File opening mode: <code class="docutils literal notranslate"><span class="pre">true</span></code> -&gt; Read/Write, <code class="docutils literal notranslate"><span class="pre">false</span></code> -&gt; read only</p>
+</dd>
+</dl>
+<div class="line-block">
+<div class="line">Opens an existing file.</div>
+<div class="line">Returns handle to file on succes, H5P_DEFAULT on failure.</div>
+</div>
+</section>
+<section id="qdf-opencreatefile">
+<h4><code class="docutils literal notranslate"><span class="pre">qdf_opencreateFile</span></code><a class="headerlink" href="#qdf-opencreatefile" title="Permalink to this heading">¶</a></h4>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">hid_t</span><span class="w"> </span><span class="nf">qdf_opencreateFile</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sFileName</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">fStep</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">fStartTime</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sInfoString</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">sFileName</span></code></dt><dd><p>Name of file to be created.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">fStep</span></code></dt><dd><p>Current step of simulation.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">fStartTime</span></code></dt><dd><p>Start time of simulation.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sInfoString</span></code></dt><dd><p>String containing additional info.</p>
+</dd>
+</dl>
+<div class="line-block">
+<div class="line">If file exists, open it, otherwie create one with the specified attributes.</div>
+<div class="line">Returns handle to file on succes, H5P_DEFAULT on failure.</div>
+</div>
+</section>
+<section id="qdf-closefile">
+<h4><code class="docutils literal notranslate"><span class="pre">qdf_closeFile</span></code><a class="headerlink" href="#qdf-closefile" title="Permalink to this heading">¶</a></h4>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w">  </span><span class="nf">qdf_closeFile</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hFile</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">hFile</span></code></dt><dd><p>HDF handle to an opened file.</p>
+</dd>
+</dl>
+<p>Closes the HDF file resource.</p>
+</section>
+</section>
+<section id="handling-groups">
+<h3>Handling groups<a class="headerlink" href="#handling-groups" title="Permalink to this heading">¶</a></h3>
+<p>Below <code class="docutils literal notranslate"><span class="pre">hGroup</span></code> stands for a handle to a file or a handle to a group.</p>
+<section id="qdf-creategroup">
+<h4><code class="docutils literal notranslate"><span class="pre">qdf_createGroup</span></code><a class="headerlink" href="#qdf-creategroup" title="Permalink to this heading">¶</a></h4>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">hid_t</span><span class="w"> </span><span class="nf">qdf_createGroup</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hGroup</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sGroupName</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">hGroup</span></code></dt><dd><p>Handle to group (or file) in which to create a group.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sGroupName</span></code></dt><dd><p>Name of group to be created.</p>
+</dd>
+</dl>
+<div class="line-block">
+<div class="line">Creates a group with specified name in a group (or in a file).</div>
+<div class="line">Returns handle to group on succes, H5P_DEFAULT on failure.</div>
+</div>
+</section>
+<section id="qdf-opengroup">
+<h4><code class="docutils literal notranslate"><span class="pre">qdf_openGroup</span></code><a class="headerlink" href="#qdf-opengroup" title="Permalink to this heading">¶</a></h4>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">hid_t</span><span class="w"> </span><span class="nf">qdf_openGroup</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hGroup</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sGroupName</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">bForceCheck</span><span class="o">=</span><span class="nb">true</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">hGroup</span></code></dt><dd><p>Handle to group (or file) in which to open a group.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sGroupName</span></code></dt><dd><p>Name of group to be opened.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">bForceCheck</span></code></dt><dd><p>If true, existence of group is checked.</p>
+</dd>
+</dl>
+<div class="line-block">
+<div class="line">Opens group with specified name in <code class="docutils literal notranslate"><span class="pre">hGroup</span></code>.</div>
+<div class="line">Returns handle to group on succes, H5P_DEFAULT on failure.</div>
+</div>
+</section>
+<section id="qdf-opencreategroup">
+<h4><code class="docutils literal notranslate"><span class="pre">qdf_opencreateGroup</span></code><a class="headerlink" href="#qdf-opencreategroup" title="Permalink to this heading">¶</a></h4>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">hid_t</span><span class="w"> </span><span class="nf">qdf_opencreateGroup</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hGroup</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sGroupName</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">bForceCheck</span><span class="o">=</span><span class="nb">true</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">hGroup</span></code></dt><dd><p>Handle to group (or file) in which to open or create a group.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sGroupName</span></code></dt><dd><p>Name of group to be opened or created.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">bForceCheck</span></code></dt><dd><p>If true, existence of group is checked.</p>
+</dd>
+</dl>
+<div class="line-block">
+<div class="line">Opens group with specified name in <code class="docutils literal notranslate"><span class="pre">hGroup</span></code>, or creates it if it doesn’t exist.</div>
+<div class="line">Returns handle to group on succes, H5P_DEFAULT on failure.</div>
+</div>
+</section>
+<section id="qdf-closegroup">
+<h4><code class="docutils literal notranslate"><span class="pre">qdf_closeGroup</span></code><a class="headerlink" href="#qdf-closegroup" title="Permalink to this heading">¶</a></h4>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w">  </span><span class="nf">qdf_closeGroup</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hGroup</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">hGroup</span></code></dt><dd><p>Handle to group to be closed.</p>
+</dd>
+</dl>
+<p>Closes the opened group.</p>
+</section>
+<section id="qdf-deletegroup">
+<h4><code class="docutils literal notranslate"><span class="pre">qdf_deleteGroup</span></code><a class="headerlink" href="#qdf-deletegroup" title="Permalink to this heading">¶</a></h4>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w">   </span><span class="nf">qdf_deleteGroup</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hGroup</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sSubName</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">hGroup</span></code></dt><dd><p>Handle to group in which to delete a sub group.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sSubName</span></code></dt><dd><p>Name of subgroup to delete.</p>
+</dd>
+</dl>
+<div class="line-block">
+<div class="line">Deletes the specified subgroup of <code class="docutils literal notranslate"><span class="pre">hGroup</span></code>.</div>
+<div class="line">Returns 0 in success, -1 on failure.</div>
+</div>
+</section>
+</section>
+<section id="handling-data-sets">
+<h3>Handling Data Sets<a class="headerlink" href="#handling-data-sets" title="Permalink to this heading">¶</a></h3>
+<section id="qdf-opendataset">
+<h4><code class="docutils literal notranslate"><span class="pre">qdf_openDataSet</span></code><a class="headerlink" href="#qdf-opendataset" title="Permalink to this heading">¶</a></h4>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">hid_t</span><span class="w"> </span><span class="nf">qdf_openDataSet</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hGroup</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sDataSetName</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">bForceCheck</span><span class="o">=</span><span class="nb">true</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">hGroup</span></code></dt><dd><p>Handle to group (or file) in which to open a dataset.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sDataSetName</span></code></dt><dd><p>Name of data set to be opened.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">bForceCheck</span></code></dt><dd><p>If true, existence of group is checked.</p>
+</dd>
+</dl>
+<div class="line-block">
+<div class="line">Opens data set with specified name.</div>
+<div class="line">Returns handle to group on succes, H5P_DEFAULT on failure.</div>
+</div>
+</section>
+<section id="qdf-closedataset">
+<h4><code class="docutils literal notranslate"><span class="pre">qdf_closeDataSet</span></code><a class="headerlink" href="#qdf-closedataset" title="Permalink to this heading">¶</a></h4>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w">  </span><span class="nf">qdf_closeDataSet</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hDataSet</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">hDataSet</span></code></dt><dd><p>Handle to data set to be closed.</p>
+</dd>
+</dl>
+<p>Closes the specified data set.</p>
+</section>
+<section id="qdf-closedataspace">
+<h4><code class="docutils literal notranslate"><span class="pre">qdf_closeDataSpace</span></code><a class="headerlink" href="#qdf-closedataspace" title="Permalink to this heading">¶</a></h4>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w">  </span><span class="nf">qdf_closeDataSpace</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hDataSpace</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">hDataSet</span></code></dt><dd><p>Handle to data space to be closed.</p>
+</dd>
+</dl>
+<p>Closes the specified data space.</p>
+</section>
+<section id="qdf-closedatatype">
+<h4><code class="docutils literal notranslate"><span class="pre">qdf_closeDataType</span></code><a class="headerlink" href="#qdf-closedatatype" title="Permalink to this heading">¶</a></h4>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w">  </span><span class="nf">qdf_closeDataType</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hDataType</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">hDataType</span></code></dt><dd><p>Handle to data type to be closed.</p>
+</dd>
+</dl>
+<p>Closes the specified data type.</p>
+</section>
+<section id="qdf-closeattribute">
+<h4><code class="docutils literal notranslate"><span class="pre">qdf_closeAttribute</span></code><a class="headerlink" href="#qdf-closeattribute" title="Permalink to this heading">¶</a></h4>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w">  </span><span class="nf">qdf_closeAttribute</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hDataSpace</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">hDataSet</span></code></dt><dd><p>Handle to data space to be closed.</p>
+</dd>
+</dl>
+<p>Closes the specified data space.</p>
+</section>
+</section>
+<section id="link-existence">
+<h3>Link Existence<a class="headerlink" href="#link-existence" title="Permalink to this heading">¶</a></h3>
+<section id="qdf-link-exists">
+<h4><code class="docutils literal notranslate"><span class="pre">qdf_link_exists</span></code><a class="headerlink" href="#qdf-link-exists" title="Permalink to this heading">¶</a></h4>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="nf">qdf_link_exists</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hGroup</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sName</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Returns true if the specified group contains a link (group, dataset) with the specified name.</p>
+</section>
+<section id="qdf-attr-exists">
+<h4><code class="docutils literal notranslate"><span class="pre">qdf_attr_exists</span></code><a class="headerlink" href="#qdf-attr-exists" title="Permalink to this heading">¶</a></h4>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="nf">qdf_attr_exists</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hGroup</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sName</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Returns true if the specified group contains an attribute with the specified name.</p>
+</section>
+</section>
+<section id="handling-string-attributes">
+<h3>Handling String Attributes<a class="headerlink" href="#handling-string-attributes" title="Permalink to this heading">¶</a></h3>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">hLoc</span></code></dt><dd><p>HDF handle to object (group, file, dataset) to add the string to.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sName</span></code></dt><dd><p>Name of string attribute to create.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sValue</span></code></dt><dd><p>The string to write.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">pValue</span></code></dt><dd><p>The C-string to write.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">tValue</span></code></dt><dd><p>A value (it will be copnverte to a string before writing)</p>
+</dd>
+</dl>
+<p>Writes the specified string to an attribute with given name in the specified location.
+The last version accepts any value that can be converted to string with <code class="docutils literal notranslate"><span class="pre">std::stringstream::operator&lt;&lt;()</span></code>.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">qdf_extractSAttribute</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hLoc</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sName</span><span class="p">);</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">qdf_extractSAttribute</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hLoc</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sName</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="n">sValue</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">hLoc</span></code></dt><dd><p>HDF handle to object (group, file, dataset) to extract the string attribute from.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sName</span></code></dt><dd><p>Name of string attribute to extract.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sValue</span></code></dt><dd><p>The string into which tp place th extracted string.</p>
+</dd>
+</dl>
+<div class="line-block">
+<div class="line">The first version returns the value of the extracted string attribute on success, or an ampty string on failure.</div>
+<div class="line">The second version places the value of the extracted string attribute into <code class="docutils literal notranslate"><span class="pre">sValue</span></code> and returns 0 on success, -1 on failure.</div>
+</div>
+</section>
+<section id="handling-numeric-atributes">
+<h3>Handling Numeric Atributes<a class="headerlink" href="#handling-numeric-atributes" title="Permalink to this heading">¶</a></h3>
+<section id="qdf-insertattribute">
+<h4><code class="docutils literal notranslate"><span class="pre">qdf_insertAttribute</span></code><a class="headerlink" href="#qdf-insertattribute" title="Permalink to this heading">¶</a></h4>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">qdf_insertAttribute</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hLoc</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sName</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="n">iNum</span><span class="p">,</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">vValue</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">hid_t</span><span class="w"> </span><span class="n">hType</span><span class="p">);</span><span class="w"></span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="n">qdf_insertAttribute</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hLoc</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sName</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="n">iNum</span><span class="p">,</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="o">*</span><span class="n">tValue</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">hLoc</span></code></dt><dd><p>HDF handle to object (group, file, dataset) to write the numeric attribute to.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sName</span></code></dt><dd><p>Name of numeric attribute to write.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iNum</span></code></dt><dd><p>Number of elements in the attriute.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">pValue</span></code></dt><dd><p>Pointer to the numeric values to be written to the attribute with the specified name at the specified location.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">hType</span></code></dt><dd><p>Handle to HDF type of the numeric values.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">tValue</span></code></dt><dd><p>Pointer to a numeric value.</p>
+</dd>
+</dl>
+<div class="line-block">
+<div class="line">The first version requires the data type of the values to be passed, as well. It is mainly used by the second version.</div>
+<div class="line">The second version performs some template magic to generate the HDF type.</div>
+<div class="line">Both versions write an array of numeric values to the attribute.</div>
+<div class="line">Both versions return 0 on success, and -1 on failure,</div>
+</div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">qdf_extractAttribute</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hLoc</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sName</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="n">iNum</span><span class="p">,</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">vValue</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">hid_t</span><span class="w"> </span><span class="n">hType</span><span class="p">);</span><span class="w"></span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="n">qdf_extractAttribute</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hLoc</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sName</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="n">iNum</span><span class="p">,</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="o">*</span><span class="n">tValue</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">hLoc</span></code></dt><dd><p>HDF handle to object (group, file, dataset) to extract the numeric attribute from.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sName</span></code></dt><dd><p>Name of numeric attribute to write.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iNum</span></code></dt><dd><p>Number of elements in the attriute.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">pValue</span></code></dt><dd><p>Pointer to the numeric values to be written to the attribute with the specified name at the specified location.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">hType</span></code></dt><dd><p>Handle to HDF type of the numeric values.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">tValue</span></code></dt><dd><p>Pointer to aarray numeric values.</p>
+</dd>
+</dl>
+<div class="line-block">
+<div class="line">The first version requires the data type of the values to be passed, as well. It is mainly used, by the second version.</div>
+<div class="line">The second version performs some template magic to generate the HDF type.</div>
+<div class="line">Both versions extraczt an array of numeric values from the named attribute.</div>
+<div class="line">Both versions return 0 on success, and -1 on failure,</div>
+</div>
+</section>
+</section>
+<section id="handling-arrays-in-data-sets">
+<h3>Handling Arrays in Data Sets<a class="headerlink" href="#handling-arrays-in-data-sets" title="Permalink to this heading">¶</a></h3>
+<section id="qdf-readarray">
+<h4><code class="docutils literal notranslate"><span class="pre">qdf_readArray</span></code><a class="headerlink" href="#qdf-readarray" title="Permalink to this heading">¶</a></h4>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">qdf_readArray</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hGroup</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sName</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="n">iNum</span><span class="p">,</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">vData</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">hid_t</span><span class="w"> </span><span class="n">hType</span><span class="p">);</span><span class="w"></span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="n">qdf_readArray</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hGroup</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sName</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="n">iNum</span><span class="p">,</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="o">*</span><span class="n">pData</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">hGroup</span></code></dt><dd><p>Group in which to read the dataset.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sName</span></code></dt><dd><p>Name of dataset to read.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iNum</span></code></dt><dd><p>Number of elements in array</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">vData</span></code></dt><dd><p>Pointer to an array with size at least <code class="docutils literal notranslate"><span class="pre">iNum</span></code>. The contents will be written to the data set.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">hType</span></code></dt><dd><p>Handle to HDF type of the numeric values.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">pData</span></code></dt><dd><p>Pointer to an array with size at least <code class="docutils literal notranslate"><span class="pre">iNum</span></code>. The contents will be written to the data set.</p>
+</dd>
+</dl>
+<div class="line-block">
+<div class="line">The first version requires the data type of the values to be passed, as well. It is mainly used, by the second version.</div>
+<div class="line">The second version performs some template magic to generate the HDF type.</div>
+<div class="line">Both versions extract an array of numeric values from the named dataset.</div>
+<div class="line">Both versions return 0 on success, and -1 on failure,</div>
+</div>
+</section>
+<section id="qdf-replacearray">
+<h4><code class="docutils literal notranslate"><span class="pre">qdf_replaceArray</span></code><a class="headerlink" href="#qdf-replacearray" title="Permalink to this heading">¶</a></h4>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">qdf_replaceArray</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hGroup</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sName</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="n">iNum</span><span class="p">,</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">vData</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">hid_t</span><span class="w"> </span><span class="n">hType</span><span class="p">);</span><span class="w"></span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="n">qdf_replaceArray</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hGroup</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sName</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="n">iNum</span><span class="p">,</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="o">*</span><span class="n">pData</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">hGroup</span></code></dt><dd><p>Group in which to replace the dataset.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sName</span></code></dt><dd><p>Name of dataset to replaced.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iNum</span></code></dt><dd><p>Number of elements in array.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">vData</span></code></dt><dd><p>Pointer to an array with size at least <code class="docutils literal notranslate"><span class="pre">iNum</span></code>. The contents will replace the current array in the data set.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">hType</span></code></dt><dd><p>Handle to HDF type of the numeric values.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">pData</span></code></dt><dd><p>Pointer to an array with size at least <code class="docutils literal notranslate"><span class="pre">iNum</span></code>. The contents will replace the current array in the data set.</p>
+</dd>
+</dl>
+<div class="line-block">
+<div class="line">The first version requires the data type of the values to be passed, as well. It is mainly used, by the second version.</div>
+<div class="line">The second version performs some template magic to generate the HDF type.</div>
+<div class="line">Both versions replace the array of numeric values in the data set.</div>
+<div class="line">Both versions return 0 on success, and -1 on failure,</div>
+</div>
+</section>
+<section id="qdf-writearray">
+<h4><code class="docutils literal notranslate"><span class="pre">qdf_writeArray</span></code><a class="headerlink" href="#qdf-writearray" title="Permalink to this heading">¶</a></h4>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">qdf_writeArray</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hGroup</span><span class="p">,</span><span class="w">   </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sName</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="n">iNum</span><span class="p">,</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">vData</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">hid_t</span><span class="w"> </span><span class="n">hType</span><span class="p">);</span><span class="w"></span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="n">qdf_writeArray</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hGroup</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sName</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="n">iNum</span><span class="p">,</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="o">*</span><span class="n">pData</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">hGroup</span></code></dt><dd><p>Group in which to write the dataset.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sName</span></code></dt><dd><p>Name of dataset to be written to.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iNum</span></code></dt><dd><p>Number of elements in array.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">vData</span></code></dt><dd><p>Pointer to an array with size at least <code class="docutils literal notranslate"><span class="pre">iNum</span></code>. The contents will be written to the data set.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">hType</span></code></dt><dd><p>Handle to HDF type of the numeric values.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">pData</span></code></dt><dd><p>Pointer to an array with size at least <code class="docutils literal notranslate"><span class="pre">iNum</span></code>. The contents will e written to the data set.</p>
+</dd>
+</dl>
+<div class="line-block">
+<div class="line">The first version requires the data type of the values to be passed, as well. It is mainly used, by the second version.</div>
+<div class="line">The second version performs some template magic to generate the HDF type.</div>
+<div class="line">Both versions write the array of numeric values to the data set.</div>
+<div class="line">Both versions return 0 on success, and -1 on failure,</div>
+</div>
+</section>
+<section id="qdf-readarrays">
+<h4><code class="docutils literal notranslate"><span class="pre">qdf_readArrays</span></code><a class="headerlink" href="#qdf-readarrays" title="Permalink to this heading">¶</a></h4>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">qdf_readArrays</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hGroup</span><span class="p">,</span><span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sName</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="n">iNumArr</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="n">iSize</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">**</span><span class="n">pData</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">hGroup</span></code></dt><dd><p>Group in which to write the dataset.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sName</span></code></dt><dd><p>Name of dataset to be written to.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iNumArr</span></code></dt><dd><p>Number of arrays.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iSize</span></code></dt><dd><p>Number of elements in array.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">pData</span></code></dt><dd><p>Pointer to an array of <code class="docutils literal notranslate"><span class="pre">iNumArr</span></code> arrays  with size at least <code class="docutils literal notranslate"><span class="pre">iSize</span></code>. The contents will be read from the data set.</p>
+</dd>
+</dl>
+<div class="line-block">
+<div class="line">Reads a number of equally sized arrays (i.e. a 2-dimensional array) to the specified data set.</div>
+<div class="line">Returns 0 on success, -1 on failure.</div>
+</div>
+</section>
+<section id="qdf-writearrays">
+<h4><code class="docutils literal notranslate"><span class="pre">qdf_writeArrays</span></code><a class="headerlink" href="#qdf-writearrays" title="Permalink to this heading">¶</a></h4>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">qdf_writeArrays</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hGroup</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sName</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="n">iNumArr</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="n">iSize</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">**</span><span class="n">pData</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">hGroup</span></code></dt><dd><p>Group in which to read the dataset.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sName</span></code></dt><dd><p>Name of dataset to be read from.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iNumArr</span></code></dt><dd><p>Number of arrays.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iSize</span></code></dt><dd><p>Number of elements in array.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">pData</span></code></dt><dd><p>Pointer to an array of <code class="docutils literal notranslate"><span class="pre">iNumArr</span></code> arrays  with size at least <code class="docutils literal notranslate"><span class="pre">iSize</span></code>. The contents will be writtten to the data set.</p>
+</dd>
+</dl>
+<div class="line-block">
+<div class="line">Writes a number of equally sized arrays (i.e. a 2-dimensional array) to the specified data set.</div>
+<div class="line">Returns 0 on success, -1 on failure.</div>
+</div>
+</section>
+</section>
+<section id="various">
+<h3>Various<a class="headerlink" href="#various" title="Permalink to this heading">¶</a></h3>
+<section id="qdf-listgroupcontents">
+<h4><code class="docutils literal notranslate"><span class="pre">qdf_listGroupContents</span></code><a class="headerlink" href="#qdf-listgroupcontents" title="Permalink to this heading">¶</a></h4>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">qdf_listGroupContents</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">loc_id</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sName</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">pIndent</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">loc_id</span></code></dt><dd><p>Location in which to list a group or file.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sName</span></code></dt><dd><p>Name of the group to b listed.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">pIndent</span></code></dt><dd><p>Indentation to be prefixed to output.</p>
+</dd>
+</dl>
+<p>Writes the list of contents of the group to stdout.</p>
+<p>. —————————————————————————–</p>
+</section>
+<section id="qdf-getdatatype">
+<h4><code class="docutils literal notranslate"><span class="pre">qdf_getDataType</span></code><a class="headerlink" href="#qdf-getdatatype" title="Permalink to this heading">¶</a></h4>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">qdf_getDataType</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hDataSet</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">hDataSet</span></code></dt><dd><p>Handle to the data set to get the data type of.</p>
+</dd>
+</dl>
+<p>Returns an integer representing a data type:</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>DS_TYPE_NONE</p></td>
+<td><p>0</p></td>
+<td><p>unknown type</p></td>
+</tr>
+<tr class="row-even"><td><p>DS_TYPE_CHAR</p></td>
+<td><p>1</p></td>
+<td><p>char</p></td>
+</tr>
+<tr class="row-odd"><td><p>DS_TYPE_SHORT</p></td>
+<td><p>2</p></td>
+<td><p>short</p></td>
+</tr>
+<tr class="row-even"><td><p>DS_TYPE_INT</p></td>
+<td><p>3</p></td>
+<td><p>int</p></td>
+</tr>
+<tr class="row-odd"><td><p>DS_TYPE_LONG</p></td>
+<td><p>4</p></td>
+<td><p>long</p></td>
+</tr>
+<tr class="row-even"><td><p>DS_TYPE_LLONG</p></td>
+<td><p>5</p></td>
+<td><p>long long</p></td>
+</tr>
+<tr class="row-odd"><td><p>DS_TYPE_UCHAR</p></td>
+<td><p>6</p></td>
+<td><p>unsigned char</p></td>
+</tr>
+<tr class="row-even"><td><p>DS_TYPE_USHORT</p></td>
+<td><p>7</p></td>
+<td><p>unsigned short</p></td>
+</tr>
+<tr class="row-odd"><td><p>DS_TYPE_UINT</p></td>
+<td><p>8</p></td>
+<td><p>unsigned int</p></td>
+</tr>
+<tr class="row-even"><td><p>DS_TYPE_ULONG</p></td>
+<td><p>9</p></td>
+<td><p>unsigned long</p></td>
+</tr>
+<tr class="row-odd"><td><p>DS_TYPE_ULLONG</p></td>
+<td><p>10</p></td>
+<td><p>unsigned long long</p></td>
+</tr>
+<tr class="row-even"><td><p>DS_TYPE_FLOAT</p></td>
+<td><p>11</p></td>
+<td><p>float</p></td>
+</tr>
+<tr class="row-odd"><td><p>DS_TYPE_DOUBLE</p></td>
+<td><p>12</p></td>
+<td><p>double</p></td>
+</tr>
+<tr class="row-even"><td><p>DS_TYPE_LDOUBLE</p></td>
+<td><p>13</p></td>
+<td><p>long double</p></td>
+</tr>
+</tbody>
+</table>
+<p>. —————————————————————————–</p>
+</section>
+<section id="qdf-getdataextents">
+<h4><code class="docutils literal notranslate"><span class="pre">qdf_getDataExtents</span></code><a class="headerlink" href="#qdf-getdataextents" title="Permalink to this heading">¶</a></h4>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">qdf_getDataExtents</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hGroup</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sName</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">hsize_t</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">vSizes</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">hGroup</span></code></dt><dd><p>Handle to group containing the data set to be analysed.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sName</span></code></dt><dd><p>Name of data set.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">vSizes</span></code></dt><dd><p>String vector to write th sizes into.</p>
+</dd>
+</dl>
+</section>
+<section id="qdf-getfirstpopulation">
+<h4><code class="docutils literal notranslate"><span class="pre">qdf_getFirstPopulation</span></code><a class="headerlink" href="#qdf-getfirstpopulation" title="Permalink to this heading">¶</a></h4>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">qdf_getFirstPopulation</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sPopQDF</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">sPopQDF</span></code></dt><dd><p>Name of a QDF file containing populations.</p>
+</dd>
+</dl>
+<p>Returns the name of the first population in the qdf file.</p>
+</section>
+<section id="qdf-checkforpop">
+<h4><code class="docutils literal notranslate"><span class="pre">qdf_checkForPop</span></code><a class="headerlink" href="#qdf-checkforpop" title="Permalink to this heading">¶</a></h4>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">qdf_checkForPop</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sPopQDF</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sSpeciesName</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">sPopQDF</span></code></dt><dd><p>Name of a QDF file containing populations.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sSpeciesName</span></code></dt><dd><p>Name of a species.</p>
+</dd>
+</dl>
+<p>Returns the name if the species exists, or an empty string if it doesn’t.</p>
+</section>
+<section id="qdf-hasgeo">
+<h4><code class="docutils literal notranslate"><span class="pre">qdf_hasGeo</span></code><a class="headerlink" href="#qdf-hasgeo" title="Permalink to this heading">¶</a></h4>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w">  </span><span class="nf">qdf_hasGeo</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sQDF</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">sQDF</span></code></dt><dd><p>Name of a QDF file.</p>
+</dd>
+</dl>
+<p>Returns <code class="docutils literal notranslate"><span class="pre">true</span></code> if the file contains a geo group.</p>
+</section>
+<section id="qdf-createpolyline">
+<h4><code class="docutils literal notranslate"><span class="pre">qdf_createPolyLine</span></code><a class="headerlink" href="#qdf-createpolyline" title="Permalink to this heading">¶</a></h4>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">PolyLine</span><span class="w"> </span><span class="o">*</span><span class="nf">qdf_createPolyLine</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hSpeciesGroup</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sPLParName</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">hSpeciesGroup</span></code></dt><dd><p>Handle to a species group.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sPLParName</span></code></dt><dd><p>Name of a poly line entry.</p>
+</dd>
+</dl>
+<p>Gets the data for the poly line and creates it.</p>
+</section>
+<section id="qdf-writepolyline">
+<h4><code class="docutils literal notranslate"><span class="pre">qdf_writePolyLine</span></code><a class="headerlink" href="#qdf-writepolyline" title="Permalink to this heading">¶</a></h4>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">qdf_writePolyLine</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hSpeciesGroup</span><span class="p">,</span><span class="w"> </span><span class="n">PolyLine</span><span class="w"> </span><span class="o">*</span><span class="n">pPL</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sPLParName</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">hSpeciesGroup</span></code></dt><dd><p>Handle to a species group.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sPLParName</span></code></dt><dd><p>Name of a poly line entry.</p>
+</dd>
+</dl>
+<p>Writes the poly line data to a data set named as specieified.</p>
+</section>
+<section id="comparedatatypes">
+<h4><code class="docutils literal notranslate"><span class="pre">compareDataTypes</span></code><a class="headerlink" href="#comparedatatypes" title="Permalink to this heading">¶</a></h4>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">qdf_compareDataTypes</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">t1</span><span class="p">,</span><span class="w"> </span><span class="n">hid_t</span><span class="w"> </span><span class="n">t2</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">t1</span></code></dt><dd><p>Handle to a HDF data type.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">t2</span></code></dt><dd><p>Handle to a HDF data type.</p>
+</dd>
+</dl>
+<div class="line-block">
+<div class="line">Compares the two data types.</div>
+<div class="line">Returns 0 if datatypes are equal, or a negative number if different:</div>
+</div>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>-2</p></td>
+<td><p>different number of members</p></td>
+</tr>
+<tr class="row-even"><td><p>-3</p></td>
+<td><p>different offsets</p></td>
+</tr>
+<tr class="row-odd"><td><p>-4</p></td>
+<td><p>different class</p></td>
+</tr>
+<tr class="row-even"><td><p>-5</p></td>
+<td><p>different type</p></td>
+</tr>
+<tr class="row-odd"><td><p>-6</p></td>
+<td><p>different name</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="qdf-checkpathexists">
+<h4><code class="docutils literal notranslate"><span class="pre">qdf_checkPathExists</span></code><a class="headerlink" href="#qdf-checkpathexists" title="Permalink to this heading">¶</a></h4>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">qdf_checkPathExists</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sQDF</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sPath</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">sQDF</span></code></dt><dd><p>Name of a qdf file.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sPath</span></code></dt><dd><p>A HDF path.</p>
+</dd>
+</dl>
+<p>If the given path exists in the QDF file, o is returned. Otherwise -1.</p>
+</section>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">QDFUtils</a><ul>
+<li><a class="reference internal" href="#constants">Constants</a></li>
+<li><a class="reference internal" href="#public-methods">Public Methods</a><ul>
+<li><a class="reference internal" href="#handling-files">Handling files</a><ul>
+<li><a class="reference internal" href="#qdf-createfile"><code class="docutils literal notranslate"><span class="pre">qdf_createFile</span></code></a></li>
+<li><a class="reference internal" href="#qdf-openfile"><code class="docutils literal notranslate"><span class="pre">qdf_openFile</span></code></a></li>
+<li><a class="reference internal" href="#qdf-opencreatefile"><code class="docutils literal notranslate"><span class="pre">qdf_opencreateFile</span></code></a></li>
+<li><a class="reference internal" href="#qdf-closefile"><code class="docutils literal notranslate"><span class="pre">qdf_closeFile</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#handling-groups">Handling groups</a><ul>
+<li><a class="reference internal" href="#qdf-creategroup"><code class="docutils literal notranslate"><span class="pre">qdf_createGroup</span></code></a></li>
+<li><a class="reference internal" href="#qdf-opengroup"><code class="docutils literal notranslate"><span class="pre">qdf_openGroup</span></code></a></li>
+<li><a class="reference internal" href="#qdf-opencreategroup"><code class="docutils literal notranslate"><span class="pre">qdf_opencreateGroup</span></code></a></li>
+<li><a class="reference internal" href="#qdf-closegroup"><code class="docutils literal notranslate"><span class="pre">qdf_closeGroup</span></code></a></li>
+<li><a class="reference internal" href="#qdf-deletegroup"><code class="docutils literal notranslate"><span class="pre">qdf_deleteGroup</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#handling-data-sets">Handling Data Sets</a><ul>
+<li><a class="reference internal" href="#qdf-opendataset"><code class="docutils literal notranslate"><span class="pre">qdf_openDataSet</span></code></a></li>
+<li><a class="reference internal" href="#qdf-closedataset"><code class="docutils literal notranslate"><span class="pre">qdf_closeDataSet</span></code></a></li>
+<li><a class="reference internal" href="#qdf-closedataspace"><code class="docutils literal notranslate"><span class="pre">qdf_closeDataSpace</span></code></a></li>
+<li><a class="reference internal" href="#qdf-closedatatype"><code class="docutils literal notranslate"><span class="pre">qdf_closeDataType</span></code></a></li>
+<li><a class="reference internal" href="#qdf-closeattribute"><code class="docutils literal notranslate"><span class="pre">qdf_closeAttribute</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#link-existence">Link Existence</a><ul>
+<li><a class="reference internal" href="#qdf-link-exists"><code class="docutils literal notranslate"><span class="pre">qdf_link_exists</span></code></a></li>
+<li><a class="reference internal" href="#qdf-attr-exists"><code class="docutils literal notranslate"><span class="pre">qdf_attr_exists</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#handling-string-attributes">Handling String Attributes</a></li>
+<li><a class="reference internal" href="#handling-numeric-atributes">Handling Numeric Atributes</a><ul>
+<li><a class="reference internal" href="#qdf-insertattribute"><code class="docutils literal notranslate"><span class="pre">qdf_insertAttribute</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#handling-arrays-in-data-sets">Handling Arrays in Data Sets</a><ul>
+<li><a class="reference internal" href="#qdf-readarray"><code class="docutils literal notranslate"><span class="pre">qdf_readArray</span></code></a></li>
+<li><a class="reference internal" href="#qdf-replacearray"><code class="docutils literal notranslate"><span class="pre">qdf_replaceArray</span></code></a></li>
+<li><a class="reference internal" href="#qdf-writearray"><code class="docutils literal notranslate"><span class="pre">qdf_writeArray</span></code></a></li>
+<li><a class="reference internal" href="#qdf-readarrays"><code class="docutils literal notranslate"><span class="pre">qdf_readArrays</span></code></a></li>
+<li><a class="reference internal" href="#qdf-writearrays"><code class="docutils literal notranslate"><span class="pre">qdf_writeArrays</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#various">Various</a><ul>
+<li><a class="reference internal" href="#qdf-listgroupcontents"><code class="docutils literal notranslate"><span class="pre">qdf_listGroupContents</span></code></a></li>
+<li><a class="reference internal" href="#qdf-getdatatype"><code class="docutils literal notranslate"><span class="pre">qdf_getDataType</span></code></a></li>
+<li><a class="reference internal" href="#qdf-getdataextents"><code class="docutils literal notranslate"><span class="pre">qdf_getDataExtents</span></code></a></li>
+<li><a class="reference internal" href="#qdf-getfirstpopulation"><code class="docutils literal notranslate"><span class="pre">qdf_getFirstPopulation</span></code></a></li>
+<li><a class="reference internal" href="#qdf-checkforpop"><code class="docutils literal notranslate"><span class="pre">qdf_checkForPop</span></code></a></li>
+<li><a class="reference internal" href="#qdf-hasgeo"><code class="docutils literal notranslate"><span class="pre">qdf_hasGeo</span></code></a></li>
+<li><a class="reference internal" href="#qdf-createpolyline"><code class="docutils literal notranslate"><span class="pre">qdf_createPolyLine</span></code></a></li>
+<li><a class="reference internal" href="#qdf-writepolyline"><code class="docutils literal notranslate"><span class="pre">qdf_writePolyLine</span></code></a></li>
+<li><a class="reference internal" href="#comparedatatypes"><code class="docutils literal notranslate"><span class="pre">compareDataTypes</span></code></a></li>
+<li><a class="reference internal" href="#qdf-checkpathexists"><code class="docutils literal notranslate"><span class="pre">qdf_checkPathExists</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="PopWriter.html"
+                          title="previous chapter">PopWriter</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="QDFUtilConsts.html"
+                          title="next chapter">QDFUtils Constants</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/code_doc/io/QDFUtils.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="QDFUtilConsts.html" title="QDFUtils Constants"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="PopWriter.html" title="PopWriter"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../io.html" >io</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">QDFUtils</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+    </div>
+  </body>
+</html>

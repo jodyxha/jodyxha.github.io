@@ -1,0 +1,227 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>SCellGrid &#8212; QHG4 4.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jody.css" />
+    
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    
+    <link rel="shortcut icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Geography" href="Geography.html" />
+    <link rel="prev" title="SCell" href="SCell.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="Geography.html" title="Geography"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="SCell.html" title="SCell"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../core.html" accesskey="U">core</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">SCellGrid</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="scellgrid">
+<span id="scellgrid-ref"></span><h1>SCellGrid<a class="headerlink" href="#scellgrid" title="Permalink to this heading">¶</a></h1>
+<p class="hidden">This page describes the class <span class="target" id="index-0"></span>SCellGrid</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">SCellGrid</span></code>  represents the grid on which the simulation is taking place.
+QHG supports flat grids with 4 or 6 neighborhoods, as well as icosahedral grids.</p>
+<figure class="align-default">
+<img alt="../../_images/some_grids.png" src="../../_images/some_grids.png" />
+</figure>
+<p>QDF files containing cell grids can be created with the tool <a class="reference internal" href="../../tools/Def2QDF.html#def2qdf-ref"><span class="std std-ref">Def2QDF</span></a>.</p>
+<p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/core/SCellGrid.h">SCellGrid.h</a> <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/core/SCellGrid.cpp">SCellGrid.cpp</a></p>
+<section id="public-members">
+<h2>Public Members<a class="headerlink" href="#public-members" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w">         </span><span class="n">m_iID</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The cell grid’s ID</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">uint</span><span class="w">        </span><span class="n">m_iNumCells</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The number of cells in the grid.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">SCell</span><span class="w">       </span><span class="o">*</span><span class="n">m_aCells</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The array of <a class="reference internal" href="SCell.html#scell-ref"><span class="std std-ref">SCell</span></a> objects.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w">       </span><span class="n">m_iType</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The type of the grid: cartesian with 4-neighborhood (0), cartesian with 6-neighborhood (1, subdivided icosahedron(3).</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w">       </span><span class="n">m_iConnectivity</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The grid’s connectivity (4 or 6).</p>
+</section>
+<section id="public-methods">
+<h2>Public Methods<a class="headerlink" href="#public-methods" title="Permalink to this heading">¶</a></h2>
+<section id="constructor">
+<h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#constructor" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">SCellGrid</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iID</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="n">iNumCells</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">stringmap</span><span class="w"> </span><span class="o">&amp;</span><span class="n">smSurfaceData</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">iID</span></code></dt><dd><p>ID of grid (currently nor relevant - might be used for MPI parallelization).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iNumCells</span></code></dt><dd><p>Number of cells in grid.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">smSurfaceData</span></code></dt><dd><p>String data (name=&gt;value).</p>
+</dd>
+</dl>
+<p>Allocates the array of <code class="docutils literal notranslate"><span class="pre">SCell</span></code> objects, stores ID and surface data.</p>
+<p>This constructor is only used  to prepare the array of cells for later input.
+In QHG the <a class="reference internal" href="../io/GridGroupReader.html#gridgroupreader-ref"><span class="std std-ref">GridGroupReader</span></a> reads the relevant data as well as the <a class="reference internal" href="SCell.html#scell-ref"><span class="std std-ref">SCells</span></a> and their neighorhood relations gfrom a QDF file.</p>
+</section>
+<section id="destructor">
+<h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="o">~</span><span class="n">SCellGrid</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The destructor deletes the array of <code class="docutils literal notranslate"><span class="pre">SCell</span></code> objects.</p>
+</section>
+<section id="setgeography">
+<h3><code class="docutils literal notranslate"><span class="pre">setGeography</span></code><a class="headerlink" href="#setgeography" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">setGeography</span><span class="p">(</span><span class="n">Geography</span><span class="o">*</span><span class="w"> </span><span class="n">pGeo</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Sets the <a class="reference internal" href="Geography.html#geography-ref"><span class="std std-ref">Geography</span></a> object.</p>
+</section>
+<section id="setclimate">
+<h3><code class="docutils literal notranslate"><span class="pre">setClimate</span></code><a class="headerlink" href="#setclimate" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">setClimate</span><span class="p">(</span><span class="n">Climate</span><span class="o">*</span><span class="w"> </span><span class="n">pClim</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Sets the <a class="reference internal" href="Climate.html#climate-ref"><span class="std std-ref">Climate</span></a> object.</p>
+</section>
+<section id="setvegetation">
+<h3><code class="docutils literal notranslate"><span class="pre">setVegetation</span></code><a class="headerlink" href="#setvegetation" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">setVegetation</span><span class="p">(</span><span class="n">Vegetation</span><span class="o">*</span><span class="w"> </span><span class="n">pVeg</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Sets the <a class="reference internal" href="Vegetation.html#vegetation-ref"><span class="std std-ref">Vegetation*</span></a> object.</p>
+</section>
+<section id="setnavigation">
+<h3><code class="docutils literal notranslate"><span class="pre">setNavigation</span></code><a class="headerlink" href="#setnavigation" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">setNavigation</span><span class="p">(</span><span class="n">Navigation</span><span class="o">*</span><span class="w"> </span><span class="n">pNav</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Sets the <a class="reference internal" href="Navigation.html#navigation-ref"><span class="std std-ref">Navigation</span></a> object.</p>
+</section>
+<section id="iscartesian">
+<h3><code class="docutils literal notranslate"><span class="pre">isCartesian</span></code><a class="headerlink" href="#iscartesian" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="nf">isCartesian</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Returns <code class="docutils literal notranslate"><span class="pre">true</span></code> if the grid is not icosahedral.</p>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">SCellGrid</a><ul>
+<li><a class="reference internal" href="#public-members">Public Members</a></li>
+<li><a class="reference internal" href="#public-methods">Public Methods</a><ul>
+<li><a class="reference internal" href="#constructor"><code class="docutils literal notranslate"><span class="pre">constructor</span></code></a></li>
+<li><a class="reference internal" href="#destructor"><code class="docutils literal notranslate"><span class="pre">destructor</span></code></a></li>
+<li><a class="reference internal" href="#setgeography"><code class="docutils literal notranslate"><span class="pre">setGeography</span></code></a></li>
+<li><a class="reference internal" href="#setclimate"><code class="docutils literal notranslate"><span class="pre">setClimate</span></code></a></li>
+<li><a class="reference internal" href="#setvegetation"><code class="docutils literal notranslate"><span class="pre">setVegetation</span></code></a></li>
+<li><a class="reference internal" href="#setnavigation"><code class="docutils literal notranslate"><span class="pre">setNavigation</span></code></a></li>
+<li><a class="reference internal" href="#iscartesian"><code class="docutils literal notranslate"><span class="pre">isCartesian</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="SCell.html"
+                          title="previous chapter">SCell</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="Geography.html"
+                          title="next chapter">Geography</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/code_doc/core/SCellGrid.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="Geography.html" title="Geography"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="SCell.html" title="SCell"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../core.html" >core</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">SCellGrid</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+    </div>
+  </body>
+</html>

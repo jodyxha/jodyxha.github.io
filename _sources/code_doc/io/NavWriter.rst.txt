@@ -1,0 +1,82 @@
+.. _NavWriter_ref:
+
+NavWriter
+=========
+
+.. rst-class:: hidden
+
+   This page desctibes the class :index:`NavWriter`
+
+The class ``NavWriter`` is used to write the :ref:`navigation data<Navigation_ref>` to the :ref:`navigation group<NavGroup_ref>` in a qdf file.
+
+Code: `NavWriter.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/NavWriter.h>`_, `NavWriter.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/NavWriter.cpp>`_
+
+Public Methods
+--------------
+
+``constructor``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    NavWriter(Navigation *pNav);
+
+The constructor.
+
+.. -----------------------------------------------------------------------------
+
+``write``
+^^^^^^^^^
+.. code-block:: c++
+
+    int write(hid_t hFile);
+
+Write the navigation data to an open qdf file.
+
+``hFile``
+   HDF handle to the opened file.
+
+.. -----------------------------------------------------------------------------
+
+``writeToQDF``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    int writeToQDF(const std::string sFileName, int iStep,
+                  float fStartTime,            const std::string sInfoString);
+
+Creates a new qdf file, creates a :ref:`navigation group<NavGroup_ref>` and writes the navigation data to it.
+
+``sFileName``
+   Name of output file.
+
+``iStep``
+   The current simulation step. This number is saved as an attribute in the output file's root group. 
+
+``fStartTime``
+   The start time of the simulation (i.e. the 'real' time at step 0). This number is also saved as an attribute in the output file's root group.
+
+``sInfoString``
+   An arbitrary string which will be saved as an attribute in the output file's root group.
+
+Returns 0 on success, -1 on failure.
+
+.. -----------------------------------------------------------------------------
+
+Protected Methods
+-----------------
+
+``writeNavAttributes``
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    int writeNavAttributes(hid_t hNavGroup);
+
+Writes the navigation attributes to the  :ref:`navigation group<NavGroup_ref>` in the qdf file.
+
+``hNavGroup``
+    HDF pointer to the navigation group in the qdf file.
+
+Returns 0 on success, -1 on failure.
+
+.. -----------------------------------------------------------------------------
+

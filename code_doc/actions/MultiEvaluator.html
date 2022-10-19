@@ -1,0 +1,342 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>MultiEvaluator &#8212; QHG4 4.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jody.css" />
+    
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    
+    <link rel="shortcut icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="ShareEvaluator" href="ShareEvaluator.html" />
+    <link rel="prev" title="Evaluator" href="Evaluator.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="ShareEvaluator.html" title="ShareEvaluator"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="Evaluator.html" title="Evaluator"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../actions.html" accesskey="U">actions</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">MultiEvaluator</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="multievaluator">
+<span id="multievaluator-ref"></span><h1>MultiEvaluator<a class="headerlink" href="#multievaluator" title="Permalink to this heading">¶</a></h1>
+<p class="hidden">This page describes the class <span class="target" id="index-0"></span>MultiEvaluator</p>
+<p><code class="docutils literal notranslate"><span class="pre">MultiEvaluator</span></code> is derived from <code class="docutils literal notranslate"><span class="pre">Evaluator</span></code> and is used to combine the output arrays of <code class="docutils literal notranslate"><span class="pre">Evaluator</span></code> objects in various ways.
+Before being combined the values are multiplied by a weight which is read from the input data.</p>
+<figure class="align-default">
+<img alt="../../_images/MultiEvaluatorCombinations.png" src="../../_images/MultiEvaluatorCombinations.png" />
+</figure>
+<p>Possible combinations:</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">MODE_ADD_SIMPLE</span></code></p></td>
+<td><p>0</p></td>
+<td><p>Addition of the ouput values</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">MODE_ADD_BLOCK</span></code></p></td>
+<td><p>1</p></td>
+<td><p>Blocked addition of the output values</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">MODE_MUL_SIMPLE</span></code></p></td>
+<td><p>2</p></td>
+<td><p>Multiply output values</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">MODE_MAX_SIMPLE</span></code></p></td>
+<td><p>3</p></td>
+<td><p>Maximum of the output values</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">MODE_MAX_BLOCK</span></code></p></td>
+<td><p>4</p></td>
+<td><p>Blocked maximum of the output values</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">MODE_MIN_SIMPLE</span></code></p></td>
+<td><p>5</p></td>
+<td><p>Minimum of the output values</p></td>
+</tr>
+</tbody>
+</table>
+<p>Blocked addition: only do addition for elements where none of the corresponding Evaluators’ output array is 0.
+Blocked maximum: only do maximum for elements where none of the corresponding Evaluators’ output array is 0.</p>
+<p>Note: Generally the <code class="docutils literal notranslate"><span class="pre">Evaluators</span></code> used in  a <code class="docutils literal notranslate"><span class="pre">MultiEvaluator</span></code> shoud <strong>not be cumulated</strong>.</p>
+<p><strong>Attributes</strong></p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>ATTR_MULTEVAL_NAME</p></td>
+<td><p>“MultiEvaluator”</p></td>
+<td><p>action name</p></td>
+</tr>
+</tbody>
+</table>
+<section id="type-definitions">
+<h2>Type Definitions<a class="headerlink" href="#type-definitions" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">Evaluator</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;*&gt;</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">evaluatorinfos</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>An <code class="docutils literal notranslate"><span class="pre">evaluatorinfo</span></code> is a list of pairs of evaluator weight names and <code class="docutils literal notranslate"><span class="pre">Evaluators</span></code>.
+The weight names are used to get the values of the weights from the input file.</p>
+</section>
+<section id="public-methods">
+<h2>Public Methods<a class="headerlink" href="#public-methods" title="Permalink to this heading">¶</a></h2>
+<section id="constructor">
+<h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#constructor" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">MultiEvaluator</span><span class="p">(</span><span class="n">SPopulation</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="o">*</span><span class="n">pPop</span><span class="p">,</span><span class="w"> </span><span class="n">SCellGrid</span><span class="w"> </span><span class="o">*</span><span class="n">pCG</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sID</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">adOutputWeights</span><span class="p">,</span><span class="w"> </span><span class="n">evaluatorinfos</span><span class="w"> </span><span class="o">&amp;</span><span class="n">mEvaluators</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iMode</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">bDeleteEvaluators</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">pPop</span></code></dt><dd><p>A pointer to the <a class="reference internal" href="../core/SPopulation.html#spopulation-ref"><span class="std std-ref">SPopulation</span></a> object performing this action.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">pCG</span></code></dt><dd><p>A pointer to the  <a class="reference internal" href="../core/SCellGrid.html#scellgrid-ref"><span class="std std-ref">SCellGrid</span></a> object on which the simulation runs.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sID</span></code></dt><dd><p>An ID for this action.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">adOutputWeights</span></code></dt><dd><p>Array to hold the output weights. The size of this array is (m+1)*NumCells, where m  is the maximum number of neighbors of a cell.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">mEvaluators</span></code></dt><dd><p>The list of Evaluators and weight names to use.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iMode</span></code></dt><dd><p>The combination mode (one of the <code class="docutils literal notranslate"><span class="pre">MODE_XXX_XXX</span></code> above).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">bDeleteEvaluators</span></code></dt><dd><p>If true the <code class="docutils literal notranslate"><span class="pre">Evaluator</span></code> objects will be deleted.</p>
+</dd>
+</dl>
+</section>
+<section id="destructor">
+<h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">MultiEvaluator</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Deletes some internal arrays and, if required, the <code class="docutils literal notranslate"><span class="pre">Evaluator</span></code> objects.</p>
+</section>
+<section id="preloop">
+<h3><code class="docutils literal notranslate"><span class="pre">preLoop</span></code><a class="headerlink" href="#preloop" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">preLoop</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Calls the <code class="docutils literal notranslate"><span class="pre">preLoop()</span></code> method of all <code class="docutils literal notranslate"><span class="pre">Evaluator</span></code> objects.</p>
+</section>
+<section id="postloop">
+<h3><code class="docutils literal notranslate"><span class="pre">postLoop</span></code><a class="headerlink" href="#postloop" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">postLoop</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Calls the <code class="docutils literal notranslate"><span class="pre">postLoop()</span></code> method of all <code class="docutils literal notranslate"><span class="pre">Evaluator</span></code> objects.</p>
+</section>
+<section id="initialize">
+<h3><code class="docutils literal notranslate"><span class="pre">initialize</span></code><a class="headerlink" href="#initialize" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">initialize</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">fT</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Calls the combination method corresponding to th required mode.</p>
+</section>
+<section id="finalize">
+<h3><code class="docutils literal notranslate"><span class="pre">finalize</span></code><a class="headerlink" href="#finalize" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">finalize</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">fT</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Calls the <code class="docutils literal notranslate"><span class="pre">finalize()</span></code> method for  all <code class="docutils literal notranslate"><span class="pre">Evaluator</span></code> objects and resets the update flag.</p>
+</section>
+<section id="extractattributesqdf">
+<h3><code class="docutils literal notranslate"><span class="pre">extractAttributesQDF</span></code><a class="headerlink" href="#extractattributesqdf" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">extractAttributesQDF</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hSpeciesGroup</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">hSpeciesGroup</span></code></dt><dd><p>HDF handle for the species group to read from.</p>
+</dd>
+</dl>
+<p>Reads the weight values and the attributes for all <code class="docutils literal notranslate"><span class="pre">Evaluator</span></code> objects from the specified group of a QDF file.</p>
+</section>
+<section id="writeattributesqdf">
+<h3><code class="docutils literal notranslate"><span class="pre">writeAttributesQDF</span></code><a class="headerlink" href="#writeattributesqdf" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">writeAttributesQDF</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hSpeciesGroup</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">hSpeciesGroup</span></code></dt><dd><p>HDF handle for the species group to write to.</p>
+</dd>
+</dl>
+<p>Writes the weight values and the attributes for all <code class="docutils literal notranslate"><span class="pre">Evaluator</span></code> objects to the specified group of a QDF file.</p>
+</section>
+<section id="trygetattributes">
+<h3><code class="docutils literal notranslate"><span class="pre">tryGetAttributes</span></code><a class="headerlink" href="#trygetattributes" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">tryGetAttributes</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">ModuleComplex</span><span class="w"> </span><span class="o">*</span><span class="n">pMC</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">pMC</span></code></dt><dd><p>A <code class="docutils literal notranslate"><span class="pre">ModuleComplex</span></code> object.</p>
+</dd>
+</dl>
+<p>Gets the weight values and the attributes for all <code class="docutils literal notranslate"><span class="pre">Evaluator</span></code> objects from the module complex.</p>
+<p>Example of a <code class="docutils literal notranslate"><span class="pre">MultiEvaluator</span></code> entry in a <a class="reference internal" href="../../formats/pop/pop_xml.html#pop-xml-ref"><span class="std std-ref">population XML file</span></a></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="k">module</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="s">&quot;MultiEvaluator&quot;</span><span class="w"> </span><span class="n">id</span><span class="o">=</span><span class="s">&quot;Alt+NPP&quot;</span><span class="w"> </span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">    </span><span class="o">&lt;</span><span class="n">param</span><span class="w">  </span><span class="n">name</span><span class="o">=</span><span class="s">&quot;Multi_weight_alt&quot;</span><span class="w"> </span><span class="n">value</span><span class="o">=</span><span class="s">&quot;0.2&quot;</span><span class="w"> </span><span class="o">/&gt;</span><span class="w"></span>
+<span class="w">    </span><span class="o">&lt;</span><span class="n">param</span><span class="w">  </span><span class="n">name</span><span class="o">=</span><span class="s">&quot;Multi_weight_npp&quot;</span><span class="w"> </span><span class="n">value</span><span class="o">=</span><span class="s">&quot;0.8&quot;</span><span class="w"> </span><span class="o">/&gt;</span><span class="w"></span>
+<span class="w">    </span><span class="o">&lt;</span><span class="k">module</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="s">&quot;SingleEvaluator&quot;</span><span class="w"> </span><span class="n">id</span><span class="o">=</span><span class="s">&quot;Alt&quot;</span><span class="w"> </span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">        </span><span class="o">&lt;</span><span class="n">param</span><span class="w">  </span><span class="n">name</span><span class="o">=</span><span class="s">&quot;AltPref&quot;</span><span class="w"> </span><span class="n">value</span><span class="o">=</span><span class="s">&quot;-0.1 0 0.1 0.01 1500 1.0 2000 1 3000 -9999&quot;</span><span class="w"> </span><span class="o">/&gt;</span><span class="w"></span>
+<span class="w">    </span><span class="o">&lt;/</span><span class="k">module</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">    </span><span class="o">&lt;</span><span class="k">module</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="s">&quot;SingleEvaluator&quot;</span><span class="w"> </span><span class="n">id</span><span class="o">=</span><span class="s">&quot;NPP&quot;</span><span class="w"> </span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">         </span><span class="o">&lt;</span><span class="n">param</span><span class="w">  </span><span class="n">name</span><span class="o">=</span><span class="s">&quot;NPPPref&quot;</span><span class="w"> </span><span class="n">value</span><span class="o">=</span><span class="s">&quot;0.0 0.0 1.2 1.0&quot;</span><span class="w"> </span><span class="o">/&gt;</span><span class="w"></span>
+<span class="w">    </span><span class="o">&lt;/</span><span class="k">module</span><span class="o">&gt;</span><span class="w"></span>
+<span class="o">&lt;/</span><span class="k">module</span><span class="o">&gt;</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="setoutputweights">
+<h3><code class="docutils literal notranslate"><span class="pre">setOutputWeights</span></code><a class="headerlink" href="#setoutputweights" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">setOutputWeights</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">adOutput</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">adOutput</span></code></dt><dd><p>An array containing values destined for output.</p>
+</dd>
+</dl>
+<p>The variable <code class="docutils literal notranslate"><span class="pre">m_adOutputWeights</span></code> is set to a point to the previously filled array <code class="docutils literal notranslate"><span class="pre">adOutput</span></code>.</p>
+</section>
+<section id="notify">
+<h3><code class="docutils literal notranslate"><span class="pre">notify</span></code><a class="headerlink" href="#notify" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">notify</span><span class="p">(</span><span class="n">Observable</span><span class="w"> </span><span class="o">*</span><span class="n">pObs</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iEvent</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">pData</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">pObs</span></code></dt><dd><p>The observable which sends the event.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iEvent</span></code></dt><dd><p>ID of the event.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">pData</span></code></dt><dd><p>Pointer to data pertaining to the event. It must be cast to the correct type.</p>
+</dd>
+</dl>
+<div class="line-block">
+<div class="line">(implementation of the <code class="docutils literal notranslate"><span class="pre">Observer</span></code> interface)</div>
+<div class="line">If the event tyoe is EVENT_ID_FLUSH, the update flag is set, if any of the <code class="docutils literal notranslate"><span class="pre">Evaluator</span></code> objects’ update flag is set.</div>
+</div>
+</section>
+<section id="isequal">
+<h3><code class="docutils literal notranslate"><span class="pre">isEqual</span></code><a class="headerlink" href="#isequal" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="nf">isEqual</span><span class="p">(</span><span class="n">Action</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="o">*</span><span class="n">pAction</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">bStrict</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">pAction</span></code></dt><dd><p>Pointer to an action object to compare with this.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">bStrict</span></code></dt><dd><p>Strictness of comparisons (ignored here).</p>
+</dd>
+</dl>
+<p><code class="docutils literal notranslate"><span class="pre">pAction</span></code> is equal to <code class="docutils literal notranslate"><span class="pre">this</span></code>, if it is a <code class="docutils literal notranslate"><span class="pre">MultiEvaluator</span></code> and all the corresponding `` Evaluator``  objects are equal and the weight names and weight values match.</p>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">MultiEvaluator</a><ul>
+<li><a class="reference internal" href="#type-definitions">Type Definitions</a></li>
+<li><a class="reference internal" href="#public-methods">Public Methods</a><ul>
+<li><a class="reference internal" href="#constructor"><code class="docutils literal notranslate"><span class="pre">constructor</span></code></a></li>
+<li><a class="reference internal" href="#destructor"><code class="docutils literal notranslate"><span class="pre">destructor</span></code></a></li>
+<li><a class="reference internal" href="#preloop"><code class="docutils literal notranslate"><span class="pre">preLoop</span></code></a></li>
+<li><a class="reference internal" href="#postloop"><code class="docutils literal notranslate"><span class="pre">postLoop</span></code></a></li>
+<li><a class="reference internal" href="#initialize"><code class="docutils literal notranslate"><span class="pre">initialize</span></code></a></li>
+<li><a class="reference internal" href="#finalize"><code class="docutils literal notranslate"><span class="pre">finalize</span></code></a></li>
+<li><a class="reference internal" href="#extractattributesqdf"><code class="docutils literal notranslate"><span class="pre">extractAttributesQDF</span></code></a></li>
+<li><a class="reference internal" href="#writeattributesqdf"><code class="docutils literal notranslate"><span class="pre">writeAttributesQDF</span></code></a></li>
+<li><a class="reference internal" href="#trygetattributes"><code class="docutils literal notranslate"><span class="pre">tryGetAttributes</span></code></a></li>
+<li><a class="reference internal" href="#setoutputweights"><code class="docutils literal notranslate"><span class="pre">setOutputWeights</span></code></a></li>
+<li><a class="reference internal" href="#notify"><code class="docutils literal notranslate"><span class="pre">notify</span></code></a></li>
+<li><a class="reference internal" href="#isequal"><code class="docutils literal notranslate"><span class="pre">isEqual</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="Evaluator.html"
+                          title="previous chapter">Evaluator</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="ShareEvaluator.html"
+                          title="next chapter">ShareEvaluator</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/code_doc/actions/MultiEvaluator.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="ShareEvaluator.html" title="ShareEvaluator"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="Evaluator.html" title="Evaluator"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../actions.html" >actions</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">MultiEvaluator</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+    </div>
+  </body>
+</html>

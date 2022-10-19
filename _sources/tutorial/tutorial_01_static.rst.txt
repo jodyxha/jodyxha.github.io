@@ -1,0 +1,256 @@
+.. _TutorialStatic_ref:
+
+QHG Tutorial 01 - A Static Population
+=====================================
+
+In this chapter we describe a class for the simplest agents possible: 
+they just exist - no agents die, no agents are born, and no agents move.
+
+Code: `tut_StaticPop.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_StaticPop.h>`_ `tut_StaticPop.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_StaticPop.cpp>`_
+
+The Header File
+---------------
+ 
+This class makes use of the :ref:`agent structure<SPopulation_ref>` declared in ``SPopulation``, 
+so there is no need to declare a paqrticular agent class for this population.
+And since the agents don't do anything, no action classes are rquired.
+
+The header file is accordingly simple:
+
+.. code-block:: c++
+
+    #ifndef __TUT_STATICPOP_H__
+    #define __TUT_STATICPOP_H__
+
+    #include "SPopulation.h"
+
+    class tut_StaticPop : public SPopulation<Agent> {
+    public:
+        tut_StaticPop(SCellGrid *pCG, PopFinder *pPopFinder, int iLayerSize, IDGen **apIDG, uint32_t *aulState, uint *aiSeeds);
+    };
+
+    #endif
+
+The parameters required for this constructor will be provided by an :ref:`agent factory<StatPopFactory_ref>`.
+
+Code: `tut_StaticPop.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_StaticPop.h>`_ 
+
+
+
+
+The Implementation
+------------------
+
+The implementation of the constructor is also very simple: 
+it just calls the constructor of its parent class ``SPopulation``.
+
+.. code-block:: c++
+
+    #include "Prioritizer.cpp"
+    #include "LayerBuf.cpp"
+    #include "Action.cpp"
+    #include "SPopulation.cpp"
+ 
+    #include "tut_StaticPop.h"
+
+    //----------------------------------------------------------------------------
+    // constructor
+    //
+    tut_StaticPop::tut_StaticPop(SCellGrid *pCG, PopFinder *pPopFinder, int iLayerSize, IDGen **apIDG, uint32_t *aulState, uint *aiSeeds) 
+        : SPopulation<Agent>(pCG, pPopFinder, iLayerSize, apIDG, aulState, aiSeeds) {
+    }
+
+The #includes     
+^^^^^^^^^^^^^
+.. code-block:: c++
+
+    #include "Action.cpp"
+
+For completing the ``Action`` templates.
+
+.. code-block:: c++
+
+    #include "Prioritizer.cpp"
+
+For completing the ``Prioritizer`` templates
+
+.. code-block:: c++
+
+    #include "LayerBuf.cpp"
+
+For completing the ``LayerBuf`` templates
+
+.. code-block:: c++
+
+    #include "SPopulation.cpp"
+ 
+For completing the ``SPopulation`` templates
+
+.. code-block:: c++
+
+    #include "tut_StaticPop.h" 
+
+Declaration of the ``tut_StaticPop`` class.
+
+
+Code: `tut_StaticPop.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_StaticPop.cpp>`_
+
+
+
+XML and DAT
+-----------
+
+In order to run a simulation we must provide the actions with some parameters by means of an :ref:`XML file<pop_xml_ref>`. 
+Furthermore we have to provide the positions and attributes of the initial agents with a :ref:`DAT file <pop_dat_ref>`
+
+Since this simple population class does nothing, it has no need of any action and therefore the XML file ``tut_Static.xml`` is quite simple:
+
+.. code-block:: xml
+
+    <class name="tut_StaticPop" species_name="sapiens" species_id="104" />
+
+which is a shorthand notation of
+
+.. code-block:: xml
+
+    <class name="tut_StaticPop" species_name="sapiens" species_id="104">
+    </class>
+
+The dat file ``tut_Static.dat`` defines positions and attributes for 20 agents.
+
+.. code-block:: c++
+
+    #Longitude;Latitude;LifeState;AgentID;BirthTime;Gender
+    8;47;1; 1;-10.0;0
+    8;47;1; 2;-10.0;0
+    8;47;1; 3;-10.0;0
+    ...
+    8;47;1;20;-10.0;0
+
+In this example all agents are placed at the same location, and all agents are female (Gender: 0=female, 1=male)
+ 
+Grid
+----
+
+For this example we use a subdivided icosahedron
+
+Compiling and Running
+---------------------
+
+We assume that you have created the tutorial directories with the script :ref:`build_tut_dirs.py<build_tut_dirs_ref>`.
+This copies all relevant files to the tutorial subdirectories.
+
+First lets create alternative population and action directories with the script :ref:`build_alt_modpop.py<build_alt_modpop_ref>`:
+
+.. code-block:: bash
+
+    ${QHG4_DIR}/useful_stuff/build_alt_modpop.py tut_01 tut_StaticPop
+
+This builds alternative population directories ``tut_01_pop`` and ``tut_01_mod``.
+
+To compile, cd to the QHG4 root directory and start the compilation:
+
+.. code-block:: bash
+ 
+    cd ${QHG4_DIR}
+    SHORT=tut_01 make clean QHGMain
+
+This is the simplest way to compile QHG (for more information see :ref:`Compiling QHG<Compiling_QHG_ref>`)
+
+Now cd to the tutorial subdirectory "tutorial_01' and start QHGMain
+
+.. code-block:: bash
+
+    ${QHG4_DIR}/app/QHGMain --read-config=tutorial_01.cfg > tutorial_01.out
+
+This tells QHGMain to read the parameters from  the file ``tutorial_01.cfg`` and write all output to the file ``tutorial_01.out`` (this output contains more information than the logfile)
+
+The config file ``tutorial_01.cfg`` was created when the tutorial directories were created with ``build_tut_dirs.py``.
+
+.. code-block:: text
+
+    --data-dirs=${QHG4_DIR}/tutorial_data/grids/
+    --events='write|grid+geo+pop:sapiens@20000' 
+    --grid=ico32s.qdf
+    --log-file=tutorial_01.log 
+    --num-iters=200 
+    --output-dir=output/tutorial_01
+    --output-prefix=nnn 
+    --pops='tut_Static.xml:tut_Static.dat' 
+    --shuffle=92244 
+    --start-time=-200 
+
+``data-dirs``
+    A list of directories to search for data (not relevant for the static populations).
+
+``events``
+    A list of events (see :ref:`Events<Events_ref>`). Here a single event is defined: write output at step 20000 (or at the end of the simulation run).
+
+``grid``
+    Path to the grid on which to run the simulation.
+
+``log-file``
+    Log file for 'high level' messages. 
+
+``num-iters``
+    Number of iterations for the simulation.
+
+``output-dir``
+    Output directory for qdf files.
+
+``output-prefix``
+    A prefix prepended to the names of all output files
+
+``pops``
+    The files for population attributes (``tut_Static.xml``) and agent attributes (``tut_Static.dat``). These files were created by ``build_tut_dirs.py``.
+
+``shuffle`` 
+    A kiind of seed for the random nummber generators. Same ``shuffle`` values result in idfentical simulations.
+
+``start-time``
+    The 'real' time corresponding to step 0.
+
+
+The Output File
+---------------
+
+The output files, in this case ``tutorial_02.out``, always have the same structure.
+First there are messages concerning the start of the program and intialisation.
+If the simulation does not run, there's a chance that you find th readoon why here.
+
+The second part is a list of every step describing the numbers of births, deaths and moves, as well as the time the step took to execute.
+
+At the end there is a short summary of the state at the end of the program: number of iterations, total time of execution, nuber of surviving agents.
+This is follwed by the contents of the log file.
+
+If you look at the output for the steps, you see tat there are no births, no moves, and no deaths:
+
+.. code-block:: text
+
+    After step 55 (0.000368 s): total       20 agents
+      sapiens       0 births r
+      sapiens       0 deaths r
+      sapiens       0 moves
+    After step 56 (0.000363 s): total       20 agents
+      sapiens       0 births r
+      sapiens       0 deaths r
+      sapiens       0 moves
+    After step 57 (0.000369 s): total       20 agents
+      sapiens       0 births r
+      sapiens       0 deaths r
+      sapiens       0 moves
+
+And at the beginning of the last part:
+
+.. code-block:: text
+
+    -----
+    Finished Simulation
+    Number of threads: 36
+    Number of iterations: 200
+    Used time: 0.095966 (00:00:00)
+    Number of agents after last step
+      sapiens:        20
+        total:        20
+    +++success+++
+

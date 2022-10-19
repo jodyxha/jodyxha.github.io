@@ -1,0 +1,154 @@
+.. _SCellGrid_ref:
+
+SCellGrid
+=========
+
+.. rst-class:: hidden
+
+    This page describes the class :index:`SCellGrid`
+
+The ``SCellGrid``  represents the grid on which the simulation is taking place. 
+QHG supports flat grids with 4 or 6 neighborhoods, as well as icosahedral grids.
+
+.. figure:: ../../../images/some_grids.png
+
+QDF files containing cell grids can be created with the tool :ref:`Def2QDF<Def2QDF_ref>`.
+
+Code: `SCellGrid.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/core/SCellGrid.h>`_ `SCellGrid.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/core/SCellGrid.cpp>`_
+
+
+Public Members
+--------------
+
+.. code-block:: c++
+
+    int         m_iID;
+
+The cell grid's ID
+
+.. -----------------------------------------------------------------------------
+
+.. code-block:: c++
+
+    uint        m_iNumCells;
+
+The number of cells in the grid.
+
+.. -----------------------------------------------------------------------------
+
+.. code-block:: c++
+
+    SCell       *m_aCells;
+
+The array of :ref:`SCell<SCell_ref>` objects.
+
+.. -----------------------------------------------------------------------------
+
+.. code-block:: c++
+
+    int       m_iType;
+
+The type of the grid: cartesian with 4-neighborhood (0), cartesian with 6-neighborhood (1, subdivided icosahedron(3).
+
+
+.. -----------------------------------------------------------------------------
+
+.. code-block:: c++
+
+     int       m_iConnectivity;
+
+The grid's connectivity (4 or 6).
+
+Public Methods
+--------------
+
+.. -----------------------------------------------------------------------------
+
+``constructor``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    SCellGrid(int iID, uint iNumCells, const stringmap &smSurfaceData);    
+
+``iID``
+    ID of grid (currently nor relevant - might be used for MPI parallelization).
+
+``iNumCells``
+    Number of cells in grid.
+
+``smSurfaceData``
+    String data (name=>value).
+
+Allocates the array of ``SCell`` objects, stores ID and surface data.
+
+This constructor is only used  to prepare the array of cells for later input. 
+In QHG the :ref:`GridGroupReader<GridGroupReader_ref>` reads the relevant data as well as the :ref:`SCells<SCell_ref>` and their neighorhood relations gfrom a QDF file.
+
+    
+
+.. -----------------------------------------------------------------------------
+
+``destructor``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    ~SCellGrid();
+
+The destructor deletes the array of ``SCell`` objects.
+
+
+.. -----------------------------------------------------------------------------
+
+``setGeography``
+^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    void setGeography(Geography* pGeo);
+
+Sets the :ref:`Geography<Geography_ref>` object.
+
+.. -----------------------------------------------------------------------------
+
+``setClimate``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    void setClimate(Climate* pClim);
+
+Sets the :ref:`Climate<Climate_ref>` object.
+
+.. -----------------------------------------------------------------------------
+
+``setVegetation``
+^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    void setVegetation(Vegetation* pVeg);
+
+Sets the :ref:`Vegetation*<Vegetation_ref>` object.
+
+.. -----------------------------------------------------------------------------
+
+``setNavigation``
+^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    void setNavigation(Navigation* pNav);
+
+Sets the :ref:`Navigation<Navigation_ref>` object.
+
+.. -----------------------------------------------------------------------------
+
+``isCartesian``
+^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    bool isCartesian();   
+
+Returns ``true`` if the grid is not icosahedral.
+
+.. -----------------------------------------------------------------------------
+
+
+
+

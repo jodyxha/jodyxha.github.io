@@ -1,0 +1,377 @@
+.. _ParamReader_ref:
+
+ParamReader
+===========
+
+.. rst-class:: hidden
+
+   This page describes the class :index:`ParamReader`
+
+The class ``ParamReader`` provides a useful interface for command line argument processing.
+``ParamReader`` expects that all command line arguments have the form ``-<char> <value>`` or ``--<string>=<value>``.
+
+| The method ``setOptions`` allows the setting of the flags and assignment to variables.
+| The method ``getParams`` can then be used to "collect" the set variables. 
+
+Code: `ParamReader.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/ParamReader.h>`_, `ParamReader.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/ParamReader.cpp>`_
+
+
+Public Methods
+--------------
+
+``constructor``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    ParamReader();
+
+The constructor.
+
+.. -----------------------------------------------------------------------------
+
+``destructor``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    ~ParamReader();
+
+The destructor.
+
+.. -----------------------------------------------------------------------------
+
+
+``setOptions``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    setOptions(int iNumOptions, ...);
+
+Assign variables to flags.
+
+``iNumOptions``
+    Number of options.
+
+``...``
+    The vararg argument must consist of ``iNumOptions`` pairs of option-definition string and ``void*``.
+    See :ref:`Example below <ParamReader_ex_ref>`.
+
+The option-definition has two possible formats:
+
+.. code-block:: c++
+
+   simple-opt   ::= "-"  <option-char> ":" <option-type> ["!"]
+   long-opt     ::= "--" <option-name> ":" <option-type> 
+   option-type  ::= 'c'| 'h' | 'i' | 'l'  | 'f' | 'd' | 'b'  | 's' | 'S' | '0'
+
+The the meaning of the option types is found in :ref:`this table <ParamReader_opts_ref>`.
+
+Returns ``true`` on success.
+
+.. -----------------------------------------------------------------------------
+
+``getParams``
+^^^^^^^^^^^^^
+.. code-block:: c++
+
+    int  getParams(int iArgC, char *apArgV[], bool bOverwrite=false);
+
+Read the command line parameters and set variables.
+
+``iArgC``
+   Number of command line arguments.
+
+``apArgV``
+   Array of arguments.
+   
+``bOverwrite``
+   If true, the variable for a repeated flag will be overwritten.
+
+Returns 0  on success, or an :ref:`error code <ParamReader_err_ref>`.
+
+.. -----------------------------------------------------------------------------
+
+``getParams``
+^^^^^^^^^^^^^
+.. code-block:: c++
+
+    int  getParams(const std::string sConfigFile, bool bOverwrite=false);
+
+Read a config file and set variables.
+
+``sConfigFile``
+    Configuration file. 
+
+``bOverwrite``
+   If true, the variable for a repeated flag will be overwrittem
+
+Returns 0  on success, or an :ref:`error code <ParamReader_err_ref>`.
+
+.. -----------------------------------------------------------------------------
+
+``getMandatoryParams``
+^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    uint getMandatoryParams(stringvec &vMand);
+
+Gets the names of the mandatory options and puts them into ``vMand``.
+
+``vMand``
+    A string vector to be filled with the names of the mandatory options.
+
+Returns the number of mandatory options.
+
+.. -----------------------------------------------------------------------------
+
+``getUnknownParams``
+^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    uint getUnknownParams(stringvec &vUnknown);
+
+Gets the names of the unknown options and puts them into ``vUnknown``.
+
+``vUnknown``
+    A string vector to be filled with the names of the unknown options.
+
+Returns the number of unknown options.
+
+.. -----------------------------------------------------------------------------
+
+``getFreeParams``
+^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    uint getFreeParams(stringvec &vFree);
+
+Gets the names of the free parameters and puts them into ``vFree``.
+
+``vFree``
+    A string vector to be filled with the names of the free parameters.
+
+Returns the number of free parameters.
+
+.. -----------------------------------------------------------------------------
+
+``writeConfigFile``
+^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    bool writeConfigFile(const std::string sConfigFile, const std::string sOmit);
+
+Writes a config file containing the values passed to ``getParams()``  which can be used as input to ``getParams()`` at a later time.
+
+``sConfigFile``
+    Name of file to write to.
+
+``sOmit``
+    Comma-separated list of options to omit.
+
+Returns true on success.
+
+.. -----------------------------------------------------------------------------
+
+``collectOptions``
+^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    void collectOptions(stringvec &vsOptions);
+
+Fills a ``vsOptions`` with options and values.
+
+``vsOptions``
+    A string vector to be filled with the options.
+
+.. -----------------------------------------------------------------------------
+
+``getErrorMessage``
+^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    std::string getErrorMessage(int iResult);
+
+Returns the error message corresponding to the :ref:`error code <ParamReader_err_ref>` ``iResult``.
+
+.. -----------------------------------------------------------------------------
+
+``getBadArg``
+^^^^^^^^^^^^^
+.. code-block:: c++
+
+    std::string getBadArg();
+
+Returns the option that caused an error.
+
+.. -----------------------------------------------------------------------------
+
+``getBadVal``
+^^^^^^^^^^^^^
+.. code-block:: c++
+
+    std::string getBadVal();
+
+Returns the value of the option that caused an error.
+
+.. -----------------------------------------------------------------------------
+
+``display``
+^^^^^^^^^^^
+.. code-block:: c++
+
+    void display();
+
+Display the options and their values to stdout, one option per line.
+
+.. -----------------------------------------------------------------------------
+
+``display``
+^^^^^^^^^^^
+.. code-block:: c++
+
+    void display(FILE *fOut, bool bLines);
+
+Writes the options and their values to ``fOut``.
+
+``fOut``
+    FIle to write to.
+
+``bLines``
+    If ``true`` one option per line is written, otherwise a line consisting of space separated options and values is written.
+
+
+.. -----------------------------------------------------------------------------
+
+
+.. _ParamReader_opts_ref:
+
+Option types
+""""""""""""
+
++--------+---------------+--------------------------------------------------------------------+
+| option | variable type | Remarks                                                            |
++========+===============+====================================================================+
+|   c    | char          |                                                                    |
++--------+---------------+--------------------------------------------------------------------+
+|   h    | short int     |                                                                    |
++--------+---------------+--------------------------------------------------------------------+
+|   i    | integer       |                                                                    |
++--------+---------------+--------------------------------------------------------------------+
+|   l    | long          |                                                                    |
++--------+---------------+--------------------------------------------------------------------+
+|   f    | float         |                                                                    |
++--------+---------------+--------------------------------------------------------------------+
+|   d    | double        |                                                                    |
++--------+---------------+--------------------------------------------------------------------+
+|   b    | bool          | Values may be 'y','n','yes','no','on','off','0','1','true','false' | 
++--------+---------------+--------------------------------------------------------------------+
+|   s    | string        |                                                                    |
++--------+---------------+--------------------------------------------------------------------+
+|   S    | char*         | A c-string is allocated and set - will be deleted by ParamReader   |
++--------+---------------+--------------------------------------------------------------------+
+|   0    | bool          | If the option is present the variable is set to true               |
++--------+---------------+--------------------------------------------------------------------+
+ 
+
+.. -----------------------------------------------------------------------------
+
+
+.. _ParamReader_err_ref:
+
+Error codes
+"""""""""""
+
++---------------------------------------+---------+-----------------------------------------+
+| Error Name                            | Value   | Meaning                                 |
++=======================================+=========+=========================================+
+| ``PARAMREADER_OK``                    | ``0``   | Success                                 |
++---------------------------------------+---------+-----------------------------------------+
+| ``PARAMREADER_ERR_MANDATORY_MISSING`` | ``-1``  | A mandatory parameter is missing        |
++---------------------------------------+---------+-----------------------------------------+
+| ``PARAMREADER_ERR_MISSING_PARAM``     | ``-2``  | The value for a parameter is missing    |
++---------------------------------------+---------+-----------------------------------------+
+| ``PARAMREADER_ERR_OPTION_SET``        | ``-3``  | Error setting a value (wrong type?)     |
++---------------------------------------+---------+-----------------------------------------+
+| ``PARAMREADER_ERR_BAD_CONFIG_FILE``   | ``-4``  | The configuration file has a bad format |
++---------------------------------------+---------+-----------------------------------------+
+| ``PARAMREADER_ERR_UNKNOWN_OPTION``    | ``1``   | An unknown option has been passed       |
++---------------------------------------+---------+-----------------------------------------+
+| ``PARAMREADER_ERR_FREE_PARAMS``       | ``2``   | Value without preceding option          |
++---------------------------------------+---------+-----------------------------------------+
+
+
+.. _ParamReader_ex_ref:
+
+Example
+"""""""
+
+Compile with 
+
+.. code-block:: bash
+
+  g++ prex.cpp ParamReader.cpp stdstrutils.cpp stdstrutilsT.h --std=c++20 -o pr_example
+
+Code for ``pr_example.cpp``:
+
+.. code-block:: c++
+
+    #include <cstdio>
+    #include <string>
+    #include <vector>
+ 
+    #include "ParamReader.h"
+ 
+    typedef unsigned int             uint;
+    typedef std::vector<std::string> stringvec;
+ 
+    int main (int iArgC, char *apArgV[]) {
+         int iResult = -1;
+      
+         bool   bHelp       = false;
+         double dValue      =  -1;
+         int    iSel        =  0;
+         char   c1          = '\0';
+         std::string sName  = "default_name";
+         char  *psOpt       = NULL;
+     
+         ParamReader *pPR = new ParamReader();
+         bool bOK = pPR->setOptions(6,  
+                                    "-h:0",          &bHelp,
+                                    "-v:d!",         &dValue,
+                                    "--selector:i!", &iSel,
+                                    "-n:s",          &sName,
+                                    "--optional:S",  &psOpt,
+                                    "-t:c",          &c1);
+         
+         if (bOK) {
+             iResult = pPR->getParams(iArgC, apArgV);
+             if (iResult >= 0) {
+                 printf("Successs!\n");
+                 printf("  bHelp:     %s\n", bHelp?"true":"false"); 
+                 printf("  dValue:    %f\n", dValue); 
+                 printf("  iSel:      %i\n", iSel); 
+                 printf("  sName:     %s\n", sName.c_str()); 
+                 printf("  psOpt:     %s\n", psOpt);
+                 if (iResult == 2) {
+                     stringvec vFree;
+                     uint iNum = pPR->getFreeParams(vFree);
+                         printf("Found %d free param%s\n", iNum, (iNum==1)?"":"s"); 
+                     for (uint i = 0; i < iNum; i++) {
+                         printf("  %s\n", vFree[i].c_str());
+                     }
+                     iResult = 0;
+                 }
+             } else {
+                 printf("Have Error\n");
+                 printf("code    : %d\n", iResult);
+                 printf("message : %s\n", pPR->getErrorMessage(iResult).c_str());
+            }
+            delete pPR;
+        } else {
+            printf("Error in setOptions\n");
+        }
+        return iResult;
+    }
+
+
+
+

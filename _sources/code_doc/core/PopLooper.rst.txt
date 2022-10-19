@@ -1,0 +1,194 @@
+.. _PopLooper_ref:
+
+PopLooper
+=========
+
+.. rst-class:: hidden
+
+   This page describes the class :index:`PopLooper`
+
+The class ``PopLooper`` is a container for populations used by the simulation. 
+Apart from implementing the interface :ref:`PopFinder<PopFInder_ref>`, it has methods for managing the populations.
+
+Code: `PopLooper.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/core/PopLooper.h>`_ `PopLooper.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/core/PopLooper.cpp>`_
+
+
+Type definitions
+----------------
+.. code-block:: c++
+
+    typedef std::map<int, PopBase *> popmap;
+    typedef std::vector<PopBase *>   popvec;
+
+
+
+Public Methods
+--------------
+
+.. -----------------------------------------------------------------------------
+
+``constructor``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+     PopLooper();
+
+Initializes some variables.
+
+.. -----------------------------------------------------------------------------
+
+``destructor``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual ~PopLooper();
+
+The destructor deletes all population managed by the ``PopLooper`` object.
+
+
+.. -----------------------------------------------------------------------------
+
+``tryMerge``
+^^^^^^^^^^^^
+.. code-block:: c++
+
+     int tryMerge();
+
+Tries to merge as many popualtions as possible. 
+Two populations can be merged if they have the same name, the same species ID, the same agent type and the same  actions.
+
+.. -----------------------------------------------------------------------------
+
+``addPop``
+^^^^^^^^^^
+.. code-block:: c++
+
+     int addPop(PopBase *pPop);
+
+``pPop``
+    Pointer to population to be added.
+
+Adds the specified population to the collection of populations.
+  
+.. -----------------------------------------------------------------------------
+
+``removePopByName``
+^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+     PopBase *removePopByName(const std::string sSpeciesName, bool bAddToExtinct);
+
+``sSpeciesName``
+    Name of population to remove.
+
+``bAddToExtinct``
+    If true, the population is added to the vector of extinct populations.
+
+Removes the secified population from the collection of populations.
+
+.. -----------------------------------------------------------------------------
+
+``removePopByIndex``
+^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+     PopBase *removePopByIndex(int iIndex, bool bAddToExtinct);
+
+``iIndex``
+    Index of population to be removed.
+
+``bAddToExtinct``
+    If true, the population is added to the vector of extinct populations.
+
+Removes the secified population from the collection of populations.
+
+.. -----------------------------------------------------------------------------
+
+``doStep``
+^^^^^^^^^^
+.. code-block:: c++
+
+     int doStep(float fStep);
+
+``fStep``
+    Current simulation step.
+
+Calls the ``initializeStep()`` method of all managed populations, then loops through all priority levels, calling all managed populations' ``doActions()`` method, and finally calls the ``finalizeStep()`` method for all populations.
+
+.. -----------------------------------------------------------------------------
+
+``preLoop``
+^^^^^^^^^^^
+.. code-block:: c++
+
+        virtual int  preLoop();
+
+Calls the ``preLoop()`` method of all managed populations.
+
+.. -----------------------------------------------------------------------------
+
+``postLoop``
+^^^^^^^^^^^^
+.. code-block:: c++
+
+         virtual int  postLoop();
+
+Calls the ``postLoop()`` method of all managed populations.
+
+.. -----------------------------------------------------------------------------
+
+``preWrite``
+^^^^^^^^^^^^
+.. code-block:: c++
+
+         virtual int  preWrite(float fTime);
+
+Calls the ``preWrite()`` method of all managed populations.
+
+.. -----------------------------------------------------------------------------
+
+``getNumPops``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+     size_t  getNumPops();
+
+Returns the number of managed populations.
+
+.. -----------------------------------------------------------------------------
+
+``getDead``
+^^^^^^^^^^^
+.. code-block:: c++
+        
+     const popvec  &getDead();
+
+Returns the vector of extinct populations.,
+
+
+.. -----------------------------------------------------------------------------
+
+``getMaxID``
+^^^^^^^^^^^^
+.. code-block:: c++
+
+     idtype  getMaxID();
+
+Returns the highest ID used by this population.
+
+
+.. -----------------------------------------------------------------------------
+
+``getPopByName``
+^^^^^^^^^^^^^^^^
+
+.. code-block:: c++
+
+     virtual PopBase *getPopByName(const std::string sSpeciesName);
+
+``sSpecies``
+    Name of wanted population.
+
+(Implementation of ``PopFinder::getPopByName()``)
+
+This method returns a pointer to the population with the specified name, or NULL if it can't be found or doesn't exist.

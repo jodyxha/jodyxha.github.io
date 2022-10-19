@@ -1,0 +1,193 @@
+.. _LinearBirth_ref:
+
+LinearBirth
+===========
+
+.. rst-class:: hidden
+  
+    This page describes the class :index:`LinearBirth`
+
+The class ``LinearBirth`` is derived from ``action`` and calculates a birth probablity for each paired female agent.
+If a random number is less than that probability an agent birth is registered.
+
+The birth probability :math:`p_B` in a cell with capacity :math:`K` and a local population size of :math:`N` is calculated as follows:
+
+.. math:: p_B = b_0 + (\theta - b_0) * N/K
+
+where :math:`b_0` is the birth probability for :math:`N = 0`, and :math:`\theta` is the turnover i.e. the birth probability for :math:`N = K`.
+
+.. figure:: ../../../images/LinBirthCoords.png
+
+These birth probabilities only depend on the environment, not on the agents' attributes.
+
+Code: `LinearBirth.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/LinearBirth.h>`_ `LinearBirth.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/LinearBirth.cpp>`_
+
+
+**Attributes**
+
++---------------------------------+---------------------+---------------------------+
+| ``ATTR_LINBIRTH_NAME``          | "LinearBirth"       | action name               |
++---------------------------------+---------------------+---------------------------+
+| ``ATTR_LINBIRTH_B0_NAME``       | "LinearBirth_b0"    | birth probability for N=0 |
++---------------------------------+---------------------+---------------------------+
+| ``ATTR_LINBIRTH_TURNOVER_NAME`` | "LinearBirth_theta" | turnover                  | 
++---------------------------------+---------------------+---------------------------+
+| ``ATTR_LINBIRTH_CAPACITY_NAME`` | "LinearBirth_K"     | capacity                  |
++---------------------------------+---------------------+---------------------------+
+
+Public Methods
+--------------
+
+
+.. -----------------------------------------------------------------------------
+
+``constructors``
+^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    LinearBirth(SPopulation<T> *pPop, SCellGrid *pCG, std::string sID, WELL512 **apWELL);
+    LinearBirth(SPopulation<T> *pPop, SCellGrid *pCG, std::string sID, WELL512 **apWELL, double dB0, double dTheta, double dK);
+    LinearBirth(SPopulation<T> *pPop, SCellGrid *pCG, std::string sID, WELL512 **apWELL, double dB0, double dTheta, double* adK, int iStride);
+
+``pPop``
+    A pointer to the :ref:`SPopulation<SPopulation_ref>` object performing this action.
+
+``pCG``
+    A pointer to the  :ref:`SCellGrid<SCellGrid_ref>` object on which the simulation runs.
+
+``sID``
+    An ID for this action.
+
+``apWELL``
+    A pointer to an array of :ref:`WELL512 random number generators<WELL512_ref>` (one for each thread).
+
+``dB0``
+    The value for :math:`b_0`.
+
+``dTheta``
+    The value for :math:`\theta`.
+
+``dK``
+    The carrying capacity (globally uniform).
+
+``adK``
+    Array of carrying capacity values, one for eac cell.
+
+``iStride``
+    Stride to read the array.
+
+
+Allocates an array to hold the birth probabilities.
+
+.. -----------------------------------------------------------------------------
+
+``destructor``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual ~LinearBirth();
+
+Deletes the array of birth probabilituies.
+
+.. -----------------------------------------------------------------------------
+
+``initialize``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int initialize(float fT);
+
+``fT``
+    Current simulation step.
+
+In this method the birth probabilities for all cells are calculated.
+
+.. -----------------------------------------------------------------------------
+
+``execute``
+^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int execute(int iAgentIndex, float fT);
+
+``iAgentIndex``
+    Current agent's index.
+
+``fT``
+    Current simulation step
+
+| This method is called for all agents (in parallel). 
+| For each agent the a random number is compared to the local birth probability; if it is less a new birth is registered.
+
+.. -----------------------------------------------------------------------------
+
+``extractAttributesQDF``
+^^^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+   virtual int extractAttributesQDF(hid_t hSpeciesGroup);
+
+``hSpeciesGroup``
+    HDF handle for the species group to read from.
+
+This method reads the attributes of this action from a QDF.
+
+.. -----------------------------------------------------------------------------
+
+``writeAttributesQDF``
+^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int writeAttributesQDF(hid_t hSpeciesGroup);
+
+``hSpeciesGroup``
+    HDF handle for the species group to write to.
+
+This method writes the attributes of this action to the specified group in a QDF file.
+
+ .. -----------------------------------------------------------------------------
+
+``constructor``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+   virtual int tryGetAttributes(const ModuleComplex *pMC);  
+
+``pMC``
+    A ``ModuleComplex`` object.
+
+Extracts the action's attributes from the ``ModuleComplex`` object.
+
+.. -----------------------------------------------------------------------------
+
+``modifyAttributes``
+^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int modifyAttributes(const std::string sAttrName, double dValue);
+
+
+``sAttrName``
+    Name of attribute to change.
+
+``dValue``
+    Value to set the attribute to.
+
+This method can change the values of :math:`b_0` (``ATTR_LINBIRTH_B0_NAME``), :math:`\theta` (``ATTR_LINBIRTH_TURNOVER_NAME``) or the global capacity :math:`K` (``ATTR_LINBIRTH_CAPACITY_NAME``).
+
+
+.. -----------------------------------------------------------------------------
+
+``isEqual``
+^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual bool isEqual(Action<T> *pAction, bool bStrict);
+
+``pAction``
+    Pointer to an action object to compare with this.
+
+``bStrict``
+    Strictness of comparisons (ignored here).
+
+``pAction`` is equal to ``this``, if it is a ``LinearBirth`` object whose attributes match those of ``this``.

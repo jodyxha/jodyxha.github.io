@@ -1,0 +1,134 @@
+.. _OldAgeDeath_ref:
+
+OldAgeDeath
+===========
+
+.. rst-class:: hidden
+
+   This page describes the class :index:`OldAgeDeath`
+
+The class ``OldAgeDeath`` is derived from ``Action`` and serves as an age cut-off (probability-based deaths such as in ``LinearDeath`` make it possible that lucky agents can be hundreds of years old).
+
+At each step and for each agent a random number :math:`r \in [-u, +u]` is drawn, and the current maximuma age for the agent is set to :math:`m_{agent} = m + r`. 
+If the agent's age exceeds :math:`m_{agent}`, it is killed.
+
+.. figure:: ../../../images/OldAgeDie.png
+
+   The age of agent 1 exceeds his current maximuma age and will be killed. Agent 2 will survive.
+
+Code: `OldAgeDeath.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/OldAgeDeath.h>`_ `OldAgeDeath.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/OldAgeDeath.cpp>`_
+
+**Attributes**
+
++---------------------------------------+-------------------+---------------------+
+| ``ATTR_OLDAGEDEATH_NAME``             | "OldAgeDeath"     | action name         |
++---------------------------------------+-------------------+---------------------+
+| ``ATTR_OLDAGEDEATH_MAXAGE_NAME``      | "OAD_max_age"     | average maximum age |
++---------------------------------------+-------------------+---------------------+
+| ``ATTR_OLDAGEDEATH_UNCERTAINTY_NAME`` | "OAD_uncertainty" | uncertainty         |
++---------------------------------------+-------------------+---------------------+
+    
+
+Public Methods
+--------------
+
+
+``constructor``
+^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    OldAgeDeath(SPopulation<T> *pPop, SCellGrid *pCG, std::string sID, WELL512 **apWELL);
+
+``pPop``
+    A pointer to the :ref:`SPopulation<SPopulation_ref>` object performing this action.
+
+``pCG``
+    A pointer to the  :ref:`SCellGrid<SCellGrid_ref>` object on which the simulation runs.
+
+``sID``
+    An ID for this action.
+
+``apWELL``
+    A pointer to an array of :ref:`WELL512 random number generators<WELL512_ref>` (one for each thread). 
+
+.. -----------------------------------------------------------------------------
+
+``destructor``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual ~OldAgeDeath();
+
+The destructor does nothing.
+
+.. -----------------------------------------------------------------------------
+
+``execute``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int execute(int iAgentIndex, float fT);
+
+``iAgentIndex``
+    Current agent's index.
+
+``fT``
+    Current simulation step
+
+| This method is called for all agents (in parallel). 
+| For each agent an age limit is calculated. If  the agent's age exceeds it, it is killed.
+
+.. -----------------------------------------------------------------------------
+
+``extractAttributesQDF``
+^^^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int extractAttributesQDF(hid_t hSpeciesGroup);
+
+``hSpeciesGroup``
+    HDF handle for the species group to read from.
+
+This method reads the atttributes of this action from a QDF.
+
+.. -----------------------------------------------------------------------------
+
+``writeAttributesQDF``
+^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int writeAttributesQDF(hid_t hSpeciesGroup);
+
+``hSpeciesGroup``
+    HDF handle for the species group to write to.
+
+This method writes the attributes of this action to the specified group in a QDF file.
+
+.. -----------------------------------------------------------------------------
+
+``tryGetAttributes``
+^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int tryGetAttributes(const ModuleComplex *pMC);
+
+``pMC``
+    A ``ModuleComplex`` object.
+
+Extracts the action's attributes from the ``ModuleComplex`` object.
+
+.. -----------------------------------------------------------------------------
+
+``isEqual``
+^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual bool isEqual(Action<T> *pAction, bool bStrict);
+
+``pAction``
+    Pointer to an action object to compare with this.
+
+``bStrict``
+    Strictness of comparisons (ignored here).
+
+``pAction`` is equal to ``this``, if it is an ``OldAgeDeath`` object whose attributes match those of ``this``.

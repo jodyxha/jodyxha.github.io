@@ -1,0 +1,175 @@
+.. _geomutils_ref:
+
+geomutils
+=========
+
+.. rst-class:: hidden
+
+   This page describes the module :index:`geomutils`
+
+The module ``geomutils`` contains functions for geometric calculations.
+
+Some of the functions  need the typ DPOINT
+.. code-block:: c++
+
+  typedef std::pair<double, double>  DPOINT;
+
+which is defined in ``types.h``
+
+Code: `geomutils.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/geomutils.h>`_, `geomutils.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/geomutils.cpp>`_
+
+Functions
+---------
+
+``spherInterpol``
+^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    sphercoord spherInterpol(const sphercoord &dP1, const sphercoord &dP2, double dT);
+
+Finds the point at a fraction dT of thSpherical interpolation beetween the the two points
+
+``dP1``
+  longitude and latitude of first point (in degrees).
+
+``dP2``
+  longitude and latitude of second point (in degrees).
+
+``dT``
+    Fraction of the great circle through ``dP1`` and ``dP2`` to reach resultig point.
+
+Returns the coordinates (longitude&latitude) of the resulting point.
+
+.. -----------------------------------------------------------------------------
+
+``spherInterpol``
+^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    Vec3D spherInterpol(const Vec3D &v1, const Vec3D &v2, double dT);
+
+Finds the point at a fraction dT of thSpherical interpolation beetween the the two points.
+
+``v1``
+  3D vector to first point.
+
+``v2``
+  3D vector to second point.
+
+``dT``
+    Fraction of the great circle through ``v1`` and ``v2`` to reach resultig point.
+
+Returns the 3D vector to the resulting point.
+
+.. -----------------------------------------------------------------------------
+
+``cart2polarD``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    sphercoord cart2PolarD(const Vec3D &v);
+
+Convert a 3D vector to polar coordinates (degrees).
+
+``v``
+    vector to convert.
+
+Returns  the coordinates (longitude&latitude) corresponding to ``v``.
+
+.. -----------------------------------------------------------------------------
+
+``polarD2cart``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    Vec3D polarD2Cart(sphercoord &p);
+
+Convert spherical coordinates (in degrees) to a 3D vector.
+
+``p``
+    spherical coordinates to convert.
+
+Returns 3D vector corresponding to the spherical coordinatesin ``p``.
+
+.. -----------------------------------------------------------------------------
+
+``cart2polar``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    sphercoord cart2Polar(cosnt Vec3D &v);
+
+Convert a 3D vector to polar coordinates (radians).
+
+``v``
+    vector to convert.
+
+Returns the spherical coordinates (radians) corresponding to ``v``.
+
+.. -----------------------------------------------------------------------------
+
+``polar2cart``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    Vec3D polar2Cart(const sphercoord &p);
+
+Convert spherical coordinates (in radians) to a 3D vector.
+
+``p``
+    spherical coordinates to convert.
+
+Returns 3D ector corresponding to the spherical coordinates.
+
+.. -----------------------------------------------------------------------------
+
+``spherdist``
+^^^^^^^^^^^^^
+.. code-block:: c++
+
+    double spherdist(double dLon1, double  dLat1, double dLon2, double dLat2, double dR);
+    double spherdist(Vec3D *v1, Vec3D *v2, double dR);
+    double spherdist(double dX0, double dY0, double dZ0, double dX1, double dY1, double dZ1, double dR);
+    double spherdist(double dX0, double dY0, double dZ0, double dLon2, double dLat2, double dR);
+
+Calculate the distance between two points which are specified in different ways.
+
+``dLon1, dLat1``
+     spherical coordinates (radians) of first point.
+
+``dLon2, dLat2``
+     spherical coordinates (radians) of second point.
+
+``dX1, dY1, dZ1``
+     3D coordinates of first point.
+
+``dX2, dY2, dZ2``
+     3D coordinates of second point.
+
+``dR``
+    Earth (or sphere) radius.
+
+Retrurns the distance between thee two points along a great circle.
+
+.. -----------------------------------------------------------------------------
+
+``spherdistDeg``
+^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    double spherdistDeg(double dLon1, double  dLat1, double dLon2, double dLat2, double dR);
+
+Calculate the distance between two points whose spherical coordinates are given in degrees.
+
+``dLon1, dLat1``
+     spherical coordinates (degrees) of first point.
+
+``dLon2, dLat2``
+     spherical coordinates (degrees) of second point.
+
+``dR``
+    Earth (or sphere) radius.
+
+Retrurns distance along great circle.
+
+

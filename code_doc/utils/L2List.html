@@ -1,0 +1,376 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>L2List &#8212; QHG4 4.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jody.css" />
+    
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    
+    <link rel="shortcut icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="LayerArrBuf" href="LayerArrBuf.html" />
+    <link rel="prev" title="BufWriter" href="BufWriter.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="LayerArrBuf.html" title="LayerArrBuf"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="BufWriter.html" title="BufWriter"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../utils.html" accesskey="U">utils</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">L2List</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="l2list">
+<span id="l2list-ref"></span><h1>L2List<a class="headerlink" href="#l2list" title="Permalink to this heading">¶</a></h1>
+<p class="hidden">This page describes the class <span class="target" id="index-0"></span>L2List</p>
+<p>The class <code class="docutils literal notranslate"><span class="pre">Test1</span></code> is pure virtual.</p>
+<div class="line-block">
+<div class="line">The class <code class="docutils literal notranslate"><span class="pre">L2List</span></code> implements a doubly linked list.</div>
+<div class="line">In QHG4 it is mainly used to manage memory for the agent arrays.</div>
+</div>
+<p>Inside a <code class="docutils literal notranslate"><span class="pre">L2List</span></code> there are two chains: <code class="docutils literal notranslate"><span class="pre">ACTIVE</span></code> and <code class="docutils literal notranslate"><span class="pre">PASSIVE</span></code> representing used and unused locations.</p>
+<figure class="align-default">
+<img alt="../../_images/L2L_A1.png" src="../../_images/L2L_A1.png" />
+</figure>
+<p>L2List is used by <a class="reference internal" href="LayerBuf.html#layerbuf-ref"><span class="std std-ref">LayerBuf</span></a> and :ref`LBContoller&lt;LBController_ref&gt;`.</p>
+<section id="structures">
+<h2>Structures<a class="headerlink" href="#structures" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w">  </span><span class="n">iPrev</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w">  </span><span class="n">iNext</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"> </span><span class="n">L2Node</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Representation of a node for the doubly linked list</p>
+<p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/L2List.h">L2List.h</a> , <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/L2List.cpp">L2List.cpp</a></p>
+</section>
+<section id="public-methods">
+<h2>Public Methods<a class="headerlink" href="#public-methods" title="Permalink to this heading">¶</a></h2>
+<section id="constructor">
+<h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#constructor" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">L2List</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iSize</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Create a list with specified number of nodes.</p>
+</section>
+<section id="id1">
+<h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">L2List</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">L2List</span><span class="w"> </span><span class="o">*</span><span class="n">pL2L</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The copy constructor</p>
+</section>
+<section id="destructor">
+<h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="o">~</span><span class="n">L2List</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The destructor.</p>
+</section>
+<section id="clear">
+<h3><code class="docutils literal notranslate"><span class="pre">clear</span></code><a class="headerlink" href="#clear" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">clear</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Clears the list (all nodes are moved to the PASSIVE chain)</p>
+</section>
+<section id="reservespace2">
+<h3><code class="docutils literal notranslate"><span class="pre">reserveSpace2</span></code><a class="headerlink" href="#reservespace2" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">reserveSpace2</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">iNum</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Moves <code class="docutils literal notranslate"><span class="pre">iNum</span></code> nodes after the last ACTIVE node into the ACTIVE chain.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">iNum</span></code></dt><dd><p>Number of nodes to activate.</p>
+</dd>
+</dl>
+<p>Returns the index of the first node which was activated, or -1</p>
+</section>
+<section id="getnumendfree">
+<h3><code class="docutils literal notranslate"><span class="pre">getNumEndFree</span></code><a class="headerlink" href="#getnumendfree" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">getNumEndFree</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Returns the number of nodes after the last ACTIVE node</p>
+</section>
+<section id="addelement">
+<h3><code class="docutils literal notranslate"><span class="pre">addElement</span></code><a class="headerlink" href="#addelement" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">addElement</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Remove a node to from the PASSIVE chain and add it to the ACTIVE chain.</p>
+</section>
+<section id="removeelement">
+<h3><code class="docutils literal notranslate"><span class="pre">removeElement</span></code><a class="headerlink" href="#removeelement" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">removeElement</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iEl</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Remove the specified node to from the ACTIVE chain and add it to the PASSIVE chain.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">iEl</span></code></dt><dd><p>Index of node to be removed.</p>
+</dd>
+</dl>
+</section>
+<section id="getfirstindex">
+<h3><code class="docutils literal notranslate"><span class="pre">getFirstIndex</span></code><a class="headerlink" href="#getfirstindex" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">getFirstIndex</span><span class="p">(</span><span class="n">uchar</span><span class="w"> </span><span class="n">uState</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Find index of first node in specified chain.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">uState</span></code></dt><dd><p>Must be either ACTIVE or PASSIVE.</p>
+</dd>
+</dl>
+</section>
+<section id="getlastindex">
+<h3><code class="docutils literal notranslate"><span class="pre">getLastIndex</span></code><a class="headerlink" href="#getlastindex" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">getLastIndex</span><span class="p">(</span><span class="n">uchar</span><span class="w"> </span><span class="n">uState</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Find index of last node in specified chain.</p>
+</section>
+<section id="int-getnext">
+<h3><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">getNext</span></code><a class="headerlink" href="#int-getnext" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">getNext</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iCur</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Get index of the node following specified node in the L2List.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">iCur</span></code></dt><dd><p>Node index.</p>
+</dd>
+</dl>
+</section>
+<section id="countofstate">
+<h3><code class="docutils literal notranslate"><span class="pre">countOfState</span></code><a class="headerlink" href="#countofstate" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">countOfState</span><span class="p">(</span><span class="n">uchar</span><span class="w"> </span><span class="n">uState</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Count number of nodes in specified chain.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">uState</span></code></dt><dd><p>Must be either ACTIVE or PASSIVE.</p>
+</dd>
+</dl>
+<p>Returns count.</p>
+</section>
+<section id="collectfraginfo">
+<h3><code class="docutils literal notranslate"><span class="pre">collectFragInfo</span></code><a class="headerlink" href="#collectfraginfo" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">uint</span><span class="w"> </span><span class="nf">collectFragInfo</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">iSize</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="o">*</span><span class="n">piHoles</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="o">*</span><span class="n">piActive</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line">Collects data used to defragment.</div>
+<div class="line">After defragmentation, both chains have contiguous nodes.</div>
+<div class="line">For this it gets the indexes of the first PASSIVE nodes, as well as the indexes of the lats ACTIVE nodes.</div>
+<div class="line">The highest index of the selected PASSIVE nodes is less than the lowest index of the selected PASSIVE nodes.</div>
+</div>
+<section id="example">
+<h4>Example:<a class="headerlink" href="#example" title="Permalink to this heading">¶</a></h4>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Linked</span><span class="w"> </span><span class="n">list</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">ACTIVE</span><span class="p">,</span><span class="w"> </span><span class="n">o</span><span class="o">=</span><span class="n">PASSIVE</span><span class="p">)</span><span class="w"></span>
+<span class="mi">0</span><span class="w">         </span><span class="mi">1</span><span class="w">         </span><span class="mi">2</span><span class="w"></span>
+<span class="mo">01234567</span><span class="mi">89012345678901234567890</span><span class="w"></span>
+<span class="n">xxoxooxxxxoxooooxoxxxoooxxooooo</span><span class="w"></span>
+
+<span class="nl">piHoles</span><span class="p">:</span><span class="w"></span>
+<span class="w">   </span><span class="mi">2</span><span class="w">  </span><span class="mi">4</span><span class="w">  </span><span class="mi">5</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="mi">12</span><span class="w"> </span><span class="mi">13</span><span class="w"></span>
+<span class="nl">piActive</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="mi">25</span><span class="w"> </span><span class="mi">24</span><span class="w"> </span><span class="mi">20</span><span class="w"> </span><span class="mi">19</span><span class="w"> </span><span class="mi">18</span><span class="w"> </span><span class="mi">16</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">iSize</span></code></dt><dd><p>Size of the buffers <code class="docutils literal notranslate"><span class="pre">piHoles</span></code> and <code class="docutils literal notranslate"><span class="pre">piActive</span></code></p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">piHole</span></code></dt><dd><p>Array to hold the indexes of the first nodes in the PASSIVE chain.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">piActive</span></code></dt><dd><p>Array to hold the indexes of the first nodes in the ACTIVE chain.</p>
+</dd>
+</dl>
+<p>Returns the number of found holes, or <code class="docutils literal notranslate"><span class="pre">iSize+1</span></code> if there are mor than <code class="docutils literal notranslate"><span class="pre">iSize</span></code> holes.</p>
+</section>
+</section>
+<section id="defragment">
+<h3><code class="docutils literal notranslate"><span class="pre">defragment</span></code><a class="headerlink" href="#defragment" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">defragment</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">iSize</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="o">*</span><span class="n">piActive</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Performs the actual defragmentation.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">iSize</span></code></dt><dd><p>Size of the buffer <code class="docutils literal notranslate"><span class="pre">piActive</span></code></p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">piActive</span></code></dt><dd><p>Array containing the non-contiguous nodes of the ACTIVE chain.</p>
+</dd>
+</dl>
+</section>
+<section id="setstate">
+<h3><code class="docutils literal notranslate"><span class="pre">setState</span></code><a class="headerlink" href="#setstate" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">setState</span><span class="p">(</span><span class="n">uchar</span><span class="w"> </span><span class="n">uState</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="n">iNum</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Sets the state of node <code class="docutils literal notranslate"><span class="pre">iNum</span></code> to the specified state,</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">uState</span></code></dt><dd><p>Must be either ACTIVE or PASSIVE.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iNum</span></code></dt><dd><p>Index of the node to be mdified.</p>
+</dd>
+</dl>
+</section>
+<section id="getbufsize">
+<h3><code class="docutils literal notranslate"><span class="pre">getBufSize</span></code><a class="headerlink" href="#getbufsize" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">getBufSize</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iDumpMode</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Calculates the size of a buffer to hold the entire L2List data ina seriaized form.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">iDumpMode</span></code></dt><dd><p>Various modes for <a class="reference internal" href="../../dumprestore.html#dump-restore-ref"><span class="std std-ref">dumping</span></a>. Possible values DUMP_MODE_FLAT or DUMP_MODE_SMART-</p>
+</dd>
+</dl>
+<p>Returns calculated size.</p>
+</section>
+<section id="serialize">
+<h3><code class="docutils literal notranslate"><span class="pre">serialize</span></code><a class="headerlink" href="#serialize" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">uchar</span><span class="w"> </span><span class="o">*</span><span class="nf">serialize</span><span class="p">(</span><span class="n">uchar</span><span class="w"> </span><span class="o">*</span><span class="n">pBuf</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Serializes the L2List into <code class="docutils literal notranslate"><span class="pre">pBuf</span></code>.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">pBuf</span></code></dt><dd><p>Buffer to serialize into.</p>
+</dd>
+</dl>
+<p>Returns pointer to one position after the end of the serialized data.</p>
+</section>
+<section id="deserialize">
+<h3><code class="docutils literal notranslate"><span class="pre">deserialize</span></code><a class="headerlink" href="#deserialize" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">uchar</span><span class="w"> </span><span class="o">*</span><span class="nf">deserialize</span><span class="p">(</span><span class="n">uchar</span><span class="w"> </span><span class="o">*</span><span class="n">pBuf</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Creates L2List from serialized data.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">pBuf</span></code></dt><dd><p>Buffer containing serialized L2List data.</p>
+</dd>
+</dl>
+<p>Returns pointer to one position after the end of the serialized data.</p>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">L2List</a><ul>
+<li><a class="reference internal" href="#structures">Structures</a></li>
+<li><a class="reference internal" href="#public-methods">Public Methods</a><ul>
+<li><a class="reference internal" href="#constructor"><code class="docutils literal notranslate"><span class="pre">constructor</span></code></a></li>
+<li><a class="reference internal" href="#id1"><code class="docutils literal notranslate"><span class="pre">constructor</span></code></a></li>
+<li><a class="reference internal" href="#destructor"><code class="docutils literal notranslate"><span class="pre">destructor</span></code></a></li>
+<li><a class="reference internal" href="#clear"><code class="docutils literal notranslate"><span class="pre">clear</span></code></a></li>
+<li><a class="reference internal" href="#reservespace2"><code class="docutils literal notranslate"><span class="pre">reserveSpace2</span></code></a></li>
+<li><a class="reference internal" href="#getnumendfree"><code class="docutils literal notranslate"><span class="pre">getNumEndFree</span></code></a></li>
+<li><a class="reference internal" href="#addelement"><code class="docutils literal notranslate"><span class="pre">addElement</span></code></a></li>
+<li><a class="reference internal" href="#removeelement"><code class="docutils literal notranslate"><span class="pre">removeElement</span></code></a></li>
+<li><a class="reference internal" href="#getfirstindex"><code class="docutils literal notranslate"><span class="pre">getFirstIndex</span></code></a></li>
+<li><a class="reference internal" href="#getlastindex"><code class="docutils literal notranslate"><span class="pre">getLastIndex</span></code></a></li>
+<li><a class="reference internal" href="#int-getnext"><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">getNext</span></code></a></li>
+<li><a class="reference internal" href="#countofstate"><code class="docutils literal notranslate"><span class="pre">countOfState</span></code></a></li>
+<li><a class="reference internal" href="#collectfraginfo"><code class="docutils literal notranslate"><span class="pre">collectFragInfo</span></code></a><ul>
+<li><a class="reference internal" href="#example">Example:</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#defragment"><code class="docutils literal notranslate"><span class="pre">defragment</span></code></a></li>
+<li><a class="reference internal" href="#setstate"><code class="docutils literal notranslate"><span class="pre">setState</span></code></a></li>
+<li><a class="reference internal" href="#getbufsize"><code class="docutils literal notranslate"><span class="pre">getBufSize</span></code></a></li>
+<li><a class="reference internal" href="#serialize"><code class="docutils literal notranslate"><span class="pre">serialize</span></code></a></li>
+<li><a class="reference internal" href="#deserialize"><code class="docutils literal notranslate"><span class="pre">deserialize</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="BufWriter.html"
+                          title="previous chapter">BufWriter</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="LayerArrBuf.html"
+                          title="next chapter">LayerArrBuf</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/code_doc/utils/L2List.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="LayerArrBuf.html" title="LayerArrBuf"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="BufWriter.html" title="BufWriter"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../utils.html" >utils</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">L2List</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,209 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Agents: Parallelisation and Management &#8212; QHG4 4.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/jody.css" />
+    
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    
+    <link rel="shortcut icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="The Observer Pattern" href="ObserverPattern.html" />
+    <link rel="prev" title="The QHG4 simulation framework: an Overview" href="qhg4_simulation_framework.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="ObserverPattern.html" title="The Observer Pattern"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="qhg4_simulation_framework.html" title="The QHG4 simulation framework: an Overview"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">QHG4 4.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Agents: Parallelisation and Management</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="agents-parallelisation-and-management">
+<span id="agentmanagement-ref"></span><h1>Agents: Parallelisation and Management<a class="headerlink" href="#agents-parallelisation-and-management" title="Permalink to this heading">¶</a></h1>
+<p>Agents are the central concept of QHG simulations. They represent individuals,
+each carrying ‘personal’ attributes such as an ID, age, gender etc.</p>
+<section id="parallelisation">
+<h2>Parallelisation<a class="headerlink" href="#parallelisation" title="Permalink to this heading">¶</a></h2>
+<p>In order to run simulations with a large number of agents (several 100’000) in reasonable time,
+it is necessary to use parallelisation. In QHG parallelization is mainly applied over agents, in some cases also over cells.
+In QHG, we use the <a class="reference external" href="https://www.openmp.org">OpenMP</a> interface which provides shared memory parallelization.</p>
+<p>The earlier versions of QHG used <a class="reference external" href="https://www.open-mpi.org">Open MPI</a> (open source Message Passing Interface implementation) which allows you to distribute computations over several computers.
+However, simulations slowed down considerably when there were large numbers of agents.
+The slow-down was mainly due to the big overhead for message passing: whenever an agent moved from the domain of one computer to the domain of a neighboring one, its agent had to be sent from the origin to the target node, which is OK for small messages, but for simulations with several 10000 agentsthe overhead became to big.</p>
+</section>
+<section id="the-agent-container">
+<h2>The Agent Container<a class="headerlink" href="#the-agent-container" title="Permalink to this heading">¶</a></h2>
+<p>In early versions a naive implementation was used: Agents were defined as classes, and the simulation had an array (or vector) of agent instances.
+Whenever an agent was born a new instance was created (with <code class="docutils literal notranslate"><span class="pre">new</span></code>) and inserted into the array, whenever anagent dies, it was removed from the array and destroyed(with <code class="docutils literal notranslate"><span class="pre">delete</span></code>).
+This approach turned out to be a bad choice - profiling showed that most of the run time was used for agent creation and deletion.</p>
+<p>The current implementation uses an array of structures instead of an array of instances.</p>
+<figure class="align-default">
+<img alt="_images/agman.png" src="_images/agman.png" />
+</figure>
+<p>Each of the structures represent the data of one agent. This setup allows easy parallelisation over agents.</p>
+<p>The agent structures are defined in the header file of a population class (see <a class="reference internal" href="code_doc/core/SPopulation.html#spopulation-ref"><span class="std std-ref">SPopulations</span></a>), which also holds the container for the agent structures,
+In QHG tthis container is realized with a <code class="docutils literal notranslate"><span class="pre">LayerBuf</span></code> object, which, in essence, is a vector of agent arrays.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">*&gt;</span><span class="w">  </span><span class="n">m_vUsedLayers</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Initially the vector is empty.</p>
+<p>Whenever there is no more space to complete the addition of an agent, a new layer (i.e. agent array) is allocated and added to the vector.
+Empty arrays are not immediately deleted. If such an array exists it is added to the vector instead of a new one, thus avoiding the allocation of a new one</p>
+<p>The <a class="reference internal" href="code_doc/utils/LayerBuf.html#layerbuf-ref"><span class="std std-ref">LayerBuf</span></a> holding the agents is controlled by a <a class="reference internal" href="code_doc/utils/LBController.html#lbcontroller-ref"><span class="std std-ref">LBController</span></a>, which has a <a class="reference internal" href="code_doc/utils/L2List.html#l2list-ref"><span class="std std-ref">L2List</span></a> to control used and unused locations for each of its layers.</p>
+<figure class="align-default">
+<img alt="_images/LBController_single.png" src="_images/LBController_single.png" />
+</figure>
+<p><span class="xref std std-ref">concrete implementation</span></p>
+</section>
+<section id="management">
+<h2>Management<a class="headerlink" href="#management" title="Permalink to this heading">¶</a></h2>
+<p>At any given time the cntainer has active locations (the ones currently in use) as well as passive locations (currently unused).
+This setup requires some book-keeping. For this reason <code class="docutils literal notranslate"><span class="pre">SPopulation</span></code>  has an <code class="docutils literal notranslate"><span class="pre">LBController</span></code> which controls the indexes of the active and passive array locations by means of 2 doubly linked lists (<a class="reference internal" href="code_doc/utils/L2List.html#l2list-ref"><span class="std std-ref">L2List</span></a>).</p>
+<figure class="align-default">
+<img alt="_images/L2L_A1.png" src="_images/L2L_A1.png" />
+</figure>
+<p>Whenever a new agent needs to be added the index of the first passive location is moved to the active list and the new agents data is written to the corresponding position.
+Whenever an agent dies, the index of its location is moved from the active list to the passive list.</p>
+<p>Moving a location from an unused to a used state requires several operations in the linked lists:</p>
+<ul class="simple">
+<li><p>set <code class="docutils literal notranslate"><span class="pre">next.prev</span></code> to <code class="docutils literal notranslate"><span class="pre">this.prev</span></code>. If <code class="docutils literal notranslate"><span class="pre">this</span></code> is the first element, set <code class="docutils literal notranslate"><span class="pre">next.prev</span></code> to <code class="docutils literal notranslate"><span class="pre">nil</span></code></p></li>
+<li><p>set <code class="docutils literal notranslate"><span class="pre">prev.next</span></code> to <code class="docutils literal notranslate"><span class="pre">this.next</span></code>. If <code class="docutils literal notranslate"><span class="pre">this</span></code> is the last element, set <code class="docutils literal notranslate"><span class="pre">prev.next</span></code> to <code class="docutils literal notranslate"><span class="pre">nil</span></code>.</p></li>
+<li><p>if <code class="docutils literal notranslate"><span class="pre">this</span></code> is the first of the passive elements, set <code class="docutils literal notranslate"><span class="pre">passive.start</span></code> to <code class="docutils literal notranslate"><span class="pre">this.next</span></code></p></li>
+</ul>
+<p>This leaves the index of interest isolated.</p>
+<figure class="align-default">
+<img alt="_images/L2L_A2.png" src="_images/L2L_A2.png" />
+</figure>
+<p>Now find the highest active index less than the index of <code class="docutils literal notranslate"><span class="pre">this</span></code> (in our example: index 0).</p>
+<p>If there is no such index:</p>
+<ul class="simple">
+<li><p>set <code class="docutils literal notranslate"><span class="pre">this.next</span></code> to <code class="docutils literal notranslate"><span class="pre">active.start</span></code></p></li>
+<li><p>set <code class="docutils literal notranslate"><span class="pre">active.start</span></code> to <code class="docutils literal notranslate"><span class="pre">this</span></code></p></li>
+<li><p>set <code class="docutils literal notranslate"><span class="pre">this.prev</span></code> to <code class="docutils literal notranslate"><span class="pre">nil</span></code></p></li>
+</ul>
+<p>Otherwise, i.e. there is such an index ‘last’:</p>
+<ul class="simple">
+<li><p>set <code class="docutils literal notranslate"><span class="pre">this.next</span></code> to <code class="docutils literal notranslate"><span class="pre">last.next</span></code></p></li>
+<li><p>set <code class="docutils literal notranslate"><span class="pre">last.next.prev</span></code> to <code class="docutils literal notranslate"><span class="pre">this</span></code></p></li>
+<li><p>set <code class="docutils literal notranslate"><span class="pre">last.next</span></code> to <code class="docutils literal notranslate"><span class="pre">this</span></code></p></li>
+<li><p>set <code class="docutils literal notranslate"><span class="pre">this.prev</span></code> to <code class="docutils literal notranslate"><span class="pre">last</span></code></p></li>
+</ul>
+<figure class="align-default">
+<img alt="_images/L2L_A3.png" src="_images/L2L_A3.png" />
+</figure>
+<p>Moving a used location to passive state requires a similar set of operations.
+It is important to keep in mind that operations on the lists must not be parallelized.
+If several threads write to the lists at the same time, it would very probably end up in an undefied state.</p>
+</section>
+<section id="dead-agent-recycling">
+<h2>Dead Agent Recycling<a class="headerlink" href="#dead-agent-recycling" title="Permalink to this heading">¶</a></h2>
+<p>To minimize list-operations during a simulation we use <strong>dead agent recycling</strong>.
+The indexes of agents who die during a simulation step are registered in a list.
+When new agents are born we place their data into the structures pointed at by the dead agents list.
+If more agents are born than have died, the surplus agents have to do a normal birth process: change a passive location to an active one and copy their data there.
+If there are less new agents than dead ones, the left over locations are carried over to the next step’s dead agent list.</p>
+<figure class="align-default">
+<img alt="_images/RecycleDead2.png" src="_images/RecycleDead2.png" />
+</figure>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Agents: Parallelisation and Management</a><ul>
+<li><a class="reference internal" href="#parallelisation">Parallelisation</a></li>
+<li><a class="reference internal" href="#the-agent-container">The Agent Container</a></li>
+<li><a class="reference internal" href="#management">Management</a></li>
+<li><a class="reference internal" href="#dead-agent-recycling">Dead Agent Recycling</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="qhg4_simulation_framework.html"
+                          title="previous chapter">The QHG4 simulation framework: an Overview</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="ObserverPattern.html"
+                          title="next chapter">The Observer Pattern</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/AgentManagement.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="ObserverPattern.html" title="The Observer Pattern"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="qhg4_simulation_framework.html" title="The QHG4 simulation framework: an Overview"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">QHG4 4.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Agents: Parallelisation and Management</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+    </div>
+  </body>
+</html>

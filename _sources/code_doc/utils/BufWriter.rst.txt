@@ -1,0 +1,119 @@
+.. _BufWriter_ref:
+
+BufWriter
+=========
+
+.. rst-class:: hidden
+
+   This page describes the class :index:`BufWriter`
+
+| The class ``BufWriter`` provides an interface for buffered writing to a file. 
+| Whenever a write method fills the buffer, it is written to the file.
+
+Typedefs
+--------
+
+.. code-block:: c++
+
+  typedef unsigned int uint;
+
+Code: `BufWriter.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/BufWriter.h>`_, `BufWriter.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/BufWriter.cpp>`_
+
+
+
+Public Methods
+--------------
+
+
+``createInstance(string, int)``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    static BufWriter *createInstance(const std::string sOut, int iBufSize=DEF_BUF_SIZE);
+
+Creates a new instance for writing to file ``sOut``
+
+Returns a BufWriter object.
+
+.. -----------------------------------------------------------------------------
+
+
+``destructor``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    ~BufWriter();
+
+The destructor.
+
+.. -----------------------------------------------------------------------------
+
+
+``addChars``
+^^^^^^^^^^^^
+.. code-block:: c++
+
+    int addChars(const char *pData, int iNum);
+
+Writes ``iNum`` characters from ``pData`` to the buffer.
+
+``pData`` 
+    String to read from
+
+``iNum``
+    Number of characters to read
+
+Returns 0 on success, -1 on failure
+
+.. -----------------------------------------------------------------------------
+
+``addChar``
+^^^^^^^^^^^
+.. code-block:: c++
+
+    int addChar(char c);
+
+Writes a single character to the buffer.
+
+``c``
+    Character to write
+
+Returns 0 on success, -1 on failure
+
+.. -----------------------------------------------------------------------------
+
+``addLine``
+^^^^^^^^^^^
+.. code-block:: c++
+
+    int addLine(const char *pLine);
+
+Writes a string to the buffer.
+
+``pLine``
+    String to write.
+
+
+Returns 0 on success, -1 on failure
+
+.. -----------------------------------------------------------------------------
+
+``getPos``
+^^^^^^^^^^
+.. code-block:: c++
+
+    long getPos();
+
+Get position in file.
+
+Returns position in file.
+
+Protected Methods
+-----------------
+
+@@TODO
+:ref:`Bufwriter_todododod<bufwritertododododdo>`
+``BufWriter()``
+``int initialize(const std::string sOut, int iBufSize)``
+``int dump()``
+

@@ -1,0 +1,20 @@
+.. _app_ref:
+
+app
+===
+
+.. rst-class:: hidden
+
+   This page describes the directorx :index:`app`
+
+The directory ``app`` contains files for top-level simulation classes.
+
+.. toctree::
+   :maxdepth: 1
+
+   app/QHGMain
+
+   app/SimParams
+   app/Simulator
+
+  

@@ -1,0 +1,147 @@
+.. _RandomMove_ref:
+
+RandomMove
+==========
+
+.. rst-class:: hidden
+
+   This page describes the class :index:`RandomMove`
+
+The class ``RandomMove`` is derived from ``Action`` lets agents move in random directions.
+This class can be used for simulationg diffusion.
+
+Code: `RandomMove.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/RandomMove.h>`_ `RandomMove.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/RandomMove.cpp>`_
+
+**Attributes:**
+
++-------------------------------+-------------------+------------------+
+| ``ATTR_RANDOMMOVE_NAME``      | "RandomMove"      | action name      |
++-------------------------------+-------------------+------------------+
+| ``ATTR_RANDOMMOVE_PROB_NAME`` | "RandomMove_prob" | move probability |
++-------------------------------+-------------------+------------------+
+
+
+
+Public Methods
+--------------
+
+``constructors``
+^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    RandomMove(SPopulation<T> *pPop, SCellGrid *pCG, const std::string sActionName, const std::string sID);
+    RandomMove();
+
+Calls the base class's constructor and saves the action name.
+
+``pPop``
+    A pointer to the :ref:`SPopulation<SPopulation_ref>` object performing this action.
+
+``pCG``
+    A pointer to the  :ref:`SCellGrid<SCellGrid_ref>` object on which the simulation runs.
+
+``sActionName``
+    Name of this action.
+
+``sID``
+   An ID for this action.
+
+.. ----------------------------------------------------------------------------- 
+
+``destructor``
+^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual ~RandomMove();
+
+The destructor.
+
+.. ----------------------------------------------------------------------------- 
+
+``execute``
+^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int execute(int iAgentIndex, float fT);
+
+``iAgentIndex``
+    Current agent's index.
+
+``fT``
+    Simulation time.
+
+| This method is called for all agents (in parallel). 
+| Each agent is moved with a move probability, and if it moves, the direction is choesen randomly.
+
+.. ----------------------------------------------------------------------------- 
+
+``extractAttributes``
+^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int extractAttributesQDF(hid_t hSpeciesGroup);
+
+``hSpeciesGroup``
+    HDF handle for the species group to read from.
+
+This method reads the move probability from a QDF file.
+
+.. ----------------------------------------------------------------------------- 
+
+``writeAttributes``
+^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int writeAttributesQDF(hid_t hSpeciesGroup);
+
+``hSpeciesGroup``
+    HDF handle for the species group to write to.
+
+This method writes the move probability to the specified group in a QDF file.
+
+.. ----------------------------------------------------------------------------- 
+
+``tryGetAttributes``
+^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int tryGetAttributes(const ModuleComplex *pMC);  
+
+``pMC``
+    A ``ModuleComplex`` object.
+
+Extracts the move probability from the ``ModuleComplex`` object.
+
+.. ----------------------------------------------------------------------------- 
+
+``modifyAttributes``
+^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int modifyAttributes(const std::string sAttrName, double dValue);
+
+
+``sAttrName``
+    Name of attribute to change.
+
+``dValue``
+    Value to set the attribute to.
+
+The only attribute that can be changed is obviously ``"RandomMove_prob"``.
+
+.. ----------------------------------------------------------------------------- 
+
+``isEqual``
+^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual bool isEqual(Action<T> *pAction, bool bStrict);
+
+``pAction``
+    Pointer to an action object to compare with this.
+
+``bStrict``
+    Strictness of comparisons (ignored here).
+
+``pAction`` is equal to ``this``, if it is a ``RandomMove`` object whose mpve probability is the same as the one of this.
+    

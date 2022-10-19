@@ -1,0 +1,253 @@
+.. _SingleEvaluator_ref:
+
+SingleEvaluator
+===============
+
+.. rst-class:: hidden
+  
+    This page describes the class :index:`SingleEvaluator`
+
+``SingleEvaluator`` is derived from ``Evaluator`` and is used to assign values to the cells calculated from an environment array.
+Usually this calculation is done by means of a poly line function providing the "preference" values for the environment data.
+
+While the input array usually has a size of ``m_iNumCells``, the output array has a size  of ``(m+1)*m_iNumCells`` where m is the maximum number of neighbors of a cell.
+
+In its raw form the element ``i*(m+1) + k`` is the value of the ``(k-1)``-th neighbor of cell ``i`` (for ``k > 1``), whereas the element  ``i*(m+1)`` is the value of the cell itself..
+
+Often, however, the output data is used to make weighted random numbers so within a cell's "subarray" we accumulate the numbers:
+
+.. figure:: ../../../images/SingleEvalCumulate.png
+
+   A raw subarray and its cumulation.
+
+Given a subarray 
+    :math:`(s_i)_{0 \leq i \leq i+1}`, 
+
+where
+    :math:`s_i = outputarray[k \cdot m + i]`,
+
+with :math:`m` being the maximum number of neighbors, and :math:`k` an integer,
+
+the cumulated array is
+    :math:`(c_i)_{0 \leq i \leq i+1}`
+
+where
+    :math:`c_0 = s_0`, and :math:`c_i = s_i + c_{i-1}` for :math:`i > 0`
+
+.. figure:: ../../../images/SingleEvalPart.png
+
+    The environment values (e.g. altitude) of a cell are copied to an array, to which a poly line function is applied. 
+    The results are cumulated for potential use by an other action, e.g. :ref:`WeightedMove<WeightedMove_ref>`.
+
+Code: `SingleEvaluator.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/SingleEvaluator.h>`_ `SingleEvaluator.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/SingleEvaluator.cpp>`_
+
+**Attributes**
+
++-------------------------------+-------------------+-------------------+
+| ``ATTR_SINGLE_EVAL_NAME``     | "SingleEvaluator" | action name       |
++-------------------------------+-------------------+-------------------+
+| (constructor parameter)       | (user defined)    | name of poly line |
++-------------------------------+-------------------+-------------------+
+
+| (user defined): This is the name of an attribute in the QDF holding values for a ``PolyLine`` object.
+| (constructor parameter): the name is passed to the constructor as the parameter``sPLParamName``.
+
+Public Methods
+--------------
+
+``constructor``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    SingleEvaluator(SPopulation<T> *pPop, SCellGrid *pCG, std::string sID, double *adOutputWeights, double *adInputData, const char *sPLParName, bool bCumulate, intset &sTriggerIDs);
+    SingleEvaluator(SPopulation<T> *pPop, SCellGrid *pCG, std::string sID, double *adOutputWeights, double *adInputData, const char *sPLParName, bool bCumulate, int iTriggerID);
+    SingleEvaluator(SPopulation<T> *pPop, SCellGrid *pCG, std::string sID, double *adOutputWeights, const char *pInputArrayName, const char *sPLParName, bool bCumulate, intset &sTriggerIDs);
+
+``pPop``
+    A pointer to the :ref:`SPopulation<SPopulation_ref>` object performing this action.
+
+``pCG``
+    A pointer to the  :ref:`SCellGrid<SCellGrid_ref>` object on which the simulation runs.
+
+``sID``
+    An ID for this action.
+
+``adOutputWeights``
+    Array to hold the output weights. The size of this array is (m+1)*NumCells, where m  is the maximum number of neighbors of a cell.
+
+``adInputData``
+    Array containing the input data with size equal to the number of cells (often one of the environment arrays).
+
+``pInputArrayName``
+    Name of an input array (which wll  be obtained by means of an :ref:`ArrayShare`<ArrayShare_ref>` object).
+
+``sPLParName``
+    Name of an attribute holding the data for a :ref:`PolyLine<PolyLine_ref>` function. This name can e the empty string if no poly line is needed-
+
+``bCumulate``
+    Already cumulate the values for every cell in the output array.  
+  
+``iTriggerID``
+    ID of event which should trigger a recalculation (for an altitude evaluator everything stays the same until a new geography is loaded, at which point the evaluation has to be redone).
+
+``sTriggerIDs``
+    A set if event IDs which should trigger to a recalculation.
+
+
+
+.. -----------------------------------------------------------------------------
+
+``destructor``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual ~SingleEvaluator();
+
+The destructor does nothing.
+
+.. -----------------------------------------------------------------------------
+
+``initialize``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int initialize(float fT);
+
+``fT``
+    Simulation time step.
+
+If the input data array is NULL, an attempt is made to obtain the array from ``ArrayShare`` with the name of passed in the ``sInputArayName`` parameter of the constructor.
+Then, if an update is needed, the values are recalculated.
+
+.. -----------------------------------------------------------------------------
+
+``finalize``
+^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int finalize(float fT);
+
+Reset the update flags.
+
+.. -----------------------------------------------------------------------------
+
+``extractAttributesQDF``
+^^^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int extractAttributesQDF(hid_t hSpeciesGroup);
+
+``hSpeciesGroup``
+    HDF handle for the species group to read from.
+
+Obtains a ``PolyLine`` object by extracting the attribute with the name  in ``m_sPLParName``.
+
+.. -----------------------------------------------------------------------------
+
+``writeAttributesQDF``
+^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    int writeAttributesQDF(hid_t hSpeciesGroup);
+
+``hSpeciesGroup``
+    HDF handle for the species group to write to.
+
+Writes the ``PolyLine`` data as an attribute  with the name  in ``m_sPLParName``.
+
+.. -----------------------------------------------------------------------------
+
+``tryGetAttributes``
+^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int tryGetAttributes(const ModuleComplex *pMC);  
+
+``pMC``
+    A ``ModuleComplex`` object.
+
+Gets a ``PolyLine`` object with the name  in ``m_sPLParName`` from the module complex.
+
+.. -----------------------------------------------------------------------------
+
+``setOutputWeights``
+^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    void setOutputWeights(double *adOutput);
+
+``adOutput``
+    An array containing values destined for output.
+
+The variable ``m_adOutputWeights`` is set to a pointer to the  previously filled array ``adOutput``.
+
+.. -----------------------------------------------------------------------------
+
+``notify``
+^^^^^^^^^^
+.. code-block:: c++
+
+    void notify(Observable *pObs, int iEvent, const void *pData);
+
+``pObs``
+    The observable which sends the event.
+
+``iEvent``
+    ID of the event.
+
+``pData``
+    Pointer to data pertaining to the event. It must be cast to the correct type.
+
+| (implementation of the ``Observer`` interface)
+| If the event  is equal to one of the event IDS in the trigger set, the update flagis set. 
+
+.. -----------------------------------------------------------------------------
+
+``isEqual``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual bool isEqual(Action<T> *pAction, bool bStrict);
+
+    
+..`pAction``
+    Pointer to an action object to compare with this.
+
+``bStrict``
+    Strictness of comparisons (ignored here).
+
+``pAction`` is equal to ``this``, if it is a ``SingleEvaluator`` and the names of the ``PolyLine`` match.
+
+.. -----------------------------------------------------------------------------
+
+``showAttributes``
+^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    void showAttributes();
+
+Displays the poly line data.
+
+
+Protected Methods
+-----------------
+
+``calcValues``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    void calcValues();
+   
+The elements at position ``iCellIndex*(m_iMaxNeighbors+1)`` are set to the poly line evaluation of ``m_adInput[iCellIndex]`` if there is aa poly line. Otherwise it is set to ``m_adInput[iCellINdex]``.
+
+.. -----------------------------------------------------------------------------
+
+``exchangeAndCumulate``
+^^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    void exchangeAndCumulate();
+
+The "free" positions in the output array (those corresponding to the neighbors) are set to the evaluation values of the neighbors.
+
+If cumulation is required this is done here.

@@ -1,0 +1,254 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>PopWriter &#8212; QHG4 4.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jody.css" />
+    
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    
+    <link rel="shortcut icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="QDFUtils" href="QDFUtils.html" />
+    <link rel="prev" title="NavWriter" href="NavWriter.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="QDFUtils.html" title="QDFUtils"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="NavWriter.html" title="NavWriter"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../io.html" accesskey="U">io</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">PopWriter</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="popwriter">
+<span id="popwriter-ref"></span><h1>PopWriter<a class="headerlink" href="#popwriter" title="Permalink to this heading">¶</a></h1>
+<p class="hidden">This page desctibes the class <span class="target" id="index-0"></span>PopWriter</p>
+<p>The class <code class="docutils literal notranslate"><span class="pre">PopWriter</span></code> is used to write the <a class="reference internal" href="../core/SPopulation.html#spopulation-ref"><span class="std std-ref">population data</span></a> to a subgroup of the <a class="reference internal" href="../../formats/qdf/PopsGroup.html#popsgroup-ref"><span class="std std-ref">populations group</span></a>.</p>
+<p>It owns specialized writers for the various environment and population data.</p>
+<p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/io/PopWriter.h">PopWriter.h</a>, <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/io/PopWriter.cpp">PopWriter.cpp</a></p>
+<section id="publicmethods">
+<h2>PublicMethods<a class="headerlink" href="#publicmethods" title="Permalink to this heading">¶</a></h2>
+<section id="constructor">
+<h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#constructor" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">PopWriter</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">PopBase</span><span class="w"> </span><span class="o">*&gt;</span><span class="w"> </span><span class="n">vPops</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The constructor copies the vector of populations to an internal vector.</p>
+</section>
+<section id="destructor">
+<h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="o">~</span><span class="n">PopWriter</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The destructor closes open HDF handles.</p>
+</section>
+<section id="write">
+<h3><code class="docutils literal notranslate"><span class="pre">write</span></code><a class="headerlink" href="#write" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">write</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sFilename</span><span class="p">,</span><span class="w">   </span><span class="kt">int</span><span class="w"> </span><span class="n">iStep</span><span class="p">,</span><span class="w">              </span><span class="kt">float</span><span class="w"> </span><span class="n">fStartTime</span><span class="p">,</span><span class="w"></span>
+<span class="w">          </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sInfoString</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sSpc</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iWSpecial</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iDumpMode</span><span class="o">=</span><span class="mi">-1</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">write</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hFile</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sSub</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iWSpecial</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iDumpMode</span><span class="o">=</span><span class="mi">-1</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line">The first version creates (or opens) a qdf file and writes the population data.</div>
+<div class="line">The second version uses the open file to write the population data</div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">sFileName</span></code></dt><dd><p>Name of output file.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iStep</span></code></dt><dd><p>The current simulation step. This number is saved as an attribute in the output file’s root group.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">fStartTime</span></code></dt><dd><p>The start time of the simulation (i.e. the ‘real’ time at step 0). This number is also saved as an attribute in the output file’s root group.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sInfoString</span></code></dt><dd><p>An arbitrary string which will be saved as an attribute in the output file’s root group.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sSpc</span></code></dt><dd><p>Species name of the population to be written</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iWSpecial</span></code></dt><dd><p>A population specific write flag. An or-ed combination of the values shown in the table below.</p>
+</dd>
+</dl>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Pop-specific Flag</p></th>
+<th class="head"><p>Value</p></th>
+<th class="head"><p>meaninging</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">PW_NONE</span></code></p></td>
+<td><p>0</p></td>
+<td><p>Write nothing</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">PW_AGENTS_ONLY</span></code></p></td>
+<td><p>1</p></td>
+<td><p>Write agent data only</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">PW_STATS_ONLY</span></code></p></td>
+<td><p>2</p></td>
+<td><p>Write move statistics only</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">PW_ADDITIONAL_ONLY</span></code></p></td>
+<td><p>4</p></td>
+<td><p>Write additional data only</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">PW_ALL</span></code></p></td>
+<td><p>7</p></td>
+<td><p>Write all</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">iDumpMode</span></code></dt><dd><p>Dump mode. If -1, normal writing is performed, otherwise use <code class="docutils literal notranslate"><span class="pre">LBController::DUMP_MODE_FLAT</span></code> (0)  or <code class="docutils literal notranslate"><span class="pre">LBController::DUMP_MODE_SMART</span></code> (1).</p>
+</dd>
+</dl>
+<p>Returns 0 on success, -1 on failure.</p>
+</section>
+<section id="openpopulationgroup">
+<h3><code class="docutils literal notranslate"><span class="pre">openPopulationGroup</span></code><a class="headerlink" href="#openpopulationgroup" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">openPopulationGroup</span><span class="p">()</span><span class="o">:</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Opens the population group and stores the HDF handle to it.</p>
+<p>Returns 0 on success, -1 on failure.</p>
+</section>
+<section id="closepopulationgroup">
+<h3><code class="docutils literal notranslate"><span class="pre">closePopulationGroup</span></code><a class="headerlink" href="#closepopulationgroup" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">closePopulationGroup</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Closes the population group.</p>
+</section>
+</section>
+<section id="protected-methods">
+<h2>Protected Methods<a class="headerlink" href="#protected-methods" title="Permalink to this heading">¶</a></h2>
+<section id="opencreatepopgroup">
+<h3><code class="docutils literal notranslate"><span class="pre">opencreatePopGroup</span></code><a class="headerlink" href="#opencreatepopgroup" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">opencreatePopGroup</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Opens or creates the population group and stores the HDF handle to it.</p>
+<p>Returns 0 on success, -1 on failure.</p>
+</section>
+<section id="opencreatespeciesgroup">
+<h3><code class="docutils literal notranslate"><span class="pre">opencreateSpeciesGroup</span></code><a class="headerlink" href="#opencreatespeciesgroup" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">opencreateSpeciesGroup</span><span class="p">(</span><span class="n">PopBase</span><span class="w"> </span><span class="o">*</span><span class="n">pPB</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iDumpMode</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Opens or creates the species group and stores the HDF handle to it.</p>
+<p>Returns 0 on success, -1 on failure.</p>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">PopWriter</a><ul>
+<li><a class="reference internal" href="#publicmethods">PublicMethods</a><ul>
+<li><a class="reference internal" href="#constructor"><code class="docutils literal notranslate"><span class="pre">constructor</span></code></a></li>
+<li><a class="reference internal" href="#destructor"><code class="docutils literal notranslate"><span class="pre">destructor</span></code></a></li>
+<li><a class="reference internal" href="#write"><code class="docutils literal notranslate"><span class="pre">write</span></code></a></li>
+<li><a class="reference internal" href="#openpopulationgroup"><code class="docutils literal notranslate"><span class="pre">openPopulationGroup</span></code></a></li>
+<li><a class="reference internal" href="#closepopulationgroup"><code class="docutils literal notranslate"><span class="pre">closePopulationGroup</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#protected-methods">Protected Methods</a><ul>
+<li><a class="reference internal" href="#opencreatepopgroup"><code class="docutils literal notranslate"><span class="pre">opencreatePopGroup</span></code></a></li>
+<li><a class="reference internal" href="#opencreatespeciesgroup"><code class="docutils literal notranslate"><span class="pre">opencreateSpeciesGroup</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="NavWriter.html"
+                          title="previous chapter">NavWriter</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="QDFUtils.html"
+                          title="next chapter">QDFUtils</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/code_doc/io/PopWriter.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="QDFUtils.html" title="QDFUtils"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="NavWriter.html" title="NavWriter"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../io.html" >io</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">PopWriter</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+    </div>
+  </body>
+</html>

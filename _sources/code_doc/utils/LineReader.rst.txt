@@ -1,0 +1,268 @@
+.. _LineReader_ref:
+
+LineReader
+==========
+
+.. rst-class:: hidden
+
+   This page describes :index:`LineReader`
+
+
+The class ``LineReader`` is an abstract base class for line-reading classes. There are two implementations, ``LineReader_std`` and ``LineReader_gz``.
+
+``LineReader_std`` lets you comfortably read lines from a text file, whereas you can read lines directly from a gzipped text file. There are tw implementations
+
+Code: `LineReader.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/LineReader.h>`_, `LineReader.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/LineReader.cpp>`_
+
+
+Public Methods
+--------------
+
+``createInstance``
+^^^^^^^^^^^^^^^^^^
+(``LineReader_std`` and ``LineReader_gz``)
+
+.. code-block:: c++
+
+    static LineReader *createInstance(const std::string sFileName, const std::string sMode, int iLineLen=MAX_LINE2);
+
+Create a ``LineReader`` for the specified file.
+
+``sFileName``
+    Name of the file to be read.
+
+``sMode``
+    File access mode, usually "rt".
+
+``iLineLen``
+    Size of internal line buffer.
+
+Returns a ``LineReader_xxx`` object on success, or NULL on failure.
+
+.. -----------------------------------------------------------------------------
+
+``createInstance``
+^^^^^^^^^^^^^^^^^^
+
+(``LineReader_std`` only)
+
+.. code-block:: c++
+
+    static LineReader *createInstance(FILE *fIn, int iLineLen=MAX_LINE2);
+
+Create a ``LineReader`` for the opened file.
+
+``fIn``
+    File handle to an opened text file.
+
+``iLineLen``
+    Size of internal line buffer.
+
+Returns a ``LineReader_std`` object on success, or NULL on failure.
+
+.. -----------------------------------------------------------------------------
+
+``constructor``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    LineReader_std(const std::string sFileName, const std::string sMode, int iLineLen=MAX_LINE2);
+    LineReader_gz(const std::string  sFileName, const char *pMode, int iLineLen=MAX_LINE2);
+
+The constructor.
+
+``sFileName``
+    Name of the file to be read.
+
+``sMode``
+    File access mode, usually "rt".
+
+``iLineLen``
+    Size of internal line buffer.
+
+.. -----------------------------------------------------------------------------
+
+``constructor``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    LineReader_std(FILE *fIn, int iLineLen=MAX_LINE2);
+    LineReader_gz(gzFile fIn, int iLineLen=MAX_LINE2);
+
+Construcor for opened file.
+
+``fIn``
+    File handle to an opened text file.
+
+``iLineLen``
+    Size of internal line buffer
+
+.. -----------------------------------------------------------------------------
+
+``destructor``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    ~LineReader_std();
+    ~LineReader_gz();
+
+The destructor.
+
+.. -----------------------------------------------------------------------------
+
+``getNextLine``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual char *getNextLine(int iMode=GNL_IGNORE_ALL);
+
+Get the next line.
+
+``iMode``
+    Accesss mode:
+
++---------------------+----+-------------------------------------------------+
+| GNL_IGNORE_NONE     |  0 | pass every line                                 |
++---------------------+----+-------------------------------------------------+
+| GNL_IGNORE_BLANKS   |  1 | drop blank lines                                |
++---------------------+----+-------------------------------------------------+
+| GNL_IGNORE_COMMENTS |  2 | drop #-comment lines                            |
++---------------------+----+-------------------------------------------------+
+| GNL_IGNORE_MATCOMM  |  4 | drop %-comment lines                            |
++---------------------+----+-------------------------------------------------+
+| GNL_TRIM            |  8 | trim all lines                                  |
++---------------------+----+-------------------------------------------------+
+| GNL_IGNORE_ALL      | 15 | pass non-blank, non-comment lines and trim them |
++---------------------+----+-------------------------------------------------+
+
+Returns the next line.
+
+.. -----------------------------------------------------------------------------
+
+``read``
+^^^^^^^^
+
+(``LineReader_std`` and ``LineReader_gz``)
+
+.. code-block:: c++
+
+    uint read(void *pBuf, uint iSize);
+
+Read ``iSize`` characters into ``pBuf``.
+
+``pBuf``
+    Buffer to read file contentrs into (must have a size of at least `iSize` bytes)
+
+``iSize``
+    Number of bytes to read.
+
+Returns number of bytes read.
+
+.. -----------------------------------------------------------------------------
+
+``seek``
+^^^^^^^^
+
+(``LineReader_std`` and ``LineReader_gz``)
+
+
+.. code-block:: c++
+
+    int seek(long offset, int whence);
+
+Move to a particular position in the file.
+
+``offset`` 
+    Number of bytes to move.
+
+``whence``
+    Starting point and direction:
+        
++----------+--------------------------------------------------------+
+| SEEK_SET | move ``offset`` forward from the beginning of the file |
++----------+--------------------------------------------------------+
+| SEEK_END | move ``offset`` backward from the end of the file      |
++----------+--------------------------------------------------------+
+| SEEK_CUR | move ``offset`` forward from the current position      |
++----------+--------------------------------------------------------+
+
+.. -----------------------------------------------------------------------------
+
+``tell``
+^^^^^^^^
+(``LineReader_std`` and ``LineReader_gz``)
+
+.. code-block:: c++
+
+    long tell();
+
+Returns the current position in the file.
+
+.. -----------------------------------------------------------------------------
+
+``isEoF``
+^^^^^^^^^
+(``LineReader_std`` and ``LineReader_gz``)
+
+.. code-block:: c++
+
+    bool isEoF();
+
+Returns ``true`` if then of the file has been reached.
+
+.. -----------------------------------------------------------------------------
+
+``isReady``
+^^^^^^^^^^^
+(``LineReader_std`` and ``LineReader_gz``)
+
+
+.. code-block:: c++
+
+    bool isReady();
+
+Returns true if the LineReader is ready.
+
+.. -----------------------------------------------------------------------------
+
+Example
+"""""""
+
+Compile with
+
+.. code-block:: bash
+
+  g++ lr_example.cpp LineReader.cpp stdstrutils.cpp stdstrutilsT.h strutils.cpp --std=c++20 -lz -o lr_example
+
+This example reads the lines of a file and prints the lines with a prepended line number.
+
+Code for ``lr_example.cpp``:
+
+.. code-block:: c++
+
+    #include <cstdio>
+    #include <string>
+
+    #include "LineReader.h"
+
+    int main(int iArgC, char *apArgV[]) {
+        if (iArgC > 1) {
+            LineReader *pLR = LineReader_std::createInstance(apArgV[1], "rt");
+            if (pLR != NULL) {
+                int i = 1;
+                char *pLine = pLR->getNextLine(GNL_IGNORE_NONE);
+                while ((pLine != NULL) && (!pLR->isEoF())) {
+                    printf("[%05d] %s", i++, pLine);
+                    pLine = pLR->getNextLine(GNL_IGNORE_NONE);
+                }
+            
+                delete pLR;
+            }
+        } else {
+            printf("Usage: %s <text-file>\n", apArgV[0]);
+        }
+        return 0;
+
+    }
+
+

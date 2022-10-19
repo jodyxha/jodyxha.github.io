@@ -1,0 +1,222 @@
+.. _Permutator_ref:
+
+Permutator
+==========
+
+.. rst-class:: hidden
+
+    This page describes the class :index:`Permutator`
+
+The class ``Permutator`` allows you to get a random permutation or a randomly permutated subset of [0,... N-1].
+
+Code: `Permutator.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/Permutator.h>`_, `Permutator.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/Permutator.cpp>`_
+
+
+Public Methods
+--------------
+
+``createInstance``
+^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    static Permutator *createInstance(uint iInitSize);
+
+Create a ``Permutator`` instance with specified buffer size.
+
+``iInitSize``
+    Initial size of buffer.
+
+Returns a pointer to the instance.
+
+.. -----------------------------------------------------------------------------
+
+
+``destructor``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    ~Permutator();
+
+The destructor frees the memory allocated for the buffer.
+
+.. -----------------------------------------------------------------------------
+
+``permute``
+^^^^^^^^^^^
+.. code-block:: c++
+
+    const uint *permute(uint iNumTot, uint iNumSel, WELL512 *pWELL);
+    const uint *permute(uint iNumTot, uint iNumSel);
+
+Replaces the first ``iNumSel`` elements of its internal buffer with random elements from [1,iNumTot-1].
+If ``iNumTot == iNumSel`` this will yield a permutation of [0, iNumTot-1].
+The version without a ``WELL512*`` argument calls the standard ``rand()`` function (be sure to initialize it with ``srand()`` before using it).
+
+This function will reallocate the buffer if ``iNumTot`` is greater than the current size of the buffer.
+
+``iNumTot``
+    Total number of elements.
+
+``iNumSel``
+    Number of elements to select.
+ 
+``pWELL``
+    A :ref:`WELL512 <WELL512_ref>` random number generator.
+
+Returns a pointer to the internal buffer.
+
+.. -----------------------------------------------------------------------------
+
+``permuteBuf``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    template<typename T>;
+    T *permuteBuf(uint iNumTot, uint iNumSel, WELL512 *pWELL, T *pBuf);
+    
+    template<typename T>
+    T *permuteBuf(uint iNumTot, uint iNumSel, T *pBuf);
+
+Replaces the first ``iNumSel`` elements of ``pBuf`` with random elements from ``pBuf``.
+If ``iNumTot == iNumSel`` this will yield a permutation of the elements ``pBuf``. 
+The version without a ``WELL512*`` argument calls the standard ``rand()`` function (be sure to initialize it with ``srand()`` before using it).
+
+``iNumTot``
+    Total number of elements in buffer.
+
+``iNumSel``
+    Number of elements to select.
+
+``pWELL``
+    A :ref:`WELL512 <WELL512_ref>` random number generator.
+
+.. -----------------------------------------------------------------------------
+
+``getSize``
+^^^^^^^^^^^
+.. code-block:: c++
+
+    uint getSize();
+
+Returns size of buffer.
+
+.. -----------------------------------------------------------------------------
+
+``getPrevTot``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    uint getPrevTot();
+
+Returns previous size of buffer.
+
+.. -----------------------------------------------------------------------------
+
+``getPerm``
+^^^^^^^^^^^
+.. code-block:: c++
+
+    const uint* getPerm():
+
+Return a pointer to the internal buffer.
+
+.. -----------------------------------------------------------------------------
+
+``setSize``
+^^^^^^^^^^^
+.. code-block:: c++
+
+    void setSize(uint iSize);
+
+Set size of buffer.
+
+.. -----------------------------------------------------------------------------
+
+Protected Methods
+-----------------
+
+``constructor``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    Permutator(uint iInitSize);
+
+.. -----------------------------------------------------------------------------
+
+``init``
+^^^^^^^^
+.. code-block:: c++
+
+    int init();
+
+.. -----------------------------------------------------------------------------
+
+``resize``
+^^^^^^^^^^
+.. code-block:: c++
+
+    void resize(uint iNewSize);
+
+.. -----------------------------------------------------------------------------
+
+
+Example
+"""""""
+
+Compile with 
+
+.. code-block:: bash
+
+  g++ perm_example.cpp Permutator.cpp WELL512.cpp
+
+Code for ``Permutator``:
+
+.. code-block:: c++
+
+    #include <cstdio>
+    #include <cstdlib>
+    #include <utility>
+
+    #include "WELL512.h"
+    #include "Permutator.h"
+
+
+    int main(int iArgC, char *apArgV[]) {
+
+        int iResult = 0;
+
+
+        // WELL512 seeded with current time
+        WELL512 *pWELL = new WELL512();
+    
+        std::pair<int, std::string> apairs[] ={{0,"zero"},  {1,"one"},  {2,"two"}, 
+                                               {3,"three"}, {4,"four"}, {5,"five"},{6,"six"}};
+
+        Permutator *pPerm = Permutator::createInstance(5);
+
+        // select 3 random elements from [0,4]
+        unsigned int *pRes1 = pPerm->permute(5, 3, pWELL);
+        for (unsigned i = 0; i < 3; i++) {
+            printf(" %d", pRes1[i]);
+        }
+        printf("\n");
+
+        // get a random permutation of [0,9]
+        unsigned int *pRes2 = pPerm->permute(9, 9, pWELL);
+        for (unsigned i = 0; i < 9; i++) {
+            printf(" %d", pRes2[i]);
+        }
+        printf("\n");
+
+        // select 4 random elements from the array apairs
+        std::pair<int, std::string> *pRes3 = pPerm->permuteBuf(7, 4, pWELL, apairs);
+        for (unsigned i = 0; i < 4; i++) {
+            printf(" %d:%s", pRes3[i].first, pRes3[i].second.c_str());
+        }
+        printf("\n");
+
+        delete pPerm;
+        delete pWELL;
+        return iResult;
+    }
+

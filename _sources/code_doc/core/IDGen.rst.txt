@@ -1,0 +1,103 @@
+.. _IDGen_ref:
+
+IDGen
+=====
+
+.. rst-class:: hidden
+  
+    This page describes the class :index:`LinearBirth`
+
+The class ``IDGen`` generates unique IDs typically used fo agentIDs.
+For a particular ``IDGen`` object the generated IDs have the form ":math:`base + offset + k*increment`".
+This makes it possible to create globally unique IDs even when running on multiple threads. 
+In such a case we use one ``IDGen`` object per thread where the offset of ``IDGen[i]`` is ``i`` and the increment is equal to the number of threads.
+
+Code: `IDGen.h  <https://github.com/jodyxha/QHG4/blob/main/QHG4/core/IDGen.h>`_
+
+
+Public Methods
+--------------
+
+``constructor``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+   IDGen(idtype iBase, idtype iOffs, idtype iIncrement); 
+
+``iBase``
+    ID base. Usually the highest ID that has been found so far.
+
+``iOffs``
+    Offset. Typically the index of the thread or process.
+
+``iIncrement``
+    Increment between successive IDs. Typically the number of threads or processses.
+       
+The constructor prepares the state for the first ID.
+
+.. -----------------------------------------------------------------------------
+
+
+``setBase``
+^^^^^^^^^^^
+.. code-block:: c++
+
+    void setBase(idtype iBase);
+
+``iBase``
+    ID base. 
+
+Here the actual preparation for the IDs takes place.
+
+.. -----------------------------------------------------------------------------
+
+``setData``
+^^^^^^^^^^^
+.. code-block:: c++
+
+    void setData(idtype iBase, idtype iOffs, idtype iIncrement);
+
+``iBase``
+    ID base. 
+
+``iOffs``
+    Offset.
+
+``iIncrement``
+    Increment between successive IDs.
+
+Updates the values for base offset and increment, then prepares for the first ID.
+
+.. -----------------------------------------------------------------------------
+
+
+``getID``
+^^^^^^^^^
+.. code-block:: c++
+
+    inline idtype getID();
+
+Returns the next ID.
+
+.. -----------------------------------------------------------------------------
+
+``getCur``
+^^^^^^^^^^
+.. code-block:: c++
+
+    idtype getCur();
+
+Returns the last generated ID (the actual internal state, needed for dump & restore).
+
+.. -----------------------------------------------------------------------------
+
+``setCur``
+^^^^^^^^^^
+.. code-block:: c++
+
+    void   setCur(idtype iCur);
+
+``iCur``
+    New state.
+
+Sets the internal state to the new value (needed for dump & restore).

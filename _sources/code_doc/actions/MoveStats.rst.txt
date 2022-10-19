@@ -1,0 +1,197 @@
+.. _MoveStats_ref:
+
+MoveStats
+=========
+
+
+.. rst-class:: hidden
+  
+    This page describes the class :index:`MoveStats`
+
+The class ``MoveStats`` is derived from ``Action`` and generates some simple move statistics.
+
+In particular, for each cell the first time an agent of the population is registered, as well as the number of steps and total distance from the origin of the agents. 
+
+This is evidently only useful if the agents are started from a small region.
+
+The resulting data sets are written to QDF-files as ``Hops_new``, ``Dist_new`` and ``Time_new``  to the subgroup ``/Populations/<species_name>/MoveStats/`` 
+
+Code: `MoveStats.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/MoveStats.h>`_ `MoveStats.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/MoveStats.cpp>`_
+
+**Attributes**
+
++------------------------------+------------------+-------------------+
+| ``ATTR_MOVESTATS_NAME``      | "MoveStats"      | action name       | 
++------------------------------+------------------+-------------------+
+| ``ATTR_MOVESTATS_MODE_NAME`` | "MoveStats_Mode" | registration mode |
++------------------------------+------------------+-------------------+
+
+Public Methods
+--------------
+
+
+.. -----------------------------------------------------------------------------
+
+``constructtor``
+^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    MoveStats(SPopulation<T> *pPop, SCellGrid *pCG, std::string sID);
+
+``pPop``
+    A pointer to the :ref:`SPopulation<SPopulation_ref>` object performing this action.
+
+``pCG``
+    A pointer to the  :ref:`SCellGrid<SCellGrid_ref>` object on which the simulation runs.
+
+``sActionName``
+    Name of this action.
+
+``sID``
+    An ID for this action.
+
+The constructor.
+
+.. -----------------------------------------------------------------------------
+
+``destructor``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual ~MoveStats();
+
+The destructor deletes all allocated arrays.
+
+.. -----------------------------------------------------------------------------
+
+``preLoop``
+^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int preLoop();
+
+Allocates and initalizes the arrays for the various stats.
+ 
+.. -----------------------------------------------------------------------------
+
+``finalize``
+^^^^^^^^^^^^
+.. code-block:: c++
+
+   virtual int finalize(float fTime);
+
+``fTime``
+    Current simulation step.
+
+At this point the agents's moves have not yet been performed, 
+i.e. the list of registered moves is still valid.
+
+The list is traversed and for every cell that is a target temporary Hops, Dist and Time values are calculated.
+Depending on the registration mode the values are handled differently:
+
++---------------------+----+-------------------------------------------------------------+
+| ``MODE_STAT_NONE``  | -1 | (invalid)                                                   |
++---------------------+----+-------------------------------------------------------------+
+| ``MODE_STAT_FIRST`` |  0 | The values for the first agent to reach the cell are used.  |
++---------------------+----+-------------------------------------------------------------+
+| ``MODE_STAT_MIN``   |  1 | The smallest value registered for this cell is used.        |
++---------------------+----+-------------------------------------------------------------+
+| ``MODE_STAT_LAST``  |  2 | The latest value registered for this cell is used.          |
++---------------------+----+-------------------------------------------------------------+
+
+.. -----------------------------------------------------------------------------
+
+``extractAttributesQDF``
+^^^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+   virtual int extractAttributesQDF(hid_t hSpeciesActionGroup);
+
+``hSpeciesActionGroup``
+    HDF handle for the subgroup of the species group to read from.
+
+Reads the action's attributes (in this case, the registration mode) from the specified group of a QDF file.
+
+.. -----------------------------------------------------------------------------
+
+``writeAttributesQDF``
+^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int writeAttributesQDF(hid_t hSpeciesActionGroup);
+
+``hSpeciesActionGroup``
+    HDF handle for the subgroup of the species group to write the attributes to.
+
+Writes the action's attributes (in this case, the registration mode) to the specified group pf a QDF file.
+
+.. -----------------------------------------------------------------------------
+
+``readAdditionalDataQDF``
+^^^^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int readAdditionalDataQDF(hid_t hSpeciesActionGroup);
+
+``hSpeciesActionGroup``
+    HDF handle for the subgroup of the species group to read from.
+
+Reads the stat arrays from file.
+
+.. -----------------------------------------------------------------------------
+
+``writeAdditionalDataQDF``
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int writeAdditionalDataQDF(hid_t hSpeciesActionGroup);
+
+``hSpeciesActionGroup``
+    HDF handle for the subgroup of the species group to write arrays to.
+
+Writes the stat arrays to file.
+
+.. -----------------------------------------------------------------------------
+
+``tryGetAttributes``
+^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int tryGetAttributes(const ModuleComplex *pMC);  
+
+``pMC``
+    A ``ModuleComplex`` object.
+
+Extracts the action's attributes from the ``ModuleComplex`` object.
+
+.. -----------------------------------------------------------------------------
+
+``modifyAttributes``
+^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int modifyAttributes(const std::string sAttrName, double dValue);
+
+
+``sAttrName``
+    Name of attribute to change.
+
+``dValue``
+    Value to set the attribute to. 
+
+.. -----------------------------------------------------------------------------
+
+``isEqual``
+^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual bool isEqual(Action<T> *pAction, bool bStrict);
+
+``pAction``
+    Pointer to an action object to compare with this.
+
+``bStrict``
+    Strictness of comparisons (ignored here).
+
+``pAction`` is equal to ``this``, if it is a ``MoveStat`` object with the registration mode attribute being equal to that of ``this`` object.
+    

@@ -1,0 +1,333 @@
+.. _MessLogger_ref:
+
+MessLogger
+==========
+
+.. rst-class:: hidden
+
+   This page describes the class :index:`MessLogger`
+
+The class ``MessLogger`` provides methods for logging messages of different types,
+"status", "warning", "error", "display". 
+
+In the log file, these messages can have different colors and different prefixes.
+
+All the logXXX() methods can be called like ``printf``.
+
+ 
+``MessLogger`` is realized as a singleton.
+
+Code: `MessLogger.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/MessLogger.h>`_, `MessLogger.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/MessLogger.cpp>`_
+
+
+
+Methods
+-------
+
+``create``
+^^^^^^^^^^
+.. code-block:: c++
+
+    static MessLogger *create(const std::string sFileName="");
+
+Create the MessLogger singleton for output to ``sFileName``.
+
+``sFileName``
+    File to write to. 
+
+.. -----------------------------------------------------------------------------
+
+``free``
+^^^^^^^^
+.. code-block:: c++
+
+    static void free();
+
+Delete the singleton (closes the log file).
+
+.. -----------------------------------------------------------------------------
+
+``logStatus``
+^^^^^^^^^^^^^
+.. code-block:: c++
+
+    template<typename... Args>
+    static void logStatus(const std::string sFormat, Args... args);
+
+| Writes a status message to the log file. If colors are set, it is green. If prefixes are set, a "S:" will be prepended to the message.
+| Instead of ``MessLogger::logStatus`` you can use ``LOG_STATUS``.
+
+.. -----------------------------------------------------------------------------
+
+``logWarning``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    template<typename... Args>
+    static void logWarning(const std::string sFormat, Args... args);
+
+| Writes a warning message to the log file. If colors are set, it is blue. If prefixes are set, a "W:" will be prepended to the message.
+| Instead of ``MessLogger::logWarning`` you can use ``LOG_WARNING``.
+
+.. -----------------------------------------------------------------------------
+
+``logError``
+^^^^^^^^^^^^
+.. code-block:: c++
+
+    template<typename... Args>
+    static void logError(const std::string sFormat, Args... args);
+
+| Writes an error message to the log file. If colors are set, it is red. If prefixes are set, a "E:" will be prepended to the message.
+| Instead of ``MessLogger::logError`` you can use ``LOG_ERROR``.
+
+.. -----------------------------------------------------------------------------
+
+``logDisp``
+^^^^^^^^^^^
+.. code-block:: c++
+
+    template<typename... Args>
+    static void logDisp(const std::string sFormat, Args... args);
+
+| Writes a display message to the log file. If colors are set, it is purple. If prefixes are set, a "D:" will be prepended to the message.
+| Instead of ``MessLogger::logDisp`` you can use ``LOG_DISP``.
+
+.. -----------------------------------------------------------------------------
+
+``logStatus2``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    template<typename... Args>
+    static void logStatus2(const std::string sFormat, Args... args);
+
+| Writes a status message to the log file and to stdout. If colors are set, it is green. If prefixes are set, a "S:" will be prepended to the message.
+| Instead of ``MessLogger::logStatus2`` you can use ``LOG_STATUS2``.
+
+.. -----------------------------------------------------------------------------
+
+``logWarning2``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    template<typename... Args>
+    static void logWarning2(const std::string sFormat, Args... args);
+
+| Writes a warning message to the log file `and` to ``stdout``. If colors are set, it is blue. If prefixes are set, a "W:" will be prepended to the message.
+| Instead of ``MessLogger::logWarning2`` you can use ``LOG_WARNING2``.
+
+.. -----------------------------------------------------------------------------
+
+``logError2``
+^^^^^^^^^^^^^
+.. code-block:: c++
+
+    template<typename... Args>
+    static void logError2(const std::string sFormat, Args... args);
+
+| Writes an error message to the log file `and` to ``stdout``. If colors are set, it is red. If prefixes are set, a "E:" will be prepended to the message.
+| Instead of ``MessLogger::logError2`` you can use ``LOG_ERROR2``.
+
+.. -----------------------------------------------------------------------------
+
+``logDisp2``
+^^^^^^^^^^^^
+.. code-block:: c++
+
+    template<typename... Args>
+    static void logDisp2(const std::string sFormat, Args... args);
+
+| Writes a display message to the log file `and` to ``stdout``. If colors are set, it is purple. If prefixes are set, a "D:" will be prepended to the message.
+| Instead of ``MessLogger::logDisp2`` you can use ``LOG_DISP2``.
+
+.. -----------------------------------------------------------------------------
+
+``showLog``
+^^^^^^^^^^^
+.. code-block:: c++
+
+    static void showLog(const std::string sLogFile, int iWhat);
+
+Prints the specified log file to ``stdout``.
+
+``sLogFile``
+    The log file do display.
+
+``iWhat``
+    Which types of messages to show. ``iWhat`` can be MessLogger::SHOW_NONE, MessLogger::SHOW_ALL or an or-ed combination of any of MessLogger::SHOW_STATUS, MessLogger::SHOW_WARNING, MessLogger::SHOW_ERROR, and MessLogger::SHOW_DISP.
+
+.. -----------------------------------------------------------------------------
+
+``showLog``
+^^^^^^^^^^^
+.. code-block:: c++
+
+    static void showLog(int iWhat);
+
+Prints the current log file to ``stdout``.
+
+``iWhat``
+    Which types of messages to show. ``iWhat`` can be MessLogger::SHOW_NONE, MessLogger::SHOW_ALL or an or-ed combination of any of MessLogger::SHOW_STATUS, MessLogger::SHOW_WARNING, MessLogger::SHOW_ERROR, and MessLogger::SHOW_DISP.
+
+.. -----------------------------------------------------------------------------
+
+``getNumStatus``
+^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    static int getNumStatus();
+
+Returns the number of logged status messages.
+
+.. -----------------------------------------------------------------------------
+
+``getNumWarning``
+^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    static int getNumWarning();
+
+Returns the number of logged warning messages.
+
+.. -----------------------------------------------------------------------------
+
+``getNumError``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    static int getNumError();
+
+Returns the number of logged error messages.
+
+.. -----------------------------------------------------------------------------
+
+``getNumDisp``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    static int getNumDisp();
+
+Returns the number of logged disp messages.
+
+.. -----------------------------------------------------------------------------
+
+``Protected Methods``
+^^^^^^^^^^^^^^^^^^^^^
+
+``constructor``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    MessLogger(const std::string sLogFileName);
+
+The constructor open the output file for writing.
+
+.. -----------------------------------------------------------------------------
+
+``destructor``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    ~MessLogger();
+
+The destructor closes the output file.
+
+.. -----------------------------------------------------------------------------
+
+``write``
+^^^^^^^^^
+.. code-block:: c++
+
+    void write(const std::string sLine0, const std::string sPre, const std::string sPost);
+
+Writes a line with specified prefx and suffix. Usually prefix and suffix arte color codes.
+
+.. -----------------------------------------------------------------------------
+
+``coloredLine``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    static void coloredLine(std::string sLine, int iWhat);
+
+Colors a line depending on the prefix.
+
+.. -----------------------------------------------------------------------------
+
+``logSpecial``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    template<typename... Args>
+    static void logSpecial(const std::string sHeader, const std::string sColor, const std::string sFormat, Args... args);
+
+Writes a colored line to the log file.
+
+.. -----------------------------------------------------------------------------
+
+
+Example
+"""""""
+
+Compile with
+
+.. code-block:: bash
+
+  g++ ml_example.cpp stdstrutils.cpp stdstrutilsT.h -std=c++20 -o ml_example
+
+Code for ``ml_example.cpp``:
+
+.. code-block:: c++
+
+    #include "MessLoggerT.h"
+    
+    
+    void logBlock(std::string sMode) {
+        LOG_STATUS("a normal status message (%s)\n", sMode);
+        LOG_WARNING("a normal warning message (%s)\n", sMode);
+        LOG_ERROR("a normal error message (%s)\n", sMode);
+        LOG_DISP("a normal disp message (%s)\n", sMode);
+        
+        LOG_STATUS2("a dual status message (%s)\n", sMode);
+        LOG_WARNING2("a dual warning message (%s)\n", sMode);
+        LOG_ERROR2("a dual error message (%s)\n", sMode);
+        LOG_DISP2("a dual disp message (%s)\n", sMode);
+    
+    }
+    
+    int main(int iArgC, char *apArgV[]) {
+        int iResult = 0;
+        
+        MessLogger::create("glubber.log");
+        MessLogger::usePrefix(false);
+        MessLogger::useColors(false);
+    
+        logBlock("prefix:off, color:off");
+        MessLogger::useColors(true);
+        logBlock("prefix:off, color:on");
+        MessLogger::usePrefix(true);
+        logBlock("prefix:on, color_on");
+        MessLogger::useColors(false);
+        logBlock("prefix:on, color:off");
+        MessLogger::usePrefix(false);
+        logBlock("prefix:off, color:off");
+    
+        stdprintf("so far:\n");
+        stdprintf("  %d status messages\n",  MessLogger::getNumStatus());
+        stdprintf("  %d warning messages\n", MessLogger::getNumWarning());
+        stdprintf("  %d error messages\n",   MessLogger::getNumError());
+        stdprintf("  %d disp messages\n",    MessLogger::getNumDisp());
+
+        stdprintf("\n");
+        stdprintf("The contents of the log file so far\n");
+    
+        // we must set prefixes so that the display function recognizes the message type (if it exists)
+        MessLogger::usePrefix(true);
+        MessLogger::showLog(MessLogger::SHOW_WARNING | MessLogger::SHOW_ERROR);
+
+        MessLogger::free();
+        stdprintf("just checking...\n");
+        return iResult;
+    }
+

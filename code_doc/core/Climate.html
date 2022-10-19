@@ -1,0 +1,236 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Climate &#8212; QHG4 4.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jody.css" />
+    
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    
+    <link rel="shortcut icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Vegetation" href="Vegetation.html" />
+    <link rel="prev" title="Geography" href="Geography.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="Vegetation.html" title="Vegetation"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="Geography.html" title="Geography"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../core.html" accesskey="U">core</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Climate</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="climate">
+<span id="climate-ref"></span><h1>Climate<a class="headerlink" href="#climate" title="Permalink to this heading">¶</a></h1>
+<p class="hidden">This page describes the class <span class="target" id="index-0"></span>Climate</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">Climate</span></code> class contains various climate data.
+All data items are associated with a node of the <a class="reference internal" href="SCellGrid.html#scellgrid-ref"><span class="std std-ref">SCellGrid</span></a>.</p>
+<p>Initially the climate data was used to calculate net primary production.
+Currently the climate data is not used in QHG because there are simulated NPP data sets for  the past.</p>
+<p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/core/Climate.h">Climate.h</a> <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/core/Climate.cpp">Climate.cpp</a></p>
+<section id="public-members">
+<h2>Public Members<a class="headerlink" href="#public-members" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">uint</span><span class="w">         </span><span class="n">m_iNumCells</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Number of cells.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="w">   </span><span class="n">climatecount</span><span class="w"> </span><span class="n">m_iNumSeasons</span><span class="p">;</span><span class="w"></span>
+
+<span class="n">Number</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">seasons</span><span class="p">.</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Geography</span><span class="w">   </span><span class="o">*</span><span class="n">m_pGeography</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Pointer to <a class="reference internal" href="Geography.html#geography-ref"><span class="std std-ref">Geography</span></a> object.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">climatecount</span><span class="w"> </span><span class="n">m_iSeasonMonths</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Season size in months (1,2,3,4,6,12).</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">climatecount</span><span class="w"> </span><span class="n">m_iCurSeason</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Current season (0,…m_iSeasonStep-1).</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">climatenumber</span><span class="w">  </span><span class="o">*</span><span class="n">m_adActualTemps</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Actual temperatures.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">climatenumber</span><span class="w">  </span><span class="o">*</span><span class="n">m_adActualRains</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Actual seasonal rainfall.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">climatenumber</span><span class="w">  </span><span class="o">*</span><span class="n">m_adAnnualMeanTemp</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Current annual mean temperature.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">climatenumber</span><span class="w">  </span><span class="o">*</span><span class="n">m_adAnnualRainfall</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Current annual total rainfall.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">climatenumber</span><span class="w"> </span><span class="o">**</span><span class="n">m_aadSeasonalTempD</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Differences of seasonal temperature to mean annual temperature.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">climatenumber</span><span class="w"> </span><span class="o">**</span><span class="n">m_aadSeasonalRainR</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Ratios of seasonal rainfall to total annual rainfall.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w">         </span><span class="n">m_bUpdated</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Update flag.</p>
+</section>
+<section id="public-methods">
+<h2>Public Methods<a class="headerlink" href="#public-methods" title="Permalink to this heading">¶</a></h2>
+<section id="constructor">
+<h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#constructor" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Climate</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">iNumCells</span><span class="p">,</span><span class="w"> </span><span class="n">climatecount</span><span class="w"> </span><span class="n">iNumSeasons</span><span class="p">,</span><span class="w"> </span><span class="n">Geography</span><span class="w"> </span><span class="o">*</span><span class="n">pGeography</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">iNumCells</span></code></dt><dd><p>Number of grid cells.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iNumSeasons</span></code></dt><dd><p>Number of seasons.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">pGeography</span></code></dt><dd><p>Pointer to a <a class="reference internal" href="Geography.html#geography-ref"><span class="std std-ref">Geography</span></a> object.</p>
+</dd>
+</dl>
+<p>The constructor allocates the arrays by calling <code class="docutils literal notranslate"><span class="pre">prepareArrays()</span></code>.</p>
+</section>
+<section id="destructor">
+<h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">Climate</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The destructor deletes all allocated arrays.</p>
+</section>
+<section id="preparearrays">
+<h3><code class="docutils literal notranslate"><span class="pre">prepareArrays</span></code><a class="headerlink" href="#preparearrays" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">prepareArrays</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>This method allocates all arrays needed by this class.</p>
+</section>
+<section id="setseason">
+<h3><code class="docutils literal notranslate"><span class="pre">setSeason</span></code><a class="headerlink" href="#setseason" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">setSeason</span><span class="p">(</span><span class="n">climatecount</span><span class="w"> </span><span class="n">iSeason</span><span class="o">=</span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Sets current season (only used if there is different climate data for various seasons).</p>
+</section>
+<section id="resetupdated">
+<h3><code class="docutils literal notranslate"><span class="pre">resetUpdated</span></code><a class="headerlink" href="#resetupdated" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">resetUpdated</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">m_bUpdated</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"> </span><span class="p">};</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Reset update state.</p>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Climate</a><ul>
+<li><a class="reference internal" href="#public-members">Public Members</a></li>
+<li><a class="reference internal" href="#public-methods">Public Methods</a><ul>
+<li><a class="reference internal" href="#constructor"><code class="docutils literal notranslate"><span class="pre">constructor</span></code></a></li>
+<li><a class="reference internal" href="#destructor"><code class="docutils literal notranslate"><span class="pre">destructor</span></code></a></li>
+<li><a class="reference internal" href="#preparearrays"><code class="docutils literal notranslate"><span class="pre">prepareArrays</span></code></a></li>
+<li><a class="reference internal" href="#setseason"><code class="docutils literal notranslate"><span class="pre">setSeason</span></code></a></li>
+<li><a class="reference internal" href="#resetupdated"><code class="docutils literal notranslate"><span class="pre">resetUpdated</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="Geography.html"
+                          title="previous chapter">Geography</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="Vegetation.html"
+                          title="next chapter">Vegetation</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/code_doc/core/Climate.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="Vegetation.html" title="Vegetation"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="Geography.html" title="Geography"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../core.html" >core</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Climate</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+    </div>
+  </body>
+</html>

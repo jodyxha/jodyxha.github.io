@@ -1,0 +1,50 @@
+.. _tutStaticPop_ref:
+
+tut_StaticPop
+=============
+
+.. rst-class:: hidden
+
+   This page describes the class :index:`tutStaticPop`
+
+The class ``tut_StaticPop`` is derived from :ref:`SPopulation<SPopulation_ref>`. I is the simplest and most trivial population class in QHG: it does nothing - agents don move, die or give birth.
+According to the `Talking Heads <https://www.youtube.com/watch?v=sZpZuIWu1tw>` this is heaven...
+
+Since this class is so simple, its implementation is, too: it only implements a constructor.
+It also does not define its own agent class - it uses the agents defined for ``SPopulation``.
+
+
+(The class ``tut_StaticPop`` is described in detail in the :ref:first part<TutorialStatic_ref>`  of the :ref:`tutorial<Tutorial_ref>`).
+
+Code: `tut_StaticPop.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_StaticPop.h>`_, `tut_StaticPop.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_StaticPop.cpp>`_
+
+
+Public Methods
+--------------
+
+``constructor``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    tut_StaticPop(SCellGrid *pCG, PopFinder *pPopFinder, int iLayerSize, 
+                  IDGen **apIDG, uint32_t *aulState, uint *aiSeeds);
+
+``pCG``
+    Pointer to the :ref:`cell grid<SCellGrid_ref>`  the simulation runs on.
+
+``pPopFinder``
+    A pointer to an instance of a :ref:`PopFinder<PopFinder_ref>` population container.
+
+``iLayerSize``
+    The layer size used by the :ref:`agent management system <AgentManagement_ref>`.
+
+``apIDG``
+    An array of pointers to the :ref:`ID generators<IDGen_ref>`, one for each thread.
+
+``aulState``
+    An array of ``uint`` used to initalize the :ref:`WELL512 random number generators<WELL512_ref>`.
+
+``aiSeeds``
+    Seeds for other WELL512 instances **not used for moving and breeding**, e.g. for genetics. 
+
+All this constructor does is to call the constructor of its parent class ``SPopulation``.

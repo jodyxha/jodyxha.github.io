@@ -1,0 +1,127 @@
+.. _pop_xml_ref:
+
+The Population XML Format
+=========================
+
+.. rst-class:: hidden
+
+   This page gives an overview of :index:`population XML file format`
+
+
+| Population xml files are only used to load population properties onto QHG.
+| They are obviously text file and easily created or modified.
+
+
+
+The format of a population xml file:
+
+| ``qhgxml       ::= <line>*``
+| ``line         ::= <tag> <CR>``
+| ``tag          ::= "<" <tag_contents> ">"``
+| ``tag_contents ::=  <start_tag> <tag>* <end_tag> | <empty_tag>``
+| ``end_tag      ::= "/" <tag_name>``
+| ``start_tag    ::= <tag_name> [<attribute>]*``
+| ``empty_tag    ::= <start_tag> "/"``
+| ``attribute    ::= <att_name> "=" <att_value>``
+| ``tag_name     ::= <word>``
+| ``att_name     ::= <word>``
+| ``attvalue     ::= "\"" <ascii>* "\""``
+| ``word         ::= <word_start> [<word_cont>]*``
+| ``word_start   ::= <alpha> | "_"``
+| ``word_cont    ::= <word_start> | <digit> | "+"  | "-" | "$"``
+
+The DTD for population xml files:
+
+| ``<!ELEMENT class  (module+, priorities?) >``
+| ``<!ELEMENT module (param*) (module*) >``
+| ``<!ELEMENT param EMPTY >``
+| ``<!ELEMENT priorities (prio*) >``
+| ``<!ELEMENT prio  EMPTY >``
+| ``<!ATTLIST class     name         CDATA #REQUIRED >``
+| ``<!ATTLIST class     species_name CDATA #REQUIRED >``
+| ``<!ATTLIST class     species_id   CDATA #REQUIRED >``
+| ``<!ATTLIST module    name         CDATA #REQUIRED >``
+| ``<!ATTLIST module    id           CDATA #IMPLIED  >``
+| ``<!ATTLIST param     name         CDATA #REQUIRED >``
+| ``<!ATTLIST param     value        CDATA #REQUIRED >``
+| ``<!ATTLIST prio      name         CDATA #REQUIRED >``
+| ``<!ATTLIST prio      value        CDATA #REQUIRED >``
+
+| An xml file contains one ``class`` tag, which contains one or more ``module`` tags and zero or one ``priorities`` tags.
+| A ``class`` tag must contain attributes denoting the population name, the species name and the species id.
+
+| Each ``module`` corresponds to an action of the population. It may contain ``param`` tags or nested ``modules``.
+| A ``module`` tag must contain an attribute denoting the action name and optionally an attribute for an id.
+
+| A ``param`` tag contains no subtags, but must have two attribute, one giving the name of the action's parameter and one giving its value.
+
+| The ``priorities`` tag bundles the ``prio`` tags which define the priority values for the different actions.
+| A ``prio`` tags contains no subtags, but must have two attributes, one giving the name of the action and one giving its priority value.
+
+
+
+Example
+-------
+
+These are the contents of a population xml file:
+
+.. code-block:: xml
+
+    <class name="OoANavRelCompPop" species_name="sapiens" species_id="119">
+      <module name="BirthDeathRelComp">
+        <param  name="BirthDeathRelComp_b0" value="0.3"/>
+        <param  name="BirthDeathRelComp_d0" value="0.001"/>
+        <param  name="BirthDeathRelComp_other" value="neandos"/>
+        <param  name="BirthDeathRelComp_theta" value="0.02"/>
+        <param  name="BirthDeathRelComp_this" value="humanos"/>
+      </module>
+      <module name="Fertility">
+        <param  name="Fertility_interbirth" value="2.0"/>
+        <param  name="Fertility_max_age" value="50.0"/>
+        <param  name="Fertility_min_age" value="15.0"/>
+      </module>
+      <module name="MultiEvaluator" id="Alt+NPP" >
+        <param  name="Multi_weight_alt" value="0.2" />
+        <param  name="Multi_weight_npp" value="0.8" />
+        <module name="SingleEvaluator" id="Alt" >
+          <param  name="AltCapPref" value="-0.1 0 0.1 0.01 1500 1.0 2000 1 3000 -9999" />
+        </module>
+        <module name="SingleEvaluator" id="NPP" >
+        </module>
+      </module>
+      <module name="NPPCapacity">
+        <param  name="NPPCap_K_max" value="80.0"/>
+        <param  name="NPPCap_K_min" value="3.0"/>
+        <param  name="NPPCap_NPP_max" value="1.2"/>
+        <param  name="NPPCap_NPP_min" value="0.1"/>
+        <param  name="NPPCap_coastal_factor" value="0.4"/>
+        <param  name="NPPCap_coastal_max_latitude" value="66.0"/>
+        <param  name="NPPCap_coastal_min_latitude" value="50.0"/>
+        <param  name="NPPCap_water_factor" value="0.8"/>
+        <param  name="NPPCap_efficiency" value="1"/>
+      </module>
+      <module name="Navigate">
+        <param  name="Navigate_decay" value="-0.001"/>
+        <param  name="Navigate_dist0" value="150.0"/>
+        <param  name="Navigate_prob0" value="0.1"/>
+        <param  name="Navigate_min_dens" value="0"/>
+      </module>
+      <module name="OldAgeDeath">
+        <param  name="OAD_max_age" value="60.0"/>
+        <param  name="OAD_uncertainty" value="0.1"/>
+      </module>
+      <module name="WeightedMove">
+        <param  name="WeightedMove_prob" value="0.2"/>
+      </module>
+      <priorities>
+        <prio  name="BirthDeathRelComp" value="6"/>
+        <prio  name="Fertility" value="2"/>
+        <prio  name="GetOld" value="9"/>
+        <prio  name="MultiEvaluator[Alt+NPP]" value="5"/>
+        <prio  name="NPPCapacity" value="1"/>
+        <prio  name="Navigate" value="8"/>
+        <prio  name="OldAgeDeath" value="10"/>
+        <prio  name="RandomPair" value="3"/>
+        <prio  name="WeightedMove" value="7"/>
+      </priorities>
+    </class>

@@ -1,0 +1,358 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>LineReader &#8212; QHG4 4.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jody.css" />
+    
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    
+    <link rel="shortcut icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="gzutils" href="gzutils.html" />
+    <link rel="prev" title="MessLogger" href="MessLogger.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="gzutils.html" title="gzutils"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="MessLogger.html" title="MessLogger"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../utils.html" accesskey="U">utils</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">LineReader</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="linereader">
+<span id="linereader-ref"></span><h1>LineReader<a class="headerlink" href="#linereader" title="Permalink to this heading">¶</a></h1>
+<p class="hidden">This page describes <span class="target" id="index-0"></span>LineReader</p>
+<p>The class <code class="docutils literal notranslate"><span class="pre">LineReader</span></code> is an abstract base class for line-reading classes. There are two implementations, <code class="docutils literal notranslate"><span class="pre">LineReader_std</span></code> and <code class="docutils literal notranslate"><span class="pre">LineReader_gz</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">LineReader_std</span></code> lets you comfortably read lines from a text file, whereas you can read lines directly from a gzipped text file. There are tw implementations</p>
+<p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/LineReader.h">LineReader.h</a>, <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/LineReader.cpp">LineReader.cpp</a></p>
+<section id="public-methods">
+<h2>Public Methods<a class="headerlink" href="#public-methods" title="Permalink to this heading">¶</a></h2>
+<section id="createinstance">
+<h3><code class="docutils literal notranslate"><span class="pre">createInstance</span></code><a class="headerlink" href="#createinstance" title="Permalink to this heading">¶</a></h3>
+<p>(<code class="docutils literal notranslate"><span class="pre">LineReader_std</span></code> and <code class="docutils literal notranslate"><span class="pre">LineReader_gz</span></code>)</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="n">LineReader</span><span class="w"> </span><span class="o">*</span><span class="nf">createInstance</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sFileName</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sMode</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iLineLen</span><span class="o">=</span><span class="n">MAX_LINE2</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Create a <code class="docutils literal notranslate"><span class="pre">LineReader</span></code> for the specified file.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">sFileName</span></code></dt><dd><p>Name of the file to be read.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sMode</span></code></dt><dd><p>File access mode, usually “rt”.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iLineLen</span></code></dt><dd><p>Size of internal line buffer.</p>
+</dd>
+</dl>
+<p>Returns a <code class="docutils literal notranslate"><span class="pre">LineReader_xxx</span></code> object on success, or NULL on failure.</p>
+</section>
+<section id="id1">
+<h3><code class="docutils literal notranslate"><span class="pre">createInstance</span></code><a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h3>
+<p>(<code class="docutils literal notranslate"><span class="pre">LineReader_std</span></code> only)</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="n">LineReader</span><span class="w"> </span><span class="o">*</span><span class="nf">createInstance</span><span class="p">(</span><span class="kt">FILE</span><span class="w"> </span><span class="o">*</span><span class="n">fIn</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iLineLen</span><span class="o">=</span><span class="n">MAX_LINE2</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Create a <code class="docutils literal notranslate"><span class="pre">LineReader</span></code> for the opened file.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">fIn</span></code></dt><dd><p>File handle to an opened text file.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iLineLen</span></code></dt><dd><p>Size of internal line buffer.</p>
+</dd>
+</dl>
+<p>Returns a <code class="docutils literal notranslate"><span class="pre">LineReader_std</span></code> object on success, or NULL on failure.</p>
+</section>
+<section id="constructor">
+<h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#constructor" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">LineReader_std</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sFileName</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sMode</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iLineLen</span><span class="o">=</span><span class="n">MAX_LINE2</span><span class="p">);</span><span class="w"></span>
+<span class="n">LineReader_gz</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w">  </span><span class="n">sFileName</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">pMode</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iLineLen</span><span class="o">=</span><span class="n">MAX_LINE2</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The constructor.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">sFileName</span></code></dt><dd><p>Name of the file to be read.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sMode</span></code></dt><dd><p>File access mode, usually “rt”.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iLineLen</span></code></dt><dd><p>Size of internal line buffer.</p>
+</dd>
+</dl>
+</section>
+<section id="id2">
+<h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">LineReader_std</span><span class="p">(</span><span class="kt">FILE</span><span class="w"> </span><span class="o">*</span><span class="n">fIn</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iLineLen</span><span class="o">=</span><span class="n">MAX_LINE2</span><span class="p">);</span><span class="w"></span>
+<span class="n">LineReader_gz</span><span class="p">(</span><span class="n">gzFile</span><span class="w"> </span><span class="n">fIn</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iLineLen</span><span class="o">=</span><span class="n">MAX_LINE2</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Construcor for opened file.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">fIn</span></code></dt><dd><p>File handle to an opened text file.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iLineLen</span></code></dt><dd><p>Size of internal line buffer</p>
+</dd>
+</dl>
+</section>
+<section id="destructor">
+<h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="o">~</span><span class="n">LineReader_std</span><span class="p">();</span><span class="w"></span>
+<span class="o">~</span><span class="n">LineReader_gz</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The destructor.</p>
+</section>
+<section id="getnextline">
+<h3><code class="docutils literal notranslate"><span class="pre">getNextLine</span></code><a class="headerlink" href="#getnextline" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="nf">getNextLine</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iMode</span><span class="o">=</span><span class="n">GNL_IGNORE_ALL</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Get the next line.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">iMode</span></code></dt><dd><p>Accesss mode:</p>
+</dd>
+</dl>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>GNL_IGNORE_NONE</p></td>
+<td><p>0</p></td>
+<td><p>pass every line</p></td>
+</tr>
+<tr class="row-even"><td><p>GNL_IGNORE_BLANKS</p></td>
+<td><p>1</p></td>
+<td><p>drop blank lines</p></td>
+</tr>
+<tr class="row-odd"><td><p>GNL_IGNORE_COMMENTS</p></td>
+<td><p>2</p></td>
+<td><p>drop #-comment lines</p></td>
+</tr>
+<tr class="row-even"><td><p>GNL_IGNORE_MATCOMM</p></td>
+<td><p>4</p></td>
+<td><p>drop %-comment lines</p></td>
+</tr>
+<tr class="row-odd"><td><p>GNL_TRIM</p></td>
+<td><p>8</p></td>
+<td><p>trim all lines</p></td>
+</tr>
+<tr class="row-even"><td><p>GNL_IGNORE_ALL</p></td>
+<td><p>15</p></td>
+<td><p>pass non-blank, non-comment lines and trim them</p></td>
+</tr>
+</tbody>
+</table>
+<p>Returns the next line.</p>
+</section>
+<section id="read">
+<h3><code class="docutils literal notranslate"><span class="pre">read</span></code><a class="headerlink" href="#read" title="Permalink to this heading">¶</a></h3>
+<p>(<code class="docutils literal notranslate"><span class="pre">LineReader_std</span></code> and <code class="docutils literal notranslate"><span class="pre">LineReader_gz</span></code>)</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">uint</span><span class="w"> </span><span class="nf">read</span><span class="p">(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">pBuf</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="n">iSize</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Read <code class="docutils literal notranslate"><span class="pre">iSize</span></code> characters into <code class="docutils literal notranslate"><span class="pre">pBuf</span></code>.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">pBuf</span></code></dt><dd><p>Buffer to read file contentrs into (must have a size of at least <cite>iSize</cite> bytes)</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iSize</span></code></dt><dd><p>Number of bytes to read.</p>
+</dd>
+</dl>
+<p>Returns number of bytes read.</p>
+</section>
+<section id="seek">
+<h3><code class="docutils literal notranslate"><span class="pre">seek</span></code><a class="headerlink" href="#seek" title="Permalink to this heading">¶</a></h3>
+<p>(<code class="docutils literal notranslate"><span class="pre">LineReader_std</span></code> and <code class="docutils literal notranslate"><span class="pre">LineReader_gz</span></code>)</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">seek</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">offset</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">whence</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Move to a particular position in the file.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">offset</span></code></dt><dd><p>Number of bytes to move.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">whence</span></code></dt><dd><p>Starting point and direction:</p>
+</dd>
+</dl>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>SEEK_SET</p></td>
+<td><p>move <code class="docutils literal notranslate"><span class="pre">offset</span></code> forward from the beginning of the file</p></td>
+</tr>
+<tr class="row-even"><td><p>SEEK_END</p></td>
+<td><p>move <code class="docutils literal notranslate"><span class="pre">offset</span></code> backward from the end of the file</p></td>
+</tr>
+<tr class="row-odd"><td><p>SEEK_CUR</p></td>
+<td><p>move <code class="docutils literal notranslate"><span class="pre">offset</span></code> forward from the current position</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="tell">
+<h3><code class="docutils literal notranslate"><span class="pre">tell</span></code><a class="headerlink" href="#tell" title="Permalink to this heading">¶</a></h3>
+<p>(<code class="docutils literal notranslate"><span class="pre">LineReader_std</span></code> and <code class="docutils literal notranslate"><span class="pre">LineReader_gz</span></code>)</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">long</span><span class="w"> </span><span class="nf">tell</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Returns the current position in the file.</p>
+</section>
+<section id="iseof">
+<h3><code class="docutils literal notranslate"><span class="pre">isEoF</span></code><a class="headerlink" href="#iseof" title="Permalink to this heading">¶</a></h3>
+<p>(<code class="docutils literal notranslate"><span class="pre">LineReader_std</span></code> and <code class="docutils literal notranslate"><span class="pre">LineReader_gz</span></code>)</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="nf">isEoF</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Returns <code class="docutils literal notranslate"><span class="pre">true</span></code> if then of the file has been reached.</p>
+</section>
+<section id="isready">
+<h3><code class="docutils literal notranslate"><span class="pre">isReady</span></code><a class="headerlink" href="#isready" title="Permalink to this heading">¶</a></h3>
+<p>(<code class="docutils literal notranslate"><span class="pre">LineReader_std</span></code> and <code class="docutils literal notranslate"><span class="pre">LineReader_gz</span></code>)</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="nf">isReady</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Returns true if the LineReader is ready.</p>
+<section id="example">
+<h4>Example<a class="headerlink" href="#example" title="Permalink to this heading">¶</a></h4>
+<p>Compile with</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>g++ lr_example.cpp LineReader.cpp stdstrutils.cpp stdstrutilsT.h strutils.cpp --std<span class="o">=</span>c++20 -lz -o lr_example
+</pre></div>
+</div>
+<p>This example reads the lines of a file and prints the lines with a prepended line number.</p>
+<p>Code for <code class="docutils literal notranslate"><span class="pre">lr_example.cpp</span></code>:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cstdio&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span><span class="cp"></span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;LineReader.h&quot;</span><span class="cp"></span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iArgC</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">apArgV</span><span class="p">[])</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">iArgC</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">LineReader</span><span class="w"> </span><span class="o">*</span><span class="n">pLR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LineReader_std</span><span class="o">::</span><span class="n">createInstance</span><span class="p">(</span><span class="n">apArgV</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="s">&quot;rt&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">pLR</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">pLine</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pLR</span><span class="o">-&gt;</span><span class="n">getNextLine</span><span class="p">(</span><span class="n">GNL_IGNORE_NONE</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="k">while</span><span class="w"> </span><span class="p">((</span><span class="n">pLine</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">pLR</span><span class="o">-&gt;</span><span class="n">isEoF</span><span class="p">()))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;[%05d] %s&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">,</span><span class="w"> </span><span class="n">pLine</span><span class="p">);</span><span class="w"></span>
+<span class="w">                </span><span class="n">pLine</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pLR</span><span class="o">-&gt;</span><span class="n">getNextLine</span><span class="p">(</span><span class="n">GNL_IGNORE_NONE</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">delete</span><span class="w"> </span><span class="n">pLR</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Usage: %s &lt;text-file&gt;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">apArgV</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">LineReader</a><ul>
+<li><a class="reference internal" href="#public-methods">Public Methods</a><ul>
+<li><a class="reference internal" href="#createinstance"><code class="docutils literal notranslate"><span class="pre">createInstance</span></code></a></li>
+<li><a class="reference internal" href="#id1"><code class="docutils literal notranslate"><span class="pre">createInstance</span></code></a></li>
+<li><a class="reference internal" href="#constructor"><code class="docutils literal notranslate"><span class="pre">constructor</span></code></a></li>
+<li><a class="reference internal" href="#id2"><code class="docutils literal notranslate"><span class="pre">constructor</span></code></a></li>
+<li><a class="reference internal" href="#destructor"><code class="docutils literal notranslate"><span class="pre">destructor</span></code></a></li>
+<li><a class="reference internal" href="#getnextline"><code class="docutils literal notranslate"><span class="pre">getNextLine</span></code></a></li>
+<li><a class="reference internal" href="#read"><code class="docutils literal notranslate"><span class="pre">read</span></code></a></li>
+<li><a class="reference internal" href="#seek"><code class="docutils literal notranslate"><span class="pre">seek</span></code></a></li>
+<li><a class="reference internal" href="#tell"><code class="docutils literal notranslate"><span class="pre">tell</span></code></a></li>
+<li><a class="reference internal" href="#iseof"><code class="docutils literal notranslate"><span class="pre">isEoF</span></code></a></li>
+<li><a class="reference internal" href="#isready"><code class="docutils literal notranslate"><span class="pre">isReady</span></code></a><ul>
+<li><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="MessLogger.html"
+                          title="previous chapter">MessLogger</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="gzutils.html"
+                          title="next chapter">gzutils</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/code_doc/utils/LineReader.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="gzutils.html" title="gzutils"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="MessLogger.html" title="MessLogger"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../utils.html" >utils</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">LineReader</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+    </div>
+  </body>
+</html>

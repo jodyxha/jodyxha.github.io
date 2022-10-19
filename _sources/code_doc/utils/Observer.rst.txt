@@ -1,0 +1,36 @@
+.. _Observer_ref:
+
+Observer
+========
+
+.. rst-class:: hidden
+  
+    This page describes the class :index:`Observer``
+
+The pure virtual class ``Observer`` defines an interface for the observers in the :ref:`observer pattern<ObserverPattern_ref>`.
+
+It has to be used together with the :ref:`Observable<Observable_ref>` class.
+
+ 
+Code: `Observer.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/Observer.h>`_
+
+
+Public Methods
+--------------
+
+``notify``
+^^^^^^^^^^
+.. code-block:: c++
+
+     virtual void notify(Observable *pObs, int iType, const void *pCom)=0;
+
+``pObs``
+    Pointer to the observed object.
+
+``iType``
+    Type of the notification (an integer).
+
+``pCom``
+    Pointer to some data which has to be cast to the correct type.
+
+This method is called by an ``Observable`` object.

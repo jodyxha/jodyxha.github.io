@@ -1,0 +1,459 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>QDFArray &#8212; QHG4 4.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jody.css" />
+    
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    
+    <link rel="shortcut icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="qhgXMLNode and qhgXMLTree" href="qhgXML.html" />
+    <link rel="prev" title="QDFUtils Constants" href="QDFUtilConsts.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="qhgXML.html" title="qhgXMLNode and qhgXMLTree"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="QDFUtilConsts.html" title="QDFUtils Constants"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../io.html" accesskey="U">io</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">QDFArray</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="qdfarray">
+<h1>QDFArray<a class="headerlink" href="#qdfarray" title="Permalink to this heading">¶</a></h1>
+<p class="hidden">This page desctibes the class <span class="target" id="index-0"></span>QDFArray</p>
+<p>The classe <code class="docutils literal notranslate"><span class="pre">QDFArray</span></code> contains functions to simplify reading of one-dimensional data sets (arrays) from  QDF files.</p>
+<p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/io/QDFArray.h">QDFArray.h</a>, <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/io/QDFArray.cpp">QDFArray.cpp</a></p>
+<section id="public-methods">
+<h2>Public Methods<a class="headerlink" href="#public-methods" title="Permalink to this heading">¶</a></h2>
+<section id="create">
+<h3><code class="docutils literal notranslate"><span class="pre">create</span></code><a class="headerlink" href="#create" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="n">QDFArray</span><span class="w"> </span><span class="o">*</span><span class="nf">create</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sQDFFile</span><span class="p">);</span><span class="w"></span>
+<span class="k">static</span><span class="w"> </span><span class="n">QDFArray</span><span class="w"> </span><span class="o">*</span><span class="nf">create</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hFile</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Create a <code class="docutils literal notranslate"><span class="pre">QDFArray</span></code> object for the specified file.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">hFile</span></code></dt><dd><p>HDF handle to a qdf file.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sQDFFile</span></code></dt><dd><p>Name of the qdf file.</p>
+</dd>
+</dl>
+<p>Returns  a <code class="docutils literal notranslate"><span class="pre">QDFArray</span></code> object on success, NULL on failure.</p>
+</section>
+<section id="destructor">
+<h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="o">~</span><span class="n">QDFArray</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Closes opened HDF resources (groups, data sets, data spaces, data types).</p>
+</section>
+<section id="init">
+<h3><code class="docutils literal notranslate"><span class="pre">init</span></code><a class="headerlink" href="#init" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">init</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sQDFFile</span><span class="p">);</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">init</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hFile</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Open and check file.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">hFile</span></code></dt><dd><p>HDF handle to a qdf file.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sQDFFile</span></code></dt><dd><p>Name of the qdf file.</p>
+</dd>
+</dl>
+<p>The first version calls the second version after opening the qdf file.</p>
+<p>Returns 0 on success, -1 on failure.</p>
+</section>
+<section id="openarray">
+<h3><code class="docutils literal notranslate"><span class="pre">openArray</span></code><a class="headerlink" href="#openarray" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// open dataset given in path (&quot;group1/.../groupN/dataset&quot;)</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">openArray</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sPathToDataset</span><span class="p">);</span><span class="w"></span>
+
+<span class="c1">// open dataset named &#39;sDataSet&#39; in group &#39;sGroup&#39;</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">openArray</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sGroup</span><span class="p">,</span><span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sDataset</span><span class="p">);</span><span class="w"></span>
+
+<span class="c1">// open dataset &#39;sDataSet&#39; in subgroup &#39;sGroup2&#39; of group &#39;sGroup1&#39;</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">openArray</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sGroup1</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sGroup2</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sDataset</span><span class="p">);</span><span class="w"></span>
+
+<span class="c1">// open dataset &#39;sDataSet&#39;in &quot;vGroups[0]/.../vGroups[N]&quot;</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">openArray</span><span class="p">(</span><span class="n">stringvec</span><span class="w"> </span><span class="o">&amp;</span><span class="n">vGroups</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sDataSet</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Open the specified data set for reading. One of these methods must be called before accessing the array.</p>
+</section>
+<section id="getsize">
+<h3><code class="docutils literal notranslate"><span class="pre">getSize</span></code><a class="headerlink" href="#getsize" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">uint</span><span class="w"> </span><span class="nf">getSize</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Returns the size of the currently open array.</p>
+</section>
+<section id="getfirstslab">
+<h3><code class="docutils literal notranslate"><span class="pre">getFirstSlab</span></code><a class="headerlink" href="#getfirstslab" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="n">getFirstSlab</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="o">*</span><span class="n">pBuffer</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iSize</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sFieldName</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Read the first <code class="docutils literal notranslate"><span class="pre">iSize</span></code> elements of the array into the buffer.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">pBuffer</span></code></dt><dd><p>Pointer to a buffer that can hold at least <code class="docutils literal notranslate"><span class="pre">iSize</span></code> elements.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iSize</span></code></dt><dd><p>Number of elements to read (if the array has less than <code class="docutils literal notranslate"><span class="pre">iSize</span></code> elements, only these are read).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sFieldName</span></code></dt><dd><p>If specified, it is assumed that the opened array has a compound data type, and one of the field’s names is <code class="docutils literal notranslate"><span class="pre">sFieldName</span></code>:</p>
+</dd>
+</dl>
+<div class="line-block">
+<div class="line">Returns the number of items read, or -1 on failure.</div>
+<div class="line">If this number is equal to <code class="docutils literal notranslate"><span class="pre">iSize</span></code>, there are possibly more items to be retrieved (s. <code class="docutils literal notranslate"><span class="pre">getNextSlab</span></code>).</div>
+</div>
+</section>
+<section id="getnextslab">
+<h3><code class="docutils literal notranslate"><span class="pre">getNextSlab</span></code><a class="headerlink" href="#getnextslab" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="n">getNextSlab</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="o">*</span><span class="n">pBuffer</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iSize</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Gets the next <code class="docutils literal notranslate"><span class="pre">iSize</span></code> elements of the array into the buffer.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">pBuffer</span></code></dt><dd><p>Pointer to a buffer that can hold at least <code class="docutils literal notranslate"><span class="pre">iSize</span></code> elements.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iSize</span></code></dt><dd><p>Number of elements to read (if the array has less than <code class="docutils literal notranslate"><span class="pre">iSize</span></code> elements left, only these are read).</p>
+</dd>
+</dl>
+<div class="line-block">
+<div class="line">Returns the number of items read, or -1 on failure.</div>
+<div class="line">If this number is equal to <code class="docutils literal notranslate"><span class="pre">iSize</span></code>, there are possibly more items to be retrieved (s. <code class="docutils literal notranslate"><span class="pre">getNextSlab</span></code>);</div>
+<div class="line">if it is 0 there are no more elements left.</div>
+</div>
+</section>
+<section id="closearray">
+<h3><code class="docutils literal notranslate"><span class="pre">closeArray</span></code><a class="headerlink" href="#closearray" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w">  </span><span class="nf">closeArray</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Close the current array and free resources.</p>
+</section>
+<section id="gettimestep">
+<h3><code class="docutils literal notranslate"><span class="pre">getTimeStep</span></code><a class="headerlink" href="#gettimestep" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">float</span><span class="w"> </span><span class="nf">getTimeStep</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Returns the value of time stamp attribute of the qdf file.</p>
+</section>
+</section>
+<section id="protected-methods">
+<h2>Protected Methods<a class="headerlink" href="#protected-methods" title="Permalink to this heading">¶</a></h2>
+<section id="constructor">
+<h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#constructor" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">QDFArray</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The constructor.</p>
+</section>
+<section id="readslab">
+<h3><code class="docutils literal notranslate"><span class="pre">readSlab</span></code><a class="headerlink" href="#readslab" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="n">readSlab</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="o">*</span><span class="n">pBuffer</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Does the actual reading of the data from the qdf file.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">pBuffer</span></code></dt><dd><p>Pointer to a buffer that can hold at least <code class="docutils literal notranslate"><span class="pre">iSize</span></code> elements.</p>
+</dd>
+</dl>
+<p>Returns the number of elements read, or -1 on failure.</p>
+</section>
+<section id="setdatatype">
+<h3><code class="docutils literal notranslate"><span class="pre">setDataType</span></code><a class="headerlink" href="#setdatatype" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">setDataType</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sFieldName</span><span class="p">,</span><span class="w"> </span><span class="n">hid_t</span><span class="w"> </span><span class="n">hBaseType</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iSize</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Sets the data type of the array. For a field of a compound array the data type is more complex than a simple numeric type.</p>
+</section>
+</section>
+<section id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this heading">¶</a></h2>
+<p>In this example, a QDF array is used to read an environment array of a qdf file in one go, then it reads the field with specified name  in a (compound) array in blocks of a fixed size.</p>
+<p>Compile with</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>g++ qdfa_example.cpp QDFArray.cpp QDFUtils.cpp -I ../utils -L ../utils -lUtils -lhdf5 -std<span class="o">=</span>c++20
+</pre></div>
+</div>
+<p>Code for <code class="docutils literal notranslate"><span class="pre">qdfa_example</span></code></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cstdio&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span><span class="cp"></span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;hdf5.h&gt;</span><span class="cp"></span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;stdstrutils.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;stdstrutilsT.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;QDFUtils.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;QDFArrayT.h&quot;</span><span class="cp"></span>
+
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iArgC</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">apArgV</span><span class="p">[])</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">iResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sQDFFile</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sDSPathEnv</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sDSPathPop</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sDSFieldPop</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">iArgC</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">sQDFFile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">apArgV</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span><span class="w"></span>
+<span class="w">        </span><span class="n">sDSPathEnv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">apArgV</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">iArgC</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">sDSPathPop</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">apArgV</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span><span class="w"></span>
+<span class="w">            </span><span class="n">sDSFieldPop</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">apArgV</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">QDFArray</span><span class="w"> </span><span class="o">*</span><span class="n">pQA</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">QDFArray</span><span class="o">::</span><span class="n">create</span><span class="p">(</span><span class="n">sQDFFile</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">pQA</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">            </span><span class="c1">// read specified dataset in one go</span>
+<span class="w">            </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sTitle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stdsprintf</span><span class="p">(</span><span class="s">&quot;Read all elements of data set [%s] in file [%s] in one go</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sDSPathEnv</span><span class="p">,</span><span class="w"> </span><span class="n">sQDFFile</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sUnderline</span><span class="p">(</span><span class="n">sTitle</span><span class="p">.</span><span class="n">size</span><span class="p">(),</span><span class="w"> </span><span class="sc">&#39;-&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="n">stdprintf</span><span class="p">(</span><span class="n">sTitle</span><span class="o">+</span><span class="n">sUnderline</span><span class="o">+</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">iResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pQA</span><span class="o">-&gt;</span><span class="n">openArray</span><span class="p">(</span><span class="n">sDSPathEnv</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">iResult</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">uint</span><span class="w"> </span><span class="n">iSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pQA</span><span class="o">-&gt;</span><span class="n">getSize</span><span class="p">();</span><span class="w"></span>
+<span class="w">                </span><span class="n">stdprintf</span><span class="p">(</span><span class="s">&quot;The array [%s] has size %u</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sDSPathEnv</span><span class="p">,</span><span class="w"> </span><span class="n">iSize</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">                </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">pBuf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">double</span><span class="p">[</span><span class="n">iSize</span><span class="p">];</span><span class="w"></span>
+
+<span class="w">                </span><span class="kt">int</span><span class="w"> </span><span class="n">iSum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">                </span><span class="kt">int</span><span class="w"> </span><span class="n">iCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pQA</span><span class="o">-&gt;</span><span class="n">getFirstSlab</span><span class="p">(</span><span class="n">pBuf</span><span class="p">,</span><span class="w"> </span><span class="n">iSize</span><span class="p">);</span><span class="w"></span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">iCount</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="n">stdprintf</span><span class="p">(</span><span class="s">&quot;Have read %d of %u elements from [%s]:</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">iCount</span><span class="p">,</span><span class="w"> </span><span class="n">iSize</span><span class="p">,</span><span class="w"> </span><span class="n">sDSPathEnv</span><span class="p">);</span><span class="w"></span>
+<span class="w">                    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">iCount</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="n">iSize</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                        </span><span class="c1">// show the 10 first elements</span>
+<span class="w">                        </span><span class="kt">int</span><span class="w"> </span><span class="n">iShow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"></span>
+<span class="w">                        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">iShow</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                            </span><span class="n">stdprintf</span><span class="p">(</span><span class="s">&quot;  %f&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">pBuf</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span><span class="w"></span>
+<span class="w">                        </span><span class="p">}</span><span class="w"></span>
+<span class="w">                        </span><span class="n">stdprintf</span><span class="p">(</span><span class="s">&quot; ...</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">                        </span><span class="n">iSum</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">iCount</span><span class="p">;</span><span class="w"></span>
+<span class="w">                        </span><span class="n">iResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">                    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                        </span><span class="n">stdprintf</span><span class="p">(</span><span class="s">&quot;Couldn&#39;t reat all %u elements from array</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">iSize</span><span class="p">);</span><span class="w"></span>
+<span class="w">                        </span><span class="n">iResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span><span class="w"></span>
+<span class="w">                    </span><span class="p">}</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="n">stdprintf</span><span class="p">(</span><span class="s">&quot;Error reading data from [%s]</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sDSPathEnv</span><span class="p">);</span><span class="w"></span>
+<span class="w">                    </span><span class="n">iResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">                </span><span class="k">delete</span><span class="p">[]</span><span class="w"> </span><span class="n">pBuf</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">                </span><span class="n">pQA</span><span class="o">-&gt;</span><span class="n">closeArray</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">stdprintf</span><span class="p">(</span><span class="s">&quot;couldn&#39;t open array in [%s]</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sDSPathEnv</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">sDSPathPop</span><span class="p">.</span><span class="n">empty</span><span class="p">()</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="n">sDSFieldPop</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">                </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">BLOCK_SIZE</span><span class="o">=</span><span class="mi">1000</span><span class="p">;</span><span class="w"></span>
+<span class="w">                </span><span class="n">stdprintf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">                </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sTitle2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stdsprintf</span><span class="p">(</span><span class="s">&quot;Read all fields [%s] of data set [%s] in file [%s] in blocks of size [%d]</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sDSFieldPop</span><span class="p">,</span><span class="w"> </span><span class="n">sDSPathEnv</span><span class="p">,</span><span class="w"> </span><span class="n">sQDFFile</span><span class="p">,</span><span class="w"> </span><span class="n">BLOCK_SIZE</span><span class="p">);</span><span class="w"></span>
+<span class="w">                </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sUnderline2</span><span class="p">(</span><span class="n">sTitle2</span><span class="p">.</span><span class="n">size</span><span class="p">(),</span><span class="w"> </span><span class="sc">&#39;-&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="w">                </span><span class="n">stdprintf</span><span class="p">(</span><span class="n">sTitle2</span><span class="o">+</span><span class="n">sUnderline2</span><span class="o">+</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">                </span><span class="c1">// read specified field in data set in blocks</span>
+<span class="w">                </span><span class="n">iResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pQA</span><span class="o">-&gt;</span><span class="n">openArray</span><span class="p">(</span><span class="n">sDSPathPop</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">iResult</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">                    </span><span class="n">uint</span><span class="w"> </span><span class="n">iSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pQA</span><span class="o">-&gt;</span><span class="n">getSize</span><span class="p">();</span><span class="w"></span>
+<span class="w">                    </span><span class="n">stdrintf</span><span class="p">(</span><span class="s">&quot;The array [%s] has size %u</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sDSPathPop</span><span class="p">,</span><span class="w"> </span><span class="n">iSize</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">                    </span><span class="c1">// we assume that the specified field has type long</span>
+<span class="w">                    </span><span class="kt">long</span><span class="w"> </span><span class="o">*</span><span class="n">pBuf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">long</span><span class="p">[</span><span class="n">BLOCK_SIZE</span><span class="p">];</span><span class="w"></span>
+
+<span class="w">                    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">s1</span><span class="p">;</span><span class="w"></span>
+<span class="w">                    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">s2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stdsprintf</span><span class="p">(</span><span class="s">&quot; from [%s] (field [%s])&quot;</span><span class="p">,</span><span class="w">  </span><span class="n">sDSPathPop</span><span class="p">,</span><span class="w"> </span><span class="n">sDSFieldPop</span><span class="p">);</span><span class="w"></span>
+<span class="w">                    </span><span class="kt">int</span><span class="w"> </span><span class="n">iCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pQA</span><span class="o">-&gt;</span><span class="n">getFirstSlab</span><span class="p">(</span><span class="n">pBuf</span><span class="p">,</span><span class="w"> </span><span class="n">BLOCK_SIZE</span><span class="p">,</span><span class="w"> </span><span class="n">sDSFieldPop</span><span class="p">);</span><span class="w"></span>
+<span class="w">                    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">iCount</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="w">                        </span><span class="n">stdprintf</span><span class="p">(</span><span class="s">&quot;Read %s%d elements%s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">s1</span><span class="p">,</span><span class="w"> </span><span class="n">iCount</span><span class="p">,</span><span class="w"> </span><span class="n">s2</span><span class="p">);</span><span class="w"></span>
+<span class="w">                        </span><span class="n">s1</span><span class="o">=</span><span class="s">&quot;the next &quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">                        </span><span class="n">s2</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">                        </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">SHOW_SIZE</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="o">&lt;</span><span class="n">iCount</span><span class="p">)</span><span class="o">?</span><span class="mi">10</span><span class="o">:</span><span class="n">iCount</span><span class="p">;</span><span class="w"></span>
+<span class="w">                        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">SHOW_SIZE</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                            </span><span class="n">stdprintf</span><span class="p">(</span><span class="s">&quot;  %ld&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">pBuf</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span><span class="w"></span>
+<span class="w">                        </span><span class="p">}</span><span class="w"></span>
+<span class="w">                        </span><span class="n">stdprintf</span><span class="p">(</span><span class="s">&quot; ...</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">                        </span><span class="n">iCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pQA</span><span class="o">-&gt;</span><span class="n">getNextSlab</span><span class="p">(</span><span class="n">pBuf</span><span class="p">,</span><span class="w"> </span><span class="n">iCount</span><span class="p">);</span><span class="w"></span>
+<span class="w">                    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">                    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">iCount</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                        </span><span class="n">stdprintf</span><span class="p">(</span><span class="s">&quot;Error during read</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">                        </span><span class="n">iResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span><span class="w"></span>
+<span class="w">                    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">                    </span><span class="n">pQA</span><span class="o">-&gt;</span><span class="n">closeArray</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">                    </span><span class="k">delete</span><span class="p">[]</span><span class="w"> </span><span class="n">pBuf</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">                </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="n">stdprintf</span><span class="p">(</span><span class="s">&quot;couldn&#39;t open array in [%s]</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sDSPathEnv</span><span class="p">);</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">delete</span><span class="w"> </span><span class="n">pQA</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">stdprintf</span><span class="p">(</span><span class="s">&quot;couldn&#39;t create QDFArray for file %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sQDFFile</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">stdprintf</span><span class="p">(</span><span class="s">&quot;usage: %s &lt;qdf-file&gt; &lt;dataset-path&gt;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">apArgV</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">iResult</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Sample output for qdf file <code class="docutils literal notranslate"><span class="pre">smallworld_20k.qdf</span></code> which contains a geography group with a dat set “Altitude” and a population subgroup <code class="docutils literal notranslate"><span class="pre">sapiens</span></code> whose array <code class="docutils literal notranslate"><span class="pre">AgentDataSet</span></code> contains the field “AgentID”.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ./a.out smallworld_20k.qdf Geography/Altitude /Populations/sapiens/AgentDataSet AgentID
+Read all elements of data <span class="nb">set</span> <span class="o">[</span>Geography/Altitude<span class="o">]</span> <span class="k">in</span> file <span class="o">[</span>smallworld_20k.qdf<span class="o">]</span> <span class="k">in</span> one go
+------------------------------------------------------------------------------------------
+The array <span class="o">[</span>Geography/Altitude<span class="o">]</span> has size <span class="m">162</span>
+Have <span class="nb">read</span> <span class="m">162</span> of <span class="m">162</span> elements from <span class="o">[</span>Geography/Altitude<span class="o">]</span>:
+<span class="m">1</span>.000000  <span class="m">1</span>.000000  <span class="m">1</span>.000000  <span class="m">1</span>.000000  <span class="m">1</span>.000000  <span class="m">1</span>.000000  <span class="m">1</span>.000000  <span class="m">1</span>.000000  <span class="m">1</span>.000000  <span class="m">1</span>.000000 ...
+
+
+Read all fields <span class="o">[</span>AgentID<span class="o">]</span> of data <span class="nb">set</span> <span class="o">[</span>Geography/Altitude<span class="o">]</span> <span class="k">in</span> file <span class="o">[</span>smallworld_20k.qdf<span class="o">]</span> <span class="k">in</span> blocks of size <span class="o">[</span><span class="m">2000</span><span class="o">]</span>
+-----------------------------------------------------------------------------------------------------------------
+The array <span class="o">[</span>/Populations/sapiens/AgentDataSet<span class="o">]</span> has size <span class="m">7033</span>
+Read <span class="m">2000</span> elements from <span class="o">[</span>/Populations/sapiens/AgentDataSet<span class="o">]</span> <span class="o">(</span>field <span class="o">[</span>AgentID<span class="o">])</span>
+  <span class="m">16004981</span>  <span class="m">15994433</span>  <span class="m">15979961</span>  <span class="m">15993209</span>  <span class="m">15982553</span>  <span class="m">15971321</span>  <span class="m">15994469</span>  <span class="m">15999545</span>  <span class="m">15987197</span>  <span class="m">6180796</span> ...
+Read the next <span class="m">2000</span> elements
+  <span class="m">6729661</span>  <span class="m">6687290</span>  <span class="m">6724333</span>  <span class="m">6691826</span>  <span class="m">6169780</span>  <span class="m">6729769</span>  <span class="m">6685779</span>  <span class="m">6707918</span>  <span class="m">6704678</span>  <span class="m">6201963</span> ...
+Read the next <span class="m">2000</span> elements
+  <span class="m">6494376</span>  <span class="m">6479221</span>  <span class="m">6424504</span>  <span class="m">15981005</span>  <span class="m">6499020</span>  <span class="m">6484836</span>  <span class="m">6538438</span>  <span class="m">6524867</span>  <span class="m">6524903</span>  <span class="m">6435951</span> ...
+Read the next <span class="m">1033</span> elements
+  <span class="m">6301606</span>  <span class="m">6305062</span>  <span class="m">6305098</span>  <span class="m">6305134</span>  <span class="m">6258408</span>  <span class="m">6282923</span>  <span class="m">6241165</span>  <span class="m">6304666</span>  <span class="m">6337640</span>  <span class="m">6304702</span> ...
+</pre></div>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">QDFArray</a><ul>
+<li><a class="reference internal" href="#public-methods">Public Methods</a><ul>
+<li><a class="reference internal" href="#create"><code class="docutils literal notranslate"><span class="pre">create</span></code></a></li>
+<li><a class="reference internal" href="#destructor"><code class="docutils literal notranslate"><span class="pre">destructor</span></code></a></li>
+<li><a class="reference internal" href="#init"><code class="docutils literal notranslate"><span class="pre">init</span></code></a></li>
+<li><a class="reference internal" href="#openarray"><code class="docutils literal notranslate"><span class="pre">openArray</span></code></a></li>
+<li><a class="reference internal" href="#getsize"><code class="docutils literal notranslate"><span class="pre">getSize</span></code></a></li>
+<li><a class="reference internal" href="#getfirstslab"><code class="docutils literal notranslate"><span class="pre">getFirstSlab</span></code></a></li>
+<li><a class="reference internal" href="#getnextslab"><code class="docutils literal notranslate"><span class="pre">getNextSlab</span></code></a></li>
+<li><a class="reference internal" href="#closearray"><code class="docutils literal notranslate"><span class="pre">closeArray</span></code></a></li>
+<li><a class="reference internal" href="#gettimestep"><code class="docutils literal notranslate"><span class="pre">getTimeStep</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#protected-methods">Protected Methods</a><ul>
+<li><a class="reference internal" href="#constructor"><code class="docutils literal notranslate"><span class="pre">constructor</span></code></a></li>
+<li><a class="reference internal" href="#readslab"><code class="docutils literal notranslate"><span class="pre">readSlab</span></code></a></li>
+<li><a class="reference internal" href="#setdatatype"><code class="docutils literal notranslate"><span class="pre">setDataType</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="QDFUtilConsts.html"
+                          title="previous chapter">QDFUtils Constants</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="qhgXML.html"
+                          title="next chapter">qhgXMLNode and qhgXMLTree</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/code_doc/io/QDFArray.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="qhgXML.html" title="qhgXMLNode and qhgXMLTree"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="QDFUtilConsts.html" title="QDFUtils Constants"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../io.html" >io</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">QDFArray</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+    </div>
+  </body>
+</html>

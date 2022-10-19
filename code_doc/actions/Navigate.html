@@ -1,0 +1,297 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Navigate &#8212; QHG4 4.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jody.css" />
+    
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <link rel="shortcut icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="MoveStats" href="MoveStats.html" />
+    <link rel="prev" title="ConfinedMove" href="ConfinedMove.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="MoveStats.html" title="MoveStats"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="ConfinedMove.html" title="ConfinedMove"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../actions.html" accesskey="U">actions</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Navigate</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="navigate">
+<span id="navigate-ref"></span><h1>Navigate<a class="headerlink" href="#navigate" title="Permalink to this heading">¶</a></h1>
+<p class="hidden">This page describes the class <span class="target" id="index-0"></span>Navigate</p>
+<p>The class <code class="docutils literal notranslate"><span class="pre">Navigate</span></code> is derived from <code class="docutils literal notranslate"><span class="pre">Action</span></code> and handles the sea crossing of agents.
+It manages the “bridges” between landmasses and calculates the crossing probabilities using a sampling distance <span class="math notranslate nohighlight">\(d_0\)</span>, a crossing probability <span class="math notranslate nohighlight">\(p_0\)</span> for that distance and a decay <span class="math notranslate nohighlight">\(D\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[p_C = A \cdot e^{D * d_0}\]</div>
+<p>where <span class="math notranslate nohighlight">\(A =  p_0/e^{D*d_0}\)</span></p>
+<p>In other words the probability for a crossing diminishes with growing distance between land masses.
+The values <span class="math notranslate nohighlight">\(d_0\)</span>, <span class="math notranslate nohighlight">\(p_0\)</span> and <span class="math notranslate nohighlight">\(D\)</span> model the population’s ability to navigate the open sea.</p>
+<p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/Navigate.h">Navigate.h</a> <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/Navigate.cpp">Navigate.cpp</a></p>
+<p><strong>Attributes:</strong></p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ATTR_NAVIGATE_NAME</span></code></p></td>
+<td><p>“Navigate”</p></td>
+<td><p>action name</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ATTR_NAVIGATE_DECAY_NAME</span></code></p></td>
+<td><p>“Navigate_decay”</p></td>
+<td><p>probability decay</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ATTR_NAVIGATE_DIST0_NAME</span></code></p></td>
+<td><p>“Navigate_dist0”</p></td>
+<td><p>sampling distance</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ATTR_NAVIGATE_PROB0_NAME</span></code></p></td>
+<td><p>“Navigate_prob0”</p></td>
+<td><p>probability for sampling distance</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ATTR_NAVIGATE_MIN_DENS_NAME</span></code></p></td>
+<td><p>“Navigate_min_dens”</p></td>
+<td><p>minimum density for crossing</p></td>
+</tr>
+</tbody>
+</table>
+<section id="public-methods">
+<h2>Public Methods<a class="headerlink" href="#public-methods" title="Permalink to this heading">¶</a></h2>
+<section id="constructor">
+<h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#constructor" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Navigate</span><span class="p">(</span><span class="n">SPopulation</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="o">*</span><span class="n">pPop</span><span class="p">,</span><span class="w"> </span><span class="n">SCellGrid</span><span class="w"> </span><span class="o">*</span><span class="n">pCG</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sID</span><span class="p">,</span><span class="w"> </span><span class="n">WELL512</span><span class="w"> </span><span class="o">**</span><span class="n">apWELL</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">pPop</span></code></dt><dd><p>A pointer to the <a class="reference internal" href="../core/SPopulation.html#spopulation-ref"><span class="std std-ref">SPopulation</span></a> object performing this action.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">pCG</span></code></dt><dd><p>A pointer to the  <a class="reference internal" href="../core/SCellGrid.html#scellgrid-ref"><span class="std std-ref">SCellGrid</span></a> object on which the simulation runs.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sID</span></code></dt><dd><p>An ID for this action.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">apWELL</span></code></dt><dd><p>A pointer to an array of <a class="reference internal" href="../utils/WELL512.html#well512-ref"><span class="std std-ref">WELL512 random number generators</span></a> (one for each thread).</p>
+</dd>
+</dl>
+<p>Adds itself to the observers of the population.</p>
+</section>
+<section id="destructor">
+<h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="o">~</span><span class="n">Navigate</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Some cleaning up.</p>
+</section>
+<section id="recalculate">
+<h3><code class="docutils literal notranslate"><span class="pre">recalculate</span></code><a class="headerlink" href="#recalculate" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">recalculate</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Recalculate the crossing probabilities for the bridges.</p>
+</section>
+<section id="cleanup">
+<h3><code class="docutils literal notranslate"><span class="pre">cleanup</span></code><a class="headerlink" href="#cleanup" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">cleanup</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Clearing aome containiers and deletingh some allocated arrays.</p>
+</section>
+<section id="execute">
+<h3><code class="docutils literal notranslate"><span class="pre">execute</span></code><a class="headerlink" href="#execute" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">execute</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iA</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">fT</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">iAgentIndex</span></code></dt><dd><p>Current agent’s index.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">fT</span></code></dt><dd><p>Current simulation step.</p>
+</dd>
+</dl>
+<div class="line-block">
+<div class="line">This method is called for all agents (in parallel).</div>
+<div class="line">For each agent and each crossing originating from its cell, a random number is drawn. If it is less than the calculated crossing probability for this bridge, it is moved to the endpoint of the crossing.</div>
+</div>
+</section>
+<section id="preloop">
+<h3><code class="docutils literal notranslate"><span class="pre">preLoop</span></code><a class="headerlink" href="#preloop" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">preLoop</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Makes sure there is a <code class="docutils literal notranslate"><span class="pre">Geography</span></code> object and a <code class="docutils literal notranslate"><span class="pre">Navigation</span></code> object.</p>
+</section>
+<section id="extractattributesqdf">
+<h3><code class="docutils literal notranslate"><span class="pre">extractAttributesQDF</span></code><a class="headerlink" href="#extractattributesqdf" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">extractAttributesQDF</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hSpeciesGroup</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">hSpeciesGroup</span></code></dt><dd><p>HDF handle for the species group to read from.</p>
+</dd>
+</dl>
+<p>This method reads the action’s attributes from the specified group in a QDF file.</p>
+</section>
+<section id="writeattributesqdf">
+<h3><code class="docutils literal notranslate"><span class="pre">writeAttributesQDF</span></code><a class="headerlink" href="#writeattributesqdf" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">writeAttributesQDF</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hSpeciesGroup</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">hSpeciesGroup</span></code></dt><dd><p>HDF handle for the species group to write to.</p>
+</dd>
+</dl>
+<p>This method writes the action’s attributes to the specified group in a QDF file.</p>
+</section>
+<section id="trygetattributes">
+<h3><code class="docutils literal notranslate"><span class="pre">tryGetAttributes</span></code><a class="headerlink" href="#trygetattributes" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">tryGetAttributes</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">ModuleComplex</span><span class="w"> </span><span class="o">*</span><span class="n">pMC</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">pMC</span></code></dt><dd><p>A <code class="docutils literal notranslate"><span class="pre">ModuleComplex</span></code> object.</p>
+</dd>
+</dl>
+<p>Extracts the action’s attributes from the <code class="docutils literal notranslate"><span class="pre">ModuleComplex</span></code> object.</p>
+</section>
+<section id="notify">
+<h3><code class="docutils literal notranslate"><span class="pre">notify</span></code><a class="headerlink" href="#notify" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">notify</span><span class="p">(</span><span class="n">Observable</span><span class="w"> </span><span class="o">*</span><span class="n">pObs</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iEvent</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">pData</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">pObs</span></code></dt><dd><p>Pointer to the observed object.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iType</span></code></dt><dd><p>Type of the notification (an integer).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">pCom</span></code></dt><dd><p>pointer to some data which has to be cast to the correct type.</p>
+</dd>
+</dl>
+<p>This method is an implementation of the <a class="reference internal" href="../utils/Observer.html#observer-ref"><span class="std std-ref">Observer</span></a> interfacxe, and is called by an <a class="reference internal" href="../utils/Observable.html#observable-ref"><span class="std std-ref">Observable</span></a> object. This action is only interested in events related to <code class="docutils literal notranslate"><span class="pre">Geography</span></code> or <code class="docutils literal notranslate"><span class="pre">Navigation</span></code>.</p>
+</section>
+<section id="isequal">
+<h3><code class="docutils literal notranslate"><span class="pre">isEqual</span></code><a class="headerlink" href="#isequal" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="nf">isEqual</span><span class="p">(</span><span class="n">Action</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="o">*</span><span class="n">pAction</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">bStrict</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">pAction</span></code></dt><dd><p>Pointer to an action object to compare with this.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">bStrict</span></code></dt><dd><p>Strictness of comparisons (ignored here).</p>
+</dd>
+</dl>
+<p><code class="docutils literal notranslate"><span class="pre">pAction</span></code> is equal to <code class="docutils literal notranslate"><span class="pre">this</span></code>, if it is a <code class="docutils literal notranslate"><span class="pre">Navigate</span></code> object and all their attributes match.</p>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Navigate</a><ul>
+<li><a class="reference internal" href="#public-methods">Public Methods</a><ul>
+<li><a class="reference internal" href="#constructor"><code class="docutils literal notranslate"><span class="pre">constructor</span></code></a></li>
+<li><a class="reference internal" href="#destructor"><code class="docutils literal notranslate"><span class="pre">destructor</span></code></a></li>
+<li><a class="reference internal" href="#recalculate"><code class="docutils literal notranslate"><span class="pre">recalculate</span></code></a></li>
+<li><a class="reference internal" href="#cleanup"><code class="docutils literal notranslate"><span class="pre">cleanup</span></code></a></li>
+<li><a class="reference internal" href="#execute"><code class="docutils literal notranslate"><span class="pre">execute</span></code></a></li>
+<li><a class="reference internal" href="#preloop"><code class="docutils literal notranslate"><span class="pre">preLoop</span></code></a></li>
+<li><a class="reference internal" href="#extractattributesqdf"><code class="docutils literal notranslate"><span class="pre">extractAttributesQDF</span></code></a></li>
+<li><a class="reference internal" href="#writeattributesqdf"><code class="docutils literal notranslate"><span class="pre">writeAttributesQDF</span></code></a></li>
+<li><a class="reference internal" href="#trygetattributes"><code class="docutils literal notranslate"><span class="pre">tryGetAttributes</span></code></a></li>
+<li><a class="reference internal" href="#notify"><code class="docutils literal notranslate"><span class="pre">notify</span></code></a></li>
+<li><a class="reference internal" href="#isequal"><code class="docutils literal notranslate"><span class="pre">isEqual</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="ConfinedMove.html"
+                          title="previous chapter">ConfinedMove</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="MoveStats.html"
+                          title="next chapter">MoveStats</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/code_doc/actions/Navigate.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="MoveStats.html" title="MoveStats"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="ConfinedMove.html" title="ConfinedMove"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../actions.html" >actions</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Navigate</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+    </div>
+  </body>
+</html>

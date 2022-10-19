@@ -1,0 +1,300 @@
+.. _L2List_ref:
+
+L2List
+======
+
+.. rst-class:: hidden
+
+   This page describes the class :index:`L2List`
+
+The class ``Test1`` is pure virtual.
+
+| The class ``L2List`` implements a doubly linked list.
+| In QHG4 it is mainly used to manage memory for the agent arrays.
+
+Inside a ``L2List`` there are two chains: ``ACTIVE`` and ``PASSIVE`` representing used and unused locations. 
+
+.. figure:: ../../../images/L2L_A1.png
+
+L2List is used by :ref:`LayerBuf <LayerBuf_ref>` and :ref`LBContoller<LBController_ref>`.
+
+Structures
+----------
+
+.. code-block:: c++
+
+    typedef struct {
+        int  iPrev;
+        int  iNext;
+    } L2Node;
+
+Representation of a node for the doubly linked list
+
+Code: `L2List.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/L2List.h>`_ , `L2List.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/L2List.cpp>`_
+
+Public Methods
+--------------
+
+``constructor``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    L2List(int iSize);
+
+Create a list with specified number of nodes.
+
+.. -----------------------------------------------------------------------------
+
+``constructor``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    L2List(const L2List *pL2L);
+
+The copy constructor
+
+.. -----------------------------------------------------------------------------
+
+``destructor``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    ~L2List();
+
+The destructor.
+
+.. -----------------------------------------------------------------------------
+
+``clear``
+^^^^^^^^^
+.. code-block:: c++
+
+    void clear();
+
+Clears the list (all nodes are moved to the PASSIVE chain)
+
+.. -----------------------------------------------------------------------------
+
+``reserveSpace2``
+^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    int reserveSpace2(uint iNum);
+
+Moves ``iNum`` nodes after the last ACTIVE node into the ACTIVE chain.
+ 
+
+``iNum``
+    Number of nodes to activate.
+
+Returns the index of the first node which was activated, or -1
+
+.. -----------------------------------------------------------------------------
+
+``getNumEndFree``
+^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    int getNumEndFree();
+
+Returns the number of nodes after the last ACTIVE node
+
+.. -----------------------------------------------------------------------------
+
+..  element management
+
+``addElement``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    int addElement();
+
+Remove a node to from the PASSIVE chain and add it to the ACTIVE chain.
+
+.. -----------------------------------------------------------------------------
+
+``removeElement``
+^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    int removeElement(int iEl);
+
+Remove the specified node to from the ACTIVE chain and add it to the PASSIVE chain.
+
+
+``iEl``
+    Index of node to be removed.
+    
+..  list traversal
+
+.. -----------------------------------------------------------------------------
+
+``getFirstIndex``
+^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    int getFirstIndex(uchar uState) const;
+
+Find index of first node in specified chain.
+
+``uState``
+    Must be either ACTIVE or PASSIVE.
+
+.. -----------------------------------------------------------------------------
+
+``getLastIndex``
+^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    int getLastIndex(uchar uState) const;
+
+Find index of last node in specified chain.
+
+.. -----------------------------------------------------------------------------
+
+``int getNext``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    int getNext(int iCur) const;
+
+Get index of the node following specified node in the L2List.
+
+``iCur``
+    Node index.
+
+.. -----------------------------------------------------------------------------
+
+``countOfState``
+^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    int countOfState(uchar uState);
+
+Count number of nodes in specified chain.
+
+``uState``
+    Must be either ACTIVE or PASSIVE.
+
+Returns count.
+
+.. -----------------------------------------------------------------------------
+
+.. for defragmentation
+
+``collectFragInfo``
+^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    uint collectFragInfo(uint iSize, uint *piHoles, uint *piActive);
+
+| Collects data used to defragment.
+| After defragmentation, both chains have contiguous nodes.
+| For this it gets the indexes of the first PASSIVE nodes, as well as the indexes of the lats ACTIVE nodes.
+| The highest index of the selected PASSIVE nodes is less than the lowest index of the selected PASSIVE nodes.
+
+
+Example:
+""""""""
+
+.. code-block:: c++
+
+    Linked list (x=ACTIVE, o=PASSIVE)
+    0         1         2
+    0123456789012345678901234567890                              
+    xxoxooxxxxoxooooxoxxxoooxxooooo
+
+    piHoles:
+       2  4  5 10 12 13
+    piActive:
+      25 24 20 19 18 16
+
+``iSize``
+    Size of the buffers ``piHoles`` and ``piActive``
+
+``piHole``
+     Array to hold the indexes of the first nodes in the PASSIVE chain.
+
+``piActive``
+     Array to hold the indexes of the first nodes in the ACTIVE chain.
+
+Returns the number of found holes, or ``iSize+1`` if there are mor than ``iSize`` holes.
+ 
+.. -----------------------------------------------------------------------------
+
+``defragment``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    int defragment(uint iSize, uint *piActive);
+
+Performs the actual defragmentation.
+
+``iSize``
+    Size of the buffer ``piActive``
+
+``piActive``
+     Array containing the non-contiguous nodes of the ACTIVE chain.
+
+.. -----------------------------------------------------------------------------
+
+``setState``
+^^^^^^^^^^^^
+.. code-block:: c++
+
+    int setState(uchar uState, uint iNum);
+
+Sets the state of node ``iNum`` to the specified state,
+
+``uState``
+    Must be either ACTIVE or PASSIVE.
+
+``iNum``
+    Index of the node to be mdified.
+
+.. -----------------------------------------------------------------------------
+
+``getBufSize``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    int getBufSize(int iDumpMode);
+
+Calculates the size of a buffer to hold the entire L2List data ina seriaized form.
+
+``iDumpMode``
+    Various modes for :ref:`dumping<dump_restore_ref>`. Possible values DUMP_MODE_FLAT or DUMP_MODE_SMART-
+
+Returns calculated size.
+
+.. -----------------------------------------------------------------------------
+
+``serialize``
+^^^^^^^^^^^^^
+.. code-block:: c++
+
+    uchar *serialize(uchar *pBuf);
+
+Serializes the L2List into ``pBuf``.
+
+``pBuf``
+    Buffer to serialize into.
+
+Returns pointer to one position after the end of the serialized data.
+
+.. -----------------------------------------------------------------------------
+
+  
+``deserialize``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    uchar *deserialize(uchar *pBuf);
+
+Creates L2List from serialized data. 
+    
+``pBuf``
+    Buffer containing serialized L2List data.
+
+Returns pointer to one position after the end of the serialized data.
+

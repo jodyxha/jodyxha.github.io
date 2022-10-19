@@ -1,0 +1,82 @@
+actions
+=======
+
+.. rst-class:: hidden
+
+   This page describes the directory :index:`actions`
+
+The directory ``actions`` contains classes pertaining to agent actions.
+
+| All action classes are derived from the abstract base class :ref:`Action<Action_ref>`.
+| Derived classes can implement the methods of ``Action.h`` for code that should be executed at the various phases of the simulation:
+
+``virtual preLoop()``
+    Code to be executed `before` the loop starts
+
+``virtual initialize(float fTime)``
+    Code to be executed at the beginning of each simulation step 
+
+``virtual int execute(int iAgentIndex, float fT)``
+    Code for the action itself. This method must be implemented with care, because it will run in parallel for all agents.
+
+``virtual int finalize()``
+    Code to be executed at the end of the simulations step, i.e. after the call to ``execute()``.
+
+``virtual int postLoop()``
+    Code to be executed at the end of the simulation.
+
+There are various other methods that can be implemented (see  :ref:`Action<Action_ref>`)
+
+An action can have an arbitrary number of attributes (numeric values, arrays, or strings), such as birth-rates, onset of fertility, or altitude preferences.
+The attributes for an action are passed to QHG by means of an :ref:`XML-file<pop_xml_ref>`. 
+
+**Action Base Class**
+
+.. toctree::
+   :maxdepth: 1
+        
+   actions/Action
+
+**Movement**
+ 
+.. toctree::
+   :maxdepth: 1
+
+   actions/RandomMove
+   actions/WeightedMove
+   actions/ConfinedMove
+   actions/Navigate
+   actions/MoveStats
+
+**Birth & Death**
+
+.. toctree::
+   :maxdepth: 1
+
+   actions/RandomPair
+   actions/Fertility
+   actions/LinearBirth
+   actions/LinearDeath
+   actions/Verhulst
+   actions/VerhulstVarK
+   actions/OldAgeDeath
+   actions/GetOld
+   
+
+..
+   actions/LinearBirthRel
+   actions/LinearDeathRel
+
+
+ 
+**Evaluators**  
+
+.. toctree::
+   :maxdepth: 1
+
+   actions/Evaluator
+   actions/MultiEvaluator
+   actions/ShareEvaluator
+   actions/SingleEvaluator
+
+        

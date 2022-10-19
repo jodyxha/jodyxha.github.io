@@ -1,0 +1,372 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Action &#8212; QHG4 4.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jody.css" />
+    
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    
+    <link rel="shortcut icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="RandomMove" href="RandomMove.html" />
+    <link rel="prev" title="actions" href="../actions.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="RandomMove.html" title="RandomMove"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../actions.html" title="actions"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../actions.html" accesskey="U">actions</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Action</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="action">
+<span id="action-ref"></span><h1>Action<a class="headerlink" href="#action" title="Permalink to this heading">¶</a></h1>
+<p class="hidden">This page describes the class <span class="target" id="index-0"></span>Action</p>
+<p>The class <code class="docutils literal notranslate"><span class="pre">Action</span></code> is an abstract base class from which all concrete actions must be derived.</p>
+<p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/Action.h">Action.h</a> <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/Action.cpp">Action.cpp</a></p>
+<section id="public-methods">
+<h2>Public Methods<a class="headerlink" href="#public-methods" title="Permalink to this heading">¶</a></h2>
+<section id="constructors">
+<h3><code class="docutils literal notranslate"><span class="pre">constructors</span></code><a class="headerlink" href="#constructors" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Action</span><span class="p">(</span><span class="n">SPopulation</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="o">*</span><span class="n">pPop</span><span class="p">,</span><span class="w"> </span><span class="n">SCellGrid</span><span class="w"> </span><span class="o">*</span><span class="n">pCG</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sActionName</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sID</span><span class="p">);</span><span class="w"></span>
+<span class="n">Action</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Initializes the class’s data.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">pPop</span></code></dt><dd><p>A pointer to the <a class="reference internal" href="../core/SPopulation.html#spopulation-ref"><span class="std std-ref">SPopulationy</span></a> object performing this action.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">pCG</span></code></dt><dd><p>A pointer to the  <a class="reference internal" href="../core/SCellGrid.html#scellgrid-ref"><span class="std std-ref">SCellGrid</span></a> object on which the simulation runs.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sActionName</span></code></dt><dd><p>Name of this action.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sID</span></code></dt><dd><p>An ID for this action.</p>
+</dd>
+</dl>
+</section>
+<section id="destructor">
+<h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">Action</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">};</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The destructor.</p>
+</section>
+<section id="preloop">
+<h3><code class="docutils literal notranslate"><span class="pre">preLoop</span></code><a class="headerlink" href="#preloop" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">preLoop</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>This method is called before the simulation loop begins.</p>
+</section>
+<section id="initialize">
+<h3><code class="docutils literal notranslate"><span class="pre">initialize</span></code><a class="headerlink" href="#initialize" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">initialize</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">fTime</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>This method is called at the beginning of a simulation step (i.e. before the <code class="docutils literal notranslate"><span class="pre">operator()</span></code> method is called for all agents).</p>
+<p>If not overwritten, this method does nothing and returns 0.</p>
+</section>
+<section id="execute">
+<h3><code class="docutils literal notranslate"><span class="pre">execute</span></code><a class="headerlink" href="#execute" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">execute</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iAgentIndex</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">fT</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">iAgentIndex</span></code></dt><dd><p>Current agent’s index.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">fT</span></code></dt><dd><p>Simulation time.</p>
+</dd>
+</dl>
+<div class="line-block">
+<div class="line">The method <code class="docutils literal notranslate"><span class="pre">execute()</span></code> is called in a parallel loop over all agents.</div>
+<div class="line">To avoid performance losses you should not use any parallelized sections in this method.</div>
+</div>
+<p>If not overwritten, this method does nothing and returns 0.</p>
+</section>
+<section id="finalize">
+<h3><code class="docutils literal notranslate"><span class="pre">finalize</span></code><a class="headerlink" href="#finalize" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">finalize</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">fTime</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>This method is called at the end of the simulation step (i.e. after the <code class="docutils literal notranslate"><span class="pre">execute()</span></code> method has been called for all agents).</p>
+<p>If not overwritten, this method does nothing and returns 0.</p>
+</section>
+<section id="postloop">
+<h3><code class="docutils literal notranslate"><span class="pre">postLoop</span></code><a class="headerlink" href="#postloop" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">postLoop</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>This method is calles after the loop has finished.</p>
+<p>If not overwritten, this method does nothing and returns 0.</p>
+</section>
+<section id="prewrite">
+<h3><code class="docutils literal notranslate"><span class="pre">preWrite</span></code><a class="headerlink" href="#prewrite" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">preWrite</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">fTime</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>This method is called before data is written to file. It can be used to preapre data for output.</p>
+<p>If not overwritten, this method does nothing and returns 0.</p>
+</section>
+<section id="extractattributesqdf">
+<h3><code class="docutils literal notranslate"><span class="pre">extractAttributesQDF</span></code><a class="headerlink" href="#extractattributesqdf" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">extractAttributesQDF</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hSpeciesGroup</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">hSpeciesGroup</span></code></dt><dd><p>HDF handle for the species group to read from.</p>
+</dd>
+</dl>
+<p>Reads the action specific attributes from file.</p>
+<p>If not overwritten, this method does nothing and returns 0.</p>
+</section>
+<section id="writeattributesqdf">
+<h3><code class="docutils literal notranslate"><span class="pre">writeAttributesQDF</span></code><a class="headerlink" href="#writeattributesqdf" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">writeAttributesQDF</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hSpeciesGroup</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">hSpeciesGroup</span></code></dt><dd><p>HDF handle for the species group to write to.</p>
+</dd>
+</dl>
+<p>Writes the action specific attributes to file.</p>
+<p>If not overwritten, this method does nothing and returns 0.</p>
+</section>
+<section id="modifyattributes">
+<h3><code class="docutils literal notranslate"><span class="pre">modifyAttributes</span></code><a class="headerlink" href="#modifyattributes" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">modifyAttributes</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sAttrName</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dValue</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="k">return</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span><span class="w"> </span><span class="p">};</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">sAttrName</span></code></dt><dd><p>Name of attribute to change.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">dValue</span></code></dt><dd><p>Value to set the attribute to.</p>
+</dd>
+</dl>
+<p>If not overwritten, this method does nothing and returns -1.</p>
+</section>
+<section id="dumpstateqdf">
+<h3><code class="docutils literal notranslate"><span class="pre">dumpStateQDF</span></code><a class="headerlink" href="#dumpstateqdf" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">dumpStateQDF</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hSpeciesGroup</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">hSpeciesGroup</span></code></dt><dd><p>HDF handle for the species group to dump the data to</p>
+</dd>
+</dl>
+<p>Writes the full state of the action to file.</p>
+<p>If not overwritten, this method does nothing and returns 0.</p>
+</section>
+<section id="restorestateqdf">
+<h3><code class="docutils literal notranslate"><span class="pre">restoreStateQDF</span></code><a class="headerlink" href="#restorestateqdf" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">restoreStateQDF</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hSpeciesGroup</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">hSpeciesGroup</span></code></dt><dd><p>HDF handle for the species group to restore the data from.</p>
+</dd>
+</dl>
+<p>Restores the full state of the action from a dump file.</p>
+<p>If not overwritten, this method does nothing and returns 0.</p>
+</section>
+<section id="trygetattributes">
+<h3><code class="docutils literal notranslate"><span class="pre">tryGetAttributes</span></code><a class="headerlink" href="#trygetattributes" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">tryGetAttributes</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">ModuleComplex</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">pMC</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">pMC</span></code></dt><dd><p>A <code class="docutils literal notranslate"><span class="pre">ModuleComplex</span></code> object.</p>
+</dd>
+</dl>
+<p>Gets the action’s attributes a <code class="docutils literal notranslate"><span class="pre">ModuleComplex</span></code> object.
+Such an object is created when reading the xml input file for a population.</p>
+<p>If not overwritten, this method does nothing and returns 0.</p>
+</section>
+<section id="showattributes">
+<h3><code class="docutils literal notranslate"><span class="pre">showAttributes</span></code><a class="headerlink" href="#showattributes" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">showAttributes</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Lists the names of the action’s attributes.</p>
+</section>
+<section id="hasattribute">
+<h3><code class="docutils literal notranslate"><span class="pre">hasAttribute</span></code><a class="headerlink" href="#hasattribute" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="nf">hasAttribute</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sAtt</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">sAtt</span></code></dt><dd><p>Name of the attribute.</p>
+</dd>
+</dl>
+<p>Returns <code class="docutils literal notranslate"><span class="pre">true</span></code> if the action has an attribute with the specified name.</p>
+</section>
+<section id="isequal">
+<h3><code class="docutils literal notranslate"><span class="pre">isEqual</span></code><a class="headerlink" href="#isequal" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="nf">isEqual</span><span class="p">(</span><span class="n">Action</span><span class="w"> </span><span class="o">*</span><span class="n">pAction</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">bStrict</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">pAction</span></code></dt><dd><p>Pointer to an action object to compare with this.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">bStrict</span></code></dt><dd><p>Strictness of comparisons.</p>
+</dd>
+</dl>
+<p>Returns <code class="docutils literal notranslate"><span class="pre">true</span></code> if the actions are equal.
+For some actions it is useful to do a less strict comparison.</p>
+</section>
+<section id="checkattributes">
+<h3><code class="docutils literal notranslate"><span class="pre">checkAttributes</span></code><a class="headerlink" href="#checkattributes" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">checkAttributes</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">stringmap</span><span class="w"> </span><span class="o">&amp;</span><span class="n">mParams</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">sParams</span></code></dt><dd><p>A string map containing names and values of this action’s attributes.</p>
+</dd>
+</dl>
+<p>Checks if the required attributes are present and that no unknown attributes are listed.</p>
+</section>
+<section id="getnumattributes">
+<h3><code class="docutils literal notranslate"><span class="pre">getNumAttributes</span></code><a class="headerlink" href="#getnumattributes" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">getNumAttributes</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Returns the number of this action’s attributes.</p>
+</section>
+<section id="getactionname">
+<h3><code class="docutils literal notranslate"><span class="pre">getActionName</span></code><a class="headerlink" href="#getactionname" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="nf">getActionName</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Returns this action’s name.</p>
+</section>
+<section id="getattributenames">
+<h3><code class="docutils literal notranslate"><span class="pre">getAttributeNames</span></code><a class="headerlink" href="#getattributenames" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="n">stringvec</span><span class="w"> </span><span class="o">&amp;</span><span class="nf">getActionName</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Returns a string vector containing the actions’s attributes.</p>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Action</a><ul>
+<li><a class="reference internal" href="#public-methods">Public Methods</a><ul>
+<li><a class="reference internal" href="#constructors"><code class="docutils literal notranslate"><span class="pre">constructors</span></code></a></li>
+<li><a class="reference internal" href="#destructor"><code class="docutils literal notranslate"><span class="pre">destructor</span></code></a></li>
+<li><a class="reference internal" href="#preloop"><code class="docutils literal notranslate"><span class="pre">preLoop</span></code></a></li>
+<li><a class="reference internal" href="#initialize"><code class="docutils literal notranslate"><span class="pre">initialize</span></code></a></li>
+<li><a class="reference internal" href="#execute"><code class="docutils literal notranslate"><span class="pre">execute</span></code></a></li>
+<li><a class="reference internal" href="#finalize"><code class="docutils literal notranslate"><span class="pre">finalize</span></code></a></li>
+<li><a class="reference internal" href="#postloop"><code class="docutils literal notranslate"><span class="pre">postLoop</span></code></a></li>
+<li><a class="reference internal" href="#prewrite"><code class="docutils literal notranslate"><span class="pre">preWrite</span></code></a></li>
+<li><a class="reference internal" href="#extractattributesqdf"><code class="docutils literal notranslate"><span class="pre">extractAttributesQDF</span></code></a></li>
+<li><a class="reference internal" href="#writeattributesqdf"><code class="docutils literal notranslate"><span class="pre">writeAttributesQDF</span></code></a></li>
+<li><a class="reference internal" href="#modifyattributes"><code class="docutils literal notranslate"><span class="pre">modifyAttributes</span></code></a></li>
+<li><a class="reference internal" href="#dumpstateqdf"><code class="docutils literal notranslate"><span class="pre">dumpStateQDF</span></code></a></li>
+<li><a class="reference internal" href="#restorestateqdf"><code class="docutils literal notranslate"><span class="pre">restoreStateQDF</span></code></a></li>
+<li><a class="reference internal" href="#trygetattributes"><code class="docutils literal notranslate"><span class="pre">tryGetAttributes</span></code></a></li>
+<li><a class="reference internal" href="#showattributes"><code class="docutils literal notranslate"><span class="pre">showAttributes</span></code></a></li>
+<li><a class="reference internal" href="#hasattribute"><code class="docutils literal notranslate"><span class="pre">hasAttribute</span></code></a></li>
+<li><a class="reference internal" href="#isequal"><code class="docutils literal notranslate"><span class="pre">isEqual</span></code></a></li>
+<li><a class="reference internal" href="#checkattributes"><code class="docutils literal notranslate"><span class="pre">checkAttributes</span></code></a></li>
+<li><a class="reference internal" href="#getnumattributes"><code class="docutils literal notranslate"><span class="pre">getNumAttributes</span></code></a></li>
+<li><a class="reference internal" href="#getactionname"><code class="docutils literal notranslate"><span class="pre">getActionName</span></code></a></li>
+<li><a class="reference internal" href="#getattributenames"><code class="docutils literal notranslate"><span class="pre">getAttributeNames</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="../actions.html"
+                          title="previous chapter">actions</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="RandomMove.html"
+                          title="next chapter">RandomMove</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/code_doc/actions/Action.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="RandomMove.html" title="RandomMove"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../actions.html" title="actions"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../actions.html" >actions</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Action</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+    </div>
+  </body>
+</html>

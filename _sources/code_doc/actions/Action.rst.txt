@@ -1,0 +1,307 @@
+.. _Action_ref:
+
+Action
+======
+
+.. rst-class:: hidden
+
+   This page describes the class :index:`Action`
+
+The class ``Action`` is an abstract base class from which all concrete actions must be derived.
+
+Code: `Action.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/Action.h>`_ `Action.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/Action.cpp>`_
+
+
+Public Methods
+--------------
+
+``constructors``
+^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    Action(SPopulation<T> *pPop, SCellGrid *pCG, const std::string sActionName, const std::string sID);
+    Action();
+
+Initializes the class's data.
+
+``pPop``
+    A pointer to the :ref:`SPopulationy<SPopulation_ref>` object performing this action.
+
+``pCG``
+    A pointer to the  :ref:`SCellGrid<SCellGrid_ref>` object on which the simulation runs.
+
+``sActionName``
+    Name of this action.
+
+``sID``
+   An ID for this action.
+
+.. ----------------------------------------------------------------------------- 
+
+``destructor``
+^^^^^^^^^^^^^^  
+.. code-block:: c++
+
+    virtual ~Action() { };
+
+The destructor.
+
+.. ----------------------------------------------------------------------------- 
+
+
+``preLoop``
+^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int preLoop();
+
+This method is called before the simulation loop begins.
+
+.. ----------------------------------------------------------------------------- 
+
+
+``initialize``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int initialize(float fTime);
+
+This method is called at the beginning of a simulation step (i.e. before the ``operator()`` method is called for all agents).
+
+If not overwritten, this method does nothing and returns 0.
+
+.. ----------------------------------------------------------------------------- 
+
+``execute``
+^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int execute(int iAgentIndex, float fT);
+
+``iAgentIndex``
+    Current agent's index.
+
+``fT``
+    Simulation time.
+
+| The method ``execute()`` is called in a parallel loop over all agents.
+| To avoid performance losses you should not use any parallelized sections in this method.
+
+If not overwritten, this method does nothing and returns 0.
+
+.. ----------------------------------------------------------------------------- 
+
+``finalize``
+^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int finalize(float fTime);
+
+This method is called at the end of the simulation step (i.e. after the ``execute()`` method has been called for all agents).
+
+If not overwritten, this method does nothing and returns 0.
+
+.. ----------------------------------------------------------------------------- 
+
+``postLoop``
+^^^^^^^^^^^^
+
+.. code-block:: c++
+
+    virtual int postLoop();
+
+This method is calles after the loop has finished.
+
+If not overwritten, this method does nothing and returns 0.
+
+.. ----------------------------------------------------------------------------- 
+
+``preWrite``
+^^^^^^^^^^^^
+
+.. code-block:: c++
+
+    virtual int preWrite(float fTime);
+
+This method is called before data is written to file. It can be used to preapre data for output.
+
+If not overwritten, this method does nothing and returns 0.
+
+.. ----------------------------------------------------------------------------- 
+
+``extractAttributesQDF``
+^^^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int extractAttributesQDF(hid_t hSpeciesGroup);
+
+``hSpeciesGroup``
+    HDF handle for the species group to read from.
+
+Reads the action specific attributes from file.
+
+If not overwritten, this method does nothing and returns 0.
+
+
+.. ----------------------------------------------------------------------------- 
+
+``writeAttributesQDF``
+^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int writeAttributesQDF(hid_t hSpeciesGroup);
+
+``hSpeciesGroup``
+    HDF handle for the species group to write to.
+
+Writes the action specific attributes to file.
+
+If not overwritten, this method does nothing and returns 0.
+
+
+.. ----------------------------------------------------------------------------- 
+
+``modifyAttributes``
+^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int modifyAttributes(const std::string sAttrName, double dValue) {return -1; };
+
+``sAttrName``
+    Name of attribute to change.
+
+``dValue``
+    Value to set the attribute to.
+
+If not overwritten, this method does nothing and returns -1.
+
+
+.. ----------------------------------------------------------------------------- 
+
+``dumpStateQDF``
+^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int dumpStateQDF(hid_t hSpeciesGroup);
+
+``hSpeciesGroup``
+    HDF handle for the species group to dump the data to
+
+Writes the full state of the action to file.
+
+If not overwritten, this method does nothing and returns 0.
+  
+.. ----------------------------------------------------------------------------- 
+
+``restoreStateQDF``
+^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int restoreStateQDF(hid_t hSpeciesGroup);
+
+``hSpeciesGroup``
+    HDF handle for the species group to restore the data from.
+
+Restores the full state of the action from a dump file.
+
+If not overwritten, this method does nothing and returns 0.
+  
+.. ----------------------------------------------------------------------------- 
+
+``tryGetAttributes`` 
+^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int tryGetAttributes(const ModuleComplex * pMC);
+
+``pMC``
+    A ``ModuleComplex`` object.
+
+Gets the action's attributes a ``ModuleComplex`` object.
+Such an object is created when reading the xml input file for a population.
+
+If not overwritten, this method does nothing and returns 0.
+
+.. ----------------------------------------------------------------------------- 
+
+``showAttributes``
+^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    void showAttributes();
+
+Lists the names of the action's attributes.
+
+.. ----------------------------------------------------------------------------- 
+
+``hasAttribute``
+^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    bool hasAttribute(std::string sAtt);
+
+
+``sAtt``
+    Name of the attribute.
+
+Returns ``true`` if the action has an attribute with the specified name.
+
+.. ----------------------------------------------------------------------------- 
+
+``isEqual``
+^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual bool isEqual(Action *pAction, bool bStrict) = 0;
+
+``pAction``
+    Pointer to an action object to compare with this.
+
+``bStrict``
+    Strictness of comparisons.
+
+Returns ``true`` if the actions are equal. 
+For some actions it is useful to do a less strict comparison.
+
+.. ----------------------------------------------------------------------------- 
+
+``checkAttributes``
+^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    int checkAttributes(const stringmap &mParams);
+
+``sParams``
+    A string map containing names and values of this action's attributes.
+
+Checks if the required attributes are present and that no unknown attributes are listed.
+ 
+.. ----------------------------------------------------------------------------- 
+
+``getNumAttributes``
+^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    int getNumAttributes();
+
+Returns the number of this action's attributes.
+
+.. ----------------------------------------------------------------------------- 
+
+``getActionName``
+^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+ 
+   const std::string &getActionName();
+
+Returns this action's name.
+
+.. ----------------------------------------------------------------------------- 
+
+``getAttributeNames``
+^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+  
+    const stringvec &getActionName();
+
+Returns a string vector containing the actions's attributes.

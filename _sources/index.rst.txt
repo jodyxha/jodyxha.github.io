@@ -1,0 +1,43 @@
+.. QHG4 documentation master file, created by
+   sphinx-quickstart on Mon May  2 11:50:38 2022.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+QHG4 documentation
+==================
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Contents:
+
+   qhg4_simulation_framework
+
+   AgentManagement
+   ObserverPattern
+   code_doc
+
+   formats   
+
+   dumprestore
+   Events
+
+   qhg4_compile.rst
+
+   tools
+
+   tutorial
+
+| TODO: actions and priorities
+| TODO: dependencies: what must be installed?
+
+
+| TODO: visualisation: VisIt, QDF-PLugin
+
+:ref:`a lot of things to do`<allotofthingstodotodotodotodo>`
+   
+Indices and tables
+^^^^^^^^^^^^^^^^^^
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`

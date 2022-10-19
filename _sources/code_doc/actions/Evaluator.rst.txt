@@ -1,0 +1,62 @@
+.. _Evaluator_ref:
+
+Evaluator
+=========
+
+.. rst-class:: hidden
+  
+    This page describes the class :index:`Evaluator`
+
+The pure virtual class ``Evaluator`` is derived from ``Action`` as well as ``Observer``, and serves as a base class for classes that evaluate the environment.
+
+The implementation of the :ref:`Observer<Observer_ref>` interface allows this action to be notified of events.
+
+Code: `Evaluator.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/Evaluator.h>`_
+
+This clss has no attributes.
+
+
+Public Methods
+--------------
+
+``constructors``
+^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    Evaluator(SPopulation<T> *pPop, SCellGrid *pCG, const std::string sActionName, const std::string sID);
+    Evaluator();
+
+``pPop``
+    A pointer to the :ref:`SPopulation<SPopulation_ref>` object performing this action.
+
+``pCG``
+    A pointer to the  :ref:`SCellGrid<SCellGrid_ref>` object on which the simulation runs.
+
+``sActionName``
+    Name of the action.
+
+``sID``
+    An ID for this action.
+
+.. -----------------------------------------------------------------------------
+
+``destructor``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual ~Evaluator();
+    
+The destructor does nothing.
+
+.. -----------------------------------------------------------------------------
+
+``setOutputWeights``
+^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual void setOutputWeights(double *adOutput)=0;
+
+``adOutput``
+    Array of doubles to hold the internal weights.
+
+Set the internal weights for the cells.

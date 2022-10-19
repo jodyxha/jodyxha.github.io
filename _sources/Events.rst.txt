@@ -1,0 +1,197 @@
+.. _Events_ref:
+
+Events
+======
+
+Events are needed to notify objects of some change of state.
+
+In QHG we have two kinds of events: events from the command line and internal events.
+
+The events on the commandline events are passed as values of the :ref:`--events option of QHGMain<QHGMain_ref>`.
+
+.. -----------------------------------------------------------------------------
+
+--events=<event-list>
+^^^^^^^^^^^^^^^^^^^^^
+
+Set event list.
+
+| The event-list string is a comma-separated list of events:
+| ``event-list       ::= "'" <event> ["," <event>]*"'"``
+| The entire event list must be enclosed in quotes;
+| if the event list contains environment variables, use double quotes.
+
+| ``event            ::= <event-type> "|" <event-params> "@" <event-times>``
+
+
+.. -----------------------------------------------------------------------------
+
+event times and triggers
+""""""""""""""""""""""""
+
+``<event-times>`` defines at which times the event should be triggered.
+
+
+| ``event-times      ::= <full-trigger> [ "+" <full-trigger>]*``
+| ``full-trigger     ::= ["S"|"T"]<full-trigger-sub>``
+
+| If "S" or nothing is prefixed, the following numbers are interpreted as steps.
+| If "T" is prefixed, the following numbers are interpreted as 'real' times.
+
+| ``full-trigger-sub ::= <normal-trigger> | <point-trigger> | <final-trigger>``
+| ``normal-trigger   ::= [<trigger-interval>] <step-size>``
+| ``trigger-interval ::= "["[<minval>] ":" [<maxval>] "]"``
+
+| This form causes events to be triggered at time <minval>+k*<step-size>, for k = 0 ... (<maxval>-<minval>)/<step-size>.
+|     If <minval> is omitted, it is set to fNegInf,
+|     if <maxval> is omitted, it is set to fPosInf.
+|     If <trigger-interval> is omitted, it is set to [fNegInf:fPosInf].
+
+| ``point-trigger    ::= "["<time>"]"``
+
+This form causes a single event at the specified time.
+
+``final-trigger    ::= "final"``
+
+| This form causes a single event at the end of the simulation.
+| Trigger Example:
+
+``20+[305:]500+[250:600]10+[37]``
+
+| fire events every 20 steps,
+| and every 500 steps starting from step 305,
+| and every 10 steps between steps 250 and 600,
+| and a single event at step 37.
+
+.. -----------------------------------------------------------------------------
+
+Event types
+"""""""""""
+
+| ``event-type       ::= <standard_types> | <tech-types>``
+| ``standard-type    ::= "write" | "env" | "arr" | "pop" | "file"``
+| ``tech-types       ::= "dump" | "interpol" | "comm" | "check" | "user" |  "scramble"``
+
+| The event parameters differ for the event types:
+| **for <event-type> == "write":**
+
+| ``event-params  ::= <type> ["+" <type>]*``
+| ``type          ::= <group-types> | <special-types>``
+| ``group-types   ::= "grid" | "geo"    | "climate " | "veg " | "nav"  |``
+| ``special-types ::= "occ"  |  "stats" |  "pop:"<speciesname>[<filter>]``
+
+| Write the specified data sets to file.
+| In case of "pop", an optional filter character can be appended to the populaton name in order to filter the output:
+|       '#'   only write agent data
+|       '%'   only write status arrays
+|       '~'   only write additional data
+
+**for <event-type> == "env":**
+
+| ``event-params   ::= <type> ["+" <type>]* ":" <qdf-file>``
+| ``type           ::= "geo" | "climate" | "veg" | "nav"``
+
+Read the specified data sets from the qdf file.
+
+**for <event-type> == "arr":**
+
+| ``event-params   ::= <type> ":" <arrayname> ":" <qdf-file>``
+| ``type           ::= "geo" | "climate" | "veg"``
+
+ Read the specified arrays from the qdf file.
+
+**for <event-type> == "pop":**
+
+| ``event-params   ::= <speciesname> ["+" <speciesname>]* ":" <qdf-file>``
+
+Read the specified populations from file.
+
+**for <event-type> == "file":**
+
+| ``event-params   ::= <filename>``
+
+The file must contain lines of the form
+
+| ``line           ::= <event-type> "|" <event-params> "@" <event-times>``
+
+Add the events listed in the file to the event manager.
+
+
+**for <event-type> == "interpol":**
+
+| ``event-params     ::= <interpol-data> | <command>``
+| ``interpol-data    ::= "file:" <interpol-file>``
+| ``command          ::= "cmd:" <interpol-command>``
+| ``interpol-command ::= "start" | "stop"`` 
+
+where
+
+| ``"interpol-file"  : a QDF file containing interpolation steps.``
+| ``"stop"           : stop interpolation``
+| ``"start"          : restart interpolation``
+
+
+**for <event-type> == "dump":**
+
+| ``event-params   ::= "flat" | "smart" | "free"``
+
+| :ref:`Dump<dump_restore_ref>` the entire state of the simulation.
+| The dump modes:
+|      flat    copy the linked lists as arrays
+|      smart   save the linked lists by only saving the starts and ends of the active regions (not fully tested)
+|      free    use "smart" mode if number of holes exceeds a threshold, otherwise use "flat" mode (not fully tested)
+
+**for <event-type> == "comm":**
+
+| ``event-params   ::= <cmd-file>  | <command>``
+| ``command        ::= <iter_cmd> | <del_action_cmd> | <mod_pop_cmd> | <event>``
+| ``iter_cmd       ::= "SET ITERS:"<num_iters>``
+| ``del_action_cmd ::= "REMOVE ACTION:"<population>:<action_name>``
+| ``mod_pop_cmd    ::= "MOD POP:"<population>:<param_name>:<value>``
+| ``event          : any event description; see definition above``
+
+The format of <cmd-file> 
+
+| ``cmd-file       ::= <command-line>*``
+| ``command-line   ::= <command> <NL>``
+
+| If the <cmd-file> has changed since the last triggered time the contents will be executed:
+|         iter_cmd:        set new iteration limit
+|         del_action_cmd:  remove action from prio list
+|         mod_pop_cmd:     hange parameter of population
+|         event:           add event to event manager's list
+
+**for <event-type> == "check":**
+
+| ``event-params   ::= <what> ["+" <what>]*``
+| ``what           ::= "lists"``
+
+(Debugging only) "lists": check linked lists at specified times
+
+**for <event-type> == "user":**
+
+| ``event-params   ::= <eventid>:<stringdata>``
+| ``eventid        : an event id in [1000, 9999]``
+| ``stringdata     : a string``
+
+
+**for <event-type> == "scramble":**
+
+| ``event-params   ::= "connections" | "all"``
+ 
+Scrambles the order of connections between nodes
+
+.. -----------------------------------------------------------------------------
+
+Example
+"""""""
+
+Here is a full example for an eventlist:
+
+| ``--events='env|geo+climate:map120.qdf@[120],write|pop:GrassLover|grid@5+[20:30]1,comm|REMOVE ACTION sapiens:ConfinedMove@[3000]'``
+
+
+This 
+  * loads a QDF file containing new geography and climate data from 'map120.qdf' at step 120, 
+  * writes a QDF file containing grid data and population data for species "GrassLover" every 5 steps and additiionally every step between steps 20 and 30.
+  * at step 3000 the 'ConfinedMove' action of species 'sapiens' is disabled.

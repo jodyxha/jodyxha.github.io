@@ -1,0 +1,314 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Permutator &#8212; QHG4 4.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jody.css" />
+    
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    
+    <link rel="shortcut icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="stdstrutils" href="stdstrutils.html" />
+    <link rel="prev" title="geomutils" href="geomutils.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="stdstrutils.html" title="stdstrutils"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="geomutils.html" title="geomutils"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../utils.html" accesskey="U">utils</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Permutator</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="permutator">
+<span id="permutator-ref"></span><h1>Permutator<a class="headerlink" href="#permutator" title="Permalink to this heading">¶</a></h1>
+<p class="hidden">This page describes the class <span class="target" id="index-0"></span>Permutator</p>
+<p>The class <code class="docutils literal notranslate"><span class="pre">Permutator</span></code> allows you to get a random permutation or a randomly permutated subset of [0,… N-1].</p>
+<p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/Permutator.h">Permutator.h</a>, <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/Permutator.cpp">Permutator.cpp</a></p>
+<section id="public-methods">
+<h2>Public Methods<a class="headerlink" href="#public-methods" title="Permalink to this heading">¶</a></h2>
+<section id="createinstance">
+<h3><code class="docutils literal notranslate"><span class="pre">createInstance</span></code><a class="headerlink" href="#createinstance" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="n">Permutator</span><span class="w"> </span><span class="o">*</span><span class="nf">createInstance</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">iInitSize</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Create a <code class="docutils literal notranslate"><span class="pre">Permutator</span></code> instance with specified buffer size.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">iInitSize</span></code></dt><dd><p>Initial size of buffer.</p>
+</dd>
+</dl>
+<p>Returns a pointer to the instance.</p>
+</section>
+<section id="destructor">
+<h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="o">~</span><span class="n">Permutator</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The destructor frees the memory allocated for the buffer.</p>
+</section>
+<section id="permute">
+<h3><code class="docutils literal notranslate"><span class="pre">permute</span></code><a class="headerlink" href="#permute" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="o">*</span><span class="nf">permute</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">iNumTot</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="n">iNumSel</span><span class="p">,</span><span class="w"> </span><span class="n">WELL512</span><span class="w"> </span><span class="o">*</span><span class="n">pWELL</span><span class="p">);</span><span class="w"></span>
+<span class="k">const</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="o">*</span><span class="nf">permute</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">iNumTot</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="n">iNumSel</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Replaces the first <code class="docutils literal notranslate"><span class="pre">iNumSel</span></code> elements of its internal buffer with random elements from [1,iNumTot-1].
+If <code class="docutils literal notranslate"><span class="pre">iNumTot</span> <span class="pre">==</span> <span class="pre">iNumSel</span></code> this will yield a permutation of [0, iNumTot-1].
+The version without a <code class="docutils literal notranslate"><span class="pre">WELL512*</span></code> argument calls the standard <code class="docutils literal notranslate"><span class="pre">rand()</span></code> function (be sure to initialize it with <code class="docutils literal notranslate"><span class="pre">srand()</span></code> before using it).</p>
+<p>This function will reallocate the buffer if <code class="docutils literal notranslate"><span class="pre">iNumTot</span></code> is greater than the current size of the buffer.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">iNumTot</span></code></dt><dd><p>Total number of elements.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iNumSel</span></code></dt><dd><p>Number of elements to select.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">pWELL</span></code></dt><dd><p>A <a class="reference internal" href="WELL512.html#well512-ref"><span class="std std-ref">WELL512</span></a> random number generator.</p>
+</dd>
+</dl>
+<p>Returns a pointer to the internal buffer.</p>
+</section>
+<section id="permutebuf">
+<h3><code class="docutils literal notranslate"><span class="pre">permuteBuf</span></code><a class="headerlink" href="#permutebuf" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span><span class="p">;</span><span class="w"></span>
+<span class="n">T</span><span class="w"> </span><span class="o">*</span><span class="nf">permuteBuf</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">iNumTot</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="n">iNumSel</span><span class="p">,</span><span class="w"> </span><span class="n">WELL512</span><span class="w"> </span><span class="o">*</span><span class="n">pWELL</span><span class="p">,</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="o">*</span><span class="n">pBuf</span><span class="p">);</span><span class="w"></span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span><span class="w"></span>
+<span class="n">T</span><span class="w"> </span><span class="o">*</span><span class="n">permuteBuf</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">iNumTot</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="n">iNumSel</span><span class="p">,</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="o">*</span><span class="n">pBuf</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Replaces the first <code class="docutils literal notranslate"><span class="pre">iNumSel</span></code> elements of <code class="docutils literal notranslate"><span class="pre">pBuf</span></code> with random elements from <code class="docutils literal notranslate"><span class="pre">pBuf</span></code>.
+If <code class="docutils literal notranslate"><span class="pre">iNumTot</span> <span class="pre">==</span> <span class="pre">iNumSel</span></code> this will yield a permutation of the elements <code class="docutils literal notranslate"><span class="pre">pBuf</span></code>.
+The version without a <code class="docutils literal notranslate"><span class="pre">WELL512*</span></code> argument calls the standard <code class="docutils literal notranslate"><span class="pre">rand()</span></code> function (be sure to initialize it with <code class="docutils literal notranslate"><span class="pre">srand()</span></code> before using it).</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">iNumTot</span></code></dt><dd><p>Total number of elements in buffer.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iNumSel</span></code></dt><dd><p>Number of elements to select.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">pWELL</span></code></dt><dd><p>A <a class="reference internal" href="WELL512.html#well512-ref"><span class="std std-ref">WELL512</span></a> random number generator.</p>
+</dd>
+</dl>
+</section>
+<section id="getsize">
+<h3><code class="docutils literal notranslate"><span class="pre">getSize</span></code><a class="headerlink" href="#getsize" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">uint</span><span class="w"> </span><span class="nf">getSize</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Returns size of buffer.</p>
+</section>
+<section id="getprevtot">
+<h3><code class="docutils literal notranslate"><span class="pre">getPrevTot</span></code><a class="headerlink" href="#getprevtot" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">uint</span><span class="w"> </span><span class="nf">getPrevTot</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Returns previous size of buffer.</p>
+</section>
+<section id="getperm">
+<h3><code class="docutils literal notranslate"><span class="pre">getPerm</span></code><a class="headerlink" href="#getperm" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="n">uint</span><span class="o">*</span><span class="w"> </span><span class="n">getPerm</span><span class="p">()</span><span class="o">:</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Return a pointer to the internal buffer.</p>
+</section>
+<section id="setsize">
+<h3><code class="docutils literal notranslate"><span class="pre">setSize</span></code><a class="headerlink" href="#setsize" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">setSize</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">iSize</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Set size of buffer.</p>
+</section>
+</section>
+<section id="protected-methods">
+<h2>Protected Methods<a class="headerlink" href="#protected-methods" title="Permalink to this heading">¶</a></h2>
+<section id="constructor">
+<h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#constructor" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Permutator</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">iInitSize</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="init">
+<h3><code class="docutils literal notranslate"><span class="pre">init</span></code><a class="headerlink" href="#init" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">init</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="resize">
+<h3><code class="docutils literal notranslate"><span class="pre">resize</span></code><a class="headerlink" href="#resize" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">resize</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">iNewSize</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<section id="example">
+<h4>Example<a class="headerlink" href="#example" title="Permalink to this heading">¶</a></h4>
+<p>Compile with</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>g++ perm_example.cpp Permutator.cpp WELL512.cpp
+</pre></div>
+</div>
+<p>Code for <code class="docutils literal notranslate"><span class="pre">Permutator</span></code>:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cstdio&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cstdlib&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;utility&gt;</span><span class="cp"></span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;WELL512.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Permutator.h&quot;</span><span class="cp"></span>
+
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iArgC</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">apArgV</span><span class="p">[])</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">iResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+
+
+<span class="w">    </span><span class="c1">// WELL512 seeded with current time</span>
+<span class="w">    </span><span class="n">WELL512</span><span class="w"> </span><span class="o">*</span><span class="n">pWELL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">WELL512</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">apairs</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="p">{{</span><span class="mi">0</span><span class="p">,</span><span class="s">&quot;zero&quot;</span><span class="p">},</span><span class="w">  </span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="s">&quot;one&quot;</span><span class="p">},</span><span class="w">  </span><span class="p">{</span><span class="mi">2</span><span class="p">,</span><span class="s">&quot;two&quot;</span><span class="p">},</span><span class="w"></span>
+<span class="w">                                           </span><span class="p">{</span><span class="mi">3</span><span class="p">,</span><span class="s">&quot;three&quot;</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="mi">4</span><span class="p">,</span><span class="s">&quot;four&quot;</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="mi">5</span><span class="p">,</span><span class="s">&quot;five&quot;</span><span class="p">},{</span><span class="mi">6</span><span class="p">,</span><span class="s">&quot;six&quot;</span><span class="p">}};</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">Permutator</span><span class="w"> </span><span class="o">*</span><span class="n">pPerm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Permutator</span><span class="o">::</span><span class="n">createInstance</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// select 3 random elements from [0,4]</span>
+<span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">pRes1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pPerm</span><span class="o">-&gt;</span><span class="n">permute</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="n">pWELL</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot; %d&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">pRes1</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// get a random permutation of [0,9]</span>
+<span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">pRes2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pPerm</span><span class="o">-&gt;</span><span class="n">permute</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w"> </span><span class="n">pWELL</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">9</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot; %d&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">pRes2</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// select 4 random elements from the array apairs</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="o">*</span><span class="n">pRes3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pPerm</span><span class="o">-&gt;</span><span class="n">permuteBuf</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="n">pWELL</span><span class="p">,</span><span class="w"> </span><span class="n">apairs</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot; %d:%s&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">pRes3</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">first</span><span class="p">,</span><span class="w"> </span><span class="n">pRes3</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">second</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">delete</span><span class="w"> </span><span class="n">pPerm</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">delete</span><span class="w"> </span><span class="n">pWELL</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">iResult</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Permutator</a><ul>
+<li><a class="reference internal" href="#public-methods">Public Methods</a><ul>
+<li><a class="reference internal" href="#createinstance"><code class="docutils literal notranslate"><span class="pre">createInstance</span></code></a></li>
+<li><a class="reference internal" href="#destructor"><code class="docutils literal notranslate"><span class="pre">destructor</span></code></a></li>
+<li><a class="reference internal" href="#permute"><code class="docutils literal notranslate"><span class="pre">permute</span></code></a></li>
+<li><a class="reference internal" href="#permutebuf"><code class="docutils literal notranslate"><span class="pre">permuteBuf</span></code></a></li>
+<li><a class="reference internal" href="#getsize"><code class="docutils literal notranslate"><span class="pre">getSize</span></code></a></li>
+<li><a class="reference internal" href="#getprevtot"><code class="docutils literal notranslate"><span class="pre">getPrevTot</span></code></a></li>
+<li><a class="reference internal" href="#getperm"><code class="docutils literal notranslate"><span class="pre">getPerm</span></code></a></li>
+<li><a class="reference internal" href="#setsize"><code class="docutils literal notranslate"><span class="pre">setSize</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#protected-methods">Protected Methods</a><ul>
+<li><a class="reference internal" href="#constructor"><code class="docutils literal notranslate"><span class="pre">constructor</span></code></a></li>
+<li><a class="reference internal" href="#init"><code class="docutils literal notranslate"><span class="pre">init</span></code></a></li>
+<li><a class="reference internal" href="#resize"><code class="docutils literal notranslate"><span class="pre">resize</span></code></a><ul>
+<li><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="geomutils.html"
+                          title="previous chapter">geomutils</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="stdstrutils.html"
+                          title="next chapter">stdstrutils</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/code_doc/utils/Permutator.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="stdstrutils.html" title="stdstrutils"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="geomutils.html" title="geomutils"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../utils.html" >utils</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Permutator</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+    </div>
+  </body>
+</html>

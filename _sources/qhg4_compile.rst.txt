@@ -1,0 +1,118 @@
+.. _Compiling_QHG_ref:
+
+Compiling QHG
+=============
+
+Compile targets
+---------------
+
+There are various targets  to compile:
+
+``clean``
+    Clean all directories
+
+``QHGMain``
+    The QHG simulator
+
+``tools_n``
+    Recompile all tools
+
+Example
+
+.. code-block:: c++
+
+    make QHGMain
+
+Only compiles new and depending files and build QHGMain.
+
+
+.. code-block:: c++
+
+    make clean QHGMain
+
+Compiles QHG from scratch.
+
+
+Compile options
+---------------
+
+``OPT``
+    If set to 1, optimize the compilation (``-O3``)
+
+``SHORT``
+    Sets the prefix for alternative population and action directories.
+
+``OUT``
+    Sets the output name
+
+Examples
+
+.. code-block:: c++
+
+    OUT=QHGTest OPT=1 make clean QHGMain
+
+Build an optimized QHG from scratch and name the executable ``QHGTest``
+
+.. code-block:: c++
+
+    SHORT=tut OPT=1 make clean QHGMain
+
+Build an optimized QHG from scratch, but use the alternative population and action directories ``tut_pop`` and ``tut_mod``.
+
+
+
+
+.. _Compiling_QHG_alternate_ref:
+
+Alternative Population and Action directories
+---------------------------------------------
+
+If there are many files for population classes in the ``populations`` subdirectory, it can be useful to set up alternative directories containing only the minimum number of files required to build QHG with a particular population class.
+
+There is a script in the subdirectory which you can use for this:
+
+.. code-block:: c++
+
+    build_alt_modpop.py <prefix> <pop_name>+
+
+``prefix`` is used to create the names of the alternatove directories, ``pop_name`` is the name of a population class in ``populations``. The script expects that <pop_name>.h and <pop_name>.cpp exist in ``populations``
+
+Example:
+
+.. code-block:: c++
+
+    build_alt_modpop.py tut tut_StaticPop tut_MovePop
+
+This will create the directories ``tut_pop`` and ``tut_mod`` which are filled with the required files from  ``actions`` and ``population``:
+
+.. code-block:: c++
+ 
+    $ ls tut_mod/
+    Action.cpp  Action.h  GetOld.cpp  GetOld.h  Makefile  OldAgeDeath.cpp  OldAgeDeath.h  RandomMove.cpp  RandomMove.h
+    $ ls tut_pop/
+    DynPopFactory.cpp  DynPopFactory.h  ids.cpp  ids.h_for_configure  Makefile  PopulationFactory.h  StatPopFactory.cpp_for_configure  StatPopFactory.h  tut_MovePop.cpp  tut_MovePop.h  tut_StaticPop.cpp  tut_StaticPop.h
+
+Now you can compile QHGMain like this:
+
+.. code-block:: c++
+
+    SHORT=tut make clean QHGMain
+
+
+``build_alt_modpop.py``
+-----------------------
+
+You can also use the script :ref:`build_alt_modpop.py<build_alt_modpop_ref>`:
+
+.. code-block:: c++
+   
+    ${QHG4_DIR}/useful_stuff/build_alt_modpop.py test tut_StaticPop tut_MovePop
+
+This will create the directories ``test_pop`` and ``test_mod`` filled with the files required to build QHG whith the classes ``tut_StaticPop`` and  ``tut_MovePop``
+
+Now you can cd to the QHG root directory and compile like this
+
+.. code-block:: c++
+
+    SHORT=test make clean QHGMain
+

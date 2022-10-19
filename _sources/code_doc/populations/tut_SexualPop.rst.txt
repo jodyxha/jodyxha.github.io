@@ -1,0 +1,143 @@
+.. _tut_SexualPop_ref:
+
+tut_SexualPop
+=============
+
+.. rst-class:: hidden
+
+   This page describes the class :index:`tut_SexualPop`
+
+The class ``tut_SexualPop`` is derived from :ref:`SPopulation<SPopulation_ref>`.
+
+Apart from aging, dyining and moving, the agents can sexually reproduce.
+
+For this the actions 
+
+* :ref:`GetOld<GetOld_ref>`
+* :ref:`OldAgeDeath<OldAgeDeath_ref>`
+* :ref:`RandomMove<RandomMove_ref>`
+* :ref:`Fertility<Fertility_ref>`
+* :ref:`Verhulst<Verhulst_ref>`
+* :ref:`RandomPair<RandomPair_ref>`  
+
+are required.
+
+(The class ``tut_SexualPop`` is described in detail in the :ref:`fifth part<TutorialSexual_ref>` of the :ref:`tutorial<Tutorial_ref>`).
+
+Code: `tut_SexualPop.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_SexualPop.h>`_, `tut_SexualPop.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_SexualPop.cpp>`_
+
+
+Data types
+----------
+
+The actions ``GetOld`` and ``OldAgeDeath`` expect the agents to have a float member ``m_fAge``, 
+the action ``Fertility`` additionally requires a float member ``m_fLastBirth``,
+and the action ``Verhulst`` requires an int member ``m_iMateIndex``.
+
+.. code-block:: c++
+    
+    struct tut_Sexual : Agent {
+
+        float m_fAge;
+
+        float m_fLastBirth;
+        int m_iMateIndex;
+    };
+
+
+
+Public Methods
+--------------
+
+``constructor``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    tut_SexualPop(SCellGrid *pCG, PopFinder *pPopFinder, int iLayerSize, 
+                  IDGen **apIDG, uint32_t *aulState, uint *aiSeeds);
+
+``pCG``
+    Pointer to the :ref:`cell grid<SCellGrid_ref>`  the simulation runs on.
+
+``pPopFinder``
+    A pointer to an instance of a :ref:`PopFinder<PopFinder_ref>` population container.
+
+``iLayerSize``
+    The layer size used by the :ref:`agent management system <AgentManagement_ref>`.
+
+``apIDG``
+    An array of pointers to the :ref:`ID generators<IDGen_ref>`, one for each thread.
+
+``aulState``
+    An array of ``uint`` used to initalize the :ref:`WELL512 random number generators<WELL512_ref>`.
+
+``aiSeeds``
+    Seeds for other WELL512 instances **not used for moving and breeding**, e.g. for genetics. 
+
+This creates an instance each of :ref:`GetOld<GetOld_ref>`, :ref:`OldAgeDeath<OldAgeDeath_ref>`, 
+:ref:`RandomMove<RandomMove_ref>`, :ref:`Fertility<Fertility_ref>`, :ref:`Verhulst<Verhulst_ref>`, 
+and :ref:`RandomPair<RandomPair_ref>`, and registers them with the :ref:`Prioritizer<Prioritizer_ref>`.
+
+.. -----------------------------------------------------------------------------
+
+``destructor``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    ~tut_SexualPop();
+
+The destructor deletes the action objects created in the constructor.
+
+
+
+.. -----------------------------------------------------------------------------
+
+``addPopSpecificAgentData``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    addPopSpecificAgentData(int iAgentIndex, char **ppData);
+
+``iAgentIndex``
+    Index of agent whose data is being read.
+
+``ppData``
+    pointer to a string containing textual representation of data (see :ref:`DAT-files<pop_dat_ref>`).
+
+| This method expects the next two words to be the age of the agent, and the step of its last birth.
+| The next two words are converted to float (this may of course fail) and assigned to the corresponding agent variables, and ppData is modified to point to the following word.
+
+
+.. -----------------------------------------------------------------------------
+
+``addPopSpecificAgentData`TypeQDF``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    addPopSpecificAgentDataTypeQDF(hid_t *hAgentDataType);
+
+``hAgentDataType``
+    HDF5 handle for a existin HDF data type.
+
+This method extends the existing HDF data type, by entriues for the agent's age member, and the last birth.
+
+.. -----------------------------------------------------------------------------
+
+``makePopSpecificOffspring``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    int makePopSpecificOffspring(int iAgent, int iMother, int iFather);
+ 
+``iAgent``
+    Index of new born agent.
+
+``iMother``
+    Index of the baby's mother.
+
+
+``iFather``
+    Index of the baby's father.
+
+Initializes the members of the new agent. In particular, the mate index is set to a negative value denoting unpaired state.
+

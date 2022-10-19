@@ -1,0 +1,223 @@
+.. _crypto_ref:
+
+crypto
+======
+
+.. rst-class:: hidden
+
+   This page describes the module :index:`crypto`
+
+The module ``crypto`` contains implemention of some hash functions.
+
+Code: `crypto.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/crypto.h>`_, `crypto.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/crypto.cpp>`_
+
+Functions
+---------
+
+``shasum``
+^^^^^^^^^^
+.. code-block:: c++
+
+    int shasum(const std::string sFile, unsigned char *pSHAsum);
+
+Calculates a SHA check sum for the specified file into a buffer.
+
+``sFile``
+    Name of the file for which ths checksum is calculated.
+
+``pSHAsum``
+   Pointer to the buffer (must have size >= SHA_SIZE).
+
+Returns 0 on success, -1 on failure.
+
+.. -----------------------------------------------------------------------------
+
+``md5sum``
+^^^^^^^^^^
+.. code-block:: c++
+
+    int md5sum(const std::string sFile, unsigned char *pMD5sum);
+
+Calculates a MD5 check sum for the specified file into a buffer.
+
+``sFile``
+    Nae of the file for which ths checksum is calculated.
+
+``pMD5sum``
+   Pointer to the buffer (must have size >= MD5_SIZE).
+
+Returns 0 on success, -1 on failure.
+
+.. -----------------------------------------------------------------------------
+
+``ripsum``
+^^^^^^^^^^
+.. code-block:: c++
+
+    int ripsum(const std::string sFile, unsigned char *pRIPsum);
+
+Calculates a RIP check sum for the specified file into a buffer.
+
+``sFile``
+    File of which ths checksum is calculated.
+
+``pRIPsum``
+   Pointer to the buffer (must have size >= RIP_SIZE).
+
+Returns 0 on success, -1 on failure.
+
+.. -----------------------------------------------------------------------------
+
+``shasumS``
+^^^^^^^^^^^
+.. code-block:: c++
+
+    int shasumS(const std::string sString, unsigned char *pSHAsum);
+
+Calculates a SHA check sum for the specified string into a buffer.
+
+``sString``
+    The string for which ths checksum is calculated.
+
+``pSHAsum``
+   Pointer to the buffer (must have size >= SHA_SIZE).
+
+Returns 0 on success, -1 on failure.
+
+.. -----------------------------------------------------------------------------
+
+``md5sumS``
+^^^^^^^^^^^
+.. code-block:: c++
+
+    int md5sumS(const std::string sString, unsigned char *pMD5sum);
+
+Calculates a MD5 check sum for the specified string into a buffer.
+
+``sString``
+    The string for which ths checksum is calculated.
+
+``pMD5sum``
+   Pointer to the buffer (must have size >= MD5_SIZE).
+
+Returns 0 on success, -1 on failure.
+
+.. -----------------------------------------------------------------------------
+
+``ripsumS``
+^^^^^^^^^^^
+.. code-block:: c++
+
+    int ripsumS(const std::string sString, unsigned char *pRIPsum);
+
+Calculates a RIP check sum for the specified string into a buffer.
+
+``sString``
+    The string for which ths checksum is calculated.
+
+``pRIPsum``
+   Pointer to the buffer (must have size >= RIP_SIZE).
+
+Returns 0 on success, -1 on failure.
+
+.. -----------------------------------------------------------------------------
+
+Example
+"""""""
+
+Compile with 
+
+.. code-block:: bash
+
+ g++ crypto_example.cpp  crypto.cpp -lcrypto -o crypto_example
+
+Code for ``crypt_example``:
+
+.. code-block:: c++
+
+    #include <cstdio>
+    #include <cstring>
+    
+    #include "crypto.h"
+    
+    const int   ID_SHA  = 1;
+    const int   ID_MD5  = 2;
+    const int   ID_RIP  = 4;
+    
+    const char *asNames[] = {"sha", "md5", "rip"};
+    const int  aIDs[] = {ID_SHA, ID_MD5, ID_RIP};
+    
+    void showHex(unsigned char *pSum, int iLen) {
+        for (int i = 0; i < iLen; i++) {
+            printf("%02x", pSum[i]);
+        }
+        printf("\n");
+    }
+    
+    int main (int iArgC, char *apArgV[]) {
+        int iResult = 0;
+    
+        if (iArgC > 1) {
+            int iWhich = 0;
+    
+            if (iArgC > 2) {
+                int i = 2;
+                while (i < iArgC) {
+                    for (unsigned int j = 0; j < sizeof(asNames)/sizeof(char *); j++) {
+                        if (strcmp(apArgV[i], asNames[j]) == 0) {
+                            iWhich |= aIDs[j];
+                        }
+                    }
+                    i++;
+                }
+            } else {
+                for (unsigned int j = 0; j < sizeof(asNames)/sizeof(char *); j++) {
+                    iWhich |= aIDs[j];
+                }
+            }
+            
+    
+            if ((iResult == 0) && ((iWhich & ID_MD5) != 0)) {
+                printf("MD5\n");
+                unsigned char aMD5[crypto::MD5_SIZE];
+                iResult = crypto::md5sum(apArgV[1], aMD5);
+                if (iResult == 0) {
+                    showHex(aMD5, crypto::MD5_SIZE);
+                } else {
+                    printf("couldn't open [%s]\n", apArgV[1]);
+                }
+            }
+    
+    
+            if ((iResult == 0) && ((iWhich & ID_SHA) != 0)) {
+                printf("SHA\n");
+                unsigned char aSHA[crypto::SHA_SIZE];
+                iResult = crypto::shasum(apArgV[1], aSHA);
+                if (iResult == 0) {
+                    showHex(aSHA, crypto::SHA_SIZE);
+                } else {
+                    printf("couldn't open [%s]\n", apArgV[1]);
+                }
+            }
+    
+    
+            if ((iResult == 0) && ((iWhich & ID_RIP) != 0)) {
+                printf("RIP\n");
+                unsigned char aRIP[crypto::RIP_SIZE];
+                iResult = crypto::ripsum(apArgV[1], aRIP);
+                if (iResult == 0) {
+                    showHex(aRIP, crypto::RIP_SIZE);
+                } else {
+                    printf("couldn't open [%s]\n", apArgV[1]);
+                }
+            }
+    
+    
+        } else {
+            iResult = -1;
+            printf("usage: %s <file> [\"sha\" | \"md5\" | \"rip\"]*\n", apArgV[0]);
+        }
+    
+        return iResult;
+    }
+

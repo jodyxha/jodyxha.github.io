@@ -1,0 +1,341 @@
+.. _ParamProvider2_ref:
+
+ParamProvider2 and ModuleComplex
+================================
+
+.. rst-class:: hidden
+
+   This page describes the classes :index:`ModuleComplex` and :index:`ParamProvider2`
+
+An instantiation of the class ``ModuleComplex`` represents the parameters and submodules for an :ref:`action<action_ref>` .
+Each node of a  ``ModuleComplex`` object has stringmap  for  actions attributes, as well as  map "name"->ModuleComplex for the action's submodules.
+
+
+``ParamProvider`` reads a xml file and bundles the data found into ``ModuleComplex`` objects.
+
+Public Methods (``ModuleComplex``)
+----------------------------------
+
+
+.. -----------------------------------------------------------------------------
+
+``constructor``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    ModuleComplex();
+    ModuleComplex(const stringmap smParams, modulemap &mSubModules);
+
+| The first version creates an empty ``ModuleComplex`` which can be filled at alater point.
+| The second version creates a ``ModuleComplex`` wth parameters and submodules.
+
+``smParams``
+    A string map {name => Value} representing the parameters of a ``ModuleComplex``.
+
+``mSubModules``
+    A map {name => Module} representing the sub modules of a ``ModuleComplex``.
+
+.. -----------------------------------------------------------------------------
+
+``destructor``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    ~ModuleComplex();
+
+The destructor.
+
+.. -----------------------------------------------------------------------------
+
+``addParam``
+^^^^^^^^^^^^
+.. code-block:: c++
+
+    int addParam(const std::string sKey, std::string &sVal);
+
+Adds a single parameter to this ``ModuleComplex`` .
+
+``sKey``
+    Name of the parameter.
+
+``sVal``
+    Value of the parameter
+
+Returns 0 on success, -1 on failure.
+
+.. -----------------------------------------------------------------------------
+
+``addSubModule``
+^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    int addSubModule(const std::string sKey, ModuleComplex *pSubModule);
+
+Adds a submodule to  this ``ModuleComplex``.
+
+
+``sKey``
+    Name of the submodule.
+
+``pSubModule``
+    Pointer to the submodule to be added.
+
+.. -----------------------------------------------------------------------------
+
+``getParam``
+^^^^^^^^^^^^
+.. code-block:: c++
+
+    const std::string getParam(const std::string sKey);
+
+Get the value of the parameter with the specified name.
+
+``sKey``
+    Name of the requested parameter.
+
+Returns the value if a parameter withthe given name exists, or else an empty string.
+
+.. -----------------------------------------------------------------------------
+
+``getModule``
+^^^^^^^^^^^^^
+.. code-block:: c++
+
+    ModuleComplex *getModule(const std::string sModuleName);
+
+Gets a pointer to the submodule with the specified name.
+
+``sKey``
+    Name of the requested parameter.
+
+Returns the value if a parameter withthe given name exists, or else an empty string.
+
+.. -----------------------------------------------------------------------------
+
+``getParams``
+^^^^^^^^^^^^^
+.. code-block:: c++
+
+    const stringmap &getParams() const;
+
+Returns the map of parameter.
+
+.. -----------------------------------------------------------------------------
+
+``getSubModules``
+^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    const modulemap &getSubModules() const;
+
+Returns the map of submodules.
+
+Public Methods (``ParamProvider2``)
+-----------------------------------
+
+``destructor``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    ~ParamProvider2();
+
+
+.. -----------------------------------------------------------------------------
+
+``showTree``
+^^^^^^^^^^^^
+.. code-block:: c++
+
+    void showTree();
+
+Prints out the module tree.
+
+.. -----------------------------------------------------------------------------
+
+``getClasses``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    classes &getClasses();
+
+Returns the map of classes {name => class}. The "class" elements are direct descendants of the root of the ``qhgXMLTree``. 
+
+
+.. -----------------------------------------------------------------------------
+
+``getClass``
+^^^^^^^^^^^^
+.. code-block:: c++
+
+    const modulemap *getClass(const std::string sClassName);
+
+Get the  map of modules {name => module}. The "module" elements are direct descendants of either a "class" element or a "module" element. 
+
+``sClassName``
+    Name of the class to get the module of.
+
+Returns the module map.
+
+.. -----------------------------------------------------------------------------
+
+``selectClass``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    int selectClass(const std::string sClassName);
+
+Stores the specified class's name as well  as its info (attributes, module, and priorities) and the species' name.
+
+``sClassName``
+    Name of the class to select.
+
+.. -----------------------------------------------------------------------------
+
+``getClassInfo``
+^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    const classinfo *getClassInfo();
+
+Returns the classinfo of the slected class.
+
+
+.. -----------------------------------------------------------------------------
+
+``getParams``
+^^^^^^^^^^^^^
+.. code-block:: c++
+
+    const stringmap *getParams(const std::string sModuleName);
+
+Get the parameters of the secified module.
+
+``sModuleName``
+    Name of the module to get the parameters of.
+
+.. -----------------------------------------------------------------------------
+
+``getSelected``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    const std::string getSelected();
+
+Return the name of the currently selected class.
+
+.. -----------------------------------------------------------------------------
+
+``getSpeciesName``
+^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    const std::string getSpeciesName();
+
+Returns the species name for the currently selected class.
+
+.. -----------------------------------------------------------------------------
+
+
+``getClassNames``
+^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    const std::vector<std::string> getClassNames();
+
+Returns a vector containing the names of all classes.
+
+
+Protected Methods (``ParamProvider2``)
+--------------------------------------
+
+.. -----------------------------------------------------------------------------
+
+``constructor``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    ParamProvider2();
+
+The constructor.
+
+.. -----------------------------------------------------------------------------
+
+``init``
+^^^^^^^^
+.. code-block:: c++
+
+    int init(const std::string sXMLFile);
+
+Creates a ``qhgXMLTree`` for the specified file and then calls ``processClass`` for ech of the "class" nodes.
+
+.. -----------------------------------------------------------------------------
+
+``processParam``
+^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    int processParam(qhgXMLNode *pParam, const std::string subtag, stringmap &att_param);
+
+Processes the node corresponding to a parameter or priority list: collects the name-value pairs from the attributes.
+
+``pParam``
+   Pointer to a "param" or "priorities" node.
+
+``subTag``
+   The tag name to use . Can be "prio" or "param".
+
+``att_param``
+   The string map to which to add the nam-value pairs.
+
+Returns 0 on success, -1 on failure.
+
+.. -----------------------------------------------------------------------------
+
+``processModule``
+^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    int processModule(qhgXMLNode *pModule, modulemap &m_Modules);
+
+Processes the node corresponding to a module: collects the attributes, parameters and submodules.
+
+``pModule``
+   Pointer to a "module" node.
+
+``m_Modules``
+   Module map to whcich to ad the module.
+
+Returns 0 on success, -1 on failure.
+
+.. -----------------------------------------------------------------------------
+
+``processPriorities``
+^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    int processPriorities(qhgXMLNode *pPrios, stringmap &pa);
+
+Processes the node corresponding to the priorities: collect the "prio" entries contained by this node.
+
+``pPrios``
+   Pointer to the "priorities" node.
+
+``pa``
+   string map to contain the priority data ({action_name => priority_value}).
+
+Returns 0 on success, -1 on failure.
+
+.. -----------------------------------------------------------------------------
+
+``processClass``
+^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    int processClass(qhgXMLNode *pClass);
+
+Processes the node corresponding to a class: get the attributes and collect the modules and priorities.
+
+``pClass``
+   Pointer to a ``qhgXMLNode`` representing a class.
+
+Returns 0 on success, -1 on failure.

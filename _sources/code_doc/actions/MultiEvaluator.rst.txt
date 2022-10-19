@@ -1,0 +1,247 @@
+.. _MultiEvaluator_ref:
+
+MultiEvaluator
+==============
+
+.. rst-class:: hidden
+  
+    This page describes the class :index:`MultiEvaluator`
+
+``MultiEvaluator`` is derived from ``Evaluator`` and is used to combine the output arrays of ``Evaluator`` objects in various ways.
+Before being combined the values are multiplied by a weight which is read from the input data.
+
+.. figure:: ../../../images/MultiEvaluatorCombinations.png
+
+  
+
+Possible combinations:
+
++---------------------+---+---------------------------------------+
+| ``MODE_ADD_SIMPLE`` | 0 | Addition of the ouput values          |
++---------------------+---+---------------------------------------+
+| ``MODE_ADD_BLOCK``  | 1 | Blocked addition of the output values |
++---------------------+---+---------------------------------------+
+| ``MODE_MUL_SIMPLE`` | 2 | Multiply output values                |
++---------------------+---+---------------------------------------+
+| ``MODE_MAX_SIMPLE`` | 3 | Maximum of the output values          |
++---------------------+---+---------------------------------------+
+| ``MODE_MAX_BLOCK``  | 4 | Blocked maximum of the output values  |
++---------------------+---+---------------------------------------+
+| ``MODE_MIN_SIMPLE`` | 5 | Minimum of the output values          |
++---------------------+---+---------------------------------------+
+
+Blocked addition: only do addition for elements where none of the corresponding Evaluators' output array is 0.
+Blocked maximum: only do maximum for elements where none of the corresponding Evaluators' output array is 0.
+
+Note: Generally the ``Evaluators`` used in  a ``MultiEvaluator`` shoud **not be cumulated**.
+
+**Attributes**
+
++----------------------+------------------+-------------------+
+| ATTR_MULTEVAL_NAME   | "MultiEvaluator" | action name       |
++----------------------+------------------+-------------------+
+
+Type Definitions
+----------------
+.. code-block:: c++
+
+    typedef std::vector<std::pair<std::string, Evaluator<T>*> > evaluatorinfos;
+
+An ``evaluatorinfo`` is a list of pairs of evaluator weight names and ``Evaluators``.
+The weight names are used to get the values of the weights from the input file.
+
+
+
+Public Methods
+--------------
+
+
+.. -----------------------------------------------------------------------------
+
+``constructor``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    MultiEvaluator(SPopulation<T> *pPop, SCellGrid *pCG, std::string sID, double *adOutputWeights, evaluatorinfos &mEvaluators, int iMode, bool bDeleteEvaluators);
+
+``pPop``
+    A pointer to the :ref:`SPopulation<SPopulation_ref>` object performing this action.
+
+``pCG``
+    A pointer to the  :ref:`SCellGrid<SCellGrid_ref>` object on which the simulation runs.
+
+``sID``
+    An ID for this action.
+
+``adOutputWeights``
+    Array to hold the output weights. The size of this array is (m+1)*NumCells, where m  is the maximum number of neighbors of a cell.
+
+``mEvaluators``
+    The list of Evaluators and weight names to use.
+
+``iMode``
+    The combination mode (one of the ``MODE_XXX_XXX`` above).
+
+``bDeleteEvaluators``
+    If true the ``Evaluator`` objects will be deleted.
+
+
+.. -----------------------------------------------------------------------------
+
+``destructor``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual ~MultiEvaluator();
+
+Deletes some internal arrays and, if required, the ``Evaluator`` objects.
+
+.. -----------------------------------------------------------------------------
+
+``preLoop``
+^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int preLoop();
+
+Calls the ``preLoop()`` method of all ``Evaluator`` objects. 
+
+.. -----------------------------------------------------------------------------
+
+``postLoop``
+^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int postLoop();
+
+Calls the ``postLoop()`` method of all ``Evaluator`` objects. 
+
+.. -----------------------------------------------------------------------------
+
+``initialize``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int initialize(float fT);
+
+Calls the combination method corresponding to th required mode.
+
+.. -----------------------------------------------------------------------------
+
+``finalize``
+^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int finalize(float fT);
+
+Calls the ``finalize()`` method for  all ``Evaluator`` objects and resets the update flag.
+
+
+.. -----------------------------------------------------------------------------
+
+``extractAttributesQDF``
+^^^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+   
+    virtual int extractAttributesQDF(hid_t hSpeciesGroup);
+
+``hSpeciesGroup``
+    HDF handle for the species group to read from.
+
+Reads the weight values and the attributes for all ``Evaluator`` objects from the specified group of a QDF file.
+
+
+.. -----------------------------------------------------------------------------
+
+``writeAttributesQDF``
+^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+   virtual int writeAttributesQDF(hid_t hSpeciesGroup);
+
+``hSpeciesGroup``
+    HDF handle for the species group to write to.
+
+Writes the weight values and the attributes for all ``Evaluator`` objects to the specified group of a QDF file.
+
+.. -----------------------------------------------------------------------------
+
+``tryGetAttributes``
+^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int tryGetAttributes(const ModuleComplex *pMC);
+
+``pMC``
+    A ``ModuleComplex`` object.
+
+Gets the weight values and the attributes for all ``Evaluator`` objects from the module complex.
+
+Example of a ``MultiEvaluator`` entry in a :ref:`population XML file<pop_xml_ref>`
+
+
+.. code-block:: c++
+
+    <module name="MultiEvaluator" id="Alt+NPP" >
+        <param  name="Multi_weight_alt" value="0.2" />
+        <param  name="Multi_weight_npp" value="0.8" />
+        <module name="SingleEvaluator" id="Alt" >
+            <param  name="AltPref" value="-0.1 0 0.1 0.01 1500 1.0 2000 1 3000 -9999" />
+        </module>
+        <module name="SingleEvaluator" id="NPP" >
+             <param  name="NPPPref" value="0.0 0.0 1.2 1.0" />
+        </module>
+    </module>
+
+.. -----------------------------------------------------------------------------
+
+``setOutputWeights``
+^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    void setOutputWeights(double *adOutput);
+
+``adOutput``
+    An array containing values destined for output.
+
+The variable ``m_adOutputWeights`` is set to a point to the previously filled array ``adOutput``.
+
+.. -----------------------------------------------------------------------------
+
+``notify``
+^^^^^^^^^^
+.. code-block:: c++
+
+    void notify(Observable *pObs, int iEvent, const void *pData);
+
+``pObs``
+    The observable which sends the event.
+
+``iEvent``
+    ID of the event.
+
+``pData``
+    Pointer to data pertaining to the event. It must be cast to the correct type.
+
+| (implementation of the ``Observer`` interface)
+| If the event tyoe is EVENT_ID_FLUSH, the update flag is set, if any of the ``Evaluator`` objects' update flag is set.
+
+.. -----------------------------------------------------------------------------
+
+``isEqual``
+^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual bool isEqual(Action<T> *pAction, bool bStrict);
+
+``pAction``
+    Pointer to an action object to compare with this.
+
+``bStrict``
+    Strictness of comparisons (ignored here).
+
+``pAction`` is equal to ``this``, if it is a ``MultiEvaluator`` and all the corresponding `` Evaluator``  objects are equal and the weight names and weight values match.
+
+    
+   
+

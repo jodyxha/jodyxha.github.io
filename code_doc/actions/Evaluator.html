@@ -1,0 +1,172 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Evaluator &#8212; QHG4 4.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jody.css" />
+    
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    
+    <link rel="shortcut icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="MultiEvaluator" href="MultiEvaluator.html" />
+    <link rel="prev" title="GetOld" href="GetOld.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="MultiEvaluator.html" title="MultiEvaluator"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="GetOld.html" title="GetOld"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../actions.html" accesskey="U">actions</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Evaluator</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="evaluator">
+<span id="evaluator-ref"></span><h1>Evaluator<a class="headerlink" href="#evaluator" title="Permalink to this heading">¶</a></h1>
+<p class="hidden">This page describes the class <span class="target" id="index-0"></span>Evaluator</p>
+<p>The pure virtual class <code class="docutils literal notranslate"><span class="pre">Evaluator</span></code> is derived from <code class="docutils literal notranslate"><span class="pre">Action</span></code> as well as <code class="docutils literal notranslate"><span class="pre">Observer</span></code>, and serves as a base class for classes that evaluate the environment.</p>
+<p>The implementation of the <a class="reference internal" href="../utils/Observer.html#observer-ref"><span class="std std-ref">Observer</span></a> interface allows this action to be notified of events.</p>
+<p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/Evaluator.h">Evaluator.h</a></p>
+<p>This clss has no attributes.</p>
+<section id="public-methods">
+<h2>Public Methods<a class="headerlink" href="#public-methods" title="Permalink to this heading">¶</a></h2>
+<section id="constructors">
+<h3><code class="docutils literal notranslate"><span class="pre">constructors</span></code><a class="headerlink" href="#constructors" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Evaluator</span><span class="p">(</span><span class="n">SPopulation</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="o">*</span><span class="n">pPop</span><span class="p">,</span><span class="w"> </span><span class="n">SCellGrid</span><span class="w"> </span><span class="o">*</span><span class="n">pCG</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sActionName</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sID</span><span class="p">);</span><span class="w"></span>
+<span class="n">Evaluator</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">pPop</span></code></dt><dd><p>A pointer to the <a class="reference internal" href="../core/SPopulation.html#spopulation-ref"><span class="std std-ref">SPopulation</span></a> object performing this action.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">pCG</span></code></dt><dd><p>A pointer to the  <a class="reference internal" href="../core/SCellGrid.html#scellgrid-ref"><span class="std std-ref">SCellGrid</span></a> object on which the simulation runs.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sActionName</span></code></dt><dd><p>Name of the action.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sID</span></code></dt><dd><p>An ID for this action.</p>
+</dd>
+</dl>
+</section>
+<section id="destructor">
+<h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">Evaluator</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The destructor does nothing.</p>
+</section>
+<section id="setoutputweights">
+<h3><code class="docutils literal notranslate"><span class="pre">setOutputWeights</span></code><a class="headerlink" href="#setoutputweights" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setOutputWeights</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">adOutput</span><span class="p">)</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">adOutput</span></code></dt><dd><p>Array of doubles to hold the internal weights.</p>
+</dd>
+</dl>
+<p>Set the internal weights for the cells.</p>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Evaluator</a><ul>
+<li><a class="reference internal" href="#public-methods">Public Methods</a><ul>
+<li><a class="reference internal" href="#constructors"><code class="docutils literal notranslate"><span class="pre">constructors</span></code></a></li>
+<li><a class="reference internal" href="#destructor"><code class="docutils literal notranslate"><span class="pre">destructor</span></code></a></li>
+<li><a class="reference internal" href="#setoutputweights"><code class="docutils literal notranslate"><span class="pre">setOutputWeights</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="GetOld.html"
+                          title="previous chapter">GetOld</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="MultiEvaluator.html"
+                          title="next chapter">MultiEvaluator</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/code_doc/actions/Evaluator.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="MultiEvaluator.html" title="MultiEvaluator"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="GetOld.html" title="GetOld"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../actions.html" >actions</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Evaluator</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+    </div>
+  </body>
+</html>

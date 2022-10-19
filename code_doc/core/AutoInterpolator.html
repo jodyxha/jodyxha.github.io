@@ -1,0 +1,270 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>AutoInterpolator &#8212; QHG4 4.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jody.css" />
+    
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    
+    <link rel="shortcut icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="IDGen" href="IDGen.html" />
+    <link rel="prev" title="Prioritizer" href="Prioritizer.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="IDGen.html" title="IDGen"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="Prioritizer.html" title="Prioritizer"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../core.html" accesskey="U">core</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">AutoInterpolator</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="autointerpolator">
+<span id="autointerpolator-ref"></span><h1>AutoInterpolator<a class="headerlink" href="#autointerpolator" title="Permalink to this heading">¶</a></h1>
+<p class="hidden">This page describes the class <span class="target" id="index-0"></span>AutoInterpolator</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">AutoInterpolator</span></code> is used to interpolate between arrays in the environment files at different times.</p>
+<p>In particular <code class="docutils literal notranslate"><span class="pre">AutoInterpolator</span></code> uses an event file containing environment data loads.
+Typically, these load events happen every 1000 steps or so.
+<code class="docutils literal notranslate"><span class="pre">AutoInterpolator</span></code> calculates the changes in the data for one step between the currently loaded data and the next data to be loaded.
+In regular intervals, the differences are added to the arrays, and the populations are made aware of the changes.</p>
+<p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/core/AutoInterpolator.h">AutoInterpolator.h</a> <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/core/AutoInterpolator.cpp">AutoInterpolator.cpp</a></p>
+<section id="type-definitions">
+<h2>Type Definitions<a class="headerlink" href="#type-definitions" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">uint</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="o">*&gt;</span><span class="w">            </span><span class="n">length_array</span><span class="p">;</span><span class="w"></span>
+<span class="k">typedef</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">length_array</span><span class="o">&gt;</span><span class="w"> </span><span class="n">named_arrays</span><span class="p">;</span><span class="w"></span>
+
+<span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">group_file</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">set</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">vGroups</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w">           </span><span class="n">sFile</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"> </span><span class="n">group_file</span><span class="p">;</span><span class="w"></span>
+<span class="k">typedef</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="n">group_file</span><span class="o">&gt;</span><span class="w">           </span><span class="n">timed_files</span><span class="p">;</span><span class="w"></span>
+
+<span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">target_info</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w">           </span><span class="n">sFullName</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w">           </span><span class="n">sGroup</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w">           </span><span class="n">sArray</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"> </span><span class="n">target_info</span><span class="p">;</span><span class="w"></span>
+<span class="k">typedef</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">target_info</span><span class="o">&gt;</span><span class="w">            </span><span class="n">target_list</span><span class="p">;</span><span class="w"></span>
+
+<span class="k">typedef</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="o">&gt;</span><span class="w">         </span><span class="n">array_sizes</span><span class="p">;</span><span class="w"></span>
+
+<span class="k">typedef</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w">                    </span><span class="n">event_list</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The type <code class="docutils literal notranslate"><span class="pre">named_arrays</span></code>  associates a name with an array and its length.</p>
+<p>The type <code class="docutils literal notranslate"><span class="pre">target_info</span></code> holds information about an array in a QDF file. <code class="docutils literal notranslate"><span class="pre">sFullName</span></code> is the full path to the array, <code class="docutils literal notranslate"><span class="pre">sGroup</span></code> is the group containing the array, <code class="docutils literal notranslate"><span class="pre">sArray</span></code> is the name of the array,</p>
+</section>
+<section id="public-methods">
+<h2>Public Methods<a class="headerlink" href="#public-methods" title="Permalink to this heading">¶</a></h2>
+<section id="createinstance">
+<h3><code class="docutils literal notranslate"><span class="pre">createInstance</span></code><a class="headerlink" href="#createinstance" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="n">AutoInterpolator</span><span class="w"> </span><span class="o">*</span><span class="nf">createInstance</span><span class="p">(</span><span class="n">SCellGrid</span><span class="w"> </span><span class="o">*</span><span class="n">pCG</span><span class="p">,</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sEnvEventFile</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">fStartTime</span><span class="p">,</span><span class="w"> </span><span class="n">target_list</span><span class="w"> </span><span class="o">&amp;</span><span class="n">vTargets</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">pCG</span></code></dt><dd><p>Pointer to the cell grid of this simulation.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sEnvEventFile</span></code></dt><dd><p>Event file like containing environment load events.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">fStartTime</span></code></dt><dd><p>“real” time at step 0.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">vTargets</span></code></dt><dd><p>Information about the arrays to be interpolated.</p>
+</dd>
+</dl>
+<p>Creates an <cite>AutoInterpolator`</cite> object from the rovided data.</p>
+</section>
+<section id="destructor">
+<h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">AutoInterpolator</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The destructor deletes arrays that have been allocated.</p>
+</section>
+<section id="interpolate">
+<h3><code class="docutils literal notranslate"><span class="pre">interpolate</span></code><a class="headerlink" href="#interpolate" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">interpolate</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iSteps</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">iSteps</span></code></dt><dd><p>Number of steps between interpolation calls.</p>
+</dd>
+</dl>
+<p>Adds the the differences calculated in <code class="docutils literal notranslate"><span class="pre">calcNextDIff()</span></code> to the arrays in question.</p>
+</section>
+<section id="startinterpolations">
+<h3><code class="docutils literal notranslate"><span class="pre">startInterpolations</span></code><a class="headerlink" href="#startinterpolations" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">startInterpolations</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iFirstStep</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Loads the arrays to be interpolated. If the current time is less than the time stamp of the first file in the list,
+the currently used arrays are loaded from the <code class="docutils literal notranslate"><span class="pre">SCellGrid::m_pGeography</span></code>  or <code class="docutils literal notranslate"><span class="pre">SCellGrid::m_pVegetation</span></code>.
+Otherwise the file list is searched for the first file with a timestamp greater than the current time and its arrays are loaded.</p>
+</section>
+<section id="calcnextdiff">
+<h3><code class="docutils literal notranslate"><span class="pre">calcNextDiff</span></code><a class="headerlink" href="#calcnextdiff" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">calcNextDiff</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Calculatesthe  differences betwee the values of the next array and those of the current array,</p>
+</section>
+<section id="getcurstep">
+<h3><code class="docutils literal notranslate"><span class="pre">getCurStep</span></code><a class="headerlink" href="#getcurstep" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">getCurStep</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Returns the step of the next file to be loaded.</p>
+</section>
+<section id="getevents">
+<h3><code class="docutils literal notranslate"><span class="pre">getEvents</span></code><a class="headerlink" href="#getevents" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="n">event_list</span><span class="w"> </span><span class="o">&amp;</span><span class="nf">getEvents</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Returns the current vector of events (basically a vector of integers such as EVENT_ID_GEO or EVENT_ID_VEG).</p>
+</section>
+<section id="checknewinterpolation">
+<h3><code class="docutils literal notranslate"><span class="pre">checkNewInterpolation</span></code><a class="headerlink" href="#checknewinterpolation" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">checkNewInterpolation</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iCheckStep</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">iCheckStep</span></code></dt><dd><p>Cirrent simulation step.</p>
+</dd>
+</dl>
+<p>Checks if new differences must be calculated.</p>
+<p>Returns 0 if no new differences had to be calculated, 1 if there are new differences, -1 on error.</p>
+</section>
+<section id="displayfiles">
+<h3><code class="docutils literal notranslate"><span class="pre">displayFiles</span></code><a class="headerlink" href="#displayfiles" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">displayFiles</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line">(used for debugging only)</div>
+<div class="line">Displays the environment files in the list.</div>
+</div>
+</section>
+<section id="displayarrays">
+<h3><code class="docutils literal notranslate"><span class="pre">displayArrays</span></code><a class="headerlink" href="#displayarrays" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">displayArrays</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line">(used for debugging only)</div>
+<div class="line">Displays the first few elements of the input and difference arrays.</div>
+</div>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">AutoInterpolator</a><ul>
+<li><a class="reference internal" href="#type-definitions">Type Definitions</a></li>
+<li><a class="reference internal" href="#public-methods">Public Methods</a><ul>
+<li><a class="reference internal" href="#createinstance"><code class="docutils literal notranslate"><span class="pre">createInstance</span></code></a></li>
+<li><a class="reference internal" href="#destructor"><code class="docutils literal notranslate"><span class="pre">destructor</span></code></a></li>
+<li><a class="reference internal" href="#interpolate"><code class="docutils literal notranslate"><span class="pre">interpolate</span></code></a></li>
+<li><a class="reference internal" href="#startinterpolations"><code class="docutils literal notranslate"><span class="pre">startInterpolations</span></code></a></li>
+<li><a class="reference internal" href="#calcnextdiff"><code class="docutils literal notranslate"><span class="pre">calcNextDiff</span></code></a></li>
+<li><a class="reference internal" href="#getcurstep"><code class="docutils literal notranslate"><span class="pre">getCurStep</span></code></a></li>
+<li><a class="reference internal" href="#getevents"><code class="docutils literal notranslate"><span class="pre">getEvents</span></code></a></li>
+<li><a class="reference internal" href="#checknewinterpolation"><code class="docutils literal notranslate"><span class="pre">checkNewInterpolation</span></code></a></li>
+<li><a class="reference internal" href="#displayfiles"><code class="docutils literal notranslate"><span class="pre">displayFiles</span></code></a></li>
+<li><a class="reference internal" href="#displayarrays"><code class="docutils literal notranslate"><span class="pre">displayArrays</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="Prioritizer.html"
+                          title="previous chapter">Prioritizer</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="IDGen.html"
+                          title="next chapter">IDGen</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/code_doc/core/AutoInterpolator.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="IDGen.html" title="IDGen"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="Prioritizer.html" title="Prioritizer"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../core.html" >core</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">AutoInterpolator</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+    </div>
+  </body>
+</html>

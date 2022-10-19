@@ -1,0 +1,117 @@
+.. _VegGroupReader_ref:
+
+VegGroupReader
+===============
+
+.. rst-class:: hidden
+
+   This page describes the class  :index:`VegGroupReader`
+
+   
+The class ``VegGroupReader`` reads attributes and arrays from the :ref:`vegetation group <VegGroup_ref>` of a qdf file.
+
+This file extends the attribute structure:
+
+.. code-block:: c++
+
+    struct VegAttributes : Attributes {
+        int     m_iNumVegSpc;
+    };
+
+Code: `VegGroupReader.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/VegGroupReader.h>`_, `VegGroupReader.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/VegGroupReader.cpp>`_
+
+
+Public Methods
+--------------
+
+``createVegGroupReader``
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: c++
+
+   static VegGroupReader *createVegGroupReader(const std::string sFileName);
+
+.. code-block:: c++
+
+   static VegGroupReader *createVegGroupReader(hid_t hFile);
+
+Creates a ``VegGroupReader`` object for a qdf file.
+
+``sFileName`` 
+    Name of the file to read the vegetation data from.
+
+``hFile``
+    HDF5 handle for the file to read the vegetation data from.
+
+Returns a pointer to the ``VegGroupReader`` object or ``NULL`` on failure.
+
+.. -----------------------------------------------------------------------------
+
+``tryReadAttributes``
+^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: c++
+
+   virtual int tryReadAttributes(VegAttributes *pAttributes);
+
+Reads the attribute "NumCells" and "NumSpecies" in the vegetation group into the attribute structure.
+
+``pAttributes``
+    A pointer to a ``VegAttributes`` object to hold the attributes.
+
+Returns 0 on success, -1 on failure.
+
+.. -----------------------------------------------------------------------------
+
+``readArray``
+^^^^^^^^^^^^^
+
+.. code-block:: c++
+
+   virtual int readArray(Vegetation *pVegetation, const std::string sArrayName);
+
+Read the specified array from the "Vegetation" group of the qdf file.
+
+``pVegetation``
+    A pointer to the :ref:`Vegetation<Vegetation_ref>` object into which to read the array,
+
+``sArrayName``
+    Name of the array in the  "Vegetation" group of the qdf file.
+
+
+Returns 0 on succes, or -1 on failure.
+
+.. -----------------------------------------------------------------------------
+
+``readData``
+^^^^^^^^^^^^
+
+.. code-block:: c++
+
+   virtual int readData(Vegetation *pVegetation);
+
+Reads the arrays "BaseNPP" and "NPP".
+
+
+``pVegetation``
+    A Pointer to a :ref:`Vegetation<Vegetation_ref>` object.
+
+Returns 0 on succes, or -1 on failure.
+
+.. -----------------------------------------------------------------------------
+
+Protected Methods
+-----------------
+
+``constructor``
+^^^^^^^^^^^^^^^
+
+.. code-block:: c++
+
+   VegGroupReader();
+
+The constructor.
+
+.. -----------------------------------------------------------------------------
+
+

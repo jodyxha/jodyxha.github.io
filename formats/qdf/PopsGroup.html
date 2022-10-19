@@ -1,0 +1,233 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>“Populations” &#8212; QHG4 4.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jody.css" />
+    
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    
+    <link rel="shortcut icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="The Population XML Format" href="../pop/pop_xml.html" />
+    <link rel="prev" title="“Navigation”" href="NavGroup.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../pop/pop_xml.html" title="The Population XML Format"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="NavGroup.html" title="“Navigation”"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../formats.html" >File Formats</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="QDF.html" accesskey="U">The QDF Format</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">“Populations”</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="populations">
+<span id="popsgroup-ref"></span><h1>“Populations”<a class="headerlink" href="#populations" title="Permalink to this heading">¶</a></h1>
+<p class="hidden">This page describes <span class="target" id="index-0"></span>populations group</p>
+<p>The <strong>populations group</strong> is a container for all population groups; it has no attributes or data sets.</p>
+<p>The names of any population group is simply the name of the species.</p>
+<p>A population group contains some attributes as well as a subgroup for each of the population’s actions.
+Those action subgroups contain attributes (whose names are the corresponding parameter names) and their values.</p>
+<p>This is an example of an action subgroup:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">GROUP</span><span class="w"> </span><span class="s">&quot;OldAgeDeath&quot;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">ATTRIBUTE</span><span class="w"> </span><span class="s">&quot;OAD_max_age&quot;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="n">DATATYPE</span><span class="w">  </span><span class="n">H5T_IEEE_F64LE</span><span class="w"></span>
+<span class="w">       </span><span class="n">DATASPACE</span><span class="w">  </span><span class="n">SIMPLE</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="w">       </span><span class="n">DATA</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="mf">64.1699</span><span class="w"></span>
+<span class="w">       </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">ATTRIBUTE</span><span class="w"> </span><span class="s">&quot;OAD_uncertainty&quot;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="n">DATATYPE</span><span class="w">  </span><span class="n">H5T_IEEE_F64LE</span><span class="w"></span>
+<span class="w">       </span><span class="n">DATASPACE</span><span class="w">  </span><span class="n">SIMPLE</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="w">       </span><span class="n">DATA</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="mf">0.1</span><span class="w"></span>
+<span class="w">       </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w"> </span><span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The following figure shows an example for the structue of the group “Populations” for two populations with different actions.</p>
+<figure class="align-default" id="id1">
+<img alt="../../_images/popgroups.png" src="../../_images/popgroups.png" />
+<figcaption>
+<p><span class="caption-text">The QDF Group “Populations” with subgroups for species “Population_A” and “Population_B”.
+Both populations have data sets, action subgroups and some attributes.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<section id="population-group-attributes">
+<h2>Population Group Attributes<a class="headerlink" href="#population-group-attributes" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><dl class="simple">
+<dt><strong>NumCells</strong></dt><dd><p>Number of nodes</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>ClassName</strong></dt><dd><p>Name of the population class</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>SpeciesName</strong></dt><dd><p>Name of the species (two discern two different types of species based on the same population class)</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>PrioInfo</strong></dt><dd><p>Priority information for the actions. This attribute’s value is a small array of action names and their values.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>InitialSeed</strong></dt><dd><p>The seed used to initialize this population’s random number generator.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>QDFVersion</strong></dt><dd><p>The version of the QDF format used (there was a big difference of the population group formats between versions 3 and 4).</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="population-group-dataset">
+<h2>Population Group Dataset<a class="headerlink" href="#population-group-dataset" title="Permalink to this heading">¶</a></h2>
+<dl class="simple">
+<dt><strong>AgentDataSet</strong></dt><dd><p>The format of a population’s data set depends on the personal parameters of the agents.
+Conceptually, this data set is an array of structuress containing the agents’ parameters.</p>
+</dd>
+</dl>
+<p>Example:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">DATASET</span><span class="w"> </span><span class="s">&quot;AgentDataSet&quot;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">DATATYPE</span><span class="w">  </span><span class="n">H5T_COMPOUND</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">H5T_STD_I32LE</span><span class="w"> </span><span class="s">&quot;LifeState&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">H5T_STD_I32LE</span><span class="w"> </span><span class="s">&quot;CellIdx&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">H5T_STD_I32LE</span><span class="w"> </span><span class="s">&quot;CellID&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">H5T_STD_I64LE</span><span class="w"> </span><span class="s">&quot;AgentID&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">H5T_IEEE_F32LE</span><span class="w"> </span><span class="s">&quot;BirthTime&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">H5T_STD_U8LE</span><span class="w"> </span><span class="s">&quot;Gender&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">DATASPACE</span><span class="w">  </span><span class="n">SIMPLE</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="mi">101</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="mi">101</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="n">DATA</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">              </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
+<span class="w">              </span><span class="mi">151</span><span class="p">,</span><span class="w"></span>
+<span class="w">              </span><span class="mi">151</span><span class="p">,</span><span class="w"></span>
+<span class="w">              </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
+<span class="w">              </span><span class="mi">-6</span><span class="p">,</span><span class="w"></span>
+<span class="w">              </span><span class="mi">0</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="p">},</span><span class="w"></span>
+<span class="w">        </span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">              </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
+<span class="w">              </span><span class="mi">92</span><span class="p">,</span><span class="w"></span>
+<span class="w">              </span><span class="mi">92</span><span class="p">,</span><span class="w"></span>
+<span class="w">              </span><span class="mi">2</span><span class="p">,</span><span class="w"></span>
+<span class="w">              </span><span class="mi">-7</span><span class="p">,</span><span class="w"></span>
+<span class="w">              </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="p">},</span><span class="w"></span>
+<span class="w">        </span><span class="p">...</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">“Populations”</a><ul>
+<li><a class="reference internal" href="#population-group-attributes">Population Group Attributes</a></li>
+<li><a class="reference internal" href="#population-group-dataset">Population Group Dataset</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="NavGroup.html"
+                          title="previous chapter">“Navigation”</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="../pop/pop_xml.html"
+                          title="next chapter">The Population XML Format</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/formats/qdf/PopsGroup.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../pop/pop_xml.html" title="The Population XML Format"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="NavGroup.html" title="“Navigation”"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../formats.html" >File Formats</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="QDF.html" >The QDF Format</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">“Populations”</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+    </div>
+  </body>
+</html>

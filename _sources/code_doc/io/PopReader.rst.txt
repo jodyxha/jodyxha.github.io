@@ -1,0 +1,112 @@
+.. _PopReader_ref:
+
+PopReader
+=========
+
+.. rst-class:: hidden
+
+   This page desctibes the class :index:`PopReader`
+
+The class ``PopReader`` is used to write the :ref:`population data<SPopulation_ref>` as a subgroup of the :ref:`populations group<PopsGroup_ref>` in a qdf file.
+
+
+The information of found populations is stored in a vector of ``popinfo`` structures:
+
+.. code-block:: c++
+
+    typedef struct {
+        std::string m_sClassName;
+        std::string m_sSpeciesName;
+        int  m_iNumCells;
+    } popinfo;
+
+    typedef std::vector<popinfo> popinfolist;
+
+Code: `PopReader.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/PopReader.h>`_, `PopReader.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/PopReader.cpp>`_
+
+Public Methods
+--------------
+
+``create``
+^^^^^^^^^^
+.. code-block:: c++
+
+  static PopReader *create(const std::string sFileName);
+  static PopReader *create(hid_t hFile):
+
+Create a ``PopReader`` object for the specified file.
+
+``sFileName``
+    Name of qdf file to be read.
+
+``hFile``
+    HDF handle for the open file.
+
+Returns a pointer to the ``PopReader`` object.
+
+.. -----------------------------------------------------------------------------
+
+``destructor``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    ~PopReader();
+
+Closes open HDF handles.
+
+.. -----------------------------------------------------------------------------
+
+``open``
+^^^^^^^^
+.. code-block:: c++
+
+   int open(const std::string sFilename);
+   int open(hid_t hFile);
+
+Open the "Populations" group, and collects the names and attributes of all  population subgroups.
+
+``sFileName``
+    Name of file in which to search for populations.
+
+``hFile``
+    HDF handle for file in which to search for populations.
+
+Returns 0 on success, or -1 on error.
+
+.. -----------------------------------------------------------------------------
+
+``getPopList``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+   const popinfolist &getPopList();
+
+Returns the vector of ``popinfo`` structs.
+
+.. -----------------------------------------------------------------------------
+
+``read``
+^^^^^^^^
+.. code-block:: c++
+
+  int read(PopBase *pPopBase, const std::string sSpeciesName, 
+           int iNumCells,     bool bRestore);
+
+Reads the data from the AgentDataSet of the population group with the given name into the agent array of the population object.
+
+``pPopBase``
+    Pointer to a :ref:`population object<SPopulation_ref>`. The user of PopReader must provide a pointer of the correct type.
+
+``sSpeciesName``
+    Name of the species for which to load the data.
+
+``iNumCells``
+    Number of grid cells. Must have the same value as the NumCells attribute in the populatin group. If the numbers don't match the positions of the agents will most certainly be wrong.
+
+``bRestore``
+    If set to true, do a :ref:`restore <dump_restore_ref>`, if false, read normally
+
+Returns 0 on success, or a begative value on error.
+
+.. -----------------------------------------------------------------------------
+

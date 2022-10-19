@@ -1,0 +1,172 @@
+.. _tut_EnvironAltPop_ref:
+
+tut_EnvironAltPop
+=================
+
+.. rst-class:: hidden
+
+   This page describes the class :index:`tut_EnvironAltPop`
+
+The class ``tut_EnvironAltPop`` is derived from :ref:`SPopulation<SPopulation_ref>`.
+
+Apart from aging, dyining, moving, sexually reproducing, the agents react ot the envrionment.
+In particular the agents "sense" the altitude, and try to move to locations with altitudes
+they prefer. This preference is expressed by means of a poly line.
+
+For this the actions 
+
+* :ref:`GetOld<GetOld_ref>`
+* :ref:`OldAgeDeath<OldAgeDeath_ref>` 
+* :ref:`WeightedMove<WeightedMove_ref>`
+* :ref:`Fertility<Fertility_ref>`
+* :ref:`Verhulst<Verhulst_ref>`
+* :ref:`RandomPair<RandomPair_ref>`  
+
+are required.
+
+(The class ``tut_SexualPop`` ` is described in detail in the :ref:`sixth part<TutorialEnvironAlt_ref>`  of the :ref:`tutorial<Tutorial_ref>`).
+
+Code: `tut_EnvironAltPop.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_EnvironAltPop.h>`_, `tut_EnvironAltPop.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_EnvironAltPop.cpp>`_
+
+
+Data types
+----------
+
+The actions ``GetOld`` and ``OldAgeDeath`` expect the agents to have a float member ``m_fAge``, 
+the action ``Fertility`` additionally requires a float member ``m_fLastBirth``,
+and the actions ``Verhulst`` and ``RandomPair`` require an int member ``m_iMateIndex``.
+
+.. code-block:: c++
+
+    struct tut_EnvironAltAgent : Agent {
+
+        float m_fAge;
+        float m_fLastBirth;
+        int   m_iMateIndex;
+    };
+
+
+
+Public Methods
+--------------
+
+``constructor``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    tut_EnvironAltPop(SCellGrid *pCG, PopFinder *pPopFinder, int iLayerSize, IDGen **apIDG, uint32_t *aulState, uint *aiSeeds);
+   
+``pCG``
+    Pointer to the :ref:`cell grid<SCellGrid_ref>`  the simulation runs on.
+
+``pPopFinder``
+    A pointer to an instance of a :ref:`PopFinder<PopFinder_ref>` population container.
+
+``iLayerSize``
+    The layer size used by the :ref:`agent management system <AgentManagement_ref>`.
+
+``apIDG``
+    An array of pointers to the :ref:`ID generators<IDGen_ref>`, one for each thread.
+
+``aulState``
+    An array of ``uint`` used to initalize the :ref:`WELL512 random number generators<WELL512_ref>`.
+
+``aiSeeds``
+    Seeds for other WELL512 instances **not used for moving and breeding**, e.g. for genetics. 
+
+This creates an instance each of :ref:`GetOld<GetOld_ref>`, :ref:`OldAgeDeath<OldAgeDeath_ref>`, 
+:ref:`WeightedMove<WeightedMove_ref>`, :ref:`Fertility<Fertility_ref>`, :ref:`Verhulst<Verhulst_ref>`, 
+and :ref:`SingleEvaluator<SingleEvaluator_ref>`, and registers them with the :ref:`Prioritizer<Prioritizer_ref>`.
+
+.. -----------------------------------------------------------------------------
+
+``destructor``
+^^^^^^^^^^^^^^
+
+.. code-block:: c++
+
+    ~tut_EnvironAltPop();
+
+The destructor deletes the action objects created in the constructor.
+
+
+  
+.. -----------------------------------------------------------------------------
+
+``makePopSpecificOffspring``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: c++
+
+    int makePopSpecificOffspring(int iAgent, int iMother, int iFather);
+
+``iAgent``
+    Index of new born agent.
+
+``iMother``
+    Index of the baby's mother.
+
+
+``iFather``
+    Index of the baby's father.
+
+Initializes the members of the new agent. In particular, the mate index is set to the agent's own index and the gender set to 0 (female) - this enable asexual reproduction.
+
+.. -----------------------------------------------------------------------------
+
+
+``addPopSpecificAgentData``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: c++
+
+    int addPopSpecificAgentData(int iAgentIndex, char **ppData);
+
+.. -----------------------------------------------------------------------------
+
+``addPopSpecificAgentDataTypeQDF``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: c++
+
+    void addPopSpecificAgentDataTypeQDF(hid_t *hAgentDataType);
+
+``hAgentDataType``
+    HDF5 handle for a existin HDF data type.
+
+This method extends the existing HDF data type, by entriues for the agent's age member, and the last birth.
+
+.. -----------------------------------------------------------------------------
+
+``updateEvent``
+^^^^^^^^^^^^^^^
+
+.. code-block:: c++
+
+    virtual int updateEvent(int EventID, char *pData, float fT);
+
+``EventID``
+    The ID of an event.
+
+``pData``
+    Optional strin for the event.
+
+''fT''
+    Current simulation step. 
+
+This method only handles events related to changes in geography.
+In particular, it kills agents who suddenly finde them selves under water or under ice.
+
+.. -----------------------------------------------------------------------------
+
+``flushEvents``
+^^^^^^^^^^^^^^^
+
+.. code-block:: c++
+
+    virtual void flushEvents(float fT);
+
+''fT''
+    Current simulation step. 
+
+This method is called when no more events are scheduled for this time step.

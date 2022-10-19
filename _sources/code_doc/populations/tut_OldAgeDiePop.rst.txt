@@ -1,0 +1,109 @@
+.. _tut_OldAgeDiePop_ref:
+
+tut_OldAgeDiePop
+================
+
+.. rst-class:: hidden
+
+   This page describes the class :index:`tut_OldAgePop`
+
+The class ``tut_OldAgeDiePop`` is derived from :ref:`SPopulation<SPopulation_ref>`.
+
+Here the agents age and die after reachin an age near the maximum age. 
+
+For this the actions 
+
+* :ref:`GetOld<GetOld_ref>`
+* :ref:`OldAgeDeath<OldAgeDeath_ref>` 
+
+are required.
+
+(The class ``tut_OldAgeDiePop`` is described in detail in the :ref:`second part<TutorialOldAgeDie_ref>` of the :ref:`tutorial<Tutorial_ref>`).
+
+Code: `tut_OldAgeDiePop.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_OldAgeDiePop.h>`_, `tut_OldAgeDiePop.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_OldAgeDiePop.cpp>`_
+
+Data types
+----------
+
+The actions ``GetOld`` and ``OldAgeDeath`` expect the agents to have a float member ``m_fAge``.
+Therefore, we extend the basic agent type defined in :ref:`SPopulation<SPopulation_ref>` by a float:
+
+.. code-block:: c++
+
+    struct tut_OldAgeDieAgent : Agent {
+        float m_fAge;
+    };
+
+
+Public Methods
+--------------
+
+``constructor``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    tut_OldAgeDiePop(SCellGrid *pCG, PopFinder *pPopFinder, int iLayerSize, 
+                     IDGen **apIDG, uint32_t *aulState, uint *aiSeeds);
+
+``pCG``
+    Pointer to the :ref:`cell grid<SCellGrid_ref>`  the simulation runs on.
+
+``pPopFinder``
+    A pointer to an instance of a :ref:`PopFinder<PopFinder_ref>` population container.
+
+``iLayerSize``
+    The layer size used by the :ref:`agent management system <AgentManagement_ref>`.
+
+``apIDG``
+    An array of pointers to the :ref:`ID generators<IDGen_ref>`, one for each thread.
+
+``aulState``
+    An array of ``uint`` used to initalize the :ref:`WELL512 random number generators<WELL512_ref>`.
+
+``aiSeeds``
+    Seeds for other WELL512 instances **not used for moving and breeding**, e.g. for genetics. 
+
+This creates an instance each of :ref:`GetOld<GetOld_ref>` and :ref:`OldAgeDeath<OldAgeDeath_ref>`, and registers them with the :ref:`Prioritizer<Prioritizer_ref>`.
+
+.. -----------------------------------------------------------------------------
+
+``destructor``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    ~tut_OldAgeDiePop();
+
+The destructor deletes the action objects created in the constructor.
+
+
+
+.. -----------------------------------------------------------------------------
+
+``addPopSpecificAgentData``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    addPopSpecificAgentData(int iAgentIndex, char **ppData);
+
+``iAgentIndex``
+    Index of agent whose data is being read.
+
+``ppData``
+    pointer to a string containing textual representation of data (see :ref:`DAT-files<pop_dat_ref>`).
+
+| This method expects the next string to be the age of the agent.
+| The next string is converted to float (this may of course fail), and ppData is modified to point to the following word.
+
+
+.. -----------------------------------------------------------------------------
+
+``addPopSpecificAgentData`TypeQDF``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    addPopSpecificAgentDataTypeQDF(hid_t *hAgentDataType);
+
+``hAgentDataType``
+    HDF5 handle for a existin HDF data type.
+
+This method extends the existing HDF data type by an entry for the agent's age member.

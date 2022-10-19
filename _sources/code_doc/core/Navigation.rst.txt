@@ -1,0 +1,168 @@
+.. _Navigation_ref:
+
+Navigation
+==========
+
+
+.. rst-class:: hidden
+
+    This page describes the class :index:`Navigation`
+
+For some simulations it is important that agents can travel over thes sea to islands.
+
+The class ``Navigation`` provides "tunnels" or "bridges" connecting points an different land masses.
+
+The action :ref:`Navigate<Navigate_ref>` provides means to assign crossing probabilities to bridges.
+
+The bridges are usually automatically calculated (with the tool "SeaWays"), but bridges  can also ne added manually
+
+Type Definitions
+----------------
+
+.. code-block:: c++
+    
+    typedef std::map<gridtype, double>   distlist;
+    typedef std::map<gridtype, distlist> distancemap;
+
+A ``distancemap`` assigns a origins and istances to destinations.
+
+
+.. code-block:: c++
+
+    typedef std::pair<gridtype,gridtype> bridgedef;
+    typedef std::vector<bridgedef>        bridgelist;
+
+A ``bridgedef`` holds the origin and destination of a bridge; a ``bridgelist`` is a vector containing bridge definitiions.
+
+
+Public Members
+--------------
+  
+.. -----------------------------------------------------------------------------
+
+.. code-block:: c++
+
+   uint     m_iNumPorts;
+
+The number of ports (i.e. origin points).
+ 
+.. -----------------------------------------------------------------------------
+
+.. code-block:: c++
+
+    uint     m_iNumDests;
+ 
+The number of destination points.
+
+.. -----------------------------------------------------------------------------
+
+.. code-block:: c++
+
+    uint     m_iNumDists;
+
+Number of entries in the distance map.
+ 
+.. -----------------------------------------------------------------------------
+
+.. code-block:: c++
+
+    double   m_dSampleDist;
+
+The sampling distance is needed to calculate crossing probabilities. 
+
+.. -----------------------------------------------------------------------------
+
+.. code-block:: c++
+
+    uint     m_iNumBridges;
+
+Number of bridges.
+ 
+.. -----------------------------------------------------------------------------
+
+.. code-block:: c++
+
+    distancemap m_mDestinations;
+ 
+Map for all involved distances.
+
+.. -----------------------------------------------------------------------------
+
+.. code-block:: c++
+
+    bridgelist  m_vBridges;
+
+The list of 'manual' bridges.
+
+.. -----------------------------------------------------------------------------
+
+
+Public Methods
+--------------
+ 
+
+``constructor``
+^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    Navigation();
+ 
+The constructor initializes the members.
+
+.. -----------------------------------------------------------------------------
+
+``destructor``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual ~Navigation();
+ 
+The destructor does nothing.
+
+.. -----------------------------------------------------------------------------
+
+``setData``
+^^^^^^^^^^^
+.. code-block:: c++
+
+    int setData(const distancemap &mDests, double dSampleDist);
+
+``mDests`` 
+    A distance map.
+
+``dSampleDist``
+    Sampling distance.
+
+Set distance map and sample distance.
+
+.. -----------------------------------------------------------------------------
+
+``setBridges``
+^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    int setBridges(const bridgelist &vBridges);
+
+``vBridges``
+    List of bridges.
+
+Set the list of bridges.
+ 
+.. -----------------------------------------------------------------------------
+
+``checkSizes``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    int checkSizes(uint iNumPorts, uint iNumDests, uint iNumDists);
+
+``iNumPorts``
+    Expected number of ports.
+
+``iNumDests``
+    Expected number of destinations.
+
+``iNumDists``
+    Expected number of distances.
+
+(Debugging) Checks wether the calculated nujmbers agree withthe expected numbers.

@@ -1,0 +1,263 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Fertility &#8212; QHG4 4.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jody.css" />
+    
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    
+    <link rel="shortcut icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="LinearBirth" href="LinearBirth.html" />
+    <link rel="prev" title="RandomPair" href="RandomPair.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="LinearBirth.html" title="LinearBirth"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="RandomPair.html" title="RandomPair"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../actions.html" accesskey="U">actions</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Fertility</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="fertility">
+<span id="fertility-ref"></span><h1>Fertility<a class="headerlink" href="#fertility" title="Permalink to this heading">¶</a></h1>
+<p class="hidden">This page describes the class <span class="target" id="index-0"></span>Fertility</p>
+<p>The class <code class="docutils literal notranslate"><span class="pre">Fertility</span></code> is derived from <code class="docutils literal notranslate"><span class="pre">Action</span></code>, and determines the agents’ fertility.</p>
+<p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/Fertility.h">Fertility.h</a> <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/Fertility.cpp">Fertility.cpp</a></p>
+<p><strong>Attributes</strong></p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ATTR_FERTILITY_NAME</span></code></p></td>
+<td><p>“Fertility”</p></td>
+<td><p>action name</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ATTR_FERTILITY_MIN_AGE_NAME</span></code></p></td>
+<td><p>“Fertility_min_age”</p></td>
+<td><p>minimum fertility age (puberty)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ATTR_FERTILITY_MAX_AGE_NAME</span></code></p></td>
+<td><p>“Fertility_max_age”</p></td>
+<td><p>maximum fertility age (climacterium)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ATTR_FERTILITY_INTERBIRTH_NAME</span></code></p></td>
+<td><p>“Fertility_interbirth”</p></td>
+<td><p>interbirth interval</p></td>
+</tr>
+</tbody>
+</table>
+<section id="public-methods">
+<h2>Public Methods<a class="headerlink" href="#public-methods" title="Permalink to this heading">¶</a></h2>
+<section id="constructor">
+<h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#constructor" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Fertility</span><span class="p">(</span><span class="n">SPopulation</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="o">*</span><span class="n">pPop</span><span class="p">,</span><span class="w"> </span><span class="n">SCellGrid</span><span class="w"> </span><span class="o">*</span><span class="n">pCG</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sID</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">pPop</span></code></dt><dd><p>A pointer to the <a class="reference internal" href="../core/SPopulation.html#spopulation-ref"><span class="std std-ref">SPopulation</span></a> object performing this action.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">pCG</span></code></dt><dd><p>A pointer to the  <a class="reference internal" href="../core/SCellGrid.html#scellgrid-ref"><span class="std std-ref">SCellGrid</span></a> object on which the simulation runs.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sID</span></code></dt><dd><p>An ID for this action.</p>
+</dd>
+</dl>
+</section>
+<section id="destructor">
+<h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">Fertility</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The destructor does nothing.</p>
+</section>
+<section id="execute">
+<h3><code class="docutils literal notranslate"><span class="pre">execute</span></code><a class="headerlink" href="#execute" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">execute</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iAgentIndex</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">fT</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">iAgentIndex</span></code></dt><dd><p>Current agent’s index.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">fT</span></code></dt><dd><p>Current simulation step</p>
+</dd>
+</dl>
+<div class="line-block">
+<div class="line">This method is called for all agents (in parallel).</div>
+<div class="line">For each agent the fertility is decided based on age and gender, and the agent’s life state meber variable is changed accordingly.</div>
+</div>
+<div class="line-block">
+<div class="line">Females are fertile if their age is in the range defined by <code class="docutils literal notranslate"><span class="pre">m_fFertilityMinAge</span></code> and <code class="docutils literal notranslate"><span class="pre">m_fFertilityMaxAge</span></code>, and if the last birth was more than <code class="docutils literal notranslate"><span class="pre">m_fInterbirth</span></code> years ago.</div>
+<div class="line">Males are fertile if they are older than <code class="docutils literal notranslate"><span class="pre">m_fFertilityMinAge</span></code>.</div>
+</div>
+</section>
+<section id="extractattributesqdf">
+<h3><code class="docutils literal notranslate"><span class="pre">extractAttributesQDF</span></code><a class="headerlink" href="#extractattributesqdf" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">extractAttributesQDF</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hSpeciesGroup</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>This method reads the fertility attributes from a QDF file.</p>
+</section>
+<section id="writeattributesqdf">
+<h3><code class="docutils literal notranslate"><span class="pre">writeAttributesQDF</span></code><a class="headerlink" href="#writeattributesqdf" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">writeAttributesQDF</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hSpeciesGroup</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">hSpeciesGroup</span></code></dt><dd><p>HDF handle for the species group to write to.</p>
+</dd>
+</dl>
+<p>This method writes the fertility attributes to the specified group in a QDF file.</p>
+</section>
+<section id="trygetattributes">
+<h3><code class="docutils literal notranslate"><span class="pre">tryGetAttributes</span></code><a class="headerlink" href="#trygetattributes" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">tryGetAttributes</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">ModuleComplex</span><span class="w"> </span><span class="o">*</span><span class="n">pMC</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Extracts the fertility attributes from the <code class="docutils literal notranslate"><span class="pre">ModuleComplex</span></code> object.</p>
+</section>
+<section id="getminage">
+<h3><code class="docutils literal notranslate"><span class="pre">getMinAge</span></code><a class="headerlink" href="#getminage" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">float</span><span class="w"> </span><span class="nf">getMinAge</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Returns the minimum fertility age.</p>
+</section>
+<section id="getmaxage">
+<h3><code class="docutils literal notranslate"><span class="pre">getMaxAge</span></code><a class="headerlink" href="#getmaxage" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">float</span><span class="w"> </span><span class="nf">getMaxAge</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="k">return</span><span class="w"> </span><span class="n">m_fFertilityMaxAge</span><span class="p">;};</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Returns the maximum fertility age.</p>
+</section>
+<section id="getinterbirth">
+<h3><code class="docutils literal notranslate"><span class="pre">getInterBirth</span></code><a class="headerlink" href="#getinterbirth" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">float</span><span class="w"> </span><span class="nf">getInterBirth</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">m_fInterbirth</span><span class="p">;};</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Returns the interbirth interval.</p>
+</section>
+<section id="isequal">
+<h3><code class="docutils literal notranslate"><span class="pre">isEqual</span></code><a class="headerlink" href="#isequal" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="nf">isEqual</span><span class="p">(</span><span class="n">Action</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="o">*</span><span class="n">pAction</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">bStrict</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">pAction</span></code></dt><dd><p>Pointer to an action object to compare with this.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">bStrict</span></code></dt><dd><p>Strictness of comparisons (ignored here).</p>
+</dd>
+</dl>
+<p><code class="docutils literal notranslate"><span class="pre">pAction</span></code> is equal to <code class="docutils literal notranslate"><span class="pre">this</span></code>, if it is a <code class="docutils literal notranslate"><span class="pre">Fertility</span></code> object whose attributes match thze ones of <code class="docutils literal notranslate"><span class="pre">this</span></code>.</p>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Fertility</a><ul>
+<li><a class="reference internal" href="#public-methods">Public Methods</a><ul>
+<li><a class="reference internal" href="#constructor"><code class="docutils literal notranslate"><span class="pre">constructor</span></code></a></li>
+<li><a class="reference internal" href="#destructor"><code class="docutils literal notranslate"><span class="pre">destructor</span></code></a></li>
+<li><a class="reference internal" href="#execute"><code class="docutils literal notranslate"><span class="pre">execute</span></code></a></li>
+<li><a class="reference internal" href="#extractattributesqdf"><code class="docutils literal notranslate"><span class="pre">extractAttributesQDF</span></code></a></li>
+<li><a class="reference internal" href="#writeattributesqdf"><code class="docutils literal notranslate"><span class="pre">writeAttributesQDF</span></code></a></li>
+<li><a class="reference internal" href="#trygetattributes"><code class="docutils literal notranslate"><span class="pre">tryGetAttributes</span></code></a></li>
+<li><a class="reference internal" href="#getminage"><code class="docutils literal notranslate"><span class="pre">getMinAge</span></code></a></li>
+<li><a class="reference internal" href="#getmaxage"><code class="docutils literal notranslate"><span class="pre">getMaxAge</span></code></a></li>
+<li><a class="reference internal" href="#getinterbirth"><code class="docutils literal notranslate"><span class="pre">getInterBirth</span></code></a></li>
+<li><a class="reference internal" href="#isequal"><code class="docutils literal notranslate"><span class="pre">isEqual</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="RandomPair.html"
+                          title="previous chapter">RandomPair</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="LinearBirth.html"
+                          title="next chapter">LinearBirth</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/code_doc/actions/Fertility.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="LinearBirth.html" title="LinearBirth"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="RandomPair.html" title="RandomPair"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../actions.html" >actions</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Fertility</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+    </div>
+  </body>
+</html>

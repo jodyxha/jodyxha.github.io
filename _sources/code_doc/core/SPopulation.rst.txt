@@ -1,0 +1,1166 @@
+.. _SPopulation_ref:
+
+SPopulation
+===========
+
+.. rst-class:: hidden
+
+   This page describes the class :index:`SPopulation`
+
+The class ``SPopulation`` is derived from :ref:`PopBase<PopBase_ref>`, and serves as base class for concrete populations.
+
+Generally every concrete population is associated with an agent data structure which it has to define.
+The agent data struct represents the individual agent properties, such as id, gender etc. 
+
+An important feature of a population are its actions. These actions (derived from :ref:`Action<Action_ref>`) define species-specific propertoes and behaviour, 
+such as mating, producing offspring, movement etc.
+
+
+Code: `SPopulation.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/core/SPopulation.h>`_ `SPopulation.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/core/SPopulation.cpp>`_
+
+The agent structure 
+--------------------
+.. code-block:: c++
+
+    struct Agent {
+        uint     m_iLifeState;
+        int      m_iCellIndex;
+        idtype   m_ulID;
+        gridtype m_ulCellID;
+        float    m_fBirthTime;
+        uchar    m_iGender;
+    };
+
+``m_iLifeState``
+    The life state of the agent, one of these values
+
++---------------------+-------+--------------------------------+
+| Name                | Value |                                |
++---------------------+-------+--------------------------------+
+| LIFE_STATE_DEAD     |    0  | the agent is dead              |
++---------------------+-------+--------------------------------+
+| LIFE_STATE_ALIVE    |    1  | the agent is alive             |
++---------------------+-------+--------------------------------+
+| LIFE_STATE_FERTILE  |    5  | the agenmt is live and fertile |
++---------------------+-------+--------------------------------+
+| LIFE_STATE_MOVING   |    8  | the agent is moving            |
++---------------------+-------+--------------------------------+
+| LIFE_STATE_SAILING  |   16  | (currently not used)           | 
++---------------------+-------+--------------------------------+
+
+``m_iCellIndex``
+    The index of the cell tha agent is currently inhabiting.
+
+``m_ulID``
+    The agent's ID.
+
+``m_ulCellID``
+    The cell's ID. For single computer applications this is equal to the cell index.
+
+``m_fBirthTime``
+    Step number at which the agent was born.
+
+``m_iGender``
+    The gender of the agent (0:female, 1:male).
+
+Populations derived from ``SPopulation`` must derive their agent structures from ``Agent``.
+
+Public Methods
+--------------
+
+
+``constructor``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+   SPopulation(SCellGrid *pCG, PopFinder *pPopLooper, int iLayerSize, IDGen **apIDGen, uint32_t *aulState);
+
+``pCG``
+    The :ref:`SCellGrid<SCellGrid_ref>` for the current simulation.
+
+``pPopFinder``
+    A :ref:`PopLooper<PopLooper_ref>` object. Such an object knows all population objects being used in this simulation. 
+    Useful for predator-prey relation ships because predators must be able to find their prey.
+
+``apIDGen``
+    An array of id generators (one for each thread), capable of creating unique ids for agents.
+
+``aulState``
+    The initial state for the :ref:`WELL random number generators`<WELL512_ref>`.
+
+``aiSeeds``
+    Additional uints to seed WELL RNGs not used for moving and mating.
+
+.. -----------------------------------------------------------------------------
+
+
+``destructor``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual ~SPopulation();
+
+the destructor deletes all created objects and arrays.
+
+.. -----------------------------------------------------------------------------
+
+``setPrioList``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+    
+    virtual int  setPrioList();
+
+Saves priority level data read from the input file.
+
+ .. -----------------------------------------------------------------------------
+
+``preLoop``
+^^^^^^^^^^^
+.. code-block:: c++
+
+   virtual int  preLoop();
+
+This methood is called immediately before the simulation loop starts. Useful to do calculations not possible in the constructor.
+
+.. -----------------------------------------------------------------------------
+
+``postLoop``
+^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int  postLoop();
+
+This method is called immediatel after the simulation loop stops. Useful fo some cleanup operations.
+
+ .. -----------------------------------------------------------------------------
+
+``preWrite``
+^^^^^^^^^^^^
+.. code-block:: c++
+
+   virtual int  preWrite(float fTime);
+
+``fTime``
+    Current simulation step. 
+
+This method is called before data is written to the output file. Useful to prepare data for output.
+
+ .. -----------------------------------------------------------------------------
+
+``doActions``
+^^^^^^^^^^^^^
+.. code-block:: c++
+
+   virtual int doActions(uint iPrio, float fTime);
+
+``iPrio``
+    Current priority level.
+
+``fTime``
+    Current simulation step. 
+
+This method loops through all ctions of the specified priority level and applies them to all agents of the  population.
+
+.. -----------------------------------------------------------------------------
+
+``initializeStep``
+^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int initializeStep(float fTime);
+
+``fTime``
+    Current simulation step. 
+
+This method is called at the beginning of a simulation step before ``doActions()`` is invoked.
+
+.. -----------------------------------------------------------------------------
+
+``initListIdx``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+  virtual void initListIdx();
+
+This method clears the nirth, death and move registration lists.
+
+.. -----------------------------------------------------------------------------
+
+``finalizeStep``
+^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int finalizeStep();
+
+This method is called just afer ``doActions()`` at the end of the simulation step.
+.
+.. -----------------------------------------------------------------------------
+
+``registerBirth``
+^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual void registerBirth(int iCellIndex, int iMotherIndex, int iFatherIndex=-1);
+
+``iCellIndex``
+    ID of Cell in which a birth occurs.
+
+``iMotherIndex``
+    Index of the mother agent.
+ 
+``iFatherIndex``
+    Index of the Father agent.
+ 
+Since births occur in the parallelized loop in ``doActions()`` we can't make the changes immediately, or else we have to deal with race conditions.
+For this reason, every birth is registered (i.e. the relevant data is put into a list), and only in ``finalizeStep()`` are the births performed.
+
+.. -----------------------------------------------------------------------------
+
+``registerDeath``
+^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual void registerDeath(int iCellIndex, int iAgentIndex);
+
+``iCellIndex``
+    ID of Cell in which a death occurs.
+
+``iAgentIndex``
+    Index of the dead agent.
+
+Since deaths occur in the parallelized loop in ``doActions()`` we can't make the changes immediately, or else we have to deal with race conditions.
+For this reason, every death is registered (i.e. the relevant data is put into a list), and only in ``finalizeStep()`` are the deaths performed.
+
+.. -----------------------------------------------------------------------------
+
+``registerMove``
+^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual void registerMove(int iCellIndexFrom, int iAgentIndex, int iCellIndexTo);
+
+``iCellIndexFrom``
+    Index of cell the agent currently inhabits.
+
+``iAgentIndex``
+    Index of Agent wanting to move.
+
+``iCellIndexTo``
+    Index of the cell the agent wants to move to.
+
+Since moves occur in the parallelized loop in ``doActions()`` we can't make the changes immediately, or else we have to deal with race conditions.
+For this reason, every move is registered (i.e. the relevant data is put into a list), and only in ``finalizeStep()`` are the moves performed.
+
+.. -----------------------------------------------------------------------------
+
+``reserveAgentSpace``
+^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+   virtual int  reserveAgentSpace(int iNumAgents);
+
+``iNumAgents``
+    Number of spaces to reserve in the agent container.
+ 
+Makes sure there are at least ``iNumAgents`` contiguous unused locations in the ACTIVE state.
+
+Rerturns the firt index of the reserved region.
+
+.. -----------------------------------------------------------------------------
+
+``updateEvent``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+   virtual int  updateEvent(int iEventID, char *pData, float fT);
+
+``iEventID``
+   ID of the event.
+
+``pData``
+   Additional data.
+
+``fT``
+   Current time step.
+
+Handling of events. This method is called from within the simulation loop.
+
+This method does nothing, but can be overwritten by derived classes.
+
+.. -----------------------------------------------------------------------------
+
+``flushEvents``
+^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual void flushEvents(float fT);
+
+``fT``
+   Current time step.
+
+This method is called from within the simulation loop when no more events are to be expected for this step.
+This can be used to minimize the updates by storing the events in ``updatEvent()``, and actually handle them all in ``flushEvents()``.
+
+
+.. -----------------------------------------------------------------------------
+
+``compactData``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual void compactData();
+
+Rearranges the agents in the :ref:`LayerBuf<LayerBuf_ref>` containers so that there is no hole between the first and the last agent.
+Usually this is only used when writing the agent data to file: each layer is compacted anf then written.
+
+
+.. -----------------------------------------------------------------------------
+
+``getMaxLoadedID``
+^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual idtype getMaxLoadedID();
+
+Return the highest agent ID that has been loaded.
+This is needed to initialize the :ref:`ID generator<IDGen_ref>` correctly.
+ 
+.. -----------------------------------------------------------------------------
+
+``getUID``
+^^^^^^^^^^
+.. code-block:: c++
+
+   virtual idtype getUID(); 
+
+Returns a new unique Agent ID.
+
+.. -----------------------------------------------------------------------------
+
+
+``readSpeciesData``
+^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+   virtual int readSpeciesData(ParamProvider2 *pPP);
+
+``pPP`` 
+    A :ref:`ParamProvider2<ParamProvider2_ref>`
+
+Extracts class name, species name and priority levels from the ``ParamProvider2`` object.
+
+
+.. -----------------------------------------------------------------------------
+
+``addAgent``
+^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int addAgent(int iCellIndex, char *pData, bool bUpdateCount);
+
+.. -----------------------------------------------------------------------------
+
+``addAgentData``
+^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int addAgentData(int iCellIndex, int iAgentIndex, char **ppData);
+
+``iCellIndex``
+    Cell of the agent.
+
+``iAgentIndex``
+    The agent's index.
+
+``ppData``
+    Pointer to a C-style string containing the values for agent attributes.
+
+Tries to get the life state, the agent ID, the birth time and the gender from the string.
+
+On exit of this function ``*ppData`` points to the beginning of the next data item.
+
+
+.. -----------------------------------------------------------------------------
+
+``addAgentDataSingle``
+^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+   template<typename T1>    int addAgentDataSingle(char **ppData, T1 *pAgentDataMember);
+
+``ppData``
+    Pointer to a C-style string containing the values for agent attributes.
+
+``pAgentMember``
+    A pointer to a data member.
+
+Reads a single item from the string, then advances ``*ppData`` to point at the next item.
+For numerical items only.
+
+.. -----------------------------------------------------------------------------
+
+``addPopSpecificAgentData``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int addPopSpecificAgentData(int iAgentIndex, char **ppData);
+
+``iAgentIndex``
+    The agent's index.
+
+``ppData``
+    Pointer to a C-style string containing the values for agent attributes.
+
+This method is called after the basic agent items have been read.
+Here, this method does nothing, but should be implemented by derived population classes to continue reading agent data from ``ppData``.
+
+
+.. -----------------------------------------------------------------------------
+
+``createAgentAtIndex``
+^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int createAgentAtIndex(int iAgentIndex, int iCellIndex);
+
+``iAgentIndex``
+    The agent's index.
+
+``iCellIndex``
+    Cell in which to create agent.
+
+In particular, the birth time is the current time step, and the gender is randomly chosen. The life state is set to ``LIFE_STATE_ALIVE``.
+
+.. -----------------------------------------------------------------------------
+
+``reserveAgentSpace``
+^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual void setAgentBasic(int iAgentIndex, void *pBasic);
+
+``iAgentIndex``
+    Index of the agent to modify.
+
+``pBasic``
+    Pointer to an object of a derived agent struct.
+
+Copies the basic items of ``pBasic`` to the agent at the specified index.
+
+
+.. -----------------------------------------------------------------------------
+
+``mergePop``
+^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int mergePop(PopBase *pPop);
+
+``pPop``
+    Pointer to a population object.
+
+If the population's callss and species names match, the agents have the same type, and the population's actions are all equal to this objects actions, then the populatiuon is merged to ``this``.
+
+Useful if the agents of the same type are injected at a later phase of the simulation.
+
+.. -----------------------------------------------------------------------------
+
+
+``getClassName``
+^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual const std::string getClassName();
+
+Returns the class name.
+
+.. -----------------------------------------------------------------------------
+
+``getSpeciesName``
+^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual const std::string getSpeciesName();
+
+Return the species name.
+
+.. -----------------------------------------------------------------------------
+
+``getNumAgentsArray``
+^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    ulong *getNumAgentsArray();
+
+Returnsan array containing the number of agent in each cell.
+
+.. -----------------------------------------------------------------------------
+
+``getNumAgents``
+^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual ulong getNumAgents(int iCellIndex);
+
+``iCellIndex``
+    Index of a cell.
+
+Returns the number of agents in this cell.
+
+
+.. -----------------------------------------------------------------------------
+
+``getNumAgentsTotal``
+^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual inline ulong getNumAgentsTotal();
+ 
+Return the total number of agents in the simulation (actually, the number of ACTIVE locations).
+
+.. -----------------------------------------------------------------------------
+
+``getNumAgentsEffective``
+^^^^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+   virtual inline ulong getNumAgentsEffective();
+
+Return the total number of agents in the simulation (minus the number of agents in the death list).
+ 
+.. -----------------------------------------------------------------------------
+
+``getNumAgentsMax``
+^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+   virtual ulong getNumAgentsMax();
+
+Returns the maximum nbumber of agents that can be held in the ``LayerBuf`` (without adding a new layer).
+
+ 
+.. -----------------------------------------------------------------------------
+
+``updateNumAgentsPerCell``
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+   virtual void updateNumAgentsPerCell();
+
+Recount the agents in each cell.
+
+ 
+.. -----------------------------------------------------------------------------
+
+``updateTotal``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+   virtual void updateTotal();  
+
+Update the total count of ``ACTIVE`` locations.
+
+.. -----------------------------------------------------------------------------
+
+``checkLists``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int checkLists();    
+
+Checks the validity of the linked lists. Returns a negative number on error.
+
+.. -----------------------------------------------------------------------------
+
+
+``getFreeIndex``
+^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int getFreeIndex();
+
+Returns the index of an unused location.
+
+.. -----------------------------------------------------------------------------
+
+``getFirstAgentIndex``
+^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+   virtual int getFirstAgentIndex();
+
+Returns the index of the first agent in the ACTIVE list.
+
+.. -----------------------------------------------------------------------------
+
+``getLastAgentIndex``
+^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int getLastAgentIndex();
+
+Returns the index of the last agent in the ACTIVE list.
+
+.. -----------------------------------------------------------------------------
+
+``getMoveList``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    std::vector<int>** getMoveList();
+
+Returns the mmove lists. This is needed by actions who must read or manipulate the list of moving agents.
+
+ 
+.. -----------------------------------------------------------------------------
+
+``getWELL``
+^^^^^^^^^^^
+.. code-block:: c++
+
+   virtual WELL512 **getWELL();
+
+Returns the array of WELL random number generators.
+ 
+.. -----------------------------------------------------------------------------
+
+``getCG``
+^^^^^^^^^
+.. code-block:: c++
+
+   virtual SCellGrid *getCG();
+
+Returns a ponter to the ``SCellGrid``.
+
+
+.. -----------------------------------------------------------------------------
+
+``randomize``
+^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual void randomize(int i);
+
+Gets ``i`` random numbers from each WELL.
+
+
+.. -----------------------------------------------------------------------------
+
+``flushDeadSpace``
+^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int flushDeadSpace();
+
+Calls the normal death procedure for all agents in the previous death list.
+
+
+.. -----------------------------------------------------------------------------
+
+``setParams``
+^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int setParams(const std::string sParams);
+
+``sParams``
+    A string specifying a parameter value.
+
+Tries to interpret and set the specified parameter (as passed for the ``--pop-params`` option).
+
+
+.. -----------------------------------------------------------------------------
+
+
+
+.. -----------------------------------------------------------------------------
+
+``getAgentLifeState``
+^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual uint     getAgentLifeState(int iAgentIndex);
+
+Returns the life state of the agent at index ``iAgentIndex``.
+ 
+.. -----------------------------------------------------------------------------
+
+``getAgentCellIndex``
+^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+   virtual int      getAgentCellIndex(int iAgentIndex);
+
+Returns the cell index of the agent at index ``iAgentIndex``.
+
+.. -----------------------------------------------------------------------------
+
+``getAgentID``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual idtype   getAgentID(int iAgentIndex);
+
+Returns the ID of the agent at index ``iAgentIndex``.
+
+.. -----------------------------------------------------------------------------
+
+``getAgentCellID``
+^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual gridtype getAgentCellID(int iAgentIndex);
+
+Returns the ID of the cell of the agent at index ``iAgentIndex``.
+
+.. -----------------------------------------------------------------------------
+
+``getAgentBirthTime``
+^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual float    getAgentBirthTime(int iAgentIndex);
+
+Returns the birth time of the agent at index ``iAgentIndex``.
+
+.. -----------------------------------------------------------------------------
+
+``getAgentGender``
+^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual uchar    getAgentGender(int iAgentIndex);
+
+Returns the gender of the agent at index ``iAgentIndex`` (0: female, 1:male).
+
+.. -----------------------------------------------------------------------------
+
+``reserveAgentSpace``
+^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual void setAgentDataType();
+
+Cerates and stores the HDF5 type for the agents.
+
+.. -----------------------------------------------------------------------------
+
+
+Some Protected Members
+----------------------
+
+``LayerBuf<T> m_aAgents;`` 
+    The array of agent structs.
+
+``LBController *m_pAgentController;``
+    The controller for the agent array.
+
+
+``LayerBuf<T> m_aWriteCopy;``
+    Auxiliary layerbuf for writing.
+
+``LBController *m_pWriteCopyController;``
+    The controller for the auxiliary layerbuf.
+
+``SCellGrid   *m_pCG;``
+    The cell grid for this simulation.
+
+``Prioritizer<T> m_prio;``
+    Priority level info for the populations actions.
+ 
+``PopFinder *m_pPopFinder;``
+    A container holding all ppopulations.
+
+``std::vector<int>** m_vBirthList;``
+    List of registered births (consecutive triples of cell index, mother's index, father's index).
+
+``std::vector<int>** m_vDeathList;``
+    A list of the agent indexes registered for death.
+
+``std::vector<int>** m_vMoveList;``
+    A list of registered moves (consecutive triples of index of origin cell, agent index, index of target cell).
+
+
+Some Protected Methods
+----------------------
+
+
+
+.. -----------------------------------------------------------------------------
+
+
+``recycleDeadSpaceNew``
+^^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int recycleDeadSpaceNew();
+
+Fills as many locations of previously died agents as possible with the data of new born agents. 
+This reduces the number of unparallelizable list operations.
+
+
+.. -----------------------------------------------------------------------------
+
+
+``moveAgent``
+^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int moveAgent(int iCellIndexFrom, int iAgentIndex, int iCellIndexTo);
+
+``iCellIndexFrom``
+    Index of origint cell.
+
+``iAgentIndex``
+    Agent index.
+
+``iCellTo``
+    Index of target cell.
+
+This method performs the actual move of the agent by changing the agent's ``m_iCellIndex`` member.
+
+
+.. -----------------------------------------------------------------------------
+
+
+``performMoves``
+^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int performMoves();
+
+Processes the registered moves in parallel. 
+This is ok, because every move only affects one agent, 
+no agent makes more than one move per step.
+
+.. -----------------------------------------------------------------------------
+
+
+``makePopSpecificMove``
+^^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+
+    virtual int makePopSpecificMove(int iCellIndexFrom, int iAgentIndex, int iCellIndexTo);
+
+Can be overridden to do specific actions just after an agent has moved.
+
+       // not used
+
+
+.. -----------------------------------------------------------------------------
+
+
+``performBirths``
+^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int performBirths();
+
+Calls the method ``makeOffspring()`` for all registered birth entries.
+
+
+.. -----------------------------------------------------------------------------
+
+
+``performBirths``
+^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int performBirths(ulong iNumBirths, int *piBirthData);
+
+
+Calls the method ``makeOffspringAtIndex()`` for all birth data entries in ``piBirthData``.
+
+.. -----------------------------------------------------------------------------
+
+
+``makeOffspring``
+^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    void makeOffspring(int iCellIndex, int iMotherIndex, int iFatherIndex);
+
+``iCellIndex``
+     Location of birth.
+
+``iMotherIndex``
+     Index of new agent's mother.
+
+``iFatherIndex``
+     Index of new agent's father.
+
+Creates a new agent in specified cell, then calls ``makePopSpecificOffspring()`` for population specific post-natal operations.
+
+
+.. -----------------------------------------------------------------------------
+
+
+``makeOffspringAtIndex``
+^^^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    void makeOffspringAtIndex(int iAgentIndex, int iCellIndex, int iMotherIndex, int iFatherIndex);
+
+
+``iAgentIndex``
+     Index of new Agent.
+
+``iCellIndex``
+     Location of birth.
+
+``iMotherIndex``
+     Index of new agent's mother.
+
+``iFatherIndex``
+     Index of new agent's father.
+
+Creates an agent with at specified index in the specified cell, then calls ``makePopSpecificOffspring()`` for population specific post-natal operations.
+
+
+
+
+.. -----------------------------------------------------------------------------
+
+
+``makePopSpecificOffspring``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int makePopSpecificOffspring(int iAgentIndex, int iMotherIndex, int iFatherIndex);
+
+``iAgentIndex``
+     Index of new agent birth.
+
+``iMotherIndex``
+     Index of new agent's mother.
+
+``iFatherIndex``
+     Index of new agent's father.
+
+This method can be overridden by derived populations to implement specific operations just after the birth of an agent.
+
+ 
+
+.. -----------------------------------------------------------------------------
+
+
+``performDeaths``
+^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int performDeaths(ulong iNumDeaths, int *piDeathData);
+
+``iNumDeaths``
+   Number of entries in the death list.
+
+``piDeathData``
+   Pointer to the death list.       
+
+Calls ``makePopSpecificDeath()`` for each agent in the death list and moves their locations to the PASSIVE list.
+
+
+.. -----------------------------------------------------------------------------
+
+
+``makePopSpecificDeath``
+^^^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int makePopSpecificDeath(int iAgentIndex);
+
+``iAgentIndex``
+     Index of dead agent.
+
+This method can be overridden by derived populations to implement specific operations just after the death of an agent.
+
+
+ 
+.. -----------------------------------------------------------------------------
+
+
+``agentRealSizeQDF``
+^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    size_t agentRealSizeQDF() const {return sizeof(T);};
+
+Returns the size of the agent structure.
+
+.. -----------------------------------------------------------------------------
+
+
+``createAgentDataTypeQDF``
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual hid_t createAgentDataTypeQDF();
+
+Creates a HDF data type for the agent structure and returns a handle to it.
+
+.. -----------------------------------------------------------------------------
+
+
+``addPopSpecificAgentDataTypeQDF``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual void addPopSpecificAgentDataTypeQDF(hid_t *hAgentDataType);
+
+``hAgentDataType``
+    HDF5 handle for agent datatype to be modified
+
+This method can be used to extend the HDF5 data type of the agent structure.
+It should be overriden by population classes whose agents have additional members.
+
+.. -----------------------------------------------------------------------------
+
+
+``writeAgentDataQDF``
+^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    int writeAgentDataQDF(hid_t dataspace_id, hid_t dataset_id, hid_t hAgentType);
+
+``dataspace_id``
+    HDF5 handle to data space into which to write agent data.
+
+``dataset_id``
+    HDF5 handle to data set for the agent data.
+
+``hAgentType``
+    HDF5 handle to data type of the agent structure.
+
+Currently this method simply calls ``writeAgentDataQDFSafe()``.
+
+
+.. -----------------------------------------------------------------------------
+
+
+``writeAgentDataQDFSafe``
+^^^^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    int writeAgentDataQDFSafe(hid_t hDataSpace_id, hid_t hDataSet_id, hid_t hAgentType);
+
+``hDataSpace``
+    HDF5 handle to data space into which to write agent data.
+
+``hDataSet``
+    HDF5 handle to data set for the agent data.
+
+``hAgentType``
+    HDF5 handle to data type of the agent structure.
+
+This method writes the agent data compactly, but without modifying the LayerBuf.
+This is done by using a separate :ref:`LBController<LBController_ref>` with only one layer to which the
+data of each layer of the actual agent data is copied and written in turn.
+This ensures that a simulation with output runs identically to one without.
+
+.. -----------------------------------------------------------------------------
+
+
+``writeSpeciesDataQDF``
+^^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    int writeSpeciesDataQDF(hid_t hSpeciesGroup);
+
+``hSpeciesGroup``
+    HDF5 handle to the group to write to.
+
+Writes the attributes of ``SPopulation``.
+
+.. -----------------------------------------------------------------------------
+
+
+``readAgentDataQDF``
+^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    int readAgentDataQDF(hid_t hDataSpace, hid_t hDataSet, hid_t hAgentType);
+
+``hDataSpace``
+    HDF5 handle to data space from which to read agent data.
+
+``hDataSet``
+    HDF5 handle to data set for the agent data.
+
+``hAgentType``
+    HDF5 handle to data type of the agent structure.
+
+``hDataSpace``
+  
+.. -----------------------------------------------------------------------------
+
+
+``readSpeciesDataQDF``
+^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    int readSpeciesDataQDF(hid_t hSpeciesGroup);
+
+``hSpeciesGroup``
+    HDF5 handle to the group to read from.
+
+Reads the attributes of ``SPopulation``.
+
+.. -----------------------------------------------------------------------------
+
+
+``writeStatArrsQDF``
+^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    int writeStatArrsQDF(hid_t hSpeciesGroup);
+
+``hSpeciesGroup``
+    HDF5 handle to the group to write to.
+
+Can be overridden to write additional arrays into the species group.
+
+WILL PROBABLY BE DELETED AS IT DUPLICATES ``writeAdditionalDataQDF()``.
+
+.. -----------------------------------------------------------------------------
+
+
+``readStatArrsQDF``
+^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    int readStatArrsQDF(hid_t hSpeciesGroup);
+
+``hSpeciesGroup``
+    HDF5 handle to the group to read from.
+
+Can be overridden to read additional arrays from the species group.
+
+WILL PROBABLY BE DELETED AS IT DUPLICATES ``readAdditionalDataQDF()``.
+
+.. -----------------------------------------------------------------------------
+
+
+``writeAdditionalDataQDF``
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int writeAdditionalDataQDF(hid_t hSpeciesGroup);
+
+``hSpeciesGroup``
+    HDF5 handle to the group to write to.
+
+Can be overridden to write additional data to the species group.
+
+.. -----------------------------------------------------------------------------
+
+
+``readAdditionalDataQDF``
+^^^^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int readAdditionalDataQDF(hid_t hSpeciesGroup);
+
+``hSpeciesGroup``
+    HDF5 handle to the group to read from.
+
+Can be overridden to read additional data.

@@ -1,0 +1,202 @@
+.. _Vec3D_ref:
+
+Vec3D
+=====
+
+.. rst-class:: hidden
+
+   This page describes the class :index:`Vec3D`
+
+The class ``Vec3D`` represents three-dimensional vectors and many useful operations.
+The operators allow you to use ecpressions such as 
+
+.. code-block:: c++
+
+  0.3*(a-b)*(c+d)
+
+
+Code: `Vec3D.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/Vec3D.h>`_, `Vec3D.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/Vec3D.cpp>`_
+
+
+Public Methods
+--------------
+
+``constructors``
+^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    Vec3D();
+    Vec3D(double fX, double fY, double fZ);
+    Vec3D(const Vec3D *pv);
+    Vec3D(const Vec3D &v);
+
+Apart from the empty constructor, you can create ``Vec3D`` objects by passing the components, or use a copy constructor
+
+.. -----------------------------------------------------------------------------
+
+``set``
+^^^^^^^
+.. code-block:: c++
+
+    void set(double fX, double fY, double fZ);
+    void set(const Vec3D *pv);
+    void set(const Vec3D &v);
+
+Change the vector's components,
+
+.. -----------------------------------------------------------------------------
+
+``addition``
+^^^^^^^^^^^^
+.. code-block:: c++
+
+    void add(const Vec3D *pv);
+    void add(const Vec3D &v);
+    Vec3D &operator+=(const Vec3D &v);
+    Vec3D operator+(const Vec3D &v1,  const Vec3D &v2);
+
+Both ``add()`` functions, as well as the ``operator+=``, change the values of this.
+The ``operator+`` returns a new vector.
+
+.. -----------------------------------------------------------------------------
+
+``subtraction``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    void subtract(const Vec3D *pv);
+    void subtract(const Vec3D &v);
+    Vec3D &operator-=(const Vec3D &v);
+    Vec3D operator-(const Vec3D &v1,  const Vec3D &v2);
+
+Both subtract() functions, as well as the operator-=, change the values of this.
+The ``operator-`` returns a new vector.
+
+.. -----------------------------------------------------------------------------
+
+``scale``
+^^^^^^^^^
+.. code-block:: c++
+
+    void scale(double f);
+    Vec3D &operator*=(const double f);
+    double calcNorm() const;
+
+.. -----------------------------------------------------------------------------
+
+``scalar product (dot)``
+^^^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    inline double dotProduct(const Vec3D *pv);
+    inline double dotProduct(const Vec3D &v);
+    Vec3D operator*(const Vec3D &v1,  double f);
+    Vec3D operator*(double f, const Vec3D &v1);
+
+Both ``dotProduct()`` functions change he values of this.
+The two ``operator*()`` create a new vector.
+
+.. -----------------------------------------------------------------------------
+
+``vector product (cross)``
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    Vec3D *crossProduct(const Vec3D *pv);
+    Vec3D operator*(const Vec3D &v1,  const Vec3D &v2);
+
+The methods ``crossProduct()`` allocates space for the result which must be deleted by the user.
+
+.. -----------------------------------------------------------------------------
+
+``Length and Distance``
+^^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    double dist(const Vec3D *pv);
+    double dist(const Vec3D &v);
+    void normalize();
+
+The ``dist()`` functions return the distance from this to the ``pv`` (or ``v``)
+
+The method ``normalize()`` scales the vector to unit length.
+
+.. -----------------------------------------------------------------------------
+
+``Other``
+^^^^^^^^^
+.. code-block:: c++
+
+    double getCrossSize(const Vec3D *pv) const;
+    double getCrossSize(const Vec3D &v) const;
+    double getAngle(const Vec3D *pv) const;
+    double getAngle(const Vec3D &v) const;
+    bool operator==(const Vec3D &v) const;
+
+| ``getCrossSize()``  returns the length of the cross product.
+| ``getAngle()`` returns the angle between this and and the argument in radians.
+| ``operator==()`` is a "fuzzy" equality: it returns true if the components differ less than a certain amount.
+
+.. -----------------------------------------------------------------------------
+
+Example
+-------
+
+Compile with 
+
+.. code-block:: bash
+
+ g++ vec_example.cpp Vec3D.cpp -o vec_example
+
+Code for ``vec_example``:
+
+.. code-block:: c++
+
+     #include <cstdio>
+     #include "Vec3D.h"
+     
+     void showVec(Vec3D *pv, const char *pCaption) {
+         printf("%s: (%f, %f, %f)\n", pCaption, pv->m_fX, pv->m_fY, pv->m_fZ);
+     }
+     
+     void showVec(const Vec3D &v, const char *pCaption) {
+         printf("%s: (%f, %f, %f)\n", pCaption, v.m_fX, v.m_fY, v.m_fZ);
+     }
+     
+     int main(int iArgC, char *apArgV[])  {
+         
+          Vec3D v1(1,3,6);
+          showVec(v1, "v1");
+          Vec3D v2{2,5,8};
+          showVec(v2,"v2");
+     
+          Vec3D v3 = v1 + v2; 
+          showVec(v3, "v3");
+     
+          printf("length(vr): %f\n", v3.calcNorm());
+          v3.normalize();
+          showVec(v3, "v3 normalized");
+     
+          Vec3D x(1, 0, 0);
+          Vec3D y(0, 1, 0);
+          Vec3D z(0, 0, 1);
+          showVec(x,"x");
+          showVec(y,"y");
+          showVec(z,"z");
+          Vec3D xy = x * y;
+          showVec(xy, "x * y");
+          if (z == xy) {
+              printf("x * y is indeed z\n");
+          } else {
+              printf("something is wrong...\n");
+          }
+     
+          Vec3D v = 0.3*(v2-v1)*(v3+x);
+          showVec(v, "0.3*(v2-v1)*(v3+x)");
+     
+          showVec(v3.calcNorm()*(v1+v2-v3)*(x+y), "v3.calcNorm()*(v1+v2-v3)*(x+y) (direct)");
+     
+          return 0;
+     }
+     
+

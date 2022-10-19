@@ -1,0 +1,78 @@
+.. _GridGroup_ref:
+
+"Grid"
+------
+
+.. rst-class:: hidden
+
+   This page describes :index:`grid group`
+
+
+The **grid group**  contains data and attributes pertaining to the grid.
+
+Attributes
+^^^^^^^^^^
+
+- **NumCells**
+    Number of cells in the grid.
+
+- **SURF_TYPE**
+    Surface type.
+
+Depending on the surface type there are different additional attributes.
+
+For surface type "IEQ" (icosahedral grid):
+
+- **SUBDIV**
+    Number of subdivisions for icsahedral grids, 0 otherwise.
+
+For surface type "LTC" (lattice grid):
+
+- **LINKS**
+    Number of neighbors for each node.
+
+- **SURF_TYPE**
+    Surface type.
+
+- **PROJG**
+    Projection grid (optional).
+
+- **PROJT**
+    Projection type (optional).
+
+- **W**
+    Width of grid.
+
+- **H**
+    Height of grid.
+
+- **PERIODIC**
+    Periodicity on/of.
+
+
+DataSets
+^^^^^^^^
+
+The grid groups contains only one dataset.
+
+**CellDataSet**
+   | An array of arrays, where the i-th entry is the array of neighbor node ids for node i. 
+   | Each of the neighbor node arrays has a size equal to the maximum number of neighbors in the grid. 
+   | If a node has less than this number of neighbors, the array is padded with the fake id ``-1``.
+
+
+Example
+"""""""
+For the following 4x3 grid with a  6-neighborhood
+
+
+.. figure:: ../../../images/grid_4x3.png
+
+the CellDataSet would be
+
+.. code-block:: c++
+
+  [[1,  4, -1, -1, -1, -1], [0,  2,  4,  5, -1, -1], [1,  3,  5,  6, -1, -1], [2,  6,  7, -1, -1, -1],
+   [0,  1,  5,  8, -1, -1], [1,  2,  4,  6,  8,  9], [2,  3,  5,  7,  9, 10], [3,  6, 10, 11, -1, -1],
+   [4,  5,  9, -1, -1, -1], [5,  6,  8, 10, -1, -1], [6,  7,  9, 11, -1, -1], [7, 10, -1, -1, -1, -1]]
+

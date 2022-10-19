@@ -1,0 +1,192 @@
+.. _WeightedMove_ref:
+
+WeightedMove
+============
+
+.. rst-class:: hidden
+  
+    This page describes the class :index:`WeightedMove`
+
+The class ``WeightedMove`` is derived from ``Action`` and lets agents move in directions with weighted probabilities.
+This class uses an array assigning a value to each cell of the grid and forms a small array of probabilities corresponding to the neighbors of each cell.
+
+Code: `WeightedMove.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/WeightedMove.h>`_ `WeightedMove.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/WeightedMove.cpp>`_
+
+**Attributes:**
+
++---------------------------------+---------------------+------------------+
+| ``ATTR_WEIGHTEDMOVE_NAME``      | "WeightedMove"      | action name      |
++---------------------------------+---------------------+------------------+
+| ``ATTR_WEIGHTEDMOVE_PROB_NAME`` | "WeightedMove_prob" | move probability |
++---------------------------------+---------------------+------------------+
+
+
+Public Methods
+--------------
+
+``constructor``
+^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    WeightedMove(SPopulation<T> *pPop, SCellGrid *pCG, std::string sID, WELL512 **apWELL, double *adEnvWeights);
+
+``pPop``
+    A pointer to the :ref:`SPopulation<SPopulation_ref>` object performing this action.
+
+``pCG``
+    A pointer to the  :ref:`SCellGrid<SCellGrid_ref>` object on which the simulation runs.
+
+``sActionName``
+    Name of this action.
+
+``sID``
+    An ID for this action.
+
+``apWELL``
+    A pointer to an array of :ref:`WELL512 random number generators<WELL512_ref>` (one for each thread). 
+
+``adEnvWeight``
+    An array with cumulated preference a value for each cell of the grid and its neoighbors.
+
+The array ``adEnvWeight`` serves as communication channel between ``WeightedMove`` and an other action, 
+typically an Evaluator such as ``SingleEvaluator``.
+
+This array is actually an array of "subarrays", each of which has a size one greater than the maximum number of neighbors of a cell,
+where each subarray corresponds to a cell, representing the cell itself and its neighborhood..
+The 0-th field of the subarray holds the preference value of the cell itself, 
+the i-th element is the sum of the previous value and the preference value if the (i-1)th neighbor
+
+.. figure:: ../../../images/WeightedRand.png
+
+    An array of values is cumulated (e.g. as produced by :ref:`SingleEvaluator<SingleEvaluator_ref>`, 
+    and used as a lookup table to create a weighted random number. 
+    In this example a uniform random number R between 0 and the highest number in the cumulated array is drawn, 
+    and the index of the smallest cumulated value greater than R is chosen. 
+    Here the random number 0.81 is less than the value at index 4, 0.95, so the chosen index is 4.
+    Hence those indexes are selected with a probability proportional to the values in the original array.
+
+.. -----------------------------------------------------------------------------
+
+``destructor``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+     virtual ~WeightedMove();
+
+The destructor does nothing.
+
+.. -----------------------------------------------------------------------------
+
+``execute``
+^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int execute(int iA, float fT);
+
+
+``iAgentIndex``
+    Current agent's index.
+
+``fT``
+    Current simulation step.
+
+| This method is called for all agents (in parallel). 
+| For each agent the weight values corresponding to the agents location and the neighboring cells are accumulated in an array to get a weighted random number for which cell to move to.
+
+
+.. -----------------------------------------------------------------------------
+
+``extractAttributesQDF``
+^^^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int extractAttributesQDF(hid_t hSpeciesGroup);
+
+``hSpeciesGroup``
+    HDF handle for the species group to read from.
+
+This method reads the move probability from a QDF file.
+
+.. -----------------------------------------------------------------------------
+
+``writeAttributesQDF``
+^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int writeAttributesQDF(hid_t hSpeciesGroup);
+
+``hSpeciesGroup``
+    HDF handle for the species group to write to.
+
+This method writes the move probability to the specified group in a QDF file.
+
+.. -----------------------------------------------------------------------------
+
+``tryGetAttributes``
+^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int tryGetAttributes(const ModuleComplex *pMC);  
+
+``pMC``
+    A ``ModuleComplex`` object.
+
+Extracts the move probability from the ``ModuleComplex`` object.
+
+.. -----------------------------------------------------------------------------
+
+``modifyAttributes``
+^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int modifyAttributes(const std::string sAttrName, double dValue);
+
+
+``sAttrName``
+    Name of attribute to change.
+
+``dValue``
+    Value to set the attribute to.
+
+The only attribute that can be changed is obviously ``"WeightedMove_prob"``.
+
+
+
+.. -----------------------------------------------------------------------------
+
+``displayInfo``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    void displayInfo(const char *pPrefix, float fT, int iCellIndex, int iAgentIndex); 
+
+``pPrefix``
+    A prefix for the debu message.
+
+``fT``
+    Current simulation step.
+
+``iCellIndex``
+    Index of current cell.
+
+``iAgentIndex``
+    Index of current agent.
+
+This method prints the environment weights for the cell.
+
+.. -----------------------------------------------------------------------------
+
+``isEqual``
+^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual bool isEqual(Action<T> *pAction, bool bStrict);
+
+``pAction``
+    Pointer to an action object to compare with this.
+
+``bStrict``
+    Strictness of comparisons (ignored here).
+
+``pAction`` is equal to ``this``, if it is a ``WeightedMove`` object whose move probability is the same as the one of ``this``.
+    

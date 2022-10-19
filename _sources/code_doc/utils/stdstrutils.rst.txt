@@ -1,0 +1,295 @@
+.. _stdstrutils_ref:
+
+stdstrutils
+===========
+
+.. rst-class:: hidden
+
+   This page describes the module :index:`stdstrutils`
+
+The module ``stdstrutils`` contains various string utilities that also accept ``std::string``.
+
+The code is distributed across 3 files
+
+`stdstrutils.h   <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/stdstrutils.h>`_ 
+    declarations of "simple" string utilities
+`stdstrutils.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/stdstrutils.cpp>`_ 
+    implementation of "simple" string utilities
+
+`stdstrutilsT.h  <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/stdstrutilsT.h>`_ 
+    printf-like functions for strings and other template functions
+
+The ``printf``-like functions in ``stdstrutilsT.h`` are implemented with variadic templates.
+
+The functions in stdstrutils are used throughout QHG.
+
+Functions
+---------
+
+``splitString``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    uint splitString(const std::string sString, stringvec &vParts, const std::string sSeps, bool bKeepEmpty=true);
+
+Splits the string ``sString`` at any of the characters in ``sSeps`` and places the fragments in the string vector ``vParts``.
+
+``sString``
+    The string to be split.
+
+``vParts``
+    The string vector receiving the fragments.
+
+``sSeps``
+    Separator characters (needs at least one).
+
+``bKeepEmpty``
+      | If ``true``, also empty fragments are placed in ``vParts`` (they occur if to separator characters follow each other).
+      | If ``false`` they are ignored.
+
+Returns the number of fragments saved.
+
+.. -----------------------------------------------------------------------------
+
+``trim``
+^^^^^^^^
+.. code-block:: c++
+
+    std::string trim(const std::string& str);
+
+Remove whitespaces from front and end of the string.
+
+``str``
+    The string to be trimmed.
+
+Returns the trimmed string.
+
+.. -----------------------------------------------------------------------------
+
+``endsWith``
+^^^^^^^^^^^^
+.. code-block:: c++
+
+    bool endsWith(const std::string sBig, const std::string sEnd);
+
+Returns ``true`` if the string ``sBig`` ends with ``sEnd``.
+
+.. -----------------------------------------------------------------------------
+
+``startsWith``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    bool startsWith(const std::string sBig, const std::string sStart);
+
+Returns ``true`` if the string ``sBig`` starts with ``sStart``.
+
+.. -----------------------------------------------------------------------------
+
+``strReplace``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    bool strReplace(std::string &sBig, const std::string sOld, const std::string sNew);
+
+Replaces the first occurrence of ``sOld`` in the string ``sBig`` with ``sNew``.
+
+Teturn ``true`` if a replacement has been made.
+
+.. -----------------------------------------------------------------------------
+
+``join``
+^^^^^^^^
+.. code-block:: c++
+
+    std::string join(const stringvec &vStrings, const std::string &sSep);
+
+Joins the strings in ``vStrings`` with thze separator sSep.
+
+``vString``
+    String vector containing the string to be joined.
+
+``sSep``
+    The separator string to use (may contain a single character or an entire string).
+
+.. -----------------------------------------------------------------------------
+
+``readKeyString``
+^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    std::string readKeyString(std::string sLine, const std::string sKey, const std::string sSep);
+
+Gets the string value from a line of form
+``   <Key> <Sep> <Val>``
+
+.. -----------------------------------------------------------------------------
+
+``fileExists``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    bool fileExists(const std::string sFile);
+
+Returns true if the file with name ``sFile`` exists.
+
+.. -----------------------------------------------------------------------------
+
+``dirExists``
+^^^^^^^^^^^^^
+.. code-block:: c++
+
+    bool dirExists(const std::string sDir);
+
+Returns true if the directory with name ``sDir`` exists.
+
+.. -----------------------------------------------------------------------------
+
+``strToNum``
+^^^^^^^^^^^^
+.. code-block:: c++
+
+    template<typename T>
+    static bool strToNum(const std::string sData, T *t);
+
+Converts the string ``sData`` to a numerical value.
+
+``sData``
+    String to convert.
+
+``t``
+    Variable to hold value.
+
+Returns ``true`` if a conversion was possible.
+
+.. -----------------------------------------------------------------------------
+
+``strToHex``
+^^^^^^^^^^^^
+.. code-block:: c++
+
+    template<typename T>
+    static bool strToHex(const std::string sData, T *t);
+
+Converts the hexadecimal string ``sData`` to a numerical value.
+
+.. -----------------------------------------------------------------------------
+
+``stdprintf`` family``
+^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    template<typename... Args>
+    static std::string stdsprintf(const std::string sFormat, Args... args);
+
+    template<typename... Args>
+    static void stdfprintf(FILE *fOut, const std::string sFormat, Args... args);
+
+    template<typename... Args>
+    static void stdprintf(const std::string sFormat, Args... args);
+
+The functions work like those of the normal ``printf`` family, but they accept std::strigs and simple vectors as well.
+
+The format characters are the same as for ``printf``, but 's' can be used for std::strings, and there are new format characters ``v`` and ``O``. 
+
+All length modifiers (e.g. 'l' or 'z`) and flag characters (e.g. '-' or ' ') are treated correctly, as well as the format character '*' (e.g. "%*d" or "%*.*f"). 
+
+
+New format characters
+"""""""""""""""""""""
+**s**
+    The corresponding parameter must be a ``char*`` or ``std::string``. 
+
+**v**
+    | The corresponding parameter must be a ``std::vector``. 
+    | If the elements of the vector have the stringstream operator <<, this will be useed, otherwise a '?' is printed. 
+    | The output is written a s a ' '-separated sequence of values.
+    | Example: 'one' 'two' 'three'
+
+**bv**
+    | Like **v**, but enclosed in square brackets and separated by commas.
+    | Example: [1, 2, 3]
+
+**rv**
+    | Like **bv**, but traverses the vector recursively (so you can print vectors of vectors of values).
+    | Example: [[1,2,3,4],[2,3,5,7],[1,1,2,3]]
+
+**O**
+    Any object having an stringstream operator <<
+
+.. -----------------------------------------------------------------------------
+
+Example with the new format characters
+""""""""""""""""""""""""""""""""""""""
+
+Compile with
+
+.. code-block:: bash
+
+  g++ su_example.cpp stdstrutils.cpp stdstrutilsT.h -std=c++20 -o su_example
+
+Code for ``su_example.cpp``:
+
+.. code-block:: c++
+
+    #include <vector>
+    #include <string>
+    #include <iostream> 
+    #include "stdstrutilsT.h" 
+
+
+    typedef unsigned int uint;
+    typedef std::vector<std::string> stringvec;
+
+    typedef std::vector<std::vector<stringvec>> stringvecvecvec;
+
+    // an object with operator <<
+    class testobj {
+    public:
+        testobj(int iA, std::string sB): m_iA(iA), m_sB(sB) {};
+
+        friend std::stringstream& operator<<(std::stringstream& os, const testobj& o);
+
+        int m_iA;
+        std::string m_sB;
+    };
+
+    std::stringstream& operator<<(std::stringstream& os, const testobj& o) {
+        os  << "(" << o.m_iA << ";" << o.m_sB << ")";
+        return os;
+    }
+
+
+    int main(int iArgC, char *apArgV[]) {
+
+        // initialize some paraeters
+        stringvec vStrings = {"eis", "zwei", "drey", "vier"};
+        intvec    vNumbers = {2,7,1,8,2,8,1};  
+        testobj ob1(3,"three");
+        testobj ob2(4,"four");
+        std::vector<testobj> vecobj = {ob1, ob2};
+        stringvecvecvec varlen = {{{"one","eis"},{"two","zwei","due"}},{{"tre"}},{{"four","vier", "quatro", "quatre"},{"five", "foif","cinque"}}};
+
+        // print them
+        stdprintf("numbers (\"%%v\"):  %v\n",  vNumbers);
+        stdprintf("numbers (\"%%bv\"): %bv\n", vNumbers);
+        stdprintf("varlen  (\"%%v\"):  %v\n",  varlen);
+        stdprintf("varlen  (\"%%rv\"): %rv\n", varlen);
+        stdprintf("ob1     (\"%%O\"):  %O\n",  ob1);
+        stdprintf("vecobj: (\"%%v\");  %v\n",  vecobj);
+        stdprintf("vecobj: (\"%%bv\"); %bv\n", vecobj);
+        return 0;
+    }
+
+produces this output:
+
+.. code-block:: c++
+
+    numbers ("%v"):  2 7 1 8 2 8 1
+    numbers ("%bv"): [2, 7, 1, 8, 2, 8, 1]
+    varlen  ("%v"):  ? ? ?
+    varlen  ("%rv"): [[[one, eis], [two, zwei, due]], [[tre]], [[four, vier, quatro, quatre], [five, foif, cinque]]]
+    ob1     ("%O"):  (3;three)
+    vecobj: ("%v");  (3;three) (4;four)
+    vecobj: ("%bv"); [(3;three), (4;four)]
+

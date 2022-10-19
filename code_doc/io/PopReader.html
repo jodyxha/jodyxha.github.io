@@ -1,0 +1,210 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>PopReader &#8212; QHG4 4.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jody.css" />
+    
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    
+    <link rel="shortcut icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="StatusWriter" href="StatusWriter.html" />
+    <link rel="prev" title="NavGroupReader" href="NavGroupReader.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="StatusWriter.html" title="StatusWriter"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="NavGroupReader.html" title="NavGroupReader"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../io.html" accesskey="U">io</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">PopReader</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="popreader">
+<span id="popreader-ref"></span><h1>PopReader<a class="headerlink" href="#popreader" title="Permalink to this heading">¶</a></h1>
+<p class="hidden">This page desctibes the class <span class="target" id="index-0"></span>PopReader</p>
+<p>The class <code class="docutils literal notranslate"><span class="pre">PopReader</span></code> is used to write the <a class="reference internal" href="../core/SPopulation.html#spopulation-ref"><span class="std std-ref">population data</span></a> as a subgroup of the <a class="reference internal" href="../../formats/qdf/PopsGroup.html#popsgroup-ref"><span class="std std-ref">populations group</span></a> in a qdf file.</p>
+<p>The information of found populations is stored in a vector of <code class="docutils literal notranslate"><span class="pre">popinfo</span></code> structures:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">m_sClassName</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">m_sSpeciesName</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w">  </span><span class="n">m_iNumCells</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"> </span><span class="n">popinfo</span><span class="p">;</span><span class="w"></span>
+
+<span class="k">typedef</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">popinfo</span><span class="o">&gt;</span><span class="w"> </span><span class="n">popinfolist</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/io/PopReader.h">PopReader.h</a>, <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/io/PopReader.cpp">PopReader.cpp</a></p>
+<section id="public-methods">
+<h2>Public Methods<a class="headerlink" href="#public-methods" title="Permalink to this heading">¶</a></h2>
+<section id="create">
+<h3><code class="docutils literal notranslate"><span class="pre">create</span></code><a class="headerlink" href="#create" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="n">PopReader</span><span class="w"> </span><span class="o">*</span><span class="nf">create</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sFileName</span><span class="p">);</span><span class="w"></span>
+<span class="k">static</span><span class="w"> </span><span class="n">PopReader</span><span class="w"> </span><span class="o">*</span><span class="n">create</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hFile</span><span class="p">)</span><span class="o">:</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Create a <code class="docutils literal notranslate"><span class="pre">PopReader</span></code> object for the specified file.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">sFileName</span></code></dt><dd><p>Name of qdf file to be read.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">hFile</span></code></dt><dd><p>HDF handle for the open file.</p>
+</dd>
+</dl>
+<p>Returns a pointer to the <code class="docutils literal notranslate"><span class="pre">PopReader</span></code> object.</p>
+</section>
+<section id="destructor">
+<h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="o">~</span><span class="n">PopReader</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Closes open HDF handles.</p>
+</section>
+<section id="open">
+<h3><code class="docutils literal notranslate"><span class="pre">open</span></code><a class="headerlink" href="#open" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">open</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sFilename</span><span class="p">);</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">open</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hFile</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Open the “Populations” group, and collects the names and attributes of all  population subgroups.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">sFileName</span></code></dt><dd><p>Name of file in which to search for populations.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">hFile</span></code></dt><dd><p>HDF handle for file in which to search for populations.</p>
+</dd>
+</dl>
+<p>Returns 0 on success, or -1 on error.</p>
+</section>
+<section id="getpoplist">
+<h3><code class="docutils literal notranslate"><span class="pre">getPopList</span></code><a class="headerlink" href="#getpoplist" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="n">popinfolist</span><span class="w"> </span><span class="o">&amp;</span><span class="nf">getPopList</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Returns the vector of <code class="docutils literal notranslate"><span class="pre">popinfo</span></code> structs.</p>
+</section>
+<section id="read">
+<h3><code class="docutils literal notranslate"><span class="pre">read</span></code><a class="headerlink" href="#read" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">read</span><span class="p">(</span><span class="n">PopBase</span><span class="w"> </span><span class="o">*</span><span class="n">pPopBase</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sSpeciesName</span><span class="p">,</span><span class="w"></span>
+<span class="w">         </span><span class="kt">int</span><span class="w"> </span><span class="n">iNumCells</span><span class="p">,</span><span class="w">     </span><span class="kt">bool</span><span class="w"> </span><span class="n">bRestore</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Reads the data from the AgentDataSet of the population group with the given name into the agent array of the population object.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">pPopBase</span></code></dt><dd><p>Pointer to a <a class="reference internal" href="../core/SPopulation.html#spopulation-ref"><span class="std std-ref">population object</span></a>. The user of PopReader must provide a pointer of the correct type.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sSpeciesName</span></code></dt><dd><p>Name of the species for which to load the data.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iNumCells</span></code></dt><dd><p>Number of grid cells. Must have the same value as the NumCells attribute in the populatin group. If the numbers don’t match the positions of the agents will most certainly be wrong.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">bRestore</span></code></dt><dd><p>If set to true, do a <a class="reference internal" href="../../dumprestore.html#dump-restore-ref"><span class="std std-ref">restore</span></a>, if false, read normally</p>
+</dd>
+</dl>
+<p>Returns 0 on success, or a begative value on error.</p>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">PopReader</a><ul>
+<li><a class="reference internal" href="#public-methods">Public Methods</a><ul>
+<li><a class="reference internal" href="#create"><code class="docutils literal notranslate"><span class="pre">create</span></code></a></li>
+<li><a class="reference internal" href="#destructor"><code class="docutils literal notranslate"><span class="pre">destructor</span></code></a></li>
+<li><a class="reference internal" href="#open"><code class="docutils literal notranslate"><span class="pre">open</span></code></a></li>
+<li><a class="reference internal" href="#getpoplist"><code class="docutils literal notranslate"><span class="pre">getPopList</span></code></a></li>
+<li><a class="reference internal" href="#read"><code class="docutils literal notranslate"><span class="pre">read</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="NavGroupReader.html"
+                          title="previous chapter">NavGroupReader</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="StatusWriter.html"
+                          title="next chapter">StatusWriter</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/code_doc/io/PopReader.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="StatusWriter.html" title="StatusWriter"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="NavGroupReader.html" title="NavGroupReader"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../io.html" >io</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">PopReader</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+    </div>
+  </body>
+</html>

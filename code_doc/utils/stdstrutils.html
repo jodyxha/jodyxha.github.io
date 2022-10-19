@@ -1,0 +1,381 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>stdstrutils &#8212; QHG4 4.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jody.css" />
+    
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    
+    <link rel="shortcut icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="ParamReader" href="ParamReader.html" />
+    <link rel="prev" title="Permutator" href="Permutator.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="ParamReader.html" title="ParamReader"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="Permutator.html" title="Permutator"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../utils.html" accesskey="U">utils</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">stdstrutils</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="stdstrutils">
+<span id="stdstrutils-ref"></span><h1>stdstrutils<a class="headerlink" href="#stdstrutils" title="Permalink to this heading">¶</a></h1>
+<p class="hidden">This page describes the module <span class="target" id="index-0"></span>stdstrutils</p>
+<p>The module <code class="docutils literal notranslate"><span class="pre">stdstrutils</span></code> contains various string utilities that also accept <code class="docutils literal notranslate"><span class="pre">std::string</span></code>.</p>
+<p>The code is distributed across 3 files</p>
+<dl class="simple">
+<dt><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/stdstrutils.h">stdstrutils.h</a></dt><dd><p>declarations of “simple” string utilities</p>
+</dd>
+<dt><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/stdstrutils.cpp">stdstrutils.cpp</a></dt><dd><p>implementation of “simple” string utilities</p>
+</dd>
+<dt><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/stdstrutilsT.h">stdstrutilsT.h</a></dt><dd><p>printf-like functions for strings and other template functions</p>
+</dd>
+</dl>
+<p>The <code class="docutils literal notranslate"><span class="pre">printf</span></code>-like functions in <code class="docutils literal notranslate"><span class="pre">stdstrutilsT.h</span></code> are implemented with variadic templates.</p>
+<p>The functions in stdstrutils are used throughout QHG.</p>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this heading">¶</a></h2>
+<section id="splitstring">
+<h3><code class="docutils literal notranslate"><span class="pre">splitString</span></code><a class="headerlink" href="#splitstring" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">uint</span><span class="w"> </span><span class="nf">splitString</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sString</span><span class="p">,</span><span class="w"> </span><span class="n">stringvec</span><span class="w"> </span><span class="o">&amp;</span><span class="n">vParts</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sSeps</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">bKeepEmpty</span><span class="o">=</span><span class="nb">true</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Splits the string <code class="docutils literal notranslate"><span class="pre">sString</span></code> at any of the characters in <code class="docutils literal notranslate"><span class="pre">sSeps</span></code> and places the fragments in the string vector <code class="docutils literal notranslate"><span class="pre">vParts</span></code>.</p>
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">sString</span></code></dt><dd><p>The string to be split.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">vParts</span></code></dt><dd><p>The string vector receiving the fragments.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sSeps</span></code></dt><dd><p>Separator characters (needs at least one).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">bKeepEmpty</span></code></dt><dd><div class="line-block">
+<div class="line">If <code class="docutils literal notranslate"><span class="pre">true</span></code>, also empty fragments are placed in <code class="docutils literal notranslate"><span class="pre">vParts</span></code> (they occur if to separator characters follow each other).</div>
+<div class="line">If <code class="docutils literal notranslate"><span class="pre">false</span></code> they are ignored.</div>
+</div>
+</dd>
+</dl>
+<p>Returns the number of fragments saved.</p>
+</section>
+<section id="trim">
+<h3><code class="docutils literal notranslate"><span class="pre">trim</span></code><a class="headerlink" href="#trim" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">trim</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">str</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Remove whitespaces from front and end of the string.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>The string to be trimmed.</p>
+</dd>
+</dl>
+<p>Returns the trimmed string.</p>
+</section>
+<section id="endswith">
+<h3><code class="docutils literal notranslate"><span class="pre">endsWith</span></code><a class="headerlink" href="#endswith" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="nf">endsWith</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sBig</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sEnd</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Returns <code class="docutils literal notranslate"><span class="pre">true</span></code> if the string <code class="docutils literal notranslate"><span class="pre">sBig</span></code> ends with <code class="docutils literal notranslate"><span class="pre">sEnd</span></code>.</p>
+</section>
+<section id="startswith">
+<h3><code class="docutils literal notranslate"><span class="pre">startsWith</span></code><a class="headerlink" href="#startswith" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="nf">startsWith</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sBig</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sStart</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Returns <code class="docutils literal notranslate"><span class="pre">true</span></code> if the string <code class="docutils literal notranslate"><span class="pre">sBig</span></code> starts with <code class="docutils literal notranslate"><span class="pre">sStart</span></code>.</p>
+</section>
+<section id="strreplace">
+<h3><code class="docutils literal notranslate"><span class="pre">strReplace</span></code><a class="headerlink" href="#strreplace" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="nf">strReplace</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="n">sBig</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sOld</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sNew</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Replaces the first occurrence of <code class="docutils literal notranslate"><span class="pre">sOld</span></code> in the string <code class="docutils literal notranslate"><span class="pre">sBig</span></code> with <code class="docutils literal notranslate"><span class="pre">sNew</span></code>.</p>
+<p>Teturn <code class="docutils literal notranslate"><span class="pre">true</span></code> if a replacement has been made.</p>
+</section>
+<section id="join">
+<h3><code class="docutils literal notranslate"><span class="pre">join</span></code><a class="headerlink" href="#join" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">join</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">stringvec</span><span class="w"> </span><span class="o">&amp;</span><span class="n">vStrings</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="n">sSep</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Joins the strings in <code class="docutils literal notranslate"><span class="pre">vStrings</span></code> with thze separator sSep.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">vString</span></code></dt><dd><p>String vector containing the string to be joined.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sSep</span></code></dt><dd><p>The separator string to use (may contain a single character or an entire string).</p>
+</dd>
+</dl>
+</section>
+<section id="readkeystring">
+<h3><code class="docutils literal notranslate"><span class="pre">readKeyString</span></code><a class="headerlink" href="#readkeystring" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">readKeyString</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sLine</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sKey</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sSep</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Gets the string value from a line of form
+``   &lt;Key&gt; &lt;Sep&gt; &lt;Val&gt;``</p>
+</section>
+<section id="fileexists">
+<h3><code class="docutils literal notranslate"><span class="pre">fileExists</span></code><a class="headerlink" href="#fileexists" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="nf">fileExists</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sFile</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Returns true if the file with name <code class="docutils literal notranslate"><span class="pre">sFile</span></code> exists.</p>
+</section>
+<section id="direxists">
+<h3><code class="docutils literal notranslate"><span class="pre">dirExists</span></code><a class="headerlink" href="#direxists" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="nf">dirExists</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sDir</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Returns true if the directory with name <code class="docutils literal notranslate"><span class="pre">sDir</span></code> exists.</p>
+</section>
+<section id="strtonum">
+<h3><code class="docutils literal notranslate"><span class="pre">strToNum</span></code><a class="headerlink" href="#strtonum" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span><span class="w"></span>
+<span class="k">static</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">strToNum</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sData</span><span class="p">,</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="o">*</span><span class="n">t</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Converts the string <code class="docutils literal notranslate"><span class="pre">sData</span></code> to a numerical value.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">sData</span></code></dt><dd><p>String to convert.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">t</span></code></dt><dd><p>Variable to hold value.</p>
+</dd>
+</dl>
+<p>Returns <code class="docutils literal notranslate"><span class="pre">true</span></code> if a conversion was possible.</p>
+</section>
+<section id="strtohex">
+<h3><code class="docutils literal notranslate"><span class="pre">strToHex</span></code><a class="headerlink" href="#strtohex" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span><span class="w"></span>
+<span class="k">static</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">strToHex</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sData</span><span class="p">,</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="o">*</span><span class="n">t</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Converts the hexadecimal string <code class="docutils literal notranslate"><span class="pre">sData</span></code> to a numerical value.</p>
+</section>
+<section id="stdprintf-family">
+<h3><code class="docutils literal notranslate"><span class="pre">stdprintf</span></code> family``<a class="headerlink" href="#stdprintf-family" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="p">...</span><span class="w"> </span><span class="n">Args</span><span class="o">&gt;</span><span class="w"></span>
+<span class="k">static</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">stdsprintf</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sFormat</span><span class="p">,</span><span class="w"> </span><span class="n">Args</span><span class="p">...</span><span class="w"> </span><span class="n">args</span><span class="p">);</span><span class="w"></span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="p">...</span><span class="w"> </span><span class="n">Args</span><span class="o">&gt;</span><span class="w"></span>
+<span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">stdfprintf</span><span class="p">(</span><span class="kt">FILE</span><span class="w"> </span><span class="o">*</span><span class="n">fOut</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sFormat</span><span class="p">,</span><span class="w"> </span><span class="n">Args</span><span class="p">...</span><span class="w"> </span><span class="n">args</span><span class="p">);</span><span class="w"></span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="p">...</span><span class="w"> </span><span class="n">Args</span><span class="o">&gt;</span><span class="w"></span>
+<span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">stdprintf</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sFormat</span><span class="p">,</span><span class="w"> </span><span class="n">Args</span><span class="p">...</span><span class="w"> </span><span class="n">args</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The functions work like those of the normal <code class="docutils literal notranslate"><span class="pre">printf</span></code> family, but they accept std::strigs and simple vectors as well.</p>
+<p>The format characters are the same as for <code class="docutils literal notranslate"><span class="pre">printf</span></code>, but ‘s’ can be used for std::strings, and there are new format characters <code class="docutils literal notranslate"><span class="pre">v</span></code> and <code class="docutils literal notranslate"><span class="pre">O</span></code>.</p>
+<p>All length modifiers (e.g. ‘l’ or ‘z`) and flag characters (e.g. ‘-’ or ‘ ‘) are treated correctly, as well as the format character ‘*’ (e.g. “%*d” or “%*.*f”).</p>
+<section id="new-format-characters">
+<h4>New format characters<a class="headerlink" href="#new-format-characters" title="Permalink to this heading">¶</a></h4>
+<dl>
+<dt><strong>s</strong></dt><dd><p>The corresponding parameter must be a <code class="docutils literal notranslate"><span class="pre">char*</span></code> or <code class="docutils literal notranslate"><span class="pre">std::string</span></code>.</p>
+</dd>
+<dt><strong>v</strong></dt><dd><div class="line-block">
+<div class="line">The corresponding parameter must be a <code class="docutils literal notranslate"><span class="pre">std::vector</span></code>.</div>
+<div class="line">If the elements of the vector have the stringstream operator &lt;&lt;, this will be useed, otherwise a ‘?’ is printed.</div>
+<div class="line">The output is written a s a ‘ ‘-separated sequence of values.</div>
+<div class="line">Example: ‘one’ ‘two’ ‘three’</div>
+</div>
+</dd>
+<dt><strong>bv</strong></dt><dd><div class="line-block">
+<div class="line">Like <strong>v</strong>, but enclosed in square brackets and separated by commas.</div>
+<div class="line">Example: [1, 2, 3]</div>
+</div>
+</dd>
+<dt><strong>rv</strong></dt><dd><div class="line-block">
+<div class="line">Like <strong>bv</strong>, but traverses the vector recursively (so you can print vectors of vectors of values).</div>
+<div class="line">Example: [[1,2,3,4],[2,3,5,7],[1,1,2,3]]</div>
+</div>
+</dd>
+<dt><strong>O</strong></dt><dd><p>Any object having an stringstream operator &lt;&lt;</p>
+</dd>
+</dl>
+</section>
+<section id="example-with-the-new-format-characters">
+<h4>Example with the new format characters<a class="headerlink" href="#example-with-the-new-format-characters" title="Permalink to this heading">¶</a></h4>
+<p>Compile with</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>g++ su_example.cpp stdstrutils.cpp stdstrutilsT.h -std<span class="o">=</span>c++20 -o su_example
+</pre></div>
+</div>
+<p>Code for <code class="docutils literal notranslate"><span class="pre">su_example.cpp</span></code>:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;stdstrutilsT.h&quot;</span><span class="cp"></span>
+
+
+<span class="k">typedef</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">uint</span><span class="p">;</span><span class="w"></span>
+<span class="k">typedef</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">stringvec</span><span class="p">;</span><span class="w"></span>
+
+<span class="k">typedef</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">stringvec</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">stringvecvecvec</span><span class="p">;</span><span class="w"></span>
+
+<span class="c1">// an object with operator &lt;&lt;</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">testobj</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="k">public</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span><span class="n">testobj</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iA</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sB</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="n">m_iA</span><span class="p">(</span><span class="n">iA</span><span class="p">),</span><span class="w"> </span><span class="n">m_sB</span><span class="p">(</span><span class="n">sB</span><span class="p">)</span><span class="w"> </span><span class="p">{};</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">friend</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">stringstream</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">stringstream</span><span class="o">&amp;</span><span class="w"> </span><span class="n">os</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">testobj</span><span class="o">&amp;</span><span class="w"> </span><span class="n">o</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">m_iA</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">m_sB</span><span class="p">;</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">stringstream</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">stringstream</span><span class="o">&amp;</span><span class="w"> </span><span class="n">os</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">testobj</span><span class="o">&amp;</span><span class="w"> </span><span class="n">o</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">os</span><span class="w">  </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;(&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">m_iA</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;;&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">m_sB</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;)&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">os</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+
+<span class="kt">int</span><span class="w"> </span><span class="n">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iArgC</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">apArgV</span><span class="p">[])</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// initialize some paraeters</span>
+<span class="w">    </span><span class="n">stringvec</span><span class="w"> </span><span class="n">vStrings</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;eis&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;zwei&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;drey&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;vier&quot;</span><span class="p">};</span><span class="w"></span>
+<span class="w">    </span><span class="n">intvec</span><span class="w">    </span><span class="n">vNumbers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">2</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">1</span><span class="p">};</span><span class="w"></span>
+<span class="w">    </span><span class="n">testobj</span><span class="w"> </span><span class="n">ob1</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="s">&quot;three&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">testobj</span><span class="w"> </span><span class="n">ob2</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="s">&quot;four&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">testobj</span><span class="o">&gt;</span><span class="w"> </span><span class="n">vecobj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="n">ob1</span><span class="p">,</span><span class="w"> </span><span class="n">ob2</span><span class="p">};</span><span class="w"></span>
+<span class="w">    </span><span class="n">stringvecvecvec</span><span class="w"> </span><span class="n">varlen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{{{</span><span class="s">&quot;one&quot;</span><span class="p">,</span><span class="s">&quot;eis&quot;</span><span class="p">},{</span><span class="s">&quot;two&quot;</span><span class="p">,</span><span class="s">&quot;zwei&quot;</span><span class="p">,</span><span class="s">&quot;due&quot;</span><span class="p">}},{{</span><span class="s">&quot;tre&quot;</span><span class="p">}},{{</span><span class="s">&quot;four&quot;</span><span class="p">,</span><span class="s">&quot;vier&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;quatro&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;quatre&quot;</span><span class="p">},{</span><span class="s">&quot;five&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;foif&quot;</span><span class="p">,</span><span class="s">&quot;cinque&quot;</span><span class="p">}}};</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// print them</span>
+<span class="w">    </span><span class="n">stdprintf</span><span class="p">(</span><span class="s">&quot;numbers (</span><span class="se">\&quot;</span><span class="s">%%v</span><span class="se">\&quot;</span><span class="s">):  %v</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w">  </span><span class="n">vNumbers</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">stdprintf</span><span class="p">(</span><span class="s">&quot;numbers (</span><span class="se">\&quot;</span><span class="s">%%bv</span><span class="se">\&quot;</span><span class="s">): %bv</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">vNumbers</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">stdprintf</span><span class="p">(</span><span class="s">&quot;varlen  (</span><span class="se">\&quot;</span><span class="s">%%v</span><span class="se">\&quot;</span><span class="s">):  %v</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w">  </span><span class="n">varlen</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">stdprintf</span><span class="p">(</span><span class="s">&quot;varlen  (</span><span class="se">\&quot;</span><span class="s">%%rv</span><span class="se">\&quot;</span><span class="s">): %rv</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">varlen</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">stdprintf</span><span class="p">(</span><span class="s">&quot;ob1     (</span><span class="se">\&quot;</span><span class="s">%%O</span><span class="se">\&quot;</span><span class="s">):  %O</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w">  </span><span class="n">ob1</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">stdprintf</span><span class="p">(</span><span class="s">&quot;vecobj: (</span><span class="se">\&quot;</span><span class="s">%%v</span><span class="se">\&quot;</span><span class="s">);  %v</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w">  </span><span class="n">vecobj</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">stdprintf</span><span class="p">(</span><span class="s">&quot;vecobj: (</span><span class="se">\&quot;</span><span class="s">%%bv</span><span class="se">\&quot;</span><span class="s">); %bv</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">vecobj</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>produces this output:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">numbers</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;%v&quot;</span><span class="p">)</span><span class="o">:</span><span class="w">  </span><span class="mi">2</span><span class="w"> </span><span class="mi">7</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">8</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">8</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+<span class="n">numbers</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;%bv&quot;</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="w"></span>
+<span class="n">varlen</span><span class="w">  </span><span class="p">(</span><span class="s">&quot;%v&quot;</span><span class="p">)</span><span class="o">:</span><span class="w">  </span><span class="o">?</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="o">?</span><span class="w"></span>
+<span class="n">varlen</span><span class="w">  </span><span class="p">(</span><span class="s">&quot;%rv&quot;</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="p">[[[</span><span class="n">one</span><span class="p">,</span><span class="w"> </span><span class="n">eis</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="n">two</span><span class="p">,</span><span class="w"> </span><span class="n">zwei</span><span class="p">,</span><span class="w"> </span><span class="n">due</span><span class="p">]],</span><span class="w"> </span><span class="p">[[</span><span class="n">tre</span><span class="p">]],</span><span class="w"> </span><span class="p">[[</span><span class="n">four</span><span class="p">,</span><span class="w"> </span><span class="n">vier</span><span class="p">,</span><span class="w"> </span><span class="n">quatro</span><span class="p">,</span><span class="w"> </span><span class="n">quatre</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="n">five</span><span class="p">,</span><span class="w"> </span><span class="n">foif</span><span class="p">,</span><span class="w"> </span><span class="n">cinque</span><span class="p">]]]</span><span class="w"></span>
+<span class="n">ob1</span><span class="w">     </span><span class="p">(</span><span class="s">&quot;%O&quot;</span><span class="p">)</span><span class="o">:</span><span class="w">  </span><span class="p">(</span><span class="mi">3</span><span class="p">;</span><span class="n">three</span><span class="p">)</span><span class="w"></span>
+<span class="nl">vecobj</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;%v&quot;</span><span class="p">);</span><span class="w">  </span><span class="p">(</span><span class="mi">3</span><span class="p">;</span><span class="n">three</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="mi">4</span><span class="p">;</span><span class="n">four</span><span class="p">)</span><span class="w"></span>
+<span class="nl">vecobj</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;%bv&quot;</span><span class="p">);</span><span class="w"> </span><span class="p">[(</span><span class="mi">3</span><span class="p">;</span><span class="n">three</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">4</span><span class="p">;</span><span class="n">four</span><span class="p">)]</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">stdstrutils</a><ul>
+<li><a class="reference internal" href="#functions">Functions</a><ul>
+<li><a class="reference internal" href="#splitstring"><code class="docutils literal notranslate"><span class="pre">splitString</span></code></a></li>
+<li><a class="reference internal" href="#trim"><code class="docutils literal notranslate"><span class="pre">trim</span></code></a></li>
+<li><a class="reference internal" href="#endswith"><code class="docutils literal notranslate"><span class="pre">endsWith</span></code></a></li>
+<li><a class="reference internal" href="#startswith"><code class="docutils literal notranslate"><span class="pre">startsWith</span></code></a></li>
+<li><a class="reference internal" href="#strreplace"><code class="docutils literal notranslate"><span class="pre">strReplace</span></code></a></li>
+<li><a class="reference internal" href="#join"><code class="docutils literal notranslate"><span class="pre">join</span></code></a></li>
+<li><a class="reference internal" href="#readkeystring"><code class="docutils literal notranslate"><span class="pre">readKeyString</span></code></a></li>
+<li><a class="reference internal" href="#fileexists"><code class="docutils literal notranslate"><span class="pre">fileExists</span></code></a></li>
+<li><a class="reference internal" href="#direxists"><code class="docutils literal notranslate"><span class="pre">dirExists</span></code></a></li>
+<li><a class="reference internal" href="#strtonum"><code class="docutils literal notranslate"><span class="pre">strToNum</span></code></a></li>
+<li><a class="reference internal" href="#strtohex"><code class="docutils literal notranslate"><span class="pre">strToHex</span></code></a></li>
+<li><a class="reference internal" href="#stdprintf-family"><code class="docutils literal notranslate"><span class="pre">stdprintf</span></code> family``</a><ul>
+<li><a class="reference internal" href="#new-format-characters">New format characters</a></li>
+<li><a class="reference internal" href="#example-with-the-new-format-characters">Example with the new format characters</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="Permutator.html"
+                          title="previous chapter">Permutator</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="ParamReader.html"
+                          title="next chapter">ParamReader</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/code_doc/utils/stdstrutils.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="ParamReader.html" title="ParamReader"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="Permutator.html" title="Permutator"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../utils.html" >utils</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">stdstrutils</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+    </div>
+  </body>
+</html>

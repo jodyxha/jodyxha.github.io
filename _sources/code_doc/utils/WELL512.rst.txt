@@ -1,0 +1,210 @@
+.. _WELL512_ref:
+
+WELL512
+=======
+
+.. rst-class:: hidden
+
+   This page describes the class :index:`WELL512`
+
+The class ``WELL512`` is a pretty good pseudo randmom number generator based on a 'paper by Chris Lomont <http://www.lomont.org/math/papers/2008/Lomont_PRNG_2008.pdf>.
+
+The internal state is defined by a state vector of 16 uint_32 numbers  and an index.
+
+Code: `WELL512.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/WELL512.h>`_, `WELL512.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/WELL512.cpp>`_
+
+
+Public Methods
+--------------
+
+``constructor``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    WELL512(uint32_t *aulState, uint32_t uiIndex=0);
+
+Constructor providing the state and the index
+
+``aulState``
+    The state vector, an array of 16 uint32.
+
+``uiIndex``
+    The index
+
+.. -----------------------------------------------------------------------------
+
+``constructor``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    WELL512();
+ 
+The empty constructor.
+
+.. -----------------------------------------------------------------------------
+
+``destructor``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    ~WELL512();
+
+The destructor.
+
+.. -----------------------------------------------------------------------------
+
+``seed``
+^^^^^^^^
+.. code-block:: c++
+
+    void seed(uint32_t *aulState, uint32_t uiIndex);
+
+Set a new state vector and index.
+
+``aulState``
+    The state vector, an array of 16 ``uint32``.
+
+``uiIndex``
+    The current index.
+
+.. -----------------------------------------------------------------------------
+
+``wrand``
+^^^^^^^^^
+.. code-block:: c++
+
+    uint32_t wrand();
+
+Returns a random uint32 in the interval [0, MAX_WRAND].
+
+.. -----------------------------------------------------------------------------
+
+``wrandd``
+^^^^^^^^^^
+.. code-block:: c++
+
+    double   wrandd();
+
+Retruns a radom double in [0,1).
+
+.. -----------------------------------------------------------------------------
+
+``wrandr``
+^^^^^^^^^^
+.. code-block:: c++
+
+    double   wrandr(double a, double b);
+
+Return a random double in [a,b).
+
+.. -----------------------------------------------------------------------------
+
+``wrandi``
+^^^^^^^^^^
+.. code-block:: c++
+
+    uint32_t wrandi(uint32_t a, uint32_t b, uint32_t s=1);
+
+| Returns a random uint32 in [a,b-1] with graining s.
+| ``wrandi(1,9,2)`` will return a random odd number between a and b-1
+
+.. -----------------------------------------------------------------------------
+
+``wgauss``
+^^^^^^^^^^
+.. code-block:: c++
+
+    double   wgauss(double dSigma);
+
+Returns a random number with normal distribution around (0) with given sigma
+
+.. -----------------------------------------------------------------------------
+
+``getState``
+^^^^^^^^^^^^
+.. code-block:: c++
+
+    const uint31_t *getState();
+
+Returns a pointer to the state vector.
+
+.. -----------------------------------------------------------------------------
+
+``getIndex``
+^^^^^^^^^^^^
+.. code-block:: c++
+
+    const uint32_t  getIndex() const;
+
+Returns the current index.
+
+.. -----------------------------------------------------------------------------
+
+``getCount``
+^^^^^^^^^^^^
+.. code-block:: c++
+
+    unsigned long getCount();
+
+Returns count of random numbers generated.
+
+.. -----------------------------------------------------------------------------
+
+``getSigma``
+^^^^^^^^^^^^
+.. code-block:: c++
+
+    double getSigma();
+
+Returns current sigma.
+
+.. -----------------------------------------------------------------------------
+
+``getPrevNormal``
+^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    double getPrevNormal();
+
+Returns the previously calculated normal random muber if it exists, else NaN.
+
+.. -----------------------------------------------------------------------------
+
+``setGaussStates``
+^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    void setGaussStates(double dPrevNormal,double dSigma);
+
+Sets the gauss specific states.
+
+.. -----------------------------------------------------------------------------
+
+``showState``
+^^^^^^^^^^^^^
+.. code-block:: c++
+
+    void showState();
+
+Displays the current state
+
+.. -----------------------------------------------------------------------------
+
+``state2String``
+^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    void state2String(char *pString);
+
+Converts the current state and index to a nice string.
+
+.. -----------------------------------------------------------------------------
+
+``getLastRand``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    uint32_t getLastRand();
+
+Returns the last random number that was generated.
+

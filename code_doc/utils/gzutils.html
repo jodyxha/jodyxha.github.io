@@ -1,0 +1,246 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>gzutils &#8212; QHG4 4.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jody.css" />
+    
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    
+    <link rel="shortcut icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Observer" href="Observer.html" />
+    <link rel="prev" title="LineReader" href="LineReader.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="Observer.html" title="Observer"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="LineReader.html" title="LineReader"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../utils.html" accesskey="U">utils</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">gzutils</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="gzutils">
+<span id="gzutils-ref"></span><h1>gzutils<a class="headerlink" href="#gzutils" title="Permalink to this heading">¶</a></h1>
+<p class="hidden">This page describes the module <span class="target" id="index-0"></span>gzutils</p>
+<p>The functions in the module <code class="docutils literal notranslate"><span class="pre">gzutils</span></code> allow the reading and writing of gzipped files.</p>
+<p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/gzutils.h">gzutils.h</a> , <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/gzutils.cpp">gzutils.cpp</a></p>
+<section id="functions">
+<h2><code class="docutils literal notranslate"><span class="pre">Functions</span></code><a class="headerlink" href="#functions" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="createinstance">
+<h2><code class="docutils literal notranslate"><span class="pre">createInstance</span></code><a class="headerlink" href="#createinstance" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="n">gzUtils</span><span class="w"> </span><span class="o">*</span><span class="nf">createInstance</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">iBlockSize</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Creates a <code class="docutils literal notranslate"><span class="pre">gzUtils</span></code> instance with the specified block size.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">iBlockSize</span></code></dt><dd><p>Size of blocks to use.</p>
+</dd>
+</dl>
+<p>Returns a <code class="docutils literal notranslate"><span class="pre">gzUtils</span></code> instance on success, or NULL on failure.</p>
+</section>
+<section id="do-gzip">
+<h2><code class="docutils literal notranslate"><span class="pre">do_gzip</span></code><a class="headerlink" href="#do-gzip" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">do_gzip</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sInput</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sOutput</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The contents of the input file are gzipped and written to the output file.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">sInput</span></code></dt><dd><p>Name of the input file.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sOutput</span></code></dt><dd><p>Name of the output file (will be a gzipped file).</p>
+</dd>
+</dl>
+<p>Returns 0 on success, -1 on failure (read or write error)</p>
+</section>
+<section id="do-gunzip">
+<h2><code class="docutils literal notranslate"><span class="pre">do_gunzip</span></code><a class="headerlink" href="#do-gunzip" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">do_gunzip</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sInput</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sOutput</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The contents of the input file are gunzipped and written to the output file.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">sInput</span></code></dt><dd><p>Name of the input file (should be a gzipped file)</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sOutput</span></code></dt><dd><p>Name of the output file.</p>
+</dd>
+</dl>
+<p>Returns 0 on success, -1 on failure (read or write error)</p>
+</section>
+<section id="constructor">
+<h2><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#constructor" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">gzUtils</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The constructor.</p>
+</section>
+<section id="init">
+<h2><code class="docutils literal notranslate"><span class="pre">init</span></code><a class="headerlink" href="#init" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">init</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">iBlockSize</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Allocates a buffer with specified size.</p>
+</section>
+<section id="destructor">
+<h2><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="o">~</span><span class="n">gzUtils</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The destructor. Frees the memory used for the buffer.</p>
+</section>
+<section id="example">
+<h2><code class="docutils literal notranslate"><span class="pre">Example</span></code><a class="headerlink" href="#example" title="Permalink to this heading">¶</a></h2>
+<p>Compile with</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>g++ -g  gz_example.cpp  gzutils.cpp -lz
+</pre></div>
+</div>
+<p>Code for <code class="docutils literal notranslate"><span class="pre">gz_example</span></code>:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cstdio&gt;</span><span class="cp"></span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;gzutils.h&quot;</span><span class="cp"></span>
+
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iArgC</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">apArgV</span><span class="p">[])</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">iResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">bgzip</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">GZ_BLOCK_SIZE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">8192</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">iArgC</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sMode</span><span class="p">(</span><span class="n">apArgV</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span><span class="w"></span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sInput</span><span class="p">(</span><span class="n">apArgV</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span><span class="w"></span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sOutput</span><span class="p">(</span><span class="n">apArgV</span><span class="p">[</span><span class="mi">3</span><span class="p">]);</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">gzUtils</span><span class="w"> </span><span class="o">*</span><span class="n">pgz</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gzUtils</span><span class="o">::</span><span class="n">createInstance</span><span class="p">(</span><span class="n">GZ_BLOCK_SIZE</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">pgz</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sMode</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;-g&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">iResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pgz</span><span class="o">-&gt;</span><span class="n">do_gzip</span><span class="p">(</span><span class="n">sInput</span><span class="p">,</span><span class="w"> </span><span class="n">sOutput</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sMode</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;-u&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">iResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pgz</span><span class="o">-&gt;</span><span class="n">do_gunzip</span><span class="p">(</span><span class="n">sInput</span><span class="p">,</span><span class="w"> </span><span class="n">sOutput</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">iResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">delete</span><span class="w"> </span><span class="n">pgz</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Couldn&#39;t gzUtils instance</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="n">iResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;usage: %s [</span><span class="se">\&quot;</span><span class="s">-g</span><span class="se">\&quot;</span><span class="s"> | </span><span class="se">\&quot;</span><span class="s">-u</span><span class="se">\&quot;</span><span class="s">] &lt;input-file&gt; &lt;output-file&gt;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">apArgV</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span><span class="w"></span>
+<span class="w">        </span><span class="n">iResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">iResult</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">gzutils</a><ul>
+<li><a class="reference internal" href="#functions"><code class="docutils literal notranslate"><span class="pre">Functions</span></code></a></li>
+<li><a class="reference internal" href="#createinstance"><code class="docutils literal notranslate"><span class="pre">createInstance</span></code></a></li>
+<li><a class="reference internal" href="#do-gzip"><code class="docutils literal notranslate"><span class="pre">do_gzip</span></code></a></li>
+<li><a class="reference internal" href="#do-gunzip"><code class="docutils literal notranslate"><span class="pre">do_gunzip</span></code></a></li>
+<li><a class="reference internal" href="#constructor"><code class="docutils literal notranslate"><span class="pre">constructor</span></code></a></li>
+<li><a class="reference internal" href="#init"><code class="docutils literal notranslate"><span class="pre">init</span></code></a></li>
+<li><a class="reference internal" href="#destructor"><code class="docutils literal notranslate"><span class="pre">destructor</span></code></a></li>
+<li><a class="reference internal" href="#example"><code class="docutils literal notranslate"><span class="pre">Example</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="LineReader.html"
+                          title="previous chapter">LineReader</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="Observer.html"
+                          title="next chapter">Observer</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/code_doc/utils/gzutils.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="Observer.html" title="Observer"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="LineReader.html" title="LineReader"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../utils.html" >utils</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">gzutils</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+    </div>
+  </body>
+</html>

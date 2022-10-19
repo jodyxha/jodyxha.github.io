@@ -1,0 +1,160 @@
+.. _Fertility_ref:
+
+Fertility
+=========
+
+.. rst-class:: hidden
+  
+    This page describes the class :index:`Fertility`
+
+The class ``Fertility`` is derived from ``Action``, and determines the agents' fertility. 
+
+Code: `Fertility.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/Fertility.h>`_ `Fertility.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/Fertility.cpp>`_
+
+
+**Attributes**
+
++------------------------------------+------------------------+--------------------------------------+
+| ``ATTR_FERTILITY_NAME``            | "Fertility"            | action name                          |
++------------------------------------+------------------------+--------------------------------------+
+| ``ATTR_FERTILITY_MIN_AGE_NAME``    | "Fertility_min_age"    | minimum fertility age (puberty)      |
++------------------------------------+------------------------+--------------------------------------+
+| ``ATTR_FERTILITY_MAX_AGE_NAME``    | "Fertility_max_age"    | maximum fertility age (climacterium) |
++------------------------------------+------------------------+--------------------------------------+
+| ``ATTR_FERTILITY_INTERBIRTH_NAME`` | "Fertility_interbirth" | interbirth interval                  |
++------------------------------------+------------------------+--------------------------------------+
+
+Public Methods
+--------------
+
+
+.. -----------------------------------------------------------------------------
+
+``constructor``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+   Fertility(SPopulation<T> *pPop, SCellGrid *pCG, std::string sID);
+
+``pPop``
+    A pointer to the :ref:`SPopulation<SPopulation_ref>` object performing this action.
+
+``pCG``
+    A pointer to the  :ref:`SCellGrid<SCellGrid_ref>` object on which the simulation runs.
+
+``sID``
+    An ID for this action.
+
+
+.. -----------------------------------------------------------------------------
+
+``destructor``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual ~Fertility();
+
+The destructor does nothing.
+
+.. -----------------------------------------------------------------------------
+
+``execute``
+^^^^^^^^^^^
+.. code-block:: c++
+
+    int execute(int iAgentIndex, float fT);
+
+``iAgentIndex``
+    Current agent's index.
+
+``fT``
+    Current simulation step
+
+| This method is called for all agents (in parallel). 
+| For each agent the fertility is decided based on age and gender, and the agent's life state meber variable is changed accordingly.
+
+| Females are fertile if their age is in the range defined by ``m_fFertilityMinAge`` and ``m_fFertilityMaxAge``, and if the last birth was more than ``m_fInterbirth`` years ago.
+| Males are fertile if they are older than ``m_fFertilityMinAge``.
+
+.. -----------------------------------------------------------------------------
+
+``extractAttributesQDF``
+^^^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int extractAttributesQDF(hid_t hSpeciesGroup);
+
+.. ``hSpeciesGroup``
+    HDF handle for the species group to read from.
+
+This method reads the fertility attributes from a QDF file.
+
+.. -----------------------------------------------------------------------------
+
+``writeAttributesQDF``
+^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int writeAttributesQDF(hid_t hSpeciesGroup);
+ 
+``hSpeciesGroup``
+    HDF handle for the species group to write to.
+
+This method writes the fertility attributes to the specified group in a QDF file.
+
+
+.. -----------------------------------------------------------------------------
+
+``tryGetAttributes``
+^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int tryGetAttributes(const ModuleComplex *pMC);
+   
+Extracts the fertility attributes from the ``ModuleComplex`` object.
+
+.. -----------------------------------------------------------------------------
+
+``getMinAge``
+^^^^^^^^^^^^^
+.. code-block:: c++
+
+    float getMinAge();
+
+Returns the minimum fertility age.
+
+.. -----------------------------------------------------------------------------
+
+``getMaxAge``
+^^^^^^^^^^^^^
+.. code-block:: c++
+
+    float getMaxAge() {return m_fFertilityMaxAge;};
+
+Returns the maximum fertility age.
+
+.. -----------------------------------------------------------------------------
+
+``getInterBirth``
+^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    float getInterBirth() { return m_fInterbirth;};
+
+Returns the interbirth interval.
+
+.. -----------------------------------------------------------------------------
+
+``isEqual``
+^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual bool isEqual(Action<T> *pAction, bool bStrict);
+
+``pAction``
+    Pointer to an action object to compare with this.
+
+``bStrict``
+    Strictness of comparisons (ignored here).
+
+``pAction`` is equal to ``this``, if it is a ``Fertility`` object whose attributes match thze ones of ``this``.

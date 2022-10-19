@@ -1,0 +1,33 @@
+.. _SCell_ref:
+
+SCell
+=====
+
+.. rst-class:: hidden
+
+    This page describes the struct :index:`SCell`
+
+The ``SCell``  represents a single node of the :ref:`cell grid<SCellGrid_ref>`.
+
+Code: `SCell.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/core/SCell.h>`_ 
+
+
+This is the declaration of the ``SCell`` struct:
+
+.. code-block:: c++
+
+    typedef struct {
+        gridtype  m_iGlobalID;
+        uchar   m_iNumNeighbors;
+        int     m_aNeighbors[MAX_NEIGH];
+    } SCell;
+
+``m_iGlobalID``
+    The cell ID (in single-processor situations the id is equal to the index in the array).
+
+``m_iNumNeighbors``
+    Actual number of neighbors of this cell (in icosahedral grids 12 nodes have only 5 neighbors each).
+
+``m_aNeighbors``
+    Array of indexes of each cell's neighbors (if num neighbors is less then MAX_NEIGH, the remaining elements are set to -1).
+

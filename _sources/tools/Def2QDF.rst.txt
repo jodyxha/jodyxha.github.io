@@ -1,0 +1,102 @@
+.. _Def2QDF_ref:
+
+Def2QDF
+=======
+
+This tool is used to create grids 
+(optionally including :ref:`Geography<Geography_ref>`, :ref:`Climate<Climate_ref>`, :ref:`Vegetatioon<Vegetation_ref>`)
+from a textual description (def file)
+ 
+Code: `Def2QDF.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/tools_io/Def2QDF.cpp>`_
+      `GridFactory.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/tools_io/GridFactory.cpp>`_
+
+Usage
+-----
+
+.. code-block:: bash
+
+    Def2QDF <grid-def-file> [<specifiers>] <output-QDF-name>
+
+where
+
+``grid-def-file``
+    | Name of the grid definition file (one command per line)
+    | format: see below 
+
+``output-QDF-name``
+     Name for output QDF file
+
+``specifiers`` 
+    codes for groups to add:
+     * S : grid data
+     * G : geography data
+     * C : climate data
+     * V : vegetation data
+     * N : empty naviigation data
+     
+    if ignored, all groups are added.
+
+Grid File Format
+----------------
+
+.. code-block:: text
+
+    grid_def_file ::= <grid_cmd>[<NL> <def_cmd>]*
+    grid_cmd      ::= <ico_cmd> | <flat_cmd>
+    ico_cmd       ::= "GRID_TYPE ICO" <type>:<subdivs> [<radius>] 
+      subdivs     :   number of subdivisions
+      type        ::= "eq" | "std"
+      radius      :   radius of icosahedron, default:6371.3
+    flat_cmd      ::= "GRID_TYPE" <conn> <width>"x"<height> ["PERIODIC"]
+      conn        ::= "HEX" | "RECT"
+      width       :   width of grid
+      height      :   height of grid
+      PERIODIC    :   use periodic boundary conditions
+ 
+    def_cmd  ::= <ddir_cmd> | <env_cmd>
+    ddir_cmd ::= "DATA_DIR" <path>[:<path>]*
+    env_cmd  ::= <env_type> "FLAT" <value> | <env_type> "NETCDF"  (<nc_file> | "DEFAULT") <time>  | <env_type> "QMAP"  <valqmap>
+    env_type ::= "ALT"  | "ICE" | "NPP" | "TEMP" | "RAIN"
+
+
+Examples
+--------
+
+**DEF file for a rectangular grid with constant altitude and NPP**
+
+.. code-block:: text
+  
+    GRID_TYPE RECT 30x30 PERIODIC
+    ALT FLAT 100
+    NPP FLAT 1.2
+
+In this grid every cell has an altitude value of 100, and an npp value of 1.2
+The 'PERIODIC' key word causes the topology of the grid to ne a torus.
+
+**DEF file for an icosahedral grid with "real" topography and constant NPP**
+
+.. code-block:: text
+
+    GRID_TYPE ICO eq:64
+    ALT NETCDF ETOPO1_Bed_g_gmt4.grd 0
+    NPP FLAT 1.2
+
+Creates an equal area icosahedron with 64 subdivisions. 
+Each cell has an altitude value corresponding to the earth's altitude at that coordinate.
+The valus are taken from the NETCDF file ``ETOPO1_Bed_g_gmt4.grd``.
+The "0" means we want altitudes above sea level for the present day.
+
+
+**DEF file for an icosahedral grid with "real" topography and NPP**
+
+.. code-block:: text
+
+    DATA_DIR /home/jody/qdf_data
+    GRID_TYPE ICO eq:256
+    ALT NETCDF ETOPO1_Bed_g_gmt4.grd -20
+    NPP NETCDF npp_timmermann.nc -20
+
+Creates an equal area icosahedron with 256 subdivisions. 
+Each cell has an altitude and npp values corresponding to the earth's altitude and npp at that coordinate.
+If the data file can't be found in the current directory, the directories listed under ``DATA_DIR`` are searched.
+The -20 tin the ''ALT'' and ''NPP'' lines means we are interested in the data for the world 20#000 years ago.

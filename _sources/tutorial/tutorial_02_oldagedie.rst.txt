@@ -1,0 +1,306 @@
+.. _TutorialOldAgeDie_ref:
+
+QHG Tutorial 02 - Aging and Death
+=================================
+
+In this chapter we describe a class for a slightly more complex population class. In this class the agents have an age and die if they reach a certain maximum age.
+
+For this we need to add two actions: :ref:`GetOld<GetOld_ref>` and :ref:`OldAgeDeath<OldAgeDeath_ref>`.
+
+``GetOld`` increases the age at every simulation step, and ``OldAgeDeath`` kills the agents if their age is within a random interval of a specified maximum age.
+
+Code: `tut_OldAgeDiePop.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_OldAgeDiePop.h>`_ `tut_OldAgeDiePop.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_OldAgeDiePop.cpp>`_
+
+The Header File
+---------------
+
+This class must include the header files for the two actions, and it also defines a derived agent structure which has an additional file for the agent's age. This member is changed by ``GetOld``, and read by ``OldAgeDeath``.
+
+.. code-block:: c++
+
+    #ifndef __TUT_OLDAGEDIEPOP_H__
+    #define __TUT_OLDAGEDIEPOP_H__
+
+    // the actions we will use
+    #include "OldAgeDeath.h"
+    #include "GetOld.h"
+
+    #include "SPopulation.h"
+
+    // our agents need to have an age
+    struct tut_OldAgeDieAgent : Agent {
+        float m_fAge;
+    };
+
+    class tut_OldAgeDiePop : public SPopulation<tut_OldAgeDieAgent> {
+
+     public:
+        tut_OldAgeDiePop(SCellGrid *pCG, PopFinder *pPopFinder, int iLayerSize, IDGen **apIDG, uint32_t *aulState, uint *aiSeeds);
+        virtual ~tut_OldAgeDiePop();
+
+        int addPopSpecificAgentData(int iAgentIndex, char **ppData);
+
+        void addPopSpecificAgentDataTypeQDF(hid_t *hAgentDataType);
+
+    protected:
+
+        GetOld<tut_OldAgeDieAgent> *m_pGO;
+        OldAgeDeath<tut_OldAgeDieAgent> *m_pOAD;
+
+    };
+    #endif
+
+Because of the new field in the agent, we need to override the methods ``addPopSpecificAgentData()`` and ``addPopSpecificAgentDataTypeQDF``,
+to make sure the new member is read and written together with the rest of the agent data.
+
+The Implementation
+------------------
+
+In the implementation we have to include ``hdf5.h`` because we need to modify some HDF5 structures:
+
+.. code-block:: c++
+
+    #include <hdf5.h>
+    
+Furthermore, we have to add includes of the cpp files for the new actions and include the header file of this class:
+
+.. code-block:: c++
+
+    #include "SPopulation.cpp"
+    #include "LayerBuf.cpp"
+    #include "Prioritizer.cpp"
+    #include "Action.cpp"
+
+    #include "GetOld.cpp"
+    #include "OldAgeDeath.cpp"
+
+    #include "tut_OldAgeDiePop.h"
+
+The constructor now must create instances of the two actions and add them to the priority list.
+
+.. code-block:: c++
+
+    //----------------------------------------------------------------------------
+    // constructor
+    //
+    tut_OldAgeDiePop::tut_OldAgeDiePop(SCellGrid *pCG, PopFinder *pPopFinder, int iLayerSize, IDGen **apIDG, uint32_t *aulState, uint *aiSeeds) 
+        : SPopulation<tut_OldAgeDieAgent>(pCG, pPopFinder, iLayerSize, apIDG, aulState, aiSeeds) {
+    
+        m_pGO = new GetOld<tut_OldAgeDieAgent>(this, m_pCG, "");
+        m_pOAD = new OldAgeDeath<tut_OldAgeDieAgent>(this, m_pCG, "", m_apWELL);
+ 
+        m_prio.addAction(m_pOAD);
+        m_prio.addAction(m_pGO);
+    }
+
+The destructor must delete the two action instances:
+
+.. code-block:: c++
+
+    //----------------------------------------------------------------------------
+    // destructor
+    //
+    tut_OldAgeDiePop::~tut_OldAgeDiePop() {
+        delete m_pGO;
+        delete m_pOAD;
+    }
+
+
+The method ``addPopSpecificAgentData()`` must read the age from the input string:
+
+.. code-block:: c++
+
+    //----------------------------------------------------------------------------
+    // addPopSpecificAgentData
+    // read additional data from pop file
+    //
+    int tut_OldAgeDiePop::addPopSpecificAgentData(int iAgentIndex, char **ppData) {
+
+        int iResult = 0;
+
+        iResult = addAgentDataSingle(ppData, &m_aAgents[iAgentIndex].m_fAge);
+
+        return iResult;
+    }
+
+
+The method ``addPopSpecificAgentDataTypeQDF()`` extends the agent's HDF  data type with the age field:
+
+.. code-block:: c++
+
+    //----------------------------------------------------------------------------
+    // addPopSpecificAgentDataTypeQDF
+    // extend the agent data type to include additional data in the output
+    //
+    void tut_OldAgeDiePop::addPopSpecificAgentDataTypeQDF(hid_t *hAgentDataType) {
+
+        tut_OldAgeDieAgent oada;
+        H5Tinsert(*hAgentDataType, "Age",  qoffsetof(oada, m_fAge), H5T_NATIVE_FLOAT);
+    }
+
+XML and DAT
+-----------
+
+The xml file for the population attributes now contains entries for the new actions:
+
+.. code-block:: xml
+
+    <class name="tut_OldAgeDiePop" species_name="sapiens" species_id="104">
+
+      <module name="OldAgeDeath">
+        <param  name="OAD_max_age" value="60.0"/>
+        <param  name="OAD_uncertainty" value="0.1"/>
+      </module>
+
+      <priorities>
+        <prio  name="GetOld" value="8"/>
+        <prio  name="OldAgeDeath" value="10"/>
+      </priorities>
+
+    </class>
+
+The action ``GetOld`` needs no parameters; for details about the parameters of ``OldAgeDeath`` look at the :ref:`corresponding code description<OldAgeDeath_ref>`.
+
+
+The dat file ``tut_OldAgeDie.dat`` defines postions and attributes for 20 agents, the last attribute pertaining to the new member ``m_fAge``.
+
+.. code-block:: text
+
+    #Longitude;Latitude;LifeState;AgentID;BirthTime;Gender;Age
+    8;47;1; 1;-10.0;0;10.0
+    8;47;1; 2;-10.0;0;10.0
+    8;47;1; 3;-10.0;0;10.0
+    ...
+    8;47;1;20;-10.0;0;10.0
+
+In this case all agents are placed at the same location, and all agents are female (Gender: 0=female, 1=male)
+
+
+Feel free to modify the values in the xml file and see how this changes the outcome.
+
+Grid
+----
+
+For this example we use  a subdivided icosahedron
+
+Compiling and Running
+---------------------
+
+Again, we assume that you have created the tutorial directories with the script :ref:`build_tut_dirs.py<build_tut_dirs_ref>`.
+
+First lets create alternative population and action directories with the script :ref:`build_alt_modpop.py<build_alt_modpop_ref>`:
+
+.. code-block:: bash
+
+    ${QHG4_DIR}/useful_stuff/build_alt_modpop.py tut_02 tut_OldAgeDiePop
+
+This builds alternative population directories ``tut_02_pop`` and ``tut_02_mod`` with the files needed to compile ``tut_OldAgeDiePop``.
+
+To compile, change to the QHG4 root directory and start the compilation:
+
+.. code-block:: bash
+
+    cd ${QHG4_DIR}
+    SHORT=tut_02 make clean QHGMain
+
+This is the simplest way to compile QHG (for more information see :ref:`Compiling QHG<Compiling_QHG_ref>`)
+
+Now cd to the tutorial subdirectory "tutorial_02" and start QHGMain
+
+.. code-block:: bash
+
+    ${QHG4_DIR}/app/QHGMain --read-config=tutorial_02.cfg > tutorial_02.out
+
+This tells QHGMain to read the parameters from  the file ``tutorial_02.cfg`` and write all output to the file ``tutorial_02.out`` (this output contains more information than the logfile)
+
+The config file ``tutorial_02.cfg`` was created when the tutorial directories were created with ``build_tut_dirs.py``.
+
+.. code-block:: text
+
+    --data-dirs=${QHG4_DIR}/tutorial_data/grids/ 
+    --events='write|grid+geo+pop:sapiens@20000' 
+    --grid=ico32s.qdf
+    --log-file=tutorial_02.log 
+    --num-iters=200 
+    --output-dir=output/tutorial_02 
+    --output-prefix=nnn 
+    --pops='tut_OldAgeDie.xml:tut_OldAgeDie.dat' 
+    --shuffle=92244 
+    --start-time=-200 
+
+``data-dirs``
+    A list of directories to search for data (not relevant for the OldAgeDie populations).
+
+``events``
+    A list of events (see :ref:`Events<Events_ref>`). Here a single event is defined: write output at step 20000 (or at the end of the simulation run).
+
+``grid``
+    Path to the grid on which to run the simulation.
+
+``log-file``
+    Log file for 'high level' messages. 
+
+``num-iters``
+    Number of iterations for the simulation.
+
+``output-dir``
+    Output directory for qdf files.
+
+``output-prefix``
+    A prefix prepended to the names of all output files
+
+``pops``
+    The files for population attributes (``tut_OldAgeDie.xml``) and agent attributes (``tut_OldAgeDie.dat``). These files were created by ``build_tut_dirs.py``.
+
+``shuffle`` 
+    A kiind of seed for the random nummber generators. Same ``shuffle`` values result in identical simulations.
+
+``start-time``
+    The 'real' time corresponding to step 0.
+
+
+The Output File
+---------------
+
+The output files, in this case ``tutorial_02.out``, always have the same structure.
+First there are messages concerning the start of the program and intialisation.
+If the simulation does not run, there's a chance that you find th readoon why here.
+
+The second part is a list of every step describing the numbers of births, deaths and moves, as well as the time the step took to execute.
+
+At the end there is a short summary of the state at the end of the program: number of iterations, total time of execution, nuber of surviving agents.
+This is follwed by the contents of the log file.
+
+If you look at the output for the steps, you see tat there are nobirths, and no moves, but only deaths:
+
+.. code-block:: text
+
+    After step 45 (0.000419 s): total       20 agents
+      sapiens       0 births r
+      sapiens       0 deaths r
+      sapiens       0 moves
+    After step 46 (0.000416 s): total       20 agents
+      sapiens       0 births r
+      sapiens       2 deaths r
+      sapiens       0 moves
+    After step 47 (0.000436 s): total       18 agents
+      sapiens       0 births r
+      sapiens       3 deaths r
+      sapiens       2 deaths p
+      sapiens       0 moves
+
+
+And at the beginning of the last part:
+
+.. code-block:: text
+
+    -----
+    Stopped  Simulation
+    Number of threads: 36
+    Number of iterations: 55
+    Used time: 0.034377 (00:00:00)
+    Number of agents after last step
+      sapiens:         0
+        total:         0
+    +++success+++
+

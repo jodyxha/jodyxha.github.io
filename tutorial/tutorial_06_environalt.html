@@ -1,0 +1,498 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>QHG Tutorial 06 - Environment Interaction I &#8212; QHG4 4.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jody.css" />
+    
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    
+    <link rel="shortcut icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="QHG Tutorial 07 - Environment interaction II" href="tutorial_07_environcapalt.html" />
+    <link rel="prev" title="QHG Tutorial 05 - Sexual Reproduction" href="tutorial_05_sexual.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="tutorial_07_environcapalt.html" title="QHG Tutorial 07 - Environment interaction II"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="tutorial_05_sexual.html" title="QHG Tutorial 05 - Sexual Reproduction"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../tutorial.html" accesskey="U">QHG Tutorial</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">QHG Tutorial 06 - Environment Interaction I</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="qhg-tutorial-06-environment-interaction-i">
+<span id="tutorialenvironalt-ref"></span><h1>QHG Tutorial 06 - Environment Interaction I<a class="headerlink" href="#qhg-tutorial-06-environment-interaction-i" title="Permalink to this heading">¶</a></h1>
+<p>In this chapter we extend our example by making the agents aware of the environment, the altitude in particular.</p>
+<p>To do this we use a <a class="reference internal" href="../code_doc/actions/SingleEvaluator.html#singleevaluator-ref"><span class="std std-ref">SingleEvaluator</span></a>, and replace the <a class="reference internal" href="../code_doc/actions/RandomMove.html#randommove-ref"><span class="std std-ref">RandomMove</span></a> object by a <a class="reference internal" href="../code_doc/actions/WeightedMove.html#weightedmove-ref"><span class="std std-ref">WeightedMove</span></a> object.
+To each cell the <code class="docutils literal notranslate"><span class="pre">SingleEvaluator</span></code> assigns preference values (usually by means of a <a class="reference internal" href="../code_doc/utils/PolyLine.html#polyline-ref"><span class="std std-ref">PolyLine</span></a> object) to the cell itself and its neighbours. For each cell the preference values are cumulated which form the basis for a weighted random number drawn by <code class="docutils literal notranslate"><span class="pre">Weighted</span></code> move.</p>
+<figure class="align-default" id="id1">
+<img alt="../_images/SingleEvalFull.png" src="../_images/SingleEvalFull.png" />
+<figcaption>
+<p><span class="caption-text">The environment values (e.g. altitude) of a cell are copied to an array, to which a poly line function is applied.
+The results are cumulated and are used as a lookup table to create a weighted random number.
+In this example a uniform random number R between 0 and the highest number in the cumulated array is drawn,
+and the index of the smallest cumulated value greater than R is chosen.
+Here the random number 0.81 is less than the value at index 4, 0.95, so the chosen index is 4.
+Those indexes are selected with a probability proportional to the preference values of he corresponding cells</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_EnvironAltPop.h">tut_EnvironAltPop.h</a> <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_EnvironAltPop.cpp">tut_EnvironAltPop.cpp</a></p>
+<section id="the-header-file">
+<h2>The Header File<a class="headerlink" href="#the-header-file" title="Permalink to this heading">¶</a></h2>
+<p>The include files reflect the addition of the <code class="docutils literal notranslate"><span class="pre">SingleEvaluator</span></code> and the replacing of <code class="docutils literal notranslate"><span class="pre">RandomMove</span></code> with <code class="docutils literal notranslate"><span class="pre">WeightedMove</span></code>, but the agent still has the same fields:</p>
+<p>The class now has a pointer to  <code class="docutils literal notranslate"><span class="pre">WeightedMove</span></code> instead of <code class="docutils literal notranslate"><span class="pre">RandomMove</span></code>, and an additional pointer to a <code class="docutils literal notranslate"><span class="pre">SingleEvaluator</span></code>:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">tut_EnvironAltPop</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">SPopulation</span><span class="o">&lt;</span><span class="n">tut_EnvironAltAgent</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="k">public</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span><span class="n">tut_EnvironAltPop</span><span class="p">(</span><span class="n">SCellGrid</span><span class="w"> </span><span class="o">*</span><span class="n">pCG</span><span class="p">,</span><span class="w"> </span><span class="n">PopFinder</span><span class="w"> </span><span class="o">*</span><span class="n">pPopFinder</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iLayerSize</span><span class="p">,</span><span class="w"> </span><span class="n">IDGen</span><span class="w"> </span><span class="o">**</span><span class="n">apIDG</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="o">*</span><span class="n">aulState</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="o">*</span><span class="n">aiSeeds</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="o">~</span><span class="n">tut_EnvironAltPop</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="nf">makePopSpecificOffspring</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iAgent</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iMother</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iFather</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="nf">addPopSpecificAgentData</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iAgentIndex</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">ppData</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">addPopSpecificAgentDataTypeQDF</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="o">*</span><span class="n">hAgentDataType</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">updateEvent</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">EventID</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">pData</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">fT</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">flushEvents</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">fT</span><span class="p">);</span><span class="w"></span>
+
+<span class="w"> </span><span class="k">protected</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span><span class="n">GetOld</span><span class="o">&lt;</span><span class="n">tut_EnvironAltAgent</span><span class="o">&gt;</span><span class="w">          </span><span class="o">*</span><span class="n">m_pGO</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">OldAgeDeath</span><span class="o">&lt;</span><span class="n">tut_EnvironAltAgent</span><span class="o">&gt;</span><span class="w">     </span><span class="o">*</span><span class="n">m_pOAD</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">Fertility</span><span class="o">&lt;</span><span class="n">tut_EnvironAltAgent</span><span class="o">&gt;</span><span class="w">       </span><span class="o">*</span><span class="n">m_pFert</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">Verhulst</span><span class="o">&lt;</span><span class="n">tut_EnvironAltAgent</span><span class="o">&gt;</span><span class="w">        </span><span class="o">*</span><span class="n">m_pVerhulst</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">RandomPair</span><span class="o">&lt;</span><span class="n">tut_EnvironAltAgent</span><span class="o">&gt;</span><span class="w">      </span><span class="o">*</span><span class="n">m_pPair</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">WeightedMove</span><span class="o">&lt;</span><span class="n">tut_EnvironAltAgent</span><span class="o">&gt;</span><span class="w">    </span><span class="o">*</span><span class="n">m_pWM</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">SingleEvaluator</span><span class="o">&lt;</span><span class="n">tut_EnvironAltAgent</span><span class="o">&gt;</span><span class="w"> </span><span class="o">*</span><span class="n">m_pSEAlt</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">m_adEnvWeights</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">m_adCapacities</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">m_bUpdateNeeded</span><span class="p">;</span><span class="w"></span>
+
+<span class="p">};</span><span class="w"></span>
+
+<span class="cp">#endif</span>
+</pre></div>
+</div>
+<p>The member variables reflect the new situation of required actions. Apart from <code class="docutils literal notranslate"><span class="pre">makePopSpecificOffspring</span></code>, <code class="docutils literal notranslate"><span class="pre">addPopSpecificAgentData</span></code> and <code class="docutils literal notranslate"><span class="pre">addPopSpecificAgentDataTypeQDF</span></code>,
+there are two new member functions <code class="docutils literal notranslate"><span class="pre">updateEvent</span></code> and <code class="docutils literal notranslate"><span class="pre">flushEvents</span></code>.</p>
+</section>
+<section id="the-implementation">
+<h2>The Implementation<a class="headerlink" href="#the-implementation" title="Permalink to this heading">¶</a></h2>
+<p>The include files, too,  reflect the changes in the actions:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;EventConsts.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;SPopulation.cpp&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;LayerBuf.cpp&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Prioritizer.cpp&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Action.cpp&quot;</span><span class="cp"></span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;GetOld.cpp&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;OldAgeDeath.cpp&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Fertility.cpp&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Verhulst.cpp&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;RandomPair.cpp&quot;</span><span class="cp"></span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;WeightedMove.cpp&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;SingleEvaluator.cpp&quot;</span><span class="cp"></span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;tut_EnvironAltPop.h&quot;</span><span class="cp"></span>
+</pre></div>
+</div>
+<p>Apart from creating instances of all the actions and adding them to the priority list,
+the constructor also allocates an array <code class="docutils literal notranslate"><span class="pre">m_adEnvWeights</span></code> of floats needed for communication
+between <code class="docutils literal notranslate"><span class="pre">SingleEvaluator</span></code> and <code class="docutils literal notranslate"><span class="pre">WeightedMove</span></code>, and passes it to their constructors.</p>
+<p>During the simulation, <code class="docutils literal notranslate"><span class="pre">SingleEvaluator</span></code> examines the neighborhood of each cell,
+calculates weights for each cell and writes them to <code class="docutils literal notranslate"><span class="pre">m_adEnvWeights</span></code>.
+These weights are used by <code class="docutils literal notranslate"><span class="pre">WeightedMove</span></code> to decide which neighboring cell to move to (or not to move at all).</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">//----------------------------------------------------------------------------</span>
+<span class="c1">// constructor</span>
+<span class="c1">//</span>
+<span class="n">tut_EnvironAltPop</span><span class="o">::</span><span class="n">tut_EnvironAltPop</span><span class="p">(</span><span class="n">SCellGrid</span><span class="w"> </span><span class="o">*</span><span class="n">pCG</span><span class="p">,</span><span class="w"> </span><span class="n">PopFinder</span><span class="w"> </span><span class="o">*</span><span class="n">pPopFinder</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iLayerSize</span><span class="p">,</span><span class="w"> </span><span class="n">IDGen</span><span class="w"> </span><span class="o">**</span><span class="n">apIDG</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="o">*</span><span class="n">aulState</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="o">*</span><span class="n">aiSeeds</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="o">:</span><span class="w"> </span><span class="n">SPopulation</span><span class="o">&lt;</span><span class="n">tut_EnvironAltAgent</span><span class="o">&gt;</span><span class="p">(</span><span class="n">pCG</span><span class="p">,</span><span class="w"> </span><span class="n">pPopFinder</span><span class="p">,</span><span class="w"> </span><span class="n">iLayerSize</span><span class="p">,</span><span class="w"> </span><span class="n">apIDG</span><span class="p">,</span><span class="w"> </span><span class="n">aulState</span><span class="p">,</span><span class="w"> </span><span class="n">aiSeeds</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">m_pGO</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">GetOld</span><span class="o">&lt;</span><span class="n">tut_EnvironAltAgent</span><span class="o">&gt;</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">m_pCG</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">m_pOAD</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">OldAgeDeath</span><span class="o">&lt;</span><span class="n">tut_EnvironAltAgent</span><span class="o">&gt;</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">m_pCG</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">m_apWELL</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">m_pFert</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Fertility</span><span class="o">&lt;</span><span class="n">tut_EnvironAltAgent</span><span class="o">&gt;</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">m_pCG</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">m_pVerhulst</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Verhulst</span><span class="o">&lt;</span><span class="n">tut_EnvironAltAgent</span><span class="o">&gt;</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">m_pCG</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">m_apWELL</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">m_pPair</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RandomPair</span><span class="o">&lt;</span><span class="n">tut_EnvironAltAgent</span><span class="o">&gt;</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">m_pCG</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">m_apWELL</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// create and initialize the array for coommunication</span>
+<span class="w">    </span><span class="n">m_adEnvWeights</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">double</span><span class="p">[</span><span class="n">m_pCG</span><span class="o">-&gt;</span><span class="n">m_iNumCells</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">m_pCG</span><span class="o">-&gt;</span><span class="n">m_iConnectivity</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)];</span><span class="w"></span>
+<span class="w">    </span><span class="n">memset</span><span class="p">(</span><span class="n">m_adEnvWeights</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">m_pCG</span><span class="o">-&gt;</span><span class="n">m_iNumCells</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">m_pCG</span><span class="o">-&gt;</span><span class="n">m_iConnectivity</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">double</span><span class="p">));</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// pass the array to the SingleEvaluator and the WeightedMove</span>
+<span class="w">    </span><span class="n">m_pSEAlt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SingleEvaluator</span><span class="o">&lt;</span><span class="n">tut_EnvironAltAgent</span><span class="o">&gt;</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">m_pCG</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Alt&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">m_adEnvWeights</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="kt">double</span><span class="o">*</span><span class="p">)</span><span class="n">m_pCG</span><span class="o">-&gt;</span><span class="n">m_pGeography</span><span class="o">-&gt;</span><span class="n">m_adAltitude</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;AltCapPref&quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="n">EVENT_ID_GEO</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">m_pWM</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">WeightedMove</span><span class="o">&lt;</span><span class="n">tut_EnvironAltAgent</span><span class="o">&gt;</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">m_pCG</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">m_apWELL</span><span class="p">,</span><span class="w"> </span><span class="n">m_adEnvWeights</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// adding all actions to prioritizer</span>
+<span class="w">    </span><span class="n">m_prio</span><span class="p">.</span><span class="n">addAction</span><span class="p">(</span><span class="n">m_pGO</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">m_prio</span><span class="p">.</span><span class="n">addAction</span><span class="p">(</span><span class="n">m_pOAD</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">m_prio</span><span class="p">.</span><span class="n">addAction</span><span class="p">(</span><span class="n">m_pFert</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">m_prio</span><span class="p">.</span><span class="n">addAction</span><span class="p">(</span><span class="n">m_pVerhulst</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">m_prio</span><span class="p">.</span><span class="n">addAction</span><span class="p">(</span><span class="n">m_pPair</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">m_prio</span><span class="p">.</span><span class="n">addAction</span><span class="p">(</span><span class="n">m_pSEAlt</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">m_prio</span><span class="p">.</span><span class="n">addAction</span><span class="p">(</span><span class="n">m_pWM</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The destructor deletes all action objects created by the constructor,
+as well as the communication array.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">//----------------------------------------------------------------------------</span>
+<span class="c1">// destructor</span>
+<span class="c1">//</span>
+<span class="n">tut_EnvironAltPop</span><span class="o">::~</span><span class="n">tut_EnvironAltPop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_pGO</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">delete</span><span class="w"> </span><span class="n">m_pGO</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_pOAD</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">delete</span><span class="w"> </span><span class="n">m_pOAD</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_pFert</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">delete</span><span class="w"> </span><span class="n">m_pFert</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_pVerhulst</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">delete</span><span class="w"> </span><span class="n">m_pVerhulst</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_pPair</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">delete</span><span class="w"> </span><span class="n">m_pPair</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_pSEAlt</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">delete</span><span class="w"> </span><span class="n">m_pSEAlt</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_pWM</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">delete</span><span class="w"> </span><span class="n">m_pWM</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_adEnvWeights</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">delete</span><span class="p">[]</span><span class="w"> </span><span class="n">m_adEnvWeioghts</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The methods <code class="docutils literal notranslate"><span class="pre">addPopSpecificAgentData()</span></code> and  <code class="docutils literal notranslate"><span class="pre">addPopSpecificAgentDataTypeQDF()</span></code> are practically identical to the ones in the previous chapter, so there’s no need to look at them in more detail.</p>
+<p>The method <code class="docutils literal notranslate"><span class="pre">makePopSpecificOffspring()</span></code> is also identical to the one in the previous examples.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">//----------------------------------------------------------------------------</span>
+<span class="c1">// makePopSpecificOffspring</span>
+<span class="c1">//</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">tut_SexualPop::makePopSpecificOffspring</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iAgent</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iMother</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iFather</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">iResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+
+
+<span class="w">    </span><span class="n">m_aAgents</span><span class="p">[</span><span class="n">iAgent</span><span class="p">].</span><span class="n">m_fAge</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">m_aAgents</span><span class="p">[</span><span class="n">iAgent</span><span class="p">].</span><span class="n">m_fLastBirth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">m_aAgents</span><span class="p">[</span><span class="n">iAgent</span><span class="p">].</span><span class="n">m_iMateIndex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">-3</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// SPopulation assigns random genders to a baby, ehich is ok here</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">iResult</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The mate index is set to a negative number to denote that this agent is not paired (yet).</p>
+<p>The method <code class="docutils literal notranslate"><span class="pre">updateEvents()</span></code> is called when an event is fired.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">//----------------------------------------------------------------------------</span>
+<span class="c1">// updateEvent</span>
+<span class="c1">//  react to events</span>
+<span class="c1">//    EVENT_ID_GEO      : kill agent if under ice or water</span>
+<span class="c1">//</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">tut_EnvironAltPop::updateEvent</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iEventID</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">pData</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">fT</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">iEventID</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">EVENT_ID_GEO</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// drown</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">iFirstAgent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getFirstAgentIndex</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">iFirstAgent</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">LBController</span><span class="o">::</span><span class="n">NIL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">iLastAgent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getLastAgentIndex</span><span class="p">();</span><span class="w"></span>
+
+<span class="cp">#pragma omp parallel for</span>
+<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iAgent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">iFirstAgent</span><span class="p">;</span><span class="w"> </span><span class="n">iAgent</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">iLastAgent</span><span class="p">;</span><span class="w"> </span><span class="n">iAgent</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_aAgents</span><span class="p">[</span><span class="n">iAgent</span><span class="p">].</span><span class="n">m_iLifeState</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">LIFE_STATE_DEAD</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="kt">int</span><span class="w"> </span><span class="n">iCellIndex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">m_aAgents</span><span class="p">[</span><span class="n">iAgent</span><span class="p">].</span><span class="n">m_iCellIndex</span><span class="p">;</span><span class="w"></span>
+<span class="w">                    </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">m_pCG</span><span class="o">-&gt;</span><span class="n">m_pGeography</span><span class="o">-&gt;</span><span class="n">m_adAltitude</span><span class="p">[</span><span class="n">iCellIndex</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"></span>
+<span class="w">                        </span><span class="p">(</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">m_pCG</span><span class="o">-&gt;</span><span class="n">m_pGeography</span><span class="o">-&gt;</span><span class="n">m_abIce</span><span class="p">[</span><span class="n">iCellIndex</span><span class="p">]</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                        </span><span class="n">registerDeath</span><span class="p">(</span><span class="n">iCellIndex</span><span class="p">,</span><span class="w"> </span><span class="n">iAgent</span><span class="p">);</span><span class="w"></span>
+<span class="w">                    </span><span class="p">}</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// make sure they are removed before step starts</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_bRecycleDeadSpace</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">recycleDeadSpaceNew</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">performDeaths</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// update counts</span>
+<span class="w">        </span><span class="n">updateTotal</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="n">updateNumAgentsPerCell</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// clear lists to avoid double deletion</span>
+<span class="w">        </span><span class="n">initListIdx</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">notifyObservers</span><span class="p">(</span><span class="n">iEventID</span><span class="p">,</span><span class="w"> </span><span class="n">pData</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Here we only react if a change happened to the geography (usually when a new QDF file is loaded.
+In this case we check all agents in a parallelized loop adding  those under water (negative altitude) and thos under ice to the death list
+Subsequently, the deaths are actually performed, and several counts ar updated.</p>
+</section>
+<section id="xml-and-dat">
+<h2>XML and DAT<a class="headerlink" href="#xml-and-dat" title="Permalink to this heading">¶</a></h2>
+<p>The xml file for the population contains a new <code class="docutils literal notranslate"><span class="pre">&lt;module&gt;</span></code> for <code class="docutils literal notranslate"><span class="pre">SingleEvaluator</span></code>, and a <code class="docutils literal notranslate"><span class="pre">WeightedMove</span></code> module instead of a <code class="docutils literal notranslate"><span class="pre">RandomMove</span></code>:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span> <span class="nt">&lt;class</span> <span class="na">name=</span><span class="s">&quot;tut_EnvironAltPop&quot;</span> <span class="na">species_name=</span><span class="s">&quot;sapiens&quot;</span> <span class="na">species_id=</span><span class="s">&quot;104&quot;</span><span class="nt">&gt;</span>
+
+   <span class="nt">&lt;module</span> <span class="na">name=</span><span class="s">&quot;OldAgeDeath&quot;</span><span class="nt">&gt;</span>
+     <span class="nt">&lt;param</span>  <span class="na">name=</span><span class="s">&quot;OAD_max_age&quot;</span> <span class="na">value=</span><span class="s">&quot;60.0&quot;</span><span class="nt">/&gt;</span>
+     <span class="nt">&lt;param</span>  <span class="na">name=</span><span class="s">&quot;OAD_uncertainty&quot;</span> <span class="na">value=</span><span class="s">&quot;0.1&quot;</span><span class="nt">/&gt;</span>
+   <span class="nt">&lt;/module&gt;</span>
+   <span class="nt">&lt;module</span> <span class="na">name=</span><span class="s">&quot;WeightedMove&quot;</span><span class="nt">&gt;</span>
+     <span class="nt">&lt;param</span>  <span class="na">name=</span><span class="s">&quot;WeightedMove_prob&quot;</span> <span class="na">value=</span><span class="s">&quot;0.07&quot;</span><span class="nt">/&gt;</span>
+   <span class="nt">&lt;/module&gt;</span>
+
+   <span class="nt">&lt;module</span> <span class="na">name=</span><span class="s">&quot;Fertility&quot;</span><span class="nt">&gt;</span>
+     <span class="nt">&lt;param</span>  <span class="na">name=</span><span class="s">&quot;Fertility_interbirth&quot;</span> <span class="na">value=</span><span class="s">&quot;2.0&quot;</span><span class="nt">/&gt;</span>
+     <span class="nt">&lt;param</span>  <span class="na">name=</span><span class="s">&quot;Fertility_max_age&quot;</span> <span class="na">value=</span><span class="s">&quot;50.0&quot;</span><span class="nt">/&gt;</span>
+     <span class="nt">&lt;param</span>  <span class="na">name=</span><span class="s">&quot;Fertility_min_age&quot;</span> <span class="na">value=</span><span class="s">&quot;15.0&quot;</span><span class="nt">/&gt;</span>
+   <span class="nt">&lt;/module&gt;</span>
+
+   <span class="nt">&lt;module</span> <span class="na">name=</span><span class="s">&quot;Verhulst&quot;</span><span class="nt">&gt;</span>
+     <span class="nt">&lt;param</span>  <span class="na">name=</span><span class="s">&quot;Verhulst_b0&quot;</span> <span class="na">value=</span><span class="s">&quot;0.8&quot;</span> <span class="nt">/&gt;</span>
+     <span class="nt">&lt;param</span>  <span class="na">name=</span><span class="s">&quot;Verhulst_d0&quot;</span> <span class="na">value=</span><span class="s">&quot;0.001&quot;</span> <span class="nt">/&gt;</span>
+     <span class="nt">&lt;param</span>  <span class="na">name=</span><span class="s">&quot;Verhulst_theta&quot;</span> <span class="na">value=</span><span class="s">&quot;0.1&quot;</span> <span class="nt">/&gt;</span>
+     <span class="nt">&lt;param</span>  <span class="na">name=</span><span class="s">&quot;Verhulst_K&quot;</span> <span class="na">value=</span><span class="s">&quot;20&quot;</span> <span class="nt">/&gt;</span>
+   <span class="nt">&lt;/module&gt;</span>
+
+   <span class="nt">&lt;module</span> <span class="na">name=</span><span class="s">&quot;SingleEvaluator&quot;</span> <span class="na">id=</span><span class="s">&quot;Alt&quot;</span> <span class="nt">&gt;</span>
+       <span class="nt">&lt;param</span>  <span class="na">name=</span><span class="s">&quot;AltCapPref&quot;</span> <span class="na">value=</span><span class="s">&quot;-0.1 0 0.1 0.01 1500 1.0 2000 1 3000 -9999&quot;</span> <span class="nt">/&gt;</span>
+   <span class="nt">&lt;/module&gt;</span>
+
+   <span class="nt">&lt;priorities&gt;</span>
+     <span class="nt">&lt;prio</span>  <span class="na">name=</span><span class="s">&quot;GetOld&quot;</span> <span class="na">value=</span><span class="s">&quot;1&quot;</span><span class="nt">/&gt;</span>
+     <span class="nt">&lt;prio</span>  <span class="na">name=</span><span class="s">&quot;OldAgeDeath&quot;</span> <span class="na">value=</span><span class="s">&quot;2&quot;</span><span class="nt">/&gt;</span>
+     <span class="nt">&lt;prio</span>  <span class="na">name=</span><span class="s">&quot;WeightedMove&quot;</span> <span class="na">value=</span><span class="s">&quot;3&quot;</span><span class="nt">/&gt;</span>
+     <span class="nt">&lt;prio</span>  <span class="na">name=</span><span class="s">&quot;SingleEvaluator[Alt]&quot;</span> <span class="na">value=</span><span class="s">&quot;4&quot;</span><span class="nt">/&gt;</span>
+     <span class="nt">&lt;prio</span>  <span class="na">name=</span><span class="s">&quot;Fertility&quot;</span> <span class="na">value=</span><span class="s">&quot;5&quot;</span><span class="nt">/&gt;</span>
+     <span class="nt">&lt;prio</span>  <span class="na">name=</span><span class="s">&quot;RandomPair&quot;</span> <span class="na">value=</span><span class="s">&quot;6&quot;</span><span class="nt">/&gt;</span>
+     <span class="nt">&lt;prio</span>  <span class="na">name=</span><span class="s">&quot;Verhulst&quot;</span> <span class="na">value=</span><span class="s">&quot;7&quot;</span><span class="nt">/&gt;</span>
+   <span class="nt">&lt;/priorities&gt;</span>
+
+<span class="nt">&lt;/class&gt;</span>
+</pre></div>
+</div>
+<p>The value of the “AltCapPref” parameter describes a polyline:
+they are actually coordinate pairs describing the poly line.
+These agents “hate” the seas (negative altitudes) and hogh mountains,
+but mostly prefer altitudes between 1500 and 2000 meters.</p>
+<p>The DAT file is basically equal to the one in the previous example,
+with the exception that we moved the starting point to South Africa.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>#Longitude;Latitude;LifeState;AgentID;BirthTime;Gender;Age;LastBirth
+28.0&lt;46;-26.044;1; 1;-10.0;0;10.0;-1.0
+28.046;-26.044;1; 2;-10.0;1;10.0;-1.0
+28.046;-26.044;1; 3;-10.0;0;10.0;-1.0
+28.046;-26.044;1; 4;-10.0;1;10.0;-1.0
+...
+28.046;-26.044;1;19;-10.0;0;10.0;-1.0
+28.046;-26.044;1;20;-10.0;1;10.0;-1.0
+</pre></div>
+</div>
+</section>
+<section id="grid">
+<h2>Grid<a class="headerlink" href="#grid" title="Permalink to this heading">¶</a></h2>
+<p>For this example we use  a subdivided icosahedron with earths’s geography: there are oceans and continents.</p>
+</section>
+<section id="compiling-and-running">
+<h2>Compiling and Running<a class="headerlink" href="#compiling-and-running" title="Permalink to this heading">¶</a></h2>
+<p>Again, we assume that you have created the tutorial directories with the script <a class="reference internal" href="../tools/build_tut_dirs.html#build-tut-dirs-ref"><span class="std std-ref">build_tut_dirs.py</span></a>.</p>
+<p>First lets create alternative population and action directories with the script <a class="reference internal" href="../tools/build_alt_modpop.html#build-alt-modpop-ref"><span class="std std-ref">build_alt_modpop.py</span></a>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="si">${</span><span class="nv">QHG4_DIR</span><span class="si">}</span>/useful_stuff/build_alt_modpop.py tut_06 tut_EnvironAltPop
+</pre></div>
+</div>
+<p>This builds alternative population directories <code class="docutils literal notranslate"><span class="pre">tut_06_pop</span></code> and <code class="docutils literal notranslate"><span class="pre">tut_06_mod</span></code> with the files needed to compile <code class="docutils literal notranslate"><span class="pre">tut_EnvironAltPop</span></code>.</p>
+<p>To compile, change to the QHG4 root directory and type:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">OPT</span><span class="o">=</span><span class="m">1</span> <span class="nv">SHORT</span><span class="o">=</span>tut_06 make clean QHGMain
+</pre></div>
+</div>
+<p>Here we set the environemnt variable <code class="docutils literal notranslate"><span class="pre">OPT</span></code> to get optimized compilation (see <a class="reference internal" href="../qhg4_compile.html#compiling-qhg-ref"><span class="std std-ref">Compiling QHG</span></a>)</p>
+<p>Now cd to the tutorial subdirectory “tutorial_06’ and start QHGMain</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="si">${</span><span class="nv">QHG4_DIR</span><span class="si">}</span>/app/QHGMain --read-config<span class="o">=</span>tutorial_06.cfg &gt; tutorial_06.out
+</pre></div>
+</div>
+<p>This tells QHGMain to read the parameters from  the file <code class="docutils literal notranslate"><span class="pre">tutorial_06.cfg</span></code> and write all output to the file <code class="docutils literal notranslate"><span class="pre">tutorial_06.out</span></code> (this output contains more information than the logfile)</p>
+<p>The config file <code class="docutils literal notranslate"><span class="pre">tutorial_06.cfg</span></code> was created when the tutorial directories were created with <code class="docutils literal notranslate"><span class="pre">build_tut_dirs.py</span></code>.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>--data-dirs=${QHG4_DIR}/tutorial_data/grids/
+--events=&#39;write|grid+geo+pop:sapiens@1000&#39;
+--grid=eq64Alt.qdf
+--log-file=tutorial_06.log
+--num-iters=10000
+--output-dir=output/tutorial_06
+--output-prefix=tut
+--pops=&#39;tut_EnvironAlt.xml:tut_EnvironAlt.dat&#39;
+--shuffle=715278
+--start-time=-10000
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">data-dirs</span></code></dt><dd><p>A list of directories to search for data (not relevant for the OldAgeDie populations).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">events</span></code></dt><dd><p>A list of events (see <a class="reference internal" href="../Events.html#events-ref"><span class="std std-ref">Events</span></a>). Here we write output files containing grid, geography and agent data every 1000 steps.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">grid</span></code></dt><dd><p>Path to the grid on which to run the simulation.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">log-file</span></code></dt><dd><p>Log file for ‘high level’ messages.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">num-iters</span></code></dt><dd><p>Number of iterations for the simulation (10000 steps)</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">output-dir</span></code></dt><dd><p>Output directory for qdf files.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">output-prefix</span></code></dt><dd><p>A prefix prepended to the names of all output files</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">pops</span></code></dt><dd><p>The files for population attributes (<code class="docutils literal notranslate"><span class="pre">tut_SexualPop.xml</span></code>) and agent attributes (<code class="docutils literal notranslate"><span class="pre">tut_SexualPop.dat</span></code>). These files were created by <code class="docutils literal notranslate"><span class="pre">build_tut_dirs.py</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">shuffle</span></code></dt><dd><p>A kiind of seed for the random nummber generators. Same <code class="docutils literal notranslate"><span class="pre">shuffle</span></code> values result in identical simulations.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">start-time</span></code></dt><dd><p>The ‘real’ time corresponding to step 0.</p>
+</dd>
+</dl>
+</section>
+<section id="visualization">
+<h2>Visualization<a class="headerlink" href="#visualization" title="Permalink to this heading">¶</a></h2>
+<p>The configuration script (see above) provides a <code class="docutils literal notranslate"><span class="pre">--events</span></code> parameter which causes an output of grid, geography, and the agents every 1000 steps.
+These QDF files can be visualized in two ways:</p>
+<section id="qdf2pnfnew">
+<h3><code class="docutils literal notranslate"><span class="pre">QDF2PNFNew</span></code><a class="headerlink" href="#qdf2pnfnew" title="Permalink to this heading">¶</a></h3>
+<p>The tool <a class="reference internal" href="../tools/QDF2PNGNew.html#qdf2pngnew-ref"><span class="std std-ref">QDF2PNGNew</span></a> projects data from the icosahedral grid to a plain rectilinear image.
+The images below were produced with calls like this:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./QDF2PNGNew -g ~/tutorials/tutorial_06/output/tutorial_06/tut_pop-sapiens_SG_003000.qdf <span class="se">\</span>
+             -q ~/tutorials/tutorial_06/output/tutorial_06/tut_pop-sapiens_SG_003000.qdf <span class="se">\</span>
+             -s 720x360 -o tut06_003000.png <span class="se">\</span>
+             -a  <span class="s1">&#39;alt|geo:-6000:0:6000,pop_sapiens|fadeout:0:10:#FFFF00FF&#39;</span> <span class="se">\</span>
+             -r -25 -c over -t <span class="s2">&quot;step 3000&quot;</span>
+</pre></div>
+</div>
+<p>For details on how to call  <code class="docutils literal notranslate"><span class="pre">QDF2PNGNew</span></code>, refer to <a class="reference internal" href="../tools/QDF2PNGNew.html#qdf2pngnew-ref"><span class="std std-ref">its documentation</span></a>.</p>
+<figure class="align-default" id="id2">
+<img alt="../_images/tut06_Multi3.png" src="../_images/tut06_Multi3.png" />
+<figcaption>
+<p><span class="caption-text">Sequence of snapshots at intervals of 1000 steps.
+The yellow dots represent the agents.
+In the first image the initial populaition sits at the center of the red circle.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="visit">
+<h3><code class="docutils literal notranslate"><span class="pre">VisIt</span></code><a class="headerlink" href="#visit" title="Permalink to this heading">¶</a></h3>
+<p>With the visualization software <span class="xref std std-ref">VisIt</span> we can create images showing the data on the sphere:</p>
+<figure class="align-default" id="id3">
+<img alt="../_images/envalt.png" src="../_images/envalt.png" />
+<figcaption>
+<p><span class="caption-text">Sequence of snapshots at intervals of 1000 steps.
+The yellow dots represent the agents.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">QHG Tutorial 06 - Environment Interaction I</a><ul>
+<li><a class="reference internal" href="#the-header-file">The Header File</a></li>
+<li><a class="reference internal" href="#the-implementation">The Implementation</a></li>
+<li><a class="reference internal" href="#xml-and-dat">XML and DAT</a></li>
+<li><a class="reference internal" href="#grid">Grid</a></li>
+<li><a class="reference internal" href="#compiling-and-running">Compiling and Running</a></li>
+<li><a class="reference internal" href="#visualization">Visualization</a><ul>
+<li><a class="reference internal" href="#qdf2pnfnew"><code class="docutils literal notranslate"><span class="pre">QDF2PNFNew</span></code></a></li>
+<li><a class="reference internal" href="#visit"><code class="docutils literal notranslate"><span class="pre">VisIt</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="tutorial_05_sexual.html"
+                          title="previous chapter">QHG Tutorial 05 - Sexual Reproduction</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="tutorial_07_environcapalt.html"
+                          title="next chapter">QHG Tutorial 07 - Environment interaction II</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/tutorial/tutorial_06_environalt.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="tutorial_07_environcapalt.html" title="QHG Tutorial 07 - Environment interaction II"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="tutorial_05_sexual.html" title="QHG Tutorial 05 - Sexual Reproduction"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../tutorial.html" >QHG Tutorial</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">QHG Tutorial 06 - Environment Interaction I</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+    </div>
+  </body>
+</html>

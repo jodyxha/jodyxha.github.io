@@ -1,0 +1,113 @@
+.. _NavGroupReader_ref:
+
+NavGroupReader
+===============
+
+.. rst-class:: hidden
+
+   This page describes the class  :index:`NavGroupReader`
+
+   
+The class ``NavGroupReader`` reads attributes and arrays from the :ref:`navigation group <NavGroup_ref>` of a qdf file.
+
+This file extends the attribute structure:
+
+.. code-block:: c++
+
+    struct NavAttributes : Attributes {
+        uint     m_iNumPorts;
+        uint     m_iNumDests;
+        uint     m_iNumDists;
+        double   m_dSampleDist;
+        uint     m_iNumBridges;
+    };
+
+Code: `NavGroupReader.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/NavGroupReader.h>`_, `NavGroupReader.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/NavGroupReader.cpp>`_
+
+
+Public Methods
+--------------
+
+``createNavGroupReader``
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: c++
+ 
+    static NavGroupReader *createNavGroupReader(const std::string sFileName);
+    static NavGroupReader *createNavGroupReader(hid_t hFile);
+
+Creates a ``NavGroupReader`` object for a qdf file.
+
+``sFileName`` 
+    Name of the file to read the navigation data from.
+
+``hFile``
+    HDF5 handle for the file to read the navigation data from.
+
+Returns a pointer to the ``NavGroupReader`` object or ``NULL`` on failure.
+
+.. -----------------------------------------------------------------------------
+
+``tryReadAttributes``
+^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int tryReadAttributes(NavAttributes *pAttributes);
+
+Reads the attributes "NumCells", "NumPorts", "NumDests", "SampleDist" and "NumBridges" in the navigation group into the attribute structure.
+
+``pAttributes``
+    A pointer to a ``NavAttributes`` object to hold the attributes.
+
+Returns 0 on succes, or -1 on failure.
+
+.. -----------------------------------------------------------------------------
+
+``readArray``
+^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int readArray(Navigation *pNavigation, const std::string sArrayName);
+
+Read the specified array from the "Navigation" group of the qdf file.
+
+``pNavigation``
+    A pointer to the :ref:`Navigation<Navigation_ref>` object into which to read the array,
+
+``sArrayName``
+    Name of the array in the  "Navigation" group of the qdf file.
+
+
+Returns 0 on succes, or -1 on failure.
+
+.. -----------------------------------------------------------------------------
+
+``readData``
+^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int readData(Navigation *pNavigation);
+
+Reads the arrays "Multiplicities", "DestIDs", and "Distances".
+
+
+``pNavigation``
+    A Pointer to a :ref:`Navigation<Navigation_ref>` object.
+
+Returns 0 on succes, or -1 on failure.
+
+.. -----------------------------------------------------------------------------
+
+Protected Methods
+-----------------
+
+``constructor``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    NavGroupReader();
+
+The constructor.
+
+.. -----------------------------------------------------------------------------
+

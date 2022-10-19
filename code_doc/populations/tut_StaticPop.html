@@ -1,0 +1,159 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>tut_StaticPop &#8212; QHG4 4.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jody.css" />
+    
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    
+    <link rel="shortcut icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="tut_OldAgeDiePop" href="tut_OldAgeDiePop.html" />
+    <link rel="prev" title="DynPopFactory" href="DynPopFactory.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="tut_OldAgeDiePop.html" title="tut_OldAgeDiePop"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="DynPopFactory.html" title="DynPopFactory"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../populations.html" accesskey="U">populations</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">tut_StaticPop</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="tut-staticpop">
+<span id="tutstaticpop-ref"></span><h1>tut_StaticPop<a class="headerlink" href="#tut-staticpop" title="Permalink to this heading">¶</a></h1>
+<p class="hidden">This page describes the class <span class="target" id="index-0"></span>tutStaticPop</p>
+<p>The class <code class="docutils literal notranslate"><span class="pre">tut_StaticPop</span></code> is derived from <a class="reference internal" href="../core/SPopulation.html#spopulation-ref"><span class="std std-ref">SPopulation</span></a>. I is the simplest and most trivial population class in QHG: it does nothing - agents don move, die or give birth.
+According to the <cite>Talking Heads &lt;https://www.youtube.com/watch?v=sZpZuIWu1tw&gt;</cite> this is heaven…</p>
+<p>Since this class is so simple, its implementation is, too: it only implements a constructor.
+It also does not define its own agent class - it uses the agents defined for <code class="docutils literal notranslate"><span class="pre">SPopulation</span></code>.</p>
+<p>(The class <code class="docutils literal notranslate"><span class="pre">tut_StaticPop</span></code> is described in detail in the :ref:first part&lt;TutorialStatic_ref&gt;`  of the <a class="reference internal" href="../../tutorial.html#tutorial-ref"><span class="std std-ref">tutorial</span></a>).</p>
+<p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_StaticPop.h">tut_StaticPop.h</a>, <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_StaticPop.cpp">tut_StaticPop.cpp</a></p>
+<section id="public-methods">
+<h2>Public Methods<a class="headerlink" href="#public-methods" title="Permalink to this heading">¶</a></h2>
+<section id="constructor">
+<h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#constructor" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">tut_StaticPop</span><span class="p">(</span><span class="n">SCellGrid</span><span class="w"> </span><span class="o">*</span><span class="n">pCG</span><span class="p">,</span><span class="w"> </span><span class="n">PopFinder</span><span class="w"> </span><span class="o">*</span><span class="n">pPopFinder</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iLayerSize</span><span class="p">,</span><span class="w"></span>
+<span class="w">              </span><span class="n">IDGen</span><span class="w"> </span><span class="o">**</span><span class="n">apIDG</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="o">*</span><span class="n">aulState</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="o">*</span><span class="n">aiSeeds</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">pCG</span></code></dt><dd><p>Pointer to the <a class="reference internal" href="../core/SCellGrid.html#scellgrid-ref"><span class="std std-ref">cell grid</span></a>  the simulation runs on.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">pPopFinder</span></code></dt><dd><p>A pointer to an instance of a <a class="reference internal" href="../core/PopFinder.html#popfinder-ref"><span class="std std-ref">PopFinder</span></a> population container.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iLayerSize</span></code></dt><dd><p>The layer size used by the <a class="reference internal" href="../../AgentManagement.html#agentmanagement-ref"><span class="std std-ref">agent management system</span></a>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">apIDG</span></code></dt><dd><p>An array of pointers to the <a class="reference internal" href="../core/IDGen.html#idgen-ref"><span class="std std-ref">ID generators</span></a>, one for each thread.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">aulState</span></code></dt><dd><p>An array of <code class="docutils literal notranslate"><span class="pre">uint</span></code> used to initalize the <a class="reference internal" href="../utils/WELL512.html#well512-ref"><span class="std std-ref">WELL512 random number generators</span></a>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">aiSeeds</span></code></dt><dd><p>Seeds for other WELL512 instances <strong>not used for moving and breeding</strong>, e.g. for genetics.</p>
+</dd>
+</dl>
+<p>All this constructor does is to call the constructor of its parent class <code class="docutils literal notranslate"><span class="pre">SPopulation</span></code>.</p>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">tut_StaticPop</a><ul>
+<li><a class="reference internal" href="#public-methods">Public Methods</a><ul>
+<li><a class="reference internal" href="#constructor"><code class="docutils literal notranslate"><span class="pre">constructor</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="DynPopFactory.html"
+                          title="previous chapter">DynPopFactory</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="tut_OldAgeDiePop.html"
+                          title="next chapter">tut_OldAgeDiePop</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/code_doc/populations/tut_StaticPop.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="tut_OldAgeDiePop.html" title="tut_OldAgeDiePop"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="DynPopFactory.html" title="DynPopFactory"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../populations.html" >populations</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">tut_StaticPop</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+    </div>
+  </body>
+</html>

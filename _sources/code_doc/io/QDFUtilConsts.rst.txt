@@ -1,0 +1,195 @@
+.. QDFUtils_Consts_ref:
+
+QDFUtils Constants
+==================
+
+.. -----------------------------------------------------------------------------
+
+.. _QDFUtils_GroupNameConsts_ref:
+
+QDFUtils Group Name Constants
+-----------------------------
+
+.. code-block:: c++
+
+    const std::string POPGROUP_NAME   = "Populations";
+    const std::string GEOGROUP_NAME   = "Geography";
+    const std::string CLIGROUP_NAME   = "Climate";
+    const std::string VEGGROUP_NAME   = "Vegetation";
+    const std::string GRIDGROUP_NAME  = "Grid";
+    const std::string MSTATGROUP_NAME = "MoveStatistics";
+    const std::string NAVGROUP_NAME   = "Navigation";
+    const std::string OCCGROUP_NAME   = "Occupation";
+
+.. _QDFUtils_DatasetNameConsts_ref:
+
+.. -----------------------------------------------------------------------------
+
+QDFUtils Dataset Name Constants
+-------------------------------
+
+.. code-block:: c++
+
+    const std::string AGENT_DATASET_NAME   = "AgentDataSet";
+    const std::string CELL_DATASET_NAME    = "CellDataSet";
+    const std::string CTRL_DATASET_NAME    = "Controller";
+    const std::string DEAD_DATASET_NAME    = "DeadSpaces";
+    const std::string GENOME_DATASET_NAME  = "Genome";
+    const std::string PHENOME_DATASET_NAME = "Phenome";
+
+.. -----------------------------------------------------------------------------
+
+.. _QDFUtils_RootAttributeConsts_ref:
+
+QDFUtils Root AttributeConstants
+--------------------------------
+
+.. code-block:: c++
+
+    const std::string ROOT_ATTR_NAME = "QHG";
+    const std::string ROOT_STEP_NAME = "Step";
+    const std::string ROOT_TIME_NAME = "StartTime";
+    const std::string ROOT_INFO_NAME = "Info";
+
+
+.. -----------------------------------------------------------------------------
+
+
+.. _QDFUtils_GridGroupConsts_ref:
+
+QDFUtils Grid Group Constants
+-----------------------------
+
+.. code-block:: c++
+
+    const std::string GRID_STYPE_ICO  = "ICO";
+    const std::string GRID_STYPE_HEX  = "HEX";
+    const std::string GRID_STYPE_RECT = "RECT";
+    
+    const std::string GRID_ATTR_NUM_CELLS   = "NumCells";
+    const std::string GRID_ATTR_TYPE        = "GridType";
+    const std::string GRID_ATTR_FORMAT      = "GridFormat";
+    const std::string GRID_ATTR_PERIODIC    = "Periodic";
+    
+    const std::string GRID_DS_CELL_ID       = "CellID";
+    const std::string GRID_DS_NUM_NEIGH     = "NumNeighbors";
+    const std::string GRID_DS_NEIGHBORS     = "Neighbors";
+
+.. -----------------------------------------------------------------------------
+
+.. _QDFUtils_GeographyGroupConsts_ref:
+
+QDFUtils Geography Group Constants
+----------------------------------
+
+.. code-block:: c++
+
+    const std::string GEO_ATTR_NUM_CELLS    = "NumCells";
+    const std::string GEO_ATTR_MAX_NEIGH    = "MaxNeigh";
+    const std::string GEO_ATTR_RADIUS       = "Radius";
+    const std::string GEO_ATTR_SEALEVEL     = "SeaLevel";
+    
+    const std::string GEO_DS_LONGITUDE      = "Longitude";
+    const std::string GEO_DS_LATITUDE       = "Latitude";
+    const std::string GEO_DS_ALTITUDE       = "Altitude";
+    const std::string GEO_DS_AREA           = "Area";
+    const std::string GEO_DS_DISTANCES      = "Distances";
+    const std::string GEO_DS_ICE_COVER      = "IceCover";
+    const std::string GEO_DS_WATER          = "Water";
+    const std::string GEO_DS_COASTAL        = "Coastal";
+    const std::string GEO_DS_ANGLES         = "Angles";
+    const std::string GEO_DS_DIRS           = "Directions";
+
+
+.. -----------------------------------------------------------------------------
+
+.. _QDFUtils_ClimateGroupConsts_ref:
+
+QDFUtils Climate Group Constants
+--------------------------------
+
+.. code-block:: c++
+
+    cconst std::string CLI_ATTR_NUM_CELLS    = "NumCells";
+    cconst std::string CLI_ATTR_NUM_SEASONS  = "NumSeasons";
+    
+    const std::string CLI_DS_ACTUAL_TEMPS   = "ActualTemps";
+    const std::string CLI_DS_ACTUAL_RAINS   = "ActualRains";
+    const std::string CLI_DS_ANN_MEAN_TEMP  = "AnnualMeanTemp";
+    const std::string CLI_DS_ANN_TOT_RAIN   = "AnnualRainfall";
+    const std::string CLI_DS_SEAS_TEMP_DIFF = "SeasonalTempDiff"; 
+    const std::string CLI_DS_SEAS_RAIN_RAT  = "SeasonalRainRatios";
+    const std::string CLI_DS_CUR_SEASON     = "CurSeason";
+
+.. -----------------------------------------------------------------------------
+
+.. _QDFUtils_VegetationGroupConsts_ref:
+
+QDFUtils Vegetation Group Constants
+-----------------------------------
+
+.. code-block:: c++
+
+    const std::string VEG_ATTR_NUM_CELLS    = "NumCells";
+    const std::string VEG_ATTR_NUM_SPECIES  = "NumSpecies";
+
+    const std::string VEG_DS_MASS           = "Mass";
+    const std::string VEG_DS_BASE_NPP       = "BaseNPP";
+    const std::string VEG_DS_NPP            = "NPP";
+
+.. -----------------------------------------------------------------------------
+
+.. _QDFUtils_NavigationGroupConsts_ref:
+
+QDFUtils Navigation Group Constants
+-----------------------------------
+
+.. code-block:: c++
+
+    const std::string NAV_ATTR_NUM_PORTS     = "NumPorts";
+    const std::string NAV_ATTR_NUM_DESTS     = "NumDests";
+    const std::string NAV_ATTR_NUM_DISTS     = "NumDists";
+    const std::string NAV_ATTR_SAMPLE_DIST   = "SampleDist";
+    const std::string NAV_ATTR_NUM_BRIDGES   = "NumBridges";
+
+    const std::string NAV_DS_MULTIPLICITIES  = "Multiplicities";
+    const std::string NAV_DS_DEST_IDS        = "DestIDs";
+    const std::string NAV_DS_DISTANCES       = "Distances";
+    const std::string NAV_DS_BRIDGES         = "Bridges";
+
+.. -----------------------------------------------------------------------------
+
+.. _QDFUtils_MoveStatsGroupConsts_ref:
+
+QDFUtils MoveStats Group Constants
+----------------------------------
+
+.. code-block:: c++
+
+    const std::string MSTAT_ATTR_NUM_CELLS   = "NumCells";
+
+    const std::string MSTAT_DS_HOPS          = "Hops";
+    const std::string MSTAT_DS_DIST          = "Dist";
+    const std::string MSTAT_DS_TIME          = "Time";
+    
+.. -----------------------------------------------------------------------------
+    
+.. _QDFUtils_PopulationGroupConsts_ref:
+
+QDFUtils Population AttributeConstants
+--------------------------------------
+
+.. code-block:: c++
+
+
+    const std::string SPOP_ATTR_CLASS_NAME   = "ClassName";
+    const std::string SPOP_ATTR_SPECIES_NAME = "SpeciesName";
+    const std::string SPOP_ATTR_NUM_CELL     = "NumCells";
+    const std::string SPOP_ATTR_PRIO_INFO    = "PrioInfo";
+    const std::string SPOP_ATTR_INIT_SEED    = "InitialSeed";
+    
+    const std::string SPOP_DS_CAP            = "Capacities";
+    const std::string SPOP_DS_HOPS           = "Hops";
+    const std::string SPOP_DS_DIST           = "Dist";
+    const std::string SPOP_DS_TIME           = "Time";
+

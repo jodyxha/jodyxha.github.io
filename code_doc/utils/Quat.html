@@ -1,0 +1,321 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Quat &#8212; QHG4 4.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jody.css" />
+    
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    
+    <link rel="shortcut icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="WELL512" href="WELL512.html" />
+    <link rel="prev" title="Vec3D" href="Vec3D.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="WELL512.html" title="WELL512"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="Vec3D.html" title="Vec3D"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../utils.html" accesskey="U">utils</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Quat</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="quat">
+<span id="quat-ref"></span><h1>Quat<a class="headerlink" href="#quat" title="Permalink to this heading">¶</a></h1>
+<p class="hidden">This page describes the class <span class="target" id="index-0"></span>Quat</p>
+<p>The class <code class="docutils literal notranslate"><span class="pre">Quat</span></code> represents quaternions.</p>
+<p>Quaternions are very handy to calculate and perform rotations.</p>
+<p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/Quat.h">Quat.h</a>, <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/Quat.cpp">Quat.cpp</a></p>
+<section id="public-methods">
+<h2>Public Methods<a class="headerlink" href="#public-methods" title="Permalink to this heading">¶</a></h2>
+<section id="constructors">
+<h3><code class="docutils literal notranslate"><span class="pre">constructors</span></code><a class="headerlink" href="#constructors" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Quat</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">fR</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">fI</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">fJ</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">fK</span><span class="p">);</span><span class="w"></span>
+<span class="n">Quat</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Quat</span><span class="w"> </span><span class="o">*</span><span class="n">pq</span><span class="p">);</span><span class="w"></span>
+<span class="n">Quat</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Quat</span><span class="w"> </span><span class="o">&amp;</span><span class="n">q</span><span class="p">);</span><span class="w"></span>
+<span class="n">Quat</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">fI</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">fJ</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">fK</span><span class="p">);</span><span class="w"></span>
+<span class="n">Quat</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Vec3D</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="n">pv</span><span class="p">;</span><span class="w"></span>
+<span class="n">Quat</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Vec3D</span><span class="w"> </span><span class="o">&amp;</span><span class="n">v</span><span class="p">;</span><span class="w"></span>
+<span class="n">Quat</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">fR</span><span class="p">);</span><span class="w"></span>
+<span class="n">Quat</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Apart from the component-wise constructor, you can create <code class="docutils literal notranslate"><span class="pre">Quat</span></code> objects with a real part only, or such with imaginary parts only. There are copy cnsturctors for <code class="docutils literal notranslate"><span class="pre">Quat</span></code> objects, and “almost” copy contructor which create a purely imaginary quaternion from a <code class="docutils literal notranslate"><span class="pre">Vec3D</span></code>”. The empty constructor is equivalent to <code class="docutils literal notranslate"><span class="pre">Quat(0)</span></code>.</p>
+</section>
+<section id="rotations">
+<h3><code class="docutils literal notranslate"><span class="pre">rotations</span></code><a class="headerlink" href="#rotations" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Quat</span><span class="w"> </span><span class="o">*</span><span class="nf">createRotation</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">fAngle</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">fX</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">fY</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">fZ</span><span class="p">);</span><span class="w"></span>
+<span class="n">Quat</span><span class="w"> </span><span class="o">*</span><span class="nf">createRotation</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">fAngle</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Vec3D</span><span class="w"> </span><span class="o">&amp;</span><span class="n">v</span><span class="p">);</span><span class="w"></span>
+<span class="n">Quat</span><span class="w"> </span><span class="o">*</span><span class="nf">createRotation</span><span class="p">(</span><span class="k">const</span><span class="w">  </span><span class="n">Vec3D</span><span class="w"> </span><span class="o">*</span><span class="n">pvFrom</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Vec3D</span><span class="w"> </span><span class="o">*</span><span class="n">pvTo</span><span class="p">);</span><span class="w"></span>
+<span class="n">Quat</span><span class="w"> </span><span class="nf">makeRotation</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">fAngle</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">fX</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">fY</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">fZ</span><span class="p">);</span><span class="w"></span>
+<span class="n">Quat</span><span class="w"> </span><span class="nf">makeRotation</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">fAngle</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Vec3D</span><span class="w"> </span><span class="o">&amp;</span><span class="n">v</span><span class="p">);</span><span class="w"></span>
+<span class="n">Quat</span><span class="w"> </span><span class="nf">makeRotation</span><span class="p">(</span><span class="k">const</span><span class="w">  </span><span class="n">Vec3D</span><span class="w"> </span><span class="o">&amp;</span><span class="n">vFrom</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Vec3D</span><span class="w"> </span><span class="o">&amp;</span><span class="n">vTo</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">createRotation</span></code> methods and the``makeRotation`` methods is that the former allocate space for the result and return a pointer, while the latter return an object.
+A rotation is given by rotation angle and axis (components or <code class="docutils literal notranslate"><span class="pre">Vec3D),</span> <span class="pre">or</span> <span class="pre">else</span> <span class="pre">by</span> <span class="pre">two</span> <span class="pre">``Vec3D</span></code> ojects. in the latter case a quaternion  is returned which corresponds to a rotatio arund an axis perpendicular to both <code class="docutils literal notranslate"><span class="pre">vFrom</span></code> and <code class="docutils literal notranslate"><span class="pre">vTo</span></code>, which transforms <code class="docutils literal notranslate"><span class="pre">vFrom</span></code> to <code class="docutils literal notranslate"><span class="pre">vTo</span></code>.</p>
+</section>
+<section id="addition">
+<h3><code class="docutils literal notranslate"><span class="pre">addition</span></code><a class="headerlink" href="#addition" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">add</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Quat</span><span class="w"> </span><span class="o">*</span><span class="n">q</span><span class="p">);</span><span class="w"></span>
+<span class="kr">inline</span><span class="w"> </span><span class="n">Quat</span><span class="w"> </span><span class="k">operator</span><span class="o">+=</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Quat</span><span class="w"> </span><span class="o">&amp;</span><span class="n">q</span><span class="p">);</span><span class="w"></span>
+<span class="kr">inline</span><span class="w"> </span><span class="n">Quat</span><span class="w"> </span><span class="k">operator</span><span class="o">+</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Quat</span><span class="w"> </span><span class="o">&amp;</span><span class="n">q1</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Quat</span><span class="w"> </span><span class="o">&amp;</span><span class="n">q2</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">add()</span></code> function and <code class="docutils literal notranslate"><span class="pre">operator+=</span></code> change the value of <code class="docutils literal notranslate"><span class="pre">this</span></code>; <code class="docutils literal notranslate"><span class="pre">operator+</span></code> returns a new <code class="docutils literal notranslate"><span class="pre">Quat</span></code>.</p>
+</section>
+<section id="subtraction">
+<h3><code class="docutils literal notranslate"><span class="pre">subtraction</span></code><a class="headerlink" href="#subtraction" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">sub</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Quat</span><span class="w"> </span><span class="o">*</span><span class="n">q</span><span class="p">);</span><span class="w"></span>
+<span class="kr">inline</span><span class="w"> </span><span class="n">Quat</span><span class="w"> </span><span class="k">operator</span><span class="o">-=</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Quat</span><span class="w"> </span><span class="o">&amp;</span><span class="n">q</span><span class="p">);</span><span class="w"></span>
+<span class="kr">inline</span><span class="w"> </span><span class="n">Quat</span><span class="w"> </span><span class="k">operator</span><span class="o">-</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Quat</span><span class="w"> </span><span class="o">&amp;</span><span class="n">q1</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Quat</span><span class="w"> </span><span class="o">&amp;</span><span class="n">q2</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">sub()</span></code> function and <code class="docutils literal notranslate"><span class="pre">operator-=</span></code> change the value of <code class="docutils literal notranslate"><span class="pre">this</span></code>; <code class="docutils literal notranslate"><span class="pre">operator-</span></code> returns a new <code class="docutils literal notranslate"><span class="pre">Quat</span></code>.</p>
+</section>
+<section id="multiplication">
+<h3><code class="docutils literal notranslate"><span class="pre">multiplication</span></code><a class="headerlink" href="#multiplication" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">mult</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Quat</span><span class="w"> </span><span class="o">*</span><span class="n">q</span><span class="p">);</span><span class="w"></span>
+<span class="n">Quat</span><span class="w"> </span><span class="k">operator</span><span class="o">*=</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Quat</span><span class="w"> </span><span class="o">&amp;</span><span class="n">q</span><span class="p">);</span><span class="w"></span>
+<span class="n">Quat</span><span class="w"> </span><span class="k">operator</span><span class="o">*</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Quat</span><span class="w"> </span><span class="o">&amp;</span><span class="n">q1</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Quat</span><span class="w"> </span><span class="o">&amp;</span><span class="n">q2</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">mult()</span></code> function and <code class="docutils literal notranslate"><span class="pre">operator*=</span></code> change the value of <code class="docutils literal notranslate"><span class="pre">this</span></code>; <code class="docutils literal notranslate"><span class="pre">operator*</span></code> returns a new <code class="docutils literal notranslate"><span class="pre">Quat</span></code>.</p>
+</section>
+<section id="division">
+<h3><code class="docutils literal notranslate"><span class="pre">division</span></code><a class="headerlink" href="#division" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Quat</span><span class="w"> </span><span class="k">operator</span><span class="o">/</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Quat</span><span class="w"> </span><span class="o">&amp;</span><span class="n">q1</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Quat</span><span class="w"> </span><span class="o">&amp;</span><span class="n">q2</span><span class="p">);</span><span class="w"></span>
+<span class="n">Quat</span><span class="w"> </span><span class="k">operator</span><span class="o">/=</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Quat</span><span class="w"> </span><span class="o">&amp;</span><span class="n">q</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The  <code class="docutils literal notranslate"><span class="pre">operator/=</span></code> changes the value of <code class="docutils literal notranslate"><span class="pre">this</span></code>; <code class="docutils literal notranslate"><span class="pre">operator/</span></code> returns a new <code class="docutils literal notranslate"><span class="pre">Quat</span></code>.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">invert</span><span class="p">();</span><span class="w"></span>
+<span class="n">Quat</span><span class="w"> </span><span class="k">operator</span><span class="o">!</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Quat</span><span class="w"> </span><span class="o">&amp;</span><span class="n">q1</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The method <code class="docutils literal notranslate"><span class="pre">invert()</span></code> inverts <code class="docutils literal notranslate"><span class="pre">this</span></code>, while <code class="docutils literal notranslate"><span class="pre">operator!</span></code> returns the invers of this.</p>
+</section>
+<section id="scaling">
+<h3><code class="docutils literal notranslate"><span class="pre">scaling</span></code><a class="headerlink" href="#scaling" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">scale</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">f</span><span class="p">);</span><span class="w"></span>
+<span class="n">Quat</span><span class="w"> </span><span class="k">operator</span><span class="o">*=</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">d</span><span class="p">);</span><span class="w"></span>
+<span class="kr">inline</span><span class="w"> </span><span class="n">Quat</span><span class="w"> </span><span class="k">operator</span><span class="o">*</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Quat</span><span class="w"> </span><span class="o">&amp;</span><span class="n">q</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">d</span><span class="p">);</span><span class="w"></span>
+<span class="kr">inline</span><span class="w"> </span><span class="n">Quat</span><span class="w"> </span><span class="k">operator</span><span class="o">*</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">d</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Quat</span><span class="w"> </span><span class="o">&amp;</span><span class="n">q</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="conjugation">
+<h3><code class="docutils literal notranslate"><span class="pre">conjugation</span></code><a class="headerlink" href="#conjugation" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">conjugate</span><span class="p">();</span><span class="w"></span>
+<span class="n">Quat</span><span class="w"> </span><span class="k">operator</span><span class="o">^</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Quat</span><span class="w"> </span><span class="o">&amp;</span><span class="n">q1</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The method <code class="docutils literal notranslate"><span class="pre">conjugate()</span></code> inverts <code class="docutils literal notranslate"><span class="pre">this</span></code>, while <code class="docutils literal notranslate"><span class="pre">operator^</span></code> returns the conjugate of this.</p>
+</section>
+<section id="norm">
+<h3><code class="docutils literal notranslate"><span class="pre">norm</span></code><a class="headerlink" href="#norm" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span><span class="w"> </span><span class="nf">calcNorm</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Returns the norm of this quaternion.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">normalize</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Normalizes this quaternion (i.e. divides it by its norm).</p>
+</section>
+<section id="application">
+<h3><code class="docutils literal notranslate"><span class="pre">application</span></code><a class="headerlink" href="#application" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Quat</span><span class="w"> </span><span class="o">*</span><span class="nf">apply</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Quat</span><span class="w"> </span><span class="o">*</span><span class="n">q</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span><span class="w"></span>
+<span class="n">Vec3D</span><span class="w"> </span><span class="o">*</span><span class="nf">apply</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Vec3D</span><span class="w"> </span><span class="o">*</span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span><span class="w"></span>
+<span class="n">Vec3D</span><span class="w"> </span><span class="k">operator</span><span class="o">^</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Vec3D</span><span class="w"> </span><span class="o">&amp;</span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span><span class="w"></span>
+<span class="n">Quat</span><span class="w">  </span><span class="k">operator</span><span class="o">^</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Quat</span><span class="w"> </span><span class="o">&amp;</span><span class="n">q</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>In order to rotate a vector, you apply a (unit) quaternion to it.</p>
+<p>p’ = q * p * q <sup>-1</sup></p>
+<section id="example">
+<h4>Example<a class="headerlink" href="#example" title="Permalink to this heading">¶</a></h4>
+<p>Compile with</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>g++ quat_example.cpp Vec3D.cpp -o quat_example
+</pre></div>
+</div>
+<p>Code for <code class="docutils literal notranslate"><span class="pre">quat_example</span></code>:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cstdio&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cmath&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Vec3D.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Quat.h&quot;</span><span class="cp"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">showVec</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Vec3D</span><span class="w"> </span><span class="o">&amp;</span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">pCaption</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%s: (%f, %f, %f)</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">pCaption</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">.</span><span class="n">m_fX</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">.</span><span class="n">m_fY</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">.</span><span class="n">m_fZ</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">showQuat</span><span class="p">(</span><span class="n">Quat</span><span class="w"> </span><span class="n">q</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">pCaption</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%s: (%f, %f, %f, %f)</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">pCaption</span><span class="p">,</span><span class="w"> </span><span class="n">q</span><span class="p">.</span><span class="n">m_fR</span><span class="p">,</span><span class="w"> </span><span class="n">q</span><span class="p">.</span><span class="n">m_fI</span><span class="p">,</span><span class="w"> </span><span class="n">q</span><span class="p">.</span><span class="n">m_fJ</span><span class="p">,</span><span class="w"> </span><span class="n">q</span><span class="p">.</span><span class="n">m_fK</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iArgC</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">apArgV</span><span class="p">[])</span><span class="w">  </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">Quat</span><span class="w"> </span><span class="n">q1</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">q1</span><span class="p">.</span><span class="n">normalize</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="n">Quat</span><span class="w"> </span><span class="n">q2</span><span class="o">=!</span><span class="n">q1</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">showQuat</span><span class="p">(</span><span class="n">q1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;q1&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">showQuat</span><span class="p">(</span><span class="n">q2</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;q2&quot;</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">q1</span><span class="p">.</span><span class="n">mult</span><span class="p">(</span><span class="o">&amp;</span><span class="n">q2</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">showQuat</span><span class="p">(</span><span class="n">q1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;q1*q2&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">Quat</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">q1</span><span class="o">/</span><span class="n">q1</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">showQuat</span><span class="p">(</span><span class="n">e</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;q1/q1&quot;</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">Vec3D</span><span class="w"> </span><span class="n">v1</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">6</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">Vec3D</span><span class="w"> </span><span class="n">v2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">q2</span><span class="o">^</span><span class="n">v1</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">showVec</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;v1&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">showVec</span><span class="p">(</span><span class="n">v2</span><span class="p">,</span><span class="s">&quot;v2&quot;</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">Quat</span><span class="w"> </span><span class="n">qrot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Quat</span><span class="o">::</span><span class="n">makeRotation</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">M_PI</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="mf">1.0</span><span class="o">/</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">3.0</span><span class="p">))</span><span class="o">*</span><span class="n">Vec3D</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">));</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">Vec3D</span><span class="w"> </span><span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">Vec3D</span><span class="w"> </span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">Vec3D</span><span class="w"> </span><span class="n">z</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">Vec3D</span><span class="w"> </span><span class="n">xr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">qrot</span><span class="o">^</span><span class="n">x</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">Vec3D</span><span class="w"> </span><span class="n">yr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">qrot</span><span class="o">^</span><span class="n">y</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">Vec3D</span><span class="w"> </span><span class="n">zr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">qrot</span><span class="o">^</span><span class="n">z</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">showVec</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w">  </span><span class="s">&quot;x &quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">showVec</span><span class="p">(</span><span class="n">xr</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;xr &quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">showVec</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="w">  </span><span class="s">&quot;y &quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">showVec</span><span class="p">(</span><span class="n">yr</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;yr &quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">showVec</span><span class="p">(</span><span class="n">z</span><span class="p">,</span><span class="w">  </span><span class="s">&quot;z &quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">showVec</span><span class="p">(</span><span class="n">zr</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;zr &quot;</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">q2</span><span class="w"> </span><span class="o">*=</span><span class="w"> </span><span class="n">qrot</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">showQuat</span><span class="p">(</span><span class="n">q2</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;q2*qrot&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">q2</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="n">qrot</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">showQuat</span><span class="p">(</span><span class="n">q2</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;(q2*qrot)/qrot&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">showQuat</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">q2</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;(3*q2*qrot)/qrot&quot;</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Quat</a><ul>
+<li><a class="reference internal" href="#public-methods">Public Methods</a><ul>
+<li><a class="reference internal" href="#constructors"><code class="docutils literal notranslate"><span class="pre">constructors</span></code></a></li>
+<li><a class="reference internal" href="#rotations"><code class="docutils literal notranslate"><span class="pre">rotations</span></code></a></li>
+<li><a class="reference internal" href="#addition"><code class="docutils literal notranslate"><span class="pre">addition</span></code></a></li>
+<li><a class="reference internal" href="#subtraction"><code class="docutils literal notranslate"><span class="pre">subtraction</span></code></a></li>
+<li><a class="reference internal" href="#multiplication"><code class="docutils literal notranslate"><span class="pre">multiplication</span></code></a></li>
+<li><a class="reference internal" href="#division"><code class="docutils literal notranslate"><span class="pre">division</span></code></a></li>
+<li><a class="reference internal" href="#scaling"><code class="docutils literal notranslate"><span class="pre">scaling</span></code></a></li>
+<li><a class="reference internal" href="#conjugation"><code class="docutils literal notranslate"><span class="pre">conjugation</span></code></a></li>
+<li><a class="reference internal" href="#norm"><code class="docutils literal notranslate"><span class="pre">norm</span></code></a></li>
+<li><a class="reference internal" href="#application"><code class="docutils literal notranslate"><span class="pre">application</span></code></a><ul>
+<li><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="Vec3D.html"
+                          title="previous chapter">Vec3D</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="WELL512.html"
+                          title="next chapter">WELL512</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/code_doc/utils/Quat.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="WELL512.html" title="WELL512"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="Vec3D.html" title="Vec3D"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../utils.html" >utils</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Quat</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+    </div>
+  </body>
+</html>

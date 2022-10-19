@@ -1,0 +1,26 @@
+.. _PopFinder_ref:
+
+PopFinder
+=========
+
+.. rst-class:: hidden
+
+   This page describes the class :index:`PopFinder`
+
+``PopFinder`` is a pure virtual class used as an interface declaring only one method. In QHG this interface is implemented by :ref:`PopLooper<popLooper_ref>`. 
+
+Code: `PopFinder.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/core/PopFinder.h>`_ 
+
+Public Methods
+--------------
+
+``getPopByName``
+^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+     virtual PopBase *getPopByName(const std::string sSpeciesName)=0;
+
+``sSpeciesName``
+    Name of the wanted population.
+
+This method returns a pointer to the population with the specified name, or NULL if it can't be found or doesn't exist.

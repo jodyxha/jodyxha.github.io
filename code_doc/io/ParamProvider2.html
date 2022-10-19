@@ -1,0 +1,410 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>ParamProvider2 and ModuleComplex &#8212; QHG4 4.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jody.css" />
+    
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    
+    <link rel="shortcut icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="WELLDumpRestore" href="WELLDumpRestore.html" />
+    <link rel="prev" title="qhgXMLNode and qhgXMLTree" href="qhgXML.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="WELLDumpRestore.html" title="WELLDumpRestore"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="qhgXML.html" title="qhgXMLNode and qhgXMLTree"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../io.html" accesskey="U">io</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">ParamProvider2 and ModuleComplex</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="paramprovider2-and-modulecomplex">
+<span id="paramprovider2-ref"></span><h1>ParamProvider2 and ModuleComplex<a class="headerlink" href="#paramprovider2-and-modulecomplex" title="Permalink to this heading">¶</a></h1>
+<p class="hidden">This page describes the classes <span class="target" id="index-0"></span>ModuleComplex and <span class="target" id="index-1"></span>ParamProvider2</p>
+<p>An instantiation of the class <code class="docutils literal notranslate"><span class="pre">ModuleComplex</span></code> represents the parameters and submodules for an <a class="reference internal" href="../actions/Action.html#action-ref"><span class="std std-ref">action</span></a> .
+Each node of a  <code class="docutils literal notranslate"><span class="pre">ModuleComplex</span></code> object has stringmap  for  actions attributes, as well as  map “name”-&gt;ModuleComplex for the action’s submodules.</p>
+<p><code class="docutils literal notranslate"><span class="pre">ParamProvider</span></code> reads a xml file and bundles the data found into <code class="docutils literal notranslate"><span class="pre">ModuleComplex</span></code> objects.</p>
+<section id="public-methods-modulecomplex">
+<h2>Public Methods (<code class="docutils literal notranslate"><span class="pre">ModuleComplex</span></code>)<a class="headerlink" href="#public-methods-modulecomplex" title="Permalink to this heading">¶</a></h2>
+<section id="constructor">
+<h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#constructor" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">ModuleComplex</span><span class="p">();</span><span class="w"></span>
+<span class="n">ModuleComplex</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">stringmap</span><span class="w"> </span><span class="n">smParams</span><span class="p">,</span><span class="w"> </span><span class="n">modulemap</span><span class="w"> </span><span class="o">&amp;</span><span class="n">mSubModules</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line">The first version creates an empty <code class="docutils literal notranslate"><span class="pre">ModuleComplex</span></code> which can be filled at alater point.</div>
+<div class="line">The second version creates a <code class="docutils literal notranslate"><span class="pre">ModuleComplex</span></code> wth parameters and submodules.</div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">smParams</span></code></dt><dd><p>A string map {name =&gt; Value} representing the parameters of a <code class="docutils literal notranslate"><span class="pre">ModuleComplex</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">mSubModules</span></code></dt><dd><p>A map {name =&gt; Module} representing the sub modules of a <code class="docutils literal notranslate"><span class="pre">ModuleComplex</span></code>.</p>
+</dd>
+</dl>
+</section>
+<section id="destructor">
+<h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="o">~</span><span class="n">ModuleComplex</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The destructor.</p>
+</section>
+<section id="addparam">
+<h3><code class="docutils literal notranslate"><span class="pre">addParam</span></code><a class="headerlink" href="#addparam" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">addParam</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sKey</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="n">sVal</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Adds a single parameter to this <code class="docutils literal notranslate"><span class="pre">ModuleComplex</span></code> .</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">sKey</span></code></dt><dd><p>Name of the parameter.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sVal</span></code></dt><dd><p>Value of the parameter</p>
+</dd>
+</dl>
+<p>Returns 0 on success, -1 on failure.</p>
+</section>
+<section id="addsubmodule">
+<h3><code class="docutils literal notranslate"><span class="pre">addSubModule</span></code><a class="headerlink" href="#addsubmodule" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">addSubModule</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sKey</span><span class="p">,</span><span class="w"> </span><span class="n">ModuleComplex</span><span class="w"> </span><span class="o">*</span><span class="n">pSubModule</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Adds a submodule to  this <code class="docutils literal notranslate"><span class="pre">ModuleComplex</span></code>.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">sKey</span></code></dt><dd><p>Name of the submodule.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">pSubModule</span></code></dt><dd><p>Pointer to the submodule to be added.</p>
+</dd>
+</dl>
+</section>
+<section id="getparam">
+<h3><code class="docutils literal notranslate"><span class="pre">getParam</span></code><a class="headerlink" href="#getparam" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">getParam</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sKey</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Get the value of the parameter with the specified name.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">sKey</span></code></dt><dd><p>Name of the requested parameter.</p>
+</dd>
+</dl>
+<p>Returns the value if a parameter withthe given name exists, or else an empty string.</p>
+</section>
+<section id="getmodule">
+<h3><code class="docutils literal notranslate"><span class="pre">getModule</span></code><a class="headerlink" href="#getmodule" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">ModuleComplex</span><span class="w"> </span><span class="o">*</span><span class="nf">getModule</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sModuleName</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Gets a pointer to the submodule with the specified name.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">sKey</span></code></dt><dd><p>Name of the requested parameter.</p>
+</dd>
+</dl>
+<p>Returns the value if a parameter withthe given name exists, or else an empty string.</p>
+</section>
+<section id="getparams">
+<h3><code class="docutils literal notranslate"><span class="pre">getParams</span></code><a class="headerlink" href="#getparams" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="n">stringmap</span><span class="w"> </span><span class="o">&amp;</span><span class="nf">getParams</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Returns the map of parameter.</p>
+</section>
+<section id="getsubmodules">
+<h3><code class="docutils literal notranslate"><span class="pre">getSubModules</span></code><a class="headerlink" href="#getsubmodules" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="n">modulemap</span><span class="w"> </span><span class="o">&amp;</span><span class="nf">getSubModules</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Returns the map of submodules.</p>
+</section>
+</section>
+<section id="public-methods-paramprovider2">
+<h2>Public Methods (<code class="docutils literal notranslate"><span class="pre">ParamProvider2</span></code>)<a class="headerlink" href="#public-methods-paramprovider2" title="Permalink to this heading">¶</a></h2>
+<section id="id1">
+<h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="o">~</span><span class="n">ParamProvider2</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="showtree">
+<h3><code class="docutils literal notranslate"><span class="pre">showTree</span></code><a class="headerlink" href="#showtree" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">showTree</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Prints out the module tree.</p>
+</section>
+<section id="getclasses">
+<h3><code class="docutils literal notranslate"><span class="pre">getClasses</span></code><a class="headerlink" href="#getclasses" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">classes</span><span class="w"> </span><span class="o">&amp;</span><span class="nf">getClasses</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Returns the map of classes {name =&gt; class}. The “class” elements are direct descendants of the root of the <code class="docutils literal notranslate"><span class="pre">qhgXMLTree</span></code>.</p>
+</section>
+<section id="getclass">
+<h3><code class="docutils literal notranslate"><span class="pre">getClass</span></code><a class="headerlink" href="#getclass" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="n">modulemap</span><span class="w"> </span><span class="o">*</span><span class="nf">getClass</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sClassName</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Get the  map of modules {name =&gt; module}. The “module” elements are direct descendants of either a “class” element or a “module” element.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">sClassName</span></code></dt><dd><p>Name of the class to get the module of.</p>
+</dd>
+</dl>
+<p>Returns the module map.</p>
+</section>
+<section id="selectclass">
+<h3><code class="docutils literal notranslate"><span class="pre">selectClass</span></code><a class="headerlink" href="#selectclass" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">selectClass</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sClassName</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Stores the specified class’s name as well  as its info (attributes, module, and priorities) and the species’ name.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">sClassName</span></code></dt><dd><p>Name of the class to select.</p>
+</dd>
+</dl>
+</section>
+<section id="getclassinfo">
+<h3><code class="docutils literal notranslate"><span class="pre">getClassInfo</span></code><a class="headerlink" href="#getclassinfo" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="n">classinfo</span><span class="w"> </span><span class="o">*</span><span class="nf">getClassInfo</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Returns the classinfo of the slected class.</p>
+</section>
+<section id="id2">
+<h3><code class="docutils literal notranslate"><span class="pre">getParams</span></code><a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="n">stringmap</span><span class="w"> </span><span class="o">*</span><span class="nf">getParams</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sModuleName</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Get the parameters of the secified module.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">sModuleName</span></code></dt><dd><p>Name of the module to get the parameters of.</p>
+</dd>
+</dl>
+</section>
+<section id="getselected">
+<h3><code class="docutils literal notranslate"><span class="pre">getSelected</span></code><a class="headerlink" href="#getselected" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">getSelected</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Return the name of the currently selected class.</p>
+</section>
+<section id="getspeciesname">
+<h3><code class="docutils literal notranslate"><span class="pre">getSpeciesName</span></code><a class="headerlink" href="#getspeciesname" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">getSpeciesName</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Returns the species name for the currently selected class.</p>
+</section>
+<section id="getclassnames">
+<h3><code class="docutils literal notranslate"><span class="pre">getClassNames</span></code><a class="headerlink" href="#getclassnames" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">getClassNames</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Returns a vector containing the names of all classes.</p>
+</section>
+</section>
+<section id="protected-methods-paramprovider2">
+<h2>Protected Methods (<code class="docutils literal notranslate"><span class="pre">ParamProvider2</span></code>)<a class="headerlink" href="#protected-methods-paramprovider2" title="Permalink to this heading">¶</a></h2>
+<section id="id3">
+<h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">ParamProvider2</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The constructor.</p>
+</section>
+<section id="init">
+<h3><code class="docutils literal notranslate"><span class="pre">init</span></code><a class="headerlink" href="#init" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">init</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sXMLFile</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Creates a <code class="docutils literal notranslate"><span class="pre">qhgXMLTree</span></code> for the specified file and then calls <code class="docutils literal notranslate"><span class="pre">processClass</span></code> for ech of the “class” nodes.</p>
+</section>
+<section id="processparam">
+<h3><code class="docutils literal notranslate"><span class="pre">processParam</span></code><a class="headerlink" href="#processparam" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">processParam</span><span class="p">(</span><span class="n">qhgXMLNode</span><span class="w"> </span><span class="o">*</span><span class="n">pParam</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">subtag</span><span class="p">,</span><span class="w"> </span><span class="n">stringmap</span><span class="w"> </span><span class="o">&amp;</span><span class="n">att_param</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Processes the node corresponding to a parameter or priority list: collects the name-value pairs from the attributes.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">pParam</span></code></dt><dd><p>Pointer to a “param” or “priorities” node.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">subTag</span></code></dt><dd><p>The tag name to use . Can be “prio” or “param”.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">att_param</span></code></dt><dd><p>The string map to which to add the nam-value pairs.</p>
+</dd>
+</dl>
+<p>Returns 0 on success, -1 on failure.</p>
+</section>
+<section id="processmodule">
+<h3><code class="docutils literal notranslate"><span class="pre">processModule</span></code><a class="headerlink" href="#processmodule" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">processModule</span><span class="p">(</span><span class="n">qhgXMLNode</span><span class="w"> </span><span class="o">*</span><span class="n">pModule</span><span class="p">,</span><span class="w"> </span><span class="n">modulemap</span><span class="w"> </span><span class="o">&amp;</span><span class="n">m_Modules</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Processes the node corresponding to a module: collects the attributes, parameters and submodules.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">pModule</span></code></dt><dd><p>Pointer to a “module” node.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">m_Modules</span></code></dt><dd><p>Module map to whcich to ad the module.</p>
+</dd>
+</dl>
+<p>Returns 0 on success, -1 on failure.</p>
+</section>
+<section id="processpriorities">
+<h3><code class="docutils literal notranslate"><span class="pre">processPriorities</span></code><a class="headerlink" href="#processpriorities" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">processPriorities</span><span class="p">(</span><span class="n">qhgXMLNode</span><span class="w"> </span><span class="o">*</span><span class="n">pPrios</span><span class="p">,</span><span class="w"> </span><span class="n">stringmap</span><span class="w"> </span><span class="o">&amp;</span><span class="n">pa</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Processes the node corresponding to the priorities: collect the “prio” entries contained by this node.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">pPrios</span></code></dt><dd><p>Pointer to the “priorities” node.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">pa</span></code></dt><dd><p>string map to contain the priority data ({action_name =&gt; priority_value}).</p>
+</dd>
+</dl>
+<p>Returns 0 on success, -1 on failure.</p>
+</section>
+<section id="processclass">
+<h3><code class="docutils literal notranslate"><span class="pre">processClass</span></code><a class="headerlink" href="#processclass" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">processClass</span><span class="p">(</span><span class="n">qhgXMLNode</span><span class="w"> </span><span class="o">*</span><span class="n">pClass</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Processes the node corresponding to a class: get the attributes and collect the modules and priorities.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">pClass</span></code></dt><dd><p>Pointer to a <code class="docutils literal notranslate"><span class="pre">qhgXMLNode</span></code> representing a class.</p>
+</dd>
+</dl>
+<p>Returns 0 on success, -1 on failure.</p>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">ParamProvider2 and ModuleComplex</a><ul>
+<li><a class="reference internal" href="#public-methods-modulecomplex">Public Methods (<code class="docutils literal notranslate"><span class="pre">ModuleComplex</span></code>)</a><ul>
+<li><a class="reference internal" href="#constructor"><code class="docutils literal notranslate"><span class="pre">constructor</span></code></a></li>
+<li><a class="reference internal" href="#destructor"><code class="docutils literal notranslate"><span class="pre">destructor</span></code></a></li>
+<li><a class="reference internal" href="#addparam"><code class="docutils literal notranslate"><span class="pre">addParam</span></code></a></li>
+<li><a class="reference internal" href="#addsubmodule"><code class="docutils literal notranslate"><span class="pre">addSubModule</span></code></a></li>
+<li><a class="reference internal" href="#getparam"><code class="docutils literal notranslate"><span class="pre">getParam</span></code></a></li>
+<li><a class="reference internal" href="#getmodule"><code class="docutils literal notranslate"><span class="pre">getModule</span></code></a></li>
+<li><a class="reference internal" href="#getparams"><code class="docutils literal notranslate"><span class="pre">getParams</span></code></a></li>
+<li><a class="reference internal" href="#getsubmodules"><code class="docutils literal notranslate"><span class="pre">getSubModules</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#public-methods-paramprovider2">Public Methods (<code class="docutils literal notranslate"><span class="pre">ParamProvider2</span></code>)</a><ul>
+<li><a class="reference internal" href="#id1"><code class="docutils literal notranslate"><span class="pre">destructor</span></code></a></li>
+<li><a class="reference internal" href="#showtree"><code class="docutils literal notranslate"><span class="pre">showTree</span></code></a></li>
+<li><a class="reference internal" href="#getclasses"><code class="docutils literal notranslate"><span class="pre">getClasses</span></code></a></li>
+<li><a class="reference internal" href="#getclass"><code class="docutils literal notranslate"><span class="pre">getClass</span></code></a></li>
+<li><a class="reference internal" href="#selectclass"><code class="docutils literal notranslate"><span class="pre">selectClass</span></code></a></li>
+<li><a class="reference internal" href="#getclassinfo"><code class="docutils literal notranslate"><span class="pre">getClassInfo</span></code></a></li>
+<li><a class="reference internal" href="#id2"><code class="docutils literal notranslate"><span class="pre">getParams</span></code></a></li>
+<li><a class="reference internal" href="#getselected"><code class="docutils literal notranslate"><span class="pre">getSelected</span></code></a></li>
+<li><a class="reference internal" href="#getspeciesname"><code class="docutils literal notranslate"><span class="pre">getSpeciesName</span></code></a></li>
+<li><a class="reference internal" href="#getclassnames"><code class="docutils literal notranslate"><span class="pre">getClassNames</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#protected-methods-paramprovider2">Protected Methods (<code class="docutils literal notranslate"><span class="pre">ParamProvider2</span></code>)</a><ul>
+<li><a class="reference internal" href="#id3"><code class="docutils literal notranslate"><span class="pre">constructor</span></code></a></li>
+<li><a class="reference internal" href="#init"><code class="docutils literal notranslate"><span class="pre">init</span></code></a></li>
+<li><a class="reference internal" href="#processparam"><code class="docutils literal notranslate"><span class="pre">processParam</span></code></a></li>
+<li><a class="reference internal" href="#processmodule"><code class="docutils literal notranslate"><span class="pre">processModule</span></code></a></li>
+<li><a class="reference internal" href="#processpriorities"><code class="docutils literal notranslate"><span class="pre">processPriorities</span></code></a></li>
+<li><a class="reference internal" href="#processclass"><code class="docutils literal notranslate"><span class="pre">processClass</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="qhgXML.html"
+                          title="previous chapter">qhgXMLNode and qhgXMLTree</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="WELLDumpRestore.html"
+                          title="next chapter">WELLDumpRestore</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/code_doc/io/ParamProvider2.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="WELLDumpRestore.html" title="WELLDumpRestore"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="qhgXML.html" title="qhgXMLNode and qhgXMLTree"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../io.html" >io</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">ParamProvider2 and ModuleComplex</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,94 @@
+.. _StatPopFactory_ref:
+
+StatPopFactory
+==============
+
+.. rst-class:: hidden
+
+   This page describes the class :index:`StatPopFactory`
+
+The class ``StatPopFactory`` is derived from the abstract base classs :ref:`PopulationFactory<PopulationFactory_ref>`.
+
+It is used in :ref:`SimParams<SimParams_ref>` to read populations from QDF files and XML files.
+
+A peculiarity of ``StatPopFactory.cpp`` code is that it is generated from a template (``StatPopFactory.cpp_for_configure``) by the script ``configure.sh``
+The reason for this is to have ``new`` statements for all population classes (or a subset thereof, see :ref:`Alternative Population anf Action directories<Compiling_QHG_alternate_ref>`).
+
+Code: `StatPopFactory.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/StatPopFactory.h>`_ ,`StatPopFactory.cpp_template <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/StatPopFactory.cpp_template>`_
+
+PublicMethods
+-------------
+
+``constructor``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    StatPopFactory(SCellGrid *pCG, PopFinder *pPopFinder, int iLayerSize, 
+                   IDGen **apIDG, uint32_t *aulState, uint *aiSeeds)
+
+``pCG``
+    The :ref:`SCellGrid<SCellGrid_ref>` for the current simulation.
+
+``pPopFinder``
+    A :ref:`PopLooper<PopLooper_ref>` object. Such an object knows all population objects being used in this simulation. 
+    Useful for predator-prey relation ships because predators must be able to find their prey.
+
+``iLayerSize``
+    Size of the layers of the agent storage (see :ref:`LayerBuf<LayerBuf_ref>`).
+
+``apIDGen``
+    An array of id generators (one for each thread), capable of creating unique ids for agents.
+
+``aulState``
+    The initial state for the :ref:`WELL random number generators`<WELL512_ref>`.
+
+``aiSeeds``
+    Additional ``uint`` s to seed WELL RNGs not used for moving and mating
+
+Initializes the members of ``StatPopFactory`` so that they can later be used to create populations.
+
+
+``createPopulationByName``
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: c++
+
+    PopBase *createPopulationByName(const std::string sClassName);
+
+``sClassName`` 
+    Name of the class to be created.
+
+Creates a ``PopBase`` object corresponding to the provided name 
+(usually called when reading a population from a QDF file).
+
+The big ``if-else`` statement used to determine the correct population is generated at compile time:
+
+.. code-block:: c++ 
+
+    if (sClassName.empty()) {
+        stdprintf("empty Class ID\n");
+    ...
+    } else if (sClassName == "tut_EnvironAltPop") {
+         if (bVerbose) { printf("PopulationFactory is creating tut_EnvironAltPop\n"); }
+         pPop = new tut_EnvironAltPop(m_pCG,m_pPopFinder,m_iLayerSize,m_apIDG,m_aulState,m_aiSeeds);
+    } else if (sClassName == "tut_EnvironCapAltPop") {
+    ...
+    } else {
+        stdprintf("unknown  Class Name [%s]\n", sClassName);
+    }
+
+
+
+
+``readPopulation``
+^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+    
+    virtual PopBase *readPopulation(ParamProvider2 *pPP);
+
+``pPP``
+    A ``ParamProvider2`` object 
+
+Reads the parameters for a population from ``pPP`` and returns a pointer to the population 
+(usually called when reading a population from an xml file).
+

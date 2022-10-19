@@ -1,0 +1,34 @@
+.. _ClimateGroup_ref:
+
+"Climate"
+---------
+
+.. rst-class:: hidden
+
+   This page describes the :index:`climate group`
+
+The **climate group** contains data and attributes pertaining to the climate, such as annual rainfall or avereage temperaturecoordinates, altitudes, sea levele ice coverage tec.
+
+Attributes
+^^^^^^^^^^
+- **NumCells**
+    Number of grid cells
+
+- **NumSeasons**
+    Number of seasons
+
+DataSets
+^^^^^^^^
+
+**ActualRains**
+    An array containing the actual precipitation (mm/year) for each node
+
+**ActualTemps**
+    An array containing the actual temperature averages (degrees Celsius) for each node
+
+**AnnualMeanTemp**
+    An array containing the annual temperature averages (degrees Celsius) for each node
+
+**AnnualRainfall**
+    An array containing the total annual precipitation (mm/year) for each node
+ 

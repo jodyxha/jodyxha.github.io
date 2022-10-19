@@ -1,0 +1,83 @@
+.. _VegWriter_ref:
+
+VegWriter
+=============
+
+.. rst-class:: hidden
+
+   This page desctibes the class :index:`VegWriter`
+
+The class ``VegWriter`` is used to write the :ref:`vegetation data<Vegetation_ref>` to a :ref:`vegetation group<VegGroup_ref>` in a qdf file.
+
+Code: `VegWriter.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/VegWriter.h>`_, `VegWriter.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/VegWriter.cpp>`_
+
+Public Methods
+--------------
+
+``constructor``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+   VegWriter(Vegetation *pVeg);
+
+The constructor.
+
+.. -----------------------------------------------------------------------------
+
+``write``
+^^^^^^^^^
+.. code-block:: c++
+
+   int write(hid_t hFile);
+
+Write the vegetation data to an open qdf file.
+
+``hFile``
+   HDF handle to the opened file.
+
+.. -----------------------------------------------------------------------------
+
+``writeToQDF``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+   int writeToQDF(const std::string sFileName, int iStep,
+                  float fStartTime,            const std::string sInfoString);
+
+
+Creates a new qdf file, creates a :ref:`vegetation group<VegGroup_ref>` and writes the vegetation  data to it.
+
+``sFileName``
+   Name of output file.
+
+``iStep``
+   The current simulation step. This number is saved as an attribute in the output file's root group. 
+
+``fStartTime``
+   The start time of the simulation (i.e. the 'real' time at step 0). This number is also saved as an attribute in the output file's root group.
+
+``sInfoString``
+   An arbitrary string which will be saved as an attribute in the output file's root group.
+
+Returns 0 on success, -1 on failure.
+
+.. -----------------------------------------------------------------------------
+
+Protected Methods
+-----------------
+
+``writeVegAttributes``
+^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+   int writeVegAttributes(hid_t hClimateGroup);
+
+Writes the vegetation attributes to the  :ref:`vegetation group<VegGroup_ref>` in the qdf file.
+
+``hClimateGroup``
+    HDF pointer to the climate group in the qdf file.
+
+Returns 0 on success, -1 on failure.
+
+.. -----------------------------------------------------------------------------
+

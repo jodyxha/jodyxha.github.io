@@ -1,0 +1,159 @@
+.. _ConfinedMove_ref:
+
+ConfinedMove
+============
+
+.. rst-class:: hidden
+  
+    This page describes the class :index:`ConfinedMove`
+
+The class ``ConfinedMove`` is derived from ``Action`` and limits the agents moves to a ciecle with specified center and radius.
+It maintains an array of permissions (one bool for each cell), where false means the cell is out of limits.
+Usually it is used togeteher with a :ref:`RandomMove<RandomMove_ref>` if :ref:`WeightedMove<WeightedMove_ref>` action.
+The priority for this action shold be set to make it be executed after the mve action.
+
+It uses the population's list of registered moves to eliminate those moves from the list who would cross the boundary.
+
+
+Code: `ConfinedMove.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/ConfinedMove.h>`_ `ConfinedMove.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/ConfinedMove.cpp>`_
+
+**Attributes:**
+
++-------------------------------+------------------+------------------------------------+
+| ``ATTR_CONFINEDMOVE_NAME``    | "ConfinedMove"   | action name                        |
++-------------------------------+------------------+------------------------------------+
+| ``ATTR_CONFINEDMOVE_X_NAME``  | "ConfinedMove_x" | x-coordinate of confinement circle |
++-------------------------------+------------------+------------------------------------+
+| ``ATTR_CONFINEDMOVE_Y_NAME``  | "ConfinedMove_y" | y-coordinate of confinement circle |
++-------------------------------+------------------+------------------------------------+
+| ``ATTR_CONFINEDMOVE_R_NAME``  | "ConfinedMove_r" | radius of confinement circle       |
++-------------------------------+------------------+------------------------------------+
+
+
+Public Methods
+--------------
+
+``constructor``
+^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    ConfinedMove(SPopulation<T> *pPop, SCellGrid *pCG, std::string sID);
+
+``pPop``
+    A pointer to the :ref:`SPopulation<SPopulation_ref>` object performing this action.
+
+``pCG``
+    A pointer to the  :ref:`SCellGrid<SCellGrid_ref>` object on which the simulation runs.
+
+``sActionName``
+    Name of this action.
+
+``sID``
+    An ID for this action.
+
+The constructor.
+
+.. -----------------------------------------------------------------------------
+
+``destructor``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual ~ConfinedMove();
+
+Deletes the array of permissions.
+
+.. -----------------------------------------------------------------------------
+
+``preLoop``
+^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int preLoop();
+
+Here the array of permissions is created and filled (true if corresponding cell is inside the confinement circle, false otherwise).
+(This is done in parallel)
+
+.. -----------------------------------------------------------------------------
+
+
+``finalize``
+^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int finalize(float fTime);
+
+Here the list of registered moves is modified: moves which lead outside the confinement circle are removed from the list.
+
+.. -----------------------------------------------------------------------------
+
+``extractAttributesQDF``
+^^^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int extractAttributesQDF(hid_t hSpeciesGroup);
+
+``hSpeciesGroup``
+    HDF handle for the species group to read from.
+
+Reads the action's attributes from the specified group of a QDF file.
+
+.. -----------------------------------------------------------------------------
+
+``writeAttributesQDF``
+^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int writeAttributesQDF(hid_t hSpeciesGroup);
+
+``hSpeciesGroup``
+    HDF handle for the species group to write the attributes to.
+
+Writes the action's attributes (in this case, the registration mode) to the specified group pf a QDF file.
+
+.. -----------------------------------------------------------------------------
+
+``tryGetAttributes``
+^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int tryGetAttributes(const ModuleComplex *pMC);  
+
+``pMC``
+    A ``ModuleComplex`` object.
+
+Extracts the action's attributes from the ``ModuleComplex`` object.
+
+.. -----------------------------------------------------------------------------
+
+``modifyAttributes``
+^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int modifyAttributes(const std::string sAttrName, double dValue);
+
+
+``sAttrName``
+    Name of attribute to change.
+
+``dValue``
+    Value to set the attribute to.
+
+Can be used to change the center and/or the radius of the confinement.
+
+.. -----------------------------------------------------------------------------
+
+``isEqual``
+^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual bool isEqual(Action<T> *pAction, bool bStrict);
+
+``pAction``
+    Pointer to an action object to compare with this.
+
+``bStrict``
+    Strictness of comparisons (ignored here).
+
+``pAction`` is equal to ``this``, if it is a ``ConfinedMove`` object whose mpve attributes have values equal to those of this object.
+    

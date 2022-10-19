@@ -1,0 +1,269 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>WELLUtils &#8212; QHG4 4.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jody.css" />
+    
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    
+    <link rel="shortcut icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="crypto" href="crypto.html" />
+    <link rel="prev" title="WELL512" href="WELL512.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="crypto.html" title="crypto"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="WELL512.html" title="WELL512"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../utils.html" accesskey="U">utils</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">WELLUtils</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="wellutils">
+<span id="wellutils-ref"></span><h1>WELLUtils<a class="headerlink" href="#wellutils" title="Permalink to this heading">¶</a></h1>
+<p class="hidden">This page describes the module <span class="target" id="index-0"></span>WELLUtils</p>
+<p>The module <code class="docutils literal notranslate"><span class="pre">WELLUtils</span></code> provides some helpful utilities for initialising and managinf <a class="reference internal" href="WELL512.html#well512-ref"><span class="std std-ref">WELL512</span></a> objects.</p>
+<p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/WELLUtils.h">WELLUtils.h</a>, <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/WELLUtils.cpp">WELLUtils.cpp</a></p>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this heading">¶</a></h2>
+<section id="stringtoseed">
+<h3><code class="docutils literal notranslate"><span class="pre">stringToSeed</span></code><a class="headerlink" href="#stringtoseed" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">stringToSeed</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sSequence</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">uint32_t</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">vulState</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Converts string representation of a state to a vector of uint32_t integers.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">sSequence</span></code></dt><dd><p>A space separated list of hexadeimal numbers.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">vulState</span></code></dt><dd><p>A vector to hold the converted numbers.</p>
+</dd>
+</dl>
+<p>Returns 0 on success, -1 if wrong number of hexadecimals in string.</p>
+</section>
+<section id="phrasetoseed">
+<h3><code class="docutils literal notranslate"><span class="pre">phraseToSeed</span></code><a class="headerlink" href="#phrasetoseed" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">phraseToSeed</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sPhrase</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">uint32_t</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">vulState</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Uses md5 to fill a vector with STATE_SIZE uint32_t.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">sPhrase</span></code></dt><dd><p>An arbitrary string.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">vulState</span></code></dt><dd><p>A vector to hold the converted numbers.</p>
+</dd>
+</dl>
+<p>Returns 0 on success, -1 if empty string is passed.</p>
+</section>
+<section id="randomseed">
+<h3><code class="docutils literal notranslate"><span class="pre">randomSeed</span></code><a class="headerlink" href="#randomseed" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">randomSeed</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iSeed</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">uint32_t</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">vulState</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Uses the c library <code class="docutils literal notranslate"><span class="pre">rand()</span></code> function to fill a vector with STATE_SIZE uint32_t.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">iSeed</span></code></dt><dd><p>Seed for <code class="docutils literal notranslate"><span class="pre">rand()</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">vulState</span></code></dt><dd><p>A vector to hold the converted numbers.</p>
+</dd>
+</dl>
+</section>
+<section id="createwell">
+<h3><code class="docutils literal notranslate"><span class="pre">createWELL</span></code><a class="headerlink" href="#createwell" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">WELL512</span><span class="w"> </span><span class="o">*</span><span class="nf">createWELL</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sPhrase</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Creates a WELL512 and seeds it with the string sPhrase.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">sPhrase</span></code></dt><dd><p>An arbitrary string.</p>
+</dd>
+</dl>
+<p>Returns a pointer to the generated WELL512 object.</p>
+</section>
+<section id="buildwells">
+<h3><code class="docutils literal notranslate"><span class="pre">buildWells</span></code><a class="headerlink" href="#buildwells" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">WELL512</span><span class="w"> </span><span class="o">**</span><span class="nf">buildWELLs</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iNum</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="n">iSeed</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Creates an array of <code class="docutils literal notranslate"><span class="pre">iNum</span></code> pointers to <code class="docutils literal notranslate"><span class="pre">WELL512</span></code> objects.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">iNum</span></code></dt><dd><p>Number of <code class="docutils literal notranslate"><span class="pre">WELL512</span></code> objects to create.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iSeed</span></code></dt><dd><p>An integer to seed the <code class="docutils literal notranslate"><span class="pre">WELL512</span></code> objects.</p>
+</dd>
+</dl>
+<p>Returns a pointer to the array of WELLs.
+This pointer should be passed to <code class="docutils literal notranslate"><span class="pre">destroyWELLs()</span></code> if the WELLs aren’t needed anymore.</p>
+</section>
+<section id="destroywells">
+<h3><code class="docutils literal notranslate"><span class="pre">destroyWELLs</span></code><a class="headerlink" href="#destroywells" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">destroyWELLs</span><span class="p">(</span><span class="n">WELL512</span><span class="w"> </span><span class="o">**</span><span class="n">pWELLs</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iNum</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Destroy an array of <code class="docutils literal notranslate"><span class="pre">WELL512</span></code> objects created by <code class="docutils literal notranslate"><span class="pre">buildWELLs()</span></code>.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">ppWELLs</span></code></dt><dd><p>Pointer to array of <code class="docutils literal notranslate"><span class="pre">WELL512*</span></code> to be destroyed.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iNum</span></code></dt><dd><p>Number of WELL512 objects.</p>
+</dd>
+</dl>
+</section>
+<section id="showstate">
+<h3><code class="docutils literal notranslate"><span class="pre">showState</span></code><a class="headerlink" href="#showstate" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">showState</span><span class="p">(</span><span class="n">WELL512</span><span class="w"> </span><span class="o">*</span><span class="n">pWELL</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Prints the current index and state vector of the <code class="docutils literal notranslate"><span class="pre">WELL512</span></code> object to stdout. Mainly used for debugging.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">pWELL</span></code></dt><dd><p>The <code class="docutils literal notranslate"><span class="pre">WELL512</span></code> object to display.</p>
+</dd>
+<dt>The output has the format <code class="docutils literal notranslate"><span class="pre">&quot;[&quot;&lt;cur_index&gt;&quot;]&quot;</span> <span class="pre">&lt;hex&gt;*</span></code>, e.g.</dt><dd><p><code class="docutils literal notranslate"><span class="pre">[001ef32c]</span> <span class="pre">31bb311a</span> <span class="pre">cc5190d3</span> <span class="pre">bbca71aa</span> <span class="pre">...</span></code></p>
+</dd>
+</dl>
+</section>
+<section id="showstates">
+<h3><code class="docutils literal notranslate"><span class="pre">showStates</span></code><a class="headerlink" href="#showstates" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">showStates</span><span class="p">(</span><span class="n">WELL512</span><span class="w"> </span><span class="o">**</span><span class="n">apWELL</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iNum</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">bFull</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Prints the current indexes and states of an array of <code class="docutils literal notranslate"><span class="pre">WELL512</span></code> objects. Mainly used for debugging.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">apWELL</span></code></dt><dd><p>The array of WELL512 objects to  display.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iNum</span></code></dt><dd><p>Number of objects in array.</p>
+</dd>
+</dl>
+</section>
+<section id="strstate">
+<h3><code class="docutils literal notranslate"><span class="pre">strState</span></code><a class="headerlink" href="#strstate" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">strState</span><span class="p">(</span><span class="n">WELL512</span><span class="w"> </span><span class="o">*</span><span class="n">pWELL</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Creates a string containing index and state of the <code class="docutils literal notranslate"><span class="pre">WELL512</span></code> object.</p>
+</section>
+<section id="strstatehash">
+<h3><code class="docutils literal notranslate"><span class="pre">strStateHash</span></code><a class="headerlink" href="#strstatehash" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">strStateHash</span><span class="p">(</span><span class="n">WELL512</span><span class="w"> </span><span class="o">*</span><span class="n">pWELL</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Calculates a md5 hash from the string representation of the WELL’s state.</p>
+<p>Returns a string representation of the hash.</p>
+</section>
+</section>
+<section id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this heading">¶</a></h2>
+<p>(&#64;&#64;TODO) <span class="xref std std-ref">wellutilsexample tototot</span></p>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">WELLUtils</a><ul>
+<li><a class="reference internal" href="#functions">Functions</a><ul>
+<li><a class="reference internal" href="#stringtoseed"><code class="docutils literal notranslate"><span class="pre">stringToSeed</span></code></a></li>
+<li><a class="reference internal" href="#phrasetoseed"><code class="docutils literal notranslate"><span class="pre">phraseToSeed</span></code></a></li>
+<li><a class="reference internal" href="#randomseed"><code class="docutils literal notranslate"><span class="pre">randomSeed</span></code></a></li>
+<li><a class="reference internal" href="#createwell"><code class="docutils literal notranslate"><span class="pre">createWELL</span></code></a></li>
+<li><a class="reference internal" href="#buildwells"><code class="docutils literal notranslate"><span class="pre">buildWells</span></code></a></li>
+<li><a class="reference internal" href="#destroywells"><code class="docutils literal notranslate"><span class="pre">destroyWELLs</span></code></a></li>
+<li><a class="reference internal" href="#showstate"><code class="docutils literal notranslate"><span class="pre">showState</span></code></a></li>
+<li><a class="reference internal" href="#showstates"><code class="docutils literal notranslate"><span class="pre">showStates</span></code></a></li>
+<li><a class="reference internal" href="#strstate"><code class="docutils literal notranslate"><span class="pre">strState</span></code></a></li>
+<li><a class="reference internal" href="#strstatehash"><code class="docutils literal notranslate"><span class="pre">strStateHash</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="WELL512.html"
+                          title="previous chapter">WELL512</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="crypto.html"
+                          title="next chapter">crypto</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/code_doc/utils/WELLUtils.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="crypto.html" title="crypto"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="WELL512.html" title="WELL512"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../utils.html" >utils</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">WELLUtils</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+    </div>
+  </body>
+</html>

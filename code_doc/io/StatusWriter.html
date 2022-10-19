@@ -1,0 +1,311 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>StatusWriter &#8212; QHG4 4.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jody.css" />
+    
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    
+    <link rel="shortcut icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="GridWriter" href="GridWriter.html" />
+    <link rel="prev" title="PopReader" href="PopReader.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="GridWriter.html" title="GridWriter"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="PopReader.html" title="PopReader"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../io.html" accesskey="U">io</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">StatusWriter</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="statuswriter">
+<span id="statuswriter-ref"></span><h1>StatusWriter<a class="headerlink" href="#statuswriter" title="Permalink to this heading">¶</a></h1>
+<p class="hidden">This page describes the class <span class="target" id="index-0"></span>StatusWriter</p>
+<p>The class <code class="docutils literal notranslate"><span class="pre">StatusWriter</span></code> is responsible for writing outputs to <a class="reference internal" href="../../formats/qdf/QDF.html#qdf-ref"><span class="std std-ref">qdf files</span></a>.</p>
+<p>It owns specialized writers for the various environment and population data.</p>
+<p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/io/StatusWriter.h">StatusWriter.h</a>, <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/io/StatusWriter.cpp">StatusWriter.cpp</a></p>
+<section id="public-methods">
+<h2>Public Methods<a class="headerlink" href="#public-methods" title="Permalink to this heading">¶</a></h2>
+<section id="createinstance">
+<h3><code class="docutils literal notranslate"><span class="pre">createInstance</span></code><a class="headerlink" href="#createinstance" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="n">StatusWriter</span><span class="w"> </span><span class="o">*</span><span class="nf">createInstance</span><span class="p">(</span><span class="n">SCellGrid</span><span class="w"> </span><span class="o">*</span><span class="n">pCG</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">PopBase</span><span class="w"> </span><span class="o">*&gt;</span><span class="w"> </span><span class="n">vPops</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Creates a <code class="docutils literal notranslate"><span class="pre">StatusWriter</span></code> object for the specified grid.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">pCG</span></code></dt><dd><p>A pointer to the cell grid. The cellgrid itself has pointers to the various nvironment objects.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">vPops</span></code></dt><dd><p>A vector of pointers to population objects.</p>
+</dd>
+</dl>
+<p>Returns a <code class="docutils literal notranslate"><span class="pre">StatusWriter</span></code> objects, or <code class="docutils literal notranslate"><span class="pre">NULL</span></code> on failure.</p>
+</section>
+<section id="destructor">
+<h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">StatusWriter</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The destructor deletes all <code class="docutils literal notranslate"><span class="pre">XXXWriter</span></code> objects owned by <code class="docutils literal notranslate"><span class="pre">StatusWriter</span></code>.</p>
+</section>
+<section id="write">
+<h3><code class="docutils literal notranslate"><span class="pre">write</span></code><a class="headerlink" href="#write" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">write</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sFileName</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iStep</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">fStartTime</span><span class="p">,</span><span class="w"></span>
+<span class="w">          </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sInfoString</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iWhat</span><span class="p">,</span><span class="w"></span>
+<span class="w">          </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">vSub</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iDumpMode</span><span class="o">=</span><span class="mi">-1</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">write</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sFileName</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iStep</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">fStartTime</span><span class="p">,</span><span class="w"></span>
+<span class="w">          </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sInfoString</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iWhat</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iDumpMode</span><span class="o">=</span><span class="mi">-1</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line">This method writes the data inidicated by <code class="docutils literal notranslate"><span class="pre">iWhat</span></code> to a qdf file with the specified name.</div>
+<div class="line">It is used both for normal outputs and for <a class="reference internal" href="../../dumprestore.html#dump-restore-ref"><span class="std std-ref">dumps</span></a> (dumps contain more data than ordinary outputs).</div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">sFileName</span></code></dt><dd><p>Name of output file.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iStep</span></code></dt><dd><p>The current simulation step. This number is saved as an attribute in the output file’s root group.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">fStartTime</span></code></dt><dd><p>The start time of the simulation (i.e. the ‘real’ time at step 0). This number is also saved as an attribute in the output file’s root group.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sInfoString</span></code></dt><dd><p>An arbitrary string which will be saved as an attribute in the output file’s root group.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iWhat</span></code></dt><dd><p>An or-ed combination of <code class="docutils literal notranslate"><span class="pre">output_flags</span></code> flags describing what elements to write to file</p>
+</dd>
+</dl>
+<table class="docutils align-default" id="statuswriter-output-flags-ref">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Value</p></th>
+<th class="head"><p>Meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>output_flag::WR_NONE</p></td>
+<td><p>0</p></td>
+<td><p>Write nothing</p></td>
+</tr>
+<tr class="row-odd"><td><p>output_flag::WR_GRID</p></td>
+<td><p>1</p></td>
+<td><p>Write the grid data</p></td>
+</tr>
+<tr class="row-even"><td><p>output_flag::WR_GEO</p></td>
+<td><p>2</p></td>
+<td><p>Write the geography data</p></td>
+</tr>
+<tr class="row-odd"><td><p>output_flag::WR_CLI</p></td>
+<td><p>4</p></td>
+<td><p>Write the climate data</p></td>
+</tr>
+<tr class="row-even"><td><p>output_flag::WR_VEG</p></td>
+<td><p>8</p></td>
+<td><p>Write the vegetation data</p></td>
+</tr>
+<tr class="row-odd"><td><p>output_flag::WR_NAV</p></td>
+<td><p>16</p></td>
+<td><p>Write the navigation data</p></td>
+</tr>
+<tr class="row-even"><td><p>output_flag::WR_ALL</p></td>
+<td><p>31</p></td>
+<td><p>Write all environment data</p></td>
+</tr>
+<tr class="row-odd"><td><p>output_flag::WR_MOV</p></td>
+<td><p>32</p></td>
+<td><p>Write move statistics</p></td>
+</tr>
+<tr class="row-even"><td><p>output_flag::WR_POP</p></td>
+<td><p>128</p></td>
+<td><p>Write the population listed in vSub</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">vSub</span></code></dt><dd><p>A vector of pairs of population names and an or-ed combination of <code class="docutils literal notranslate"><span class="pre">popwrite_flags</span></code>. The populations named in this vector will be written to the output file.</p>
+</dd>
+</dl>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Pop-specific Flag</p></th>
+<th class="head"><p>Value</p></th>
+<th class="head"><p>meaninging</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>popwrite_flags::PW_NONE</p></td>
+<td><p>0</p></td>
+<td><p>Write nothing</p></td>
+</tr>
+<tr class="row-odd"><td><p>popwrite_flags::PW_AGENTS_ONLY</p></td>
+<td><p>1</p></td>
+<td><p>Write agent data only</p></td>
+</tr>
+<tr class="row-even"><td><p>popwrite_flags::PW_STATS_ONLY</p></td>
+<td><p>2</p></td>
+<td><p>Write move statistics only</p></td>
+</tr>
+<tr class="row-odd"><td><p>popwrite_flags::PW_ADDITIONAL_ONLY</p></td>
+<td><p>4</p></td>
+<td><p>Write additional data only</p></td>
+</tr>
+<tr class="row-even"><td><p>popwrite_flags::PW_ALL</p></td>
+<td><p>7</p></td>
+<td><p>Write all</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">iDumpMode</span></code></dt><dd><p>Dump mode. If -1, normal writing is performed, otherwise use `` LBController::DUMP_MODE_FLAT`` (0)  or <code class="docutils literal notranslate"><span class="pre">LBController::DUMP_MODE_SMART</span></code> (1=</p>
+</dd>
+</dl>
+<p>Returns 0 on success, -1 on failure.</p>
+</section>
+<section id="geterror">
+<h3><code class="docutils literal notranslate"><span class="pre">getError</span></code><a class="headerlink" href="#geterror" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="nf">getError</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Returns error messages.</p>
+</section>
+</section>
+<section id="protected-methods">
+<h2>Protected Methods<a class="headerlink" href="#protected-methods" title="Permalink to this heading">¶</a></h2>
+<section id="constructor">
+<h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#constructor" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">StatusWriter</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The constructor.</p>
+</section>
+<section id="init">
+<h3><code class="docutils literal notranslate"><span class="pre">init</span></code><a class="headerlink" href="#init" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">init</span><span class="p">(</span><span class="n">SCellGrid</span><span class="w"> </span><span class="o">*</span><span class="n">pCG</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">PopBase</span><span class="w"> </span><span class="o">*&gt;</span><span class="w"> </span><span class="n">vPops</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Creates all the environment writers needed:</dt><dd><ul class="simple">
+<li><p><a class="reference internal" href="GridWriter.html#gridwriter-ref"><span class="std std-ref">GridWriter</span></a></p></li>
+<li><p><a class="reference internal" href="GeoWriter.html#geowriter-ref"><span class="std std-ref">GeoWriter</span></a></p></li>
+<li><p><a class="reference internal" href="ClimateWriter.html#climatewriter-ref"><span class="std std-ref">ClimateWriter</span></a></p></li>
+<li><p><a class="reference internal" href="VegWriter.html#vegwriter-ref"><span class="std std-ref">VegWriter</span></a></p></li>
+<li><p><a class="reference internal" href="NavWriter.html#navwriter-ref"><span class="std std-ref">NavWriter</span></a></p></li>
+<li><p><a class="reference internal" href="PopWriter.html#popwriter-ref"><span class="std std-ref">PopWriter</span></a></p></li>
+</ul>
+</dd>
+</dl>
+<p>Returns 0 on success, -1 on failure.</p>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">StatusWriter</a><ul>
+<li><a class="reference internal" href="#public-methods">Public Methods</a><ul>
+<li><a class="reference internal" href="#createinstance"><code class="docutils literal notranslate"><span class="pre">createInstance</span></code></a></li>
+<li><a class="reference internal" href="#destructor"><code class="docutils literal notranslate"><span class="pre">destructor</span></code></a></li>
+<li><a class="reference internal" href="#write"><code class="docutils literal notranslate"><span class="pre">write</span></code></a></li>
+<li><a class="reference internal" href="#geterror"><code class="docutils literal notranslate"><span class="pre">getError</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#protected-methods">Protected Methods</a><ul>
+<li><a class="reference internal" href="#constructor"><code class="docutils literal notranslate"><span class="pre">constructor</span></code></a></li>
+<li><a class="reference internal" href="#init"><code class="docutils literal notranslate"><span class="pre">init</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="PopReader.html"
+                          title="previous chapter">PopReader</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="GridWriter.html"
+                          title="next chapter">GridWriter</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/code_doc/io/StatusWriter.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="GridWriter.html" title="GridWriter"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="PopReader.html" title="PopReader"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../io.html" >io</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">StatusWriter</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+    </div>
+  </body>
+</html>

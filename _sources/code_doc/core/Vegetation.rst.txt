@@ -1,0 +1,81 @@
+.. _Vegetation_ref:
+
+Vegetation
+==========
+
+.. rst-class:: hidden
+
+    This page describes the class :index:`Vegetation`
+
+The ``Vegetation`` class contains some vegetation-related data.
+
+In earlier versions of QHG, different vegetation types (grass, shrub, tree) were estimated from climate data, and from them calculate net primary production.
+
+Newer paleo simulations by Axel Timmermann directly provide Net Primary Production (NPP).
+
+Code: `Vegetation.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/core/Vegetation.h>`_ `Vegetation.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/core/Vegetation.cpp>`_
+
+
+Public Members
+--------------
+
+
+ 
+.. -----------------------------------------------------------------------------
+
+.. code-block:: c++
+
+    uint m_iNumCells;
+
+Number of cells.
+
+.. -----------------------------------------------------------------------------
+
+.. code-block:: c++
+
+    int m_iNumVegSpecies;
+
+Number of vegetation species (currently unused).
+    
+.. -----------------------------------------------------------------------------
+
+.. code-block:: c++
+
+    double *m_adBaseANPP;
+
+NPP (kg carbon per suare meter and year) as calculated from climate data.
+
+.. -----------------------------------------------------------------------------
+
+.. code-block:: c++
+
+    double *m_adTotalANPP;
+
+Modified NPP: increases due to water in the cell or closenes to the shore.
+
+
+Public Methods
+--------------
+
+.. -----------------------------------------------------------------------------
+
+``update``
+^^^^^^^^^^
+.. code-block:: c++
+
+   int update(float fTime);
+
+``fTime``
+    Current time.
+
+Called for general update events (currently unused).
+
+.. -----------------------------------------------------------------------------
+
+``climateUpdate``
+^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    int climateUpdate(float fTime);
+
+Called for climate updates (currently unused).

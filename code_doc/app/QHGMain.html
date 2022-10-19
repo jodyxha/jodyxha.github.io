@@ -1,0 +1,443 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>QHGMain &#8212; QHG4 4.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jody.css" />
+    
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    
+    <link rel="shortcut icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="SimParams" href="SimParams.html" />
+    <link rel="prev" title="app" href="../app.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="SimParams.html" title="SimParams"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../app.html" title="app"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../app.html" accesskey="U">app</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">QHGMain</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="qhgmain">
+<span id="qhgmain-ref"></span><h1>QHGMain<a class="headerlink" href="#qhgmain" title="Permalink to this heading">¶</a></h1>
+<p class="hidden">This page describes the module <span class="target" id="index-0"></span>QHGMain</p>
+<p><code class="docutils literal notranslate"><span class="pre">QHGMain</span></code> is the executable which runs a QHG4 simulation.</p>
+<p><code class="docutils literal notranslate"><span class="pre">QHGMain.cpp</span></code> consists mainly of the <code class="docutils literal notranslate"><span class="pre">main()</span></code> function, in which the logfile is initialized, a <a class="reference internal" href="Simulator.html#simulator-ref"><span class="std std-ref">Simulator</span></a> object is created and the simulation loop is started.</p>
+<p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/app/QHGMain.cpp">QHGMain.cpp</a></p>
+<section id="calling-qhgmain">
+<h2>Calling QHGMain<a class="headerlink" href="#calling-qhgmain" title="Permalink to this heading">¶</a></h2>
+<p>QHGMain has a large number of command line parameters</p>
+<dl class="simple">
+<dt><a class="reference internal" href="#param-h-ref"><span class="std std-ref">-h</span></a></dt><dd><p>show this help</p>
+</dd>
+<dt><a class="reference internal" href="#param-help-ref"><span class="std std-ref">–help</span></a></dt><dd><p>show detailed help for topic (use name of option or “all”)</p>
+</dd>
+<dt><a class="reference internal" href="#param-log-file-ref"><span class="std std-ref">–log-file</span></a></dt><dd><p>set name of log file (default:”SimTest.log”)</p>
+</dd>
+<dt><a class="reference internal" href="#param-grid-file-ref"><span class="std std-ref">–grid</span></a></dt><dd><p>set grid file</p>
+</dd>
+<dt><a class="reference internal" href="#param-num-iters-ref"><span class="std std-ref">–num-iters</span></a></dt><dd><p>set number of iterations</p>
+</dd>
+<dt><a class="reference internal" href="#param-geo-ref"><span class="std std-ref">–geo</span></a></dt><dd><p>set geography file</p>
+</dd>
+<dt><a class="reference internal" href="#param-climate-ref"><span class="std std-ref">–climate</span></a></dt><dd><p>set climate file</p>
+</dd>
+<dt><a class="reference internal" href="#param-veg-ref"><span class="std std-ref">–veg</span></a></dt><dd><p>set vegetation file</p>
+</dd>
+<dt><a class="reference internal" href="#param-nav-ref"><span class="std std-ref">–nav</span></a></dt><dd><p>set navigation file</p>
+</dd>
+<dt><a class="reference internal" href="#param-pops-ref"><span class="std std-ref">–pops</span></a></dt><dd><p>set population files</p>
+</dd>
+<dt><a class="reference internal" href="#param-output-prefix-ref"><span class="std std-ref">–output-prefix</span></a></dt><dd><p>set prefix for output files (default: “output_”)</p>
+</dd>
+<dt><a class="reference internal" href="#param-output-dir-ref"><span class="std std-ref">–output-dir</span></a></dt><dd><p>set  output directory (default: “./”)</p>
+</dd>
+<dt><a class="reference internal" href="#param-data-dirs-ref"><span class="std std-ref">–data-dirs</span></a></dt><dd><p>set data directories (default: “./”)</p>
+</dd>
+<dt><a class="reference internal" href="#param-read-config-ref"><span class="std std-ref">–read-config</span></a></dt><dd><p>read options from config file</p>
+</dd>
+<dt><a class="reference internal" href="#param-write-config-ref"><span class="std std-ref">–write-config</span></a></dt><dd><p>write config to file &lt;conf&gt;</p>
+</dd>
+<dt><a class="reference internal" href="#param-events-ref"><span class="std std-ref">–events</span></a></dt><dd><p>set event list</p>
+</dd>
+<dt><a class="reference internal" href="#param-start-time-ref"><span class="std std-ref">–start-time</span></a></dt><dd><p>set ‘real’ time for simulation step 0 (default: 0)</p>
+</dd>
+<dt><a class="reference internal" href="#param-dyn-pops-ref"><span class="std std-ref">–dyn-pops</span></a></dt><dd><p>use populations from so directory</p>
+</dd>
+<dt><a class="reference internal" href="#param-so-dirs-ref"><span class="std std-ref">–so-dirs</span></a></dt><dd><p>search directories for population so-files (default: “./”)</p>
+</dd>
+<dt><a class="reference internal" href="#param-interpol-step-ref"><span class="std std-ref">–interpol-step</span></a></dt><dd><p>set step size for interpolation (default: 1)</p>
+</dd>
+<dt><a class="reference internal" href="#param-interpolation-ref"><span class="std std-ref">–interpolation</span></a></dt><dd><p>set interpolation params</p>
+</dd>
+<dt><a class="reference internal" href="#param-layer-size-ref"><span class="std std-ref">–layer-size</span></a></dt><dd><p>set layer size (default: 65536)</p>
+</dd>
+<dt><a class="reference internal" href="#param-shuffle-ref"><span class="std std-ref">–shuffle</span></a></dt><dd><p>shift random generator’s sequence (default: 0)</p>
+</dd>
+<dt><a class="reference internal" href="#param-seed-ref"><span class="std std-ref">–seed</span></a></dt><dd><p>set seed for random number generators</p>
+</dd>
+<dt><a class="reference internal" href="#param-pop-params-ref"><span class="std std-ref">–pop-params</span></a></dt><dd><p>set special population parameters</p>
+</dd>
+<dt><a class="reference internal" href="#param-zip-output-ref"><span class="std std-ref">–zip-output</span></a></dt><dd><p>use gzip to zip all output qdf files</p>
+</dd>
+<dt><a class="reference internal" href="#param-info-string-ref"><span class="std std-ref">–info-string</span></a></dt><dd><p>set  information to be written to root group of output files</p>
+</dd>
+<dt><a class="reference internal" href="#param-resume-ref"><span class="std std-ref">–resume</span></a></dt><dd><p>resume from previously <a class="reference internal" href="../../dumprestore.html#dump-restore-ref"><span class="std std-ref">dumped</span></a> env and pop files</p>
+</dd>
+<dt><a class="reference internal" href="#param-no-merge-pops-ref"><span class="std std-ref">–no-merge-pops</span></a></dt><dd><p>don’t merge compatible populations (same IDs, same actions, same agent types)</p>
+</dd>
+<dt><a class="reference internal" href="#param-dump-on-interrupt-ref"><span class="std std-ref">–dump-on-interrupt</span></a></dt><dd><p>set interrupt handler for Ctrl-C (SIG_INT): dump and exit</p>
+</dd>
+</dl>
+</section>
+<section id="parameter-description">
+<h2>Parameter description<a class="headerlink" href="#parameter-description" title="Permalink to this heading">¶</a></h2>
+<section id="h">
+<span id="param-h-ref"></span><h3>-h<a class="headerlink" href="#h" title="Permalink to this heading">¶</a></h3>
+<p>Show this help</p>
+</section>
+<section id="help-topic">
+<span id="param-help-ref"></span><h3>–help=&lt;topic&gt;<a class="headerlink" href="#help-topic" title="Permalink to this heading">¶</a></h3>
+<p>Show detailed help for specified topic (use name of option or “all”)</p>
+</section>
+<section id="log-file-filename">
+<span id="param-log-file-ref"></span><h3>–log-file=&lt;filename&gt;<a class="headerlink" href="#log-file-filename" title="Permalink to this heading">¶</a></h3>
+<p>Set name of log file.</p>
+</section>
+<section id="grid-grid-file">
+<span id="param-grid-file-ref"></span><h3>–grid=&lt;grid-file&gt;<a class="headerlink" href="#grid-grid-file" title="Permalink to this heading">¶</a></h3>
+<p>(required)
+Specify name of initial grid-file to use.</p>
+<p><strong>grid-file</strong> must be a QDF file containing  a <a class="reference internal" href="../../formats/qdf/GridGroup.html#gridgroup-ref"><span class="std std-ref">grid group</span></a>, but may also contain other groups.</p>
+</section>
+<section id="num-iters-iters">
+<span id="param-num-iters-ref"></span><h3>–num-iters=&lt;iters&gt;<a class="headerlink" href="#num-iters-iters" title="Permalink to this heading">¶</a></h3>
+<p>(required)
+Set number of iterations.</p>
+<p><strong>iters</strong> must be a positive number.</p>
+</section>
+<section id="geo-geo-file">
+<span id="param-geo-ref"></span><h3>–geo=&lt;geo-file&gt;<a class="headerlink" href="#geo-geo-file" title="Permalink to this heading">¶</a></h3>
+<p>Set the initial geography file.</p>
+<p><strong>geo-file</strong> must be a QDF-file containing a <a class="reference internal" href="../../formats/qdf/GeoGroup.html#geogroup-ref"><span class="std std-ref">geography group</span></a>, but may also contain other groups.</p>
+<p>It must contain data for the same number of cells as the grid file</p>
+</section>
+<section id="climate-climate-file">
+<span id="param-climate-ref"></span><h3>–climate=&lt;climate-file&gt;<a class="headerlink" href="#climate-climate-file" title="Permalink to this heading">¶</a></h3>
+<p>Set the initial climate file.</p>
+<p><strong>climate-file</strong> must be a QDF-file containing a <a class="reference internal" href="../../formats/qdf/ClimateGroup.html#climategroup-ref"><span class="std std-ref">climate group</span></a>, but may also contain other groups.</p>
+<p>It must contain data for the same number of cells as the grid file</p>
+</section>
+<section id="veg-veg-file">
+<span id="param-veg-ref"></span><h3>–veg=&lt;veg-file&gt;<a class="headerlink" href="#veg-veg-file" title="Permalink to this heading">¶</a></h3>
+<p>Set the vegetation file.</p>
+<p><strong>veg-file</strong> must be a QDF file containing a <a class="reference internal" href="../../formats/qdf/VegGroup.html#veggroup-ref"><span class="std std-ref">vegetation group</span></a>, but may also contain othr groups.</p>
+<p>It must contain data for the same number of cells as the grid file</p>
+</section>
+<section id="nav-nav-file">
+<span id="param-nav-ref"></span><h3>–nav=&lt;nav-file&gt;<a class="headerlink" href="#nav-nav-file" title="Permalink to this heading">¶</a></h3>
+<p>Set navigation file.</p>
+<p><strong>nav-file</strong> must be a QDF file containing a <a class="reference internal" href="../../formats/qdf/NavGroup.html#navgroup-ref"><span class="std std-ref">navigation group</span></a>, but may also contain other groups.</p>
+</section>
+<section id="pops-pop-list">
+<span id="param-pops-ref"></span><h3>–pops=&lt;pop-list&gt;<a class="headerlink" href="#pops-pop-list" title="Permalink to this heading">¶</a></h3>
+<p>Set population files with QDF file.</p>
+<p><strong>pop-list</strong> is a comma-separated list of population definition files.</p>
+<div class="line-block">
+<div class="line">Population definitions files can QDF-files, each containing at least one subgroup of the Populations group.</div>
+<div class="line">Alternatively you may use a pair &lt;xml-file&gt;:&lt;dat-file&gt;</div>
+</div>
+<div class="line-block">
+<div class="line"><strong>xml-file</strong> is a <a class="reference internal" href="../../formats/pop/pop_xml.html#pop-xml-ref"><span class="std std-ref">class definition xml file</span></a>,</div>
+<div class="line"><strong>dat-file</strong> is a <a class="reference internal" href="../../formats/pop/pop_dat.html#pop-dat-ref"><span class="std std-ref">agent definition dat file</span></a>.</div>
+</div>
+</section>
+<section id="output-prefix-name">
+<span id="param-output-prefix-ref"></span><h3>–output-prefix=&lt;name&gt;<a class="headerlink" href="#output-prefix-name" title="Permalink to this heading">¶</a></h3>
+<p>Set prefix for output files (default: “output_”).</p>
+<p>This prefix is prepended to all output files</p>
+<p><strong>name</strong> ia an arbitrary string without special characters)</p>
+<span class="target" id="param-output-dir-ref"></span></section>
+<section id="output-dir-dirname">
+<h3>–output-dir=&lt;dirname&gt;<a class="headerlink" href="#output-dir-dirname" title="Permalink to this heading">¶</a></h3>
+<p>Set output directory (default: “./”)</p>
+<p>If the output directory does not exist, it is created.</p>
+<p><strong>dirname</strong> is the path to the output</p>
+<span class="target" id="param-data-dirs-ref"></span></section>
+<section id="data-dirs-dirnames">
+<h3>–data-dirs=&lt;dirnames&gt;<a class="headerlink" href="#data-dirs-dirnames" title="Permalink to this heading">¶</a></h3>
+<p>Set search-data directories for input files (default: “./”)</p>
+<p><strong>dir-names</strong> is a comma-separated list of directories.</p>
+<p>The order of the directoris in the list defines the search order.</p>
+<span class="target" id="param-read-config-ref"></span></section>
+<section id="read-config-conf">
+<h3>–read-config=&lt;conf&gt;<a class="headerlink" href="#read-config-conf" title="Permalink to this heading">¶</a></h3>
+<p>Read config from a configuration file.</p>
+<dl class="simple">
+<dt>A configuration file must consist of lines each of which is a option setting of the form</dt><dd><p>–&lt;option-name&gt;=value</p>
+</dd>
+</dl>
+<p>Options passed as parameters to the application supercede the settings in the config file.</p>
+</section>
+<section id="write-config-conf">
+<span id="param-write-config-ref"></span><h3>–write-config=&lt;conf&gt;<a class="headerlink" href="#write-config-conf" title="Permalink to this heading">¶</a></h3>
+<p>Write config to file &lt;conf&gt;</p>
+<p>The configuration file created with this call can be used with the option “–read-config”</p>
+<span class="target" id="param-events-ref"></span></section>
+<section id="events-event-list">
+<h3>–events=&lt;event-list&gt;<a class="headerlink" href="#events-event-list" title="Permalink to this heading">¶</a></h3>
+<p>Set event list.</p>
+<div class="line-block">
+<div class="line">The event-list string is a comma-separated list of events:</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">event-list</span>&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">::=</span> <span class="pre">&quot;'&quot;</span> <span class="pre">&lt;event&gt;</span> <span class="pre">[&quot;,&quot;</span> <span class="pre">&lt;event&gt;]*&quot;'&quot;</span></code></div>
+<div class="line">The entire event list must be enclosed in quotes;</div>
+<div class="line">if the event list contains environment variables, use double quotes.</div>
+</div>
+<p>For detailed information see  <a class="reference internal" href="../../Events.html#events-ref"><span class="std std-ref">Events</span></a>.</p>
+</section>
+<section id="start-time-time">
+<span id="param-start-time-ref"></span><h3>–start-time=&lt;time&gt;<a class="headerlink" href="#start-time-time" title="Permalink to this heading">¶</a></h3>
+<p>Set ‘real’ time for simulation step 0 (default: 0).
+If your simulation starts at 70’000 years before the present, you have to set  start-time to -70000.</p>
+</section>
+<section id="dyn-pops">
+<span id="param-dyn-pops-ref"></span><h3>–dyn-pops<a class="headerlink" href="#dyn-pops" title="Permalink to this heading">¶</a></h3>
+<p>Use population plugins from so directory</p>
+</section>
+<section id="so-dirs-dirlist">
+<span id="param-so-dirs-ref"></span><h3>–so-dirs=&lt;dirlist&gt;<a class="headerlink" href="#so-dirs-dirlist" title="Permalink to this heading">¶</a></h3>
+<p>search directories for population so-files (default: “./”)</p>
+<p><strong>dirlist</strong> mujst be a comma-separated list of directories in which to look for population plugins</p>
+</section>
+<section id="interpol-step-step">
+<span id="param-interpol-step-ref"></span><h3>–interpol-step=&lt;step&gt;<a class="headerlink" href="#interpol-step-step" title="Permalink to this heading">¶</a></h3>
+<p>Set step size for interpolation (default: 1)</p>
+<p>This option only has any efffect if you have some interpolation events</p>
+</section>
+<section id="interpolation-params">
+<span id="param-interpolation-ref"></span><h3>–interpolation=&lt;params&gt;<a class="headerlink" href="#interpolation-params" title="Permalink to this heading">¶</a></h3>
+<p>This option prepares the interpolation of the specified arrays params</p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">params</span>&#160;&#160; <span class="pre">::=</span> <span class="pre">&lt;arrays&gt;&quot;:&quot;&lt;evtfile&gt;&quot;:&quot;&lt;inter-step&gt;</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">arrays</span>&#160;&#160; <span class="pre">::=</span> <span class="pre">&lt;arrname&gt;</span> <span class="pre">[&quot;+&quot;&lt;arrname&gt;]*</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">arrname</span>&#160; <span class="pre">::=</span> <span class="pre">&quot;alt&quot;</span> <span class="pre">|</span> <span class="pre">&quot;npp&quot;</span></code></div>
+</div>
+<div class="line-block">
+<div class="line">If ‘alt’ is specified, the altitudes will be interpolated</div>
+<div class="line">If ‘npp’ is specified, the NPP will be interpolated</div>
+<div class="line">The evtfile is a ‘normal’ event file (usually the same as used for events)</div>
+<div class="line">inter-step is the interpolation interval</div>
+</div>
+</section>
+<section id="layer-size-size">
+<span id="param-layer-size-ref"></span><h3>–layer-size=&lt;size&gt;<a class="headerlink" href="#layer-size-size" title="Permalink to this heading">¶</a></h3>
+<p>(technical)</p>
+<p>Set the layer size of the resizable arrays  (default: 65536)</p>
+</section>
+<section id="shuffle-num">
+<span id="param-shuffle-ref"></span><h3>–shuffle=&lt;num&gt;<a class="headerlink" href="#shuffle-num" title="Permalink to this heading">¶</a></h3>
+<p>(techical)</p>
+<p>Shift random generator’s sequence (default: 0).</p>
+<div class="line-block">
+<div class="line">This is done by generating &lt;num&gt; random numbers on each random number generator before the start of the simulation.</div>
+<div class="line">I.e., this option can be used to change the random number sequence</div>
+</div>
+</section>
+<section id="seed-seedtype">
+<span id="param-seed-ref"></span><h3>–seed=&lt;seedtype&gt;<a class="headerlink" href="#seed-seedtype" title="Permalink to this heading">¶</a></h3>
+<p>Set seed for random number generators.</p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">seedtype</span>&#160;&#160; <span class="pre">::=</span> <span class="pre">&quot;random&quot;</span> <span class="pre">|</span> <span class="pre">&quot;seq:&quot;&lt;sequence&gt;</span> <span class="pre">|</span> <span class="pre">&quot;file:&quot;&lt;seed-file&gt;</span> <span class="pre">|</span> <span class="pre">&quot;phrase:&quot;&lt;arbitrary&gt;</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">sequence</span>&#160;&#160; <span class="pre">::=</span> <span class="pre">(&lt;hexnumber&gt;</span> <span class="pre">&quot;,&quot;)*</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">arbitrary</span>&#160; <span class="pre">:</span> <span class="pre">arbitrary</span> <span class="pre">string</span> <span class="pre">(enclose</span> <span class="pre">in</span> <span class="pre">quotes</span> <span class="pre">if</span> <span class="pre">it</span> <span class="pre">contains</span> <span class="pre">spaces)</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">seed-file</span>&#160; <span class="pre">:</span> <span class="pre">name</span> <span class="pre">of</span> <span class="pre">a</span> <span class="pre">seed</span> <span class="pre">file</span></code></div>
+</div>
+<p>If seedType is “random”, the seeds are filled with random numbers based on the current time</p>
+<p>A sequence must be consist of 16 comma-separated 8-digit hexnumbers.</p>
+<p>If sequence is given, it is passed directly to the random nuber generators.</p>
+<p>If an arbitrary string is provided, it is turned into a seed sequence using a hash function (SHA-512)</p>
+<p>If a seed file is specified it must conform to the following format.</p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">seed-file</span> <span class="pre">::=</span> <span class="pre">&lt;seed-def&gt;*</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">seed-def</span>&#160; <span class="pre">::=</span> <span class="pre">&lt;header&gt;</span> <span class="pre">&lt;seed-line&gt;*</span> <span class="pre">&lt;footer&gt;</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">header</span>&#160;&#160;&#160; <span class="pre">::=</span> <span class="pre">&quot;SEED&quot;[:&lt;dest&gt;]</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">seed-line</span> <span class="pre">::=</span> <span class="pre">(&lt;hexnumber&gt;</span> <span class="pre">&quot;,&quot;)*</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">dest</span>&#160;&#160;&#160;&#160;&#160; <span class="pre">:</span>&#160;&#160; <span class="pre">A</span> <span class="pre">string</span> <span class="pre">describing</span> <span class="pre">which</span> <span class="pre">RNG</span> <span class="pre">the</span> <span class="pre">sequence</span> <span class="pre">should</span> <span class="pre">be</span> <span class="pre">passed</span> <span class="pre">to</span> <span class="pre">(NOT</span> <span class="pre">IMPLEMENTED</span> <span class="pre">YET)</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">footer</span>&#160;&#160;&#160; <span class="pre">::=</span> <span class="pre">&quot;SEED_END&quot;</span></code></div>
+</div>
+<p>In total, 16 8-digit hex numbers must be given between header and footer</p>
+</section>
+<section id="pop-params-paramstring">
+<span id="param-pop-params-ref"></span><h3>–pop-params=&lt;paramstring&gt;<a class="headerlink" href="#pop-params-paramstring" title="Permalink to this heading">¶</a></h3>
+<p>Set special population parameters.</p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">param-strings</span>&#160;&#160; <span class="pre">::=</span> <span class="pre">&lt;param-string&gt;</span> <span class="pre">[&quot;,&quot;</span> <span class="pre">&lt;param-string&gt;]*</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">param-string</span>&#160;&#160;&#160; <span class="pre">::=</span> <span class="pre">&lt;popname&gt;</span> <span class="pre">&quot;:&quot;</span> <span class="pre">&lt;pop-param&gt;</span></code></div>
+</div>
+<p>The  pop-param strings are passed to the specified populations; the format of pop-param is specific for the particular population.</p>
+<p>Data provided this way will be passed to the parameter of the population’s <code class="docutils literal notranslate"><span class="pre">setParam(const</span> <span class="pre">char</span> <span class="pre">*pParam)</span></code> method.</p>
+</section>
+<section id="zip-output">
+<span id="param-zip-output-ref"></span><h3>–zip-output<a class="headerlink" href="#zip-output" title="Permalink to this heading">¶</a></h3>
+<p>Use gzip to zip all output qdf files.</p>
+</section>
+<section id="info-string-infostring">
+<span id="param-info-string-ref"></span><h3>–info-string=&lt;infostring&gt;<a class="headerlink" href="#info-string-infostring" title="Permalink to this heading">¶</a></h3>
+<p>Add  &lt;infostring&gt; as the value of the attribute “info” of the root group of every output qdf.</p>
+</section>
+<section id="resume">
+<span id="param-resume-ref"></span><h3>–resume<a class="headerlink" href="#resume" title="Permalink to this heading">¶</a></h3>
+<p>Resume simulation from previously <a class="reference internal" href="../../dumprestore.html#dump-restore-ref"><span class="std std-ref">dumped</span></a> env and pop files (created by a “dump” event).</p>
+<div class="line-block">
+<div class="line">Use the full environment dump as initial grid, and all dumped population qdfs for ‘–pops=’</div>
+<div class="line">To have totally exact resume, the number of threads must be the same as in the dumped simulation</div>
+</div>
+</section>
+<section id="no-merge-pops">
+<span id="param-no-merge-pops-ref"></span><h3>–no-merge-pops<a class="headerlink" href="#no-merge-pops" title="Permalink to this heading">¶</a></h3>
+<p>Don’t  merge compatible populations.</p>
+<dl class="simple">
+<dt>Two populations are compatible if they have the same class name, the same species name, the same actions , and the same agent structure.</dt><dd><p>ATTENTION: currently, the population read in more recently replacess the older one</p>
+</dd>
+</dl>
+</section>
+<section id="dump-on-interrupt">
+<span id="param-dump-on-interrupt-ref"></span><h3>–dump-on-interrupt<a class="headerlink" href="#dump-on-interrupt" title="Permalink to this heading">¶</a></h3>
+<p>Set interrupt handler for Ctrl-C (SIG_INT): write dump and exit gracefully.</p>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">QHGMain</a><ul>
+<li><a class="reference internal" href="#calling-qhgmain">Calling QHGMain</a></li>
+<li><a class="reference internal" href="#parameter-description">Parameter description</a><ul>
+<li><a class="reference internal" href="#h">-h</a></li>
+<li><a class="reference internal" href="#help-topic">–help=&lt;topic&gt;</a></li>
+<li><a class="reference internal" href="#log-file-filename">–log-file=&lt;filename&gt;</a></li>
+<li><a class="reference internal" href="#grid-grid-file">–grid=&lt;grid-file&gt;</a></li>
+<li><a class="reference internal" href="#num-iters-iters">–num-iters=&lt;iters&gt;</a></li>
+<li><a class="reference internal" href="#geo-geo-file">–geo=&lt;geo-file&gt;</a></li>
+<li><a class="reference internal" href="#climate-climate-file">–climate=&lt;climate-file&gt;</a></li>
+<li><a class="reference internal" href="#veg-veg-file">–veg=&lt;veg-file&gt;</a></li>
+<li><a class="reference internal" href="#nav-nav-file">–nav=&lt;nav-file&gt;</a></li>
+<li><a class="reference internal" href="#pops-pop-list">–pops=&lt;pop-list&gt;</a></li>
+<li><a class="reference internal" href="#output-prefix-name">–output-prefix=&lt;name&gt;</a></li>
+<li><a class="reference internal" href="#output-dir-dirname">–output-dir=&lt;dirname&gt;</a></li>
+<li><a class="reference internal" href="#data-dirs-dirnames">–data-dirs=&lt;dirnames&gt;</a></li>
+<li><a class="reference internal" href="#read-config-conf">–read-config=&lt;conf&gt;</a></li>
+<li><a class="reference internal" href="#write-config-conf">–write-config=&lt;conf&gt;</a></li>
+<li><a class="reference internal" href="#events-event-list">–events=&lt;event-list&gt;</a></li>
+<li><a class="reference internal" href="#start-time-time">–start-time=&lt;time&gt;</a></li>
+<li><a class="reference internal" href="#dyn-pops">–dyn-pops</a></li>
+<li><a class="reference internal" href="#so-dirs-dirlist">–so-dirs=&lt;dirlist&gt;</a></li>
+<li><a class="reference internal" href="#interpol-step-step">–interpol-step=&lt;step&gt;</a></li>
+<li><a class="reference internal" href="#interpolation-params">–interpolation=&lt;params&gt;</a></li>
+<li><a class="reference internal" href="#layer-size-size">–layer-size=&lt;size&gt;</a></li>
+<li><a class="reference internal" href="#shuffle-num">–shuffle=&lt;num&gt;</a></li>
+<li><a class="reference internal" href="#seed-seedtype">–seed=&lt;seedtype&gt;</a></li>
+<li><a class="reference internal" href="#pop-params-paramstring">–pop-params=&lt;paramstring&gt;</a></li>
+<li><a class="reference internal" href="#zip-output">–zip-output</a></li>
+<li><a class="reference internal" href="#info-string-infostring">–info-string=&lt;infostring&gt;</a></li>
+<li><a class="reference internal" href="#resume">–resume</a></li>
+<li><a class="reference internal" href="#no-merge-pops">–no-merge-pops</a></li>
+<li><a class="reference internal" href="#dump-on-interrupt">–dump-on-interrupt</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="../app.html"
+                          title="previous chapter">app</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="SimParams.html"
+                          title="next chapter">SimParams</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/code_doc/app/QHGMain.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="SimParams.html" title="SimParams"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../app.html" title="app"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../app.html" >app</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">QHGMain</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+    </div>
+  </body>
+</html>

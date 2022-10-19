@@ -1,0 +1,232 @@
+.. _QDF2PNGNew_ref:
+
+QDF2PNGNew
+==========
+
+This tool creates a rectilinear projection of data saved in qdf files.
+
+Code:  `QDF2PNGNew.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/tools_io/QDF2PNGNew.cpp>`_ `QDFImageExtractor <https://github.com/jodyxha/QHG4/blob/main/QHG4/tools_io/QDFImageExtractor.cpp>`_
+
+Usage
+-----
+
+.. code-block:: bash
+
+  ./QDF2PNGNew -g <qdf_grid> -q <qdf_data>[,<qdf_data>]*]  
+     -s <w>x<h> -o <outpat>  -a <arrayspec>,[<arrayspec>]*
+    [-c <operation>] [-r <lon_roll>] [-w <ww>x<hw>+<ox>+<oy> ][-t <text>[:<pos>] [-v]
+
+or
+
+.. code-block:: bash
+
+  ./QDF2PNGNew -g <qdf_grid> -f <batch_file>
+     -s <w>x<h>  -a <arrayspec>,[<arrayspec>]*
+    [-c <operation>] [-r <lon_roll>] [-t <text>[:<pos>]] [-v]
+
+
+where
+
+``qdf_grid``
+    QDF containing a grid and geography
+
+``qdf_data``
+    QDF file containing data to be extracted which is not contained in <qdf_grid>
+
+``batch_file``
+    File containing lines of the form:
+
+.. code-block:: text
+
+      <timestamp>":"<qdf_data>[,<qdf_data>]*":"<output>
+
+``w``
+    Width  of output png
+
+``h``
+    Height of output png
+
+``ww``
+    Width  of depicted area in degrees (default 360)
+
+``hw``
+    Height of depicted area in degrees (default 180)
+
+``ox``
+    Longitude offset of depicted area (default 0)
+
+``oy``
+    Latitude offset of depicted area (default -90)
+
+``outpat``
+    Pattern for output pngs: the substring '###' will be replaced with the array name
+
+``arrayspec``
+    Array specification. Format:
+
+.. code-block:: text
+
+                 array_spec ::= <array_name>[@<index>][|<lookup>]
+                 array_name  :   name of array (s. below)
+                 index       :   index of qdf in which to look (0: qdf_geogrid, 1-N: qdf-data in given order)
+                 lookup      :   info for lookup, with format <lookup_name>[:<data>]* (s. below)
+
+``operation``
+    Compositing operator (currenly only: 'over' (simple alpha compositing))
+
+``longroll``
+    Longitude for smallest x value (rolls image). To have all of africa on the left side of the image you should set roll to -25.
+
+``text``    
+    Text to be rendered on image
+
+``pos``
+    position of text in image (``BL``, ``CL``, ``UL``, ``BC``,  ``CC``, ``UC``, ``BR``, ``CR``, ``UR``
+
+.. image::  ../../images/textlayout.png
+
+
+``-v``             
+    Verbose
+
+
+
+**Array Names**
+
+These are the array names used im array_spec along with their meaning, and the array's location in the qdf file  (if it exists):
+
++------------+-------------------------------+------------------------------+
+| array name | meaning                       | dataset                      |
++============+===============================+==============================+
+| lon        | longitude                     | Geography/Longitude          |
++------------+-------------------------------+------------------------------+
+| lat        | latitude                      | Geography/Latitude           |
++------------+-------------------------------+------------------------------+
+| alt        | altitudes                     | Geography/Altitude           |
++------------+-------------------------------+------------------------------+
+| ice        | ice cover                     | Geography/IceCover           |
++------------+-------------------------------+------------------------------+
+| water      | water                         | Geography/Water              |
++------------+-------------------------------+------------------------------+
+| coastal    | coastal                       | Geography/Coastal            |
++------------+-------------------------------+------------------------------+
+| temp       | temperature                   | Climate/AnnualMeanTemp       |
++------------+-------------------------------+------------------------------+
+| rain       | rainfall                      | Climate/AnnualRainfall       |
++------------+-------------------------------+------------------------------+
+| npp        | total npp                     | NPPVegetation/NPP            |
++------------+-------------------------------+------------------------------+
+| npp_b      | base npp                      | NPPVegetation/BaseNPP        |
++------------+-------------------------------+------------------------------+
+| dist       | travel distance               | MoveStats/Dist               |
++------------+-------------------------------+------------------------------+
+| time       | travel time                   | MoveStats/Time               |
++------------+-------------------------------+------------------------------+
+| pop        | population count              | (calculated)                 |
++------------+-------------------------------+------------------------------+
+| agent      | average of an agent variable  | (calculated)                 |
++------------+-------------------------------+------------------------------+
+
+
+**Lookups**
+
+The available Lookups and their parameters:
+
+**rainbow**
+
+.. image:: ../../images/xxx_rainbow.png
+   :align: left
+
+|
+
+  | Prameters: min, max
+  | A rainbow  going from blue (min) over green to red (max),
+  | with  values > max being magenta and values < min being cyan
+  |
+
+**rainbow2**
+
+.. image:: ../../images/xxx_rainbow2.png
+   :align: left
+
+|
+
+  | Parameters: min, max
+  | A rainbow  going from red (min) over green to blue (max),
+  | with  values > max being magenta and values < min being cyan
+  |
+
+
+**geo**
+
+.. image:: ../../images/xxx_geo.png
+   :align: left
+
+|
+
+  | Prameters: min, sealevel, max
+  | Values below sealevel are blue, above sealevel from green to magenta
+  |
+
+
+**geo2**
+
+.. image:: ../../images/xxx_geo2.png
+   :align: left
+
+|
+  
+  | Parameters: min, sealevel, max
+  | Values below sealevel are blue, above sealevel from green to red, values abvove max are white.
+  |
+
+**twotone**
+
+.. image:: ../../images/xxx_twotone.png
+   :align: left
+
+| 
+
+  | Parameters: SepValue, RGBA1, RGBA2
+  | Values below SepValue are drawn with color RGBA1, values above with RGBA2.
+  | (Color format: ``#RRGGBBAA`` where ``RR``, ``GG``, ``BB`` and ``AA`` are hex values)
+  |
+
+**fadeout**
+
+.. image:: ../../images/xxx_fadeout.png
+   :align: left
+
+|
+
+  | Parameters: min, max, RGBAmax.
+  | Goes linearly from totally transparent to RGBAmax.
+  |
+
+
+**fadeto**
+
+.. image:: ../../images/xxx_fadeto.png
+   :align: left
+
+|
+
+  | Prameters: min, max, RGBAmin, RGBAmax.
+  | Goes linearly from RGBAmin to RGBAmax.
+  | 
+
+
+**Call example**
+
+.. code-block:: bash
+
+    QDF2PNGNew -g ${TUT_TOP}/tutorial_06/output/tutorial_06/tut_pop-sapiens_SG_005000.qdf \
+               -q ${TUT_TOP}/tutorial_06/output/tutorial_06/tut_pop-sapiens_SG_005000.qdf \
+               -s 720x360 -o step_005000.png \
+               -a 'alt|geo:-6000:0:6000,pop_sapiens|fadeout:0:10:#FFFF00FF'  \
+               -r -25 -c over -t "step 5000":BL:20
+
+This creates this image
+
+.. image:: ../../images/step_005000.png
+

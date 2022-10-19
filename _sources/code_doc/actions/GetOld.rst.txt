@@ -1,0 +1,82 @@
+.. _GetOld_ref:
+
+GetOld
+======
+
+.. rst-class:: hidden
+
+   This page describes the class :index:`GetOld`
+
+The class ``GetOld`` is derived from ``Action`` and simply calculates the age of the agent at each step, based on the agent's birth time.
+
+As it is, this action has no attributes besides its name.
+
+Code: `GetOld.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/GetOld.h>`_ `GetOld.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/GetOld.cpp>`_
+
++----------------------------------+---------------+---------------------+
+| ``ATTR_GETOLD_NAME``             | "GetOld"      | action name         |
++----------------------------------+---------------+---------------------+
+
+
+Public Methods
+--------------
+
+
+``constructor``
+^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    GetOld(SPopulation<T> *pPop, SCellGrid *pCG, std::string sID, WELL512 **apWELL);
+
+``pPop``
+    A pointer to the :ref:`SPopulation<SPopulation_ref>` object performing this action.
+
+``pCG``
+    A pointer to the  :ref:`SCellGrid<SCellGrid_ref>` object on which the simulation runs.
+
+``sID``
+    An ID for this action.
+
+``apWELL``
+    A pointer to an array of :ref:`WELL512 random number generators<WELL512_ref>` (one for each thread).
+
+.. -----------------------------------------------------------------------------
+
+``destructor``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual ~GetOld();
+
+The destructor does nothing.
+
+.. -----------------------------------------------------------------------------
+
+``execute``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int execute(int iAgentIndex, float fT);
+
+``iAgentIndex``
+    Current agent's index.
+
+``fT``
+    Current simulation step.
+
+| This method is called for all agents (in parallel). 
+| The age of each agent is increased by 1 year.
+
+.. ---------------------------------------------------------------------------``isEqual``
+
+.. code-block:: c++
+
+    virtual bool isEqual(Action<T> *pAction, bool bStrict);
+
+``pAction``
+    Pointer to an action object to compare with this.
+
+``bStrict``
+    Strictness of comparisons (ignored here).
+
+``pAction`` is equal to ``this``, if it is an ``GetOld`` action.

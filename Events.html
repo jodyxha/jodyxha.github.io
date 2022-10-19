@@ -1,0 +1,318 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Events &#8212; QHG4 4.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/jody.css" />
+    
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    
+    <link rel="shortcut icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Compiling QHG" href="qhg4_compile.html" />
+    <link rel="prev" title="Dumping and Restoring" href="dumprestore.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="qhg4_compile.html" title="Compiling QHG"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="dumprestore.html" title="Dumping and Restoring"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">QHG4 4.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Events</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="events">
+<span id="events-ref"></span><h1>Events<a class="headerlink" href="#events" title="Permalink to this heading">¶</a></h1>
+<p>Events are needed to notify objects of some change of state.</p>
+<p>In QHG we have two kinds of events: events from the command line and internal events.</p>
+<p>The events on the commandline events are passed as values of the <a class="reference internal" href="code_doc/app/QHGMain.html#qhgmain-ref"><span class="std std-ref">–events option of QHGMain</span></a>.</p>
+<section id="events-event-list">
+<h2>–events=&lt;event-list&gt;<a class="headerlink" href="#events-event-list" title="Permalink to this heading">¶</a></h2>
+<p>Set event list.</p>
+<div class="line-block">
+<div class="line">The event-list string is a comma-separated list of events:</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">event-list</span>&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">::=</span> <span class="pre">&quot;'&quot;</span> <span class="pre">&lt;event&gt;</span> <span class="pre">[&quot;,&quot;</span> <span class="pre">&lt;event&gt;]*&quot;'&quot;</span></code></div>
+<div class="line">The entire event list must be enclosed in quotes;</div>
+<div class="line">if the event list contains environment variables, use double quotes.</div>
+</div>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">event</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">::=</span> <span class="pre">&lt;event-type&gt;</span> <span class="pre">&quot;|&quot;</span> <span class="pre">&lt;event-params&gt;</span> <span class="pre">&quot;&#64;&quot;</span> <span class="pre">&lt;event-times&gt;</span></code></div>
+</div>
+<section id="event-times-and-triggers">
+<h3>event times and triggers<a class="headerlink" href="#event-times-and-triggers" title="Permalink to this heading">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;event-times&gt;</span></code> defines at which times the event should be triggered.</p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">event-times</span>&#160;&#160;&#160;&#160;&#160; <span class="pre">::=</span> <span class="pre">&lt;full-trigger&gt;</span> <span class="pre">[</span> <span class="pre">&quot;+&quot;</span> <span class="pre">&lt;full-trigger&gt;]*</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">full-trigger</span>&#160;&#160;&#160;&#160; <span class="pre">::=</span> <span class="pre">[&quot;S&quot;|&quot;T&quot;]&lt;full-trigger-sub&gt;</span></code></div>
+</div>
+<div class="line-block">
+<div class="line">If “S” or nothing is prefixed, the following numbers are interpreted as steps.</div>
+<div class="line">If “T” is prefixed, the following numbers are interpreted as ‘real’ times.</div>
+</div>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">full-trigger-sub</span> <span class="pre">::=</span> <span class="pre">&lt;normal-trigger&gt;</span> <span class="pre">|</span> <span class="pre">&lt;point-trigger&gt;</span> <span class="pre">|</span> <span class="pre">&lt;final-trigger&gt;</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">normal-trigger</span>&#160;&#160; <span class="pre">::=</span> <span class="pre">[&lt;trigger-interval&gt;]</span> <span class="pre">&lt;step-size&gt;</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">trigger-interval</span> <span class="pre">::=</span> <span class="pre">&quot;[&quot;[&lt;minval&gt;]</span> <span class="pre">&quot;:&quot;</span> <span class="pre">[&lt;maxval&gt;]</span> <span class="pre">&quot;]&quot;</span></code></div>
+</div>
+<div class="line-block">
+<div class="line">This form causes events to be triggered at time &lt;minval&gt;+k*&lt;step-size&gt;, for k = 0 … (&lt;maxval&gt;-&lt;minval&gt;)/&lt;step-size&gt;.</div>
+<div class="line-block">
+<div class="line">If &lt;minval&gt; is omitted, it is set to fNegInf,</div>
+<div class="line">if &lt;maxval&gt; is omitted, it is set to fPosInf.</div>
+<div class="line">If &lt;trigger-interval&gt; is omitted, it is set to [fNegInf:fPosInf].</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">point-trigger</span>&#160;&#160;&#160; <span class="pre">::=</span> <span class="pre">&quot;[&quot;&lt;time&gt;&quot;]&quot;</span></code></div>
+</div>
+<p>This form causes a single event at the specified time.</p>
+<p><code class="docutils literal notranslate"><span class="pre">final-trigger</span>&#160;&#160;&#160; <span class="pre">::=</span> <span class="pre">&quot;final&quot;</span></code></p>
+<div class="line-block">
+<div class="line">This form causes a single event at the end of the simulation.</div>
+<div class="line">Trigger Example:</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">20+[305:]500+[250:600]10+[37]</span></code></p>
+<div class="line-block">
+<div class="line">fire events every 20 steps,</div>
+<div class="line">and every 500 steps starting from step 305,</div>
+<div class="line">and every 10 steps between steps 250 and 600,</div>
+<div class="line">and a single event at step 37.</div>
+</div>
+</section>
+<section id="event-types">
+<h3>Event types<a class="headerlink" href="#event-types" title="Permalink to this heading">¶</a></h3>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">event-type</span>&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">::=</span> <span class="pre">&lt;standard_types&gt;</span> <span class="pre">|</span> <span class="pre">&lt;tech-types&gt;</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">standard-type</span>&#160;&#160;&#160; <span class="pre">::=</span> <span class="pre">&quot;write&quot;</span> <span class="pre">|</span> <span class="pre">&quot;env&quot;</span> <span class="pre">|</span> <span class="pre">&quot;arr&quot;</span> <span class="pre">|</span> <span class="pre">&quot;pop&quot;</span> <span class="pre">|</span> <span class="pre">&quot;file&quot;</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">tech-types</span>&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">::=</span> <span class="pre">&quot;dump&quot;</span> <span class="pre">|</span> <span class="pre">&quot;interpol&quot;</span> <span class="pre">|</span> <span class="pre">&quot;comm&quot;</span> <span class="pre">|</span> <span class="pre">&quot;check&quot;</span> <span class="pre">|</span> <span class="pre">&quot;user&quot;</span> <span class="pre">|</span>&#160; <span class="pre">&quot;scramble&quot;</span></code></div>
+</div>
+<div class="line-block">
+<div class="line">The event parameters differ for the event types:</div>
+<div class="line"><strong>for &lt;event-type&gt; == “write”:</strong></div>
+</div>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">event-params</span>&#160; <span class="pre">::=</span> <span class="pre">&lt;type&gt;</span> <span class="pre">[&quot;+&quot;</span> <span class="pre">&lt;type&gt;]*</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">type</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">::=</span> <span class="pre">&lt;group-types&gt;</span> <span class="pre">|</span> <span class="pre">&lt;special-types&gt;</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">group-types</span>&#160;&#160; <span class="pre">::=</span> <span class="pre">&quot;grid&quot;</span> <span class="pre">|</span> <span class="pre">&quot;geo&quot;</span>&#160;&#160;&#160; <span class="pre">|</span> <span class="pre">&quot;climate</span> <span class="pre">&quot;</span> <span class="pre">|</span> <span class="pre">&quot;veg</span> <span class="pre">&quot;</span> <span class="pre">|</span> <span class="pre">&quot;nav&quot;</span>&#160; <span class="pre">|</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">special-types</span> <span class="pre">::=</span> <span class="pre">&quot;occ&quot;</span>&#160; <span class="pre">|</span>&#160; <span class="pre">&quot;stats&quot;</span> <span class="pre">|</span>&#160; <span class="pre">&quot;pop:&quot;&lt;speciesname&gt;[&lt;filter&gt;]</span></code></div>
+</div>
+<div class="line-block">
+<div class="line">Write the specified data sets to file.</div>
+<div class="line">In case of “pop”, an optional filter character can be appended to the populaton name in order to filter the output:</div>
+<div class="line-block">
+<div class="line">‘#’   only write agent data</div>
+<div class="line">‘%’   only write status arrays</div>
+<div class="line">‘~’   only write additional data</div>
+</div>
+</div>
+<p><strong>for &lt;event-type&gt; == “env”:</strong></p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">event-params</span>&#160;&#160; <span class="pre">::=</span> <span class="pre">&lt;type&gt;</span> <span class="pre">[&quot;+&quot;</span> <span class="pre">&lt;type&gt;]*</span> <span class="pre">&quot;:&quot;</span> <span class="pre">&lt;qdf-file&gt;</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">type</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">::=</span> <span class="pre">&quot;geo&quot;</span> <span class="pre">|</span> <span class="pre">&quot;climate&quot;</span> <span class="pre">|</span> <span class="pre">&quot;veg&quot;</span> <span class="pre">|</span> <span class="pre">&quot;nav&quot;</span></code></div>
+</div>
+<p>Read the specified data sets from the qdf file.</p>
+<p><strong>for &lt;event-type&gt; == “arr”:</strong></p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">event-params</span>&#160;&#160; <span class="pre">::=</span> <span class="pre">&lt;type&gt;</span> <span class="pre">&quot;:&quot;</span> <span class="pre">&lt;arrayname&gt;</span> <span class="pre">&quot;:&quot;</span> <span class="pre">&lt;qdf-file&gt;</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">type</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">::=</span> <span class="pre">&quot;geo&quot;</span> <span class="pre">|</span> <span class="pre">&quot;climate&quot;</span> <span class="pre">|</span> <span class="pre">&quot;veg&quot;</span></code></div>
+</div>
+<blockquote>
+<div><p>Read the specified arrays from the qdf file.</p>
+</div></blockquote>
+<p><strong>for &lt;event-type&gt; == “pop”:</strong></p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">event-params</span>&#160;&#160; <span class="pre">::=</span> <span class="pre">&lt;speciesname&gt;</span> <span class="pre">[&quot;+&quot;</span> <span class="pre">&lt;speciesname&gt;]*</span> <span class="pre">&quot;:&quot;</span> <span class="pre">&lt;qdf-file&gt;</span></code></div>
+</div>
+<p>Read the specified populations from file.</p>
+<p><strong>for &lt;event-type&gt; == “file”:</strong></p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">event-params</span>&#160;&#160; <span class="pre">::=</span> <span class="pre">&lt;filename&gt;</span></code></div>
+</div>
+<p>The file must contain lines of the form</p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">line</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">::=</span> <span class="pre">&lt;event-type&gt;</span> <span class="pre">&quot;|&quot;</span> <span class="pre">&lt;event-params&gt;</span> <span class="pre">&quot;&#64;&quot;</span> <span class="pre">&lt;event-times&gt;</span></code></div>
+</div>
+<p>Add the events listed in the file to the event manager.</p>
+<p><strong>for &lt;event-type&gt; == “interpol”:</strong></p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">event-params</span>&#160;&#160;&#160;&#160; <span class="pre">::=</span> <span class="pre">&lt;interpol-data&gt;</span> <span class="pre">|</span> <span class="pre">&lt;command&gt;</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">interpol-data</span>&#160;&#160;&#160; <span class="pre">::=</span> <span class="pre">&quot;file:&quot;</span> <span class="pre">&lt;interpol-file&gt;</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">command</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">::=</span> <span class="pre">&quot;cmd:&quot;</span> <span class="pre">&lt;interpol-command&gt;</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">interpol-command</span> <span class="pre">::=</span> <span class="pre">&quot;start&quot;</span> <span class="pre">|</span> <span class="pre">&quot;stop&quot;</span></code></div>
+</div>
+<p>where</p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">&quot;interpol-file&quot;</span>&#160; <span class="pre">:</span> <span class="pre">a</span> <span class="pre">QDF</span> <span class="pre">file</span> <span class="pre">containing</span> <span class="pre">interpolation</span> <span class="pre">steps.</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">&quot;stop&quot;</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">:</span> <span class="pre">stop</span> <span class="pre">interpolation</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">&quot;start&quot;</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">:</span> <span class="pre">restart</span> <span class="pre">interpolation</span></code></div>
+</div>
+<p><strong>for &lt;event-type&gt; == “dump”:</strong></p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">event-params</span>&#160;&#160; <span class="pre">::=</span> <span class="pre">&quot;flat&quot;</span> <span class="pre">|</span> <span class="pre">&quot;smart&quot;</span> <span class="pre">|</span> <span class="pre">&quot;free&quot;</span></code></div>
+</div>
+<div class="line-block">
+<div class="line"><a class="reference internal" href="dumprestore.html#dump-restore-ref"><span class="std std-ref">Dump</span></a> the entire state of the simulation.</div>
+<div class="line">The dump modes:</div>
+<div class="line-block">
+<div class="line">flat    copy the linked lists as arrays</div>
+<div class="line">smart   save the linked lists by only saving the starts and ends of the active regions (not fully tested)</div>
+<div class="line">free    use “smart” mode if number of holes exceeds a threshold, otherwise use “flat” mode (not fully tested)</div>
+</div>
+</div>
+<p><strong>for &lt;event-type&gt; == “comm”:</strong></p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">event-params</span>&#160;&#160; <span class="pre">::=</span> <span class="pre">&lt;cmd-file&gt;</span>&#160; <span class="pre">|</span> <span class="pre">&lt;command&gt;</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">command</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">::=</span> <span class="pre">&lt;iter_cmd&gt;</span> <span class="pre">|</span> <span class="pre">&lt;del_action_cmd&gt;</span> <span class="pre">|</span> <span class="pre">&lt;mod_pop_cmd&gt;</span> <span class="pre">|</span> <span class="pre">&lt;event&gt;</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">iter_cmd</span>&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">::=</span> <span class="pre">&quot;SET</span> <span class="pre">ITERS:&quot;&lt;num_iters&gt;</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">del_action_cmd</span> <span class="pre">::=</span> <span class="pre">&quot;REMOVE</span> <span class="pre">ACTION:&quot;&lt;population&gt;:&lt;action_name&gt;</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">mod_pop_cmd</span>&#160;&#160;&#160; <span class="pre">::=</span> <span class="pre">&quot;MOD</span> <span class="pre">POP:&quot;&lt;population&gt;:&lt;param_name&gt;:&lt;value&gt;</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">event</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">:</span> <span class="pre">any</span> <span class="pre">event</span> <span class="pre">description;</span> <span class="pre">see</span> <span class="pre">definition</span> <span class="pre">above</span></code></div>
+</div>
+<p>The format of &lt;cmd-file&gt;</p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">cmd-file</span>&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">::=</span> <span class="pre">&lt;command-line&gt;*</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">command-line</span>&#160;&#160; <span class="pre">::=</span> <span class="pre">&lt;command&gt;</span> <span class="pre">&lt;NL&gt;</span></code></div>
+</div>
+<div class="line-block">
+<div class="line">If the &lt;cmd-file&gt; has changed since the last triggered time the contents will be executed:</div>
+<div class="line-block">
+<div class="line">iter_cmd:        set new iteration limit</div>
+<div class="line">del_action_cmd:  remove action from prio list</div>
+<div class="line">mod_pop_cmd:     hange parameter of population</div>
+<div class="line">event:           add event to event manager’s list</div>
+</div>
+</div>
+<p><strong>for &lt;event-type&gt; == “check”:</strong></p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">event-params</span>&#160;&#160; <span class="pre">::=</span> <span class="pre">&lt;what&gt;</span> <span class="pre">[&quot;+&quot;</span> <span class="pre">&lt;what&gt;]*</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">what</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">::=</span> <span class="pre">&quot;lists&quot;</span></code></div>
+</div>
+<p>(Debugging only) “lists”: check linked lists at specified times</p>
+<p><strong>for &lt;event-type&gt; == “user”:</strong></p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">event-params</span>&#160;&#160; <span class="pre">::=</span> <span class="pre">&lt;eventid&gt;:&lt;stringdata&gt;</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">eventid</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">:</span> <span class="pre">an</span> <span class="pre">event</span> <span class="pre">id</span> <span class="pre">in</span> <span class="pre">[1000,</span> <span class="pre">9999]</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">stringdata</span>&#160;&#160;&#160;&#160; <span class="pre">:</span> <span class="pre">a</span> <span class="pre">string</span></code></div>
+</div>
+<p><strong>for &lt;event-type&gt; == “scramble”:</strong></p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">event-params</span>&#160;&#160; <span class="pre">::=</span> <span class="pre">&quot;connections&quot;</span> <span class="pre">|</span> <span class="pre">&quot;all&quot;</span></code></div>
+</div>
+<p>Scrambles the order of connections between nodes</p>
+</section>
+<section id="example">
+<h3>Example<a class="headerlink" href="#example" title="Permalink to this heading">¶</a></h3>
+<p>Here is a full example for an eventlist:</p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">--events='env|geo+climate:map120.qdf&#64;[120],write|pop:GrassLover|grid&#64;5+[20:30]1,comm|REMOVE</span> <span class="pre">ACTION</span> <span class="pre">sapiens:ConfinedMove&#64;[3000]'</span></code></div>
+</div>
+<dl class="simple">
+<dt>This</dt><dd><ul class="simple">
+<li><p>loads a QDF file containing new geography and climate data from ‘map120.qdf’ at step 120,</p></li>
+<li><p>writes a QDF file containing grid data and population data for species “GrassLover” every 5 steps and additiionally every step between steps 20 and 30.</p></li>
+<li><p>at step 3000 the ‘ConfinedMove’ action of species ‘sapiens’ is disabled.</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Events</a><ul>
+<li><a class="reference internal" href="#events-event-list">–events=&lt;event-list&gt;</a><ul>
+<li><a class="reference internal" href="#event-times-and-triggers">event times and triggers</a></li>
+<li><a class="reference internal" href="#event-types">Event types</a></li>
+<li><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="dumprestore.html"
+                          title="previous chapter">Dumping and Restoring</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="qhg4_compile.html"
+                          title="next chapter">Compiling QHG</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/Events.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="qhg4_compile.html" title="Compiling QHG"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="dumprestore.html" title="Dumping and Restoring"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">QHG4 4.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Events</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+    </div>
+  </body>
+</html>

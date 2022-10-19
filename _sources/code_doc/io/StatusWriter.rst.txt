@@ -1,0 +1,170 @@
+.. _StatusWriter_ref:
+
+StatusWriter
+============
+
+.. rst-class:: hidden
+
+   This page describes the class :index:`StatusWriter`
+
+The class ``StatusWriter`` is responsible for writing outputs to :ref:`qdf files<QDF_ref>`.
+
+It owns specialized writers for the various environment and population data.
+
+Code: `StatusWriter.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/StatusWriter.h>`_, `StatusWriter.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/StatusWriter.cpp>`_
+
+
+Public Methods
+--------------
+
+``createInstance``
+^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+  
+   static StatusWriter *createInstance(SCellGrid *pCG, std::vector<PopBase *> vPops);
+
+Creates a ``StatusWriter`` object for the specified grid.
+
+``pCG``
+    A pointer to the cell grid. The cellgrid itself has pointers to the various nvironment objects.
+
+``vPops``
+    A vector of pointers to population objects.
+ 
+Returns a ``StatusWriter`` objects, or ``NULL`` on failure.
+
+.. -----------------------------------------------------------------------------
+
+``destructor``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+   virtual ~StatusWriter();
+
+The destructor deletes all ``XXXWriter`` objects owned by ``StatusWriter``.
+
+.. -----------------------------------------------------------------------------
+
+``write``
+^^^^^^^^^
+.. code-block:: c++
+
+   int write(const std::string sFileName, int iStep, float fStartTime,
+             const std::string sInfoString, int iWhat,
+             std::vector<std::pair<std::string, int>> &vSub, int iDumpMode=-1);
+
+.. |xx| unicode:: U+00a0
+
+.. code-block:: c++
+
+   int write(const std::string sFileName, int iStep, float fStartTime,  
+             const std::string sInfoString, int iWhat, int iDumpMode=-1);
+
+
+| This method writes the data inidicated by ``iWhat`` to a qdf file with the specified name. 
+| It is used both for normal outputs and for :ref:`dumps<dump_restore_ref>` (dumps contain more data than ordinary outputs).
+
+``sFileName``
+   Name of output file.
+
+``iStep``
+   The current simulation step. This number is saved as an attribute in the output file's root group. 
+
+``fStartTime``
+   The start time of the simulation (i.e. the 'real' time at step 0). This number is also saved as an attribute in the output file's root group.
+
+``sInfoString``
+   An arbitrary string which will be saved as an attribute in the output file's root group.
+
+``iWhat``
+  An or-ed combination of ``output_flags`` flags describing what elements to write to file
+
+.. _StatusWriter_output_flags_ref:
+
++----------------------+-------+--------------------------------------+
+| Name                 | Value | Meaning                              |
++======================+=======+======================================+
+| output_flag::WR_NONE |     0 | Write nothing                        |
++----------------------+-------+--------------------------------------+
+| output_flag::WR_GRID |     1 | Write the grid data                  |
++----------------------+-------+--------------------------------------+
+| output_flag::WR_GEO  |     2 | Write the geography data             |
++----------------------+-------+--------------------------------------+
+| output_flag::WR_CLI  |     4 | Write the climate data               |
++----------------------+-------+--------------------------------------+
+| output_flag::WR_VEG  |     8 | Write the vegetation data            |
++----------------------+-------+--------------------------------------+
+| output_flag::WR_NAV  |    16 | Write the navigation data            |
++----------------------+-------+--------------------------------------+
+| output_flag::WR_ALL  |    31 | Write all environment data           |
++----------------------+-------+--------------------------------------+
+| output_flag::WR_MOV  |    32 | Write move statistics                |
++----------------------+-------+--------------------------------------+
+| output_flag::WR_POP  |   128 | Write the population listed in vSub  |
++----------------------+-------+--------------------------------------+
+
+``vSub``
+   A vector of pairs of population names and an or-ed combination of ``popwrite_flags``. The populations named in this vector will be written to the output file.
+
++------------------------------------+-------+----------------------------+
+| Pop-specific Flag                  | Value | meaninging                 |
++====================================+=======+============================+
+| popwrite_flags::PW_NONE            |  0    | Write nothing              |
++------------------------------------+-------+----------------------------+
+| popwrite_flags::PW_AGENTS_ONLY     |  1    | Write agent data only      |
++------------------------------------+-------+----------------------------+  
+| popwrite_flags::PW_STATS_ONLY      |  2    | Write move statistics only |
++------------------------------------+-------+----------------------------+
+| popwrite_flags::PW_ADDITIONAL_ONLY |  4    | Write additional data only |
++------------------------------------+-------+----------------------------+
+| popwrite_flags::PW_ALL             |  7    | Write all                  |
++------------------------------------+-------+----------------------------+
+
+``iDumpMode``
+    Dump mode. If -1, normal writing is performed, otherwise use `` LBController::DUMP_MODE_FLAT`` (0)  or ``LBController::DUMP_MODE_SMART`` (1=
+
+Returns 0 on success, -1 on failure.
+
+.. -----------------------------------------------------------------------------
+
+``getError``
+^^^^^^^^^^^^
+.. code-block:: c++
+
+   std::string &getError();
+
+Returns error messages.
+
+.. -----------------------------------------------------------------------------
+
+Protected Methods
+-----------------
+
+``constructor``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+   StatusWriter();
+
+The constructor.
+
+.. -----------------------------------------------------------------------------
+
+``init``
+^^^^^^^^
+.. code-block:: c++
+
+  int init(SCellGrid *pCG, std::vector<PopBase *> vPops);
+
+Creates all the environment writers needed:
+  * :ref:`GridWriter <GridWriter_ref>`   
+  * :ref:`GeoWriter <GeoWriter_ref>` 
+  * :ref:`ClimateWriter <ClimateWriter_ref>` 
+  * :ref:`VegWriter <VegWriter_ref>` 
+  * :ref:`NavWriter <NavWriter_ref>` 
+  * :ref:`PopWriter <PopWriter_ref>` 
+
+Returns 0 on success, -1 on failure.
+
+.. -----------------------------------------------------------------------------
+

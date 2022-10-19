@@ -1,0 +1,111 @@
+.. _GeoGroupReader_ref:
+
+GeoGroupReader
+===============
+
+.. rst-class:: hidden
+
+   This page describes the class  :index:`GeoGroupReader`
+
+   
+The class ``GeoGroupReader`` reads attributes and arrays from the :ref:`geography group <GeoGroup_ref>` of a qdf file.
+
+This file extends the attribute structure:
+
+.. code-block:: c++
+
+    struct GeoAttributes : Attributes {
+        uint    m_iMaxNeighbors;
+        double  m_dRadius;
+        double  m_dSeaLevel;
+    };
+
+Code: `GeoGroupReader.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/GeoGroupReader.h>`_, `GeoGroupReader.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/GeoGroupReader.cpp>`_
+
+
+Public Methods
+--------------
+
+``createGeoGroupReader``
+^^^^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    static GeoGroupReader *createGeoGroupReader(const std::string sFileName);
+    static GeoGroupReader *createGeoGroupReader(hid_t hFile);
+
+Creates a ``GeoGroupReader`` object for a qdf file.
+
+``sFileName`` 
+    Name of the file to read the geography data from.
+
+``hFile``
+    HDF5 handle for the file to read the geography data from.
+
+Returns a pointer to the ``GeoGroupReader`` object or ``NULL`` on failure.
+
+.. -----------------------------------------------------------------------------
+
+``tryReadAttributes``
+^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int tryReadAttributes(GeoAttributes *pAttributes);
+
+Reads the attributes "NumCells", "MaxNeigh", "Radius", "SeaLevel" from the geography group into the attribute structure.
+
+``pAttributes``
+    A pointer to a ``GeoAttributes`` object to hold the attributes.
+
+Returns 0 on succes, or -1 on failure.
+
+.. -----------------------------------------------------------------------------
+
+``readArray``
+^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int readArray(Geography *pGeography, const std::string sArrayName);
+
+Read the specified array from the "Geography" group of the qdf file.
+
+``pGeography``
+    A pointer to the :ref:`Geography<Geography_ref>` object into which to read the array,
+
+``sArrayName``
+    Name of the array in the  "Geography" group of the qdf file.
+
+
+Returns 0 on succes, or -1 on failure.
+
+.. -----------------------------------------------------------------------------
+
+``readData``
+^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int readData(Geography *pGeography);
+
+Reads the arrays "Longitude", "Latitude", "Altitude", "Area", "Distances", "IceCover", "Water" and "Coastal".
+
+
+``pGeography``
+    A Pointer to a :ref:`Geography<Geography_ref>` object.
+
+Returns 0 on succes, or -1 on failure.
+
+.. -----------------------------------------------------------------------------
+
+Protected Methods
+-----------------
+
+``constructor``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    GeoGroupReader();
+
+The constructor.
+
+.. -----------------------------------------------------------------------------
+
+

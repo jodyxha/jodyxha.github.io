@@ -1,0 +1,36 @@
+.. _build_alt_modpop_ref:
+
+build_alt_modpop.py
+===================
+
+This tool creates alternative population and action directories for 
+:ref:`"short" compilations<Compiling_QHG_alternate_ref>` of QHGMain with one or more population classes.
+
+Code: `build_alt_modpop.py <https://github.com/jodyxha/QHG4/blob/main/QHG4/useful_stuff/build_alt_modpop.py>`_
+
+Usage
+-----
+
+.. code-block:: bash
+
+    ${QHG4_DIR}/useful_stuff/build_alt_modpop.py <prefix> <pop_name>+
+
+where
+
+``prefix``
+     prefix to be used for the naming of the alternative popuation and action subdirectories
+
+``pop_name``
+   name of a class whose c++ and h files are in the population subdirectory
+
+
+Example
+-------
+
+.. code-block:: bash
+
+    ${QHG4_DIR}/useful_stuff/build_alt_modpop.py temp2 tut_PatrhenoPop tut_EnvironAltPop
+
+This will create the directories ``temp2_mod`` and ``temp2_pop`` filled 
+with (links to) the files needed to compile QHGMain with the populations ``tut_PatrhenoPop`` and ``tut_EnvironAltPop``
+

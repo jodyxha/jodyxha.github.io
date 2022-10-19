@@ -1,0 +1,134 @@
+.. _GridWriter_ref:
+
+
+GridWriter
+==========
+
+.. rst-class:: hidden
+
+   This page desctibes the class :index:`GridWriter`
+
+The class ``GridWriter`` is used to write the :ref:`cell grid data <SCellGrid_ref>` to a :ref:`grid group <GridGroup_ref>` in a qdf file.
+
+Code: `GridWriter.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/GridWriter.h>`_, `GridWriter.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/GridWriter.cpp>`_
+
+Public Methods
+--------------
+
+``constructor``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    GridWriter(SCellGrid *pCG, stringmap *psm);
+
+The constructor.
+
+``pCG``
+    Pointer to the cell grid to be written.
+
+``psm``
+  pointer to a string map containing grid speficic info to be written as attributes.
+
+.. -----------------------------------------------------------------------------
+
+``write``
+^^^^^^^^^
+.. code-block:: c++
+
+    int write(hid_t hFile);
+
+Writes the entire grid-related data to a :ref:`grid group <GridGroup_ref>` in an open qdf file.
+
+``hFile``
+   HDF handle to the open file.
+
+Returns 0 on success, -1 on failure.
+
+.. -----------------------------------------------------------------------------
+
+``writeToQDF``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    int writeToQDF(const std::string sFileName,   int iStep, float fStartTime,
+                   const std::string sInfoString, bool bNew);
+
+.. |nbsp| unicode:: 0xA0
+
+Creates a new qdf file or opens an existing qdf file, creates a :ref:`grid group <GridGroup_ref>` and writes the grid data to it.
+
+
+``sFileName``
+   Name of output file.
+
+``iStep``
+   The current simulation step. This number is saved as an attribute in the output file's root group. 
+
+``fStartTime``
+   The start time of the simulation (i.e. the 'real' time at step 0). This number is also saved as an attribute in the output file's root group.
+
+``sInfoString``
+   An arbitrary string which will be saved as an attribute in the output file's root group.
+
+``bNew``
+   If true a new file is created, otherwise the file with the specified name is opened for writing.
+
+Returns 0 on success, -1 on failure.
+
+.. -----------------------------------------------------------------------------
+
+Protected Methods
+-----------------
+
+``createCellDataType``
+^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    hid_t createCellDataType();
+
+Creates and returns a hdf data type for the cell data.
+
+.. -----------------------------------------------------------------------------
+
+``writeCellData``
+^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    int writeCellData(hid_t hDataSpace, hid_t hDataSet, hid_t hCellType);
+
+Writes the cell data to the open hdf data set.
+
+``hDataSpace``
+    HDF handle to the data space for the grid data.
+
+``hDataSet``
+    HDF handle to the data set for the grid data.
+
+``hCellType``
+    HDF handle to the data type for the grid data.
+
+Returns 0 on success, -1 on failure.
+
+.. -----------------------------------------------------------------------------
+
+``writeGridAttributes``
+^^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    int writeGridAttributes(hid_t hGridGroup);
+
+Writes the attributes of the grid to the  :ref:`grid group<GridGroup_ref>` in the qdf file.
+
+``hGridGroup``
+   HDF handle of the grid group.
+
+Returns 0 on success, -1 on failure.
+
+
+.. code-block:: c++
+
+   0         1         2         3         4         5         6         7         8         9         0
+   01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
+
+.. -----------------------------------------------------------------------------
+

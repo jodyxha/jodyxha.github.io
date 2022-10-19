@@ -1,0 +1,82 @@
+.. _ClimateWriter_ref:
+
+ClimateWriter
+=============
+
+.. rst-class:: hidden
+
+   This page desctibes the class :index:`ClimateWriter`
+
+The class ``ClimateWriter`` is used to write the :ref:`climate data<Climate_ref>` to the :ref:`climate group<ClimateGroup_ref>` in a qdf file.
+
+Code: `ClimateWriter.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/ClimateWriter.h>`_, `ClimateWriter.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/ClimateWriter.cpp>`_
+
+Public Methods
+--------------
+
+``constructor``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    ClimateWriter(Climate *pC);
+
+The constructor.
+
+.. -----------------------------------------------------------------------------
+
+``write``
+^^^^^^^^^
+.. code-block:: c++
+
+    int write(hid_t hFile);
+
+Write the climate data to an open qdf file.
+
+``hFile``
+   HDF handle to the opened file.
+
+.. -----------------------------------------------------------------------------
+
+``writeToQDF``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    int writeToQDF(const std::string sFileName, int iStep,
+                   float fStartTime,            const std::string sInfoString);
+
+Creates a new qdf file, creates a :ref:`climate group<ClimateGroup_ref>` and writes the climate data to it.
+
+``sFileName``
+   Name of output file.
+
+``iStep``
+   The current simulation step. This number is saved as an attribute in the output file's root group. 
+
+``fStartTime``
+   The start time of the simulation (i.e. the 'real' time at step 0). This number is also saved as an attribute in the output file's root group.
+
+``sInfoString``
+   An arbitrary string which will be saved as an attribute in the output file's root group.
+
+Returns 0 on success, -1 on failure.
+
+.. -----------------------------------------------------------------------------
+
+Protected Methods
+-----------------
+
+``writeClimateAttributes``
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    int writeClimateAttributes(hid_t hClimateGroup);
+
+Writes the climate attributes to the  :ref:`climate group<ClimateGroup_ref>` in the qdf file.
+
+``hClimateGroup``
+    HDF pointer to the climate group in the qdf file.
+
+Returns 0 on success, -1 on failure.
+
+.. -----------------------------------------------------------------------------
+

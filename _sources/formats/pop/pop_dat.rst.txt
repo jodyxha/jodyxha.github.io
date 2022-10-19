@@ -1,0 +1,42 @@
+.. _pop_dat_ref:
+
+The Population DAT Format
+=========================
+
+.. rst-class:: hidden
+
+   This page gives an overview of :index:`population DAT file format`
+
+
+| Population dat files are only used to load agent properties onto QHG.
+| A population dat file is essentially a CSV (comma separated values), where each line holds the data for one agent.
+
+The format of a dat file:
+
+| ``qhgdat       ::= <commentline> | <line>*``
+| ``headerline   ::= "#" <fixedheaders> [";"<word>]*``
+| ``fixedheaders ::= "Longitude;Latitude;LifeState;AgentID;BirthTime;Gender;Age;LastBirth" [";"<name>]*``
+| ``dataline     ::= <fixedvalues> [";"<value>]*``
+| ``fixedvalues  ::= <lon>";"<lat>";"<lifestate>";"<agentID>";"<birthtime>";"<gender>";"<age>";"<lastbirth>``
+| ``lon          :  longitude of agent's position in degrees``
+| ``lat          :  latitude of agent's position in degrees``
+| ``lifestate    :  agent's life state (0:dead, 1:alive, 5:fertile)``
+| ``agentID      :  agent's id (long integer)``
+| ``birthtime    :  step number of agent's birth``
+| ``gender       :  agent's gender (0:female, 1:male)``
+| ``age          :  agent's age (in steps)``
+| ``lastbirth    :  step number of agent's last birth``
+| ``name         :  name of an agent property``
+| ``value        :  value of an agent property``
+
+The number of values in a data line (and the number of additional names in the header line) depends on the properties an agent of this population expects to find.
+
+Example
+-------
+
+.. code-block:: c++
+
+    #Longitude;Latitude;LifeState;AgentID;BirthTime;Gender;Age;LastBirth;OAD_max_age;OAD_uncertainty
+    0;73.5226878712168;1;1;-10;0;0;0;65.9375;0.1
+    72;73.5226878712168;1;22;-10;1;0;0;65.9375;0.1
+    ...

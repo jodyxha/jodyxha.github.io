@@ -1,0 +1,54 @@
+utils
+=====
+
+.. rst-class:: hidden
+
+   This page describes the directory :index:`utils`
+
+The directory ``utils`` contains various utility files
+
+.. toctree::
+   :caption: Memory-related
+   :maxdepth: 1
+
+   utils/ArrayShare
+   utils/BufReader
+   utils/BufWriter
+   utils/L2List
+   utils/LayerArrBuf
+   utils/LayerBuf
+   utils/LBBase
+   utils/LBController
+   
+.. toctree::
+   :caption: Math-related
+   :maxdepth: 1
+
+   utils/Vec3D
+   utils/Quat
+   utils/WELL512 
+   utils/WELLUtils
+   utils/crypto 
+   utils/PolyLine
+   utils/geomutils
+  
+   utils/BinomialDist
+   utils/binotools 
+   utils/Permutator
+
+.. toctree::
+   :caption: String-related
+   :maxdepth: 1
+
+   utils/stdstrutils
+   utils/ParamReader
+   utils/MessLogger
+   utils/LineReader
+   utils/gzutils
+
+.. toctree::
+   :caption: various
+   :maxdepth: 1
+  
+   utils/Observer
+   utils/Observable

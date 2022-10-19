@@ -1,0 +1,180 @@
+.. _Verhulst_ref:
+
+Verhulst
+========
+
+.. rst-class:: hidden
+  
+    This page describes the class :index:`Verhulst`
+
+The class ``Verhulst`` is derived from ``Action`` and implements the Verhulst model of populationd dynamics.
+
+It incorporates a :ref:`LinearBirth<LinearBirth_ref>` and a :ref:`LinearDeath<LinearDeath_ref>` object.
+
+.. figure:: ../../../images/LinBirthDeathCoords.png
+
+Code: `Verhulst.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/Verhulst.h>`_ `Verhulst.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/Verhulst.cpp>`_
+
+**Attributes**
+
++---------------------------------+------------------+---------------------------+
+| ``ATTR_VERHULST_NAME``          | "Verhulst"       | action name               |
++---------------------------------+------------------+---------------------------+
+| ``ATTR_VERHULST_B0_NAME``       | "Verhulst_b0"    | birth probability for N=0 |
++---------------------------------+------------------+---------------------------+
+| ``ATTR_VERHULST_D0_NAME``       | "Verhulst_d0"    | death probability for N=0 |
++---------------------------------+------------------+---------------------------+
+| ``ATTR_VERHULST_TURNOVER_NAME`` | "Verhulst_theta" | turnover                  |
++---------------------------------+------------------+---------------------------+
+| ``ATTR_VERHULST_CAPACITY_NAME`` | "Verhulst_K"     | capacity (global)         |
++---------------------------------+------------------+---------------------------+
+
+Public Methods
+--------------
+.. -----------------------------------------------------------------------------
+
+``constructor``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    Verhulst(SPopulation<T> *pPop, SCellGrid *pCG, std::string sID, WELL512 **apWELL);
+
+``pPop``
+    A pointer to the :ref:`SPopulation<SPopulation_ref>` object performing this action.
+
+``pCG``
+    A pointer to the  :ref:`SCellGrid<SCellGrid_ref>` object on which the simulation runs.
+
+``sID``
+    An ID for this action.
+
+``apWELL``
+    A pointer to an array of :ref:`WELL512 random number generators<WELL512_ref>` (one for each thread). 
+
+Initializes the member variables.
+The ``LinearBirth`` and ``LinearDeath`` objects can't be created a this point, because the attributes are not yet known.
+
+.. -----------------------------------------------------------------------------
+
+``destructor``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual ~Verhulst();
+    
+Deletes the ``LinearBirth`` and ``LinearDeath`` objects.
+
+
+.. -----------------------------------------------------------------------------
+
+``initialize``
+^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int initialize(float fTime);
+
+``fT``
+    Simulation time step.
+
+Calls the ``intialize()`` method of the ``LinearBirth`` and ``LinearDeath`` objects.
+(at this point we expect those objects have been created by a call to ``extractAttributesQDF()``.
+
+.. -----------------------------------------------------------------------------
+
+``execute``
+^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int execute(int iA, float fT);
+
+``fT``
+    Simulation time step.
+
+Calls the ``execute()`` method of the ``LinearBirth`` and ``LinearDeath`` objects.
+
+.. -----------------------------------------------------------------------------
+
+``finalize``
+^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int finalize(float fTime);
+
+``fT``
+    Simulation time step.
+
+Calls the ``finalize()`` method of the ``LinearBirth`` and ``LinearDeath`` objects.
+
+.. -----------------------------------------------------------------------------
+
+``extractAttributesQDF``
+^^^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int extractAttributesQDF(hid_t hSpeciesGroup);
+
+``hSpeciesGroup``
+    HDF handle for the species group to read from.
+
+This method reads the attributes of this action from a QDF and creates a ``LinearBirth`` and a ``LinearDeath`` object withe appropriate attributes
+
+.. -----------------------------------------------------------------------------
+
+``writeAttributesQDF``
+^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int writeAttributesQDF(hid_t hSpeciesGroup);
+
+``hSpeciesGroup``
+    HDF handle for the species group to write to.
+
+This method writes the attributes of this action to the specified group in a QDF file.
+
+.. -----------------------------------------------------------------------------
+
+``tryGetAttributes``
+^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int tryGetAttributes(const ModuleComplex *pMC);  
+
+
+``pMC``
+    A ``ModuleComplex`` object.
+
+Extracts the action's attributes from the ``ModuleComplex`` object.
+
+
+.. -----------------------------------------------------------------------------
+
+``modifyAttributes``
+^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+   virtual int modifyAttributes(const std::string sAttrName, double dValue);
+
+``sAttrName``
+    Name of attribute to change.
+
+``dValue``
+    Value to set the attribute to.
+
+This method can change the values of :math:`b_0` (``ATTR_VERHULST_B0_NAME``), :math:`d_0` (``ATTR_VERHULST_D0_NAME``), :math:`\theta` (``ATTR_VERHULST_TURNOVER_NAME``) or the global capacity :math:`K` (``ATTR_VERHULST_CAPACITY_NAME``).
+   
+ .. -----------------------------------------------------------------------------
+
+``isEqual``
+^^^^^^^^^^^
+.. code-block:: c++
+
+   virtual bool isEqual(Action<T> *pAction, bool bStrict);
+ 
+
+``pAction``
+    Pointer to an action object to compare with this.
+
+``bStrict``
+    Strictness of comparisons (ignored here).
+
+``pAction`` is equal to ``this``, if it is a ``Verhulst`` object whose ``LinearBirth`` and ``LinearDeth`` objects match.

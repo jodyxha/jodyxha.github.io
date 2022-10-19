@@ -1,0 +1,539 @@
+.. _qhgXML_ref:
+
+qhgXMLNode and qhgXMLTree
+=========================
+
+.. rst-class:: hidden
+
+   This page describes the classes :index:`qhgXMLNode` and :index:`qhgXMLTree`
+
+The class ``qhgXMLTree`` represents the document tree generated from a :ref:`simplified XML<pop_xml_ref>` file normally used for population input.
+
+
+The class ``qhgNode`` represents a node in such an document tree, and provides methods for reading and writing.
+
+Public Methods (``qhgNode``)
+----------------------------
+
+``createInstance``
+^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    static qhgNode *createInstance(char *pLine, LineReader *pLR, int iLevel);
+
+Creates a new ``qhgNode`` object from a current line. 
+
+``pLine``
+    Current line to be parsed.
+
+``pLR``
+    A :ref:`LineReader object<Linereader_ref>` which delivers the lines of the XML file.
+
+``iLevel``
+    The level of the new node
+
+Returns the new ``qhgNode`` object resulting from the parsing of the XML file.
+
+.. -----------------------------------------------------------------------------
+
+``createRoot``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    static qhgNode *createRoot();
+
+Returns an empty QHGNode.
+
+.. -----------------------------------------------------------------------------
+
+``destructor``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    ~qhgNode();
+
+The destructor.
+
+.. -----------------------------------------------------------------------------
+
+``getName``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    const std::string getName();
+
+Returns this ``qhgNode``'s name.
+
+.. -----------------------------------------------------------------------------
+
+``destructor``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    qhgNode  *getNext();
+
+Returns this ``qhgNode``'s next sibling.
+
+.. -----------------------------------------------------------------------------
+
+``getChild``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    qhgNode  *getChild();
+
+Returns this ``qhgNode``'s first child.
+
+
+.. -----------------------------------------------------------------------------
+
+``getAttrs``
+^^^^^^^^^^^^
+.. code-block:: c++
+
+    stringmap &getAttrs();
+
+Returns this ``qhgNode``'s attributes as a map {attribute_name => attribute_value}.
+
+.. -----------------------------------------------------------------------------
+
+``getTagType``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    int getTagType();
+
+| Returns this ``qhgNode``'s tag type. 
+| Possible types:
+
++----------------+-------+---------------------------------------------+
+| Name           | Value | Meaning                                     |
++================+=======+=============================================+
+| TYPE_NO_TAG    | 0     | No tag                                      |
++----------------+-------+---------------------------------------------+
+| TYPE_START_TAG | 1     | A start tag, e.g. ``<param name="x1">``     |
++----------------+-------+---------------------------------------------+
+| TYPE_EMPTY_TAG | 2     | An empty tag, e.g. ``<param name="x1" />``  |
++----------------+-------+---------------------------------------------+
+| TYPE_END_TAG   | 3     | An end tag, e.g. ``</param>``               |
++----------------+-------+---------------------------------------------+
+
+
+.. -----------------------------------------------------------------------------
+
+``setName``
+^^^^^^^^^^^
+.. code-block:: c++
+
+    void setName(const std::string sName);
+
+Set the name of the this ``qhgNode``.
+
+.. -----------------------------------------------------------------------------
+
+``destructor``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    void setNext(qhgNode *pNext);
+
+Set the next ``qhgNode` for this ``qhgNode``.
+
+.. -----------------------------------------------------------------------------
+
+``destructor``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    void setChild(qhgNode *pChild);
+
+Set the first child for this ``qhgNode``.
+
+.. -----------------------------------------------------------------------------
+
+``getCurWord``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    const char *getCurWord();
+
+| Returns the scanner's current word. A word satrts with a letter or an underscore followed by letter, numbers, underscores and some other special characters.
+| In this context a word is usually the name of a tag, or an attribute.
+
+.. -----------------------------------------------------------------------------
+
+``destructor``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    const char *getCurString()  { return m_sCurString;};
+
+| Returns the scanner's current string. A string is a character sequence enclosed by double quotes.
+| In this context a string is usually the value of an attribute.
+ 
+.. -----------------------------------------------------------------------------
+
+
+Protected Methodes (``qhgNode``)
+--------------------------------
+
+
+``constructor``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    qhgNode(LineReader *pLR, int iLevel);
+
+The constructor stores the ``LineReader`` and the level for later use.
+
+``pLR``
+    A :ref:`LineReader object<Linereader_ref>` which delivers the lines of the XML file.
+
+``iLevel``
+    The level of the new node.
+
+.. -----------------------------------------------------------------------------
+
+``init``
+^^^^^^^^
+.. code-block:: c++
+
+    int init(char *pLine);
+
+Parses the specified line. This creates a ``qhgNode`` for the tag and all enclosed tags.
+
+``pLine``
+    A string containing a tag to be parsed. 
+ 
+Returns 0 on success, -1 on failure.
+
+.. -----------------------------------------------------------------------------
+
+``parseNode``
+^^^^^^^^^^^^^
+.. code-block:: c++
+
+    int parseNode(char *pLine);
+
+Parses the node defined in the specified string. This will create a node from the data collected by ``parseTag()``.
+
+``pLine``
+    A string containing a tag to be parsed.
+
+Returns 0 on success, -1 on failure.
+
+.. -----------------------------------------------------------------------------
+
+``parseTag``
+^^^^^^^^^^^^
+.. code-block:: c++
+
+    int parseTag(char *pLine);
+
+Parse the tag from the specified string. This will extract the name, the tag type and the attributes.
+
+``pLine``
+    A string containing a tag to be parsed.
+
+Returns 0 on success, -1 on failure.
+
+.. -----------------------------------------------------------------------------
+
+``skipBlanks``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    char *skipBlanks();
+
+Skips blanks in the input (scanner).
+
+Retruns the current character in the input.
+
+
+.. -----------------------------------------------------------------------------
+
+``getNextSym``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+   int   getNextSym();
+
+Finds and returns the next symbol in the input (Scanner):
+
++--------------------------+-------+-------------------+
+| Name                     | Value | Meaning           |
++==========================+=======+===================+
+| SYM_NONE                 |   0   | No (known) symbol |
++--------------------------+-------+-------------------+
+| SYM_WORD                 |   1   | A word\*          |
++--------------------------+-------+-------------------+
+| SYM_OPEN_BRA             |   2   | The character '<' |
++--------------------------+-------+-------------------+
+| SYM_CLOSE_BRA            |   3   | The character '>' |
++--------------------------+-------+-------------------+
+| SYM_OPEN_SLASH_BRA       |   4   | The string "</"   |
++--------------------------+-------+-------------------+
+| SYM_CLOSE_SLASH_BRA      |   5   | The string "/>"   |
++--------------------------+-------+-------------------+
+| SYM_QUOTE                |   6   | The character '"' |
++--------------------------+-------+-------------------+
+| SYM_EQUALS               |   7   | The character '=' |
++--------------------------+-------+-------------------+
+| SYM_SLASH                |   8   | The character '/' |
++--------------------------+-------+-------------------+
+
+\*A word is a character sequence consisting of letters, numbers, underscores, as well as '-', '+', and '$'.
+
+.. -----------------------------------------------------------------------------
+
+``readWord``
+^^^^^^^^^^^^
+.. code-block:: c++
+
+    char *readWord();
+
+Read the next characters as a word.
+
+Returns the word.
+
+.. -----------------------------------------------------------------------------
+
+``readString``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    char *readString();
+
+Read the next characters as a string (i.e. all characters until a double quote is reached).
+
+Returns the string.
+
+.. -----------------------------------------------------------------------------
+
+
+Public Methods (``qhgXMLTree``)
+-------------------------------    
+
+``createInstance``
+^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    static qhgXMLTree *createInstance(const std::string sFile);
+
+Creates a qhgXMLTree object for the specified file.
+
+``sFile``
+    Name of the file to be read.
+
+.. -----------------------------------------------------------------------------
+
+``destructor``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    ~qhgXMLTree();
+
+The destructor.
+
+.. -----------------------------------------------------------------------------
+
+``getRoot``
+^^^^^^^^^^^
+.. code-block:: c++
+
+    qhgNode *getRoot();
+
+Returns the root of the document tree.
+
+.. -----------------------------------------------------------------------------
+
+``init``
+^^^^^^^^^^^
+.. code-block:: c++
+
+     int init(const std::string sFile);
+
+Creates a ``LineReader`` object from the file creates a root node and processes al top level tags.
+
+``sFile``
+    Name of the file to be read.
+
+Returns 0 on success, -1 on failure.
+
+
+Example
+-------
+
+This example reads from an XML file and prints out all elements of the document tree.
+
+Compile with 
+
+.. code-block:: bash
+
+    g++ qhgxml_example.cpp qhgXML.cpp -o qhgxml_example -I ../io -I ../utils -L../utils -lUtils -lz -std=c++20
+
+Code for ``qhgxml_example``:
+
+.. code-block:: c++
+
+    #include <cstdio>
+    #include <string>
+    #include "qhgXML.h"
+
+    void showNode(qhgXMLNode *pN, std::string sIndent) {
+        printf("%sName %s\n", sIndent.c_str(), pN->getName().c_str());
+        stringmap &mA = pN->getAttrs();
+        printf("%s  Attrs (%zd):\n", sIndent.c_str(), mA.size());
+        stringmap::const_iterator it;
+
+        for (it = mA.begin(); it != mA.end(); ++it) {
+            printf("%s    %s : %s\n", sIndent.c_str(), it->first.c_str(), it->second.c_str());
+        }
+
+        // count children 
+        int iNC = 0;
+        qhgXMLNode *pC1 = pN->getChild();
+        while (pC1 != NULL) {
+            iNC++;
+            pC1 = pC1->getNext();
+        }
+
+        printf("%s  Children (%d)%s\n", sIndent.c_str(), iNC, (iNC>0)?":":"");
+        if (iNC > 0) {
+            //char sIndent[256];
+            //        sprintf(sIndent, "%s    ", pIndent);
+            sIndent = sIndent + "    ";
+            qhgXMLNode *pC = pN->getChild();
+            while (pC != NULL) {
+                showNode(pC, sIndent);
+                pC = pC->getNext();
+            }
+        }
+    }
+
+    int main(int iArgC, char *apArgV[]) {
+
+        stringmap mAttr;
+        mAttr["name"]="value";
+    
+        int iResult = -1;
+        if (iArgC > 1) {
+            qhgXMLTree *pQX = qhgXMLTree::createInstance(apArgV[1]);
+            if (pQX != NULL) {
+                printf("qhgXMLTree finished\n");
+                showNode(pQX->getRoot(), "");
+                delete pQX;
+            } else {
+                printf("Couldn't create qhgXML\n");
+            
+            }
+        } else {
+            printf("usage %s <xmlfile>\n", apArgV[0]);
+        }
+        return iResult;
+    }
+
+
+
+ 
+
+        
+Example for a  qhg XML file:
+
+.. code-block:: xml
+
+    <class name="OoANavSHybYchMTDPop" species_name="sapiens" species_id="117">
+      <module name="NPersZHybBirthDeathRel">
+        <param  name="HybBirthDeathRel_hybminprob" value="0.2021484375" />
+      </module>
+      <module name="LocEnv">
+        <param  name="NPPCap_K_max_sapiens" value="44.74609375" />
+        <param  name="NPPCap_K_min_sapiens" value="0.0" />
+      </module>
+      <module name="PrivParamMix">
+        <param  name="NPersHybBirthDeathRel_b0_sapiens" value="0.3099609375" />
+        <param  name="NPersHybBirthDeathRel_d0_sapiens" value="0" />
+        <param  name="NPersHybBirthDeathRel_theta_sapiens" value="0.3099609375" />
+      </module>
+      <priorities>
+        <prio  name="PersFertility" value="2" />
+        <prio  name="GetOld" value="9" />
+      </priorities>
+    </class>
+
+The call
+
+.. code-block:: bash
+
+    ./qhgxml_example test_file.xml
+
+will give the output
+ 
+.. code-block:: text
+
+    qhgXMLTree finished
+    Name root
+      Attrs (0):
+      Children (1):
+        Name class
+          Attrs (3):
+            name : OoANavSHybYchMTDPop
+            species_id : 117
+            species_name : sapiens
+          Children (4):
+            Name module
+              Attrs (1):
+                name : NPersZHybBirthDeathRel
+              Children (1):
+                Name param
+                  Attrs (2):
+                    name : HybBirthDeathRel_hybminprob
+                    value : 0.2021484375
+                  Children (0)
+            Name module
+              Attrs (1):
+                name : LocEnv
+              Children (2):
+                Name param
+                  Attrs (2):
+                    name : NPPCap_K_max_sapiens
+                    value : 44.74609375
+                  Children (0)
+                Name param
+                  Attrs (2):
+                    name : NPPCap_K_min_sapiens
+                    value : 0.0
+                  Children (0)
+            Name module
+              Attrs (1):
+                name : PrivParamMix
+              Children (3):
+                Name param
+                  Attrs (2):
+                    name : NPersHybBirthDeathRel_b0_sapiens
+                    value : 0.3099609375
+                  Children (0)
+                Name param
+                  Attrs (2):
+                    name : NPersHybBirthDeathRel_d0_sapiens
+                    value : 0
+                  Children (0)
+                Name param
+                  Attrs (2):
+                    name : NPersHybBirthDeathRel_theta_sapiens
+                    value : 0.3099609375
+                  Children (0)
+            Name priorities
+              Attrs (0):
+              Children (2):
+                Name prio
+                  Attrs (2):
+                    name : PersFertility
+                    value : 2
+                  Children (0)
+                Name prio
+                  Attrs (2):
+                    name : GetOld
+                    value : 9
+                  Children (0)
+    

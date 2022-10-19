@@ -1,0 +1,35 @@
+Code Documentation
+==================
+
+The documentation is structured by code directory.
+
+
+**QHG**
+
+.. toctree::
+   :maxdepth: 2
+
+   code_doc/utils
+   code_doc/core
+   code_doc/actions
+   code_doc/populations
+   code_doc/io
+   code_doc/app
+
+   icosa
+   (genes)
+   geoinfo
+
+**tools**
+
+.. toctree::
+   :maxdepth: 2
+   
+   (tools_ico)
+   tools_io
+   tools_qdf
+   code_doc/useful_stuff
+   utils_qhg
+   visual
+
+    

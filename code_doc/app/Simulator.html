@@ -1,0 +1,306 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Simulator &#8212; QHG4 4.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jody.css" />
+    
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    
+    <link rel="shortcut icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="File Formats" href="../../formats.html" />
+    <link rel="prev" title="SimParams" href="SimParams.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../formats.html" title="File Formats"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="SimParams.html" title="SimParams"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../app.html" accesskey="U">app</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Simulator</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="simulator">
+<span id="simulator-ref"></span><h1>Simulator<a class="headerlink" href="#simulator" title="Permalink to this heading">¶</a></h1>
+<p class="hidden">This page describes the class <span class="target" id="index-0"></span>Simulator</p>
+<p>The class <code class="docutils literal notranslate"><span class="pre">Simulator</span></code> is derived from <a class="reference internal" href="SimParams.html#simparams-ref"><span class="std std-ref">SimParams</span></a> and contains the actual simulation loop and handles events.</p>
+<p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/app/Simulator.h">Simulator.h</a>, <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/app/Simulator.cpp">Simulator.cpp</a></p>
+<p>(&#64;&#64;TODO)</p>
+<figure class="align-default" id="id1">
+<img alt="../../_images/flowchart2.png" src="../../_images/flowchart2.png" />
+<figcaption>
+<p><span class="caption-text">The processes of a simulation.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>The above figure shows the entire sprocess of a simulation (cf <code class="docutils literal notranslate"><span class="pre">Simulator::runSimulation()</span></code>).</p>
+<p><strong>Before the simulation loop</strong></p>
+<p>In the <code class="docutils literal notranslate"><span class="pre">preLoop</span> <span class="pre">stage</span></code> all populations get to call their <code class="docutils literal notranslate"><span class="pre">preLoop()</span></code> methods which
+in turn call the <code class="docutils literal notranslate"><span class="pre">preLoop</span></code> methods of all their actions.</p>
+<p><strong>Inside the simulation loop</strong></p>
+<p>The actual simulation loops through a predefined number of steps, or until all populations have died out.</p>
+<p>In each step, all populations get to call their <code class="docutils literal notranslate"><span class="pre">initializeStep()</span></code> method which in turn call the <code class="docutils literal notranslate"><span class="pre">initialize()</span></code> methods for each of their actions.</p>
+<p>After this, a loop over all priority levels is started (here the lower priority levels come first),
+to ensure that the order of the actions is ensured.</p>
+<p>For each priority level there is a loop over all populations, which call all their actions pertaining to this priority level.</p>
+<p>Each of these actions is then applied to each agent of the current population (in a parallelized loop).</p>
+<p>As the lats phase of the simulation step, once all priority levels have been processed, a new loop over all populations is executed in which each population calls its <code class="docutils literal notranslate"><span class="pre">finalizeStep()</span></code> method (which in turn calls the <code class="docutils literal notranslate"><span class="pre">finalize()</span></code> method of each of its actions)</p>
+<p><strong>After the simulation loop</strong></p>
+<dl class="simple">
+<dt>After the main simulation loop has terminated, there is a final loop over all populations letting them call their <code class="docutils literal notranslate"><span class="pre">postLoop()</span></code> methods,</dt><dd><p>which calls alltheir actions’ <code class="docutils literal notranslate"><span class="pre">postLoop()</span></code> methods.</p>
+</dd>
+</dl>
+<section id="public-methods">
+<h2>Public Methods<a class="headerlink" href="#public-methods" title="Permalink to this heading">¶</a></h2>
+<section id="constructor">
+<h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#constructor" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Simulator</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Some initialisation.</p>
+</section>
+<section id="destructor">
+<h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">Simulator</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The destructor deletes some objects that have been created.</p>
+</section>
+<section id="isready">
+<h3><code class="docutils literal notranslate"><span class="pre">isReady</span></code><a class="headerlink" href="#isready" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="nf">isReady</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Returns true if everything is ok  for the simulation to start (a valid cell grid exists and there is at least one non-empty population)</p>
+</section>
+<section id="runsimulation">
+<h3><code class="docutils literal notranslate"><span class="pre">runSimulation</span></code><a class="headerlink" href="#runsimulation" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">runSimulation</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>This method runs the simulation. It calls <code class="docutils literal notranslate"><span class="pre">preLoop()</span></code>, <code class="docutils literal notranslate"><span class="pre">runLoop()</span></code> and <code class="docutils literal notranslate"><span class="pre">postLoop()</span></code>.</p>
+</section>
+<section id="writestate">
+<h3><code class="docutils literal notranslate"><span class="pre">writeState</span></code><a class="headerlink" href="#writestate" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">writeState</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sQDFOut</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iWhat</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">vSub</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iDumpMode</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">sQDFOut</span></code></dt><dd><p>Name of output file.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iWhat</span></code></dt><dd><p>An or-ed combination of <a class="reference internal" href="../io/StatusWriter.html#statuswriter-output-flags-ref"><span class="std std-ref">output flags</span></a> determining <em>what</em> to write to file-</p>
+</dd>
+</dl>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Value</p></th>
+<th class="head"><p>Meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>output_flag::WR_NONE</p></td>
+<td><p>0</p></td>
+<td><p>Write nothing</p></td>
+</tr>
+<tr class="row-odd"><td><p>output_flag::WR_GRID</p></td>
+<td><p>1</p></td>
+<td><p>Write the grid data</p></td>
+</tr>
+<tr class="row-even"><td><p>output_flag::WR_GEO</p></td>
+<td><p>2</p></td>
+<td><p>Write the geography data</p></td>
+</tr>
+<tr class="row-odd"><td><p>output_flag::WR_CLI</p></td>
+<td><p>4</p></td>
+<td><p>Write the climate data</p></td>
+</tr>
+<tr class="row-even"><td><p>output_flag::WR_VEG</p></td>
+<td><p>8</p></td>
+<td><p>Write the vegetation data</p></td>
+</tr>
+<tr class="row-odd"><td><p>output_flag::WR_NAV</p></td>
+<td><p>16</p></td>
+<td><p>Write the navigation data</p></td>
+</tr>
+<tr class="row-even"><td><p>output_flag::WR_ALL</p></td>
+<td><p>31</p></td>
+<td><p>Write all environment data</p></td>
+</tr>
+<tr class="row-odd"><td><p>output_flag::WR_MOV</p></td>
+<td><p>32</p></td>
+<td><p>Write move statistics</p></td>
+</tr>
+<tr class="row-even"><td><p>output_flag::WR_OCC</p></td>
+<td><p>64</p></td>
+<td><p>Write occupation data</p></td>
+</tr>
+<tr class="row-odd"><td><p>output_flag::WR_POP</p></td>
+<td><p>128</p></td>
+<td><p>Write population data</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">vSub</span></code></dt><dd><p>A vector of pairs of population names and an or-ed combination of <code class="docutils literal notranslate"><span class="pre">popwrite_flags</span></code>. The populations named in this vector will be written to the output file.</p>
+</dd>
+</dl>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Pop-specific Flag</p></th>
+<th class="head"><p>Value</p></th>
+<th class="head"><p>meaninging</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>popwrite_flags::PW_NONE</p></td>
+<td><p>0</p></td>
+<td><p>Write nothing</p></td>
+</tr>
+<tr class="row-odd"><td><p>popwrite_flags::PW_AGENTS_ONLY</p></td>
+<td><p>1</p></td>
+<td><p>Write agent data only</p></td>
+</tr>
+<tr class="row-even"><td><p>popwrite_flags::PW_STATS_ONLY</p></td>
+<td><p>2</p></td>
+<td><p>Write move statistics only</p></td>
+</tr>
+<tr class="row-odd"><td><p>popwrite_flags::PW_ADDITIONAL_ONLY</p></td>
+<td><p>4</p></td>
+<td><p>Write additional data only</p></td>
+</tr>
+<tr class="row-even"><td><p>popwrite_flags::PW_ALL</p></td>
+<td><p>7</p></td>
+<td><p>Write all</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">iDumpMode</span></code></dt><dd><p>Dump mode</p>
+</dd>
+</dl>
+<p>This method is called to write environment and/or population data to a QDF file.</p>
+</section>
+<section id="showinput">
+<h3><code class="docutils literal notranslate"><span class="pre">showInput</span></code><a class="headerlink" href="#showinput" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">showInputs</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Displays the environment and population groups used in this simulation.</p>
+</section>
+<section id="setinterrupt">
+<h3><code class="docutils literal notranslate"><span class="pre">setInterrupt</span></code><a class="headerlink" href="#setinterrupt" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">setInterrupt</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>After this method is called, QHG will try to terminate gracefully when interrupted.</p>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Simulator</a><ul>
+<li><a class="reference internal" href="#public-methods">Public Methods</a><ul>
+<li><a class="reference internal" href="#constructor"><code class="docutils literal notranslate"><span class="pre">constructor</span></code></a></li>
+<li><a class="reference internal" href="#destructor"><code class="docutils literal notranslate"><span class="pre">destructor</span></code></a></li>
+<li><a class="reference internal" href="#isready"><code class="docutils literal notranslate"><span class="pre">isReady</span></code></a></li>
+<li><a class="reference internal" href="#runsimulation"><code class="docutils literal notranslate"><span class="pre">runSimulation</span></code></a></li>
+<li><a class="reference internal" href="#writestate"><code class="docutils literal notranslate"><span class="pre">writeState</span></code></a></li>
+<li><a class="reference internal" href="#showinput"><code class="docutils literal notranslate"><span class="pre">showInput</span></code></a></li>
+<li><a class="reference internal" href="#setinterrupt"><code class="docutils literal notranslate"><span class="pre">setInterrupt</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="SimParams.html"
+                          title="previous chapter">SimParams</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="../../formats.html"
+                          title="next chapter">File Formats</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/code_doc/app/Simulator.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../formats.html" title="File Formats"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="SimParams.html" title="SimParams"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../app.html" >app</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Simulator</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+    </div>
+  </body>
+</html>

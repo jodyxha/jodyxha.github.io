@@ -1,0 +1,486 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>ParamReader &#8212; QHG4 4.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jody.css" />
+    
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    
+    <link rel="shortcut icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="MessLogger" href="MessLogger.html" />
+    <link rel="prev" title="stdstrutils" href="stdstrutils.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="MessLogger.html" title="MessLogger"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="stdstrutils.html" title="stdstrutils"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../utils.html" accesskey="U">utils</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">ParamReader</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="paramreader">
+<span id="paramreader-ref"></span><h1>ParamReader<a class="headerlink" href="#paramreader" title="Permalink to this heading">¶</a></h1>
+<p class="hidden">This page describes the class <span class="target" id="index-0"></span>ParamReader</p>
+<p>The class <code class="docutils literal notranslate"><span class="pre">ParamReader</span></code> provides a useful interface for command line argument processing.
+<code class="docutils literal notranslate"><span class="pre">ParamReader</span></code> expects that all command line arguments have the form <code class="docutils literal notranslate"><span class="pre">-&lt;char&gt;</span> <span class="pre">&lt;value&gt;</span></code> or <code class="docutils literal notranslate"><span class="pre">--&lt;string&gt;=&lt;value&gt;</span></code>.</p>
+<div class="line-block">
+<div class="line">The method <code class="docutils literal notranslate"><span class="pre">setOptions</span></code> allows the setting of the flags and assignment to variables.</div>
+<div class="line">The method <code class="docutils literal notranslate"><span class="pre">getParams</span></code> can then be used to “collect” the set variables.</div>
+</div>
+<p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/ParamReader.h">ParamReader.h</a>, <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/ParamReader.cpp">ParamReader.cpp</a></p>
+<section id="public-methods">
+<h2>Public Methods<a class="headerlink" href="#public-methods" title="Permalink to this heading">¶</a></h2>
+<section id="constructor">
+<h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#constructor" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">ParamReader</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The constructor.</p>
+</section>
+<section id="destructor">
+<h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="o">~</span><span class="n">ParamReader</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The destructor.</p>
+</section>
+<section id="setoptions">
+<h3><code class="docutils literal notranslate"><span class="pre">setOptions</span></code><a class="headerlink" href="#setoptions" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">setOptions</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iNumOptions</span><span class="p">,</span><span class="w"> </span><span class="p">...);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Assign variables to flags.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">iNumOptions</span></code></dt><dd><p>Number of options.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">...</span></code></dt><dd><p>The vararg argument must consist of <code class="docutils literal notranslate"><span class="pre">iNumOptions</span></code> pairs of option-definition string and <code class="docutils literal notranslate"><span class="pre">void*</span></code>.
+See <a class="reference internal" href="#paramreader-ex-ref"><span class="std std-ref">Example below</span></a>.</p>
+</dd>
+</dl>
+<p>The option-definition has two possible formats:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">simple</span><span class="o">-</span><span class="n">opt</span><span class="w">   </span><span class="o">::=</span><span class="w"> </span><span class="s">&quot;-&quot;</span><span class="w">  </span><span class="o">&lt;</span><span class="n">option</span><span class="o">-</span><span class="kt">char</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;:&quot;</span><span class="w"> </span><span class="o">&lt;</span><span class="n">option</span><span class="o">-</span><span class="n">type</span><span class="o">&gt;</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;!&quot;</span><span class="p">]</span><span class="w"></span>
+<span class="kt">long</span><span class="o">-</span><span class="n">opt</span><span class="w">     </span><span class="o">::=</span><span class="w"> </span><span class="s">&quot;--&quot;</span><span class="w"> </span><span class="o">&lt;</span><span class="n">option</span><span class="o">-</span><span class="n">name</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;:&quot;</span><span class="w"> </span><span class="o">&lt;</span><span class="n">option</span><span class="o">-</span><span class="n">type</span><span class="o">&gt;</span><span class="w"></span>
+<span class="n">option</span><span class="o">-</span><span class="n">type</span><span class="w">  </span><span class="o">::=</span><span class="w"> </span><span class="sc">&#39;c&#39;</span><span class="o">|</span><span class="w"> </span><span class="sc">&#39;h&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="sc">&#39;i&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="sc">&#39;l&#39;</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="sc">&#39;f&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="sc">&#39;d&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="sc">&#39;b&#39;</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="sc">&#39;s&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="sc">&#39;S&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="sc">&#39;0&#39;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The the meaning of the option types is found in <a class="reference internal" href="#paramreader-opts-ref"><span class="std std-ref">this table</span></a>.</p>
+<p>Returns <code class="docutils literal notranslate"><span class="pre">true</span></code> on success.</p>
+</section>
+<section id="getparams">
+<h3><code class="docutils literal notranslate"><span class="pre">getParams</span></code><a class="headerlink" href="#getparams" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w">  </span><span class="nf">getParams</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iArgC</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">apArgV</span><span class="p">[],</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">bOverwrite</span><span class="o">=</span><span class="nb">false</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Read the command line parameters and set variables.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">iArgC</span></code></dt><dd><p>Number of command line arguments.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">apArgV</span></code></dt><dd><p>Array of arguments.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">bOverwrite</span></code></dt><dd><p>If true, the variable for a repeated flag will be overwritten.</p>
+</dd>
+</dl>
+<p>Returns 0  on success, or an <a class="reference internal" href="#paramreader-err-ref"><span class="std std-ref">error code</span></a>.</p>
+</section>
+<section id="id1">
+<h3><code class="docutils literal notranslate"><span class="pre">getParams</span></code><a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w">  </span><span class="nf">getParams</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sConfigFile</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">bOverwrite</span><span class="o">=</span><span class="nb">false</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Read a config file and set variables.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">sConfigFile</span></code></dt><dd><p>Configuration file.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">bOverwrite</span></code></dt><dd><p>If true, the variable for a repeated flag will be overwrittem</p>
+</dd>
+</dl>
+<p>Returns 0  on success, or an <a class="reference internal" href="#paramreader-err-ref"><span class="std std-ref">error code</span></a>.</p>
+</section>
+<section id="getmandatoryparams">
+<h3><code class="docutils literal notranslate"><span class="pre">getMandatoryParams</span></code><a class="headerlink" href="#getmandatoryparams" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">uint</span><span class="w"> </span><span class="nf">getMandatoryParams</span><span class="p">(</span><span class="n">stringvec</span><span class="w"> </span><span class="o">&amp;</span><span class="n">vMand</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Gets the names of the mandatory options and puts them into <code class="docutils literal notranslate"><span class="pre">vMand</span></code>.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">vMand</span></code></dt><dd><p>A string vector to be filled with the names of the mandatory options.</p>
+</dd>
+</dl>
+<p>Returns the number of mandatory options.</p>
+</section>
+<section id="getunknownparams">
+<h3><code class="docutils literal notranslate"><span class="pre">getUnknownParams</span></code><a class="headerlink" href="#getunknownparams" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">uint</span><span class="w"> </span><span class="nf">getUnknownParams</span><span class="p">(</span><span class="n">stringvec</span><span class="w"> </span><span class="o">&amp;</span><span class="n">vUnknown</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Gets the names of the unknown options and puts them into <code class="docutils literal notranslate"><span class="pre">vUnknown</span></code>.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">vUnknown</span></code></dt><dd><p>A string vector to be filled with the names of the unknown options.</p>
+</dd>
+</dl>
+<p>Returns the number of unknown options.</p>
+</section>
+<section id="getfreeparams">
+<h3><code class="docutils literal notranslate"><span class="pre">getFreeParams</span></code><a class="headerlink" href="#getfreeparams" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">uint</span><span class="w"> </span><span class="nf">getFreeParams</span><span class="p">(</span><span class="n">stringvec</span><span class="w"> </span><span class="o">&amp;</span><span class="n">vFree</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Gets the names of the free parameters and puts them into <code class="docutils literal notranslate"><span class="pre">vFree</span></code>.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">vFree</span></code></dt><dd><p>A string vector to be filled with the names of the free parameters.</p>
+</dd>
+</dl>
+<p>Returns the number of free parameters.</p>
+</section>
+<section id="writeconfigfile">
+<h3><code class="docutils literal notranslate"><span class="pre">writeConfigFile</span></code><a class="headerlink" href="#writeconfigfile" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="nf">writeConfigFile</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sConfigFile</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sOmit</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Writes a config file containing the values passed to <code class="docutils literal notranslate"><span class="pre">getParams()</span></code>  which can be used as input to <code class="docutils literal notranslate"><span class="pre">getParams()</span></code> at a later time.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">sConfigFile</span></code></dt><dd><p>Name of file to write to.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sOmit</span></code></dt><dd><p>Comma-separated list of options to omit.</p>
+</dd>
+</dl>
+<p>Returns true on success.</p>
+</section>
+<section id="collectoptions">
+<h3><code class="docutils literal notranslate"><span class="pre">collectOptions</span></code><a class="headerlink" href="#collectoptions" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">collectOptions</span><span class="p">(</span><span class="n">stringvec</span><span class="w"> </span><span class="o">&amp;</span><span class="n">vsOptions</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Fills a <code class="docutils literal notranslate"><span class="pre">vsOptions</span></code> with options and values.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">vsOptions</span></code></dt><dd><p>A string vector to be filled with the options.</p>
+</dd>
+</dl>
+</section>
+<section id="geterrormessage">
+<h3><code class="docutils literal notranslate"><span class="pre">getErrorMessage</span></code><a class="headerlink" href="#geterrormessage" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">getErrorMessage</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iResult</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Returns the error message corresponding to the <a class="reference internal" href="#paramreader-err-ref"><span class="std std-ref">error code</span></a> <code class="docutils literal notranslate"><span class="pre">iResult</span></code>.</p>
+</section>
+<section id="getbadarg">
+<h3><code class="docutils literal notranslate"><span class="pre">getBadArg</span></code><a class="headerlink" href="#getbadarg" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">getBadArg</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Returns the option that caused an error.</p>
+</section>
+<section id="getbadval">
+<h3><code class="docutils literal notranslate"><span class="pre">getBadVal</span></code><a class="headerlink" href="#getbadval" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">getBadVal</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Returns the value of the option that caused an error.</p>
+</section>
+<section id="display">
+<h3><code class="docutils literal notranslate"><span class="pre">display</span></code><a class="headerlink" href="#display" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">display</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Display the options and their values to stdout, one option per line.</p>
+</section>
+<section id="id2">
+<h3><code class="docutils literal notranslate"><span class="pre">display</span></code><a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">display</span><span class="p">(</span><span class="kt">FILE</span><span class="w"> </span><span class="o">*</span><span class="n">fOut</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">bLines</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Writes the options and their values to <code class="docutils literal notranslate"><span class="pre">fOut</span></code>.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">fOut</span></code></dt><dd><p>FIle to write to.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">bLines</span></code></dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">true</span></code> one option per line is written, otherwise a line consisting of space separated options and values is written.</p>
+</dd>
+</dl>
+<section id="option-types">
+<span id="paramreader-opts-ref"></span><h4>Option types<a class="headerlink" href="#option-types" title="Permalink to this heading">¶</a></h4>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>option</p></th>
+<th class="head"><p>variable type</p></th>
+<th class="head"><p>Remarks</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>c</p></td>
+<td><p>char</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>h</p></td>
+<td><p>short int</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>i</p></td>
+<td><p>integer</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>l</p></td>
+<td><p>long</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>f</p></td>
+<td><p>float</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>d</p></td>
+<td><p>double</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>b</p></td>
+<td><p>bool</p></td>
+<td><p>Values may be ‘y’,’n’,’yes’,’no’,’on’,’off’,’0’,’1’,’true’,’false’</p></td>
+</tr>
+<tr class="row-odd"><td><p>s</p></td>
+<td><p>string</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>S</p></td>
+<td><p>char*</p></td>
+<td><p>A c-string is allocated and set - will be deleted by ParamReader</p></td>
+</tr>
+<tr class="row-odd"><td><p>0</p></td>
+<td><p>bool</p></td>
+<td><p>If the option is present the variable is set to true</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="error-codes">
+<span id="paramreader-err-ref"></span><h4>Error codes<a class="headerlink" href="#error-codes" title="Permalink to this heading">¶</a></h4>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Error Name</p></th>
+<th class="head"><p>Value</p></th>
+<th class="head"><p>Meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">PARAMREADER_OK</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p></td>
+<td><p>Success</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">PARAMREADER_ERR_MANDATORY_MISSING</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">-1</span></code></p></td>
+<td><p>A mandatory parameter is missing</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">PARAMREADER_ERR_MISSING_PARAM</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">-2</span></code></p></td>
+<td><p>The value for a parameter is missing</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">PARAMREADER_ERR_OPTION_SET</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">-3</span></code></p></td>
+<td><p>Error setting a value (wrong type?)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">PARAMREADER_ERR_BAD_CONFIG_FILE</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">-4</span></code></p></td>
+<td><p>The configuration file has a bad format</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">PARAMREADER_ERR_UNKNOWN_OPTION</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1</span></code></p></td>
+<td><p>An unknown option has been passed</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">PARAMREADER_ERR_FREE_PARAMS</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">2</span></code></p></td>
+<td><p>Value without preceding option</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="example">
+<span id="paramreader-ex-ref"></span><h4>Example<a class="headerlink" href="#example" title="Permalink to this heading">¶</a></h4>
+<p>Compile with</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>g++ prex.cpp ParamReader.cpp stdstrutils.cpp stdstrutilsT.h --std<span class="o">=</span>c++20 -o pr_example
+</pre></div>
+</div>
+<p>Code for <code class="docutils literal notranslate"><span class="pre">pr_example.cpp</span></code>:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cstdio&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;ParamReader.h&quot;</span><span class="cp"></span>
+
+<span class="k">typedef</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w">             </span><span class="n">uint</span><span class="p">;</span><span class="w"></span>
+<span class="k">typedef</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">stringvec</span><span class="p">;</span><span class="w"></span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iArgC</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">apArgV</span><span class="p">[])</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">     </span><span class="kt">int</span><span class="w"> </span><span class="n">iResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">     </span><span class="kt">bool</span><span class="w">   </span><span class="n">bHelp</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
+<span class="w">     </span><span class="kt">double</span><span class="w"> </span><span class="n">dValue</span><span class="w">      </span><span class="o">=</span><span class="w">  </span><span class="mi">-1</span><span class="p">;</span><span class="w"></span>
+<span class="w">     </span><span class="kt">int</span><span class="w">    </span><span class="n">iSel</span><span class="w">        </span><span class="o">=</span><span class="w">  </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">     </span><span class="kt">char</span><span class="w">   </span><span class="n">c1</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="sc">&#39;\0&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="w">     </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sName</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;default_name&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">     </span><span class="kt">char</span><span class="w">  </span><span class="o">*</span><span class="n">psOpt</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">     </span><span class="n">ParamReader</span><span class="w"> </span><span class="o">*</span><span class="n">pPR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ParamReader</span><span class="p">();</span><span class="w"></span>
+<span class="w">     </span><span class="kt">bool</span><span class="w"> </span><span class="n">bOK</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pPR</span><span class="o">-&gt;</span><span class="n">setOptions</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                </span><span class="s">&quot;-h:0&quot;</span><span class="p">,</span><span class="w">          </span><span class="o">&amp;</span><span class="n">bHelp</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                </span><span class="s">&quot;-v:d!&quot;</span><span class="p">,</span><span class="w">         </span><span class="o">&amp;</span><span class="n">dValue</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                </span><span class="s">&quot;--selector:i!&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">iSel</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                </span><span class="s">&quot;-n:s&quot;</span><span class="p">,</span><span class="w">          </span><span class="o">&amp;</span><span class="n">sName</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                </span><span class="s">&quot;--optional:S&quot;</span><span class="p">,</span><span class="w">  </span><span class="o">&amp;</span><span class="n">psOpt</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                </span><span class="s">&quot;-t:c&quot;</span><span class="p">,</span><span class="w">          </span><span class="o">&amp;</span><span class="n">c1</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">     </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">bOK</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">         </span><span class="n">iResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pPR</span><span class="o">-&gt;</span><span class="n">getParams</span><span class="p">(</span><span class="n">iArgC</span><span class="p">,</span><span class="w"> </span><span class="n">apArgV</span><span class="p">);</span><span class="w"></span>
+<span class="w">         </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">iResult</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">             </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Successs!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">             </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;  bHelp:     %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">bHelp</span><span class="o">?</span><span class="s">&quot;true&quot;</span><span class="o">:</span><span class="s">&quot;false&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">             </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;  dValue:    %f</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">dValue</span><span class="p">);</span><span class="w"></span>
+<span class="w">             </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;  iSel:      %i</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">iSel</span><span class="p">);</span><span class="w"></span>
+<span class="w">             </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;  sName:     %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sName</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span><span class="w"></span>
+<span class="w">             </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;  psOpt:     %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">psOpt</span><span class="p">);</span><span class="w"></span>
+<span class="w">             </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">iResult</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                 </span><span class="n">stringvec</span><span class="w"> </span><span class="n">vFree</span><span class="p">;</span><span class="w"></span>
+<span class="w">                 </span><span class="n">uint</span><span class="w"> </span><span class="n">iNum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pPR</span><span class="o">-&gt;</span><span class="n">getFreeParams</span><span class="p">(</span><span class="n">vFree</span><span class="p">);</span><span class="w"></span>
+<span class="w">                     </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Found %d free param%s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">iNum</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">iNum</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span><span class="o">?</span><span class="s">&quot;&quot;</span><span class="o">:</span><span class="s">&quot;s&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">                 </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">iNum</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                     </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;  %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">vFree</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">c_str</span><span class="p">());</span><span class="w"></span>
+<span class="w">                 </span><span class="p">}</span><span class="w"></span>
+<span class="w">                 </span><span class="n">iResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">             </span><span class="p">}</span><span class="w"></span>
+<span class="w">         </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">             </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Have Error</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">             </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;code    : %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">iResult</span><span class="p">);</span><span class="w"></span>
+<span class="w">             </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;message : %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">pPR</span><span class="o">-&gt;</span><span class="n">getErrorMessage</span><span class="p">(</span><span class="n">iResult</span><span class="p">).</span><span class="n">c_str</span><span class="p">());</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="k">delete</span><span class="w"> </span><span class="n">pPR</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Error in setOptions</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">iResult</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">ParamReader</a><ul>
+<li><a class="reference internal" href="#public-methods">Public Methods</a><ul>
+<li><a class="reference internal" href="#constructor"><code class="docutils literal notranslate"><span class="pre">constructor</span></code></a></li>
+<li><a class="reference internal" href="#destructor"><code class="docutils literal notranslate"><span class="pre">destructor</span></code></a></li>
+<li><a class="reference internal" href="#setoptions"><code class="docutils literal notranslate"><span class="pre">setOptions</span></code></a></li>
+<li><a class="reference internal" href="#getparams"><code class="docutils literal notranslate"><span class="pre">getParams</span></code></a></li>
+<li><a class="reference internal" href="#id1"><code class="docutils literal notranslate"><span class="pre">getParams</span></code></a></li>
+<li><a class="reference internal" href="#getmandatoryparams"><code class="docutils literal notranslate"><span class="pre">getMandatoryParams</span></code></a></li>
+<li><a class="reference internal" href="#getunknownparams"><code class="docutils literal notranslate"><span class="pre">getUnknownParams</span></code></a></li>
+<li><a class="reference internal" href="#getfreeparams"><code class="docutils literal notranslate"><span class="pre">getFreeParams</span></code></a></li>
+<li><a class="reference internal" href="#writeconfigfile"><code class="docutils literal notranslate"><span class="pre">writeConfigFile</span></code></a></li>
+<li><a class="reference internal" href="#collectoptions"><code class="docutils literal notranslate"><span class="pre">collectOptions</span></code></a></li>
+<li><a class="reference internal" href="#geterrormessage"><code class="docutils literal notranslate"><span class="pre">getErrorMessage</span></code></a></li>
+<li><a class="reference internal" href="#getbadarg"><code class="docutils literal notranslate"><span class="pre">getBadArg</span></code></a></li>
+<li><a class="reference internal" href="#getbadval"><code class="docutils literal notranslate"><span class="pre">getBadVal</span></code></a></li>
+<li><a class="reference internal" href="#display"><code class="docutils literal notranslate"><span class="pre">display</span></code></a></li>
+<li><a class="reference internal" href="#id2"><code class="docutils literal notranslate"><span class="pre">display</span></code></a><ul>
+<li><a class="reference internal" href="#option-types">Option types</a></li>
+<li><a class="reference internal" href="#error-codes">Error codes</a></li>
+<li><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="stdstrutils.html"
+                          title="previous chapter">stdstrutils</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="MessLogger.html"
+                          title="next chapter">MessLogger</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/code_doc/utils/ParamReader.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="MessLogger.html" title="MessLogger"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="stdstrutils.html" title="stdstrutils"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../utils.html" >utils</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">ParamReader</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+    </div>
+  </body>
+</html>

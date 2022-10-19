@@ -1,0 +1,279 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>PopLooper &#8212; QHG4 4.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jody.css" />
+    
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    
+    <link rel="shortcut icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Prioritizer" href="Prioritizer.html" />
+    <link rel="prev" title="PopFinder" href="PopFinder.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="Prioritizer.html" title="Prioritizer"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="PopFinder.html" title="PopFinder"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../core.html" accesskey="U">core</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">PopLooper</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="poplooper">
+<span id="poplooper-ref"></span><h1>PopLooper<a class="headerlink" href="#poplooper" title="Permalink to this heading">¶</a></h1>
+<p class="hidden">This page describes the class <span class="target" id="index-0"></span>PopLooper</p>
+<p>The class <code class="docutils literal notranslate"><span class="pre">PopLooper</span></code> is a container for populations used by the simulation.
+Apart from implementing the interface <a class="reference internal" href="PopFinder.html#popfinder-ref"><span class="std std-ref">PopFinder</span></a>, it has methods for managing the populations.</p>
+<p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/core/PopLooper.h">PopLooper.h</a> <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/core/PopLooper.cpp">PopLooper.cpp</a></p>
+<section id="type-definitions">
+<h2>Type definitions<a class="headerlink" href="#type-definitions" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="n">PopBase</span><span class="w"> </span><span class="o">*&gt;</span><span class="w"> </span><span class="n">popmap</span><span class="p">;</span><span class="w"></span>
+<span class="k">typedef</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">PopBase</span><span class="w"> </span><span class="o">*&gt;</span><span class="w">   </span><span class="n">popvec</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="public-methods">
+<h2>Public Methods<a class="headerlink" href="#public-methods" title="Permalink to this heading">¶</a></h2>
+<section id="constructor">
+<h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#constructor" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">PopLooper</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Initializes some variables.</p>
+</section>
+<section id="destructor">
+<h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">PopLooper</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The destructor deletes all population managed by the <code class="docutils literal notranslate"><span class="pre">PopLooper</span></code> object.</p>
+</section>
+<section id="trymerge">
+<h3><code class="docutils literal notranslate"><span class="pre">tryMerge</span></code><a class="headerlink" href="#trymerge" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">tryMerge</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Tries to merge as many popualtions as possible.
+Two populations can be merged if they have the same name, the same species ID, the same agent type and the same  actions.</p>
+</section>
+<section id="addpop">
+<h3><code class="docutils literal notranslate"><span class="pre">addPop</span></code><a class="headerlink" href="#addpop" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">addPop</span><span class="p">(</span><span class="n">PopBase</span><span class="w"> </span><span class="o">*</span><span class="n">pPop</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">pPop</span></code></dt><dd><p>Pointer to population to be added.</p>
+</dd>
+</dl>
+<p>Adds the specified population to the collection of populations.</p>
+</section>
+<section id="removepopbyname">
+<h3><code class="docutils literal notranslate"><span class="pre">removePopByName</span></code><a class="headerlink" href="#removepopbyname" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">PopBase</span><span class="w"> </span><span class="o">*</span><span class="nf">removePopByName</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sSpeciesName</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">bAddToExtinct</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">sSpeciesName</span></code></dt><dd><p>Name of population to remove.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">bAddToExtinct</span></code></dt><dd><p>If true, the population is added to the vector of extinct populations.</p>
+</dd>
+</dl>
+<p>Removes the secified population from the collection of populations.</p>
+</section>
+<section id="removepopbyindex">
+<h3><code class="docutils literal notranslate"><span class="pre">removePopByIndex</span></code><a class="headerlink" href="#removepopbyindex" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">PopBase</span><span class="w"> </span><span class="o">*</span><span class="nf">removePopByIndex</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iIndex</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">bAddToExtinct</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">iIndex</span></code></dt><dd><p>Index of population to be removed.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">bAddToExtinct</span></code></dt><dd><p>If true, the population is added to the vector of extinct populations.</p>
+</dd>
+</dl>
+<p>Removes the secified population from the collection of populations.</p>
+</section>
+<section id="dostep">
+<h3><code class="docutils literal notranslate"><span class="pre">doStep</span></code><a class="headerlink" href="#dostep" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">doStep</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">fStep</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">fStep</span></code></dt><dd><p>Current simulation step.</p>
+</dd>
+</dl>
+<p>Calls the <code class="docutils literal notranslate"><span class="pre">initializeStep()</span></code> method of all managed populations, then loops through all priority levels, calling all managed populations’ <code class="docutils literal notranslate"><span class="pre">doActions()</span></code> method, and finally calls the <code class="docutils literal notranslate"><span class="pre">finalizeStep()</span></code> method for all populations.</p>
+</section>
+<section id="preloop">
+<h3><code class="docutils literal notranslate"><span class="pre">preLoop</span></code><a class="headerlink" href="#preloop" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w">  </span><span class="nf">preLoop</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Calls the <code class="docutils literal notranslate"><span class="pre">preLoop()</span></code> method of all managed populations.</p>
+</section>
+<section id="postloop">
+<h3><code class="docutils literal notranslate"><span class="pre">postLoop</span></code><a class="headerlink" href="#postloop" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w">  </span><span class="nf">postLoop</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Calls the <code class="docutils literal notranslate"><span class="pre">postLoop()</span></code> method of all managed populations.</p>
+</section>
+<section id="prewrite">
+<h3><code class="docutils literal notranslate"><span class="pre">preWrite</span></code><a class="headerlink" href="#prewrite" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w">  </span><span class="nf">preWrite</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">fTime</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Calls the <code class="docutils literal notranslate"><span class="pre">preWrite()</span></code> method of all managed populations.</p>
+</section>
+<section id="getnumpops">
+<h3><code class="docutils literal notranslate"><span class="pre">getNumPops</span></code><a class="headerlink" href="#getnumpops" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">size_t</span><span class="w">  </span><span class="nf">getNumPops</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Returns the number of managed populations.</p>
+</section>
+<section id="getdead">
+<h3><code class="docutils literal notranslate"><span class="pre">getDead</span></code><a class="headerlink" href="#getdead" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="n">popvec</span><span class="w">  </span><span class="o">&amp;</span><span class="nf">getDead</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Returns the vector of extinct populations.,</p>
+</section>
+<section id="getmaxid">
+<h3><code class="docutils literal notranslate"><span class="pre">getMaxID</span></code><a class="headerlink" href="#getmaxid" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">idtype</span><span class="w">  </span><span class="nf">getMaxID</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Returns the highest ID used by this population.</p>
+</section>
+<section id="getpopbyname">
+<h3><code class="docutils literal notranslate"><span class="pre">getPopByName</span></code><a class="headerlink" href="#getpopbyname" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="n">PopBase</span><span class="w"> </span><span class="o">*</span><span class="nf">getPopByName</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sSpeciesName</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">sSpecies</span></code></dt><dd><p>Name of wanted population.</p>
+</dd>
+</dl>
+<p>(Implementation of <code class="docutils literal notranslate"><span class="pre">PopFinder::getPopByName()</span></code>)</p>
+<p>This method returns a pointer to the population with the specified name, or NULL if it can’t be found or doesn’t exist.</p>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">PopLooper</a><ul>
+<li><a class="reference internal" href="#type-definitions">Type definitions</a></li>
+<li><a class="reference internal" href="#public-methods">Public Methods</a><ul>
+<li><a class="reference internal" href="#constructor"><code class="docutils literal notranslate"><span class="pre">constructor</span></code></a></li>
+<li><a class="reference internal" href="#destructor"><code class="docutils literal notranslate"><span class="pre">destructor</span></code></a></li>
+<li><a class="reference internal" href="#trymerge"><code class="docutils literal notranslate"><span class="pre">tryMerge</span></code></a></li>
+<li><a class="reference internal" href="#addpop"><code class="docutils literal notranslate"><span class="pre">addPop</span></code></a></li>
+<li><a class="reference internal" href="#removepopbyname"><code class="docutils literal notranslate"><span class="pre">removePopByName</span></code></a></li>
+<li><a class="reference internal" href="#removepopbyindex"><code class="docutils literal notranslate"><span class="pre">removePopByIndex</span></code></a></li>
+<li><a class="reference internal" href="#dostep"><code class="docutils literal notranslate"><span class="pre">doStep</span></code></a></li>
+<li><a class="reference internal" href="#preloop"><code class="docutils literal notranslate"><span class="pre">preLoop</span></code></a></li>
+<li><a class="reference internal" href="#postloop"><code class="docutils literal notranslate"><span class="pre">postLoop</span></code></a></li>
+<li><a class="reference internal" href="#prewrite"><code class="docutils literal notranslate"><span class="pre">preWrite</span></code></a></li>
+<li><a class="reference internal" href="#getnumpops"><code class="docutils literal notranslate"><span class="pre">getNumPops</span></code></a></li>
+<li><a class="reference internal" href="#getdead"><code class="docutils literal notranslate"><span class="pre">getDead</span></code></a></li>
+<li><a class="reference internal" href="#getmaxid"><code class="docutils literal notranslate"><span class="pre">getMaxID</span></code></a></li>
+<li><a class="reference internal" href="#getpopbyname"><code class="docutils literal notranslate"><span class="pre">getPopByName</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="PopFinder.html"
+                          title="previous chapter">PopFinder</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="Prioritizer.html"
+                          title="next chapter">Prioritizer</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/code_doc/core/PopLooper.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="Prioritizer.html" title="Prioritizer"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="PopFinder.html" title="PopFinder"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../core.html" >core</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">PopLooper</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+    </div>
+  </body>
+</html>

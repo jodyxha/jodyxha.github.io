@@ -1,0 +1,56 @@
+Tools
+=====
+
+.. rst-class:: hidden
+
+   This page describes the directory :index:`useful_stuff`
+
+QHG4 comprises various tool in different locations.
+
+
+
+**GridCreation**
+
+.. toctree::
+   :maxdepth: 1
+   
+   tools/Def2QDF
+   tools/prepare_grids.py
+   
+   tools/Coastal
+   tools/VectorImport
+     
+**QDF Compiling and Tutorial Installation**
+
+.. toctree::
+   :maxdepth: 1
+  
+   tools/build_alt_modpop
+   tools/build_tut_dirs
+
+
+**QDF population attributes**
+
+.. toctree::
+   :maxdepth: 1
+   :caption: QDF population attributes
+
+.. to be done
+
+   tools/pop_attrs2.py 
+   tools/add_attr
+   tools/change_attr
+   tools/show_attr
+ 
+   tools/comp_attrs
+
+   tools/prio_edit.py
+   tools/LinkQDFGroups.py
+
+**Visualization**
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/QDF2PNGNew
+

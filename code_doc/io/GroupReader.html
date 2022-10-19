@@ -1,0 +1,244 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>GroupReader &#8212; QHG4 4.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jody.css" />
+    
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    
+    <link rel="shortcut icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="GridGroupReader" href="GridGroupReader.html" />
+    <link rel="prev" title="io" href="../io.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="GridGroupReader.html" title="GridGroupReader"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../io.html" title="io"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../io.html" accesskey="U">io</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">GroupReader</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="groupreader">
+<span id="groupreader-ref"></span><h1>GroupReader<a class="headerlink" href="#groupreader" title="Permalink to this heading">¶</a></h1>
+<p class="hidden">This page describes the class  <span class="target" id="index-0"></span>GroupReader</p>
+<p>The class <code class="docutils literal notranslate"><span class="pre">GroupReader</span></code> is an abstractt base class for the classes that read environment fata from a qdf file’s environment groups.</p>
+<p>This file also defines a base class for group attributes:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">Attributes</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">uint</span><span class="w"> </span><span class="n">m_iNumCells</span><span class="p">;</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The classes derived from <code class="docutils literal notranslate"><span class="pre">GroupReader</span></code> will use the structs derived from <code class="docutils literal notranslate"><span class="pre">Attributes</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">GroupReader</span></code> is a template class with two templates</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">T</span><span class="p">,</span><span class="w"> </span><span class="k">typename</span><span class="w"> </span><span class="nc">U</span><span class="o">&gt;</span><span class="w"></span>
+<span class="k">class</span><span class="w"> </span><span class="nc">GroupReader</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">T</span></code> will be instantiated with an environemnt class, <code class="docutils literal notranslate"><span class="pre">U</span></code> will be instantiated with a class derived from <code class="docutils literal notranslate"><span class="pre">Attribute</span></code></p>
+<p>The environment classes are <a class="reference internal" href="../core/SCellGrid.html#scellgrid-ref"><span class="std std-ref">SCellGrid</span></a>, <a class="reference internal" href="../core/Geography.html#geography-ref"><span class="std std-ref">Geography</span></a>, <a class="reference internal" href="../core/Climate.html#climate-ref"><span class="std std-ref">Climate</span></a>, <a class="reference internal" href="../core/Vegetation.html#vegetation-ref"><span class="std std-ref">Vegetation</span></a>, <a class="reference internal" href="../core/Navigation.html#navigation-ref"><span class="std std-ref">Navigation</span></a>.</p>
+<p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/io/GroupReader.h">GroupReader.h</a>, <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/io/GroupReader.cpp">GroupReader.cpp</a></p>
+<section id="public-methods">
+<h2>Public Methods<a class="headerlink" href="#public-methods" title="Permalink to this heading">¶</a></h2>
+<section id="destructor">
+<h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">GroupReader</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The destructor closes all open HDF handles.</p>
+</section>
+<section id="readattributes">
+<h3><code class="docutils literal notranslate"><span class="pre">readAttributes</span></code><a class="headerlink" href="#readattributes" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">readAttributes</span><span class="p">(</span><span class="n">U</span><span class="w"> </span><span class="o">*</span><span class="n">pAttributes</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Reads the attributes for the group into <code class="docutils literal notranslate"><span class="pre">pAttributes</span></code>.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">pAttributes</span></code></dt><dd><p>A pointer to a class derived from <code class="docutils literal notranslate"><span class="pre">Attributes</span></code>.</p>
+</dd>
+</dl>
+<p>Returns 0 on success, -1 otherwise.</p>
+</section>
+<section id="readarray">
+<h3><code class="docutils literal notranslate"><span class="pre">readArray</span></code><a class="headerlink" href="#readarray" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">readArray</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="o">*</span><span class="n">pGroup</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sArrayName</span><span class="p">)</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>A virtual function intended to read an array from the group in the  qdf file into the corresponding array of the group.</p>
+<p>This method must be implemented in derived classes.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">pGroup</span></code></dt><dd><p>A pointer to an environment class.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sArrayName</span></code></dt><dd><p>The name of an array in the environment class (the same name being used in the qdf file)</p>
+</dd>
+</dl>
+<p>Returns 0 on success, -1 otherwise.</p>
+</section>
+<section id="readdata">
+<h3><code class="docutils literal notranslate"><span class="pre">readData</span></code><a class="headerlink" href="#readdata" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">readData</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="o">*</span><span class="n">pGroup</span><span class="p">)</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>A virtual function intended to read all arrays from the group in the qdf file into the corresponding arrays of the group.</p>
+<p>This class must be implemented in derived classes.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">pGroup</span></code></dt><dd><p>A pointer to an environment class.</p>
+</dd>
+</dl>
+<p>Returns 0 on success, -1 otherwise.</p>
+</section>
+</section>
+<section id="protectedmethods">
+<h2>ProtectedMethods<a class="headerlink" href="#protectedmethods" title="Permalink to this heading">¶</a></h2>
+<section id="constructor">
+<h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#constructor" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">GroupReader</span><span class="p">()</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The constructor initializes the members.</p>
+</section>
+<section id="init">
+<h3><code class="docutils literal notranslate"><span class="pre">init</span></code><a class="headerlink" href="#init" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">init</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sFileName</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sGroupName</span><span class="p">);</span><span class="w"></span>
+<span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">init</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hFile</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sGroupName</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Opens the qdf file and gets a handle to the group.</p>
+<p>These methods may be overwritten if necessary (but normally they suffice).</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">sFileName</span></code></dt><dd><p>Name of the qdf file to open.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">hFile</span></code></dt><dd><p>HDF handle to a qdf file.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sGroupName</span></code></dt><dd><p>The name of the environment group  to open.</p>
+</dd>
+</dl>
+<p>Returns 0 on success, -1 otherwise.</p>
+</section>
+<section id="tryreadattributes">
+<h3><code class="docutils literal notranslate"><span class="pre">tryReadAttributes</span></code><a class="headerlink" href="#tryreadattributes" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">tryReadAttributes</span><span class="p">(</span><span class="n">U</span><span class="w"> </span><span class="o">*</span><span class="n">pAttributes</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Does the actual reading of the attributes when called by <code class="docutils literal notranslate"><span class="pre">readAttributes</span></code>. Here it simply the number of cells.</p>
+<p>This method should be implemented in derived classes to take into account the particular attributes of the group.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">pAttributes</span></code></dt><dd><p>A pointer to a class derived from <code class="docutils literal notranslate"><span class="pre">Attributes</span></code>.</p>
+</dd>
+</dl>
+<p>Returns 0 on success, -1 otherwise.</p>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">GroupReader</a><ul>
+<li><a class="reference internal" href="#public-methods">Public Methods</a><ul>
+<li><a class="reference internal" href="#destructor"><code class="docutils literal notranslate"><span class="pre">destructor</span></code></a></li>
+<li><a class="reference internal" href="#readattributes"><code class="docutils literal notranslate"><span class="pre">readAttributes</span></code></a></li>
+<li><a class="reference internal" href="#readarray"><code class="docutils literal notranslate"><span class="pre">readArray</span></code></a></li>
+<li><a class="reference internal" href="#readdata"><code class="docutils literal notranslate"><span class="pre">readData</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#protectedmethods">ProtectedMethods</a><ul>
+<li><a class="reference internal" href="#constructor"><code class="docutils literal notranslate"><span class="pre">constructor</span></code></a></li>
+<li><a class="reference internal" href="#init"><code class="docutils literal notranslate"><span class="pre">init</span></code></a></li>
+<li><a class="reference internal" href="#tryreadattributes"><code class="docutils literal notranslate"><span class="pre">tryReadAttributes</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="../io.html"
+                          title="previous chapter">io</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="GridGroupReader.html"
+                          title="next chapter">GridGroupReader</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/code_doc/io/GroupReader.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="GridGroupReader.html" title="GridGroupReader"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../io.html" title="io"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../io.html" >io</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">GroupReader</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+    </div>
+  </body>
+</html>

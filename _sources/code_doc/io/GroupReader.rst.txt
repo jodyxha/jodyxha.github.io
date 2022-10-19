@@ -1,0 +1,159 @@
+.. _GroupReader_ref:
+
+GroupReader
+===========
+
+.. rst-class:: hidden
+
+   This page describes the class  :index:`GroupReader`
+
+
+The class ``GroupReader`` is an abstractt base class for the classes that read environment fata from a qdf file's environment groups.
+
+This file also defines a base class for group attributes:
+
+.. code-block:: c++
+
+    struct Attributes {
+        uint m_iNumCells;
+    };
+
+The classes derived from ``GroupReader`` will use the structs derived from ``Attributes``
+
+``GroupReader`` is a template class with two templates
+
+.. code-block:: c++
+
+  template<class T, typename U>
+  class GroupReader;
+
+``T`` will be instantiated with an environemnt class, ``U`` will be instantiated with a class derived from ``Attribute``
+
+The environment classes are :ref:`SCellGrid<SCellGrid_ref>`, :ref:`Geography<Geography_ref>`, :ref:`Climate<Climate_ref>`, :ref:`Vegetation<Vegetation_ref>`, :ref:`Navigation<Navigation_ref>`.
+
+
+ 
+Code: `GroupReader.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/GroupReader.h>`_, `GroupReader.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/GroupReader.cpp>`_
+
+
+Public Methods
+--------------
+
+
+``destructor``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual ~GroupReader();
+
+The destructor closes all open HDF handles.
+
+.. -----------------------------------------------------------------------------
+
+``readAttributes``
+^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+  
+    virtual int readAttributes(U *pAttributes);
+    
+Reads the attributes for the group into ``pAttributes``.
+
+``pAttributes``
+    A pointer to a class derived from ``Attributes``. 
+
+Returns 0 on success, -1 otherwise.
+
+.. -----------------------------------------------------------------------------
+
+``readArray``
+^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int readArray(T *pGroup, const std::string sArrayName)=0;
+
+A virtual function intended to read an array from the group in the  qdf file into the corresponding array of the group.
+
+This method must be implemented in derived classes.
+
+``pGroup``
+    A pointer to an environment class.
+
+``sArrayName``
+    The name of an array in the environment class (the same name being used in the qdf file)
+
+Returns 0 on success, -1 otherwise.
+
+.. -----------------------------------------------------------------------------
+
+``readData``
+^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int readData(T *pGroup)=0;
+
+A virtual function intended to read all arrays from the group in the qdf file into the corresponding arrays of the group.
+
+This class must be implemented in derived classes.
+ 
+``pGroup``
+    A pointer to an environment class.
+
+Returns 0 on success, -1 otherwise.
+
+.. -----------------------------------------------------------------------------
+
+ProtectedMethods
+----------------
+
+``constructor``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    GroupReader()
+
+The constructor initializes the members.
+
+.. -----------------------------------------------------------------------------
+
+``init``
+^^^^^^^^
+.. code-block:: c++
+
+    virtual int init(const std::string sFileName, const std::string sGroupName);
+    virtual int init(hid_t hFile, const std::string sGroupName);
+
+Opens the qdf file and gets a handle to the group.
+
+These methods may be overwritten if necessary (but normally they suffice).
+
+``sFileName``
+    Name of the qdf file to open.
+
+``hFile``
+    HDF handle to a qdf file.
+
+``sGroupName``
+    The name of the environment group  to open.
+
+Returns 0 on success, -1 otherwise.
+
+.. -----------------------------------------------------------------------------
+
+``tryReadAttributes``
+^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int tryReadAttributes(U *pAttributes);
+
+Does the actual reading of the attributes when called by ``readAttributes``. Here it simply the number of cells.
+
+This method should be implemented in derived classes to take into account the particular attributes of the group.
+
+
+``pAttributes``
+    A pointer to a class derived from ``Attributes``. 
+
+Returns 0 on success, -1 otherwise.
+
+.. -----------------------------------------------------------------------------
+

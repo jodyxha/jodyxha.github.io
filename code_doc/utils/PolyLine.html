@@ -1,0 +1,230 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>PolyLine &#8212; QHG4 4.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jody.css" />
+    
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <link rel="shortcut icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="geomutils" href="geomutils.html" />
+    <link rel="prev" title="crypto" href="crypto.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="geomutils.html" title="geomutils"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="crypto.html" title="crypto"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../utils.html" accesskey="U">utils</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">PolyLine</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="polyline">
+<span id="polyline-ref"></span><h1>PolyLine<a class="headerlink" href="#polyline" title="Permalink to this heading">¶</a></h1>
+<p class="hidden">This page describes the class <span class="target" id="index-0"></span>PolyLine</p>
+<p>The class <code class="docutils literal notranslate"><span class="pre">PolyLine</span></code> implements a piecewise linear function.</p>
+<figure class="align-default">
+<img alt="../../_images/PolyLine.png" src="../../_images/PolyLine.png" />
+</figure>
+<p>Given a sequence of coordinate pairs <span class="math notranslate nohighlight">\((x_i,v_i)\)</span> the <code class="docutils literal notranslate"><span class="pre">PolyLine</span></code> is constructed by the line segments between <span class="math notranslate nohighlight">\((x_i,v_i)\)</span> and <span class="math notranslate nohighlight">\((x_{i+1},v_{i+1})\)</span> for <span class="math notranslate nohighlight">\(i &lt; N\)</span>, where <span class="math notranslate nohighlight">\(N\)</span> is the number of coordinate pairs.</p>
+<p>We define</p>
+<div class="line-block">
+<div class="line"><span class="math notranslate nohighlight">\(f(x) = v_0\)</span> for <span class="math notranslate nohighlight">\(x &lt; x_0\)</span>,</div>
+<div class="line"><span class="math notranslate nohighlight">\(f(x) = v_N\)</span> for <span class="math notranslate nohighlight">\(x &gt;= x_{N-1}\)</span>,</div>
+<div class="line"><span class="math notranslate nohighlight">\(f(x) = v_{i-1} + (x - x_{i-1})(v_i - v_{i-1})/(x_i - x_{i-1})\)</span> for <span class="math notranslate nohighlight">\(x_{i-1} &lt;= x &lt; x_i\)</span> (linear interpolation)</div>
+</div>
+<p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/PolyLine.h">PolyLine.h</a> <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/PolyLine.cpp">PolyLine.cpp</a></p>
+<section id="public-methods">
+<h2>Public Methods<a class="headerlink" href="#public-methods" title="Permalink to this heading">¶</a></h2>
+<section id="constructors">
+<h3><code class="docutils literal notranslate"><span class="pre">constructors</span></code><a class="headerlink" href="#constructors" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">PolyLine</span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iNumSegments</span><span class="p">);</span><span class="w"></span>
+<span class="n">PolyLine</span><span class="p">(</span><span class="n">PolyLine</span><span class="w"> </span><span class="o">*</span><span class="n">pPL</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">iNumSegments</span></code></dt><dd><p>Number of segments of poly line.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">pPL</span></code></dt><dd><p>Pointer to a poly line.</p>
+</dd>
+</dl>
+<p>The constructors allocate memory for the x-cordinates, the y-coordinates and the slopes.</p>
+</section>
+<section id="destructor">
+<h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="o">~</span><span class="n">PolyLine</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="addpoint">
+<h3><code class="docutils literal notranslate"><span class="pre">addPoint</span></code><a class="headerlink" href="#addpoint" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">addPoint</span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">fX</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">fV</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">i</span></code></dt><dd><p>index of the new point.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">fX</span></code></dt><dd><p>x-coordinate of the new point.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">fV</span></code></dt><dd><p>y -coordinate of the point (value).</p>
+</dd>
+</dl>
+<p>Adds the i-th point as (fX, fV), and calculates the slope of the line from the previous point.</p>
+</section>
+<section id="constructor">
+<h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#constructor" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span><span class="w"> </span><span class="nf">getVal</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">fX</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">fX</span></code></dt><dd><p>x-coordinate</p>
+</dd>
+</dl>
+<p>Calculates the value of the poly line by interpolating the segment whose projection to the x-axis contains x.</p>
+</section>
+<section id="write">
+<h3><code class="docutils literal notranslate"><span class="pre">write</span></code><a class="headerlink" href="#write" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">write</span><span class="p">(</span><span class="kt">FILE</span><span class="w"> </span><span class="o">*</span><span class="n">fOut</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">fOut</span></code></dt><dd><p>Output file handle.</p>
+</dd>
+</dl>
+<p>Writes a simple textfile containing the coordinate pairs of the poly line.</p>
+</section>
+<section id="diplay">
+<h3><code class="docutils literal notranslate"><span class="pre">diplay</span></code><a class="headerlink" href="#diplay" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">display</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">pIndent</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sCaption</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">pIndent</span></code></dt><dd><p>Indentation of output.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sCaption</span></code></dt><dd><p>Caption for output.</p>
+</dd>
+</dl>
+<p>Writes the poly line data to screen (used for debugging)</p>
+</section>
+<section id="readfromstring">
+<h3><code class="docutils literal notranslate"><span class="pre">readFromString</span></code><a class="headerlink" href="#readfromstring" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="n">PolyLine</span><span class="w"> </span><span class="o">*</span><span class="nf">readFromString</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sData</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">sData</span></code></dt><dd><p>String containing <code class="docutils literal notranslate"><span class="pre">PolyLine</span></code> data in a suitable format ( &lt;x1&gt; &lt;v1&gt; &lt;x2&gt; &lt;v2&gt; … &lt;xn&gt; &lt;vn&gt;).</p>
+</dd>
+</dl>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">PolyLine</a><ul>
+<li><a class="reference internal" href="#public-methods">Public Methods</a><ul>
+<li><a class="reference internal" href="#constructors"><code class="docutils literal notranslate"><span class="pre">constructors</span></code></a></li>
+<li><a class="reference internal" href="#destructor"><code class="docutils literal notranslate"><span class="pre">destructor</span></code></a></li>
+<li><a class="reference internal" href="#addpoint"><code class="docutils literal notranslate"><span class="pre">addPoint</span></code></a></li>
+<li><a class="reference internal" href="#constructor"><code class="docutils literal notranslate"><span class="pre">constructor</span></code></a></li>
+<li><a class="reference internal" href="#write"><code class="docutils literal notranslate"><span class="pre">write</span></code></a></li>
+<li><a class="reference internal" href="#diplay"><code class="docutils literal notranslate"><span class="pre">diplay</span></code></a></li>
+<li><a class="reference internal" href="#readfromstring"><code class="docutils literal notranslate"><span class="pre">readFromString</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="crypto.html"
+                          title="previous chapter">crypto</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="geomutils.html"
+                          title="next chapter">geomutils</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/code_doc/utils/PolyLine.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="geomutils.html" title="geomutils"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="crypto.html" title="crypto"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../utils.html" >utils</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">PolyLine</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+    </div>
+  </body>
+</html>

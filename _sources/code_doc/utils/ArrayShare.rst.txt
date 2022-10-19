@@ -1,0 +1,235 @@
+.. _ArrayShare_ref:
+
+ArrayShare
+==========
+
+.. rst-class:: hidden
+
+   This page describes the class :index:`ArrayShare`
+
+The class ``ArrayShare`` can be used to share arrays between different objects, e.g. populations.
+
+It is implemented as a singleton.
+
+The caller of ``getArray()`` should know the type of the array.
+
+Code: `ArrayShare.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/ArrayShare.h>`_, `ArrayShare.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/ArrayShare.cpp>`_
+
+Typedefs
+--------
+
+.. code-block:: c++
+
+  typedef std::vector<std::string> stringlist;
+
+
+Structures
+----------
+
+.. code-block:: c++
+
+  typedef struct arraystruct {
+      int m_iSize;
+      void *m_pdArr;
+      // constructor
+      arraystruct(int iSize, void *pdArr) : m_iSize(iSize), m_pdArr(pdArr) {};
+  } arraystruct;
+
+
+Public Methods
+--------------
+
+``constructor``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    ArrayShare();
+
+The constructor. It is usually not used directly.
+
+.. -----------------------------------------------------------------------------
+
+``destructor``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    ~ArrayShare();
+
+The destructor. It is usually not used directly.
+
+.. -----------------------------------------------------------------------------
+
+``shareArray``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    int shareArray(const std::string sName, int iSize, std::string sType, void *pdArr);
+    int shareArray(const std::string sName, int iSize, void *pdArr);
+
+Register an array for sharing.
+
+``sName``
+    A name for the array.
+
+``iSize``
+   The array's size.
+
+``sType``
+   An arbitrary string for the array's type. If ``sType`` is omitted, the type string is "".
+
+``pdArr`` 
+   A pointer to the array.
+
+
+Returns 0 on success, -1 on failure
+
+.. -----------------------------------------------------------------------------
+
+``getSize``
+^^^^^^^^^^^
+.. code-block:: c++
+
+    int getSize(const std::string sName);
+
+Get the size of the array with the specified name.
+
+``sName``
+    The array's name.
+
+Returns size.
+
+.. -----------------------------------------------------------------------------
+
+``getType``
+^^^^^^^^^^^
+.. code-block:: c++
+
+    std::string getType(const std::string sName);
+
+Get the type string of the array with the specified name.
+
+``sName``
+    The array's name.
+
+Returns the type string.
+
+.. -----------------------------------------------------------------------------
+
+``getArray``
+^^^^^^^^^^^^
+.. code-block:: c++
+
+    void *getArray(const std::string sName);
+
+Get a pointer to the array with specified name.
+
+``sName``
+    The array's name.
+
+Returns a void pointer to the array, or NuULL on failure.
+
+.. -----------------------------------------------------------------------------
+
+``getArrayStruct``
+^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    const arraystruct *getArrayStruct(const std::string sName);
+
+Get the entire array struct for the speicified name.
+
+``sName``
+    The array's name.
+
+
+Retruns an the ArrayStruct for the given name, or NULL on failure
+
+.. -----------------------------------------------------------------------------
+       
+``removeArray``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    int removeArray(const std::string sName);
+
+Unregister array with specified name.
+
+``sName``
+    The array's name
+
+Returns 0 on success, -1 on failure
+
+
+``getNamesLike``
+^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    const stringlist &getNamesLike(const std::string sNamePattern);
+
+Find registered array wiht names matching a pattern
+
+``sNamePattern``
+    A regular expression to search for.
+    
+Returns a vector of strings
+
+.. -----------------------------------------------------------------------------
+
+``display``
+^^^^^^^^^^^
+.. code-block:: c++
+
+    void display();
+
+Prints a list of all registered arrays and their sizes.
+
+.. -----------------------------------------------------------------------------
+
+``getInstance``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    static ArrayShare *getInstance();
+    
+Returns a pointer to the ArrayShare singleton. If it doesn't exist yet, it is created    
+
+.. -----------------------------------------------------------------------------
+
+``freeInstance()``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    static void *freeInstance();
+    
+Deletes the singleton and frees resources.
+
+.. -----------------------------------------------------------------------------
+
+Example
+"""""""
+In this example, class A shares an integer array under the name "Array_A", and class B gets the array and does something with it. 
+
+.. code-block:: c++
+
+  class A {
+  public: 
+      A(int iC) {
+          m_pArr = new int[iC];
+          ArrayShare::getInstance->shareArray("Array_A", iC, m_pArr);
+      }
+      //...
+  }
+
+.. code-block:: c++
+
+   class B {
+   public:
+       int action() {      
+           int iSize  = ArrayShare::getInstance->getSize("Array_A");
+           // ArrayShare provides a void pointer to the array,
+           // so B must cast it to the correct type
+           int *pTemp = (int *)ArrayShare::getInstance->getArray("Array_A");             
+           // do something with it
+       } 
+   // ...
+   }

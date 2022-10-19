@@ -1,0 +1,103 @@
+.. _RandomPair_ref:
+
+RandomPair
+==========
+
+.. rst-class:: hidden
+  
+    This page describes the class :index:`RandomPair`
+
+The class ``RandomPair`` performs maximal random pairing between all fertile male and female agents (maximal: as many pairings as possible.
+For this it maintains an array of vectors, ech vector  containing the ids of the agents in one cell. 
+This class has no ``execute()`` method because all pairings must be done before any other action can use them in its own call to ``execute()``. 
+
+Note: the agent structures of the population must have a member ``int iMateIndex``
+
+Code: `RandomPair.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/RandomPair.h>`_ `RandomPair.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/RandomPair.cpp>`_
+
+.. figure:: ../../../images/pairing.png
+
+    Pairing of agents within cells (blue: males, red: females).
+
+**Attributes:**
+
++-------------------------------+---------------+------------------+
+| ``ATTR_RANDOMPAIR_NAME``      | "RandomPair"  | action name      |
++-------------------------------+---------------+------------------+
+
+Public Methods
+--------------
+
+``constructor``
+^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    RandomPair(SPopulation<T> *pPop, SCellGrid *pCG, std::string sID, WELL512 **apWELL);
+   
+``pPop``
+    A pointer to the :ref:`SPopulation<SPopulation_ref>` object performing this action.
+
+``pCG``
+    A pointer to the  :ref:`SCellGrid<SCellGrid_ref>` object on which the simulation runs.
+
+``sID``
+    An ID for this action.
+
+``apWELL``
+    A pointer to an array of :ref:`WELL512 random number generators<WELL512_ref>` (one for each thread) 
+
+Allocates the arrays of vectors for the IDs, as well as bool arrays to mark already paired agents and array of locks needed for parallelized filling of the id vectors.
+
+.. -----------------------------------------------------------------------------
+
+``destructor``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+     virtual ~WeightedMove();
+
+The destructor deletes all allocated arrays.
+
+.. -----------------------------------------------------------------------------
+
+``initialize``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+       virtual int initialize(float fT);
+
+``fT``
+    Current simulation step.
+
+In this method first the id vectors are cleared and then ``findMates()`` is called to do the pairing.
+
+.. -----------------------------------------------------------------------------
+
+``isEqual``
+^^^^^^^^^^^
+.. code-block:: c++
+
+       virtual bool isEqual(Action<T> *pAction, bool bStrict);
+ 
+``pAction``
+    Pointer to an action object to compare with this.
+
+``bStrict``
+    Strictness of comparisons (ignored here).
+
+``pAction`` is equal to ``this``, if it is a ``RandomPair`` object.
+
+.. -----------------------------------------------------------------------------
+
+Protected Methods
+-----------------
+
+``findMates``
+^^^^^^^^^^^^^
+.. code-block:: c++
+
+       int findMates();
+
+This method (called by ``initialize()``) first uses a parallelized loop to fill the id vectors with the IDs of all male and female fertile agents.
+Then for each cell as many pairs as possible are selected from the male and female vectors.
+It is expected that the agent structures have a field ``m_iMateIndex``, since this is set for each paired agent.

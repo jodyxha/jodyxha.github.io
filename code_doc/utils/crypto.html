@@ -1,0 +1,320 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>crypto &#8212; QHG4 4.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jody.css" />
+    
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    
+    <link rel="shortcut icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="PolyLine" href="PolyLine.html" />
+    <link rel="prev" title="WELLUtils" href="WELLUtils.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="PolyLine.html" title="PolyLine"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="WELLUtils.html" title="WELLUtils"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../utils.html" accesskey="U">utils</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">crypto</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="crypto">
+<span id="crypto-ref"></span><h1>crypto<a class="headerlink" href="#crypto" title="Permalink to this heading">¶</a></h1>
+<p class="hidden">This page describes the module <span class="target" id="index-0"></span>crypto</p>
+<p>The module <code class="docutils literal notranslate"><span class="pre">crypto</span></code> contains implemention of some hash functions.</p>
+<p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/crypto.h">crypto.h</a>, <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/crypto.cpp">crypto.cpp</a></p>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this heading">¶</a></h2>
+<section id="shasum">
+<h3><code class="docutils literal notranslate"><span class="pre">shasum</span></code><a class="headerlink" href="#shasum" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">shasum</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sFile</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">pSHAsum</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Calculates a SHA check sum for the specified file into a buffer.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">sFile</span></code></dt><dd><p>Name of the file for which ths checksum is calculated.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">pSHAsum</span></code></dt><dd><p>Pointer to the buffer (must have size &gt;= SHA_SIZE).</p>
+</dd>
+</dl>
+<p>Returns 0 on success, -1 on failure.</p>
+</section>
+<section id="md5sum">
+<h3><code class="docutils literal notranslate"><span class="pre">md5sum</span></code><a class="headerlink" href="#md5sum" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">md5sum</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sFile</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">pMD5sum</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Calculates a MD5 check sum for the specified file into a buffer.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">sFile</span></code></dt><dd><p>Nae of the file for which ths checksum is calculated.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">pMD5sum</span></code></dt><dd><p>Pointer to the buffer (must have size &gt;= MD5_SIZE).</p>
+</dd>
+</dl>
+<p>Returns 0 on success, -1 on failure.</p>
+</section>
+<section id="ripsum">
+<h3><code class="docutils literal notranslate"><span class="pre">ripsum</span></code><a class="headerlink" href="#ripsum" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">ripsum</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sFile</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">pRIPsum</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Calculates a RIP check sum for the specified file into a buffer.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">sFile</span></code></dt><dd><p>File of which ths checksum is calculated.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">pRIPsum</span></code></dt><dd><p>Pointer to the buffer (must have size &gt;= RIP_SIZE).</p>
+</dd>
+</dl>
+<p>Returns 0 on success, -1 on failure.</p>
+</section>
+<section id="shasums">
+<h3><code class="docutils literal notranslate"><span class="pre">shasumS</span></code><a class="headerlink" href="#shasums" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">shasumS</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sString</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">pSHAsum</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Calculates a SHA check sum for the specified string into a buffer.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">sString</span></code></dt><dd><p>The string for which ths checksum is calculated.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">pSHAsum</span></code></dt><dd><p>Pointer to the buffer (must have size &gt;= SHA_SIZE).</p>
+</dd>
+</dl>
+<p>Returns 0 on success, -1 on failure.</p>
+</section>
+<section id="md5sums">
+<h3><code class="docutils literal notranslate"><span class="pre">md5sumS</span></code><a class="headerlink" href="#md5sums" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">md5sumS</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sString</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">pMD5sum</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Calculates a MD5 check sum for the specified string into a buffer.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">sString</span></code></dt><dd><p>The string for which ths checksum is calculated.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">pMD5sum</span></code></dt><dd><p>Pointer to the buffer (must have size &gt;= MD5_SIZE).</p>
+</dd>
+</dl>
+<p>Returns 0 on success, -1 on failure.</p>
+</section>
+<section id="ripsums">
+<h3><code class="docutils literal notranslate"><span class="pre">ripsumS</span></code><a class="headerlink" href="#ripsums" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">ripsumS</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sString</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">pRIPsum</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Calculates a RIP check sum for the specified string into a buffer.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">sString</span></code></dt><dd><p>The string for which ths checksum is calculated.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">pRIPsum</span></code></dt><dd><p>Pointer to the buffer (must have size &gt;= RIP_SIZE).</p>
+</dd>
+</dl>
+<p>Returns 0 on success, -1 on failure.</p>
+<section id="example">
+<h4>Example<a class="headerlink" href="#example" title="Permalink to this heading">¶</a></h4>
+<p>Compile with</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>g++ crypto_example.cpp  crypto.cpp -lcrypto -o crypto_example
+</pre></div>
+</div>
+<p>Code for <code class="docutils literal notranslate"><span class="pre">crypt_example</span></code>:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cstdio&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cstring&gt;</span><span class="cp"></span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;crypto.h&quot;</span><span class="cp"></span>
+
+<span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w">   </span><span class="n">ID_SHA</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w">   </span><span class="n">ID_MD5</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
+<span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w">   </span><span class="n">ID_RIP</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w"></span>
+
+<span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">asNames</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;sha&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;md5&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;rip&quot;</span><span class="p">};</span><span class="w"></span>
+<span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w">  </span><span class="n">aIDs</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="n">ID_SHA</span><span class="p">,</span><span class="w"> </span><span class="n">ID_MD5</span><span class="p">,</span><span class="w"> </span><span class="n">ID_RIP</span><span class="p">};</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">showHex</span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">pSum</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iLen</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">iLen</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%02x&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">pSum</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iArgC</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">apArgV</span><span class="p">[])</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">iResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">iArgC</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">iWhich</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">iArgC</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">iArgC</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">asNames</span><span class="p">)</span><span class="o">/</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="p">);</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">strcmp</span><span class="p">(</span><span class="n">apArgV</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">asNames</span><span class="p">[</span><span class="n">j</span><span class="p">])</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                        </span><span class="n">iWhich</span><span class="w"> </span><span class="o">|=</span><span class="w"> </span><span class="n">aIDs</span><span class="p">[</span><span class="n">j</span><span class="p">];</span><span class="w"></span>
+<span class="w">                    </span><span class="p">}</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"></span>
+<span class="w">                </span><span class="n">i</span><span class="o">++</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">asNames</span><span class="p">)</span><span class="o">/</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="p">);</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">iWhich</span><span class="w"> </span><span class="o">|=</span><span class="w"> </span><span class="n">aIDs</span><span class="p">[</span><span class="n">j</span><span class="p">];</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="n">iResult</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">((</span><span class="n">iWhich</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">ID_MD5</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;MD5</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">aMD5</span><span class="p">[</span><span class="n">crypto</span><span class="o">::</span><span class="n">MD5_SIZE</span><span class="p">];</span><span class="w"></span>
+<span class="w">            </span><span class="n">iResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">crypto</span><span class="o">::</span><span class="n">md5sum</span><span class="p">(</span><span class="n">apArgV</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">aMD5</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">iResult</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">showHex</span><span class="p">(</span><span class="n">aMD5</span><span class="p">,</span><span class="w"> </span><span class="n">crypto</span><span class="o">::</span><span class="n">MD5_SIZE</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;couldn&#39;t open [%s]</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">apArgV</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="n">iResult</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">((</span><span class="n">iWhich</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">ID_SHA</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;SHA</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">aSHA</span><span class="p">[</span><span class="n">crypto</span><span class="o">::</span><span class="n">SHA_SIZE</span><span class="p">];</span><span class="w"></span>
+<span class="w">            </span><span class="n">iResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">crypto</span><span class="o">::</span><span class="n">shasum</span><span class="p">(</span><span class="n">apArgV</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">aSHA</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">iResult</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">showHex</span><span class="p">(</span><span class="n">aSHA</span><span class="p">,</span><span class="w"> </span><span class="n">crypto</span><span class="o">::</span><span class="n">SHA_SIZE</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;couldn&#39;t open [%s]</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">apArgV</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="n">iResult</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">((</span><span class="n">iWhich</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">ID_RIP</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;RIP</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">aRIP</span><span class="p">[</span><span class="n">crypto</span><span class="o">::</span><span class="n">RIP_SIZE</span><span class="p">];</span><span class="w"></span>
+<span class="w">            </span><span class="n">iResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">crypto</span><span class="o">::</span><span class="n">ripsum</span><span class="p">(</span><span class="n">apArgV</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">aRIP</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">iResult</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">showHex</span><span class="p">(</span><span class="n">aRIP</span><span class="p">,</span><span class="w"> </span><span class="n">crypto</span><span class="o">::</span><span class="n">RIP_SIZE</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;couldn&#39;t open [%s]</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">apArgV</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+
+
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">iResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;usage: %s &lt;file&gt; [</span><span class="se">\&quot;</span><span class="s">sha</span><span class="se">\&quot;</span><span class="s"> | </span><span class="se">\&quot;</span><span class="s">md5</span><span class="se">\&quot;</span><span class="s"> | </span><span class="se">\&quot;</span><span class="s">rip</span><span class="se">\&quot;</span><span class="s">]*</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">apArgV</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">iResult</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">crypto</a><ul>
+<li><a class="reference internal" href="#functions">Functions</a><ul>
+<li><a class="reference internal" href="#shasum"><code class="docutils literal notranslate"><span class="pre">shasum</span></code></a></li>
+<li><a class="reference internal" href="#md5sum"><code class="docutils literal notranslate"><span class="pre">md5sum</span></code></a></li>
+<li><a class="reference internal" href="#ripsum"><code class="docutils literal notranslate"><span class="pre">ripsum</span></code></a></li>
+<li><a class="reference internal" href="#shasums"><code class="docutils literal notranslate"><span class="pre">shasumS</span></code></a></li>
+<li><a class="reference internal" href="#md5sums"><code class="docutils literal notranslate"><span class="pre">md5sumS</span></code></a></li>
+<li><a class="reference internal" href="#ripsums"><code class="docutils literal notranslate"><span class="pre">ripsumS</span></code></a><ul>
+<li><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="WELLUtils.html"
+                          title="previous chapter">WELLUtils</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="PolyLine.html"
+                          title="next chapter">PolyLine</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/code_doc/utils/crypto.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="PolyLine.html" title="PolyLine"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="WELLUtils.html" title="WELLUtils"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../utils.html" >utils</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">crypto</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+    </div>
+  </body>
+</html>

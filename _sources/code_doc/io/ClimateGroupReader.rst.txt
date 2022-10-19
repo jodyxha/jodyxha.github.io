@@ -1,0 +1,109 @@
+.. _ClimateGroupReader_ref:
+
+ClimateGroupReader
+==================
+
+.. rst-class:: hidden
+
+   This page describes the class  :index:`ClimateGroupReader`
+
+   
+The class ``ClimateGroupReader`` reads attributes and arrays from the :ref:`climate group <ClimateGroup_ref>` of a qdf file.
+
+This file extends the attribute structure:
+
+.. code-block:: c++
+
+    struct ClimateAttributes : Attributes {
+        int     m_iNumSeasons;
+    };
+
+Code: `ClimateGroupReader.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/ClimateGroupReader.h>`_, `ClimateGroupReader.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/ClimateGroupReader.cpp>`_
+
+
+Public Methods
+--------------
+
+``createClimateGroupReader``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    static ClimateGroupReader *createClimateGroupReader(const std::string sFileName);
+    static ClimateGroupReader *createClimateGroupReader(hid_t hFile);
+
+Creates a ``ClimateGroupReader`` object for a qdf file.
+
+``sFileName`` 
+    Name of the file to read the climate data from.
+
+``hFile``
+    HDF5 handle for the file to read the climate data from.
+
+Returns a pointer to the ``ClimateGridGroupReader`` object or ``NULL`` on failure.
+
+.. -----------------------------------------------------------------------------
+
+``tryReadAttributes``
+^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int tryReadAttributes(ClimateAttributes *pAttributes);
+
+Reads the attributes "NumCells" and "NumSeasons" from the climate group into the attribute structure.
+
+``pAttributes``
+    A pointer to a ``ClimateAttributes`` object to hold the attributes.
+
+Returns 0 on success, -1 on failure.
+
+.. -----------------------------------------------------------------------------
+
+``readArray``
+^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int readArray(Climate *pClimate, const std::string sArrayName);
+
+Read the specified array from the "Climate" group of the qdf file.
+
+``pClimate``
+    A pointer to the :ref:`Climate<Climate_ref>` object into which to read the array,
+
+``sArrayName``
+    Name of the array in the  "Climate" group of the qdf file.
+
+
+Returns 0 on succes, or -1 on failure.
+
+.. -----------------------------------------------------------------------------
+
+``readData``
+^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int readData(Climate *pClimate);
+
+Reads the arrays "ActualTemps", "ActualRains", "AnnualMeanTemp", "AnnualRainFall", "SeasonalTempDiff", "SeasonalRainRatios" and "CurSeason".
+
+
+``pClimate``
+    A Pointer to a :ref:`Climate<Climate_ref>` object.
+
+Returns 0 on succes, or -1 on failure.
+
+.. -----------------------------------------------------------------------------
+
+Protected Methods
+-----------------
+
+``constructor``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    ClimateGroupReader();
+
+The constructor.
+
+.. -----------------------------------------------------------------------------
+
+

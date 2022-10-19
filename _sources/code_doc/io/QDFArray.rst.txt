@@ -1,0 +1,379 @@
+.. QDFArray_ref:
+
+QDFArray
+========
+
+.. rst-class:: hidden
+
+   This page desctibes the class :index:`QDFArray`
+
+The classe ``QDFArray`` contains functions to simplify reading of one-dimensional data sets (arrays) from  QDF files.
+
+
+Code: `QDFArray.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/QDFArray.h>`_, `QDFArray.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/QDFArray.cpp>`_
+
+Public Methods
+--------------
+
+``create``
+^^^^^^^^^^
+
+.. code-block:: c++
+
+    static QDFArray *create(const std::string sQDFFile);
+    static QDFArray *create(hid_t hFile);
+
+Create a ``QDFArray`` object for the specified file.
+
+``hFile``
+    HDF handle to a qdf file.
+
+``sQDFFile``
+    Name of the qdf file.
+
+Returns  a ``QDFArray`` object on success, NULL on failure.
+
+.. -----------------------------------------------------------------------------
+
+``destructor``
+^^^^^^^^^^^^^^
+
+.. code-block:: c++
+
+    ~QDFArray();
+
+Closes opened HDF resources (groups, data sets, data spaces, data types).
+
+.. -----------------------------------------------------------------------------
+
+``init``
+^^^^^^^^
+.. code-block:: c++
+
+   int init(const std::string sQDFFile);
+   int init(hid_t hFile);
+
+Open and check file.
+
+``hFile``
+    HDF handle to a qdf file.
+
+``sQDFFile``
+    Name of the qdf file.
+
+The first version calls the second version after opening the qdf file.
+
+Returns 0 on success, -1 on failure.
+
+.. -----------------------------------------------------------------------------
+
+``openArray``
+^^^^^^^^^^^^^
+.. code-block:: c++
+
+    // open dataset given in path ("group1/.../groupN/dataset") 
+    int openArray(const std::string sPathToDataset);
+
+    // open dataset named 'sDataSet' in group 'sGroup'
+    int openArray(const std::string sGroup,  const std::string sDataset);
+
+    // open dataset 'sDataSet' in subgroup 'sGroup2' of group 'sGroup1' 
+    int openArray(const std::string sGroup1, const std::string sGroup2, const std::string sDataset);
+    
+    // open dataset 'sDataSet'in "vGroups[0]/.../vGroups[N]"
+    int openArray(stringvec &vGroups, const std::string sDataSet);
+
+Open the specified data set for reading. One of these methods must be called before accessing the array.
+
+.. -----------------------------------------------------------------------------
+
+``getSize``
+^^^^^^^^^^^
+.. code-block:: c++
+
+    uint getSize();
+
+Returns the size of the currently open array.    
+
+
+.. -----------------------------------------------------------------------------
+
+``getFirstSlab``
+^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    template<typename T>
+    int getFirstSlab(T *pBuffer, int iSize, const std::string sFieldName="");
+
+Read the first ``iSize`` elements of the array into the buffer. 
+
+``pBuffer``
+    Pointer to a buffer that can hold at least ``iSize`` elements.
+
+``iSize``
+    Number of elements to read (if the array has less than ``iSize`` elements, only these are read).
+
+``sFieldName``
+    If specified, it is assumed that the opened array has a compound data type, and one of the field's names is ``sFieldName``:
+
+| Returns the number of items read, or -1 on failure. 
+| If this number is equal to ``iSize``, there are possibly more items to be retrieved (s. ``getNextSlab``).
+
+.. -----------------------------------------------------------------------------
+
+``getNextSlab``
+^^^^^^^^^^^^^^^
+
+.. code-block:: c++
+
+    template <typename T>
+    int getNextSlab(T *pBuffer, int iSize);
+
+Gets the next ``iSize`` elements of the array into the buffer.
+
+``pBuffer``
+    Pointer to a buffer that can hold at least ``iSize`` elements.
+
+``iSize``
+    Number of elements to read (if the array has less than ``iSize`` elements left, only these are read).
+
+| Returns the number of items read, or -1 on failure. 
+| If this number is equal to ``iSize``, there are possibly more items to be retrieved (s. ``getNextSlab``);
+| if it is 0 there are no more elements left.
+
+
+.. -----------------------------------------------------------------------------
+
+``closeArray``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    void  closeArray();
+
+Close the current array and free resources.
+
+.. -----------------------------------------------------------------------------
+
+``getTimeStep``
+^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    float getTimeStep();
+
+Returns the value of time stamp attribute of the qdf file.
+
+
+Protected Methods
+-----------------
+
+
+``constructor``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+
+    QDFArray();
+
+The constructor.
+
+.. -----------------------------------------------------------------------------
+
+``readSlab``
+^^^^^^^^^^^^
+.. code-block:: c++
+
+    template <typename T>
+    int readSlab(T *pBuffer);
+
+Does the actual reading of the data from the qdf file. 
+
+``pBuffer``
+    Pointer to a buffer that can hold at least ``iSize`` elements.
+
+Returns the number of elements read, or -1 on failure.
+
+.. -----------------------------------------------------------------------------
+
+``setDataType``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    int setDataType(const std::string sFieldName, hid_t hBaseType, int iSize);
+
+Sets the data type of the array. For a field of a compound array the data type is more complex than a simple numeric type.
+
+
+Example
+-------
+In this example, a QDF array is used to read an environment array of a qdf file in one go, then it reads the field with specified name  in a (compound) array in blocks of a fixed size.
+
+Compile with
+
+.. code-block:: bash
+
+    g++ qdfa_example.cpp QDFArray.cpp QDFUtils.cpp -I ../utils -L ../utils -lUtils -lhdf5 -std=c++20
+
+
+Code for ``qdfa_example``
+
+.. code-block:: c++
+
+    #include <cstdio>
+    #include <string>
+
+    #include <hdf5.h>
+
+    #include "stdstrutils.h"
+    #include "stdstrutilsT.h"
+    #include "QDFUtils.h"
+    #include "QDFArrayT.h"
+
+
+    int main(int iArgC, char *apArgV[]) {
+        int iResult = -1;
+
+        std::string sQDFFile;
+        std::string sDSPathEnv;
+        std::string sDSPathPop;
+        std::string sDSFieldPop;
+
+        if (iArgC > 2) {
+            sQDFFile = apArgV[1];
+            sDSPathEnv = apArgV[2];
+            if (iArgC > 4) {
+                sDSPathPop  = apArgV[3];
+                sDSFieldPop = apArgV[4];
+            }
+
+            QDFArray *pQA = QDFArray::create(sQDFFile);
+            if (pQA != NULL) {
+
+                // read specified dataset in one go
+                std::string sTitle = stdsprintf("Read all elements of data set [%s] in file [%s] in one go\n", sDSPathEnv, sQDFFile);
+                std::string sUnderline(sTitle.size(), '-');
+                stdprintf(sTitle+sUnderline+"\n");
+
+                iResult = pQA->openArray(sDSPathEnv);
+                if (iResult == 0) {
+                    uint iSize = pQA->getSize();
+                    stdprintf("The array [%s] has size %u\n", sDSPathEnv, iSize); 
+
+                    double *pBuf = new double[iSize];
+                    
+                    int iSum = 0;
+                    int iCount = pQA->getFirstSlab(pBuf, iSize);
+                    if (iCount > 0)  {
+                        stdprintf("Have read %d of %u elements from [%s]:\n", iCount, iSize, sDSPathEnv);
+                        if (iCount == (int) iSize) {
+                            // show the 10 first elements
+                            int iShow = 10;
+                            for (int i = 0; i < iShow; ++i) {
+                                stdprintf("  %f", pBuf[i]);
+                            }
+                            stdprintf(" ...\n");
+                            
+                            iSum += iCount;
+                            iResult = 0;
+                        } else {
+                            stdprintf("Couldn't reat all %u elements from array\n", iSize);
+                            iResult = -1;
+                        }
+                    } else {
+                        stdprintf("Error reading data from [%s]\n", sDSPathEnv);
+                        iResult = -1;
+                    }
+
+                    delete[] pBuf;
+    
+                    pQA->closeArray();
+            
+                } else {
+                    stdprintf("couldn't open array in [%s]\n", sDSPathEnv);
+                }
+
+                if(!sDSPathPop.empty() && !sDSFieldPop.empty()) {
+                
+                    const int BLOCK_SIZE=1000;
+                    stdprintf("\n");
+                    std::string sTitle2 = stdsprintf("Read all fields [%s] of data set [%s] in file [%s] in blocks of size [%d]\n", sDSFieldPop, sDSPathEnv, sQDFFile, BLOCK_SIZE);
+                    std::string sUnderline2(sTitle2.size(), '-');
+                    stdprintf(sTitle2+sUnderline2+"\n");
+                    // read specified field in data set in blocks
+                    iResult = pQA->openArray(sDSPathPop);
+
+                    if (iResult == 0) {
+
+                        uint iSize = pQA->getSize();
+                        stdrintf("The array [%s] has size %u\n", sDSPathPop, iSize); 
+
+                        // we assume that the specified field has type long 
+                        long *pBuf = new long[BLOCK_SIZE];
+                    
+                        std::string s1;
+                        std::string s2 = stdsprintf(" from [%s] (field [%s])",  sDSPathPop, sDSFieldPop);
+                        int iCount = pQA->getFirstSlab(pBuf, BLOCK_SIZE, sDSFieldPop);
+                        while (iCount > 0)  {
+                            stdprintf("Read %s%d elements%s\n", s1, iCount, s2);
+                            s1="the next ";
+                            s2="";
+                            const int SHOW_SIZE=(10<iCount)?10:iCount;
+                            for (int i = 0; i < SHOW_SIZE; ++i) {
+                                stdprintf("  %ld", pBuf[i]);
+                            }
+                            stdprintf(" ...\n");
+
+                            iCount = pQA->getNextSlab(pBuf, iCount);
+                        }
+
+                        if (iCount < 0) {
+                            stdprintf("Error during read\n");
+                            iResult = -1;
+                        }                    
+                
+                        pQA->closeArray();
+                                
+                        delete[] pBuf;
+                   
+                    } else {
+                        stdprintf("couldn't open array in [%s]\n", sDSPathEnv);
+                    }
+            
+                } 
+
+                delete pQA;
+
+            } else {
+                stdprintf("couldn't create QDFArray for file %s\n", sQDFFile);
+            }
+
+        } else {
+            stdprintf("usage: %s <qdf-file> <dataset-path>\n", apArgV[0]);
+        }
+        return iResult;
+    }
+
+
+Sample output for qdf file ``smallworld_20k.qdf`` which contains a geography group with a dat set "Altitude" and a population subgroup ``sapiens`` whose array ``AgentDataSet`` contains the field "AgentID".
+
+.. code-block:: bash
+
+    $ ./a.out smallworld_20k.qdf Geography/Altitude /Populations/sapiens/AgentDataSet AgentID
+    Read all elements of data set [Geography/Altitude] in file [smallworld_20k.qdf] in one go
+    ------------------------------------------------------------------------------------------
+    The array [Geography/Altitude] has size 162
+    Have read 162 of 162 elements from [Geography/Altitude]:
+    1.000000  1.000000  1.000000  1.000000  1.000000  1.000000  1.000000  1.000000  1.000000  1.000000 ...
+
+
+    Read all fields [AgentID] of data set [Geography/Altitude] in file [smallworld_20k.qdf] in blocks of size [2000]
+    -----------------------------------------------------------------------------------------------------------------
+    The array [/Populations/sapiens/AgentDataSet] has size 7033
+    Read 2000 elements from [/Populations/sapiens/AgentDataSet] (field [AgentID])
+      16004981  15994433  15979961  15993209  15982553  15971321  15994469  15999545  15987197  6180796 ...
+    Read the next 2000 elements
+      6729661  6687290  6724333  6691826  6169780  6729769  6685779  6707918  6704678  6201963 ...
+    Read the next 2000 elements
+      6494376  6479221  6424504  15981005  6499020  6484836  6538438  6524867  6524903  6435951 ...
+    Read the next 1033 elements
+      6301606  6305062  6305098  6305134  6258408  6282923  6241165  6304666  6337640  6304702 ...
+

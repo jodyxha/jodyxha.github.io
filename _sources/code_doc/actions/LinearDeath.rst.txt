@@ -1,0 +1,193 @@
+.. _LinearDeath_ref:
+
+LinearDeath
+===========
+
+.. rst-class:: hidden
+  
+    This page describes the class :index:`LinearDeath`
+
+The class ``LinearDeath`` is derived from ``Action`` and calculates a birth probablity for each paired female agent.
+If a random number is less than that probability an agent birth is registered.
+
+The birth probability :math:`p_D` in a cell with capacity :math:`K` and a local population size of :math:`N` is calculated as follows:
+
+.. math:: p_D = d_0 + (\theta - d_0) * N/K
+
+where :math:`b_0` is the birth probability for :math:`N = 0`, and :math:`\theta` is the turnover i.e. the birth probability for :math:`N = K`.
+
+.. figure:: ../../../images/LinDeathCoords.png
+
+These death probabilities only depend on the environment, not on the agents' attributes.
+
+Code: `LinearDeath.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/LinearDeath.h>`_ `LinearDeath.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/LinearDeath.cpp>`_
+
+
+**Attributes**
+
++---------------------------------+---------------------+---------------------------+
+| ``ATTR_LINDEATH_NAME``          | "LinearDeath"       | action name               |
++---------------------------------+---------------------+---------------------------+
+| ``ATTR_LINDEATH_D0_NAME``       | "LinearDeath_d0"    | death probability for N=0 |
++---------------------------------+---------------------+---------------------------+
+| ``ATTR_LINDEATH_TURNOVER_NAME`` | "LinearDeath_theta" | turnover                  | 
++---------------------------------+---------------------+---------------------------+
+| ``ATTR_LINDEATH_CAPACITY_NAME`` | "LinearDeath_K"     | capacity                  |
++---------------------------------+---------------------+---------------------------+
+
+Public Methods
+--------------
+
+
+.. -----------------------------------------------------------------------------
+
+``constructors``
+^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    LinearDeath(SPopulation<T> *pPop, SCellGrid *pCG, std::string sID, WELL512 **apWELL);
+    LinearDeath(SPopulation<T> *pPop, SCellGrid *pCG, std::string sID, WELL512 **apWELL, double dD0, double dTheta, double dK);
+    LinearDeath(SPopulation<T> *pPop, SCellGrid *pCG, std::string sID, WELL512 **apWELL, double dD0, double dTheta, double* adK, int iStride);
+
+``pPop``
+    A pointer to the :ref:`SPopulation<SPopulation_ref>` object performing this action.
+
+``pCG``
+    A pointer to the  :ref:`SCellGrid<SCellGrid_ref>` object on which the simulation runs.
+
+``sID``
+    An ID for this action.
+
+``apWELL``
+    A pointer to an array of :ref:`WELL512 random number generators<WELL512_ref>` (one for each thread). 
+
+``dD0``
+    The value for :math:`d_0`.
+
+``dTheta``
+    The value for :math:`\theta`.
+
+``dK``
+    The carrying capacity (globally uniform).
+
+``adK``
+    Array of carrying capacity values, one for eac cell.
+
+``iStride``
+    Stride to read the array
+
+
+Allocates an array to hold the death probabilituies.
+
+.. -----------------------------------------------------------------------------
+
+``destructor``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual ~LinearDeath();
+
+Deletes the array of birth probabilituies.
+
+.. -----------------------------------------------------------------------------
+
+``initialize``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int initialize(float fT);
+
+``fT``
+    Current simulation step.
+
+In this method the death probabilities for all cells are calculated.
+
+.. -----------------------------------------------------------------------------
+
+``execute``
+^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int execute(int iAgentIndex, float fT);
+
+``iAgentIndex``
+    Current agent's index.
+
+``fT``
+    Current simulation step
+
+| This method is called for all agents (in parallel). 
+| For each agent the a random number is compared to the local death probability; if it is less, the agent is registered for death.
+
+.. -----------------------------------------------------------------------------
+
+``extractAttributesQDF``
+^^^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+   virtual int extractAttributesQDF(hid_t hSpeciesGroup);
+
+``hSpeciesGroup``
+    HDF handle for the species group to read from.
+
+This method reads the atttributes of this action from a QDF.
+
+.. -----------------------------------------------------------------------------
+
+``writeAttributesQDF``
+^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int writeAttributesQDF(hid_t hSpeciesGroup);
+
+``hSpeciesGroup``
+    HDF handle for the species group to write to.
+
+This method writes the attributes of this action to the specified group in a QDF file.
+
+ .. -----------------------------------------------------------------------------
+
+``tryGetAttributes``
+^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+   virtual int tryGetAttributes(const ModuleComplex *pMC);  
+
+``pMC``
+    A ``ModuleComplex`` object.
+
+Extracts the action's attributes from the ``ModuleComplex`` object.
+
+.. -----------------------------------------------------------------------------
+
+``modifyAttributes``
+^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int modifyAttributes(const std::string sAttrName, double dValue);
+
+
+``sAttrName``
+    Name of attribute to change.
+
+``dValue``
+    Value to set the attribute to.
+
+This method can change the values of :math:`d_0` (``ATTR_LINDEATH_D0_NAME``), :math:`\theta` (``ATTR_LINBIRTH_TURNOVER_NAME``) or the global capacity :math:`K` (``ATTR_LINBIRTH_CAPACITY_NAME``).
+
+
+.. -----------------------------------------------------------------------------
+
+``isEqual``
+^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual bool isEqual(Action<T> *pAction, bool bStrict);
+
+``pAction``
+    Pointer to an action object to compare with this.
+
+``bStrict``
+    Strictness of comparisons (ignored here).
+
+``pAction`` is equal to ``this``, if it is a ``LinearDeath`` object whose attributes match those of ``this``.

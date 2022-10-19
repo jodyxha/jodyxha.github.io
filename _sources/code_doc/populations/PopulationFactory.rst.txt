@@ -1,0 +1,50 @@
+.. _PopulationFactory_ref:
+
+PopulationFactory
+=================
+
+.. rst-class:: hidden
+
+   This page describes the class :index:`PopulationFactory`
+
+The abstract base class pure virtual ``PopulationFactory`` serves as a base class for the classes 
+:ref:`StatPopFactory<StatPopFactory_ref>` and :ref:`DynPopFactory<DynPopFactory_ref>`.
+
+Code: `PopulationFactory.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/PopulationFactory.h>`_
+
+
+Public Methods
+--------------
+
+``constructor``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+    
+    virtual ~PopulationFactory();
+
+The destructor does nothing.
+
+``createPopulationByName``
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+    
+    virtual PopBase *createPopulationByName(const std::string sName) = 0;
+
+``sName``
+    The name of a population.
+
+Create a population base object for a given name (usually called when reading a population from a a QDF file).
+
+
+``readPopulation``
+^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+    
+    virtual PopBase *readPopulation(ParamProvider2 *pPP) = 0;
+
+``pPP``
+    A ``ParamProvider2`` object 
+
+Reads the parameters for a population from ``pPP`` and returns a pointer to the population 
+(usually called when reading a population from an xml file).
+

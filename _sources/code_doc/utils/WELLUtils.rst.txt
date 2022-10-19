@@ -1,0 +1,176 @@
+.. _WELLUtils_ref:
+
+WELLUtils
+=========
+
+.. rst-class:: hidden
+
+   This page describes the module :index:`WELLUtils`
+
+The module ``WELLUtils`` provides some helpful utilities for initialising and managinf :ref:`WELL512 <WELL512_ref>` objects.
+
+Code: `WELLUtils.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/WELLUtils.h>`_, `WELLUtils.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/WELLUtils.cpp>`_
+
+
+Functions
+---------
+
+``stringToSeed``
+^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    int stringToSeed(const std::string sSequence, std::vector<uint32_t> &vulState);
+
+Converts string representation of a state to a vector of uint32_t integers. 
+
+``sSequence``
+    A space separated list of hexadeimal numbers.
+
+``vulState``
+    A vector to hold the converted numbers.
+
+Returns 0 on success, -1 if wrong number of hexadecimals in string.
+
+.. -----------------------------------------------------------------------------
+
+``phraseToSeed``
+^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    int phraseToSeed(const std::string sPhrase, std::vector<uint32_t> &vulState);
+
+Uses md5 to fill a vector with STATE_SIZE uint32_t.
+
+``sPhrase``
+    An arbitrary string.
+
+``vulState``
+    A vector to hold the converted numbers.
+
+Returns 0 on success, -1 if empty string is passed.
+
+.. -----------------------------------------------------------------------------
+
+``randomSeed``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    int randomSeed(int iSeed, std::vector<uint32_t> &vulState);
+
+Uses the c library ``rand()`` function to fill a vector with STATE_SIZE uint32_t.
+
+``iSeed``
+    Seed for ``rand()``.
+
+``vulState``
+    A vector to hold the converted numbers.
+
+.. -----------------------------------------------------------------------------
+
+``createWELL``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    WELL512 *createWELL(const std::string sPhrase);
+
+Creates a WELL512 and seeds it with the string sPhrase.
+
+``sPhrase``
+    An arbitrary string.
+
+Returns a pointer to the generated WELL512 object. 
+
+.. -----------------------------------------------------------------------------
+
+``buildWells``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    WELL512 **buildWELLs(int iNum, uint iSeed);
+
+Creates an array of ``iNum`` pointers to ``WELL512`` objects.
+
+``iNum``
+    Number of ``WELL512`` objects to create.
+
+``iSeed``
+   An integer to seed the ``WELL512`` objects.
+
+Returns a pointer to the array of WELLs. 
+This pointer should be passed to ``destroyWELLs()`` if the WELLs aren't needed anymore.
+
+.. -----------------------------------------------------------------------------
+
+``destroyWELLs``
+^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    void destroyWELLs(WELL512 **pWELLs, int iNum);
+
+Destroy an array of ``WELL512`` objects created by ``buildWELLs()``.
+
+``ppWELLs``
+   Pointer to array of ``WELL512*`` to be destroyed.
+
+``iNum``
+   Number of WELL512 objects.
+
+.. -----------------------------------------------------------------------------
+
+``showState``
+^^^^^^^^^^^^^
+.. code-block:: c++
+
+    void showState(WELL512 *pWELL);
+
+Prints the current index and state vector of the ``WELL512`` object to stdout. Mainly used for debugging.
+
+``pWELL``
+   The ``WELL512`` object to display.
+
+The output has the format ``"["<cur_index>"]" <hex>*``, e.g.
+  ``[001ef32c] 31bb311a cc5190d3 bbca71aa ...``
+ 
+.. -----------------------------------------------------------------------------
+
+``showStates``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    void showStates(WELL512 **apWELL, int iNum, bool bFull);
+
+Prints the current indexes and states of an array of ``WELL512`` objects. Mainly used for debugging.
+
+``apWELL``
+    The array of WELL512 objects to  display.
+
+``iNum``
+    Number of objects in array.
+
+.. -----------------------------------------------------------------------------
+
+``strState``
+^^^^^^^^^^^^
+.. code-block:: c++
+
+    std::string strState(WELL512 *pWELL);
+
+Creates a string containing index and state of the ``WELL512`` object.
+
+.. -----------------------------------------------------------------------------
+
+``strStateHash``
+^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    std::string strStateHash(WELL512 *pWELL);
+
+Calculates a md5 hash from the string representation of the WELL's state.
+
+Returns a string representation of the hash.
+
+.. -----------------------------------------------------------------------------
+
+Example
+-------
+(@@TODO) :ref:`wellutilsexample tototot<wellutilsexamplestoododododod>`

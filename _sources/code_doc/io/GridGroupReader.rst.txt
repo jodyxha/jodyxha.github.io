@@ -1,0 +1,101 @@
+.. _GridGroupReader_ref:
+
+GridGroupReader
+===============
+
+.. rst-class:: hidden
+
+   This page describes the class  :index:`GridGroupReader`
+
+
+The class ``GridGroupReader`` reads attributes and arrays from the :ref:`grid group <GridGroup_ref>` of a qdf file.
+
+This file extends the attribute structure:
+
+.. code-block:: c++
+
+    struct GridAttributes : Attributes {
+        stringmap smData;
+    };
+
+Code: `GridGroupReader.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/GridGroupReader.h>`_, `GridGroupReader.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/GridGroupReader.cpp>`_
+
+
+Public Methods
+--------------
+
+``createGridGroupReader``
+^^^^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    static GridGroupReader *createGridGroupReader(const std::string sFileName);
+    static GridGroupReader *createGridGroupReader(hid_t hFile);
+
+Creates a ``GridGroupReader`` object for a qdf file.
+
+``sFileName`` 
+    Name of the file to read the grid from.
+
+``hFile``
+    HDF5 handle for the file to read the grid from.
+
+Returns a pointer to the ``GridGroupReader`` object or ``NULL`` on failure.
+
+.. -----------------------------------------------------------------------------
+
+``tryReadAttributes``
+^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int tryReadAttributes(GridAttributes *pAttributes);
+
+Reads all attributes in the grid group into the attribute structure. 
+It first calls the parent class' version of ``tryReadAttributes()`` and then goes on loading the gtid specific data.
+
+``pAttributes``
+    A pointer  ``GridAttributes`` object to hold the attributes.
+
+Returns 0 on success, -1 on failure.
+
+.. -----------------------------------------------------------------------------
+
+``readArray``
+^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int readArray(SCellGrid *pGroup, const std::string sArrayName)
+
+For ``GridGroupReader`` this method does nothing.
+
+Returns 0.
+
+.. -----------------------------------------------------------------------------
+
+``readData``
+^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int readData(SCellGrid *pGroup);
+
+Reads the ``CellDataSet`` from the grid group of the qdf file into the ``GridGroupObject``.
+
+``pGroup``
+    A Pointer to :ref:`SCellGrid<SCellGrid_ref>` object.
+
+.. -----------------------------------------------------------------------------
+
+
+Protected Methods
+-----------------
+
+``constructor``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    GridGroupReader();
+
+The constructor
+
+.. -----------------------------------------------------------------------------
+
+

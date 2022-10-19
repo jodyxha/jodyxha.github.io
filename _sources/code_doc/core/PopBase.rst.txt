@@ -1,0 +1,18 @@
+.. _PopBase_ref:
+
+PopBase
+=======
+
+.. rst-class:: hidden
+
+   This page describes the class :index:`PopBase`
+
+The abstract class ``PopBase`` serves as base class for :ref:`SPopulation<SPopulation_ref>`  classes.
+
+This makes it possible to fill containers with differently instantiated ``SPopulation`` objects.
+
+
+Refer to the :ref:`documentation of SPopulation<SPopulation_ref>` for more information on the methods.
+
+Code: `PopBase.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/core/PopBase.h>`_
+

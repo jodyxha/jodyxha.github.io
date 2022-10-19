@@ -1,0 +1,181 @@
+.. _Climate_ref:
+
+Climate
+=======
+
+.. rst-class:: hidden
+
+    This page describes the class :index:`Climate`
+
+The ``Climate`` class contains various climate data.
+All data items are associated with a node of the :ref:`SCellGrid<SCellGrid_ref>`.
+
+Initially the climate data was used to calculate net primary production. 
+Currently the climate data is not used in QHG because there are simulated NPP data sets for  the past.
+
+
+Code: `Climate.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/core/Climate.h>`_ `Climate.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/core/Climate.cpp>`_
+
+Public Members
+--------------
+
+ 
+.. -----------------------------------------------------------------------------
+
+.. code-block:: c++
+
+    uint         m_iNumCells;        
+
+Number of cells.
+ 
+.. -----------------------------------------------------------------------------
+
+.. code-block:: c++
+
+    climatecount m_iNumSeasons;
+
+ Number of seasons.
+
+.. -----------------------------------------------------------------------------
+
+.. code-block:: c++
+
+    Geography   *m_pGeography;
+
+Pointer to :ref:`Geography<Geography_ref>` object.
+ 
+.. -----------------------------------------------------------------------------
+
+.. code-block:: c++
+
+    climatecount m_iSeasonMonths;    
+
+Season size in months (1,2,3,4,6,12).
+ 
+.. -----------------------------------------------------------------------------
+
+.. code-block:: c++
+
+    climatecount m_iCurSeason;       
+
+Current season (0,...m_iSeasonStep-1).
+
+ 
+.. -----------------------------------------------------------------------------
+
+.. code-block:: c++
+
+    climatenumber  *m_adActualTemps;  
+
+Actual temperatures.
+ 
+.. -----------------------------------------------------------------------------
+
+.. code-block:: c++
+
+    climatenumber  *m_adActualRains;  
+
+Actual seasonal rainfall.
+
+  
+.. -----------------------------------------------------------------------------
+
+.. code-block:: c++
+
+    climatenumber  *m_adAnnualMeanTemp;  
+
+Current annual mean temperature.
+ 
+.. -----------------------------------------------------------------------------
+
+.. code-block:: c++
+
+    climatenumber  *m_adAnnualRainfall;  
+
+Current annual total rainfall.
+ 
+.. -----------------------------------------------------------------------------
+
+.. code-block:: c++
+
+    climatenumber **m_aadSeasonalTempD;  
+
+Differences of seasonal temperature to mean annual temperature.
+ 
+.. -----------------------------------------------------------------------------
+
+.. code-block:: c++
+
+    climatenumber **m_aadSeasonalRainR;  
+
+Ratios of seasonal rainfall to total annual rainfall.
+
+.. -----------------------------------------------------------------------------
+
+.. code-block:: c++
+
+    bool         m_bUpdated;
+
+Update flag.
+
+Public Methods
+--------------
+ 
+.. -----------------------------------------------------------------------------
+
+``constructor``
+^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    Climate(uint iNumCells, climatecount iNumSeasons, Geography *pGeography);
+
+``iNumCells``
+    Number of grid cells.
+
+``iNumSeasons``
+    Number of seasons.
+
+``pGeography``
+    Pointer to a :ref:`Geography<Geography_ref>` object.
+
+The constructor allocates the arrays by calling ``prepareArrays()``.
+
+.. -----------------------------------------------------------------------------
+
+``destructor``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual ~Climate();
+
+The destructor deletes all allocated arrays.
+
+.. -----------------------------------------------------------------------------
+
+``prepareArrays``
+^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    void prepareArrays();
+
+This method allocates all arrays needed by this class.
+
+.. -----------------------------------------------------------------------------
+
+``setSeason``
+^^^^^^^^^^^^^
+.. code-block:: c++
+
+    void setSeason(climatecount iSeason=0);  
+
+Sets current season (only used if there is different climate data for various seasons).
+    
+.. -----------------------------------------------------------------------------
+
+``resetUpdated``
+^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    inline void resetUpdated() { m_bUpdated = false; };
+
+Reset update state.

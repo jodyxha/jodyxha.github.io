@@ -1,0 +1,352 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>SingleEvaluator &#8212; QHG4 4.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jody.css" />
+    
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <link rel="shortcut icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="populations" href="../populations.html" />
+    <link rel="prev" title="ShareEvaluator" href="ShareEvaluator.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../populations.html" title="populations"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="ShareEvaluator.html" title="ShareEvaluator"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../actions.html" accesskey="U">actions</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">SingleEvaluator</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="singleevaluator">
+<span id="singleevaluator-ref"></span><h1>SingleEvaluator<a class="headerlink" href="#singleevaluator" title="Permalink to this heading">¶</a></h1>
+<p class="hidden">This page describes the class <span class="target" id="index-0"></span>SingleEvaluator</p>
+<p><code class="docutils literal notranslate"><span class="pre">SingleEvaluator</span></code> is derived from <code class="docutils literal notranslate"><span class="pre">Evaluator</span></code> and is used to assign values to the cells calculated from an environment array.
+Usually this calculation is done by means of a poly line function providing the “preference” values for the environment data.</p>
+<p>While the input array usually has a size of <code class="docutils literal notranslate"><span class="pre">m_iNumCells</span></code>, the output array has a size  of <code class="docutils literal notranslate"><span class="pre">(m+1)*m_iNumCells</span></code> where m is the maximum number of neighbors of a cell.</p>
+<p>In its raw form the element <code class="docutils literal notranslate"><span class="pre">i*(m+1)</span> <span class="pre">+</span> <span class="pre">k</span></code> is the value of the <code class="docutils literal notranslate"><span class="pre">(k-1)</span></code>-th neighbor of cell <code class="docutils literal notranslate"><span class="pre">i</span></code> (for <code class="docutils literal notranslate"><span class="pre">k</span> <span class="pre">&gt;</span> <span class="pre">1</span></code>), whereas the element  <code class="docutils literal notranslate"><span class="pre">i*(m+1)</span></code> is the value of the cell itself..</p>
+<p>Often, however, the output data is used to make weighted random numbers so within a cell’s “subarray” we accumulate the numbers:</p>
+<figure class="align-default" id="id1">
+<img alt="../../_images/SingleEvalCumulate.png" src="../../_images/SingleEvalCumulate.png" />
+<figcaption>
+<p><span class="caption-text">A raw subarray and its cumulation.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<dl class="simple">
+<dt>Given a subarray</dt><dd><p><span class="math notranslate nohighlight">\((s_i)_{0 \leq i \leq i+1}\)</span>,</p>
+</dd>
+<dt>where</dt><dd><p><span class="math notranslate nohighlight">\(s_i = outputarray[k \cdot m + i]\)</span>,</p>
+</dd>
+</dl>
+<p>with <span class="math notranslate nohighlight">\(m\)</span> being the maximum number of neighbors, and <span class="math notranslate nohighlight">\(k\)</span> an integer,</p>
+<dl class="simple">
+<dt>the cumulated array is</dt><dd><p><span class="math notranslate nohighlight">\((c_i)_{0 \leq i \leq i+1}\)</span></p>
+</dd>
+<dt>where</dt><dd><p><span class="math notranslate nohighlight">\(c_0 = s_0\)</span>, and <span class="math notranslate nohighlight">\(c_i = s_i + c_{i-1}\)</span> for <span class="math notranslate nohighlight">\(i &gt; 0\)</span></p>
+</dd>
+</dl>
+<figure class="align-default" id="id2">
+<img alt="../../_images/SingleEvalPart.png" src="../../_images/SingleEvalPart.png" />
+<figcaption>
+<p><span class="caption-text">The environment values (e.g. altitude) of a cell are copied to an array, to which a poly line function is applied.
+The results are cumulated for potential use by an other action, e.g. <a class="reference internal" href="WeightedMove.html#weightedmove-ref"><span class="std std-ref">WeightedMove</span></a>.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/SingleEvaluator.h">SingleEvaluator.h</a> <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/SingleEvaluator.cpp">SingleEvaluator.cpp</a></p>
+<p><strong>Attributes</strong></p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ATTR_SINGLE_EVAL_NAME</span></code></p></td>
+<td><p>“SingleEvaluator”</p></td>
+<td><p>action name</p></td>
+</tr>
+<tr class="row-even"><td><p>(constructor parameter)</p></td>
+<td><p>(user defined)</p></td>
+<td><p>name of poly line</p></td>
+</tr>
+</tbody>
+</table>
+<div class="line-block">
+<div class="line">(user defined): This is the name of an attribute in the QDF holding values for a <code class="docutils literal notranslate"><span class="pre">PolyLine</span></code> object.</div>
+<div class="line">(constructor parameter): the name is passed to the constructor as the parameter``sPLParamName``.</div>
+</div>
+<section id="public-methods">
+<h2>Public Methods<a class="headerlink" href="#public-methods" title="Permalink to this heading">¶</a></h2>
+<section id="constructor">
+<h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#constructor" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">SingleEvaluator</span><span class="p">(</span><span class="n">SPopulation</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="o">*</span><span class="n">pPop</span><span class="p">,</span><span class="w"> </span><span class="n">SCellGrid</span><span class="w"> </span><span class="o">*</span><span class="n">pCG</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sID</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">adOutputWeights</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">adInputData</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">sPLParName</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">bCumulate</span><span class="p">,</span><span class="w"> </span><span class="n">intset</span><span class="w"> </span><span class="o">&amp;</span><span class="n">sTriggerIDs</span><span class="p">);</span><span class="w"></span>
+<span class="n">SingleEvaluator</span><span class="p">(</span><span class="n">SPopulation</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="o">*</span><span class="n">pPop</span><span class="p">,</span><span class="w"> </span><span class="n">SCellGrid</span><span class="w"> </span><span class="o">*</span><span class="n">pCG</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sID</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">adOutputWeights</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">adInputData</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">sPLParName</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">bCumulate</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iTriggerID</span><span class="p">);</span><span class="w"></span>
+<span class="n">SingleEvaluator</span><span class="p">(</span><span class="n">SPopulation</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="o">*</span><span class="n">pPop</span><span class="p">,</span><span class="w"> </span><span class="n">SCellGrid</span><span class="w"> </span><span class="o">*</span><span class="n">pCG</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sID</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">adOutputWeights</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">pInputArrayName</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">sPLParName</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">bCumulate</span><span class="p">,</span><span class="w"> </span><span class="n">intset</span><span class="w"> </span><span class="o">&amp;</span><span class="n">sTriggerIDs</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">pPop</span></code></dt><dd><p>A pointer to the <a class="reference internal" href="../core/SPopulation.html#spopulation-ref"><span class="std std-ref">SPopulation</span></a> object performing this action.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">pCG</span></code></dt><dd><p>A pointer to the  <a class="reference internal" href="../core/SCellGrid.html#scellgrid-ref"><span class="std std-ref">SCellGrid</span></a> object on which the simulation runs.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sID</span></code></dt><dd><p>An ID for this action.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">adOutputWeights</span></code></dt><dd><p>Array to hold the output weights. The size of this array is (m+1)*NumCells, where m  is the maximum number of neighbors of a cell.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">adInputData</span></code></dt><dd><p>Array containing the input data with size equal to the number of cells (often one of the environment arrays).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">pInputArrayName</span></code></dt><dd><p>Name of an input array (which wll  be obtained by means of an <a class="reference internal" href="../utils/ArrayShare.html#arrayshare-ref"><span class="std std-ref">ArrayShare`</span></a> object).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sPLParName</span></code></dt><dd><p>Name of an attribute holding the data for a <a class="reference internal" href="../utils/PolyLine.html#polyline-ref"><span class="std std-ref">PolyLine</span></a> function. This name can e the empty string if no poly line is needed-</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">bCumulate</span></code></dt><dd><p>Already cumulate the values for every cell in the output array.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iTriggerID</span></code></dt><dd><p>ID of event which should trigger a recalculation (for an altitude evaluator everything stays the same until a new geography is loaded, at which point the evaluation has to be redone).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sTriggerIDs</span></code></dt><dd><p>A set if event IDs which should trigger to a recalculation.</p>
+</dd>
+</dl>
+</section>
+<section id="destructor">
+<h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">SingleEvaluator</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The destructor does nothing.</p>
+</section>
+<section id="initialize">
+<h3><code class="docutils literal notranslate"><span class="pre">initialize</span></code><a class="headerlink" href="#initialize" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">initialize</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">fT</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">fT</span></code></dt><dd><p>Simulation time step.</p>
+</dd>
+</dl>
+<p>If the input data array is NULL, an attempt is made to obtain the array from <code class="docutils literal notranslate"><span class="pre">ArrayShare</span></code> with the name of passed in the <code class="docutils literal notranslate"><span class="pre">sInputArayName</span></code> parameter of the constructor.
+Then, if an update is needed, the values are recalculated.</p>
+</section>
+<section id="finalize">
+<h3><code class="docutils literal notranslate"><span class="pre">finalize</span></code><a class="headerlink" href="#finalize" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">finalize</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">fT</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Reset the update flags.</p>
+</section>
+<section id="extractattributesqdf">
+<h3><code class="docutils literal notranslate"><span class="pre">extractAttributesQDF</span></code><a class="headerlink" href="#extractattributesqdf" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">extractAttributesQDF</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hSpeciesGroup</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">hSpeciesGroup</span></code></dt><dd><p>HDF handle for the species group to read from.</p>
+</dd>
+</dl>
+<p>Obtains a <code class="docutils literal notranslate"><span class="pre">PolyLine</span></code> object by extracting the attribute with the name  in <code class="docutils literal notranslate"><span class="pre">m_sPLParName</span></code>.</p>
+</section>
+<section id="writeattributesqdf">
+<h3><code class="docutils literal notranslate"><span class="pre">writeAttributesQDF</span></code><a class="headerlink" href="#writeattributesqdf" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">writeAttributesQDF</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hSpeciesGroup</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">hSpeciesGroup</span></code></dt><dd><p>HDF handle for the species group to write to.</p>
+</dd>
+</dl>
+<p>Writes the <code class="docutils literal notranslate"><span class="pre">PolyLine</span></code> data as an attribute  with the name  in <code class="docutils literal notranslate"><span class="pre">m_sPLParName</span></code>.</p>
+</section>
+<section id="trygetattributes">
+<h3><code class="docutils literal notranslate"><span class="pre">tryGetAttributes</span></code><a class="headerlink" href="#trygetattributes" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">tryGetAttributes</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">ModuleComplex</span><span class="w"> </span><span class="o">*</span><span class="n">pMC</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">pMC</span></code></dt><dd><p>A <code class="docutils literal notranslate"><span class="pre">ModuleComplex</span></code> object.</p>
+</dd>
+</dl>
+<p>Gets a <code class="docutils literal notranslate"><span class="pre">PolyLine</span></code> object with the name  in <code class="docutils literal notranslate"><span class="pre">m_sPLParName</span></code> from the module complex.</p>
+</section>
+<section id="setoutputweights">
+<h3><code class="docutils literal notranslate"><span class="pre">setOutputWeights</span></code><a class="headerlink" href="#setoutputweights" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">setOutputWeights</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">adOutput</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">adOutput</span></code></dt><dd><p>An array containing values destined for output.</p>
+</dd>
+</dl>
+<p>The variable <code class="docutils literal notranslate"><span class="pre">m_adOutputWeights</span></code> is set to a pointer to the  previously filled array <code class="docutils literal notranslate"><span class="pre">adOutput</span></code>.</p>
+</section>
+<section id="notify">
+<h3><code class="docutils literal notranslate"><span class="pre">notify</span></code><a class="headerlink" href="#notify" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">notify</span><span class="p">(</span><span class="n">Observable</span><span class="w"> </span><span class="o">*</span><span class="n">pObs</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iEvent</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">pData</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">pObs</span></code></dt><dd><p>The observable which sends the event.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iEvent</span></code></dt><dd><p>ID of the event.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">pData</span></code></dt><dd><p>Pointer to data pertaining to the event. It must be cast to the correct type.</p>
+</dd>
+</dl>
+<div class="line-block">
+<div class="line">(implementation of the <code class="docutils literal notranslate"><span class="pre">Observer</span></code> interface)</div>
+<div class="line">If the event  is equal to one of the event IDS in the trigger set, the update flagis set.</div>
+</div>
+</section>
+<section id="isequal">
+<h3><code class="docutils literal notranslate"><span class="pre">isEqual</span></code><a class="headerlink" href="#isequal" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="nf">isEqual</span><span class="p">(</span><span class="n">Action</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="o">*</span><span class="n">pAction</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">bStrict</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>..`pAction``</dt><dd><p>Pointer to an action object to compare with this.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">bStrict</span></code></dt><dd><p>Strictness of comparisons (ignored here).</p>
+</dd>
+</dl>
+<p><code class="docutils literal notranslate"><span class="pre">pAction</span></code> is equal to <code class="docutils literal notranslate"><span class="pre">this</span></code>, if it is a <code class="docutils literal notranslate"><span class="pre">SingleEvaluator</span></code> and the names of the <code class="docutils literal notranslate"><span class="pre">PolyLine</span></code> match.</p>
+</section>
+<section id="showattributes">
+<h3><code class="docutils literal notranslate"><span class="pre">showAttributes</span></code><a class="headerlink" href="#showattributes" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">showAttributes</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Displays the poly line data.</p>
+</section>
+</section>
+<section id="protected-methods">
+<h2>Protected Methods<a class="headerlink" href="#protected-methods" title="Permalink to this heading">¶</a></h2>
+<section id="calcvalues">
+<h3><code class="docutils literal notranslate"><span class="pre">calcValues</span></code><a class="headerlink" href="#calcvalues" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">calcValues</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The elements at position <code class="docutils literal notranslate"><span class="pre">iCellIndex*(m_iMaxNeighbors+1)</span></code> are set to the poly line evaluation of <code class="docutils literal notranslate"><span class="pre">m_adInput[iCellIndex]</span></code> if there is aa poly line. Otherwise it is set to <code class="docutils literal notranslate"><span class="pre">m_adInput[iCellINdex]</span></code>.</p>
+</section>
+<section id="exchangeandcumulate">
+<h3><code class="docutils literal notranslate"><span class="pre">exchangeAndCumulate</span></code><a class="headerlink" href="#exchangeandcumulate" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">exchangeAndCumulate</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The “free” positions in the output array (those corresponding to the neighbors) are set to the evaluation values of the neighbors.</p>
+<p>If cumulation is required this is done here.</p>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">SingleEvaluator</a><ul>
+<li><a class="reference internal" href="#public-methods">Public Methods</a><ul>
+<li><a class="reference internal" href="#constructor"><code class="docutils literal notranslate"><span class="pre">constructor</span></code></a></li>
+<li><a class="reference internal" href="#destructor"><code class="docutils literal notranslate"><span class="pre">destructor</span></code></a></li>
+<li><a class="reference internal" href="#initialize"><code class="docutils literal notranslate"><span class="pre">initialize</span></code></a></li>
+<li><a class="reference internal" href="#finalize"><code class="docutils literal notranslate"><span class="pre">finalize</span></code></a></li>
+<li><a class="reference internal" href="#extractattributesqdf"><code class="docutils literal notranslate"><span class="pre">extractAttributesQDF</span></code></a></li>
+<li><a class="reference internal" href="#writeattributesqdf"><code class="docutils literal notranslate"><span class="pre">writeAttributesQDF</span></code></a></li>
+<li><a class="reference internal" href="#trygetattributes"><code class="docutils literal notranslate"><span class="pre">tryGetAttributes</span></code></a></li>
+<li><a class="reference internal" href="#setoutputweights"><code class="docutils literal notranslate"><span class="pre">setOutputWeights</span></code></a></li>
+<li><a class="reference internal" href="#notify"><code class="docutils literal notranslate"><span class="pre">notify</span></code></a></li>
+<li><a class="reference internal" href="#isequal"><code class="docutils literal notranslate"><span class="pre">isEqual</span></code></a></li>
+<li><a class="reference internal" href="#showattributes"><code class="docutils literal notranslate"><span class="pre">showAttributes</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#protected-methods">Protected Methods</a><ul>
+<li><a class="reference internal" href="#calcvalues"><code class="docutils literal notranslate"><span class="pre">calcValues</span></code></a></li>
+<li><a class="reference internal" href="#exchangeandcumulate"><code class="docutils literal notranslate"><span class="pre">exchangeAndCumulate</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="ShareEvaluator.html"
+                          title="previous chapter">ShareEvaluator</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="../populations.html"
+                          title="next chapter">populations</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/code_doc/actions/SingleEvaluator.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../populations.html" title="populations"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="ShareEvaluator.html" title="ShareEvaluator"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../actions.html" >actions</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">SingleEvaluator</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+    </div>
+  </body>
+</html>

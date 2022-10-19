@@ -1,0 +1,444 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>QHG Tutorial 03 - Moving &#8212; QHG4 4.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jody.css" />
+    
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    
+    <link rel="shortcut icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="QHG Tutorial 04 - Parthenogenesis" href="tutorial_04_partheno.html" />
+    <link rel="prev" title="QHG Tutorial 02 - Aging and Death" href="tutorial_02_oldagedie.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="tutorial_04_partheno.html" title="QHG Tutorial 04 - Parthenogenesis"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="tutorial_02_oldagedie.html" title="QHG Tutorial 02 - Aging and Death"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../tutorial.html" accesskey="U">QHG Tutorial</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">QHG Tutorial 03 - Moving</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="qhg-tutorial-03-moving">
+<span id="tutorialmove-ref"></span><h1>QHG Tutorial 03 - Moving<a class="headerlink" href="#qhg-tutorial-03-moving" title="Permalink to this heading">¶</a></h1>
+<p>In this chapter we describe a class which, in addition to aging and dying also lets agents move randomly between cells.</p>
+<p>To get the agents moving we use the action class :ref:RandomMoveRandomMove_ref&gt;`</p>
+<section id="the-header-file">
+<h2>The Header File<a class="headerlink" href="#the-header-file" title="Permalink to this heading">¶</a></h2>
+<p>This class must additionaly  include the header files for the <code class="docutils literal notranslate"><span class="pre">RandomMove</span></code> action.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef __TUT_MOVEPOP_H__</span>
+<span class="cp">#define __TUT_MOVEPOP_H__</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;OldAgeDeath.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;GetOld.h&quot;</span><span class="cp"></span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;RandomMove.h&quot;</span><span class="cp"></span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;SPopulation.h&quot;</span><span class="cp"></span>
+
+<span class="c1">// our agents need to have an age</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">tut_MoveAgent</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Agent</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">m_fAge</span><span class="p">;</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">tut_MovePop</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">SPopulation</span><span class="o">&lt;</span><span class="n">tut_MoveAgent</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="w"> </span><span class="k">public</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span><span class="n">tut_MovePop</span><span class="p">(</span><span class="n">SCellGrid</span><span class="w"> </span><span class="o">*</span><span class="n">pCG</span><span class="p">,</span><span class="w"> </span><span class="n">PopFinder</span><span class="w"> </span><span class="o">*</span><span class="n">pPopFinder</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iLayerSize</span><span class="p">,</span><span class="w"> </span><span class="n">IDGen</span><span class="w"> </span><span class="o">**</span><span class="n">apIDG</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="o">*</span><span class="n">aulState</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="o">*</span><span class="n">aiSeeds</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">tut_MovePop</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="nf">addPopSpecificAgentData</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iAgentIndex</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">ppData</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">addPopSpecificAgentDataTypeQDF</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="o">*</span><span class="n">hAgentDataType</span><span class="p">);</span><span class="w"></span>
+
+<span class="k">protected</span><span class="o">:</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">GetOld</span><span class="o">&lt;</span><span class="n">tut_MoveAgent</span><span class="o">&gt;</span><span class="w"> </span><span class="o">*</span><span class="n">m_pGO</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">OldAgeDeath</span><span class="o">&lt;</span><span class="n">tut_MoveAgent</span><span class="o">&gt;</span><span class="w"> </span><span class="o">*</span><span class="n">m_pOAD</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">RandomMove</span><span class="o">&lt;</span><span class="n">tut_MoveAgent</span><span class="o">&gt;</span><span class="w"> </span><span class="o">*</span><span class="n">m_pRM</span><span class="p">;</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
+
+<span class="cp">#endif</span>
+</pre></div>
+</div>
+<p>For random moving we don’t need to add members to the agent structure - the agents` positions are already part of the <a class="reference internal" href="../code_doc/core/SPopulation.html#spopulation-ref"><span class="std std-ref">basic agent structure</span></a>.
+So we use the same agent structure as in the previous chapter.</p>
+<p>The public methods <code class="docutils literal notranslate"><span class="pre">addPopSpecificAgentData</span></code> and <code class="docutils literal notranslate"><span class="pre">addPopSpecificAgentDataTypeQDF</span></code> remain unchanged since they only deal with the addition agent member <code class="docutils literal notranslate"><span class="pre">m_fAge</span></code>.</p>
+<p>Finally, we need a pointer to an instance of the <code class="docutils literal notranslate"><span class="pre">RandomMove</span></code>-action.</p>
+</section>
+<section id="the-implementation">
+<h2>The Implementation<a class="headerlink" href="#the-implementation" title="Permalink to this heading">¶</a></h2>
+<p>The include files reflect the addition of the move action:</p>
+<p>The constructor must create instances of all the actions and
+add them to the priority list.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">//----------------------------------------------------------------------------</span>
+<span class="c1">// constructor</span>
+<span class="c1">//</span>
+<span class="n">tut_MovePop</span><span class="o">::</span><span class="n">tut_MovePop</span><span class="p">(</span><span class="n">SCellGrid</span><span class="w"> </span><span class="o">*</span><span class="n">pCG</span><span class="p">,</span><span class="w"> </span><span class="n">PopFinder</span><span class="w"> </span><span class="o">*</span><span class="n">pPopFinder</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iLayerSize</span><span class="p">,</span><span class="w"> </span><span class="n">IDGen</span><span class="w"> </span><span class="o">**</span><span class="n">apIDG</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="o">*</span><span class="n">aulState</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="o">*</span><span class="n">aiSeeds</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="o">:</span><span class="w">  </span><span class="n">SPopulation</span><span class="o">&lt;</span><span class="n">tut_MoveAgent</span><span class="o">&gt;</span><span class="p">(</span><span class="n">pCG</span><span class="p">,</span><span class="w"> </span><span class="n">pPopFinder</span><span class="p">,</span><span class="w"> </span><span class="n">iLayerSize</span><span class="p">,</span><span class="w"> </span><span class="n">apIDG</span><span class="p">,</span><span class="w"> </span><span class="n">aulState</span><span class="p">,</span><span class="w"> </span><span class="n">aiSeeds</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">m_pGO</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">GetOld</span><span class="o">&lt;</span><span class="n">tut_MoveAgent</span><span class="o">&gt;</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">m_pCG</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">m_pOAD</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">OldAgeDeath</span><span class="o">&lt;</span><span class="n">tut_MoveAgent</span><span class="o">&gt;</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">m_pCG</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">m_apWELL</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">m_pRM</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RandomMove</span><span class="o">&lt;</span><span class="n">tut_MoveAgent</span><span class="o">&gt;</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">m_pCG</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">m_apWELL</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">m_prio</span><span class="p">.</span><span class="n">addAction</span><span class="p">(</span><span class="n">m_pGO</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">m_prio</span><span class="p">.</span><span class="n">addAction</span><span class="p">(</span><span class="n">m_pOAD</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">m_prio</span><span class="p">.</span><span class="n">addAction</span><span class="p">(</span><span class="n">m_pRM</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>In the destructor the instances created by the constructor are deletetd.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">//----------------------------------------------------------------------------</span>
+<span class="c1">// destructor</span>
+<span class="c1">//</span>
+<span class="n">tut_MovePop</span><span class="o">::~</span><span class="n">tut_MovePop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_pGO</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">delete</span><span class="w"> </span><span class="n">m_pGO</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_pOAD</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">delete</span><span class="w"> </span><span class="n">m_pOAD</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_pRM</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">delete</span><span class="w"> </span><span class="n">m_pRM</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Finally, there are the input auxiliary methods dealing with the age member.
+They are the same as the ones in the previous chapter.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">//----------------------------------------------------------------------------</span>
+<span class="c1">// addPopSpecificAgentData</span>
+<span class="c1">// read additional data from pop file (the mat index is volatile, so we don&#39;t try to read it)</span>
+<span class="c1">//</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">tut_MovePop::addPopSpecificAgentData</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iAgentIndex</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">ppData</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">iResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">iResult</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">iResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">addAgentDataSingle</span><span class="p">(</span><span class="n">ppData</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">m_aAgents</span><span class="p">[</span><span class="n">iAgentIndex</span><span class="p">].</span><span class="n">m_fAge</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">iResult</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="c1">//----------------------------------------------------------------------------</span>
+<span class="c1">// addPopSpecificAgentDataTypeQDF</span>
+<span class="c1">// extend the agent data type to include additional data in the output</span>
+<span class="c1">//</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">tut_MovePop::addPopSpecificAgentDataTypeQDF</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="o">*</span><span class="n">hAgentDataType</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">tut_MoveAgent</span><span class="w"> </span><span class="n">ma</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">H5Tinsert</span><span class="p">(</span><span class="o">*</span><span class="n">hAgentDataType</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Age&quot;</span><span class="p">,</span><span class="w">  </span><span class="n">qoffsetof</span><span class="p">(</span><span class="n">ma</span><span class="p">,</span><span class="w"> </span><span class="n">m_fAge</span><span class="p">),</span><span class="w"> </span><span class="n">H5T_NATIVE_FLOAT</span><span class="p">);</span><span class="w"></span>
+
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="xml-and-dat">
+<h2>XML and DAT<a class="headerlink" href="#xml-and-dat" title="Permalink to this heading">¶</a></h2>
+<p>Apart from the entries for <code class="docutils literal notranslate"><span class="pre">OldAgeDeath</span></code> there is also an entry for <code class="docutils literal notranslate"><span class="pre">RandomMove</span></code> in the xml file.
+The action <code class="docutils literal notranslate"><span class="pre">GetOld</span></code> requires no parameters.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;class</span> <span class="na">name=</span><span class="s">&quot;tut_MovePop&quot;</span> <span class="na">species_name=</span><span class="s">&quot;sapiens&quot;</span> <span class="na">species_id=</span><span class="s">&quot;104&quot;</span><span class="nt">&gt;</span>
+
+  <span class="nt">&lt;module</span> <span class="na">name=</span><span class="s">&quot;OldAgeDeath&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;param</span>  <span class="na">name=</span><span class="s">&quot;OAD_max_age&quot;</span> <span class="na">value=</span><span class="s">&quot;60.0&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;param</span>  <span class="na">name=</span><span class="s">&quot;OAD_uncertainty&quot;</span> <span class="na">value=</span><span class="s">&quot;0.1&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;/module&gt;</span>
+
+  <span class="nt">&lt;module</span> <span class="na">name=</span><span class="s">&quot;RandomMove&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;param</span>  <span class="na">name=</span><span class="s">&quot;RandomMove_prob&quot;</span> <span class="na">value=</span><span class="s">&quot;0.1&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;/module&gt;</span>
+
+  <span class="nt">&lt;priorities&gt;</span>
+    <span class="nt">&lt;prio</span>  <span class="na">name=</span><span class="s">&quot;GetOld&quot;</span> <span class="na">value=</span><span class="s">&quot;1&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;prio</span>  <span class="na">name=</span><span class="s">&quot;OldAgeDeath&quot;</span> <span class="na">value=</span><span class="s">&quot;20&quot;</span><span class="nt">/&gt;</span>
+
+    <span class="nt">&lt;prio</span>  <span class="na">name=</span><span class="s">&quot;RandomMove&quot;</span> <span class="na">value=</span><span class="s">&quot;3&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;/priorities&gt;</span>
+<span class="nt">&lt;/class&gt;</span>
+</pre></div>
+</div>
+<p>The action <code class="docutils literal notranslate"><span class="pre">RandomMoOve</span></code> needs a parameter for its move probability. For details, see the <a class="reference internal" href="../code_doc/actions/RandomMove.html#randommove-ref"><span class="std std-ref">description of RandomMove</span></a>.</p>
+<p>THe prioprity values are chosen such that the age is changed fist, then agents may die of old age, and the survivors may move.The dat file <code class="docutils literal notranslate"><span class="pre">tut_OldAgeDie.dat</span></code> defines postions and attributes for 20 agents, the last attribute pertainng to the new member <code class="docutils literal notranslate"><span class="pre">m_fAge</span></code>.</p>
+<p>The dat file <code class="docutils literal notranslate"><span class="pre">tut_Move.dat</span></code> is identical to the dat file of the previous chapter.
+Apart from the postion and the basic parameters we have to add a parameter for the age.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>#Longitude;Latitude;LifeState;AgentID;BirthTime;Gender;Age
+8;47;1; 1;-10.0;0;10.0
+8;47;1; 2;-10.0;0;10.0
+8;47;1; 3;-10.0;0;10.0
+...
+8;47;1;20;-10.0;0;10.0
+</pre></div>
+</div>
+<p>In this case, too, all 20 agents are placed at the same location, and all agents are female (Gender: 0=female, 1=male).</p>
+<p>Feel free to modify the values in the xml file and see how this changes the outcome.</p>
+</section>
+<section id="grid">
+<h2>Grid<a class="headerlink" href="#grid" title="Permalink to this heading">¶</a></h2>
+<p>For this example we use a subdivided icosahedron</p>
+</section>
+<section id="compiling-and-running">
+<h2>Compiling and Running<a class="headerlink" href="#compiling-and-running" title="Permalink to this heading">¶</a></h2>
+<p>We assume that you have created the tutorial directories with the script <a class="reference internal" href="../tools/build_tut_dirs.html#build-tut-dirs-ref"><span class="std std-ref">build_tut_dirs.py</span></a>.
+This copies all relevant files to the tutorial subdirectories.</p>
+<p>First lets create alternative population and action directories with the script <a class="reference internal" href="../tools/build_alt_modpop.html#build-alt-modpop-ref"><span class="std std-ref">build_alt_modpop.py</span></a>:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="si">${</span><span class="nv">QHG4_DIR</span><span class="si">}</span>/useful_stuff/build_alt_modpop.py tut_03 tut_MovePop
+</pre></div>
+</div>
+<p>This builds alternative population directories <code class="docutils literal notranslate"><span class="pre">tut_03_pop</span></code> and <code class="docutils literal notranslate"><span class="pre">tut_03_mod</span></code>.</p>
+<p>To compile, cd to the QHG4 root directory and type:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">SHORT</span><span class="o">=</span><span class="n">tut_03</span><span class="w"> </span><span class="n">make</span><span class="w"> </span><span class="n">clean</span><span class="w"> </span><span class="n">QHGMain</span><span class="w"></span>
+</pre></div>
+</div>
+<p>This is the simplest way to compile QHG (for more information see <a class="reference internal" href="../qhg4_compile.html#compiling-qhg-ref"><span class="std std-ref">Compiling QHG</span></a>)</p>
+<p>Now cd to the tutorial subdirectory “tutorial_03’ and start QHGMain</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">$</span><span class="p">{</span><span class="n">QHG4_DIR</span><span class="p">}</span><span class="o">/</span><span class="n">app</span><span class="o">/</span><span class="n">QHGMain</span><span class="w"> </span><span class="o">--</span><span class="n">read</span><span class="o">-</span><span class="n">config</span><span class="o">=</span><span class="n">tutorial_03</span><span class="p">.</span><span class="n">cfg</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">tutorial_03</span><span class="p">.</span><span class="n">out</span><span class="w"></span>
+</pre></div>
+</div>
+<p>This tells QHGMain to read the parameters from  the file <code class="docutils literal notranslate"><span class="pre">tutorial_03.cfg</span></code> and write all output to the file <code class="docutils literal notranslate"><span class="pre">tutorial_03.out</span></code> (this output contains more information than the logfile)</p>
+<p>The config file <code class="docutils literal notranslate"><span class="pre">tutorial_03.cfg</span></code> was created when the tutorial directories were created with <code class="docutils literal notranslate"><span class="pre">build_tut_dirs.py</span></code>.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>--data-dirs=${QHG4_DIR}/tutorial_data/grids/
+--events=&#39;write|grid+geo+pop:sapiens@20000&#39;
+--grid=ico32s.qdf
+--log-file=tutorial_03.log
+--num-iters=200
+--output-dir=output/tutorial_03
+--output-prefix=nnn
+--pops=&#39;tut_Move.xml:tut_Move.dat&#39;
+--shuffle=92244
+--start-time=-200
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">data-dirs</span></code></dt><dd><p>A list of directories to search for data (not relevant for the static populations).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">events</span></code></dt><dd><p>A list of events (see <a class="reference internal" href="../Events.html#events-ref"><span class="std std-ref">Events</span></a>). Here a single event is defined: write output at step 20000 (or at the end of the simulation run).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">grid</span></code></dt><dd><p>Path to the grid on which to run the simulation.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">log-file</span></code></dt><dd><p>Log file for ‘high level’ messages.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">num-iters</span></code></dt><dd><p>Number of iterations for the simulation.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">output-dir</span></code></dt><dd><p>Output directory for qdf files.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">output-prefix</span></code></dt><dd><p>A prefix prepended to the names of all output files</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">pops</span></code></dt><dd><p>The files for population attributes (<code class="docutils literal notranslate"><span class="pre">tut_Move.xml</span></code>) and agent attributes (<code class="docutils literal notranslate"><span class="pre">tut_Move.dat</span></code>). These files were created by <code class="docutils literal notranslate"><span class="pre">build_tut_dirs.py</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">shuffle</span></code></dt><dd><p>A kiind of seed for the random nummber generators. Same <code class="docutils literal notranslate"><span class="pre">shuffle</span></code> values result in idfentical simulations.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">start-time</span></code></dt><dd><p>The ‘real’ time corresponding to step 0.</p>
+</dd>
+</dl>
+</section>
+<section id="id1">
+<h2>Grid<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
+<p>For this example we use a subdivided icosahedron</p>
+</section>
+<section id="id2">
+<h2>Compiling and Running<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
+<p>We assume that you have created the tutorial directories with the script <a class="reference internal" href="../tools/build_tut_dirs.html#build-tut-dirs-ref"><span class="std std-ref">build_tut_dirs.py</span></a>.
+This copies all relevant files to the tutorial subdirectories.</p>
+<p>First lets create alternative population and action directories with the script <a class="reference internal" href="../tools/build_alt_modpop.html#build-alt-modpop-ref"><span class="std std-ref">build_alt_modpop.py</span></a>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="si">${</span><span class="nv">QHG4_DIR</span><span class="si">}</span>/useful_stuff/build_alt_modpop.py tut_03 tut_StaticPop
+</pre></div>
+</div>
+<p>This builds alternative population directories <code class="docutils literal notranslate"><span class="pre">tut_03_pop</span></code> and <code class="docutils literal notranslate"><span class="pre">tut_03_mod</span></code>.</p>
+<p>To compile, cd to the QHG4 root directory and type:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">SHORT</span><span class="o">=</span>tut_03 make clean QHGMain
+</pre></div>
+</div>
+<p>This is the simplest way to compile QHG (for more information see <a class="reference internal" href="../qhg4_compile.html#compiling-qhg-ref"><span class="std std-ref">Compiling QHG</span></a>)</p>
+<p>Now cd to the tutorial subdirectory “tutorial_03’ and start QHGMain</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="si">${</span><span class="nv">QHG4_DIR</span><span class="si">}</span>/app/QHGMain --read-config<span class="o">=</span>tutorial_03.cfg &gt; tutorial_03.out
+</pre></div>
+</div>
+<p>This tells QHGMain to read the parameters from  the file <code class="docutils literal notranslate"><span class="pre">tutorial_03.cfg</span></code> and write all output to the file <code class="docutils literal notranslate"><span class="pre">tutorial_03.out</span></code> (this output contains more information than the logfile)</p>
+<p>The config file <code class="docutils literal notranslate"><span class="pre">tutorial_03.cfg</span></code> was created when the tutorial directories were created with <code class="docutils literal notranslate"><span class="pre">build_tut_dirs.py</span></code>.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>--data-dirs=/home/jody/progs/multi_spc_QHG3_std/useful_stuff/gridpreparation/
+--events=&#39;write|grid+geo+pop:sapiens@20000&#39;
+--grid=ico32s.qdf
+--log-file=tutorial_03.log
+--num-iters=200
+--output-dir=output/tutorial_03
+--output-prefix=nnn
+--pops=&#39;tut_Move.xml:tut_Move.dat&#39;
+--shuffle=92244
+--start-time=-200
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">data-dirs</span></code></dt><dd><p>A list of directories to search for data (not relevant for the static populations).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">events</span></code></dt><dd><p>A list of events (see <a class="reference internal" href="../Events.html#events-ref"><span class="std std-ref">Events</span></a>). Here a single event is defined: write output at step 20000 (or at the end of the simulation run).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">grid</span></code></dt><dd><p>Path to the grid on which to run the simulation.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">log-file</span></code></dt><dd><p>Log file for ‘high level’ messages.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">num-iters</span></code></dt><dd><p>Number of iterations for the simulation.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">output-dir</span></code></dt><dd><p>Output directory for qdf files.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">output-prefix</span></code></dt><dd><p>A prefix prepended to the names of all output files</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">pops</span></code></dt><dd><p>The files for population attributes (<code class="docutils literal notranslate"><span class="pre">tut_Move.xml</span></code>) and agent attributes (<code class="docutils literal notranslate"><span class="pre">tut_Move.dat</span></code>). These files were created by <code class="docutils literal notranslate"><span class="pre">build_tut_dirs.py</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">shuffle</span></code></dt><dd><p>A kind of seed for the random nummber generators. Same <code class="docutils literal notranslate"><span class="pre">shuffle</span></code> values result in idfentical simulations.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">start-time</span></code></dt><dd><p>The ‘real’ time corresponding to step 0.</p>
+</dd>
+</dl>
+</section>
+<section id="the-output-file">
+<h2>The Output File<a class="headerlink" href="#the-output-file" title="Permalink to this heading">¶</a></h2>
+<p>The output files, in this case <code class="docutils literal notranslate"><span class="pre">tutorial_03.out</span></code>, always have the same structure.
+First there are messages concerning the start of the program and intialisation.
+If the simulation does not run, there’s a chance that you find th readoon why here.</p>
+<p>The second part is a list of every step describing the numbers of births, deaths and moves, as well as the time the step took to execute.</p>
+<p>At the end there is a short summary of the state at the end of the program: number of iterations, total time of execution, nuber of surviving agents.
+This is follwed by the contents of the log file.</p>
+<p>If you look at the output for the steps, you see tat there are still no births, but there are moves an deaths:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>After step 45 (0.000115 s): total       20 agents
+  sapiens       0 births r
+  sapiens       0 deaths r
+  sapiens       3 moves
+After step 46 (0.000116 s): total       20 agents
+  sapiens       0 births r
+  sapiens       5 deaths r
+  sapiens       4 moves
+After step 47 (0.000118 s): total       15 agents
+  sapiens       0 births r
+  sapiens       2 deaths r
+  sapiens       5 deaths p
+  sapiens       1 moves
+</pre></div>
+</div>
+<p>And at the beginning of the last part:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>-----
+Stopped  Simulation
+Number of threads: 8
+Number of iterations: 54
+Used time: 0.009391 (00:00:00)
+Number of agents after last step
+  sapiens:         0
+    total:         0
++++success+++
+</pre></div>
+</div>
+<p>The summary at the end:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>*** total number of births  0
+*** total number of deaths  20
+*** total number of moves   82
+</pre></div>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">QHG Tutorial 03 - Moving</a><ul>
+<li><a class="reference internal" href="#the-header-file">The Header File</a></li>
+<li><a class="reference internal" href="#the-implementation">The Implementation</a></li>
+<li><a class="reference internal" href="#xml-and-dat">XML and DAT</a></li>
+<li><a class="reference internal" href="#grid">Grid</a></li>
+<li><a class="reference internal" href="#compiling-and-running">Compiling and Running</a></li>
+<li><a class="reference internal" href="#id1">Grid</a></li>
+<li><a class="reference internal" href="#id2">Compiling and Running</a></li>
+<li><a class="reference internal" href="#the-output-file">The Output File</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="tutorial_02_oldagedie.html"
+                          title="previous chapter">QHG Tutorial 02 - Aging and Death</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="tutorial_04_partheno.html"
+                          title="next chapter">QHG Tutorial 04 - Parthenogenesis</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/tutorial/tutorial_03_move.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="tutorial_04_partheno.html" title="QHG Tutorial 04 - Parthenogenesis"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="tutorial_02_oldagedie.html" title="QHG Tutorial 02 - Aging and Death"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../tutorial.html" >QHG Tutorial</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">QHG Tutorial 03 - Moving</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+    </div>
+  </body>
+</html>

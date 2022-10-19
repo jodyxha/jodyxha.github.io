@@ -1,0 +1,131 @@
+.. _DynPopFactory_ref:
+
+DynPopFactory
+=============
+
+.. rst-class:: hidden
+
+   This page describes the class :index:`DynPopFactory`
+
+The class ``DynPopFactory`` is derived from the abstract base classs :ref:`PopulationFactory<PopulationFactory_ref>`.
+
+It is used to find shared object files encapsulating population classes, load them and create instances of the population classes on demand.
+The shared object libraries must have names of the form XXXPopWrappers.so and must contain the methods
+
+.. code-block:: c++
+    
+    const std::string getInfo();
+
+    PopBase *createPop(SCellGrid *pCG, PopFinder *pPopFinder, int iLayerSize, 
+                       IDGen **apIDG, uint32_t *aulState, uint *aiSeeds);
+
+The method ``getInfo()`` should return the classname, e.g. "tut_EnvironCapAltPop".
+The method ``createPop()`` should create a populaion instance and return it-
+
+
+Keep in mind that this is a relatively new feature and has not been fully tested yet. 
+
+
+Code: `DynPopFactory.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/DynPopFactory.h>`_ ,`DynPopFactory.cpp_template <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/DynPopFactory.cpp_template>`_
+
+PublicMethods
+-------------
+
+``createInstance``
+^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    static DynPopFactory *createInstance(stringvec vSODirs, SCellGrid *pCG, PopFinder *pPopFinder, int iLayerSize, 
+                                         IDGen **apIDG, uint32_t *aulState, uint *aiSeeds);
+
+``vSODirs``
+    A vector containing directory names in which to search for population plug-ins (i.e. the "XXXPopWrapper.so" files).
+
+``pCG``
+    The :ref:`SCellGrid<SCellGrid_ref>` for the current simulation.
+
+``pPopFinder``
+    A :ref:`PopLooper<PopLooper_ref>` object. Such an object knows all population objects being used in this simulation. 
+    Useful for predator-prey relation ships because predators must be able to find their prey.
+
+``iLayerSize``
+    Size of the layers of the agent storage (see :ref:`LayerBuf<LayerBuf_ref>`).
+
+``apIDGen``
+    An array of id generators (one for each thread), capable of creating unique ids for agents.
+
+``aulState``
+    The initial state for the :ref:`WELL random number generators`<WELL512_ref>`.
+
+``aiSeeds``
+    Additional ``uint`` s to seed WELL RNGs not used for moving and mating.
+
+Creates an instance of ``DynPopFactory`` (the constructor is protected). This instance will have already collected all plugins found in the search directories given in ``vSODirs``.
+
+
+``destructor``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual ~DynPopFactory();
+
+Closes all handles to the shared libraries.
+
+``createPopulationByName``
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: c++
+
+    PopBase *createPopulationByName(const std::string sClassName);
+
+``sClassName`` 
+    Name of the class to be created.
+
+Creates a ``PopBase`` object corresponding to the provided name, if one of the loaded shared object libraries can create a population with that name.
+
+``readPopulation``
+^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+    
+    virtual PopBase *readPopulation(ParamProvider2 *pPP);
+
+``pPP``
+    A ``ParamProvider2`` object 
+
+Reads the name and the  parameters for a population from ``pPP`` and returns a pointer to the population (if there is a shared object capable of createing a populkation with that name).
+
+
+Protected Methods
+-----------------
+
+``init``
+^^^^^^^^
+
+.. code-block:: c++
+
+    int init(stringvec vSODirs);
+
+Initalizes some variables and calls ``collectPlugins()`` to load all population shared objects in the directories specified in ``vSODirs``.
+
+
+
+``collectPlugins``
+^^^^^^^^^^^^^^^^^^
+
+.. code-block:: c++
+
+    int collectPlugins();
+
+Loops through the list of so-directories and calls ``collectPluginsInDir()`` for each directory.
+
+
+``collectPluginsInDir``
+^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block::c++
+
+    int collectPluginsInDir(std::string sPath);
+
+Loads all shared object library files whose names end with "PopWrapper.so" and tries to get pointers to their ``getInfo()`` and ``createPop()`` methods.
+Returns 0 on success, or -1 on failure (couldn't open file, couldn't get methods, ``getInfo()`` returns empty string)
+

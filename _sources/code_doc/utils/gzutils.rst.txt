@@ -1,0 +1,149 @@
+.. _gzutils_ref:
+
+gzutils
+=======
+
+.. rst-class:: hidden
+
+   This page describes the module :index:`gzutils`
+
+The functions in the module ``gzutils`` allow the reading and writing of gzipped files.
+
+Code: `gzutils.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/gzutils.h>`_ , `gzutils.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/gzutils.cpp>`_
+
+``Functions``
+^^^^^^^^^^^^^
+
+``createInstance``
+^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    static gzUtils *createInstance(uint iBlockSize);
+
+Creates a ``gzUtils`` instance with the specified block size.
+
+``iBlockSize``
+    Size of blocks to use.
+
+Returns a ``gzUtils`` instance on success, or NULL on failure.
+
+.. -----------------------------------------------------------------------------
+
+``do_gzip``
+^^^^^^^^^^^
+.. code-block:: c++
+
+    int do_gzip(const std::string sInput, const std::string sOutput);
+
+The contents of the input file are gzipped and written to the output file.
+
+``sInput``
+    Name of the input file.
+
+``sOutput``
+    Name of the output file (will be a gzipped file).
+
+Returns 0 on success, -1 on failure (read or write error)
+
+.. -----------------------------------------------------------------------------
+
+``do_gunzip``
+^^^^^^^^^^^^^
+.. code-block:: c++
+
+    int do_gunzip(const std::string sInput, const std::string sOutput);
+
+The contents of the input file are gunzipped and written to the output file.
+
+``sInput``
+    Name of the input file (should be a gzipped file)
+
+``sOutput``
+    Name of the output file.
+
+Returns 0 on success, -1 on failure (read or write error)
+
+.. -----------------------------------------------------------------------------
+
+``constructor``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    gzUtils();
+
+The constructor.
+
+.. -----------------------------------------------------------------------------
+
+``init``
+^^^^^^^^
+.. code-block:: c++
+
+    int init(uint iBlockSize);
+
+Allocates a buffer with specified size.
+
+.. -----------------------------------------------------------------------------
+
+``destructor``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+   ~gzUtils();
+
+The destructor. Frees the memory used for the buffer.
+
+.. -----------------------------------------------------------------------------
+     
+
+``Example``
+^^^^^^^^^^^
+
+Compile with 
+
+.. code-block:: bash
+
+  g++ -g  gz_example.cpp  gzutils.cpp -lz
+
+Code for ``gz_example``:
+
+.. code-block:: c++
+
+    #include <cstdio>
+
+    #include "gzutils.h"
+
+
+    int main(int iArgC, char *apArgV[]) {
+        int iResult = 0;
+        bool bgzip = true;
+        const int GZ_BLOCK_SIZE = 8192;
+
+        if (iArgC > 3) {
+            std::string sMode(apArgV[1]);
+            std::string sInput(apArgV[2]);
+            std::string sOutput(apArgV[3]);
+
+            gzUtils *pgz = gzUtils::createInstance(GZ_BLOCK_SIZE);
+            if (pgz != NULL) {
+                if (sMode == "-g") {
+                    iResult = pgz->do_gzip(sInput, sOutput);
+                } else if (sMode == "-u") {
+                    iResult = pgz->do_gunzip(sInput, sOutput);
+                } else {
+                    iResult = -1;
+                }
+        
+                delete pgz;
+            } else {
+                printf("Couldn't gzUtils instance\n");
+                iResult = -1;
+            }
+        } else {
+            printf("usage: %s [\"-g\" | \"-u\"] <input-file> <output-file>\n", apArgV[0]);
+            iResult = -1;
+        }
+
+                  
+        return iResult;
+    }

@@ -1,0 +1,492 @@
+.. _TutorialPartheno_ref:
+
+QHG Tutorial 04 - Parthenogenesis
+=================================
+
+In this chapter we describe a class whose agent can, in addition to dying and moving, perform asexual reproduction..
+
+For this we need to add two new actions:  :ref:`Fertility<Fertility_ref>` and :ref:`Verhulst<Verhulst_ref>`.
+
+``Fertilty`` marks agents as fertile depending on gender and age, while ``Verhulst`` calculates birth probabilities based on local capacities and other parameters and registers a birth if conditions allow it (see :ref:`Verhulst<Verhulst_ref>` for details)
+
+Code: `tut_ParthenoPop.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_ParthenoPop.h>`_ `tut_ParthenoPop.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_ParthenoPop.cpp>`_
+
+The Header File
+---------------
+
+This class must include the header files for the two new actions, and it also defines a derived agent structure which has an additional file for the agent's age. This member is changed by ``GetOld``, and read by ``OldAgeDeath``.
+
+.. code-block:: c++
+
+    #ifndef __TUT_PARTHENOPOP_H__
+    #define __TUT_PARTHENOPOP_H__
+    
+    #include "SPopulation.h"
+    
+    #include "GetOld.h"
+    #include "OldAgeDeath.h"
+    #include "RandomMove.h"
+        
+    #include "Fertility.h"
+    #include "Verhulst.h"
+    
+    #include "tut_ParthenoPop.h"
+    
+The agents need to member fields for reproduction:
+
+.. code-block:: c++
+
+    struct tut_ParthenoAgent : Agent {
+    
+        float m_fAge;
+    
+        float m_fLastBirth;
+        int m_iMateIndex;
+    };
+
+``m_fLastBirth`` records the step at which this agent had its last birth. ``MateIndex`` is required, because the ``Verhulst`` action can also handle sexual reproduction. For our purposes we'll simply set an agents mate index to its own index.  
+    
+
+The class gets two additional pointers for the new actions:
+
+.. code-block:: c++
+
+    class tut_ParthenoPop : public  SPopulation<tut_ParthenoAgent> {
+    public:
+        tut_ParthenoPop(SCellGrid *pCG, PopFinder *pPopFinder, int iLayerSize, IDGen **apIDG, uint32_t *aulState, uint *aiSeeds);
+        virtual ~tut_ParthenoPop();
+    
+        int addPopSpecificAgentData(int iAgentIndex, char **ppData);
+        void addPopSpecificAgentDataTypeQDF(hid_t *hAgentDataType);
+    
+    int makePopSpecificOffspring(int iAgent, int iMother, int iFather);
+
+    protected:
+        GetOld<tut_ParthenoAgent>       *m_pGO;
+        OldAgeDeath<tut_ParthenoAgent>  *m_pOAD;
+        RandomMove<tut_ParthenoAgent>   *m_pRM;
+
+        Verhulst<tut_ParthenoAgent>     *m_pVerhulst;
+        Fertility<tut_ParthenoAgent>    *m_pFert;
+
+    };
+
+The input/output auxiliary functions ``addPopSpecificAgentData()`` and ``addPopSpecificAgentDataTypeQDF()`` will have to be modified to take into account the new agent member fields.
+Then there is also a new method ``makePopSpecificOffspring()`` which allows the population to perform specific operations after an agent is born (e.g. initialize member fields to particular values).
+
+
+The Implementation
+------------------
+
+In the implementation we have to include ``hdf5.h`` because we need to modify some HDF5 structures:
+
+.. code-block:: c++
+
+    #include <omp.h>
+    #include <hdf5.h>
+ 
+    
+Furthermore, we have to add includes of the cpp files for the new actions and include the header file of this class:
+
+.. code-block:: c++
+
+    #include "SPopulation.cpp"
+    #include "LayerBuf.cpp"
+    #include "Prioritizer.cpp"
+    #include "Action.cpp"
+
+    #include "GetOld.cpp"
+    #include "OldAgeDeath.cpp"
+    #include "RandomMove.cpp"
+
+    #include "Verhulst.cpp"
+    #include "Fertility.cpp"
+
+    #include "tut_ParthenoPop.h"
+
+
+The constructor now must create instances of all actions and add them to the priority list.
+
+.. code-block:: c++
+
+    //----------------------------------------------------------------------------
+    // constructor
+    //
+    tut_ParthenoPop::tut_ParthenoPop(SCellGrid *pCG, PopFinder *pPopFinder, int iLayerSize, IDGen **apIDG, uint32_t *aulState, uint *aiSeeds) 
+        : SPopulation<tut_ParthenoAgent>(pCG, pPopFinder, iLayerSize, apIDG, aulState, aiSeeds) {
+    
+    
+        m_pGO  = new GetOld<tut_ParthenoAgent>(this, m_pCG, "");
+        m_pOAD = new OldAgeDeath<tut_ParthenoAgent>(this, m_pCG, "", m_apWELL);
+        m_pRM  = new RandomMove<tut_ParthenoAgent>(this, m_pCG, "", m_apWELL);
+    
+        m_pVerhulst = new Verhulst<tut_ParthenoAgent>(this, m_pCG, "", m_apWELL);
+        m_pFert     = new Fertility<tut_ParthenoAgent>(this, m_pCG, "");
+    
+    
+        // adding all actions to prioritizer
+    
+        m_prio.addAction(m_pGO);
+        m_prio.addAction(m_pOAD);
+        m_prio.addAction(m_pRM);
+    
+        m_prio.addAction(m_pVerhulst);
+        m_prio.addAction(m_pFert);
+    
+    }
+
+
+The destructor must delete all instances created in the constructor:
+
+.. code-block:: c++
+
+    //----------------------------------------------------------------------------
+    // destructor
+    //
+    tut_ParthenoPop::~tut_ParthenoPop() {
+    
+        if (m_pGO != NULL) {
+            delete m_pGO;
+        }
+        if (m_pOAD != NULL) {
+            delete m_pOAD;
+        }
+        if (m_pRM != NULL) {
+            delete m_pRM;
+        }
+         if (m_pVerhulst != NULL) {
+            delete m_pVerhulst;
+        }
+        if (m_pFert != NULL) {
+            delete m_pFert;
+        }
+       
+    }
+
+
+The method ``addPopSpecificAgentData()`` must read the age and the last birth step from the input string. 
+The mate index is volatile - it is set and used during a step, and is ignored otherwise. Therefore, we don't bother to save it or read it:
+
+.. code-block:: c++
+
+
+    //----------------------------------------------------------------------------
+    // addPopSpecificAgentData
+    // read additional data from pop file (the mat index is volatile, so we don't try to read it)
+    //
+    int tut_ParthenoPop::addPopSpecificAgentData(int iAgentIndex, char **ppData) {
+    
+        int iResult = 0;
+    
+        if (iResult == 0) {
+            iResult = addAgentDataSingle(ppData, &m_aAgents[iAgentIndex].m_fAge);
+        }
+    
+        if (iResult == 0) {
+            iResult = addAgentDataSingle(ppData, &m_aAgents[iAgentIndex].m_fLastBirth);
+        }
+    
+        return iResult;
+    }
+    
+    
+The method ``addPopSpecificAgentDataTypeQDF()`` extends the agent's HDF  data type with the age field and the lastbirth field:
+    
+.. code-block:: c++
+    
+    //----------------------------------------------------------------------------
+    // addPopSpecificAgentDataTypeQDF
+    // extend the agent data type to include additional data in the output
+    //
+    void tut_ParthenoPop::addPopSpecificAgentDataTypeQDF(hid_t *hAgentDataType) {
+    
+        tut_ParthenoAgent sa;
+        H5Tinsert(*hAgentDataType, "Age",  qoffsetof(sa, m_fAge), H5T_NATIVE_FLOAT);
+        H5Tinsert(*hAgentDataType, "LastBirth",  qoffsetof(sa, m_fLastBirth), H5T_NATIVE_FLOAT);
+    
+        // the mate index is volatile, so we don't add it to the type
+    }
+
+The method ``makePopSpecificOffspring()`` initializes the agents' new fields:
+
+.. code-block:: c++
+
+    //----------------------------------------------------------------------------
+    // makePopSpecificOffspring
+    //
+    int tut_ParthenoPop::makePopSpecificOffspring(int iAgent, int iMother, int iFather) {
+        int iResult = 0;
+    
+        m_aAgents[iAgent].m_fAge       = 0.0;
+        m_aAgents[iAgent].m_fLastBirth = -1.0;
+        m_aAgents[iAgent].m_iMateIndex = iAgent;
+        m_aAgents[iAgent].m_iGender    = 0;
+    
+        return iResult;
+    }
+
+The agent has age 0 at birth, hasn't given birth so far, it will be its own mate (see above), and the gender is set to fremale.
+
+
+XML and DAT
+-----------
+
+The xml file for the population attributes now contains entries for the new actions:
+
+.. code-block:: xml
+
+    <class name="tut_ParthenoPop" species_name="sapiens" species_id="104">
+
+    <module name="OldAgeDeath">
+      <param  name="OAD_max_age" value="60.0"/>
+      <param  name="OAD_uncertainty" value="0.1"/>
+    </module>
+    <module name="RandomMove">
+      <param  name="RandomMove_prob" value="0.01"/>
+    </module>
+  
+    <module name="Fertility">
+      <param  name="Fertility_interbirth" value="2.0"/>
+      <param  name="Fertility_max_age" value="50.0"/>
+      <param  name="Fertility_min_age" value="15.0"/>
+    </module>
+
+    <module name="Verhulst">
+      <param  name="Verhulst_b0" value="0.8" />
+      <param  name="Verhulst_d0" value="0.001" />
+      <param  name="Verhulst_theta" value="0.1" />
+      <param  name="Verhulst_K" value="20" />
+    </module>
+
+    <priorities>
+      <prio  name="GetOld" value="2"/>
+      <prio  name="OldAgeDeath" value="3"/>
+      <prio  name="RandomMove" value="6"/>
+      <prio  name="Fertility" value="4"/>
+      <prio  name="Verhulst" value="5"/>
+    </priorities>
+  </class>
+
+
+For details about the parameters look at the code description for :ref:`OldAgeDeath<OldAgeDeath_ref>`, :ref:`RandomMove<RandomMove_ref>`, `:ref:`Fertility<Fertility_ref>`, and :ref:`Verhulst<Verhulst_ref>`.
+
+The priority levels are set such that in a step the agents die first, the survivors can the mate an move.
+
+
+The dat file ``tut_Partheno.dat`` defines postions and attributes for 20 agents, the last attribute pertainng to the new member ``m_fAge``.
+
+.. code-block:: text
+
+    #Longitude;Latitude;LifeState;AgentID;BirthTime;Gender;Age;lastbirth
+    8;47;1; 1;-10.0;0;10.0;-1.0
+    8;47;1; 2;-10.0;0;10.0;-1.0
+    8;47;1; 3;-10.0;0;10.0;-1.0
+    ...
+    8;47;1;20;-10.0;0;10.0;-1.0
+
+In this case all agents are placed at the same location, and all agents are female (Gender: 0=female, 1=male)
+
+Feel free to modify the values in the xml file and see how this changes the outcome. 
+
+Grid
+----
+
+For this example we use  a subdivided icosahedron
+
+Compiling and Running
+---------------------
+
+Again, we assume that you have created the tutorial directories with the script :ref:`build_tut_dirs.py<build_tut_dirs_ref>`.
+
+First lets create alternative population and action directories with the script :ref:`build_alt_modpop.py<build_alt_modpop_ref>`:
+
+.. code-block:: bash
+
+    ${QHG4_DIR}/useful_stuff/build_alt_modpop.py tut_04 tut_ParthenoPop
+
+This builds alternative population directories ``tut_04_pop`` and ``tut_04_mod`` with the files needed to compile ``tut_ParthenoPop``.
+
+To compile, change to the QHG4 root directory and type:
+
+.. code-block:: bash
+
+    SHORT=tut_04 make clean QHGMain
+
+This is the simplest way to compile QHG (for more information see :ref:`Compiling QHG<Compiling_QHG_ref>`)
+
+Now cd to the tutorial subdirectory "tutorial_04' and start QHGMain
+
+.. code-block:: bash
+
+    ${QHG4_DIR}/app/QHGMain --read-config=tutorial_04.cfg > tutorial_04.out
+
+This tells QHGMain to read the parameters from  the file ``tutorial_04.cfg`` and write all output to the file ``tutorial_04.out`` (this output contains more information than the logfile)
+
+The config file ``tutorial_04.cfg`` was created when the tutorial directories were created with ``build_tut_dirs.py``.
+
+.. code-block:: text
+
+    --data-dirs=${QHG4_DIR}/tutorial_data/grids/
+    --events='write|grid+geo+pop:sapiens@20000' 
+    --grid=ico32s.qdf
+    --log-file=tutorial_04.log 
+    --num-iters=3000 
+    --output-dir=output/tutorial_04 
+    --output-prefix=tut 
+    --pops='tut_Partheno.xml:tut_Partheno.dat' 
+    --shuffle=92244 
+    --start-time=-3000 
+
+
+``data-dirs``
+    A list of directories to search for data (not relevant for the OldAgeDie populations).
+
+``events``
+    A list of events (see :ref:`Events<Events_ref>`). Here a single event is defined: write output at step 20000 (or at the end of the simulation run).
+
+``grid``
+    Path to the grid on which to run the simulation.
+
+``log-file``
+    Log file for 'high level' messages. 
+
+``num-iters``
+    Number of iterations for the simulation.
+
+``output-dir``
+    Output directory for qdf files.
+
+``output-prefix``
+    A prefix prepended to the names of all output files
+
+``pops``
+    The files for population attributes (``tut_Partheno.xml``) and agent attributes (``tut_Partheno.dat``). These files were created by ``build_tut_dirs.py``.
+
+``shuffle`` 
+    A kiind of seed for the random nummber generators. Same ``shuffle`` values result in identical simulations.
+
+``start-time``
+    The 'real' time corresponding to step 0.
+
+
+
+The Output File
+---------------
+
+The output files, in this case ``tutorial_04.out``, always have the same structure.
+First there are messages concerning the start of the program and intialisation.
+If the simulation does not run, there's a chance that you find th readoon why here.
+
+The second part is a list of every step describing the numbers of births, deaths and moves, as well as the time the step took to execute.
+
+At the end there is a short summary of the state at the end of the program: number of iterations, total time of execution, nuber of surviving agents.
+This is follwed by the contents of the log file.
+
+If you look at the output for the steps, you see that there now are births, deaths and moves:
+
+.. code-block:: text
+
+    After step 2995 (0.213805 s): total   215396 agents
+      sapiens   22432 births r
+      sapiens   21673 deaths r
+      sapiens      22 births p
+      sapiens    1637 moves
+    After step 2996 (0.212654 s): total   216155 agents
+      sapiens   21734 births r
+      sapiens   22148 deaths r
+      sapiens      61 births p
+      sapiens    1755 moves
+    After step 2997 (0.212161 s): total   215741 agents
+      sapiens   21695 births r
+      sapiens   22155 deaths r
+      sapiens     453 deaths p
+      sapiens    1599 moves
+
+| In this listing
+| ``births r`` denotes the nmuber of births who made use of the dead agent recycling, i.e. there was no need to move a passive location to the avtive chain;
+| ``births p`` denotes the number "normal" births, i.e. where a location was moved from the passive chain to the active chain;
+| ``deaths r`` denotes the number of deaths whose locations were recycled;
+| ``deaths p`` denotes the number of ordinary deaths, were an active location is moved to the passive chain;
+
+For more information see ref:`"Agent Management<AgentManagement_ref>`.
+
+At the beginning of the last part you find the summary:
+
+.. code-block:: text
+
+    -----
+    Finished Simulation
+    Number of threads: 8
+    Number of iterations: 3000
+    Used time: 605.461267 (00:10:05)
+    Number of agents after last step
+      sapiens:    215343
+        total:    215343
+
+So our population has grown from 20 to 215'850 agents!
+
+At the very end of the output file:
+
+.. code-block:: text
+
+    *** sapiens: time spent in performBirths(ulong iNumBirths, int *piBirthData): 0.296328
+    *** total number of births  47893869
+    *** total number of deaths  47677939
+    *** total number of moves   3598840
+
+The execution of s single step with more than 200'000 agents took 0.2 seconds
+This is quite fast, but we can do better: recompile QHG again, but this time we use optimization.
+This is done by defining the environment variable ``OPT`` for the compilation:
+
+.. code-block:: bash
+
+    cd ${QHG4_DIR}
+    OPT=1 SHORT=tut_04 make clean QHGMain
+
+Change back to the tutoriall directory aAnd run it again:
+
+.. code-block:: bash
+
+    ${QHG4_DIR}/app/QHGMain --read-config=tutorial_04.cfg > tutorial_04o.out
+
+Now look at the output file:
+
+.. code-block:: text
+
+    After step 2995 (0.043201 s): total   215396 agents
+      sapiens   22432 births r
+      sapiens   21673 deaths r
+      sapiens      22 births p
+      sapiens    1637 moves
+    After step 2996 (0.042833 s): total   216155 agents
+      sapiens   21734 births r
+      sapiens   22148 deaths r
+      sapiens      61 births p
+      sapiens    1755 moves
+    After step 2997 (0.042090 s): total   215741 agents
+      sapiens   21695 births r
+      sapiens   22155 deaths r
+      sapiens     453 deaths p
+      sapiens    1599 moves
+
+
+and
+
+.. code-block:: text
+
+    -----
+    Finished Simulation
+    Number of threads: 8
+    Number of iterations: 3000
+    Used time: 97.332564 (00:01:37)
+    Number of agents after last step
+      sapiens:    215343
+        total:    215343
+    
+The optimization made the simulation run 5 times faster:
+one step with more than 200'000 agents takes only 0.04 seconds!    
+    
+    
+    
+    
+    

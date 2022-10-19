@@ -1,0 +1,110 @@
+.. _GeoWriter_ref:
+
+GeoWriter
+=========
+
+.. rst-class:: hidden
+
+   This page desctibes the class :index:`GeoWriter`
+
+The class ``GeoWriter`` is used to write the :ref:`geography data<Geography_ref>` to a :ref:`geography group<GeoGroup_ref>` in a qdf file.
+
+Code: `GeoWriter.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/GeoWriter.h>`_, `GeoWriter.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/GeoWriter.cpp>`_
+
+Public Methods
+--------------
+
+``constructor``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    GeoWriter(Geography *pGG);
+
+The constructor.
+
+``pGG``
+  A pointer to the gography object to be written.
+
+.. -----------------------------------------------------------------------------
+
+``destructor``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual ~GeoWriter();
+
+The destructor.
+
+.. -----------------------------------------------------------------------------
+
+``write``
+^^^^^^^^^
+.. code-block:: c++
+
+    int write(hid_t hFile);
+
+Write the geography data to an open qdf file.
+
+``hFile``
+   HDF handle to the opened file.
+
+.. -----------------------------------------------------------------------------
+
+``writeToQDF``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+  
+    int writeToQDF(const std::string sFileName, int iStep,
+                   float fStartTime,            const std::string sInfoString);
+
+Creates a new qdf file, creates a :ref:`geography group<GeoGroup_ref>` and writes the geography data to it.
+
+``sFileName``
+   Name of output file.
+
+``iStep``
+   The current simulation step. This number is saved as an attribute in the output file's root group. 
+
+``fStartTime``
+   The start time of the simulation (i.e. the 'real' time at step 0). This number is also saved as an attribute in the output file's root group.
+
+``sInfoString``
+   An arbitrary string which will be saved as an attribute in the output file's root group.
+
+Returns 0 on success, -1 on failure.
+
+.. -----------------------------------------------------------------------------
+
+``replace``
+^^^^^^^^^^^
+.. code-block:: c++
+
+    int replace(hid_t hFile);
+
+Replaces the geography data in the open qdf file with the new one.
+
+``hFile``
+   HDF handle to the opened file.
+
+Returns 0 on success, -1 on failure.
+
+.. -----------------------------------------------------------------------------
+
+Protected Methods
+-----------------
+
+``writeGeoAttributes``
+^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    int writeGeoAttributes(hid_t hGeoGroup);
+
+Writes the geography attributes to the geography group in the qdf file.
+
+``hGeoGroup``
+    HDF pointer to the geography group in the qdf file.
+
+Returns 0 on success, -1 on failure.
+
+.. -----------------------------------------------------------------------------
+

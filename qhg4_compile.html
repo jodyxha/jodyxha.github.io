@@ -1,0 +1,200 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Compiling QHG &#8212; QHG4 4.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/jody.css" />
+    
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    
+    <link rel="shortcut icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Tools" href="tools.html" />
+    <link rel="prev" title="Events" href="Events.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="tools.html" title="Tools"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="Events.html" title="Events"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">QHG4 4.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Compiling QHG</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="compiling-qhg">
+<span id="compiling-qhg-ref"></span><h1>Compiling QHG<a class="headerlink" href="#compiling-qhg" title="Permalink to this heading">¶</a></h1>
+<section id="compile-targets">
+<h2>Compile targets<a class="headerlink" href="#compile-targets" title="Permalink to this heading">¶</a></h2>
+<p>There are various targets  to compile:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">clean</span></code></dt><dd><p>Clean all directories</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">QHGMain</span></code></dt><dd><p>The QHG simulator</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">tools_n</span></code></dt><dd><p>Recompile all tools</p>
+</dd>
+</dl>
+<p>Example</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">make</span><span class="w"> </span><span class="n">QHGMain</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Only compiles new and depending files and build QHGMain.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">make</span><span class="w"> </span><span class="n">clean</span><span class="w"> </span><span class="n">QHGMain</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Compiles QHG from scratch.</p>
+</section>
+<section id="compile-options">
+<h2>Compile options<a class="headerlink" href="#compile-options" title="Permalink to this heading">¶</a></h2>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">OPT</span></code></dt><dd><p>If set to 1, optimize the compilation (<code class="docutils literal notranslate"><span class="pre">-O3</span></code>)</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">SHORT</span></code></dt><dd><p>Sets the prefix for alternative population and action directories.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">OUT</span></code></dt><dd><p>Sets the output name</p>
+</dd>
+</dl>
+<p>Examples</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">OUT</span><span class="o">=</span><span class="n">QHGTest</span><span class="w"> </span><span class="n">OPT</span><span class="o">=</span><span class="mi">1</span><span class="w"> </span><span class="n">make</span><span class="w"> </span><span class="n">clean</span><span class="w"> </span><span class="n">QHGMain</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Build an optimized QHG from scratch and name the executable <code class="docutils literal notranslate"><span class="pre">QHGTest</span></code></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">SHORT</span><span class="o">=</span><span class="n">tut</span><span class="w"> </span><span class="n">OPT</span><span class="o">=</span><span class="mi">1</span><span class="w"> </span><span class="n">make</span><span class="w"> </span><span class="n">clean</span><span class="w"> </span><span class="n">QHGMain</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Build an optimized QHG from scratch, but use the alternative population and action directories <code class="docutils literal notranslate"><span class="pre">tut_pop</span></code> and <code class="docutils literal notranslate"><span class="pre">tut_mod</span></code>.</p>
+</section>
+<section id="alternative-population-and-action-directories">
+<span id="compiling-qhg-alternate-ref"></span><h2>Alternative Population and Action directories<a class="headerlink" href="#alternative-population-and-action-directories" title="Permalink to this heading">¶</a></h2>
+<p>If there are many files for population classes in the <code class="docutils literal notranslate"><span class="pre">populations</span></code> subdirectory, it can be useful to set up alternative directories containing only the minimum number of files required to build QHG with a particular population class.</p>
+<p>There is a script in the subdirectory which you can use for this:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">build_alt_modpop</span><span class="p">.</span><span class="n">py</span><span class="w"> </span><span class="o">&lt;</span><span class="n">prefix</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="n">pop_name</span><span class="o">&gt;+</span><span class="w"></span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">prefix</span></code> is used to create the names of the alternatove directories, <code class="docutils literal notranslate"><span class="pre">pop_name</span></code> is the name of a population class in <code class="docutils literal notranslate"><span class="pre">populations</span></code>. The script expects that &lt;pop_name&gt;.h and &lt;pop_name&gt;.cpp exist in <code class="docutils literal notranslate"><span class="pre">populations</span></code></p>
+<p>Example:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">build_alt_modpop</span><span class="p">.</span><span class="n">py</span><span class="w"> </span><span class="n">tut</span><span class="w"> </span><span class="n">tut_StaticPop</span><span class="w"> </span><span class="n">tut_MovePop</span><span class="w"></span>
+</pre></div>
+</div>
+<p>This will create the directories <code class="docutils literal notranslate"><span class="pre">tut_pop</span></code> and <code class="docutils literal notranslate"><span class="pre">tut_mod</span></code> which are filled with the required files from  <code class="docutils literal notranslate"><span class="pre">actions</span></code> and <code class="docutils literal notranslate"><span class="pre">population</span></code>:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">$</span><span class="w"> </span><span class="n">ls</span><span class="w"> </span><span class="n">tut_mod</span><span class="o">/</span><span class="w"></span>
+<span class="n">Action</span><span class="p">.</span><span class="n">cpp</span><span class="w">  </span><span class="n">Action</span><span class="p">.</span><span class="n">h</span><span class="w">  </span><span class="n">GetOld</span><span class="p">.</span><span class="n">cpp</span><span class="w">  </span><span class="n">GetOld</span><span class="p">.</span><span class="n">h</span><span class="w">  </span><span class="n">Makefile</span><span class="w">  </span><span class="n">OldAgeDeath</span><span class="p">.</span><span class="n">cpp</span><span class="w">  </span><span class="n">OldAgeDeath</span><span class="p">.</span><span class="n">h</span><span class="w">  </span><span class="n">RandomMove</span><span class="p">.</span><span class="n">cpp</span><span class="w">  </span><span class="n">RandomMove</span><span class="p">.</span><span class="n">h</span><span class="w"></span>
+<span class="n">$</span><span class="w"> </span><span class="n">ls</span><span class="w"> </span><span class="n">tut_pop</span><span class="o">/</span><span class="w"></span>
+<span class="n">DynPopFactory</span><span class="p">.</span><span class="n">cpp</span><span class="w">  </span><span class="n">DynPopFactory</span><span class="p">.</span><span class="n">h</span><span class="w">  </span><span class="n">ids</span><span class="p">.</span><span class="n">cpp</span><span class="w">  </span><span class="n">ids</span><span class="p">.</span><span class="n">h_for_configure</span><span class="w">  </span><span class="n">Makefile</span><span class="w">  </span><span class="n">PopulationFactory</span><span class="p">.</span><span class="n">h</span><span class="w">  </span><span class="n">StatPopFactory</span><span class="p">.</span><span class="n">cpp_for_configure</span><span class="w">  </span><span class="n">StatPopFactory</span><span class="p">.</span><span class="n">h</span><span class="w">  </span><span class="n">tut_MovePop</span><span class="p">.</span><span class="n">cpp</span><span class="w">  </span><span class="n">tut_MovePop</span><span class="p">.</span><span class="n">h</span><span class="w">  </span><span class="n">tut_StaticPop</span><span class="p">.</span><span class="n">cpp</span><span class="w">  </span><span class="n">tut_StaticPop</span><span class="p">.</span><span class="n">h</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Now you can compile QHGMain like this:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">SHORT</span><span class="o">=</span><span class="n">tut</span><span class="w"> </span><span class="n">make</span><span class="w"> </span><span class="n">clean</span><span class="w"> </span><span class="n">QHGMain</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="build-alt-modpop-py">
+<h2><code class="docutils literal notranslate"><span class="pre">build_alt_modpop.py</span></code><a class="headerlink" href="#build-alt-modpop-py" title="Permalink to this heading">¶</a></h2>
+<p>You can also use the script <a class="reference internal" href="tools/build_alt_modpop.html#build-alt-modpop-ref"><span class="std std-ref">build_alt_modpop.py</span></a>:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">$</span><span class="p">{</span><span class="n">QHG4_DIR</span><span class="p">}</span><span class="o">/</span><span class="n">useful_stuff</span><span class="o">/</span><span class="n">build_alt_modpop</span><span class="p">.</span><span class="n">py</span><span class="w"> </span><span class="n">test</span><span class="w"> </span><span class="n">tut_StaticPop</span><span class="w"> </span><span class="n">tut_MovePop</span><span class="w"></span>
+</pre></div>
+</div>
+<p>This will create the directories <code class="docutils literal notranslate"><span class="pre">test_pop</span></code> and <code class="docutils literal notranslate"><span class="pre">test_mod</span></code> filled with the files required to build QHG whith the classes <code class="docutils literal notranslate"><span class="pre">tut_StaticPop</span></code> and  <code class="docutils literal notranslate"><span class="pre">tut_MovePop</span></code></p>
+<p>Now you can cd to the QHG root directory and compile like this</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">SHORT</span><span class="o">=</span><span class="n">test</span><span class="w"> </span><span class="n">make</span><span class="w"> </span><span class="n">clean</span><span class="w"> </span><span class="n">QHGMain</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Compiling QHG</a><ul>
+<li><a class="reference internal" href="#compile-targets">Compile targets</a></li>
+<li><a class="reference internal" href="#compile-options">Compile options</a></li>
+<li><a class="reference internal" href="#alternative-population-and-action-directories">Alternative Population and Action directories</a></li>
+<li><a class="reference internal" href="#build-alt-modpop-py"><code class="docutils literal notranslate"><span class="pre">build_alt_modpop.py</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="Events.html"
+                          title="previous chapter">Events</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="tools.html"
+                          title="next chapter">Tools</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/qhg4_compile.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="tools.html" title="Tools"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="Events.html" title="Events"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">QHG4 4.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Compiling QHG</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+    </div>
+  </body>
+</html>

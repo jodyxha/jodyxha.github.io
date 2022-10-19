@@ -1,0 +1,813 @@
+.. QDFUtils_ref:
+
+QDFUtils
+========
+
+.. rst-class:: hidden
+
+   This page describes the module :index:`QDFUtils`
+
+The module ``QDFUtils`` contain functions to simplify interactions with QDF files.
+
+It als contains string constants for the names of HDF datasets and groups used in QDF files. 
+
+Code: `QDFUtils.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/QDFUtils.h>`_, `QDFUtils.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/QDFUtils.cpp>`_, `QDFUtilsT.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/QDFUtilsT.h>`_
+
+
+
+Constants
+---------
+
+- :ref:`Group Names<QDFUtils_GroupNameConsts_ref>`
+- :ref:`Dataset Names<QDFUtils_DatasetNameConsts_ref>`
+- :ref:`Root Attributes<QDFUtils_RootAttributeConsts_ref>`
+
+- :ref:`Grid Group Constants<QDFUtils_GridGroupConsts_ref>`
+- :ref:`Geography Group Constants<QDFUtils_GeographyGroupConsts_ref>`
+- :ref:`Climate Group Constants<QDFUtils_ClimateGroupConsts_ref>`
+- :ref:`Vegetation Group Constants<QDFUtils_VegetationGroupConsts_ref>`
+- :ref:`Navigation Group Constants<QDFUtils_NavigationGroupConsts_ref>`
+- :ref:`MoveStats Group Constants<QDFUtils_MoveStatsGroupConsts_ref>`
+- :ref:`Population Group Constants<QDFUtils_PopulationGroupConsts_ref>`
+
+
+Public Methods
+--------------
+
+Handling files
+~~~~~~~~~~~~~~
+
+``qdf_createFile``
+^^^^^^^^^^^^^^^^^^
+
+.. code-block:: c++
+
+    hid_t qdf_createFile(const std::string sFileName, int fStep, float fStartTime, const std::string sInfoString);
+
+``sFileName``
+    Name of file to be created.
+
+``fStep``
+    Current step of simulation.
+
+``fStartTime``
+    Start time of simulation.
+
+``sInfoString``
+    String containing additional info.
+
+| Creates a qdf file qith the given name and sets the attributes "Step", "StartTime", "Info".
+| Returns handle to file on succes, H5P_DEFAULT on failure.
+
+.. -----------------------------------------------------------------------------
+
+``qdf_openFile``
+^^^^^^^^^^^^^^^^
+
+.. code-block:: c++
+
+    hid_t qdf_openFile(const std::string sFileName, bool bRW=false);
+
+``sFileName``
+    Name of file to be opened.
+
+``bRW``
+    File opening mode: ``true`` -> Read/Write, ``false`` -> read only
+
+| Opens an existing file.
+| Returns handle to file on succes, H5P_DEFAULT on failure.
+
+.. -----------------------------------------------------------------------------
+
+``qdf_opencreateFile``
+^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: c++
+
+    hid_t qdf_opencreateFile(const std::string sFileName, int fStep, float fStartTime, const std::string sInfoString);
+
+``sFileName``
+    Name of file to be created.
+
+``fStep``
+    Current step of simulation.
+
+``fStartTime``
+    Start time of simulation.
+
+``sInfoString``
+    String containing additional info.
+
+| If file exists, open it, otherwie create one with the specified attributes.
+| Returns handle to file on succes, H5P_DEFAULT on failure.
+
+.. -----------------------------------------------------------------------------
+
+``qdf_closeFile``
+^^^^^^^^^^^^^^^^^
+
+.. code-block:: c++
+
+    void  qdf_closeFile(hid_t hFile);
+
+``hFile``
+    HDF handle to an opened file.
+
+Closes the HDF file resource.
+
+.. -----------------------------------------------------------------------------
+
+
+Handling groups
+~~~~~~~~~~~~~~~
+
+Below ``hGroup`` stands for a handle to a file or a handle to a group.
+
+``qdf_createGroup``
+^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: c++
+
+    hid_t qdf_createGroup(hid_t hGroup, const std::string sGroupName);
+
+``hGroup``
+    Handle to group (or file) in which to create a group.
+
+``sGroupName``
+    Name of group to be created.
+
+| Creates a group with specified name in a group (or in a file).
+| Returns handle to group on succes, H5P_DEFAULT on failure.
+
+.. -----------------------------------------------------------------------------
+
+``qdf_openGroup``
+^^^^^^^^^^^^^^^^^
+
+.. code-block:: c++
+
+    hid_t qdf_openGroup(hid_t hGroup, const std::string sGroupName, bool bForceCheck=true);
+
+``hGroup``
+    Handle to group (or file) in which to open a group.
+
+``sGroupName``
+    Name of group to be opened.
+
+``bForceCheck``
+    If true, existence of group is checked.
+
+| Opens group with specified name in ``hGroup``.
+| Returns handle to group on succes, H5P_DEFAULT on failure.
+
+.. -----------------------------------------------------------------------------
+
+``qdf_opencreateGroup``
+^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: c++
+
+    hid_t qdf_opencreateGroup(hid_t hGroup, const std::string sGroupName, bool bForceCheck=true);
+
+``hGroup``
+    Handle to group (or file) in which to open or create a group.
+
+``sGroupName``
+    Name of group to be opened or created.
+
+``bForceCheck``
+    If true, existence of group is checked.
+
+| Opens group with specified name in ``hGroup``, or creates it if it doesn't exist.
+| Returns handle to group on succes, H5P_DEFAULT on failure.
+
+.. -----------------------------------------------------------------------------
+
+``qdf_closeGroup``
+^^^^^^^^^^^^^^^^^^
+
+.. code-block:: c++
+
+    void  qdf_closeGroup(hid_t hGroup);
+
+``hGroup``
+    Handle to group to be closed.
+
+Closes the opened group.
+
+.. -----------------------------------------------------------------------------
+
+``qdf_deleteGroup``
+^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: c++
+
+    int   qdf_deleteGroup(hid_t hGroup, std::string sSubName);
+
+``hGroup``
+    Handle to group in which to delete a sub group.
+
+``sSubName``
+    Name of subgroup to delete.
+
+| Deletes the specified subgroup of ``hGroup``.
+| Returns 0 in success, -1 on failure.
+
+.. -----------------------------------------------------------------------------
+
+Handling Data Sets
+~~~~~~~~~~~~~~~~~~
+
+.. -----------------------------------------------------------------------------
+
+``qdf_openDataSet``
+^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: c++
+
+    hid_t qdf_openDataSet(hid_t hGroup, const std::string sDataSetName, bool bForceCheck=true);
+
+``hGroup``
+    Handle to group (or file) in which to open a dataset.
+
+``sDataSetName``
+    Name of data set to be opened.
+
+``bForceCheck``
+    If true, existence of group is checked.
+
+| Opens data set with specified name.
+| Returns handle to group on succes, H5P_DEFAULT on failure.
+ 
+.. -----------------------------------------------------------------------------
+
+``qdf_closeDataSet``
+^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: c++
+
+    void  qdf_closeDataSet(hid_t hDataSet);
+
+``hDataSet``
+    Handle to data set to be closed.
+
+Closes the specified data set.
+
+.. -----------------------------------------------------------------------------
+
+``qdf_closeDataSpace``
+^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: c++
+
+    void  qdf_closeDataSpace(hid_t hDataSpace);
+
+``hDataSet``
+    Handle to data space to be closed.
+
+Closes the specified data space.
+
+.. -----------------------------------------------------------------------------
+
+``qdf_closeDataType``
+^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: c++
+
+    void  qdf_closeDataType(hid_t hDataType);
+
+``hDataType``
+    Handle to data type to be closed.
+
+Closes the specified data type.
+
+.. -----------------------------------------------------------------------------
+
+``qdf_closeAttribute``
+^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: c++
+
+    void  qdf_closeAttribute(hid_t hDataSpace);
+
+``hDataSet``
+    Handle to data space to be closed.
+
+Closes the specified data space.
+
+.. -----------------------------------------------------------------------------
+
+Link Existence
+~~~~~~~~~~~~~~
+
+``qdf_link_exists``
+^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    bool qdf_link_exists(hid_t hGroup, const std::string sName);
+
+Returns true if the specified group contains a link (group, dataset) with the specified name.
+
+.. -----------------------------------------------------------------------------
+
+
+``qdf_attr_exists``
+^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    bool qdf_attr_exists(hid_t hGroup, const std::string sName);
+
+Returns true if the specified group contains an attribute with the specified name.
+
+.. -----------------------------------------------------------------------------
+
+Handling String Attributes
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. code-block;; c++
+
+    int qdf_insertSAttribute(hid_t hLoc, const std::string sName, const std::string sValue); 
+    int qdf_insertSAttribute(hid_t hLoc, const std::string sName, const char  *pValue); 
+
+    template<typename T>
+    int qdf_insertSAttribute(hid_t hLoc, const std::string sName, const T &tValue);
+
+
+``hLoc``
+    HDF handle to object (group, file, dataset) to add the string to.
+
+``sName``
+    Name of string attribute to create.
+
+``sValue``
+    The string to write.
+
+``pValue``
+    The C-string to write.
+
+``tValue``
+    A value (it will be copnverte to a string before writing)    
+  
+Writes the specified string to an attribute with given name in the specified location.
+The last version accepts any value that can be converted to string with ``std::stringstream::operator<<()``.
+
+.. -----------------------------------------------------------------------------
+
+.. code-block:: c++
+
+    std::string qdf_extractSAttribute(hid_t hLoc, const std::string sName); 
+    int qdf_extractSAttribute(hid_t hLoc, const std::string sName, std::string &sValue); 
+
+``hLoc``
+    HDF handle to object (group, file, dataset) to extract the string attribute from.
+
+``sName``
+    Name of string attribute to extract.
+
+``sValue``
+    The string into which tp place th extracted string.
+
+| The first version returns the value of the extracted string attribute on success, or an ampty string on failure.
+| The second version places the value of the extracted string attribute into ``sValue`` and returns 0 on success, -1 on failure.
+
+.. -----------------------------------------------------------------------------
+
+Handling Numeric Atributes
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+``qdf_insertAttribute``
+^^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    int qdf_insertAttribute(hid_t hLoc, const std::string sName, const uint iNum, void *vValue, const hid_t hType);
+
+    template<typename T>
+    int qdf_insertAttribute(hid_t hLoc, const std::string sName, const uint iNum, T *tValue);
+
+``hLoc``
+    HDF handle to object (group, file, dataset) to write the numeric attribute to.
+
+``sName``
+    Name of numeric attribute to write.
+
+``iNum``
+    Number of elements in the attriute.
+
+``pValue``
+    Pointer to the numeric values to be written to the attribute with the specified name at the specified location.
+
+``hType``
+    Handle to HDF type of the numeric values.
+
+``tValue``
+    Pointer to a numeric value.
+
+| The first version requires the data type of the values to be passed, as well. It is mainly used by the second version. 
+| The second version performs some template magic to generate the HDF type.
+| Both versions write an array of numeric values to the attribute.
+| Both versions return 0 on success, and -1 on failure,
+
+
+.. -----------------------------------------------------------------------------
+
+.. code-block:: c++
+
+    int qdf_extractAttribute(hid_t hLoc, const std::string sName, const uint iNum, void *vValue, const hid_t hType);
+
+    template<typename T>
+    int qdf_extractAttribute(hid_t hLoc, const std::string sName, const uint iNum, T *tValue);
+
+``hLoc``
+    HDF handle to object (group, file, dataset) to extract the numeric attribute from.
+
+``sName``
+    Name of numeric attribute to write.
+
+``iNum``
+    Number of elements in the attriute.
+
+``pValue``
+    Pointer to the numeric values to be written to the attribute with the specified name at the specified location.
+
+``hType``
+    Handle to HDF type of the numeric values.
+
+``tValue``
+    Pointer to aarray numeric values.
+
+| The first version requires the data type of the values to be passed, as well. It is mainly used, by the second version. 
+| The second version performs some template magic to generate the HDF type.
+| Both versions extraczt an array of numeric values from the named attribute.
+| Both versions return 0 on success, and -1 on failure,
+
+.. -----------------------------------------------------------------------------
+
+Handling Arrays in Data Sets
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+``qdf_readArray``
+^^^^^^^^^^^^^^^^^
+
+.. code-block:: c++
+
+    int qdf_readArray(hid_t hGroup, const std::string sName, const uint iNum, void *vData, const hid_t hType);
+
+    template<typename T>
+    int qdf_readArray(hid_t hGroup, const std::string sName, const uint iNum, T *pData);
+
+``hGroup`` 
+    Group in which to read the dataset.
+
+``sName``
+    Name of dataset to read.
+
+``iNum``
+    Number of elements in array
+
+``vData``
+    Pointer to an array with size at least ``iNum``. The contents will be written to the data set.
+
+``hType``
+    Handle to HDF type of the numeric values. 
+
+``pData``
+    Pointer to an array with size at least ``iNum``. The contents will be written to the data set.
+
+| The first version requires the data type of the values to be passed, as well. It is mainly used, by the second version. 
+| The second version performs some template magic to generate the HDF type.
+| Both versions extract an array of numeric values from the named dataset.
+| Both versions return 0 on success, and -1 on failure,
+    
+.. -----------------------------------------------------------------------------
+
+``qdf_replaceArray``
+^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    int qdf_replaceArray(hid_t hGroup, const std::string sName, const uint iNum, void *vData, const hid_t hType);
+
+    template<typename T>
+    int qdf_replaceArray(hid_t hGroup, const std::string sName, const uint iNum, T *pData);
+
+``hGroup`` 
+    Group in which to replace the dataset.
+
+``sName``
+    Name of dataset to replaced.
+
+``iNum``
+    Number of elements in array.
+
+``vData``
+    Pointer to an array with size at least ``iNum``. The contents will replace the current array in the data set.
+
+``hType``
+    Handle to HDF type of the numeric values.
+
+``pData``
+    Pointer to an array with size at least ``iNum``. The contents will replace the current array in the data set.
+
+| The first version requires the data type of the values to be passed, as well. It is mainly used, by the second version. 
+| The second version performs some template magic to generate the HDF type.
+| Both versions replace the array of numeric values in the data set.
+| Both versions return 0 on success, and -1 on failure,
+
+.. -----------------------------------------------------------------------------
+
+``qdf_writeArray``
+^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    int qdf_writeArray(hid_t hGroup,   const std::string sName, const uint iNum, void *vData, const hid_t hType);
+
+    template<typename T>
+    int qdf_writeArray(hid_t hGroup, const std::string sName, const uint iNum, T *pData);
+
+``hGroup`` 
+    Group in which to write the dataset.
+
+``sName``
+    Name of dataset to be written to.
+
+``iNum``
+    Number of elements in array.
+
+``vData``
+    Pointer to an array with size at least ``iNum``. The contents will be written to the data set.
+
+``hType``
+    Handle to HDF type of the numeric values.
+
+``pData``
+    Pointer to an array with size at least ``iNum``. The contents will e written to the data set.
+
+| The first version requires the data type of the values to be passed, as well. It is mainly used, by the second version. 
+| The second version performs some template magic to generate the HDF type.
+| Both versions write the array of numeric values to the data set.
+| Both versions return 0 on success, and -1 on failure,
+
+.. -----------------------------------------------------------------------------
+
+``qdf_readArrays``
+^^^^^^^^^^^^^^^^^^
+
+.. code-block:: c++
+
+    int qdf_readArrays(hid_t hGroup,  const std::string sName, const uint iNumArr, const uint iSize, double **pData);
+
+``hGroup`` 
+    Group in which to write the dataset.
+
+``sName``
+    Name of dataset to be written to.
+
+``iNumArr``
+    Number of arrays.
+
+``iSize``
+    Number of elements in array.
+
+``pData``
+    Pointer to an array of ``iNumArr`` arrays  with size at least ``iSize``. The contents will be read from the data set.
+
+| Reads a number of equally sized arrays (i.e. a 2-dimensional array) to the specified data set.
+| Returns 0 on success, -1 on failure.
+
+.. -----------------------------------------------------------------------------
+
+
+``qdf_writeArrays``
+^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: c++
+
+    int qdf_writeArrays(hid_t hGroup, const std::string sName, const uint iNumArr, const uint iSize, const double **pData);
+
+``hGroup`` 
+    Group in which to read the dataset.
+
+``sName``
+    Name of dataset to be read from.
+
+``iNumArr``
+    Number of arrays.
+
+``iSize``
+    Number of elements in array.
+
+``pData``
+    Pointer to an array of ``iNumArr`` arrays  with size at least ``iSize``. The contents will be writtten to the data set.
+
+| Writes a number of equally sized arrays (i.e. a 2-dimensional array) to the specified data set.
+| Returns 0 on success, -1 on failure.
+
+.. -----------------------------------------------------------------------------
+
+Various
+~~~~~~~
+
+``qdf_listGroupContents``
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: c++
+
+    int qdf_listGroupContents(hid_t loc_id, const std::string sName, char *pIndent);
+
+``loc_id``
+    Location in which to list a group or file.
+
+``sName``
+    Name of the group to b listed.
+
+``pIndent``
+    Indentation to be prefixed to output.
+
+Writes the list of contents of the group to stdout.
+
+. -----------------------------------------------------------------------------
+
+``qdf_getDataType``
+^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: c++
+
+    int qdf_getDataType(hid_t hDataSet);
+
+``hDataSet``
+    Handle to the data set to get the data type of.
+
+Returns an integer representing a data type:
+
++-----------------+----+--------------------+
+| DS_TYPE_NONE    |  0 | unknown type       |
++-----------------+----+--------------------+
+| DS_TYPE_CHAR    |  1 | char               |
++-----------------+----+--------------------+
+| DS_TYPE_SHORT   |  2 | short              |
++-----------------+----+--------------------+
+| DS_TYPE_INT     |  3 | int                |
++-----------------+----+--------------------+
+| DS_TYPE_LONG    |  4 | long               |
++-----------------+----+--------------------+
+| DS_TYPE_LLONG   |  5 | long long          |
++-----------------+----+--------------------+
+| DS_TYPE_UCHAR   |  6 | unsigned char      |
++-----------------+----+--------------------+
+| DS_TYPE_USHORT  |  7 | unsigned short     |
++-----------------+----+--------------------+
+| DS_TYPE_UINT    |  8 | unsigned int       |
++-----------------+----+--------------------+
+| DS_TYPE_ULONG   |  9 | unsigned long      |
++-----------------+----+--------------------+
+| DS_TYPE_ULLONG  | 10 | unsigned long long |
++-----------------+----+--------------------+
+| DS_TYPE_FLOAT   | 11 | float              |
++-----------------+----+--------------------+
+| DS_TYPE_DOUBLE  | 12 | double             |
++-----------------+----+--------------------+
+| DS_TYPE_LDOUBLE | 13 | long double        |
++-----------------+----+--------------------+
+
+. -----------------------------------------------------------------------------
+
+``qdf_getDataExtents``
+^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: c++
+
+    int qdf_getDataExtents(hid_t hGroup, const std::string sName, std::vector<hsize_t> &vSizes);
+
+``hGroup``
+    Handle to group containing the data set to be analysed.
+ 
+``sName``
+    Name of data set.
+
+``vSizes``
+    String vector to write th sizes into.
+
+.. -----------------------------------------------------------------------------
+
+``qdf_getFirstPopulation``
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: c++
+
+    const std::string qdf_getFirstPopulation(const std::string sPopQDF);
+
+``sPopQDF``
+    Name of a QDF file containing populations.
+
+Returns the name of the first population in the qdf file.
+
+.. -----------------------------------------------------------------------------
+
+``qdf_checkForPop``
+^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: c++
+
+    const std::string qdf_checkForPop(const std::string sPopQDF, const std::string sSpeciesName);
+
+``sPopQDF``
+    Name of a QDF file containing populations.
+
+``sSpeciesName``
+    Name of a species.
+
+Returns the name if the species exists, or an empty string if it doesn't.
+
+.. -----------------------------------------------------------------------------
+
+``qdf_hasGeo``
+^^^^^^^^^^^^^^
+
+.. code-block:: c++
+
+    bool  qdf_hasGeo(const std::string sQDF);
+
+``sQDF``
+   Name of a QDF file.
+
+Returns ``true`` if the file contains a geo group.
+
+.. -----------------------------------------------------------------------------
+
+``qdf_createPolyLine``
+^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: c++
+
+    PolyLine *qdf_createPolyLine(hid_t hSpeciesGroup, const std::string sPLParName);
+
+``hSpeciesGroup``
+    Handle to a species group.
+
+``sPLParName``
+    Name of a poly line entry.
+
+Gets the data for the poly line and creates it.
+
+.. -----------------------------------------------------------------------------
+
+``qdf_writePolyLine``
+^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: c++
+
+    int qdf_writePolyLine(hid_t hSpeciesGroup, PolyLine *pPL, const std::string sPLParName);
+
+``hSpeciesGroup``
+    Handle to a species group.
+
+``sPLParName``
+    Name of a poly line entry.
+
+Writes the poly line data to a data set named as specieified.
+
+.. -----------------------------------------------------------------------------
+
+``compareDataTypes``
+^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: c++
+
+    int qdf_compareDataTypes(hid_t t1, hid_t t2);
+
+``t1``
+   Handle to a HDF data type.
+
+``t2``
+   Handle to a HDF data type.
+
+| Compares the two data types.  
+| Returns 0 if datatypes are equal, or a negative number if different:
+
++----+-----------------------------+
+| -2 | different number of members |
++----+-----------------------------+
+| -3 | different offsets           |
++----+-----------------------------+
+| -4 | different class             |
++----+-----------------------------+
+| -5 | different type              |
++----+-----------------------------+
+| -6 | different name              |
++----+-----------------------------+
+
+.. -----------------------------------------------------------------------------
+
+``qdf_checkPathExists``
+^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: c++
+
+    int qdf_checkPathExists(const std::string sQDF, const std::string sPath);
+
+``sQDF``
+    Name of a qdf file.
+
+``sPath``
+    A HDF path.
+
+If the given path exists in the QDF file, o is returned. Otherwise -1.
+

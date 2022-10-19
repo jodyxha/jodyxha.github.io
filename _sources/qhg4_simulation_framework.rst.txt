@@ -1,0 +1,102 @@
+
+The QHG4 simulation framework: an Overview
+==========================================
+QHG4 is a framework for agent-based simulations, together with a set of various tools.
+
+.. figure:: ../images/QHGStructure.png 
+
+  The arrows between the components (solid border) denote ownership,
+  the boxes with dashed borders list the main classes associated with a component, with '...' denoting derived classes. 
+
+Short descriptions of the main elements
+  * :ref:`Simulation Framework <SimulationFramework_ov_ref>`
+  * :ref:`Environment <Environment_ov_ref>`
+  * :ref:`Populations and Population Management <PopulationManagement_ov_ref>`
+  * :ref:`Actions <Actions_ov_ref>`
+  * :ref:`Events <Events_ov_ref>`
+
+.. _SimulationFramework_ov_ref:
+
+Simulation Framework
+""""""""""""""""""""
+
+The simulation framework owns environment data as well as a population manager.
+During the simulation loop all agents in all populations will execute their actions.
+Additionally, events may change the environment or cause the output of population and/or environment data.
+
+The essential classes for the simulation framework:
+  
+  * **QHGMain**
+       opens the log file, creates a ``Simulator`` object and runs it 
+
+  * **SimParams**
+       base class for ``Simulator`` with methods for reading program options, creating objects and loading data 
+
+  * **Simulator**
+       runs the simulation loop and handles events 
+
+The description of the relevant files cn be found in the :ref:`the "app" section of the documentation <app_ref>`
+
+.. _Environment_ov_ref:
+
+Environment
+"""""""""""
+
+| The environment consists of different layers. 
+| The basis of an environment is a cellgrid. 
+| The cellgrid holds pointers to the other environment layers such as geography, climate, vegetatiuon, navigation etc.
+| This way each grid node has its set of environment data.
+| Agents move from node to node and can access the environmental dat at these locations.
+
+The essential environment classes:
+  * **SCellGrid** 
+       The class :ref:`SCellGrid<SCellGrid_ref>` implements the grid on which the simulation is running: agents sit on nodes and can travel to connected nodes.
+       For global simulations the cellgrid is a subdivided Icosahedron, but planar grids with 4 or 6 neighborhood are also used.
+
+  * **Geography**
+       The class :ref:`Geography<Geography_ref>` contains longitudes, latitudes and altitudes of the nodes, as well as the water-related and glacial data
+
+  * **Climate** 
+       The class :ref:`Climate<Climate_ref>` contains temperatures and precipitation for each cell
+
+  * **Vegetation** 
+       The class :ref:`Vegetation<Vegetation_ref>` contains net primary production for each cell
+
+  * **Navigation** 
+       The class :ref:`Navigation<Navigation_ref>` contains over-seas connections for some nodes. 
+       This is used to allow agents to move to islands.
+
+
+.. _PopulationManagement_ov_ref:
+
+Populations and Population Management
+"""""""""""""""""""""""""""""""""""""
+
+In QHG4 agents small structures containing the individuals' properties. They are managed in population objects.
+Each population object has a parallelized loop to execute the actions of all its agents, and manages their birth, death and movement.
+
+  * **PopLooper**
+       Manages any number of ``SPopulation`` objects and distributes commands from ``Simulator`` to all of them.
+ 
+  * **SPopulation**
+       Base class for all population classes; only derived classes can be used as actual populations. 
+       Populations can use one or more Action objects. 
+
+
+.. _Actions_ov_ref:
+
+Actions
+"""""""
+The actions agents perform during a simulation step are represented by classes derived from the base class ``Action``.
+There are actions for movement, mating, fertility, mortality, genetics and more.
+
+
+.. _Events_ov_ref:
+
+Events
+""""""
+
+In order to trigger specific actions, mainly reading and writing data, QHG4 uses so-called events.
+Usually a list of times, eventy types (what to do) and arguments (what to do it to) are passed to QHG4 as parameters. 
+During execution, whenever the current simulation time matches a time on the event list, the actions for corresponding event(s) are executed.
+

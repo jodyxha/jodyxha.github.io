@@ -1,0 +1,472 @@
+.. _QHGMain_ref:
+
+QHGMain
+=======
+
+.. rst-class:: hidden
+
+   This page describes the module :index:`QHGMain`
+
+
+``QHGMain`` is the executable which runs a QHG4 simulation.
+
+``QHGMain.cpp`` consists mainly of the ``main()`` function, in which the logfile is initialized, a :ref:`Simulator <Simulator_ref>` object is created and the simulation loop is started. 
+
+Code: `QHGMain.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/app/QHGMain.cpp>`_
+
+Calling QHGMain
+---------------
+
+QHGMain has a large number of command line parameters
+
+:ref:`-h <param_h_ref>`
+    show this help
+
+:ref:`--help<param_help_ref>`             
+    show detailed help for topic (use name of option or "all")
+
+:ref:`--log-file<param_log_file_ref>`
+    set name of log file (default:"SimTest.log")
+
+:ref:`--grid<param_grid_file_ref>`
+    set grid file
+
+:ref:`--num-iters<param_num_iters_ref>`    
+    set number of iterations
+
+:ref:`--geo<param_geo_ref>`
+    set geography file
+
+:ref:`--climate<param_climate_ref>`
+    set climate file
+
+:ref:`--veg<param_veg_ref>`
+    set vegetation file
+
+:ref:`--nav<param_nav_ref>`
+    set navigation file
+
+:ref:`--pops<param_pops_ref>`
+    set population files
+
+:ref:`--output-prefix<param_output_prefix_ref>`
+    set prefix for output files (default: "output\_")
+
+
+:ref:`--output-dir<param_output_dir_ref>`
+    set  output directory (default: "./")
+
+
+:ref:`--data-dirs<param_data_dirs_ref>`
+    set data directories (default: "./")
+
+:ref:`--read-config<param_read_config_ref>`
+    read options from config file
+
+:ref:`--write-config<param_write_config_ref>`
+    write config to file <conf>
+
+:ref:`--events<param_events_ref>`
+    set event list
+
+:ref:`--start-time<param_start_time_ref>`
+    set 'real' time for simulation step 0 (default: 0)
+
+:ref:`--dyn-pops<param_dyn_pops_ref>`
+    use populations from so directory
+
+:ref:`--so-dirs<param_so_dirs_ref>`
+    search directories for population so-files (default: "./")
+
+:ref:`--interpol-step<param_interpol_step_ref>`
+    set step size for interpolation (default: 1)
+
+:ref:`--interpolation<param_interpolation_ref>`
+    set interpolation params
+
+:ref:`--layer-size<param_layer_size_ref>`
+    set layer size (default: 65536)
+
+:ref:`--shuffle<param_shuffle_ref>`
+    shift random generator's sequence (default: 0)
+
+:ref:`--seed<param_seed_ref>`
+    set seed for random number generators
+
+:ref:`--pop-params<param_pop_params_ref>` 
+    set special population parameters
+
+:ref:`--zip-output<param_zip_output_ref>`
+    use gzip to zip all output qdf files
+
+:ref:`--info-string<param_info_string_ref>`
+    set  information to be written to root group of output files
+
+:ref:`--resume<param_resume_ref>`
+    resume from previously :ref:`dumped <dump_restore_ref>` env and pop files
+
+:ref:`--no-merge-pops<param_no_merge_pops_ref>`
+    don't merge compatible populations (same IDs, same actions, same agent types)
+
+:ref:`--dump-on-interrupt<param_dump_on_interrupt_ref>`
+    set interrupt handler for Ctrl-C (SIG_INT): dump and exit
+  
+
+Parameter description
+---------------------
+
+.. _param_h_ref:
+
+-h
+^^
+
+Show this help
+
+.. _param_help_ref:
+
+--help=<topic>
+^^^^^^^^^^^^^^
+
+Show detailed help for specified topic (use name of option or "all")
+
+.. -----------------------------------------------------------------------------
+
+.. _param_log_file_ref:
+
+--log-file=<filename>
+^^^^^^^^^^^^^^^^^^^^^
+
+Set name of log file.
+
+.. -----------------------------------------------------------------------------
+
+.. _param_grid_file_ref:
+
+--grid=<grid-file>
+^^^^^^^^^^^^^^^^^^
+
+(required)
+Specify name of initial grid-file to use.
+
+**grid-file** must be a QDF file containing  a :ref:`grid group <GridGroup_ref>`, but may also contain other groups.
+
+.. -----------------------------------------------------------------------------
+
+.. _param_num_iters_ref:
+
+--num-iters=<iters>
+^^^^^^^^^^^^^^^^^^^
+
+(required)
+Set number of iterations.
+
+**iters** must be a positive number.
+
+.. -----------------------------------------------------------------------------
+
+.. _param_geo_ref:
+
+--geo=<geo-file>
+^^^^^^^^^^^^^^^^
+
+Set the initial geography file.
+
+**geo-file** must be a QDF-file containing a :ref:`geography group<GeoGroup_ref>`, but may also contain other groups.
+
+It must contain data for the same number of cells as the grid file
+
+.. -----------------------------------------------------------------------------
+
+.. _param_climate_ref:
+
+--climate=<climate-file>
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Set the initial climate file.
+
+**climate-file** must be a QDF-file containing a :ref:`climate group<ClimateGroup_ref>`, but may also contain other groups.
+
+It must contain data for the same number of cells as the grid file
+
+.. -----------------------------------------------------------------------------
+
+.. _param_veg_ref:
+
+--veg=<veg-file>
+^^^^^^^^^^^^^^^^
+Set the vegetation file.
+
+**veg-file** must be a QDF file containing a :ref:`vegetation group<VegGroup_ref>`, but may also contain othr groups.
+
+
+It must contain data for the same number of cells as the grid file
+
+.. -----------------------------------------------------------------------------
+
+.. _param_nav_ref:
+
+--nav=<nav-file>
+^^^^^^^^^^^^^^^^
+
+Set navigation file.
+
+**nav-file** must be a QDF file containing a :ref:`navigation group<NavGroup_ref>`, but may also contain other groups.
+
+.. -----------------------------------------------------------------------------
+
+.. _param_pops_ref:
+
+--pops=<pop-list>
+^^^^^^^^^^^^^^^^^
+
+Set population files with QDF file.
+
+**pop-list** is a comma-separated list of population definition files.
+
+| Population definitions files can QDF-files, each containing at least one subgroup of the Populations group.
+| Alternatively you may use a pair <xml-file>:<dat-file>
+  
+| **xml-file** is a :ref:`class definition xml file<pop_xml_ref>`,
+| **dat-file** is a :ref:`agent definition dat file<pop_dat_ref>`.
+
+.. -----------------------------------------------------------------------------
+
+.. _param_output_prefix_ref:
+
+--output-prefix=<name>
+^^^^^^^^^^^^^^^^^^^^^^
+Set prefix for output files (default: "output\_").
+
+This prefix is prepended to all output files
+
+**name** ia an arbitrary string without special characters)
+
+.. _param_output_dir_ref:
+
+.. -----------------------------------------------------------------------------
+
+--output-dir=<dirname>
+^^^^^^^^^^^^^^^^^^^^^^
+
+Set output directory (default: "./")
+
+If the output directory does not exist, it is created.
+
+**dirname** is the path to the output 
+
+.. _param_data_dirs_ref:
+
+.. -----------------------------------------------------------------------------
+
+--data-dirs=<dirnames>
+^^^^^^^^^^^^^^^^^^^^^^
+
+Set search-data directories for input files (default: "./")
+
+**dir-names** is a comma-separated list of directories.
+
+The order of the directoris in the list defines the search order.
+
+.. _param_read_config_ref:
+
+.. -----------------------------------------------------------------------------
+
+--read-config=<conf>
+^^^^^^^^^^^^^^^^^^^^
+
+Read config from a configuration file.
+
+A configuration file must consist of lines each of which is a option setting of the form
+      --<option-name>=value
+
+Options passed as parameters to the application supercede the settings in the config file.
+
+.. -----------------------------------------------------------------------------
+
+.. _param_write_config_ref:
+
+--write-config=<conf>
+^^^^^^^^^^^^^^^^^^^^^
+ 
+Write config to file <conf>
+
+The configuration file created with this call can be used with the option "--read-config"
+
+.. _param_events_ref:
+
+.. -----------------------------------------------------------------------------
+
+--events=<event-list>
+^^^^^^^^^^^^^^^^^^^^^
+
+Set event list.
+
+| The event-list string is a comma-separated list of events:
+| ``event-list       ::= "'" <event> ["," <event>]*"'"``
+| The entire event list must be enclosed in quotes;
+| if the event list contains environment variables, use double quotes.
+
+For detailed information see  :ref:`Events<Events_ref>`.
+
+
+.. _param_start_time_ref:
+
+--start-time=<time>
+^^^^^^^^^^^^^^^^^^^
+
+Set 'real' time for simulation step 0 (default: 0).
+If your simulation starts at 70'000 years before the present, you have to set  start-time to -70000.
+
+.. _param_dyn_pops_ref:
+
+--dyn-pops
+^^^^^^^^^^
+Use population plugins from so directory
+
+.. _param_so_dirs_ref:
+
+--so-dirs=<dirlist>       
+^^^^^^^^^^^^^^^^^^^^^^^^
+search directories for population so-files (default: "./")
+
+**dirlist** mujst be a comma-separated list of directories in which to look for population plugins
+
+.. _param_interpol_step_ref:
+
+--interpol-step=<step>
+^^^^^^^^^^^^^^^^^^^^^^
+
+Set step size for interpolation (default: 1)
+
+This option only has any efffect if you have some interpolation events
+
+
+.. _param_interpolation_ref:
+
+--interpolation=<params>
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+This option prepares the interpolation of the specified arrays params
+
+| ``params   ::= <arrays>":"<evtfile>":"<inter-step>``
+| ``arrays   ::= <arrname> ["+"<arrname>]*``
+| ``arrname  ::= "alt" | "npp"``
+
+| If 'alt' is specified, the altitudes will be interpolated
+| If 'npp' is specified, the NPP will be interpolated
+| The evtfile is a 'normal' event file (usually the same as used for events)
+| inter-step is the interpolation interval
+
+
+.. _param_layer_size_ref:
+
+--layer-size=<size>
+^^^^^^^^^^^^^^^^^^^
+
+(technical)
+
+Set the layer size of the resizable arrays  (default: 65536)
+
+
+.. _param_shuffle_ref:
+
+--shuffle=<num>
+^^^^^^^^^^^^^^^
+
+(techical)
+
+Shift random generator's sequence (default: 0). 
+
+| This is done by generating <num> random numbers on each random number generator before the start of the simulation.
+| I.e., this option can be used to change the random number sequence
+
+
+.. _param_seed_ref:
+
+--seed=<seedtype>
+^^^^^^^^^^^^^^^^^
+Set seed for random number generators.
+
+| ``seedtype   ::= "random" | "seq:"<sequence> | "file:"<seed-file> | "phrase:"<arbitrary>``
+| ``sequence   ::= (<hexnumber> ",")*``
+| ``arbitrary  : arbitrary string (enclose in quotes if it contains spaces)``
+| ``seed-file  : name of a seed file``
+
+If seedType is "random", the seeds are filled with random numbers based on the current time
+
+A sequence must be consist of 16 comma-separated 8-digit hexnumbers.
+
+If sequence is given, it is passed directly to the random nuber generators.
+
+If an arbitrary string is provided, it is turned into a seed sequence using a hash function (SHA-512)
+
+If a seed file is specified it must conform to the following format.
+
+| ``seed-file ::= <seed-def>*``
+| ``seed-def  ::= <header> <seed-line>* <footer>``
+| ``header    ::= "SEED"[:<dest>]``
+| ``seed-line ::= (<hexnumber> ",")*``
+| ``dest      :   A string describing which RNG the sequence should be passed to (NOT IMPLEMENTED YET)``
+| ``footer    ::= "SEED_END"``
+
+In total, 16 8-digit hex numbers must be given between header and footer
+
+
+.. _param_pop_params_ref:
+
+--pop-params=<paramstring>
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Set special population parameters.
+
+| ``param-strings   ::= <param-string> ["," <param-string>]*``
+| ``param-string    ::= <popname> ":" <pop-param>``
+
+The  pop-param strings are passed to the specified populations; the format of pop-param is specific for the particular population.
+
+Data provided this way will be passed to the parameter of the population's ``setParam(const char *pParam)`` method.
+
+
+.. _param_zip_output_ref:
+
+--zip-output
+^^^^^^^^^^^^
+
+Use gzip to zip all output qdf files.
+
+
+.. _param_info_string_ref:
+
+--info-string=<infostring>
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Add  <infostring> as the value of the attribute "info" of the root group of every output qdf.
+
+.. _param_resume_ref:
+
+--resume
+^^^^^^^^
+
+Resume simulation from previously :ref:`dumped<dump_restore_ref>` env and pop files (created by a "dump" event).
+
+| Use the full environment dump as initial grid, and all dumped population qdfs for '--pops='
+| To have totally exact resume, the number of threads must be the same as in the dumped simulation
+
+
+.. _param_no_merge_pops_ref:
+
+--no-merge-pops            
+^^^^^^^^^^^^^^^
+
+Don't  merge compatible populations.
+
+Two populations are compatible if they have the same class name, the same species name, the same actions , and the same agent structure.
+ ATTENTION: currently, the population read in more recently replacess the older one
+
+
+.. _param_dump_on_interrupt_ref:
+
+--dump-on-interrupt
+^^^^^^^^^^^^^^^^^^^
+
+Set interrupt handler for Ctrl-C (SIG_INT): write dump and exit gracefully.
