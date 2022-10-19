@@ -6,7 +6,7 @@ Prioritizer
 
 .. rst-class:: hidden
 
-   This page describes the class :index:`PopLooper`
+   This page describes the class :index:`Prioritizer`
 
 The class ``Prioritizer`` is used to manage an :ref:`SPopulation<Spopulation_ref>`'s actions based on their priority level.
 In qhg an action with lower priority level is exec uted *before* an action with a higher priority level (cf. :ref:`Actions and Priorities<ActionsAndPriorities_ref>`).

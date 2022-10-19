@@ -8,8 +8,9 @@ The Population XML Format
    This page gives an overview of :index:`population XML file format`
 
 
-| Population xml files are only used to load population properties onto QHG.
+| Population xml files are only used to load population properties into QHG.
 | They are obviously text file and easily created or modified.
+| However, QHG also accepts gzipped xml files.
 
 
 

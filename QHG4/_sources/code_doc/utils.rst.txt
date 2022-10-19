@@ -50,5 +50,6 @@ The directory ``utils`` contains various utility files
    :caption: various
    :maxdepth: 1
   
+   utils/types
    utils/Observer
    utils/Observable

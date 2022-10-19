@@ -1,0 +1,51 @@
+.. _types_ref:
+
+types
+=====
+
+.. rst-class:: hidden
+
+    This page describes the file :index:`type`
+
+The file ``types.h`` contains type definitions used throughout QHG4.
+
+Code: `types.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/types.h>`_
+
+Type Definitions
+----------------
+
+Short Names for Various C++ Number Types
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    typedef unsigned char       uchar;
+    typedef unsigned short      ushort;
+    typedef unsigned int        uint;
+    typedef unsigned long       ulong;
+
+    typedef long long           llong;
+    typedef unsigned long long  ullong;
+    typedef long double         ldouble;
+
+    typedef int                 gridtype;
+    typedef long                idtype;
+
+Short Names for Specialized Containers
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    typedef std::set<int>              intset;
+    typedef intset::iterator           intset_it;
+    typedef intset::const_iterator     intset_cit;
+    
+    typedef std::vector<uchar>                 ucharvec; 
+    typedef std::vector<int>                   intvec; 
+    typedef std::vector<uint>                  uintvec; 
+    typedef std::map<std::string, std::string> stringmap;
+    typedef std::map<std::string, stringmap>   strstrmap;
+    typedef std::vector<std::string>           stringvec;
+    
+    typedef std::vector<idtype>    idvec;
+    typedef std::set<idtype>       idset;
+    typedef idset::iterator        idset_it;
+    typedef idset::const_iterator  idset_cit;

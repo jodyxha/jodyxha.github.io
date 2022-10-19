@@ -9,7 +9,8 @@ The Population DAT Format
 
 
 | Population dat files are only used to load agent properties onto QHG.
-| A population dat file is essentially a CSV (comma separated values), where each line holds the data for one agent.
+| A population dat file is a text file,  essentially a CSV (comma separated values), where each line holds the data for one agent.
+| QHG also accepts gzipped dat files.
 
 The format of a dat file:
 

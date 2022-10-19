@@ -780,7 +780,7 @@ Writes the poly line data to a data set named as specieified.
    Handle to a HDF data type.
 
 | Compares the two data types.  
-| Returns 0 if datatypes are equal, or a negative number if different:
+| Returns 0 if datatypes are equal, or a negative number if they are different:
 
 +----+-----------------------------+
 | -2 | different number of members |

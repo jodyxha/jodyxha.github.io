@@ -88,8 +88,8 @@ Otherwise, i.e. there is such an index 'last':
 .. figure:: ../images/L2L_A3.png
 
 Moving a used location to passive state requires a similar set of operations.
-It is important to keep in mind that operations on the lists must not be parallelized.
-If several threads write to the lists at the same time, it would very probably end up in an undefied state.
+It is important to keep in mind that operations on the lists *must not be parallelized*.
+If several threads write to the lists at the same time, it would very probably end up in an undefined state.
 
 
 Dead Agent Recycling

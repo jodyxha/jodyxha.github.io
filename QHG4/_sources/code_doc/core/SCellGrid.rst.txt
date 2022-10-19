@@ -10,9 +10,12 @@ SCellGrid
 The ``SCellGrid``  represents the grid on which the simulation is taking place. 
 QHG supports flat grids with 4 or 6 neighborhoods, as well as icosahedral grids.
 
+In principle it is also possible to use irregular grids - in principle any graph couls bd used.
+
+
 .. figure:: ../../../images/some_grids.png
 
-QDF files containing cell grids can be created with the tool :ref:`Def2QDF<Def2QDF_ref>`.
+QDF files containing regular cell grids can be created with the tool :ref:`Def2QDF<Def2QDF_ref>`.
 
 Code: `SCellGrid.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/core/SCellGrid.h>`_ `SCellGrid.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/core/SCellGrid.cpp>`_
 

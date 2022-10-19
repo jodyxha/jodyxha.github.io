@@ -3,11 +3,11 @@ Code Documentation
 
 The documentation is structured by code directory.
 
-
+:ref:`util
 **QHG**
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
    code_doc/utils
    code_doc/core
@@ -23,7 +23,7 @@ The documentation is structured by code directory.
 **tools**
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    
    (tools_ico)
    tools_io

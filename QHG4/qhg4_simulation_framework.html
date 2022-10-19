@@ -54,6 +54,7 @@
 the boxes with dashed borders list the main classes associated with a component, with ‘…’ denoting derived classes.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
+<p>Because the QHG code is parallized by means of OpenMP, the simulations run quite fast, on the order of less than 1 second for a single time step with a million agents.</p>
 <dl class="simple">
 <dt>Short descriptions of the main elements</dt><dd><ul class="simple">
 <li><p><a class="reference internal" href="#simulationframework-ov-ref"><span class="std std-ref">Simulation Framework</span></a></p></li>
@@ -89,7 +90,7 @@ Additionally, events may change the environment or cause the output of populatio
 </li>
 </ul>
 </div></blockquote>
-<p>The description of the relevant files cn be found in the <a class="reference internal" href="code_doc/app.html#app-ref"><span class="std std-ref">the “app” section of the documentation</span></a></p>
+<p>The description of the relevant classes can be found in the <a class="reference internal" href="code_doc/app.html#app-ref"><span class="std std-ref">the “app” section of the documentation</span></a></p>
 </section>
 <section id="environment">
 <span id="environment-ov-ref"></span><h2>Environment<a class="headerlink" href="#environment" title="Permalink to this heading">¶</a></h2>
@@ -132,6 +133,7 @@ This is used to allow agents to move to islands.</p>
 </ul>
 </dd>
 </dl>
+<p>For input and output QHG uses files in the <a class="reference internal" href="formats/qdf/QDF.html#qdf-ref"><span class="std std-ref">QDF file format</span></a> to hold environment data.</p>
 </section>
 <section id="populations-and-population-management">
 <span id="populationmanagement-ov-ref"></span><h2>Populations and Population Management<a class="headerlink" href="#populations-and-population-management" title="Permalink to this heading">¶</a></h2>
@@ -146,7 +148,7 @@ Each population object has a parallelized loop to execute the actions of all its
 </li>
 <li><dl class="simple">
 <dt><strong>SPopulation</strong></dt><dd><p>Base class for all population classes; only derived classes can be used as actual populations.
-Populations can use one or more Action objects.</p>
+Populations can use one or more <code class="docutils literal notranslate"><span class="pre">Action</span></code> objects.</p>
 </dd>
 </dl>
 </li>
@@ -157,6 +159,7 @@ Populations can use one or more Action objects.</p>
 <span id="actions-ov-ref"></span><h2>Actions<a class="headerlink" href="#actions" title="Permalink to this heading">¶</a></h2>
 <p>The actions agents perform during a simulation step are represented by classes derived from the base class <code class="docutils literal notranslate"><span class="pre">Action</span></code>.
 There are actions for movement, mating, fertility, mortality, genetics and more.</p>
+<p>See <a class="reference internal" href="AgentManagement.html#agentmanagement-ref"><span class="std std-ref">AgentManagement</span></a> for more information.</p>
 </section>
 <section id="events">
 <span id="events-ov-ref"></span><h2>Events<a class="headerlink" href="#events" title="Permalink to this heading">¶</a></h2>

@@ -118,8 +118,8 @@ Whenever an agent dies, the index of its location is moved from the active list 
 <img alt="images/L2L_A3.png" src="images/L2L_A3.png" />
 </figure>
 <p>Moving a used location to passive state requires a similar set of operations.
-It is important to keep in mind that operations on the lists must not be parallelized.
-If several threads write to the lists at the same time, it would very probably end up in an undefied state.</p>
+It is important to keep in mind that operations on the lists <em>must not be parallelized</em>.
+If several threads write to the lists at the same time, it would very probably end up in an undefined state.</p>
 </section>
 <section id="dead-agent-recycling">
 <h2>Dead Agent Recycling<a class="headerlink" href="#dead-agent-recycling" title="Permalink to this heading">¶</a></h2>

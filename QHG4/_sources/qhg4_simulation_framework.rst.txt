@@ -8,6 +8,8 @@ QHG4 is a framework for agent-based simulations, together with a set of various 
   The arrows between the components (solid border) denote ownership,
   the boxes with dashed borders list the main classes associated with a component, with '...' denoting derived classes. 
 
+Because the QHG code is parallized by means of OpenMP, the simulations run quite fast, on the order of less than 1 second for a single time step with a million agents.
+ 
 Short descriptions of the main elements
   * :ref:`Simulation Framework <SimulationFramework_ov_ref>`
   * :ref:`Environment <Environment_ov_ref>`
@@ -35,7 +37,7 @@ The essential classes for the simulation framework:
   * **Simulator**
        runs the simulation loop and handles events 
 
-The description of the relevant files cn be found in the :ref:`the "app" section of the documentation <app_ref>`
+The description of the relevant classes can be found in the :ref:`the "app" section of the documentation <app_ref>`
 
 .. _Environment_ov_ref:
 
@@ -66,6 +68,7 @@ The essential environment classes:
        The class :ref:`Navigation<Navigation_ref>` contains over-seas connections for some nodes. 
        This is used to allow agents to move to islands.
 
+For input and output QHG uses files in the :ref:`QDF file format<QDF_ref>` to hold environment data.
 
 .. _PopulationManagement_ov_ref:
 
@@ -80,7 +83,7 @@ Each population object has a parallelized loop to execute the actions of all its
  
   * **SPopulation**
        Base class for all population classes; only derived classes can be used as actual populations. 
-       Populations can use one or more Action objects. 
+       Populations can use one or more ``Action`` objects. 
 
 
 .. _Actions_ov_ref:
@@ -90,6 +93,7 @@ Actions
 The actions agents perform during a simulation step are represented by classes derived from the base class ``Action``.
 There are actions for movement, mating, fertility, mortality, genetics and more.
 
+See :ref:`AgentManagement<AgentManagement_ref>` for more information.
 
 .. _Events_ov_ref:
 
