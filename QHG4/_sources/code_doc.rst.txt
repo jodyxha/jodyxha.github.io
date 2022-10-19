@@ -1,9 +1,9 @@
 Code Documentation
 ==================
 
-The documentation is structured by code directory.
+The documentation for QHG is structured by code directory.
 
-:ref:`util
+
 **QHG**
 
 .. toctree::
