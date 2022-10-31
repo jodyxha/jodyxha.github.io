@@ -102,6 +102,7 @@
 </div>
 <p>The input/output auxiliary functions <code class="docutils literal notranslate"><span class="pre">addPopSpecificAgentData()</span></code> and <code class="docutils literal notranslate"><span class="pre">addPopSpecificAgentDataTypeQDF()</span></code> are identical to the ones in the previous chapterhave to be modified to take into account the new agent member fields.
 The method <code class="docutils literal notranslate"><span class="pre">makePopSpecificOffspring()</span></code> which allows the population to perform specific operations after an agent is born (e.g. initialize member fields to particular values).</p>
+<p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_SexualPop.h">tut_SexualPop.h</a></p>
 </section>
 <section id="the-implementation">
 <h2>The Implementation<a class="headerlink" href="#the-implementation" title="Permalink to this heading">¶</a></h2>
@@ -200,6 +201,7 @@ The method <code class="docutils literal notranslate"><span class="pre">makePopS
 </pre></div>
 </div>
 <p>The mate index is set to a negative number to denote that this agent is not paired (yet).</p>
+<p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_SexualPop.cpp">tut_SexualPop.cpp</a></p>
 </section>
 <section id="xml-and-dat">
 <h2>XML and DAT<a class="headerlink" href="#xml-and-dat" title="Permalink to this heading">¶</a></h2>
@@ -316,14 +318,14 @@ It is similar to the dat file in the previous example, except that the agents’
 </section>
 <section id="the-output-file">
 <h2>The Output File<a class="headerlink" href="#the-output-file" title="Permalink to this heading">¶</a></h2>
-<p>The output files, in this case <code class="docutils literal notranslate"><span class="pre">tutorial_04.out</span></code>, always have the same structure.
+<p>The output files, in this case <code class="docutils literal notranslate"><span class="pre">tutorial_05.out</span></code>, always have the same structure.
 First there are messages concerning the start of the program and intialisation.
 If the simulation does not run, there’s a chance that you find th readoon why here.</p>
 <p>The second part is a list of every step describing the numbers of births, deaths and moves, as well as the time the step took to execute.</p>
 <p>At the end there is a short summary of the state at the end of the program: number of iterations, total time of execution, nuber of surviving agents.
 This is follwed by the contents of the log file.</p>
-<p>If you look at the output for the steps, you see that the population grows slowerthen the in the prtevious example, and the population stabilizes at a lower level.
-THis has to do with the fact that only half of the population can hav oospring, whereas in the previous chapter, every inidividual had offspring)</p>
+<p>If you look at the output for the steps, you see that the population grows slower than the one in the previous example, and the population stabilizes at a lower level.
+This has to do with the fact that only half of the population can have offspring, whereas in the previous chapter, every inidividual had offspring.</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>After step 9995 (0.002099 s): total    94852 agents
   sapiens    4993 births r
   sapiens    4968 deaths r

@@ -86,6 +86,7 @@ The class now has a pointer to  ``WeightedMove`` instead of ``RandomMove``, and 
 The member variables reflect the new situation of required actions. Apart from ``makePopSpecificOffspring``, ``addPopSpecificAgentData`` and ``addPopSpecificAgentDataTypeQDF``, 
 there are two new member functions ``updateEvent`` and ``flushEvents``.
     
+Code: `tut_EnvironAltPop.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_EnvironAltPop.h>`_ 
 
     
     
@@ -278,6 +279,7 @@ Here we only react if a change happened to the geography (usually when a new QDF
 In this case we check all agents in a parallelized loop adding  those under water (negative altitude) and thos under ice to the death list 
 Subsequently, the deaths are actually performed, and several counts ar updated.
 
+Code: `tut_EnvironAltPop.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_EnvironAltPop.cpp>`_ 
 
 
 XML and DAT
@@ -373,7 +375,7 @@ To compile, change to the QHG4 root directory and type:
 
 Here we set the environemnt variable ``OPT`` to get optimized compilation (see :ref:`Compiling QHG<Compiling_QHG_ref>`)
 
-Now cd to the tutorial subdirectory "tutorial_06' and start QHGMain
+Now cd to the tutorial subdirectory ``tutorial_06`` and start QHGMain
 
 .. code-block:: bash
 

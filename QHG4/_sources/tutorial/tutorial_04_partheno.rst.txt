@@ -74,6 +74,7 @@ The class gets two additional pointers for the new actions:
 The input/output auxiliary functions ``addPopSpecificAgentData()`` and ``addPopSpecificAgentDataTypeQDF()`` will have to be modified to take into account the new agent member fields.
 Then there is also a new method ``makePopSpecificOffspring()`` which allows the population to perform specific operations after an agent is born (e.g. initialize member fields to particular values).
 
+Code: `tut_ParthenoPop.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_ParthenoPop.h>`_ 
 
 The Implementation
 ------------------
@@ -227,6 +228,8 @@ The method ``makePopSpecificOffspring()`` initializes the agents' new fields:
 
 The agent has age 0 at birth, hasn't given birth so far, it will be its own mate (see above), and the gender is set to fremale.
 
+Code: `tut_ParthenoPop.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_ParthenoPop.cpp>`_ 
+
 
 XML and DAT
 -----------
@@ -268,7 +271,7 @@ The xml file for the population attributes now contains entries for the new acti
   </class>
 
 
-For details about the parameters look at the code description for :ref:`OldAgeDeath<OldAgeDeath_ref>`, :ref:`RandomMove<RandomMove_ref>`, `:ref:`Fertility<Fertility_ref>`, and :ref:`Verhulst<Verhulst_ref>`.
+For details about the parameters look at the code description for :ref:`OldAgeDeath<OldAgeDeath_ref>`, :ref:`RandomMove<RandomMove_ref>`, :ref:`Fertility<Fertility_ref>`, and :ref:`Verhulst<Verhulst_ref>`.
 
 The priority levels are set such that in a step the agents die first, the survivors can the mate an move.
 

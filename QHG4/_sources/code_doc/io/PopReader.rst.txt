@@ -7,7 +7,7 @@ PopReader
 
    This page desctibes the class :index:`PopReader`
 
-The class ``PopReader`` is used to write the :ref:`population data<SPopulation_ref>` as a subgroup of the :ref:`populations group<PopsGroup_ref>` in a qdf file.
+The class ``PopReader`` is used to write the :ref:`population data<SPopulation_ref>` as a subgroup of the :ref:`populations group<PopGroup_ref>` in a qdf file.
 
 
 The information of found populations is stored in a vector of ``popinfo`` structures:

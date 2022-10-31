@@ -7,7 +7,7 @@ PopWriter
 
    This page desctibes the class :index:`PopWriter`
 
-The class ``PopWriter`` is used to write the :ref:`population data<SPopulation_ref>` to a subgroup of the :ref:`populations group<PopsGroup_ref>`.
+The class ``PopWriter`` is used to write the :ref:`population data<SPopulation_ref>` to a subgroup of the :ref:`populations group<PopGroup_ref>`.
 
 It owns specialized writers for the various environment and population data.
 

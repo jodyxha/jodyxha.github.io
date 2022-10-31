@@ -1,0 +1,179 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>pop_attrs2.py &#8212; QHG4 4.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jody.css" />
+    
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    
+    <link rel="shortcut icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="prio_edit.py" href="prio_edit.html" />
+    <link rel="prev" title="compare_attrs.py" href="compare_attrs.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="prio_edit.html" title="prio_edit.py"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="compare_attrs.html" title="compare_attrs.py"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../tools.html" accesskey="U">Tools</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">pop_attrs2.py</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="pop-attrs2-py">
+<span id="pop-attrs2-ref"></span><h1>pop_attrs2.py<a class="headerlink" href="#pop-attrs2-py" title="Permalink to this heading">¶</a></h1>
+<p>This script allows the handling of a population’s attributes in a qdf file.</p>
+<dl class="simple">
+<dt>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/tiils_qdf/pop_attrs2.py">pop_attrs2.py</a>,</dt><dd><p><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/tiils_qdf/attr_tools.py">attr_tools.py</a>,
+<a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/tiils_qdf/PopAttrs.py">PopAttrs.py</a>,
+<a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/tiils_qdf/QHGError.py">QHGError.py</a></p>
+</dd>
+</dl>
+<p>This tool requires the python modules <code class="docutils literal notranslate"><span class="pre">h5py</span></code> and <code class="docutils literal notranslate"><span class="pre">numpy</span></code>  to be installed.</p>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this heading">¶</a></h2>
+<p><strong>Display Atributes</strong></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">$</span><span class="p">{</span><span class="n">QHG4_DIR</span><span class="p">}</span><span class="o">/</span><span class="n">tools_qdf</span><span class="o">/</span><span class="n">pop_attrs2</span><span class="p">.</span><span class="n">py</span><span class="w"> </span><span class="n">show</span><span class="w">  </span><span class="o">&lt;</span><span class="n">pop</span><span class="o">-</span><span class="n">qdf</span><span class="o">&gt;</span><span class="p">[</span><span class="o">:&lt;</span><span class="n">pop</span><span class="o">-</span><span class="n">name</span><span class="o">&gt;</span><span class="p">]</span><span class="w"></span>
+</pre></div>
+</div>
+<p><strong>Modify Atributes</strong></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">$</span><span class="p">{</span><span class="n">QHG4_DIR</span><span class="p">}</span><span class="o">/</span><span class="n">tools_qdf</span><span class="o">/</span><span class="n">pop_attrs2</span><span class="p">.</span><span class="n">py</span><span class="w"> </span><span class="n">mod</span><span class="w">   </span><span class="o">&lt;</span><span class="n">pop</span><span class="o">-</span><span class="n">qdf</span><span class="o">&gt;</span><span class="p">[</span><span class="o">:&lt;</span><span class="n">pop</span><span class="o">-</span><span class="n">name</span><span class="o">&gt;</span><span class="p">]</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;</span><span class="n">attr</span><span class="o">-</span><span class="n">path</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="n">attr</span><span class="o">-</span><span class="n">val</span><span class="o">&gt;</span><span class="p">)</span><span class="o">*</span><span class="w"></span>
+</pre></div>
+</div>
+<p><strong>Add an Atribute</strong></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">$</span><span class="p">{</span><span class="n">QHG4_DIR</span><span class="p">}</span><span class="o">/</span><span class="n">tools_qdf</span><span class="o">/</span><span class="n">pop_attrs2</span><span class="p">.</span><span class="n">py</span><span class="w"> </span><span class="n">add</span><span class="w">   </span><span class="o">&lt;</span><span class="n">pop</span><span class="o">-</span><span class="n">qdf</span><span class="o">&gt;</span><span class="p">[</span><span class="o">:&lt;</span><span class="n">pop</span><span class="o">-</span><span class="n">name</span><span class="o">&gt;</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;</span><span class="n">attr</span><span class="o">-</span><span class="n">path</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="n">attr</span><span class="o">-</span><span class="n">val</span><span class="o">&gt;</span><span class="w"> </span><span class="p">[</span><span class="o">&lt;</span><span class="n">attr_type</span><span class="o">&gt;</span><span class="p">]</span><span class="w"></span>
+</pre></div>
+</div>
+<p><strong>Delete Attributes</strong></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">$</span><span class="p">{</span><span class="n">QHG4_DIR</span><span class="p">}</span><span class="o">/</span><span class="n">tools_qdf</span><span class="o">/</span><span class="n">pop_attrs2</span><span class="p">.</span><span class="n">py</span><span class="w"> </span><span class="n">del</span><span class="w">   </span><span class="o">&lt;</span><span class="n">pop</span><span class="o">-</span><span class="n">qdf</span><span class="o">&gt;</span><span class="p">[</span><span class="o">:&lt;</span><span class="n">pop</span><span class="o">-</span><span class="n">name</span><span class="o">&gt;</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;</span><span class="n">attr</span><span class="o">-</span><span class="n">path</span><span class="o">&gt;*</span><span class="w"></span>
+</pre></div>
+</div>
+<p>where:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">pop-qdf</span></code></dt><dd><p>QDF file with populations.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">pop-name</span></code></dt><dd><p>Name of population (if omitted, the first population is used).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">attr-path</span></code></dt><dd><p>Path and name of the attribute: <code class="docutils literal notranslate"><span class="pre">&lt;action_group&gt;/&lt;attr_name&gt;</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">attr-val</span></code></dt><dd><p>Nw value for attribute (the value must have the correct type).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">attr_type</span></code></dt><dd><p>A numpy type such as ‘float64’, ‘int32’, ‘S2’ etc.</p>
+</dd>
+</dl>
+<p>There are shell scripts for each type of call: <code class="docutils literal notranslate"><span class="pre">show_attr</span></code>, <code class="docutils literal notranslate"><span class="pre">add_attr</span></code>, <code class="docutils literal notranslate"><span class="pre">change_attr</span></code>, and <code class="docutils literal notranslate"><span class="pre">del_attr</span></code>.</p>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h2>
+<p>Add a new float attribute named “Navigate_bridge_prob0” to the group “Navigate” and set its value to 0.05.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">$</span><span class="p">{</span><span class="n">QHG4_DIR</span><span class="p">}</span><span class="o">/</span><span class="n">tools_qdf</span><span class="o">/</span><span class="n">pop_attrs2</span><span class="p">.</span><span class="n">py</span><span class="w"> </span><span class="n">add</span><span class="w"> </span><span class="n">xxx</span><span class="p">.</span><span class="n">qdf</span><span class="w"> </span><span class="n">Navigate</span><span class="o">/</span><span class="n">Navigate_bridge_prob0</span><span class="w"> </span><span class="mf">0.05</span><span class="w"> </span><span class="n">float64</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Change the value of attribute named “Navigate_bridge_prob0” in the group “Navigate” to 0.03.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">$</span><span class="p">{</span><span class="n">QHG4_DIR</span><span class="p">}</span><span class="o">/</span><span class="n">tools_qdf</span><span class="o">/</span><span class="n">pop_attrs2</span><span class="p">.</span><span class="n">py</span><span class="w"> </span><span class="n">mod</span><span class="w"> </span><span class="n">xxx</span><span class="p">.</span><span class="n">qdf</span><span class="w"> </span><span class="n">Navigate</span><span class="o">/</span><span class="n">Navigate_bridge_prob0</span><span class="w"> </span><span class="mf">0.03</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Delete the attribute named “Navigate_bridge_prob0” in the group “Navigate”.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">$</span><span class="p">{</span><span class="n">QHG4_DIR</span><span class="p">}</span><span class="o">/</span><span class="n">tools_qdf</span><span class="o">/</span><span class="n">pop_attrs2</span><span class="p">.</span><span class="n">py</span><span class="w"> </span><span class="n">del</span><span class="w"> </span><span class="n">xxx</span><span class="p">.</span><span class="n">qdf</span><span class="w"> </span><span class="n">Navigate</span><span class="o">/</span><span class="n">Navigate_bridge_prob0</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">pop_attrs2.py</a><ul>
+<li><a class="reference internal" href="#usage">Usage</a></li>
+<li><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="compare_attrs.html"
+                          title="previous chapter">compare_attrs.py</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="prio_edit.html"
+                          title="next chapter">prio_edit.py</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/tools/pop_attrs2.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="prio_edit.html" title="prio_edit.py"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="compare_attrs.html" title="compare_attrs.py"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../tools.html" >Tools</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">pop_attrs2.py</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+    </div>
+  </body>
+</html>

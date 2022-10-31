@@ -5,7 +5,7 @@ QHG Tutorial 03 - Moving
 
 In this chapter we describe a class which, in addition to aging and dying also lets agents move randomly between cells.
 
-To get the agents moving we use the action class :ref:RandomMoveRandomMove_ref>`
+To get the agents moving we use the action class :ref:`RandomMove<RandomMove_ref>`.
 
 
 The Header File
@@ -57,6 +57,8 @@ The public methods ``addPopSpecificAgentData`` and ``addPopSpecificAgentDataType
 
 Finally, we need a pointer to an instance of the ``RandomMove``-action.    
     
+Code: `tut_MovePop.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_MovePop.h>`_ 
+
     
 The Implementation
 ------------------
@@ -156,6 +158,8 @@ They are the same as the ones in the previous chapter.
         H5Tinsert(*hAgentDataType, "Age",  qoffsetof(ma, m_fAge), H5T_NATIVE_FLOAT);
     
     }
+
+Code: `tut_MovePop.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_MovePop.cpp>`_ 
         
         
 XML and DAT
@@ -186,9 +190,9 @@ The action ``GetOld`` requires no parameters.
       </priorities>
     </class>
 
-The action ``RandomMoOve`` needs a parameter for its move probability. For details, see the :ref:`description of RandomMove<RandomMove_ref>`.
+The action ``RandomMove`` needs a parameter for its move probability. For details, see the :ref:`description of RandomMove<RandomMove_ref>`.
 
-THe prioprity values are chosen such that the age is changed fist, then agents may die of old age, and the survivors may move.The dat file ``tut_OldAgeDie.dat`` defines postions and attributes for 20 agents, the last attribute pertainng to the new member ``m_fAge``.
+The priority values are chosen such that the age is changed fist, then agents may die of old age, and the survivors may move.The dat file ``tut_Move.dat`` defines postions and attributes for 20 agents, the last attribute pertainng to the new member ``m_fAge``.
 
 The dat file ``tut_Move.dat`` is identical to the dat file of the previous chapter.
 Apart from the postion and the basic parameters we have to add a parameter for the age.

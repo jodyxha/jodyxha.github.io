@@ -48,14 +48,14 @@ the carrying capcity calculated from the Net Primary Production (NPP) and altitu
 Given an NPP value, a local carrying is calculated by means of an <code class="docutils literal notranslate"><span class="pre">NPPCapacity</span></code> object.</p>
 <p>To do this,  we combine two instances of  <a class="reference internal" href="../code_doc/actions/SingleEvaluator.html#singleevaluator-ref"><span class="std std-ref">SingleEvaluator</span></a>, one for NPP and one for altitude, by means of a <a class="reference internal" href="../code_doc/actions/MultiEvaluator.html#multievaluator-ref"><span class="std std-ref">MultiEvaluator</span></a>.
 The output of the <code class="docutils literal notranslate"><span class="pre">MultiEvaluator</span></code> will now be the input for the  <a class="reference internal" href="../code_doc/actions/RandomMove.html#randommove-ref"><span class="std std-ref">RandomMove</span></a> object.</p>
-<figure class="align-default" id="id1">
+<figure class="align-default" id="id2">
 <img alt="../_images/MultiEvalFull.png" src="../_images/MultiEvalFull.png" />
 <figcaption>
-<p><span class="caption-text">The environment values (for altitude and NPP are each copied to an array, to which a poly line function is applied.
-The resulting arrays are combined by the <code class="docutils literal notranslate"><span class="pre">MultiEvaluator</span></code>, cumulated, and used as a lookup table to create a weighted random number.
+<p><span class="caption-text">The environment values (for altitude and NPP are each copied to an array, to which poly line functions are applied.
+The resulting arrays are combined by the <code class="docutils literal notranslate"><span class="pre">MultiEvaluator</span></code> (here the corresponding values are simply multiplied), cumulated, and used as a lookup table to create a weighted random number.
 In this example a uniform random number R between 0 and the highest number in the cumulated array is drawn, and the index of the smallest cumulated value greater than R is chosen.
 Here the random number 0.81 is less than the value at index 4, 0.95, so the chosen index is 4.
-Those indexes are selected with a probability proportional to the preference values of he corresponding cells</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+Those indexes are selected with a probability proportional to the preference values of he corresponding cells</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_EnvironAltPop.h">tut_EnvironAltPop.h</a> <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_EnvironAltPop.cpp">tut_EnvironAltPop.cpp</a></p>
@@ -118,6 +118,7 @@ and an additional pointer to <code class="docutils literal notranslate"><span cl
 </div>
 <p>The member variables reflect the new situation of required actions.
 The member functions are identical to the ones discussed in the prevouis example.</p>
+<p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_EnvironCapAltPop.h">tut_EnvironCapAltPop.h</a></p>
 </section>
 <section id="the-implementation">
 <h2>The Implementation<a class="headerlink" href="#the-implementation" title="Permalink to this heading">¶</a></h2>
@@ -148,9 +149,9 @@ The member functions are identical to the ones discussed in the prevouis example
 </div>
 <p>The constructor first allocates the arrays for local capacities and for altitudes,
 which are needed for communication between the evaluators and other objects.
-The the <code class="docutils literal notranslate"><span class="pre">SingleEvaluator</span></code> objects for altitude and capacity created and assigned to the <code class="docutils literal notranslate"><span class="pre">MultiEvaluator</span></code> object.
-After all action objects have been created, they are register bx th priority manager.</p>
-<p>During the simulation the altitude evluator will read from the geography’s altitude array, whenever it has changed. On the other hand the <code class="docutils literal notranslate"><span class="pre">NPPCapacity</span></code> object will
+Then the <code class="docutils literal notranslate"><span class="pre">SingleEvaluator</span></code> objects for altitude and capacity created and assigned to the <code class="docutils literal notranslate"><span class="pre">MultiEvaluator</span></code> object.
+After all action objects have been created, they are registered to the priority manager.</p>
+<p>During the simulation the altitude evaluator will read from the geography’s altitude array, whenever it has changed. On the other hand the <code class="docutils literal notranslate"><span class="pre">NPPCapacity</span></code> object will
 calculate the local carrying capacity for each cell and insert them into the array <code class="docutils literal notranslate"><span class="pre">m_adCapacities</span></code>.
 The <code class="docutils literal notranslate"><span class="pre">MultiEvaluator</span></code> wil combine the results of its two single evaluators and returns the result in the array <code class="docutils literal notranslate"><span class="pre">m_adEnvWeights</span></code>,
 which in turn is read by the <code class="docutils literal notranslate"><span class="pre">WeightedMove</span></code> object to move an agent in a weighted random direction (see image above).</p>
@@ -307,9 +308,10 @@ as well as the communication array.</p>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
-<p>Here we only react if a change happened to the geography (usually when a new QDF file is loaded.
-In this case we check all agents in a parallelized loop adding  those under water (negative altitude) and thos under ice to the death list
-Subsequently, the deaths are actually performed, and several counts ar updated.</p>
+<p>Here we only react if a change happened to the geography (usually when a new QDF file is loaded).
+In this case we check all agents in a parallelized loop adding those under water (negative altitude) and those under ice to the death list
+Subsequently, the deaths are actually performed, and several counts are updated.</p>
+<p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_EnvironCapAltPop.h">tut_EnvironCapAltPop.h</a></p>
 </section>
 <section id="xml-and-dat">
 <h2>XML and DAT<a class="headerlink" href="#xml-and-dat" title="Permalink to this heading">¶</a></h2>
@@ -392,21 +394,21 @@ The submodules for the <code class="docutils literal notranslate"><span class="p
 <h2>Compiling and Running<a class="headerlink" href="#compiling-and-running" title="Permalink to this heading">¶</a></h2>
 <p>Again, we assume that you have created the tutorial directories with the script <a class="reference internal" href="../tools/build_tut_dirs.html#build-tut-dirs-ref"><span class="std std-ref">build_tut_dirs.py</span></a>.</p>
 <p>First lets create alternative population and action directories with the script <a class="reference internal" href="../tools/build_alt_modpop.html#build-alt-modpop-ref"><span class="std std-ref">build_alt_modpop.py</span></a>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="si">${</span><span class="nv">QHG4_DIR</span><span class="si">}</span>/useful_stuff/build_alt_modpop.py tut_06 tut_EnvironAltPop
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="si">${</span><span class="nv">QHG4_DIR</span><span class="si">}</span>/useful_stuff/build_alt_modpop.py tut_07 tut_EnvironCapAltPop
 </pre></div>
 </div>
-<p>This builds alternative population directories <code class="docutils literal notranslate"><span class="pre">tut_06_pop</span></code> and <code class="docutils literal notranslate"><span class="pre">tut_06_mod</span></code> with the files needed to compile <code class="docutils literal notranslate"><span class="pre">tut_EnvironAltPop</span></code>.</p>
+<p>This builds alternative population directories <code class="docutils literal notranslate"><span class="pre">tut_07_pop</span></code> and <code class="docutils literal notranslate"><span class="pre">tut_07_mod</span></code> with the files needed to compile <code class="docutils literal notranslate"><span class="pre">tut_EnvironAltPop</span></code>.</p>
 <p>To compile, change to the QHG4 root directory and type:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">OPT</span><span class="o">=</span><span class="m">1</span> <span class="nv">SHORT</span><span class="o">=</span>tut_06 make clean QHGMain
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">OPT</span><span class="o">=</span><span class="m">1</span> <span class="nv">SHORT</span><span class="o">=</span>tut_07 make clean QHGMain
 </pre></div>
 </div>
 <p>Here we set the environemnt variable <code class="docutils literal notranslate"><span class="pre">OPT</span></code> to get optimized compilation (see <a class="reference internal" href="../qhg4_compile.html#compiling-qhg-ref"><span class="std std-ref">Compiling QHG</span></a>)</p>
-<p>Now cd to the tutorial subdirectory “tutorial_06’ and start QHGMain</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="si">${</span><span class="nv">QHG4_DIR</span><span class="si">}</span>/app/QHGMain --read-config<span class="o">=</span>tutorial_06.cfg &gt; tutorial_06.out
+<p>Now cd to the tutorial subdirectory <code class="docutils literal notranslate"><span class="pre">tutorial_07</span></code> and start QHGMain</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="si">${</span><span class="nv">QHG4_DIR</span><span class="si">}</span>/app/QHGMain --read-config<span class="o">=</span>tutorial_07.cfg &gt; tutorial_07.out
 </pre></div>
 </div>
-<p>This tells QHGMain to read the parameters from  the file <code class="docutils literal notranslate"><span class="pre">tutorial_06.cfg</span></code> and write all output to the file <code class="docutils literal notranslate"><span class="pre">tutorial_06.out</span></code> (this output contains more information than the logfile)</p>
-<p>The config file <code class="docutils literal notranslate"><span class="pre">tutorial_06.cfg</span></code> was created when the tutorial directories were created with <code class="docutils literal notranslate"><span class="pre">build_tut_dirs.py</span></code>.</p>
+<p>This tells QHGMain to read the parameters from  the file <code class="docutils literal notranslate"><span class="pre">tutorial_07.cfg</span></code> and write all output to the file <code class="docutils literal notranslate"><span class="pre">tutorial_07.out</span></code> (this output contains more information than the logfile)</p>
+<p>The config file <code class="docutils literal notranslate"><span class="pre">tutorial_07.cfg</span></code> was created when the tutorial directories were created with <code class="docutils literal notranslate"><span class="pre">build_tut_dirs.py</span></code>.</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>--data-dirs=${QHG4_DIR}/tutorial_data/grids/
 --events=&#39;write|grid+geo+pop:sapiens@1000&#39;
 --grid=eq64Alt.qdf

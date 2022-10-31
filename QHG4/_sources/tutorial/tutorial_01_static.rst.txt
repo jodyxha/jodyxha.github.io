@@ -12,7 +12,7 @@ The Header File
 ---------------
  
 This class makes use of the :ref:`agent structure<SPopulation_ref>` declared in ``SPopulation``, 
-so there is no need to declare a paqrticular agent class for this population.
+so there is no need to declare a particular agent class for this population.
 And since the agents don't do anything, no action classes are rquired.
 
 The header file is accordingly simple:
@@ -214,9 +214,9 @@ The config file ``tutorial_01.cfg`` was created when the tutorial directories we
 The Output File
 ---------------
 
-The output files, in this case ``tutorial_02.out``, always have the same structure.
+The output files, in this case ``tutorial_01.out``, always have the same structure.
 First there are messages concerning the start of the program and intialisation.
-If the simulation does not run, there's a chance that you find th readoon why here.
+If the simulation does not run, there's a chance that you find the reason why here.
 
 The second part is a list of every step describing the numbers of births, deaths and moves, as well as the time the step took to execute.
 

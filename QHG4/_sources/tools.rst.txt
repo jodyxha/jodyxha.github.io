@@ -35,16 +35,13 @@ QHG4 comprises various tool in different locations.
    :maxdepth: 1
    :caption: QDF population attributes
 
+   tools/compare_attrs
+
+   tools/pop_attrs2
+   tools/prio_edit
+
 .. to be done
 
-   tools/pop_attrs2.py 
-   tools/add_attr
-   tools/change_attr
-   tools/show_attr
- 
-   tools/comp_attrs
-
-   tools/prio_edit.py
    tools/LinkQDFGroups.py
 
 **Visualization**

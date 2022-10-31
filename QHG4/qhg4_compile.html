@@ -46,6 +46,56 @@
             
   <section id="compiling-qhg">
 <span id="compiling-qhg-ref"></span><h1>Compiling QHG<a class="headerlink" href="#compiling-qhg" title="Permalink to this heading">¶</a></h1>
+<p>In this documentation we describe compilation with a gnu c++ compiler.
+QHG4 has been compiled and tested on several linux flavours,
+but so far not on WIndows or MAc.</p>
+<p>If anybody manages to compile and run QHG4 on Windows computer or on a mac please let us know</p>
+<section id="dependencies">
+<h2>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this heading">¶</a></h2>
+<p>To compile and run QHG4, several libraries need to be installed:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">libm</span></code>: the math library (is usually already installed)</p></li>
+<li><p>the <code class="docutils literal notranslate"><span class="pre">HDF5</span></code> library to handle HDF files</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">zlib</span></code> library for zipping and unzipping</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">crypto</span></code> library</p></li>
+</ul>
+<p><strong>Library Installation for</strong> <code class="docutils literal notranslate"><span class="pre">gentoo</span></code> <strong>linux</strong>:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span><span class="w"> </span><span class="n">emerge</span><span class="w"> </span><span class="n">sci</span><span class="o">-</span><span class="n">libs</span><span class="o">/</span><span class="n">hdf5</span><span class="w"> </span><span class="n">sys</span><span class="o">-</span><span class="n">libs</span><span class="o">/</span><span class="n">zlib</span><span class="w"> </span><span class="n">dev</span><span class="o">-</span><span class="n">libs</span><span class="o">/</span><span class="n">openssl</span><span class="w"> </span><span class="n">sci</span><span class="o">-</span><span class="n">libs</span><span class="o">/</span><span class="n">gsl</span><span class="w"> </span><span class="n">media</span><span class="o">-</span><span class="n">libs</span><span class="o">/</span><span class="n">libpng</span><span class="w"></span>
+</pre></div>
+</div>
+<p><strong>Library Installation for</strong> <code class="docutils literal notranslate"><span class="pre">CentOS</span></code>:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span><span class="w"> </span><span class="n">yum</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">zlib</span><span class="o">-</span><span class="n">devel</span><span class="p">.</span><span class="n">x86_64</span><span class="w"></span>
+<span class="n">sudo</span><span class="w"> </span><span class="n">yum</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">openssl</span><span class="o">-</span><span class="n">devel</span><span class="p">.</span><span class="n">x86_64</span><span class="w"></span>
+<span class="n">sudo</span><span class="w"> </span><span class="n">yum</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">hdf5</span><span class="o">-</span><span class="n">devel</span><span class="p">.</span><span class="n">x86_64</span><span class="w"> </span><span class="n">hdf5</span><span class="p">.</span><span class="n">x86_64</span><span class="w"></span>
+<span class="n">sudo</span><span class="w"> </span><span class="n">yum</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">gsl</span><span class="o">-</span><span class="n">devel</span><span class="p">.</span><span class="n">x86_64</span><span class="w"> </span><span class="n">gsl</span><span class="p">.</span><span class="n">x86_64</span><span class="w"></span>
+</pre></div>
+</div>
+<p><strong>Library Installation for</strong> <code class="docutils literal notranslate"><span class="pre">ubuntu</span></code>:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span><span class="w"> </span><span class="n">apt</span><span class="o">-</span><span class="n">get</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">zlib1g</span><span class="o">-</span><span class="n">dev</span><span class="w"> </span><span class="n">libssl</span><span class="o">-</span><span class="n">dev</span><span class="w"></span>
+<span class="n">sudo</span><span class="w"> </span><span class="n">apt</span><span class="o">-</span><span class="n">get</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">libgsl0</span><span class="o">-</span><span class="n">dev</span><span class="w"></span>
+<span class="n">sudo</span><span class="w"> </span><span class="n">apt</span><span class="o">-</span><span class="n">get</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">libhdf5</span><span class="o">-</span><span class="n">serial</span><span class="o">-</span><span class="n">dev</span><span class="w"></span>
+</pre></div>
+</div>
+<p>For some tools to work the python modules <code class="docutils literal notranslate"><span class="pre">h5py</span></code>, <code class="docutils literal notranslate"><span class="pre">netcdf4-python</span></code>, and <code class="docutils literal notranslate"><span class="pre">numpy</span></code> are required.</p>
+<p><strong>Installing module for</strong> <code class="docutils literal notranslate"><span class="pre">gentoo</span></code>:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span><span class="w"> </span><span class="n">emerge</span><span class="w"> </span><span class="n">dev</span><span class="o">-</span><span class="n">python</span><span class="o">/</span><span class="n">h5py</span><span class="w"></span>
+<span class="n">sudo</span><span class="w"> </span><span class="n">emerge</span><span class="w"> </span><span class="n">dev</span><span class="o">-</span><span class="n">python</span><span class="o">/</span><span class="n">netcdf4</span><span class="o">-</span><span class="n">python</span><span class="w"></span>
+<span class="n">sudo</span><span class="w"> </span><span class="n">emerge</span><span class="w"> </span><span class="n">dev</span><span class="o">-</span><span class="n">python</span><span class="o">/</span><span class="n">numpy</span><span class="w"></span>
+</pre></div>
+</div>
+<p><strong>Installing modules for</strong> <code class="docutils literal notranslate"><span class="pre">CentOS</span></code></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span><span class="w"> </span><span class="n">yum</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">h5py</span><span class="p">.</span><span class="n">x86_64</span><span class="w"></span>
+<span class="n">sudo</span><span class="w"> </span><span class="n">yum</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">numpy</span><span class="p">.</span><span class="n">x86_64</span><span class="w"></span>
+<span class="n">sudo</span><span class="w"> </span><span class="n">yum</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">netcdf4</span><span class="o">-</span><span class="n">python</span><span class="p">.</span><span class="n">x86_64</span><span class="w"></span>
+</pre></div>
+</div>
+<p><strong>Installing modules for</strong> <code class="docutils literal notranslate"><span class="pre">ubuntu</span></code></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span><span class="w"> </span><span class="n">apt</span><span class="o">-</span><span class="n">get</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">libhdf5</span><span class="o">-</span><span class="n">dev</span><span class="w"></span>
+<span class="n">sudo</span><span class="w"> </span><span class="n">apt</span><span class="o">-</span><span class="n">get</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">python3</span><span class="o">-</span><span class="n">numpy</span><span class="w"></span>
+<span class="n">sudo</span><span class="w"> </span><span class="n">apt</span><span class="o">-</span><span class="n">get</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">python</span><span class="o">-</span><span class="n">netcdf4</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
 <section id="compile-targets">
 <h2>Compile targets<a class="headerlink" href="#compile-targets" title="Permalink to this heading">¶</a></h2>
 <p>There are various targets  to compile:</p>
@@ -136,6 +186,7 @@
     <h3><a href="index.html">Table of Contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">Compiling QHG</a><ul>
+<li><a class="reference internal" href="#dependencies">Dependencies</a></li>
 <li><a class="reference internal" href="#compile-targets">Compile targets</a></li>
 <li><a class="reference internal" href="#compile-options">Compile options</a></li>
 <li><a class="reference internal" href="#alternative-population-and-action-directories">Alternative Population and Action directories</a></li>

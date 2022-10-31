@@ -1,0 +1,203 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>compare_attrs.py &#8212; QHG4 4.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jody.css" />
+    
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    
+    <link rel="shortcut icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="pop_attrs2.py" href="pop_attrs2.html" />
+    <link rel="prev" title="build_tut_dirs.py" href="build_tut_dirs.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="pop_attrs2.html" title="pop_attrs2.py"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="build_tut_dirs.html" title="build_tut_dirs.py"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../tools.html" accesskey="U">Tools</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">compare_attrs.py</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="compare-attrs-py">
+<span id="compare-attrs-ref"></span><h1>compare_attrs.py<a class="headerlink" href="#compare-attrs-py" title="Permalink to this heading">¶</a></h1>
+<p>With this script you can list and compare the attributes of one or more populations.
+There are various ways to highlight the differences between the populations.</p>
+<p>This tool requires the python modules <code class="docutils literal notranslate"><span class="pre">h5py</span></code> and <code class="docutils literal notranslate"><span class="pre">numpy</span></code>  to be installed.</p>
+<p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils_qdf/compare_attrs.py">compare_attrs.py</a></p>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">$</span><span class="p">{</span><span class="n">QHG4_DIR</span><span class="p">}</span><span class="o">/</span><span class="n">tools_qdf</span><span class="o">/</span><span class="n">compare_attrs</span><span class="p">.</span><span class="n">py</span><span class="w"> </span><span class="p">[</span><span class="o">-</span><span class="n">d</span><span class="w"> </span><span class="o">&lt;</span><span class="n">prop</span><span class="o">&gt;</span><span class="p">[,</span><span class="o">&lt;</span><span class="n">prop</span><span class="o">&gt;</span><span class="p">]]</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;</span><span class="n">qdf_file</span><span class="o">&gt;</span><span class="p">[</span><span class="o">:&lt;</span><span class="n">pop</span><span class="o">&gt;</span><span class="p">])</span><span class="o">*</span><span class="w"></span>
+
+<span class="n">$</span><span class="p">{</span><span class="n">QHG4_DIR</span><span class="p">}</span><span class="o">/</span><span class="n">tools_qdf</span><span class="o">/</span><span class="n">compare_attrs</span><span class="p">.</span><span class="n">py</span><span class="w"> </span><span class="p">[</span><span class="o">-</span><span class="n">d</span><span class="w"> </span><span class="o">&lt;</span><span class="n">propshorts</span><span class="o">&gt;</span><span class="p">]</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;</span><span class="n">qdf_file</span><span class="o">&gt;</span><span class="p">[</span><span class="o">:&lt;</span><span class="n">pop</span><span class="o">&gt;</span><span class="p">])</span><span class="o">*</span><span class="w"></span>
+</pre></div>
+</div>
+<p>where</p>
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">qdf_file</span></code></dt><dd><p>Name of a QDF file.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">pop</span></code></dt><dd><p>Name of species to show attributes of (if omitted, the attributes of all populations in this file are shown).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">prop</span></code></dt><dd><blockquote>
+<div><p>Display properties settings, with the following format.</p>
+</div></blockquote>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">prop</span><span class="w">  </span><span class="o">::=</span><span class="w"> </span><span class="s">&quot;global:&quot;</span><span class="o">&lt;</span><span class="n">state</span><span class="o">&gt;</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="s">&quot;action:&quot;</span><span class="o">&lt;</span><span class="n">state</span><span class="o">&gt;</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="s">&quot;hilite:&quot;</span><span class="o">&lt;</span><span class="n">hilite_state</span><span class="o">&gt;</span><span class="w">     </span><span class="o">|</span><span class="w"> </span><span class="s">&quot;diffonly:&quot;</span><span class="o">&lt;</span><span class="n">state</span><span class="o">&gt;</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="w">          </span><span class="s">&quot;variants:&quot;</span><span class="o">&lt;</span><span class="n">state</span><span class="o">&gt;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s">&quot;numagents:&quot;</span><span class="o">&lt;</span><span class="n">state</span><span class="o">&gt;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s">&quot;shortnames:&quot;</span><span class="o">&lt;</span><span class="n">short_state</span><span class="o">&gt;</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="s">&quot;equalsize:&quot;</span><span class="o">&lt;</span><span class="n">state</span><span class="o">&gt;</span><span class="w"></span>
+<span class="n">state</span><span class="w"> </span><span class="o">::=</span><span class="w"> </span><span class="s">&quot;on&quot;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s">&quot;off&quot;</span><span class="w"></span>
+</pre></div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">propshorts</span></code></dt><dd><p>A string consisting of display control characters (see the list below).</p>
+</dd>
+</dl>
+<p><strong>Display Properties</strong></p>
+<blockquote>
+<div><div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span>global:       [on]     show &quot;global&quot; attributes not belonging to an action
+action:       [on]     show &quot;action&quot; atributes
+diffonly:     [off]    only show rows with different values
+numagents:    [on]     show number of agents in header line
+short_names:  [none]   shorten names:
+              &#39;none&#39;   use names as given
+              &#39;path&#39;   remove path
+              &#39;alias&#39;  use short alias names: qdf_*
+equalsize:    [off]   same width for all columns
+hilite_state: [file_group] use colors to hilite differences
+               &#39;none&#39;        no hilighting
+               &#39;simple&#39;      hilight entire line if it contains differences
+               &#39;file_diff&#39;   hilight entries differing from the first one with the same color within a file
+               &#39;group_diff&#39;  hilight groups of equal entries with the same color
+</pre></div>
+</div>
+</div></blockquote>
+<p><strong>Display Control characters</strong></p>
+<p>The display properties can be passed as a string composed of the following characters</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span>&#39;G&#39; or &#39;g&#39; - turn on or off property &#39;global&#39;
+&#39;A&#39; or &#39;a&#39; - turn on or off property &#39;action&#39;
+&#39;D&#39; or &#39;d&#39; - turn on or off property &#39;diffonly&#39;
+&#39;N&#39; or &#39;n&#39; - turn on or off property &#39;numagents&#39;
+&#39;E&#39; or &#39;e&#39; - turn on or off property &#39;equalsize&#39;
+&#39;S&#39; or &#39;s&#39; - turn on or off property &#39;shortnames&#39;
+             &#39;S&#39; must be folllowed by one of these characters:
+                 &#39;n&#39; - none
+                 &#39;p&#39; - path
+                 &#39;a&#39; - alias
+&#39;H&#39; or &#39;h&#39; - turn on or off property &#39;hilite&#39;
+             &#39;H&#39; must be followed by on of these characters:
+                 &#39;n&#39; - none
+                 &#39;s&#39; - simple
+                 &#39;d&#39; - diff grouping
+                 &#39;f&#39; - file grouping
+</pre></div>
+</div>
+<p>The following two parameters are equivalent</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">d</span><span class="w"> </span><span class="n">hilite_state</span><span class="o">:</span><span class="n">file_diff</span><span class="p">,</span><span class="n">short_names</span><span class="o">:</span><span class="n">alias</span><span class="p">,</span><span class="n">diffonly</span><span class="o">:</span><span class="n">on</span><span class="p">,</span><span class="n">equalsize</span><span class="o">:</span><span class="n">on</span><span class="p">,</span><span class="n">global</span><span class="o">:</span><span class="n">off</span><span class="w"></span>
+
+<span class="o">-</span><span class="n">d</span><span class="w"> </span><span class="n">HfSaDeg</span><span class="w"></span>
+</pre></div>
+</div>
+<p><strong>Example</strong></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">$</span><span class="p">{</span><span class="n">QHG4_DIR</span><span class="p">}</span><span class="o">/</span><span class="n">tools_qdf</span><span class="o">/</span><span class="n">compare_attrs</span><span class="p">.</span><span class="n">py</span><span class="w"> </span><span class="o">-</span><span class="n">d</span><span class="w"> </span><span class="n">HdSaADeGn</span><span class="w">  </span><span class="n">xxx</span><span class="p">.</span><span class="n">qdf</span><span class="w"> </span><span class="n">yyy</span><span class="p">.</span><span class="n">qdf</span><span class="w"> </span><span class="n">zzzz</span><span class="p">.</span><span class="n">qdf</span><span class="w"></span>
+</pre></div>
+</div>
+<p>gives an output like this:</p>
+<img alt="../_images/compare_attrs2.png" src="../_images/compare_attrs2.png" />
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">compare_attrs.py</a><ul>
+<li><a class="reference internal" href="#usage">Usage</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="build_tut_dirs.html"
+                          title="previous chapter">build_tut_dirs.py</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="pop_attrs2.html"
+                          title="next chapter">pop_attrs2.py</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/tools/compare_attrs.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="pop_attrs2.html" title="pop_attrs2.py"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="build_tut_dirs.html" title="build_tut_dirs.py"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../tools.html" >Tools</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">compare_attrs.py</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+    </div>
+  </body>
+</html>

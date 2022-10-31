@@ -53,6 +53,8 @@ This class must include the header files for the two actions, and it also define
 Because of the new field in the agent, we need to override the methods ``addPopSpecificAgentData()`` and ``addPopSpecificAgentDataTypeQDF``,
 to make sure the new member is read and written together with the rest of the agent data.
 
+Code: `tut_OldAgeDiePop.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_OldAgeDiePop.h>`_ 
+
 The Implementation
 ------------------
 
@@ -137,6 +139,8 @@ The method ``addPopSpecificAgentDataTypeQDF()`` extends the agent's HDF  data ty
         tut_OldAgeDieAgent oada;
         H5Tinsert(*hAgentDataType, "Age",  qoffsetof(oada, m_fAge), H5T_NATIVE_FLOAT);
     }
+
+`tut_OldAgeDiePop.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_OldAgeDiePop.cpp>`_ 
 
 XML and DAT
 -----------

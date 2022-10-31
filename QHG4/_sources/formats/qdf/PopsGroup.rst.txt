@@ -1,4 +1,4 @@
-.. _PopsGroup_ref:
+.. _PopGroup_ref:
 
 "Populations"
 -------------
@@ -35,7 +35,7 @@ This is an example of an action subgroup:
         }
      }
 
-The following figure shows an example for the structue of the group "Populations" for two populations with different actions.
+The following figure shows an example for the structue of the group "Populations" for two populations with different actions and data sets.
 
 .. figure:: ../../../images/popgroups.png
 

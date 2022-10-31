@@ -8,7 +8,7 @@ Vec3D
    This page describes the class :index:`Vec3D`
 
 The class ``Vec3D`` represents three-dimensional vectors and many useful operations.
-The operators allow you to use ecpressions such as 
+The operators allow you to use expressions such as 
 
 .. code-block:: c++
 
@@ -69,7 +69,7 @@ The ``operator+`` returns a new vector.
     Vec3D &operator-=(const Vec3D &v);
     Vec3D operator-(const Vec3D &v1,  const Vec3D &v2);
 
-Both subtract() functions, as well as the operator-=, change the values of this.
+Both ``subtract()`` functions, as well as the ``operator-=``, change the values of this.
 The ``operator-`` returns a new vector.
 
 .. -----------------------------------------------------------------------------

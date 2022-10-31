@@ -12,8 +12,8 @@ The output of the ``MultiEvaluator`` will now be the input for the  :ref:`Random
 
 .. figure:: ../../images/MultiEvalFull.png
 
-    The environment values (for altitude and NPP are each copied to an array, to which a poly line function is applied. 
-    The resulting arrays are combined by the ``MultiEvaluator``, cumulated, and used as a lookup table to create a weighted random number. 
+    The environment values (for altitude and NPP are each copied to an array, to which poly line functions are applied. 
+    The resulting arrays are combined by the ``MultiEvaluator`` (here the corresponding values are simply multiplied), cumulated, and used as a lookup table to create a weighted random number. 
     In this example a uniform random number R between 0 and the highest number in the cumulated array is drawn, and the index of the smallest cumulated value greater than R is chosen. 
     Here the random number 0.81 is less than the value at index 4, 0.95, so the chosen index is 4.
     Those indexes are selected with a probability proportional to the preference values of he corresponding cells
@@ -87,6 +87,8 @@ and an additional pointer to ``NPPCapacity``.
 The member variables reflect the new situation of required actions. 
 The member functions are identical to the ones discussed in the prevouis example.
 
+Code: `tut_EnvironCapAltPop.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_EnvironCapAltPop.h>`_ 
+
 
 
 The Implementation
@@ -122,10 +124,10 @@ The include files, too,  reflect the changes in the actions:
 
 The constructor first allocates the arrays for local capacities and for altitudes, 
 which are needed for communication between the evaluators and other objects.
-The the ``SingleEvaluator`` objects for altitude and capacity created and assigned to the ``MultiEvaluator`` object.
-After all action objects have been created, they are register bx th priority manager.
+Then the ``SingleEvaluator`` objects for altitude and capacity created and assigned to the ``MultiEvaluator`` object.
+After all action objects have been created, they are registered to the priority manager.
 
-During the simulation the altitude evluator will read from the geography's altitude array, whenever it has changed. On the other hand the ``NPPCapacity`` object will 
+During the simulation the altitude evaluator will read from the geography's altitude array, whenever it has changed. On the other hand the ``NPPCapacity`` object will 
 calculate the local carrying capacity for each cell and insert them into the array ``m_adCapacities``. 
 The ``MultiEvaluator`` wil combine the results of its two single evaluators and returns the result in the array ``m_adEnvWeights``,
 which in turn is read by the ``WeightedMove`` object to move an agent in a weighted random direction (see image above).
@@ -299,9 +301,11 @@ The method ``updateEvents()`` is called when an event is fired.
         return 0;
     }
 
-Here we only react if a change happened to the geography (usually when a new QDF file is loaded.
-In this case we check all agents in a parallelized loop adding  those under water (negative altitude) and thos under ice to the death list 
-Subsequently, the deaths are actually performed, and several counts ar updated.
+Here we only react if a change happened to the geography (usually when a new QDF file is loaded).
+In this case we check all agents in a parallelized loop adding those under water (negative altitude) and those under ice to the death list 
+Subsequently, the deaths are actually performed, and several counts are updated.
+
+Code: `tut_EnvironCapAltPop.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_EnvironCapAltPop.h>`_ 
 
 
 XML and DAT
@@ -395,27 +399,27 @@ First lets create alternative population and action directories with the script 
 
 .. code-block:: bash
 
-    ${QHG4_DIR}/useful_stuff/build_alt_modpop.py tut_06 tut_EnvironAltPop
+    ${QHG4_DIR}/useful_stuff/build_alt_modpop.py tut_07 tut_EnvironCapAltPop
 
-This builds alternative population directories ``tut_06_pop`` and ``tut_06_mod`` with the files needed to compile ``tut_EnvironAltPop``.
+This builds alternative population directories ``tut_07_pop`` and ``tut_07_mod`` with the files needed to compile ``tut_EnvironAltPop``.
 
 To compile, change to the QHG4 root directory and type:
 
 .. code-block:: bash
 
-    OPT=1 SHORT=tut_06 make clean QHGMain
+    OPT=1 SHORT=tut_07 make clean QHGMain
 
 Here we set the environemnt variable ``OPT`` to get optimized compilation (see :ref:`Compiling QHG<Compiling_QHG_ref>`)
 
-Now cd to the tutorial subdirectory "tutorial_06' and start QHGMain
+Now cd to the tutorial subdirectory ``tutorial_07`` and start QHGMain
 
 .. code-block:: bash
 
-    ${QHG4_DIR}/app/QHGMain --read-config=tutorial_06.cfg > tutorial_06.out
+    ${QHG4_DIR}/app/QHGMain --read-config=tutorial_07.cfg > tutorial_07.out
 
-This tells QHGMain to read the parameters from  the file ``tutorial_06.cfg`` and write all output to the file ``tutorial_06.out`` (this output contains more information than the logfile)
+This tells QHGMain to read the parameters from  the file ``tutorial_07.cfg`` and write all output to the file ``tutorial_07.out`` (this output contains more information than the logfile)
 
-The config file ``tutorial_06.cfg`` was created when the tutorial directories were created with ``build_tut_dirs.py``.
+The config file ``tutorial_07.cfg`` was created when the tutorial directories were created with ``build_tut_dirs.py``.
 
 .. code-block:: text
 

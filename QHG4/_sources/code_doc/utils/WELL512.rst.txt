@@ -7,7 +7,7 @@ WELL512
 
    This page describes the class :index:`WELL512`
 
-The class ``WELL512`` is a pretty good pseudo randmom number generator based on a 'paper by Chris Lomont <http://www.lomont.org/math/papers/2008/Lomont_PRNG_2008.pdf>.
+The class ``WELL512`` is a pretty good pseudo randmom number generator based on a paper by Chris Lomont <http://www.lomont.org/math/papers/2008/Lomont_PRNG_2008.pdf>.
 
 The internal state is defined by a state vector of 16 uint_32 numbers  and an index.
 

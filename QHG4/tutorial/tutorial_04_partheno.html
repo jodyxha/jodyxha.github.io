@@ -104,6 +104,7 @@
 </div>
 <p>The input/output auxiliary functions <code class="docutils literal notranslate"><span class="pre">addPopSpecificAgentData()</span></code> and <code class="docutils literal notranslate"><span class="pre">addPopSpecificAgentDataTypeQDF()</span></code> will have to be modified to take into account the new agent member fields.
 Then there is also a new method <code class="docutils literal notranslate"><span class="pre">makePopSpecificOffspring()</span></code> which allows the population to perform specific operations after an agent is born (e.g. initialize member fields to particular values).</p>
+<p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_ParthenoPop.h">tut_ParthenoPop.h</a></p>
 </section>
 <section id="the-implementation">
 <h2>The Implementation<a class="headerlink" href="#the-implementation" title="Permalink to this heading">¶</a></h2>
@@ -235,6 +236,7 @@ The mate index is volatile - it is set and used during a step, and is ignored ot
 </pre></div>
 </div>
 <p>The agent has age 0 at birth, hasn’t given birth so far, it will be its own mate (see above), and the gender is set to fremale.</p>
+<p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_ParthenoPop.cpp">tut_ParthenoPop.cpp</a></p>
 </section>
 <section id="xml-and-dat">
 <h2>XML and DAT<a class="headerlink" href="#xml-and-dat" title="Permalink to this heading">¶</a></h2>
@@ -272,7 +274,7 @@ The mate index is volatile - it is set and used during a step, and is ignored ot
 <span class="nt">&lt;/class&gt;</span>
 </pre></div>
 </div>
-<p>For details about the parameters look at the code description for <a class="reference internal" href="../code_doc/actions/OldAgeDeath.html#oldagedeath-ref"><span class="std std-ref">OldAgeDeath</span></a>, <a class="reference internal" href="../code_doc/actions/RandomMove.html#randommove-ref"><span class="std std-ref">RandomMove</span></a>, <cite>:ref:`Fertility&lt;Fertility_ref&gt;</cite>, and <a class="reference internal" href="../code_doc/actions/Verhulst.html#verhulst-ref"><span class="std std-ref">Verhulst</span></a>.</p>
+<p>For details about the parameters look at the code description for <a class="reference internal" href="../code_doc/actions/OldAgeDeath.html#oldagedeath-ref"><span class="std std-ref">OldAgeDeath</span></a>, <a class="reference internal" href="../code_doc/actions/RandomMove.html#randommove-ref"><span class="std std-ref">RandomMove</span></a>, <a class="reference internal" href="../code_doc/actions/Fertility.html#fertility-ref"><span class="std std-ref">Fertility</span></a>, and <a class="reference internal" href="../code_doc/actions/Verhulst.html#verhulst-ref"><span class="std std-ref">Verhulst</span></a>.</p>
 <p>The priority levels are set such that in a step the agents die first, the survivors can the mate an move.</p>
 <p>The dat file <code class="docutils literal notranslate"><span class="pre">tut_Partheno.dat</span></code> defines postions and attributes for 20 agents, the last attribute pertainng to the new member <code class="docutils literal notranslate"><span class="pre">m_fAge</span></code>.</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>#Longitude;Latitude;LifeState;AgentID;BirthTime;Gender;Age;lastbirth

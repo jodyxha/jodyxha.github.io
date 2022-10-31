@@ -16,7 +16,7 @@ Inside a ``L2List`` there are two chains: ``ACTIVE`` and ``PASSIVE`` representin
 
 .. figure:: ../../../images/L2L_A1.png
 
-L2List is used by :ref:`LayerBuf <LayerBuf_ref>` and :ref`LBContoller<LBController_ref>`.
+L2List is used by :ref:`LayerBuf <LayerBuf_ref>` and :ref:`LBContoller<LBController_ref>`.
 
 Structures
 ----------

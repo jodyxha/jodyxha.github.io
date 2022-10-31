@@ -5,7 +5,7 @@ QDF2PNGNew
 
 This tool creates a rectilinear projection of data saved in qdf files.
 
-Code:  `QDF2PNGNew.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/tools_io/QDF2PNGNew.cpp>`_ `QDFImageExtractor <https://github.com/jodyxha/QHG4/blob/main/QHG4/tools_io/QDFImageExtractor.cpp>`_
+Code:  `QDF2PNGNew.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/tools_io/QDF2PNGNew.cpp>`_ `QDFImageExtractor.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/tools_io/QDFImageExtractor.cpp>`_
 
 Usage
 -----
@@ -28,10 +28,10 @@ or
 where
 
 ``qdf_grid``
-    QDF containing a grid and geography
+    QDF containing a grid and geography.
 
 ``qdf_data``
-    QDF file containing data to be extracted which is not contained in <qdf_grid>
+    QDF file containing data to be extracted which is not contained in <qdf_grid>.
 
 ``batch_file``
     File containing lines of the form:
@@ -41,25 +41,25 @@ where
       <timestamp>":"<qdf_data>[,<qdf_data>]*":"<output>
 
 ``w``
-    Width  of output png
+    Width  of output png.
 
 ``h``
-    Height of output png
+    Height of output png.
 
 ``ww``
-    Width  of depicted area in degrees (default 360)
+    Width  of depicted area in degrees (default 360).
 
 ``hw``
-    Height of depicted area in degrees (default 180)
+    Height of depicted area in degrees (default 180).
 
 ``ox``
-    Longitude offset of depicted area (default 0)
+    Longitude offset of depicted area (default 0).
 
 ``oy``
-    Latitude offset of depicted area (default -90)
+    Latitude offset of depicted area (default -90).
 
 ``outpat``
-    Pattern for output pngs: the substring '###' will be replaced with the array name
+    Pattern for output pngs: the substring '###' will be replaced with the array name.
 
 ``arrayspec``
     Array specification. Format:
@@ -72,28 +72,28 @@ where
                  lookup      :   info for lookup, with format <lookup_name>[:<data>]* (s. below)
 
 ``operation``
-    Compositing operator (currenly only: 'over' (simple alpha compositing))
+    Compositing operator (currenly only: 'over' (simple alpha compositing)).
 
 ``longroll``
     Longitude for smallest x value (rolls image). To have all of africa on the left side of the image you should set roll to -25.
 
 ``text``    
-    Text to be rendered on image
+    Text to be rendered on image.
 
 ``pos``
-    position of text in image (``BL``, ``CL``, ``UL``, ``BC``,  ``CC``, ``UC``, ``BR``, ``CR``, ``UR``
+    position of text in image (``BL``, ``CL``, ``UL``, ``BC``,  ``CC``, ``UC``, ``BR``, ``CR``, ``UR``).
 
 .. image::  ../../images/textlayout.png
 
 
 ``-v``             
-    Verbose
+    Verbose output.
 
 
 
 **Array Names**
 
-These are the array names used im array_spec along with their meaning, and the array's location in the qdf file  (if it exists):
+These are the array names used in ``arrayspec`` along with their meaning, and the array's location in the qdf file  (if it exists):
 
 +------------+-------------------------------+------------------------------+
 | array name | meaning                       | dataset                      |

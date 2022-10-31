@@ -50,7 +50,7 @@
 <p>In this chapter we extend our example by making the agents aware of the environment, the altitude in particular.</p>
 <p>To do this we use a <a class="reference internal" href="../code_doc/actions/SingleEvaluator.html#singleevaluator-ref"><span class="std std-ref">SingleEvaluator</span></a>, and replace the <a class="reference internal" href="../code_doc/actions/RandomMove.html#randommove-ref"><span class="std std-ref">RandomMove</span></a> object by a <a class="reference internal" href="../code_doc/actions/WeightedMove.html#weightedmove-ref"><span class="std std-ref">WeightedMove</span></a> object.
 To each cell the <code class="docutils literal notranslate"><span class="pre">SingleEvaluator</span></code> assigns preference values (usually by means of a <a class="reference internal" href="../code_doc/utils/PolyLine.html#polyline-ref"><span class="std std-ref">PolyLine</span></a> object) to the cell itself and its neighbours. For each cell the preference values are cumulated which form the basis for a weighted random number drawn by <code class="docutils literal notranslate"><span class="pre">Weighted</span></code> move.</p>
-<figure class="align-default" id="id1">
+<figure class="align-default" id="id3">
 <img alt="../_images/SingleEvalFull.png" src="../_images/SingleEvalFull.png" />
 <figcaption>
 <p><span class="caption-text">The environment values (e.g. altitude) of a cell are copied to an array, to which a poly line function is applied.
@@ -58,7 +58,7 @@ The results are cumulated and are used as a lookup table to create a weighted ra
 In this example a uniform random number R between 0 and the highest number in the cumulated array is drawn,
 and the index of the smallest cumulated value greater than R is chosen.
 Here the random number 0.81 is less than the value at index 4, 0.95, so the chosen index is 4.
-Those indexes are selected with a probability proportional to the preference values of he corresponding cells</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+Those indexes are selected with a probability proportional to the preference values of he corresponding cells</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_EnvironAltPop.h">tut_EnvironAltPop.h</a> <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_EnvironAltPop.cpp">tut_EnvironAltPop.cpp</a></p>
@@ -99,6 +99,7 @@ Those indexes are selected with a probability proportional to the preference val
 </div>
 <p>The member variables reflect the new situation of required actions. Apart from <code class="docutils literal notranslate"><span class="pre">makePopSpecificOffspring</span></code>, <code class="docutils literal notranslate"><span class="pre">addPopSpecificAgentData</span></code> and <code class="docutils literal notranslate"><span class="pre">addPopSpecificAgentDataTypeQDF</span></code>,
 there are two new member functions <code class="docutils literal notranslate"><span class="pre">updateEvent</span></code> and <code class="docutils literal notranslate"><span class="pre">flushEvents</span></code>.</p>
+<p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_EnvironAltPop.h">tut_EnvironAltPop.h</a></p>
 </section>
 <section id="the-implementation">
 <h2>The Implementation<a class="headerlink" href="#the-implementation" title="Permalink to this heading">¶</a></h2>
@@ -258,6 +259,7 @@ as well as the communication array.</p>
 <p>Here we only react if a change happened to the geography (usually when a new QDF file is loaded.
 In this case we check all agents in a parallelized loop adding  those under water (negative altitude) and thos under ice to the death list
 Subsequently, the deaths are actually performed, and several counts ar updated.</p>
+<p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_EnvironAltPop.cpp">tut_EnvironAltPop.cpp</a></p>
 </section>
 <section id="xml-and-dat">
 <h2>XML and DAT<a class="headerlink" href="#xml-and-dat" title="Permalink to this heading">¶</a></h2>
@@ -336,7 +338,7 @@ with the exception that we moved the starting point to South Africa.</p>
 </pre></div>
 </div>
 <p>Here we set the environemnt variable <code class="docutils literal notranslate"><span class="pre">OPT</span></code> to get optimized compilation (see <a class="reference internal" href="../qhg4_compile.html#compiling-qhg-ref"><span class="std std-ref">Compiling QHG</span></a>)</p>
-<p>Now cd to the tutorial subdirectory “tutorial_06’ and start QHGMain</p>
+<p>Now cd to the tutorial subdirectory <code class="docutils literal notranslate"><span class="pre">tutorial_06</span></code> and start QHGMain</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="si">${</span><span class="nv">QHG4_DIR</span><span class="si">}</span>/app/QHGMain --read-config<span class="o">=</span>tutorial_06.cfg &gt; tutorial_06.out
 </pre></div>
 </div>
@@ -393,23 +395,23 @@ The images below were produced with calls like this:</p>
 </pre></div>
 </div>
 <p>For details on how to call  <code class="docutils literal notranslate"><span class="pre">QDF2PNGNew</span></code>, refer to <a class="reference internal" href="../tools/QDF2PNGNew.html#qdf2pngnew-ref"><span class="std std-ref">its documentation</span></a>.</p>
-<figure class="align-default" id="id2">
+<figure class="align-default" id="id4">
 <img alt="../_images/tut06_Multi3.png" src="../_images/tut06_Multi3.png" />
 <figcaption>
 <p><span class="caption-text">Sequence of snapshots at intervals of 1000 steps.
 The yellow dots represent the agents.
-In the first image the initial populaition sits at the center of the red circle.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+In the first image the initial populaition sits at the center of the red circle.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="visit">
 <h3><code class="docutils literal notranslate"><span class="pre">VisIt</span></code><a class="headerlink" href="#visit" title="Permalink to this heading">¶</a></h3>
 <p>With the visualization software <span class="xref std std-ref">VisIt</span> we can create images showing the data on the sphere:</p>
-<figure class="align-default" id="id3">
+<figure class="align-default" id="id5">
 <img alt="../_images/envalt.png" src="../_images/envalt.png" />
 <figcaption>
 <p><span class="caption-text">Sequence of snapshots at intervals of 1000 steps.
-The yellow dots represent the agents.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+The yellow dots represent the agents.</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 </section>

@@ -48,12 +48,9 @@
   <section id="def2qdf">
 <span id="def2qdf-ref"></span><h1>Def2QDF<a class="headerlink" href="#def2qdf" title="Permalink to this heading">¶</a></h1>
 <p>This tool is used to create grids
-(optionally including <a class="reference internal" href="../code_doc/core/Geography.html#geography-ref"><span class="std std-ref">Geography</span></a>, <a class="reference internal" href="../code_doc/core/Climate.html#climate-ref"><span class="std std-ref">Climate</span></a>, <a class="reference internal" href="../code_doc/core/Vegetation.html#vegetation-ref"><span class="std std-ref">Vegetatioon</span></a>)
+(optionally including <a class="reference internal" href="../code_doc/core/Geography.html#geography-ref"><span class="std std-ref">Geography</span></a>, <a class="reference internal" href="../code_doc/core/Climate.html#climate-ref"><span class="std std-ref">Climate</span></a>, <a class="reference internal" href="../code_doc/core/Vegetation.html#vegetation-ref"><span class="std std-ref">Vegetation</span></a>)
 from a textual description (def file)</p>
-<dl class="simple">
-<dt>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/tools_io/Def2QDF.cpp">Def2QDF.cpp</a></dt><dd><p><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/tools_io/GridFactory.cpp">GridFactory.cpp</a></p>
-</dd>
-</dl>
+<p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/tools_io/Def2QDF.cpp">Def2QDF.cpp</a>, <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/tools_io/GridFactory.cpp">GridFactory.cpp</a></p>
 <section id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Permalink to this heading">¶</a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Def2QDF &lt;grid-def-file&gt; <span class="o">[</span>&lt;specifiers&gt;<span class="o">]</span> &lt;output-QDF-name&gt;
@@ -74,11 +71,11 @@ from a textual description (def file)</p>
 <li><p>G : geography data</p></li>
 <li><p>C : climate data</p></li>
 <li><p>V : vegetation data</p></li>
-<li><p>N : empty naviigation data</p></li>
+<li><p>N : empty navigation data</p></li>
 </ul>
 </dd>
 </dl>
-<p>if ignored, all groups are added.</p>
+<p>If no <code class="docutils literal notranslate"><span class="pre">specifiers</span></code> are set, all groups are added.</p>
 </dd>
 </dl>
 </section>
@@ -111,15 +108,15 @@ ALT FLAT 100
 NPP FLAT 1.2
 </pre></div>
 </div>
-<p>In this grid every cell has an altitude value of 100, and an npp value of 1.2
-The ‘PERIODIC’ key word causes the topology of the grid to ne a torus.</p>
+<p>The grid produced with this def file is a rectangular grid with width 30 and height 30. Every cell has an altitude value of 100, and an NPP value of 1.2
+The ‘PERIODIC’ key word causes the topology of the grid to be a torus (i.e. identifying the left with the right edge, and the top edge with the bottom edge, respectively).</p>
 <p><strong>DEF file for an icosahedral grid with “real” topography and constant NPP</strong></p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>GRID_TYPE ICO eq:64
 ALT NETCDF ETOPO1_Bed_g_gmt4.grd 0
 NPP FLAT 1.2
 </pre></div>
 </div>
-<p>Creates an equal area icosahedron with 64 subdivisions.
+<p>This creates an equal area icosahedron with 64 subdivisions.
 Each cell has an altitude value corresponding to the earth’s altitude at that coordinate.
 The valus are taken from the NETCDF file <code class="docutils literal notranslate"><span class="pre">ETOPO1_Bed_g_gmt4.grd</span></code>.
 The “0” means we want altitudes above sea level for the present day.</p>
@@ -133,7 +130,7 @@ NPP NETCDF npp_timmermann.nc -20
 <p>Creates an equal area icosahedron with 256 subdivisions.
 Each cell has an altitude and npp values corresponding to the earth’s altitude and npp at that coordinate.
 If the data file can’t be found in the current directory, the directories listed under <code class="docutils literal notranslate"><span class="pre">DATA_DIR</span></code> are searched.
-The -20 tin the ‘’ALT’’ and ‘’NPP’’ lines means we are interested in the data for the world 20#000 years ago.</p>
+The -20 in the ‘’ALT’’ and ‘’NPP’’ lines means we are interested in the data for the world 20’000 years ago.</p>
 </section>
 </section>
 

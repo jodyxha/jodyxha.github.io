@@ -70,6 +70,8 @@ The class gets an additional pointer for the new action:
     
 The input/output auxiliary functions ``addPopSpecificAgentData()`` and ``addPopSpecificAgentDataTypeQDF()`` are identical to the ones in the previous chapterhave to be modified to take into account the new agent member fields.
 The method ``makePopSpecificOffspring()`` which allows the population to perform specific operations after an agent is born (e.g. initialize member fields to particular values).
+
+Code: `tut_SexualPop.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_SexualPop.h>`_ 
   
 The Implementation
 ------------------
@@ -187,6 +189,7 @@ The method ``makePopSpecificOffspring()`` initializes the agents' new fields. It
 
 The mate index is set to a negative number to denote that this agent is not paired (yet).
 
+Code: `tut_SexualPop.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_SexualPop.cpp>`_ 
 
     
 XML and DAT
@@ -339,7 +342,7 @@ The config file ``tutorial_05.cfg`` was created when the tutorial directories we
 The Output File
 ---------------
 
-The output files, in this case ``tutorial_04.out``, always have the same structure.
+The output files, in this case ``tutorial_05.out``, always have the same structure.
 First there are messages concerning the start of the program and intialisation.
 If the simulation does not run, there's a chance that you find th readoon why here.
 
@@ -348,8 +351,8 @@ The second part is a list of every step describing the numbers of births, deaths
 At the end there is a short summary of the state at the end of the program: number of iterations, total time of execution, nuber of surviving agents.
 This is follwed by the contents of the log file.
 
-If you look at the output for the steps, you see that the population grows slowerthen the in the prtevious example, and the population stabilizes at a lower level.
-THis has to do with the fact that only half of the population can hav oospring, whereas in the previous chapter, every inidividual had offspring)
+If you look at the output for the steps, you see that the population grows slower than the one in the previous example, and the population stabilizes at a lower level.
+This has to do with the fact that only half of the population can have offspring, whereas in the previous chapter, every inidividual had offspring.
 
 .. code-block:: text
 

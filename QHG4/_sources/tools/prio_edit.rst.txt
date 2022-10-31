@@ -1,0 +1,68 @@
+.. _prio_edit_ref:
+
+prio_edit.py
+=============
+
+This script allows the handling of the priority levels of a poulation`s actions.
+
+Code: `prio_edit.py <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils_qdf/prio_edit.py>`_,
+       `QHGError.py <https://github.com/jodyxha/QHG4/blob/main/QHG4/useful_stuff/QHGError.py>`
+
+This tool requires the python modules ``h5py`` and ``numpy``  to be installed.
+
+
+Usage
+-----
+
+**Display Priorities**
+
+.. code-block:: c++
+
+  ${QHG4_DIR}/tools_qdf/prio_edit.py list   <qdf_file>[:<species>]
+
+**Rename a Priority**
+
+.. code-block:: c++
+
+  ${QHG4_DIR}/tools_qdf/prio_edit.py rename <qdf_file>[:<species>] <prio_name> <prio_new_name>
+
+**Add a new Priority Entry**
+
+.. code-block:: c++
+
+  ${QHG4_DIR}/tools_qdf/prio_edit.py add    <qdf_file>[:<species>] <prio_name> <prio_val>
+
+**Change Priority Value**
+
+.. code-block:: c++
+
+  ${QHG4_DIR}/tools_qdf/prio_edit.py change <qdf_file>[:<species>] <prio_name> <prio_val>
+
+** DElete Priority Entry**
+
+.. code-block:: c++
+
+  ${QHG4_DIR}/tools_qdf/prio_edit.py del    <qdf_file>[:<species>] <prio_name>
+
+**Sort Priority Entries**
+
+.. code-block:: c++
+
+  ${QHG4_DIR}/tools_qdf/prio_edit.py sort   <qdf_file>[:<species>]
+
+where
+
+``qdf_file``
+    QDF file containing populations.
+
+``species``
+    Name of the population to modify.
+
+``prio_name``
+    Name of the priority entry to process (usually this is the name of an action).
+
+``prio_new_name``
+    New name for a priority entry.
+
+``prio_val``
+    A priority Value.

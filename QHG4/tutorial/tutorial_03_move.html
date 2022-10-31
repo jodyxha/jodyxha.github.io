@@ -48,7 +48,7 @@
   <section id="qhg-tutorial-03-moving">
 <span id="tutorialmove-ref"></span><h1>QHG Tutorial 03 - Moving<a class="headerlink" href="#qhg-tutorial-03-moving" title="Permalink to this heading">¶</a></h1>
 <p>In this chapter we describe a class which, in addition to aging and dying also lets agents move randomly between cells.</p>
-<p>To get the agents moving we use the action class :ref:RandomMoveRandomMove_ref&gt;`</p>
+<p>To get the agents moving we use the action class <a class="reference internal" href="../code_doc/actions/RandomMove.html#randommove-ref"><span class="std std-ref">RandomMove</span></a>.</p>
 <section id="the-header-file">
 <h2>The Header File<a class="headerlink" href="#the-header-file" title="Permalink to this heading">¶</a></h2>
 <p>This class must additionaly  include the header files for the <code class="docutils literal notranslate"><span class="pre">RandomMove</span></code> action.</p>
@@ -91,6 +91,7 @@
 So we use the same agent structure as in the previous chapter.</p>
 <p>The public methods <code class="docutils literal notranslate"><span class="pre">addPopSpecificAgentData</span></code> and <code class="docutils literal notranslate"><span class="pre">addPopSpecificAgentDataTypeQDF</span></code> remain unchanged since they only deal with the addition agent member <code class="docutils literal notranslate"><span class="pre">m_fAge</span></code>.</p>
 <p>Finally, we need a pointer to an instance of the <code class="docutils literal notranslate"><span class="pre">RandomMove</span></code>-action.</p>
+<p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_MovePop.h">tut_MovePop.h</a></p>
 </section>
 <section id="the-implementation">
 <h2>The Implementation<a class="headerlink" href="#the-implementation" title="Permalink to this heading">¶</a></h2>
@@ -161,6 +162,7 @@ They are the same as the ones in the previous chapter.</p>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
+<p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_MovePop.cpp">tut_MovePop.cpp</a></p>
 </section>
 <section id="xml-and-dat">
 <h2>XML and DAT<a class="headerlink" href="#xml-and-dat" title="Permalink to this heading">¶</a></h2>
@@ -186,8 +188,8 @@ The action <code class="docutils literal notranslate"><span class="pre">GetOld</
 <span class="nt">&lt;/class&gt;</span>
 </pre></div>
 </div>
-<p>The action <code class="docutils literal notranslate"><span class="pre">RandomMoOve</span></code> needs a parameter for its move probability. For details, see the <a class="reference internal" href="../code_doc/actions/RandomMove.html#randommove-ref"><span class="std std-ref">description of RandomMove</span></a>.</p>
-<p>THe prioprity values are chosen such that the age is changed fist, then agents may die of old age, and the survivors may move.The dat file <code class="docutils literal notranslate"><span class="pre">tut_OldAgeDie.dat</span></code> defines postions and attributes for 20 agents, the last attribute pertainng to the new member <code class="docutils literal notranslate"><span class="pre">m_fAge</span></code>.</p>
+<p>The action <code class="docutils literal notranslate"><span class="pre">RandomMove</span></code> needs a parameter for its move probability. For details, see the <a class="reference internal" href="../code_doc/actions/RandomMove.html#randommove-ref"><span class="std std-ref">description of RandomMove</span></a>.</p>
+<p>The priority values are chosen such that the age is changed fist, then agents may die of old age, and the survivors may move.The dat file <code class="docutils literal notranslate"><span class="pre">tut_Move.dat</span></code> defines postions and attributes for 20 agents, the last attribute pertainng to the new member <code class="docutils literal notranslate"><span class="pre">m_fAge</span></code>.</p>
 <p>The dat file <code class="docutils literal notranslate"><span class="pre">tut_Move.dat</span></code> is identical to the dat file of the previous chapter.
 Apart from the postion and the basic parameters we have to add a parameter for the age.</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>#Longitude;Latitude;LifeState;AgentID;BirthTime;Gender;Age

@@ -20,7 +20,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="QHG Tutorial" href="../tutorial.html" />
-    <link rel="prev" title="build_tut_dirs.py" href="build_tut_dirs.html" /> 
+    <link rel="prev" title="prio_edit.py" href="prio_edit.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -32,7 +32,7 @@
           <a href="../tutorial.html" title="QHG Tutorial"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="build_tut_dirs.html" title="build_tut_dirs.py"
+          <a href="prio_edit.html" title="prio_edit.py"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">QHG4 4.1 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../tools.html" accesskey="U">Tools</a> &#187;</li>
@@ -48,7 +48,7 @@
   <section id="qdf2pngnew">
 <span id="qdf2pngnew-ref"></span><h1>QDF2PNGNew<a class="headerlink" href="#qdf2pngnew" title="Permalink to this heading">¶</a></h1>
 <p>This tool creates a rectilinear projection of data saved in qdf files.</p>
-<p>Code:  <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/tools_io/QDF2PNGNew.cpp">QDF2PNGNew.cpp</a> <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/tools_io/QDFImageExtractor.cpp">QDFImageExtractor</a></p>
+<p>Code:  <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/tools_io/QDF2PNGNew.cpp">QDF2PNGNew.cpp</a> <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/tools_io/QDFImageExtractor.cpp">QDFImageExtractor.cpp</a></p>
 <section id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Permalink to this heading">¶</a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./QDF2PNGNew -g &lt;qdf_grid&gt; -q &lt;qdf_data&gt;<span class="o">[</span>,&lt;qdf_data&gt;<span class="o">]</span>*<span class="o">]</span>
@@ -64,9 +64,9 @@
 </div>
 <p>where</p>
 <dl class="simple">
-<dt><code class="docutils literal notranslate"><span class="pre">qdf_grid</span></code></dt><dd><p>QDF containing a grid and geography</p>
+<dt><code class="docutils literal notranslate"><span class="pre">qdf_grid</span></code></dt><dd><p>QDF containing a grid and geography.</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">qdf_data</span></code></dt><dd><p>QDF file containing data to be extracted which is not contained in &lt;qdf_grid&gt;</p>
+<dt><code class="docutils literal notranslate"><span class="pre">qdf_data</span></code></dt><dd><p>QDF file containing data to be extracted which is not contained in &lt;qdf_grid&gt;.</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">batch_file</span></code></dt><dd><p>File containing lines of the form:</p>
 </dd>
@@ -75,19 +75,19 @@
 </pre></div>
 </div>
 <dl class="simple">
-<dt><code class="docutils literal notranslate"><span class="pre">w</span></code></dt><dd><p>Width  of output png</p>
+<dt><code class="docutils literal notranslate"><span class="pre">w</span></code></dt><dd><p>Width  of output png.</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">h</span></code></dt><dd><p>Height of output png</p>
+<dt><code class="docutils literal notranslate"><span class="pre">h</span></code></dt><dd><p>Height of output png.</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">ww</span></code></dt><dd><p>Width  of depicted area in degrees (default 360)</p>
+<dt><code class="docutils literal notranslate"><span class="pre">ww</span></code></dt><dd><p>Width  of depicted area in degrees (default 360).</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">hw</span></code></dt><dd><p>Height of depicted area in degrees (default 180)</p>
+<dt><code class="docutils literal notranslate"><span class="pre">hw</span></code></dt><dd><p>Height of depicted area in degrees (default 180).</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">ox</span></code></dt><dd><p>Longitude offset of depicted area (default 0)</p>
+<dt><code class="docutils literal notranslate"><span class="pre">ox</span></code></dt><dd><p>Longitude offset of depicted area (default 0).</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">oy</span></code></dt><dd><p>Latitude offset of depicted area (default -90)</p>
+<dt><code class="docutils literal notranslate"><span class="pre">oy</span></code></dt><dd><p>Latitude offset of depicted area (default -90).</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">outpat</span></code></dt><dd><p>Pattern for output pngs: the substring ‘###’ will be replaced with the array name</p>
+<dt><code class="docutils literal notranslate"><span class="pre">outpat</span></code></dt><dd><p>Pattern for output pngs: the substring ‘###’ will be replaced with the array name.</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">arrayspec</span></code></dt><dd><p>Array specification. Format:</p>
 </dd>
@@ -99,22 +99,22 @@ lookup      :   info for lookup, with format &lt;lookup_name&gt;[:&lt;data&gt;]*
 </pre></div>
 </div>
 <dl class="simple">
-<dt><code class="docutils literal notranslate"><span class="pre">operation</span></code></dt><dd><p>Compositing operator (currenly only: ‘over’ (simple alpha compositing))</p>
+<dt><code class="docutils literal notranslate"><span class="pre">operation</span></code></dt><dd><p>Compositing operator (currenly only: ‘over’ (simple alpha compositing)).</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">longroll</span></code></dt><dd><p>Longitude for smallest x value (rolls image). To have all of africa on the left side of the image you should set roll to -25.</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">text</span></code></dt><dd><p>Text to be rendered on image</p>
+<dt><code class="docutils literal notranslate"><span class="pre">text</span></code></dt><dd><p>Text to be rendered on image.</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">pos</span></code></dt><dd><p>position of text in image (<code class="docutils literal notranslate"><span class="pre">BL</span></code>, <code class="docutils literal notranslate"><span class="pre">CL</span></code>, <code class="docutils literal notranslate"><span class="pre">UL</span></code>, <code class="docutils literal notranslate"><span class="pre">BC</span></code>,  <code class="docutils literal notranslate"><span class="pre">CC</span></code>, <code class="docutils literal notranslate"><span class="pre">UC</span></code>, <code class="docutils literal notranslate"><span class="pre">BR</span></code>, <code class="docutils literal notranslate"><span class="pre">CR</span></code>, <code class="docutils literal notranslate"><span class="pre">UR</span></code></p>
+<dt><code class="docutils literal notranslate"><span class="pre">pos</span></code></dt><dd><p>position of text in image (<code class="docutils literal notranslate"><span class="pre">BL</span></code>, <code class="docutils literal notranslate"><span class="pre">CL</span></code>, <code class="docutils literal notranslate"><span class="pre">UL</span></code>, <code class="docutils literal notranslate"><span class="pre">BC</span></code>,  <code class="docutils literal notranslate"><span class="pre">CC</span></code>, <code class="docutils literal notranslate"><span class="pre">UC</span></code>, <code class="docutils literal notranslate"><span class="pre">BR</span></code>, <code class="docutils literal notranslate"><span class="pre">CR</span></code>, <code class="docutils literal notranslate"><span class="pre">UR</span></code>).</p>
 </dd>
 </dl>
 <img alt="../_images/textlayout.png" src="../_images/textlayout.png" />
 <dl class="simple">
-<dt><code class="docutils literal notranslate"><span class="pre">-v</span></code></dt><dd><p>Verbose</p>
+<dt><code class="docutils literal notranslate"><span class="pre">-v</span></code></dt><dd><p>Verbose output.</p>
 </dd>
 </dl>
 <p><strong>Array Names</strong></p>
-<p>These are the array names used im array_spec along with their meaning, and the array’s location in the qdf file  (if it exists):</p>
+<p>These are the array names used in <code class="docutils literal notranslate"><span class="pre">arrayspec</span></code> along with their meaning, and the array’s location in the qdf file  (if it exists):</p>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>array name</p></th>
@@ -302,8 +302,8 @@ lookup      :   info for lookup, with format &lt;lookup_name&gt;[:&lt;data&gt;]*
   </div>
   <div>
     <h4>Previous topic</h4>
-    <p class="topless"><a href="build_tut_dirs.html"
-                          title="previous chapter">build_tut_dirs.py</a></p>
+    <p class="topless"><a href="prio_edit.html"
+                          title="previous chapter">prio_edit.py</a></p>
   </div>
   <div>
     <h4>Next topic</h4>
@@ -341,7 +341,7 @@ lookup      :   info for lookup, with format &lt;lookup_name&gt;[:&lt;data&gt;]*
           <a href="../tutorial.html" title="QHG Tutorial"
              >next</a> |</li>
         <li class="right" >
-          <a href="build_tut_dirs.html" title="build_tut_dirs.py"
+          <a href="prio_edit.html" title="prio_edit.py"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">QHG4 4.1 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../tools.html" >Tools</a> &#187;</li>

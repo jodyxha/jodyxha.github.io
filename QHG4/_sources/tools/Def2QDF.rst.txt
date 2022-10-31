@@ -4,11 +4,10 @@ Def2QDF
 =======
 
 This tool is used to create grids 
-(optionally including :ref:`Geography<Geography_ref>`, :ref:`Climate<Climate_ref>`, :ref:`Vegetatioon<Vegetation_ref>`)
+(optionally including :ref:`Geography<Geography_ref>`, :ref:`Climate<Climate_ref>`, :ref:`Vegetation<Vegetation_ref>`)
 from a textual description (def file)
  
-Code: `Def2QDF.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/tools_io/Def2QDF.cpp>`_
-      `GridFactory.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/tools_io/GridFactory.cpp>`_
+Code: `Def2QDF.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/tools_io/Def2QDF.cpp>`_, `GridFactory.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/tools_io/GridFactory.cpp>`_
 
 Usage
 -----
@@ -32,9 +31,9 @@ where
      * G : geography data
      * C : climate data
      * V : vegetation data
-     * N : empty naviigation data
+     * N : empty navigation data
      
-    if ignored, all groups are added.
+    If no ``specifiers`` are set, all groups are added.
 
 Grid File Format
 ----------------
@@ -70,8 +69,8 @@ Examples
     ALT FLAT 100
     NPP FLAT 1.2
 
-In this grid every cell has an altitude value of 100, and an npp value of 1.2
-The 'PERIODIC' key word causes the topology of the grid to ne a torus.
+The grid produced with this def file is a rectangular grid with width 30 and height 30. Every cell has an altitude value of 100, and an NPP value of 1.2
+The 'PERIODIC' key word causes the topology of the grid to be a torus (i.e. identifying the left with the right edge, and the top edge with the bottom edge, respectively).
 
 **DEF file for an icosahedral grid with "real" topography and constant NPP**
 
@@ -81,7 +80,7 @@ The 'PERIODIC' key word causes the topology of the grid to ne a torus.
     ALT NETCDF ETOPO1_Bed_g_gmt4.grd 0
     NPP FLAT 1.2
 
-Creates an equal area icosahedron with 64 subdivisions. 
+This creates an equal area icosahedron with 64 subdivisions. 
 Each cell has an altitude value corresponding to the earth's altitude at that coordinate.
 The valus are taken from the NETCDF file ``ETOPO1_Bed_g_gmt4.grd``.
 The "0" means we want altitudes above sea level for the present day.
@@ -99,4 +98,4 @@ The "0" means we want altitudes above sea level for the present day.
 Creates an equal area icosahedron with 256 subdivisions. 
 Each cell has an altitude and npp values corresponding to the earth's altitude and npp at that coordinate.
 If the data file can't be found in the current directory, the directories listed under ``DATA_DIR`` are searched.
-The -20 tin the ''ALT'' and ''NPP'' lines means we are interested in the data for the world 20#000 years ago.
+The -20 in the ''ALT'' and ''NPP'' lines means we are interested in the data for the world 20'000 years ago.

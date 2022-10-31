@@ -3,6 +3,72 @@
 Compiling QHG
 =============
 
+In this documentation we describe compilation with a gnu c++ compiler.
+QHG4 has been compiled and tested on several linux flavours,
+but so far not on WIndows or MAc.
+
+If anybody manages to compile and run QHG4 on Windows computer or on a mac please let us know
+
+Dependencies
+------------
+
+To compile and run QHG4, several libraries need to be installed:
+
+* ``libm``: the math library (is usually already installed)
+* the ``HDF5`` library to handle HDF files
+* ``zlib`` library for zipping and unzipping
+* ``crypto`` library
+
+**Library Installation for** ``gentoo`` **linux**:
+
+.. code-block:: c++
+
+    sudo emerge sci-libs/hdf5 sys-libs/zlib dev-libs/openssl sci-libs/gsl media-libs/libpng
+
+**Library Installation for** ``CentOS``:
+
+.. code-block:: c++
+
+    sudo yum install zlib-devel.x86_64
+    sudo yum install openssl-devel.x86_64
+    sudo yum install hdf5-devel.x86_64 hdf5.x86_64
+    sudo yum install gsl-devel.x86_64 gsl.x86_64
+
+**Library Installation for** ``ubuntu``:
+
+.. code-block:: c++
+ 
+    sudo apt-get install zlib1g-dev libssl-dev
+    sudo apt-get install libgsl0-dev
+    sudo apt-get install libhdf5-serial-dev
+
+For some tools to work the python modules ``h5py``, ``netcdf4-python``, and ``numpy`` are required.
+
+**Installing module for** ``gentoo``:
+
+.. code-block:: c++
+ 
+    sudo emerge dev-python/h5py
+    sudo emerge dev-python/netcdf4-python
+    sudo emerge dev-python/numpy
+
+**Installing modules for** ``CentOS``
+
+.. code-block:: c++
+ 
+    sudo yum install h5py.x86_64
+    sudo yum install numpy.x86_64
+    sudo yum install netcdf4-python.x86_64
+
+**Installing modules for** ``ubuntu``
+
+.. code-block:: c++
+ 
+    sudo apt-get install libhdf5-dev
+    sudo apt-get install python3-numpy
+    sudo apt-get install python-netcdf4
+
+
 Compile targets
 ---------------
 

@@ -30,7 +30,9 @@ Public Methods
     Quat(double fR);
     Quat();
 
-Apart from the component-wise constructor, you can create ``Quat`` objects with a real part only, or such with imaginary parts only. There are copy cnsturctors for ``Quat`` objects, and "almost" copy contructor which create a purely imaginary quaternion from a ``Vec3D``". The empty constructor is equivalent to ``Quat(0)``.
+Apart from the component-wise constructor, you can create ``Quat`` objects with a real part only, or such with imaginary parts only. 
+There are copy consturctors for ``Quat`` objects, and "almost" copy constructors which create a purely imaginary quaternion from a ``Vec3D``". 
+The empty constructor is equivalent to ``Quat(0)``.
 
 .. -----------------------------------------------------------------------------
 
@@ -45,8 +47,8 @@ Apart from the component-wise constructor, you can create ``Quat`` objects with 
     Quat makeRotation(double fAngle, const Vec3D &v);
     Quat makeRotation(const  Vec3D &vFrom, const Vec3D &vTo);
 
-The ``createRotation`` methods and the``makeRotation`` methods is that the former allocate space for the result and return a pointer, while the latter return an object.
-A rotation is given by rotation angle and axis (components or ``Vec3D), or else by two ``Vec3D`` ojects. in the latter case a quaternion  is returned which corresponds to a rotatio arund an axis perpendicular to both ``vFrom`` and ``vTo``, which transforms ``vFrom`` to ``vTo``.
+The difference between the ``createRotation`` methods and the ``makeRotation`` methods is that the former allocate space for the result and return a pointer, while the latter return an object.
+A rotation is given by rotation angle and axis (components or ``Vec3D``), or else by two ``Vec3D`` ojects. in the latter case a quaternion  is returned which corresponds to a rotatio arund an axis perpendicular to both ``vFrom`` and ``vTo``, which transforms ``vFrom`` to ``vTo``.
 
 .. -----------------------------------------------------------------------------
 
