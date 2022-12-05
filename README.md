@@ -1,3 +1,4 @@
 # jodyxha.github.io
-# documentation for qhg4: https://jodyxha.github.io/QHG4
+# documentation for QHG4: https://jodyxha.github.io/QHG4
 
+QHG4 code: https://github.com/jodyxha/QHG4
