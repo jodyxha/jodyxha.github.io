@@ -1,0 +1,43 @@
+.. _Coastal_ref:
+
+Coastal
+=======
+
+This tool finds coastal cells (land cells with water in a given neighborhood) with a brute force search and marks corresponding cells in the m_adWater array of the Geography group in a QDF file. 
+
+Code: `Coastal.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/import/Coastal.cpp>`_
+
+
+Usage
+-----
+
+.. code-block:: bash
+
+  ${QHG4_DIR}/import/Coastal -i <input_qdf> -d <distance> -o <output_qdf>
+
+where
+
+``input_qdf``
+    a qdf file with a Geography (Altitude) group in which to search for coastal cells.
+
+``distance``
+    maximum distance to sea (in cell hops).
+
+``output_qdf``
+     output file (coastal written to DS 'Coastal' in the 'Geography' group.)
+
+.. image::   ../../images/water_coasts.png
+   :scale: 80%
+   :align: center
+
+Algorithm
+---------
+* loop through all cells ``C`` in the input file's grid.
+* if ``C`` has positive altitude then
+    * loop through all cells ``N`` in a ``d``-distabce of  ``C``
+    * if ``N`` has  negative altitude then
+        * set ``m_adCoastal[i]`` to 1 (where ``i`` is the index of ``C``)
+        * exit loop
+    * endif
+* end loop
+* write QDF file

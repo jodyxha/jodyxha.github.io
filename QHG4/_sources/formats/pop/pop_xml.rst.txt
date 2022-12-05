@@ -60,6 +60,7 @@ The DTD for population xml files:
 | A ``prio`` tags contains no subtags, but must have two attributes, one giving the name of the action and one giving its priority value.
 
 
+.. _pop_xml_example_ref:
 
 Example
 -------

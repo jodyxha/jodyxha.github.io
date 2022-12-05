@@ -7,14 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
     <title>ArrayShare &#8212; QHG4 4.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../static/jody.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jody.css" />
     
-    <script data-url_root="../../" id="documentation_options" src="../../static/documentation_options.js"></script>
-    <script src="../../static/jquery.js"></script>
-    <script src="../../static/underscore.js"></script>
-    <script src="../../static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../../static/doctools.js"></script>
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
     
     <link rel="shortcut icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -49,7 +50,8 @@
   <section id="arrayshare">
 <span id="arrayshare-ref"></span><h1>ArrayShare<a class="headerlink" href="#arrayshare" title="Permalink to this heading">¶</a></h1>
 <p class="hidden">This page describes the class <span class="target" id="index-0"></span>ArrayShare</p>
-<p>The class <code class="docutils literal notranslate"><span class="pre">ArrayShare</span></code> can be used to share arrays between different objects, e.g. populations.</p>
+<p>The class <code class="docutils literal notranslate"><span class="pre">ArrayShare</span></code> can be used to share arrays between different objects, e.g. populations or actions.</p>
+<p>The arrays must be registered in ArrayShare with a unique name. This name is subsequently used to access an array or to remove it.</p>
 <p>It is implemented as a singleton.</p>
 <p>The caller of <code class="docutils literal notranslate"><span class="pre">getArray()</span></code> should know the type of the array.</p>
 <p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/ArrayShare.h">ArrayShare.h</a>, <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/ArrayShare.cpp">ArrayShare.cpp</a></p>
@@ -315,7 +317,7 @@
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2022, jodyxha.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
     </div>
   </body>
 </html>

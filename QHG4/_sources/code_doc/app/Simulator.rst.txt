@@ -13,10 +13,8 @@ The class ``Simulator`` is derived from :ref:`SimParams<SimParams_ref>` and cont
 
 Code: `Simulator.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/app/Simulator.h>`_, `Simulator.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/app/Simulator.cpp>`_
 
-(@@TODO)
 
-
-
+-- _Simulator_processes_reg:
 
 .. figure:: ../../../images/flowchart2.png
 
@@ -35,12 +33,12 @@ in turn call the ``preLoop`` methods of all their actions.
 
 The actual simulation loops through a predefined number of steps, or until all populations have died out.
 
-In each step, all populations get to call their ``initializeStep()`` method which in turn call the ``initialize()`` methods for each of their actions.
+In each step, all populations get to call their ``initializeStep()`` method which in turn calls the ``initialize()`` methods for each of their actions.
 
 After this, a loop over all priority levels is started (here the lower priority levels come first), 
 to ensure that the order of the actions is ensured.
 
-For each priority level there is a loop over all populations, which call all their actions pertaining to this priority level.
+For each priority level there is a loop over all populations, which calls all their actions pertaining to this priority level.
 
 Each of these actions is then applied to each agent of the current population (in a parallelized loop). 
 

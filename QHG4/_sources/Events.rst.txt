@@ -43,8 +43,8 @@ event times and triggers
 | ``trigger-interval ::= "["[<minval>] ":" [<maxval>] "]"``
 
 | This form causes events to be triggered at time <minval>+k*<step-size>, for k = 0 ... (<maxval>-<minval>)/<step-size>.
-|     If <minval> is omitted, it is set to fNegInf,
-|     if <maxval> is omitted, it is set to fPosInf.
+|     If <minval> is omitted, it is set to minus infinity (``fNegInf``),
+|     if <maxval> is omitted, it is set to infinity (``fPosInf``).
 |     If <trigger-interval> is omitted, it is set to [fNegInf:fPosInf].
 
 | ``point-trigger    ::= "["<time>"]"``
@@ -188,7 +188,9 @@ Example
 
 Here is a full example for an eventlist:
 
-| ``--events='env|geo+climate:map120.qdf@[120],write|pop:GrassLover|grid@5+[20:30]1,comm|REMOVE ACTION sapiens:ConfinedMove@[3000]'``
+.. code-block:: bash
+
+    --events='env|geo+climate:map120.qdf@[120],write|pop:GrassLover|grid@5+[20:30]1,comm|REMOVE ACTION sapiens:ConfinedMove@[3000]'
 
 
 This 

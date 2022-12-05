@@ -8,7 +8,7 @@ There are various ways to highlight the differences between the populations.
 
 This tool requires the python modules ``h5py`` and ``numpy``  to be installed.
 
-Code: `compare_attrs.py <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils_qdf/compare_attrs.py>`_
+Code: `compare_attrs.py <https://github.com/jodyxha/QHG4/blob/main/QHG4/tools_qdf/compare_attrs.py>`_
 
 
 
@@ -45,7 +45,7 @@ where
 
 **Display Properties**
 
- .. code-block:: c++
+ .. code-block:: text
 
    global:       [on]     show "global" attributes not belonging to an action
    action:       [on]     show "action" atributes
@@ -67,7 +67,7 @@ where
 
 The display properties can be passed as a string composed of the following characters
 
-.. code-block:: c++
+.. code-block:: text
 
     'G' or 'g' - turn on or off property 'global'
     'A' or 'a' - turn on or off property 'action'
@@ -102,6 +102,8 @@ The following two parameters are equivalent
    
      ${QHG4_DIR}/tools_qdf/compare_attrs.py -d HdSaADeGn  xxx.qdf yyy.qdf zzzz.qdf
 
-gives an output like this:
+(Highlight differences, no short names, show action attributes, show differences only, don't force uniform column width, show global attributes, dont show number of agents)
+
+This command gives an output like this:
    
 .. image::   ../../images/compare_attrs2.png

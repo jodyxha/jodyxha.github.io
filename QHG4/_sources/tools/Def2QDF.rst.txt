@@ -82,7 +82,7 @@ The 'PERIODIC' key word causes the topology of the grid to be a torus (i.e. iden
 
 This creates an equal area icosahedron with 64 subdivisions. 
 Each cell has an altitude value corresponding to the earth's altitude at that coordinate.
-The valus are taken from the NETCDF file ``ETOPO1_Bed_g_gmt4.grd``.
+The values are taken from the NETCDF file ``ETOPO1_Bed_g_gmt4.grd``.
 The "0" means we want altitudes above sea level for the present day.
 
 
@@ -96,6 +96,6 @@ The "0" means we want altitudes above sea level for the present day.
     NPP NETCDF npp_timmermann.nc -20
 
 Creates an equal area icosahedron with 256 subdivisions. 
-Each cell has an altitude and npp values corresponding to the earth's altitude and npp at that coordinate.
+Each cell has an altitude and npp values corresponding to the earth's altitude and NPP at that coordinate.
 If the data file can't be found in the current directory, the directories listed under ``DATA_DIR`` are searched.
 The -20 in the ''ALT'' and ''NPP'' lines means we are interested in the data for the world 20'000 years ago.

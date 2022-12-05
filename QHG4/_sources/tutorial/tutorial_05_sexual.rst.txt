@@ -1,5 +1,8 @@
 .. _TutorialSexual_ref:
 
+.. |_| unicode:: 0xA0 0xA0 0xA0 0xA0
+   :trim:
+
 QHG Tutorial 05 - Sexual Reproduction
 =====================================
 
@@ -7,9 +10,28 @@ In this chapter we describe a class whose agent can, in addition to dying and mo
 
 For this we need to add one new action:  :ref:`RandomPair<RandomPair_ref>`.
 
-``RandomPair`` finds fertile males and females in each cell and pairs off as many as possible (by each agent's mate index to index of its partner). ALl othe mechanisms are the same as in the previous chapter, with exception that agents are not their own mates.
+``RandomPair`` finds fertile males and females in each cell and pairs off as many as possible (by each agent's mate index to index of its partner). 
+All othe mechanisms are the same as in the previous chapter, with the exception that agents are not their own mates.
 
-Code: `tut_SexualPop.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_SexualPop.h>`_ `tut_SexualPop.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_SexualPop.cpp>`_
+**Population code:**
+
+    | `tut_SexualPop.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_SexualPop.h>`_ |_|
+      `tut_SexualPop.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_SexualPop.cpp>`_
+
+**Action code:**
+
+    | `OldAge.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/OldAgeDeath.h>`_ |_|
+      `OldAge.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/OldAgeDeath.cpp>`_
+    | `AtanDeath.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/OldAgeDeath.h>`_ |_|
+      `AtanDeath.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/OldAgeDeath.cpp>`_ 
+    | `RandomMove.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/RandomMove.h>`_ |_|
+      `RandomMove.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/RandomMove.cpp>`_
+    | `Verhulst.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/Verhulst.h>`_ |_|
+      `Verhulst.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/Verhulst.cpp>`_
+    | `Fertilty.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/Fertility.h>`_ |_|
+      `Fertilty.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/Fertility.cpp>`_
+    | `RandomPair.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/RabdomPaiFertility.h>`_ |_|
+      `RandomPair.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/RabdomPaiFertility.cpp>`_
 
 The Header File
 ---------------

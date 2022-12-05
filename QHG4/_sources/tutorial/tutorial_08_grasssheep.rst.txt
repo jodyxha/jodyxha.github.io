@@ -1,0 +1,211 @@
+.. _TutorialGrassRabbit_ref:
+
+.. |_| unicode:: 0xA0 0xA0 0xA0 0xA0
+   :trim:
+
+QHG Tutorial 08 - Simple Predator-Prey
+======================================
+
+In this example we model a simple predator-prey system, consisting of 
+stationarsy agents (one per cell) representing grass,
+and moving agents representing sheep who like to eat grass.
+
+Sheep and grass populatins communcate with each other by means of
+shared arrays.
+
+.. figure:: ../../images/grasssheep_comm.png
+
+
+The Grass agents have a member variable mass, and an action :ref:`GrassManager<GrassManager_ref>`
+which increases the mass logistically to a maximum value.
+The mass can also be reduced, but only down to a minimum value.
+The mass to be subtracted is read from a shared array "grass_mass_consumed".
+The ``GrassManager`` fills the shared array "grass_mass_available" with the 
+available grass mass in each cell (the available mass is equal to the
+actual mass minus the minimum mass).
+
+There should only be **one** grass agent in each cell.
+
+The Sheep population uses the shared array "grass_mass_available"
+to create weighted random numbers for its :ref:`WeightedMove<WeightedMove_ref>` action.
+Over time sheep lose mass (this is done by the :ref:`Starver<Starver_ref>` action), and are
+killed when thei masses is below a minimum mass.
+The population's :ref:`SheepManager<SheepManager_ref>` action determines how much each sheep can 
+eat in each cell, and accordingly fills the shared array "grass_mass_consumed".
+The action :ref:`AnimalReproducer<AnimalReproducer_ref>` is in charge of the sheep agents' reproduction, which
+in this case is pathenogenetic (i.e. every agent can bear babies).
+
+**Population code:**
+
+    | `GrassPop.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/GrassPop.h>`_, |_|
+      `GrassPop.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/GrassPop.cpp>`_ 
+    | `SheepPop.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/SheepPop.h>`_,  |_|
+      `SheepPop.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/SheepPop.cpp>`_
+
+Action code: 
+
+    | `GrassManager.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/GrassManager.h>`_, |_|
+      `GrassManager.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/GrassManager.cpp>`_
+    | `SheepManager.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/SheepManager.h>`_, |_|
+      `SheepManager.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/SheepManager.cpp>`_
+    | `AnimalReproducer.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/AnimalReproducer.h>`_, |_|
+      `AnimalReproducer.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/SAnimalReproducer.cpp>`_
+    | `Starver.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/Starver.h>`_, |_|
+      `Starver.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/Starver.cpp>`_
+
+The Header Files (GrassPop)
+---------------------------
+
+The header file  ``GrassPop.h`` defines an agent with an (additional) member ``m_dMass``.
+The class also contains two shared arrays
+
+.. code-block:: c++
+
+
+    #ifndef __GRASSPOP_H__
+    #define __GRASSPOP_H__
+
+    #include <hdf5.h>
+
+    #include "SPopulation.h"
+    #include "GrassManager.h"
+
+    #define SHARE_GRASS_MASS_AVAILABLE "grass_mass_available"
+    #define SHARE_GRASS_MASS_CONSUMED  "grass_mass_consumed"
+
+    struct GrassAgent : Agent {
+        double m_dMass;
+    };
+
+    class GrassPop : public SPopulation<GrassAgent> {
+
+    public:
+        GrassPop(SCellGrid *pCG, PopFinder *pPopFinder, int iLayerSize, IDGen **apIDG, uint32_t *aulState, uint *aiSeeds);
+        ~GrassPop();
+
+        int addPopSpecificAgentData(int iAgentIndex, char **ppData);
+        void addPopSpecificAgentDataTypeQDF(hid_t *hAgentDataType);
+
+        int writeAdditionalDataQDF(hid_t hSpeciesGroup);
+    
+    protected:
+        GrassManager<GrassAgent> *m_pGM;
+
+        //shared arrays
+        double *m_pdGrassAvailable;
+        double *m_pdGrassConsumed;
+    };
+
+    #endif
+
+
+
+The Header File (SheepPop)
+--------------------------
+
+
+.. code-block:: c++
+
+    #ifndef __SHEEPPOP_H__
+    #define __SHEEPPOP_H__
+    
+    #include <hdf5.h>
+    
+    #include "SPopulation.h"
+    
+    #include "WeightedMove.h"
+    #include "SingleEvaluator.h"
+    #include "MultiEvaluator.h"
+    #include "SheepManager.h"
+    #include "Starver.h"
+    #include "AnimalReproducer.h"
+    
+    // here we just happen to know the share names
+    // perhaps we should store them in a singleton?
+    
+    // names for shares created by GrassPop
+    #define SHARE_GRASS_MASS_AVAILABLE  "grass_mass_available"
+    #define SHARE_GRASS_MASS_CONSUMED   "grass_mass_consumed"
+    
+
+``SheepPop`` expects the names of the two shared arrays to be "grass_mass_available" and  "grass_mass_consumed".
+ 
+.. code-block:: c++
+
+    struct SheepAgent : Agent {
+        double m_dMass;
+        double m_dBabyMass;
+    };
+
+Apart from the own mass, the mass of an agents newborn is specified.
+
+.. code-block:: c++
+
+    class SheepPop : public SPopulation<SheepAgent> {
+    
+     public:
+        SheepPop(SCellGrid *pCG, PopFinder *pPopFinder, int iLayerSize, IDGen **apIDG, uint32_t *aulState, uint *aiSeeds);
+        ~SheepPop();
+    
+        int preLoop();
+        int addPopSpecificAgentData(int iAgentIndex, char **ppData);
+        void addPopSpecificAgentDataTypeQDF(hid_t *hAgentDataType);
+        int makePopSpecificOffspring(int iAgent, int iMother, int iFather);
+    
+     protected:
+
+        // pointers to the action obkects
+        SingleEvaluator<SheepAgent>   *m_pSEGrass;
+        WeightedMove<SheepAgent>      *m_pWM;
+        SheepManager<SheepAgent>      *m_pRM;
+        Starver<SheepAgent>           *m_pRS;
+        AnimalReproducer<SheepAgent>  *m_pAR;
+        
+    
+        // the shared arrays
+        double    *m_pdGrassMassAvailable; 
+        double    *m_pdGrassMassConsumed;
+        
+        // the array of preferences: filled by ``m_pEGrass`` and used by ``*m_pWM''.
+        double    *m_adPreferences;
+    
+    };
+    
+    #endif
+    
+The Implmentation (GrassPop)
+----------------------------
+
+The Implmentation (GrassPop)
+----------------------------
+
+XML and DAT
+-----------
+
+Grid
+----
+
+For this example we use flat 500x500 geometry with torus identifications and uniform altitude
+.
+
+Compiling and Running
+---------------------
+
+
+Visualizing the results
+-----------------------
+
+A simulation with the attributes described above was run for x000 steps,
+starting from with a single sheep agent in the center of the field.
+Initially each grass agent has half of the maximum mass.
+
+After every 10 time steps a snapshot of the simulation state was made.
+These snapshots were turned into a video using VisIt's "Save as Movie..." command.
+
+The colors represent the maximum available grass mass in each cell (blue:0, red max).
+
+Each black dot represents a single sheep agent.
+
+.. raw:: html
+
+    <video controls width="800" src=" ../_static/movie_500_G3.mp4" type="video/mp4"  ></video> 

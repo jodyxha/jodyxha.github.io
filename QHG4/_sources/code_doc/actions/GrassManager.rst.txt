@@ -1,0 +1,188 @@
+.. _GrassManager_ref:
+
+GrassManager
+============
+
+.. rst-class:: hidden
+
+   This page describes the class :index:`GrassManager`
+
+The class ``GrassManager`` iis derivedfrom ``Action`` and 
+serves as a growth controller for populations whose agents have a mass member, 
+This class has been tailored for the use with ``GrassPop`` (see :ref:`QHG Tutorial 08 - Simple Predator-Prey<TutorialGrassRabbit_ref>`).
+
+This class lets the mass of all agents grow logistically up to a maximum attainable mass.
+
+It fills the shared array "" with the available masses in each xell, where available mass = actual mass - minimum mass.
+
+
+Code: 
+    | `GrassManager.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/GrassManager.h>`_ 
+    | `GrassManager.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/GrassManager.cpp>`_
+
+**Attributes**
+
++------------------------------------+----------------+---------------------------------+
+| ``ATTR_GRASSMAN_NAME``             | "GrassManager" | action name                     |
++------------------------------------+----------------+---------------------------------+
+| ``ATTR_GRASSMAN_MIN_MASS_NAME``    | "MinMass"      | minimum mass                    |
++------------------------------------+----------------+---------------------------------+
+| ``ATTR_GRASSMAN_MAX_MASS_NAME``    | "MaxMass"      | maximum attainable mass         |
++------------------------------------+----------------+---------------------------------+
+| ``ATTR_GRASSMAN_GROWTH_RATE_NAME`` | "GrowthRate"   | groeth rate                     |
++------------------------------------+----------------+---------------------------------+
+
+
+Public Methods
+--------------
+
+``constructor``
+^^^^^^^^^^^^^^^
+
+.. code-block:: c++
+
+   GrassManager(SPopulation<T> *pPop, SCellGrid *pCG, std::string sID,
+                const std::string sNameGrassMassAvail, const std::string sNameGrassMassConsumed);
+
+``pPop``
+    A pointer to the :ref:`SPopulation<SPopulation_ref>` object performing this action.
+
+``pCG``
+    A pointer to the  :ref:`SCellGrid<SCellGrid_ref>` object on which the simulation runs.
+
+``sID``
+    An ID for this action.
+
+``sNameGrassMassAvail``
+    Name of the shared array containing the per-cell available grass masses.
+
+``sNameGrassMassConsumed``
+    Name of the shared array containing the per-cell consumed grass masses.
+
+
+.. -----------------------------------------------------------------------------
+
+``destructor``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual ~GrassManager();
+
+The destructor destroy some openMP locks.
+
+.. -----------------------------------------------------------------------------
+
+``preLoop``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int preLoop();
+
+Loads the shared arrays and fills the array of available grass mass.
+
+.. -----------------------------------------------------------------------------
+
+``execute``
+^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int execute(int iAgentIndex, float fT);
+
+``iAgentIndex``
+    Index of the current agent.
+
+``fT``
+    Current simulation step.
+
+Increases the agents mass: :math:`m_A = r \cdot m_A \cdot (1 - m_A/m_{max})`, 
+where :math:`m_A` is the agent's mass, and :math:`r` is the growth rate.
+
+.. -----------------------------------------------------------------------------
+
+``finalize``
+^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int finalize(float fT);
+
+``fT``
+    Current simulation step.
+
+Removes the masses in the array of consumed masses from the corresponding agents and fills the array
+of available masses.
+
+.. -----------------------------------------------------------------------------
+
+``extractAttributesQDF``
+^^^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int extractAttributesQDF(hid_t hSpeciesGroup);
+
+``hSpeciesGroup``
+    HDF handle for the species group to read from.
+
+This method reads the atttributes of this action from a QDF.
+
+.. -----------------------------------------------------------------------------
+
+``writeAttributesQDF``
+^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int writeAttributesQDF(hid_t hSpeciesGroup);
+
+``hSpeciesGroup``
+    HDF handle for the species group to write to.
+
+This method writes the attributes of this action to the specified group in a QDF file.
+
+.. -----------------------------------------------------------------------------
+
+``tryGetAttributes``
+^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int tryGetAttributes(const ModuleComplex *pMC);
+
+``pMC``
+    A ``ModuleComplex`` object.
+
+Extracts the action's attributes from the ``ModuleComplex`` object.
+
+.. -----------------------------------------------------------------------------
+
+``modifyAttributes``
+^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int modifyAttributes(const std::string sAttrName, double dValue);
+
+`sAttrName``
+    Name of attribute to change.
+
+``dValue``
+    Value to set the attribute to.
+
+This method can change the values of :math:`m_{min}` (``ATTR_GRASSMAN_MIN_MASS_NAME``),
+:math:`m_{max}` (``ATTR_GRASSMAN_MAX_MASS_NAME``), or :math:`r` (``ATTR_GRASSMAN_GROWTH_RATE_NAME``).
+
+
+.. -----------------------------------------------------------------------------
+
+``isEqual``
+^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual bool isEqual(Action<T> *pAction, bool bStrict);
+
+``pAction``
+    Pointer to an action object to compare with this.
+
+``bStrict``
+    Strictness of comparisons (ignored here).
+
+``pAction`` is equal to ``this``, if it is a ``GrassManager`` object whose attributes match those of ``this``.
+
+.. ---------------------------------------------------------------------------<--
+

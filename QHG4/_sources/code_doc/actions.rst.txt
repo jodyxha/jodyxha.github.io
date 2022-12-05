@@ -1,3 +1,5 @@
+.. _actions_overview_ref:
+
 actions
 =======
 
@@ -60,15 +62,24 @@ The attributes for an action are passed to QHG by means of an :ref:`XML-file<pop
    actions/Verhulst
    actions/VerhulstVarK
    actions/OldAgeDeath
+   actions/ATanDeath
    actions/GetOld
-   
+   actions/AnimalReproducer
 
 ..
    actions/LinearBirthRel
    actions/LinearDeathRel
 
+**Nourishment and growth**
 
- 
+.. toctree::
+   :maxdepth: 1
+
+   actions/GrassManager
+   actions/NPPCapacity
+   actions/SheepManager
+   actions/Starver
+
 **Evaluators**  
 
 .. toctree::

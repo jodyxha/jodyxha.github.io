@@ -33,7 +33,6 @@ QHG4 comprises various tool in different locations.
 
 .. toctree::
    :maxdepth: 1
-   :caption: QDF population attributes
 
    tools/compare_attrs
 

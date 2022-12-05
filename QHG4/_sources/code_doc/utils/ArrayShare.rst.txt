@@ -7,7 +7,9 @@ ArrayShare
 
    This page describes the class :index:`ArrayShare`
 
-The class ``ArrayShare`` can be used to share arrays between different objects, e.g. populations.
+The class ``ArrayShare`` can be used to share arrays between different objects, e.g. populations or actions.
+
+The arrays must be registered in ArrayShare with a unique name. This name is subsequently used to access an array or to remove it.
 
 It is implemented as a singleton.
 

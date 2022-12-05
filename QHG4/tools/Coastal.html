@@ -1,0 +1,166 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Coastal &#8212; QHG4 4.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jody.css" />
+    
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    
+    <link rel="shortcut icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="VectorImport" href="VectorImport.html" />
+    <link rel="prev" title="Def2QDF" href="Def2QDF.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="VectorImport.html" title="VectorImport"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="Def2QDF.html" title="Def2QDF"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../tools.html" accesskey="U">Tools</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Coastal</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="coastal">
+<span id="coastal-ref"></span><h1>Coastal<a class="headerlink" href="#coastal" title="Permalink to this heading">¶</a></h1>
+<p>This tool finds coastal cells (land cells with water in a given neighborhood) with a brute force search and marks corresponding cells in the m_adWater array of the Geography group in a QDF file.</p>
+<p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/import/Coastal.cpp">Coastal.cpp</a></p>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="si">${</span><span class="nv">QHG4_DIR</span><span class="si">}</span>/import/Coastal -i &lt;input_qdf&gt; -d &lt;distance&gt; -o &lt;output_qdf&gt;
+</pre></div>
+</div>
+<p>where</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">input_qdf</span></code></dt><dd><p>a qdf file with a Geography (Altitude) group in which to search for coastal cells.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">distance</span></code></dt><dd><p>maximum distance to sea (in cell hops).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">output_qdf</span></code></dt><dd><p>output file (coastal written to DS ‘Coastal’ in the ‘Geography’ group.)</p>
+</dd>
+</dl>
+<a class="reference internal image-reference" href="../_images/water_coasts.png"><img alt="../_images/water_coasts.png" class="align-center" src="../_images/water_coasts.png" style="width: 548.0px; height: 547.2px;" /></a>
+</section>
+<section id="algorithm">
+<h2>Algorithm<a class="headerlink" href="#algorithm" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>loop through all cells <code class="docutils literal notranslate"><span class="pre">C</span></code> in the input file’s grid.</p></li>
+<li><dl class="simple">
+<dt>if <code class="docutils literal notranslate"><span class="pre">C</span></code> has positive altitude then</dt><dd><ul>
+<li><p>loop through all cells <code class="docutils literal notranslate"><span class="pre">N</span></code> in a <code class="docutils literal notranslate"><span class="pre">d</span></code>-distabce of  <code class="docutils literal notranslate"><span class="pre">C</span></code></p></li>
+<li><dl class="simple">
+<dt>if <code class="docutils literal notranslate"><span class="pre">N</span></code> has  negative altitude then</dt><dd><ul>
+<li><p>set <code class="docutils literal notranslate"><span class="pre">m_adCoastal[i]</span></code> to 1 (where <code class="docutils literal notranslate"><span class="pre">i</span></code> is the index of <code class="docutils literal notranslate"><span class="pre">C</span></code>)</p></li>
+<li><p>exit loop</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>endif</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>end loop</p></li>
+<li><p>write QDF file</p></li>
+</ul>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Coastal</a><ul>
+<li><a class="reference internal" href="#usage">Usage</a></li>
+<li><a class="reference internal" href="#algorithm">Algorithm</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="Def2QDF.html"
+                          title="previous chapter">Def2QDF</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="VectorImport.html"
+                          title="next chapter">VectorImport</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/tools/Coastal.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="VectorImport.html" title="VectorImport"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="Def2QDF.html" title="Def2QDF"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../tools.html" >Tools</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Coastal</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,20 @@
+ @import 'classic.css'; 
+
+code {
+    background-color: #ecf0f3;
+    padding: 0 1px 0 1px;
+    font-size: 1.3em;
+}
+
+.hidden { display: none }
+
+div.leftside {
+  width: 43%;
+  padding: 0px 3px 0px 0px;
+  float: left;
+}
+
+div.rightside {
+  margin-left: 45%;
+  /* float: right; */
+}

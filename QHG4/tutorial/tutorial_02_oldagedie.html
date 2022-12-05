@@ -7,20 +7,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
     <title>QHG Tutorial 02 - Aging and Death &#8212; QHG4 4.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../static/jody.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jody.css" />
     
-    <script data-url_root="../" id="documentation_options" src="../static/documentation_options.js"></script>
-    <script src="../static/jquery.js"></script>
-    <script src="../static/underscore.js"></script>
-    <script src="../static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../static/doctools.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     
     <link rel="shortcut icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="QHG Tutorial 03 - Moving" href="tutorial_03_move.html" />
-    <link rel="prev" title="QHG Tutorial 01 - A Static Population" href="tutorial_01static.html" /> 
+    <link rel="prev" title="QHG Tutorial 01 - A Static Population" href="tutorial_01_static.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -32,7 +33,7 @@
           <a href="tutorial_03_move.html" title="QHG Tutorial 03 - Moving"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="tutorial_01static.html" title="QHG Tutorial 01 - A Static Population"
+          <a href="tutorial_01_static.html" title="QHG Tutorial 01 - A Static Population"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">QHG4 4.1 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../tutorial.html" accesskey="U">QHG Tutorial</a> &#187;</li>
@@ -45,12 +46,24 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <section id="qhg-tutorial-02-aging-and-death">
-<span id="tutorialoldagedie-ref"></span><h1>QHG Tutorial 02 - Aging and Death<a class="headerlink" href="#qhg-tutorial-02-aging-and-death" title="Permalink to this heading">¶</a></h1>
+  <span class="target" id="tutorialoldagedie-ref"></span><section id="qhg-tutorial-02-aging-and-death">
+<h1>QHG Tutorial 02 - Aging and Death<a class="headerlink" href="#qhg-tutorial-02-aging-and-death" title="Permalink to this heading">¶</a></h1>
 <p>In this chapter we describe a class for a slightly more complex population class. In this class the agents have an age and die if they reach a certain maximum age.</p>
-<p>For this we need to add two actions: <a class="reference internal" href="../code_doc/actions/GetOld.html#getold-ref"><span class="std std-ref">GetOld</span></a> and <a class="reference internal" href="../code_doc/actions/OldAgeDeath.html#oldagedeath-ref"><span class="std std-ref">OldAgeDeath</span></a>.</p>
+<p>For this we need to add two actions: <a class="reference internal" href="../code_doc/actions/GetOld.html#getold-ref"><span class="std std-ref">GetOld</span></a> and <a class="reference internal" href="../code_doc/actions/ATanDeath.html#atandeath-ref"><span class="std std-ref">AtanDeath</span></a>.</p>
 <p><code class="docutils literal notranslate"><span class="pre">GetOld</span></code> increases the age at every simulation step, and <code class="docutils literal notranslate"><span class="pre">OldAgeDeath</span></code> kills the agents if their age is within a random interval of a specified maximum age.</p>
-<p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_OldAgeDiePop.h">tut_OldAgeDiePop.h</a> <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_OldAgeDiePop.cpp">tut_OldAgeDiePop.cpp</a></p>
+<p><strong>Population code:</strong></p>
+<blockquote>
+<div><div class="line-block">
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_OldAgeDiePop.h">tut_OldAgeDiePop.h</a>,    <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_OldAgeDiePop.cpp">tut_OldAgeDiePop.cpp</a></div>
+</div>
+</div></blockquote>
+<p><strong>Action code:</strong></p>
+<blockquote>
+<div><div class="line-block">
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/AtanDeath.h">AtanDeath.h</a>,    <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/AtanDeath.cpp">AtanDeath.cpp</a></div>
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/OldAgeDeath.h">OldAge.h</a>,    <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/OldAgeDeath.cpp">OldAge.cpp</a></div>
+</div>
+</div></blockquote>
 <section id="the-header-file">
 <h2>The Header File<a class="headerlink" href="#the-header-file" title="Permalink to this heading">¶</a></h2>
 <p>This class must include the header files for the two actions, and it also defines a derived agent structure which has an additional file for the agent’s age. This member is changed by <code class="docutils literal notranslate"><span class="pre">GetOld</span></code>, and read by <code class="docutils literal notranslate"><span class="pre">OldAgeDeath</span></code>.</p>
@@ -58,7 +71,7 @@
 <span class="cp">#define __TUT_OLDAGEDIEPOP_H__</span>
 
 <span class="c1">// the actions we will use</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;OldAgeDeath.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;AtanDeath.h&quot;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;GetOld.h&quot;</span><span class="cp"></span>
 
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;SPopulation.h&quot;</span><span class="cp"></span>
@@ -81,7 +94,7 @@
 <span class="k">protected</span><span class="o">:</span><span class="w"></span>
 
 <span class="w">    </span><span class="n">GetOld</span><span class="o">&lt;</span><span class="n">tut_OldAgeDieAgent</span><span class="o">&gt;</span><span class="w"> </span><span class="o">*</span><span class="n">m_pGO</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">OldAgeDeath</span><span class="o">&lt;</span><span class="n">tut_OldAgeDieAgent</span><span class="o">&gt;</span><span class="w"> </span><span class="o">*</span><span class="n">m_pOAD</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">AtanDeath</span><span class="o">&lt;</span><span class="n">tut_OldAgeDieAgent</span><span class="o">&gt;</span><span class="w"> </span><span class="o">*</span><span class="n">m_pAD</span><span class="p">;</span><span class="w"></span>
 
 <span class="p">};</span><span class="w"></span>
 <span class="cp">#endif</span>
@@ -104,7 +117,7 @@ to make sure the new member is read and written together with the rest of the ag
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Action.cpp&quot;</span><span class="cp"></span>
 
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;GetOld.cpp&quot;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;OldAgeDeath.cpp&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;AtanDeath.cpp&quot;</span><span class="cp"></span>
 
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;tut_OldAgeDiePop.h&quot;</span><span class="cp"></span>
 </pre></div>
@@ -117,9 +130,9 @@ to make sure the new member is read and written together with the rest of the ag
 <span class="w">    </span><span class="o">:</span><span class="w"> </span><span class="n">SPopulation</span><span class="o">&lt;</span><span class="n">tut_OldAgeDieAgent</span><span class="o">&gt;</span><span class="p">(</span><span class="n">pCG</span><span class="p">,</span><span class="w"> </span><span class="n">pPopFinder</span><span class="p">,</span><span class="w"> </span><span class="n">iLayerSize</span><span class="p">,</span><span class="w"> </span><span class="n">apIDG</span><span class="p">,</span><span class="w"> </span><span class="n">aulState</span><span class="p">,</span><span class="w"> </span><span class="n">aiSeeds</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 
 <span class="w">    </span><span class="n">m_pGO</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">GetOld</span><span class="o">&lt;</span><span class="n">tut_OldAgeDieAgent</span><span class="o">&gt;</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">m_pCG</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">m_pOAD</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">OldAgeDeath</span><span class="o">&lt;</span><span class="n">tut_OldAgeDieAgent</span><span class="o">&gt;</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">m_pCG</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">m_apWELL</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">m_pAD</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">AtanDeath</span><span class="o">&lt;</span><span class="n">tut_OldAgeDieAgent</span><span class="o">&gt;</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">m_pCG</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">m_apWELL</span><span class="p">);</span><span class="w"></span>
 
-<span class="w">    </span><span class="n">m_prio</span><span class="p">.</span><span class="n">addAction</span><span class="p">(</span><span class="n">m_pOAD</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">m_prio</span><span class="p">.</span><span class="n">addAction</span><span class="p">(</span><span class="n">m_pAD</span><span class="p">);</span><span class="w"></span>
 <span class="w">    </span><span class="n">m_prio</span><span class="p">.</span><span class="n">addAction</span><span class="p">(</span><span class="n">m_pGO</span><span class="p">);</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
@@ -130,7 +143,7 @@ to make sure the new member is read and written together with the rest of the ag
 <span class="c1">//</span>
 <span class="n">tut_OldAgeDiePop</span><span class="o">::~</span><span class="n">tut_OldAgeDiePop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="k">delete</span><span class="w"> </span><span class="n">m_pGO</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="k">delete</span><span class="w"> </span><span class="n">m_pOAD</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">delete</span><span class="w"> </span><span class="n">m_pAD</span><span class="p">;</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
@@ -161,7 +174,7 @@ to make sure the new member is read and written together with the rest of the ag
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
-<p><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_OldAgeDiePop.cpp">tut_OldAgeDiePop.cpp</a></p>
+<p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_OldAgeDiePop.cpp">tut_OldAgeDiePop.cpp</a></p>
 </section>
 <section id="xml-and-dat">
 <h2>XML and DAT<a class="headerlink" href="#xml-and-dat" title="Permalink to this heading">¶</a></h2>
@@ -316,7 +329,7 @@ Number of agents after last step
   </div>
   <div>
     <h4>Previous topic</h4>
-    <p class="topless"><a href="tutorial_01static.html"
+    <p class="topless"><a href="tutorial_01_static.html"
                           title="previous chapter">QHG Tutorial 01 - A Static Population</a></p>
   </div>
   <div>
@@ -355,7 +368,7 @@ Number of agents after last step
           <a href="tutorial_03_move.html" title="QHG Tutorial 03 - Moving"
              >next</a> |</li>
         <li class="right" >
-          <a href="tutorial_01static.html" title="QHG Tutorial 01 - A Static Population"
+          <a href="tutorial_01_static.html" title="QHG Tutorial 01 - A Static Population"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">QHG4 4.1 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../tutorial.html" >QHG Tutorial</a> &#187;</li>
@@ -364,7 +377,7 @@ Number of agents after last step
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2022, jodyxha.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
     </div>
   </body>
 </html>

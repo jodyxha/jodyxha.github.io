@@ -1,5 +1,9 @@
 .. _TutorialEnvironAlt_ref:
 
+.. |_| unicode:: 0xA0 0xA0 0xA0 0xA0
+   :trim:
+
+
 QHG Tutorial 06 - Environment Interaction I
 ===========================================
 
@@ -18,7 +22,27 @@ To each cell the ``SingleEvaluator`` assigns preference values (usually by means
     Those indexes are selected with a probability proportional to the preference values of he corresponding cells
 
 
-Code: `tut_EnvironAltPop.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_EnvironAltPop.h>`_ `tut_EnvironAltPop.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_EnvironAltPop.cpp>`_
+**Population code:**
+
+    | `tut_EnvironAltPop.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_EnvironAltPop.h>`_ |_|
+      `tut_EnvironAltPop.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_EnvironAltPop.cpp>`_
+
+**Action code:**
+
+    | `OldAge.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/OldAgeDeath.h>`_ |_|
+      `OldAge.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/OldAgeDeath.cpp>`_
+    | `AtanDeath.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/OldAgeDeath.h>`_ |_|
+      `AtanDeath.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/OldAgeDeath.cpp>`_ 
+    | `Verhulst.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/Verhulst.h>`_ |_|
+      `Verhulst.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/Verhulst.cpp>`_
+    | `Fertilty.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/Fertility.h>`_ |_|
+      `Fertilty.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/Fertility.cpp>`_
+    | `RandomPair.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/RabdomPaiFertility.h>`_ |_|
+      `RandomPair.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/RabdomPaiFertility.cpp>`_
+    | `SingleEvaluator.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/SingleEvaluator.h>`_ |_|
+      `SingleEvaluator.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/SingleEvaluator.cpp>`_
+    | `WeightedMove.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/WeightedMove.h>`_ |_|
+      `WeightedMove.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/WeightedMove.cpp>`_
 
 
 The Header File

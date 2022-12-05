@@ -1,12 +1,22 @@
 .. _TutorialStatic_ref:
 
+.. |_| unicode:: 0xA0 0xA0 0xA0 0xA0
+   :trim:
+
 QHG Tutorial 01 - A Static Population
 =====================================
 
 In this chapter we describe a class for the simplest agents possible: 
 they just exist - no agents die, no agents are born, and no agents move.
 
-Code: `tut_StaticPop.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_StaticPop.h>`_ `tut_StaticPop.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_StaticPop.cpp>`_
+**Population code:**
+
+   | `tut_StaticPop.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_StaticPop.h>`_ . |_| 
+     `tut_StaticPop.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_StaticPop.cpp>`_
+
+**Action code:**
+
+   (none)
 
 The Header File
 ---------------

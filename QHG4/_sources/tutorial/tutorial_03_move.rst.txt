@@ -1,11 +1,28 @@
 .. _TutorialMove_ref:
 
+.. |_| unicode:: 0xA0 0xA0 0xA0 0xA0
+   :trim:
+
 QHG Tutorial 03 - Moving
 ========================
 
 In this chapter we describe a class which, in addition to aging and dying also lets agents move randomly between cells.
 
 To get the agents moving we use the action class :ref:`RandomMove<RandomMove_ref>`.
+
+**Population code:**
+
+    | `tut_Move.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_MovePop.h>`_. |_| 
+      `tut_Move.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_MovePop.cpp>`_ 
+
+**Action code:**
+
+    | `OldAge.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/OldAgeDeath.h>`_, |_| 
+      `OldAge.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/OldAgeDeath.cpp>`_
+    | `AtanDeath.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/OldAgeDeath.h>`_, |_|
+      `AtanDeath.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/OldAgeDeath.cpp>`_ 
+    | `RandomMove.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/RandomMove.h>`_, |_| 
+      `RandomMove.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/RandomMove.cpp>`_
 
 
 The Header File
