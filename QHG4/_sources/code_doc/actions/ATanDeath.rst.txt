@@ -12,20 +12,21 @@ To calculate a death-probability for a given age we use a function :math:`d_p` d
 
 :math:`d_p(a) = 0 \;\;\; \forall a \in [-\infty, a_c - w]`, 
 
-:math:`d_p(a) = 0.5 + h \cdot tan^{-1}(s \cdot (a - a_{c}))/\pi \; \forall a \in [a_c - w, a_c + w]`,
+:math:`d_p(a) = 0.5 + h \cdot tan^{-1}(r \cdot (a - a_{c}))/\pi \; \forall a \in [a_c - w, a_c + w]`,
 
 :math:`d_p(a) = 1 \;\;\; \forall a \in [a_c + w, \infty]`,
 
-where :math:`w` is a positive real number, and :math;`s` is the slope at the inflection point. and the scaling factor
+where :math:`w` is a positive real number, and :math:`r` is the slope at the inflection point, and the scaling factor
 
-:math: h = ( \pi \over/2 - \epsilon)/tan^{-1}(s \cdot w)`
+:math:`h = ( \frac{\pi}{2} - \varepsilon)/tan^{-1}(s \cdot w)`
 
 
 .. figure:: ../../../images/atan.png
 
-The translation brings the inflection point of the curve to the ccordinates :math:`/a_{max}, 0)`,
-and the scaling is set to a value such that function :math_`d_p(a_c+w) = 1`.
+The translation brings the inflection point of the curve to the ccordinates :math:`(a_c, 0.5)`,
+and the scaling is set to a value such that function :math:`d_p(a_c+w) = 1`.
 
+This definition ensures that agents older than :math:`a_c+w` will certainly die.
 
 **Attribnutes**
 
@@ -36,7 +37,7 @@ and the scaling is set to a value such that function :math_`d_p(a_c+w) = 1`.
 +--------------------------------+---------------------+---------------------------------------------+
 | ``ATTR_ATANDEATH_RANGE_NAME``  | "ATanDeath_range"   | half width of variable interval (:math:`w`) |
 +--------------------------------+---------------------+---------------------------------------------+
-| ``ATTR_ATANDEATH_SLOPE_NAME``  | "ATanDeath_slope"   | slope at inflection point (:math:`s`)       |
+| ``ATTR_ATANDEATH_SLOPE_NAME``  | "ATanDeath_slope"   | slope at inflection point (:math:`r`)       |
 +--------------------------------+---------------------+---------------------------------------------+
 
 Public Methods
@@ -47,7 +48,7 @@ Public Methods
 
 .. code-block:: c++
 
-   ATanDeath(SPopulation<T> *pPop, SCellGrid *pCG, std::string sID, WELL512 **apWELL);,                const std::string sNameGrassMassAvail, const std::string sNameGrassMassConsumed);
+   ATanDeath(SPopulation<T> *pPop, SCellGrid *pCG, std::string sID, WELL512 **apWELL);,     
 
 ``pPop``
     A pointer to the :ref:`SPopulation<SPopulation_ref>` object performing this action.

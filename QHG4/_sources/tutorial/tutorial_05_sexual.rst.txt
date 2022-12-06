@@ -356,7 +356,7 @@ The config file ``tutorial_05.cfg`` was created when the tutorial directories we
     The files for population attributes (``tut_SexualPop.xml``) and agent attributes (``tut_SexualPop.dat``). These files were created by ``build_tut_dirs.py``.
 
 ``shuffle`` 
-    A kiind of seed for the random nummber generators. Same ``shuffle`` values result in identical simulations.
+    A kind of seed for the random number generators. Same ``shuffle`` values result in identical simulations.
 
 ``start-time``
     The 'real' time corresponding to step 0.

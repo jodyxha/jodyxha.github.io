@@ -54,19 +54,16 @@
 <p>The class <code class="docutils literal notranslate"><span class="pre">ATanDeath</span></code> is derived from <code class="docutils literal notranslate"><span class="pre">Action</span></code> and serves as an age cut-off (probability-based deaths such as in <code class="docutils literal notranslate"><span class="pre">LinearDeath</span></code> make it possible that lucky agents can be hundreds of years old).
 To calculate a death-probability for a given age we use a function <span class="math notranslate nohighlight">\(d_p\)</span> defined as foolowse;</p>
 <p><span class="math notranslate nohighlight">\(d_p(a) = 0 \;\;\; \forall a \in [-\infty, a_c - w]\)</span>,</p>
-<p><span class="math notranslate nohighlight">\(d_p(a) = 0.5 + h \cdot tan^{-1}(s \cdot (a - a_{c}))/\pi \; \forall a \in [a_c - w, a_c + w]\)</span>,</p>
+<p><span class="math notranslate nohighlight">\(d_p(a) = 0.5 + h \cdot tan^{-1}(r \cdot (a - a_{c}))/\pi \; \forall a \in [a_c - w, a_c + w]\)</span>,</p>
 <p><span class="math notranslate nohighlight">\(d_p(a) = 1 \;\;\; \forall a \in [a_c + w, \infty]\)</span>,</p>
-<p>where <span class="math notranslate nohighlight">\(w\)</span> is a positive real number, and :math;`s` is the slope at the inflection point. and the scaling factor</p>
-<dl class="field-list simple">
-<dt class="field-odd">math<span class="colon">:</span></dt>
-<dd class="field-odd"><p>h = ( pi over/2 - epsilon)/tan^{-1}(s cdot w)`</p>
-</dd>
-</dl>
+<p>where <span class="math notranslate nohighlight">\(w\)</span> is a positive real number, and <span class="math notranslate nohighlight">\(r\)</span> is the slope at the inflection point, and the scaling factor</p>
+<p><span class="math notranslate nohighlight">\(h = ( \frac{\pi}{2} - \varepsilon)/tan^{-1}(s \cdot w)\)</span></p>
 <figure class="align-default">
 <img alt="../../_images/atan.png" src="../../_images/atan.png" />
 </figure>
-<p>The translation brings the inflection point of the curve to the ccordinates <span class="math notranslate nohighlight">\(/a_{max}, 0)\)</span>,
-and the scaling is set to a value such that function :math_`d_p(a_c+w) = 1`.</p>
+<p>The translation brings the inflection point of the curve to the ccordinates <span class="math notranslate nohighlight">\((a_c, 0.5)\)</span>,
+and the scaling is set to a value such that function <span class="math notranslate nohighlight">\(d_p(a_c+w) = 1\)</span>.</p>
+<p>This definition ensures that agents older than <span class="math notranslate nohighlight">\(a_c+w\)</span> will certainly die.</p>
 <p><strong>Attribnutes</strong></p>
 <table class="docutils align-default">
 <tbody>
@@ -84,7 +81,7 @@ and the scaling is set to a value such that function :math_`d_p(a_c+w) = 1`.</p>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ATTR_ATANDEATH_SLOPE_NAME</span></code></p></td>
 <td><p>“ATanDeath_slope”</p></td>
-<td><p>slope at inflection point (<span class="math notranslate nohighlight">\(s\)</span>)</p></td>
+<td><p>slope at inflection point (<span class="math notranslate nohighlight">\(r\)</span>)</p></td>
 </tr>
 </tbody>
 </table>
@@ -92,7 +89,7 @@ and the scaling is set to a value such that function :math_`d_p(a_c+w) = 1`.</p>
 <h2>Public Methods<a class="headerlink" href="#public-methods" title="Permalink to this heading">¶</a></h2>
 <section id="constructor">
 <h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#constructor" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">ATanDeath</span><span class="p">(</span><span class="n">SPopulation</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="o">*</span><span class="n">pPop</span><span class="p">,</span><span class="w"> </span><span class="n">SCellGrid</span><span class="w"> </span><span class="o">*</span><span class="n">pCG</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sID</span><span class="p">,</span><span class="w"> </span><span class="n">WELL512</span><span class="w"> </span><span class="o">**</span><span class="n">apWELL</span><span class="p">);,</span><span class="w">                </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sNameGrassMassAvail</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sNameGrassMassConsumed</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">ATanDeath</span><span class="p">(</span><span class="n">SPopulation</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="o">*</span><span class="n">pPop</span><span class="p">,</span><span class="w"> </span><span class="n">SCellGrid</span><span class="w"> </span><span class="o">*</span><span class="n">pCG</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sID</span><span class="p">,</span><span class="w"> </span><span class="n">WELL512</span><span class="w"> </span><span class="o">**</span><span class="n">apWELL</span><span class="p">);,</span><span class="w"></span>
 </pre></div>
 </div>
 <dl class="simple">

@@ -185,10 +185,10 @@ The config file ``tutorial_01.cfg`` was created when the tutorial directories we
     --log-file=tutorial_01.log 
     --num-iters=200 
     --output-dir=output/tutorial_01
-    --output-prefix=nnn 
+    --output-prefix=tut 
     --pops='tut_Static.xml:tut_Static.dat' 
     --shuffle=92244 
-    --start-time=-200 
+    --start-time=0 
 
 ``data-dirs``
     A list of directories to search for data (not relevant for the static populations).
@@ -215,7 +215,7 @@ The config file ``tutorial_01.cfg`` was created when the tutorial directories we
     The files for population attributes (``tut_Static.xml``) and agent attributes (``tut_Static.dat``). These files were created by ``build_tut_dirs.py``.
 
 ``shuffle`` 
-    A kiind of seed for the random nummber generators. Same ``shuffle`` values result in idfentical simulations.
+    A kind of seed for the random number generators. Same ``shuffle`` values result in idfentical simulations.
 
 ``start-time``
     The 'real' time corresponding to step 0.

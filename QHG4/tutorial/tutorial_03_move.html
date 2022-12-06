@@ -248,14 +248,14 @@ This copies all relevant files to the tutorial subdirectories.</p>
 --log-file=tutorial_03.log
 --num-iters=200
 --output-dir=output/tutorial_03
---output-prefix=nnn
+--output-prefix=tut
 --pops=&#39;tut_Move.xml:tut_Move.dat&#39;
 --shuffle=92244
---start-time=-200
+--start-time=0
 </pre></div>
 </div>
 <dl class="simple">
-<dt><code class="docutils literal notranslate"><span class="pre">data-dirs</span></code></dt><dd><p>A list of directories to search for data (not relevant for the static populations).</p>
+<dt><code class="docutils literal notranslate"><span class="pre">data-dirs</span></code></dt><dd><p>A list of directories to search for data</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">events</span></code></dt><dd><p>A list of events (see <a class="reference internal" href="../Events.html#events-ref"><span class="std std-ref">Events</span></a>). Here a single event is defined: write output at step 20000 (or at the end of the simulation run).</p>
 </dd>
@@ -286,7 +286,7 @@ This copies all relevant files to the tutorial subdirectories.</p>
 <p>We assume that you have created the tutorial directories with the script <a class="reference internal" href="../tools/build_tut_dirs.html#build-tut-dirs-ref"><span class="std std-ref">build_tut_dirs.py</span></a>.
 This copies all relevant files to the tutorial subdirectories.</p>
 <p>First lets create alternative population and action directories with the script <a class="reference internal" href="../tools/build_alt_modpop.html#build-alt-modpop-ref"><span class="std std-ref">build_alt_modpop.py</span></a>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="si">${</span><span class="nv">QHG4_DIR</span><span class="si">}</span>/useful_stuff/build_alt_modpop.py tut_03 tut_StaticPop
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="si">${</span><span class="nv">QHG4_DIR</span><span class="si">}</span>/useful_stuff/build_alt_modpop.py tut_03 tut_MovePop
 </pre></div>
 </div>
 <p>This builds alternative population directories <code class="docutils literal notranslate"><span class="pre">tut_03_pop</span></code> and <code class="docutils literal notranslate"><span class="pre">tut_03_mod</span></code>.</p>
@@ -314,7 +314,7 @@ This copies all relevant files to the tutorial subdirectories.</p>
 </pre></div>
 </div>
 <dl class="simple">
-<dt><code class="docutils literal notranslate"><span class="pre">data-dirs</span></code></dt><dd><p>A list of directories to search for data (not relevant for the static populations).</p>
+<dt><code class="docutils literal notranslate"><span class="pre">data-dirs</span></code></dt><dd><p>A list of directories to search for data.</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">events</span></code></dt><dd><p>A list of events (see <a class="reference internal" href="../Events.html#events-ref"><span class="std std-ref">Events</span></a>). Here a single event is defined: write output at step 20000 (or at the end of the simulation run).</p>
 </dd>
@@ -330,7 +330,7 @@ This copies all relevant files to the tutorial subdirectories.</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">pops</span></code></dt><dd><p>The files for population attributes (<code class="docutils literal notranslate"><span class="pre">tut_Move.xml</span></code>) and agent attributes (<code class="docutils literal notranslate"><span class="pre">tut_Move.dat</span></code>). These files were created by <code class="docutils literal notranslate"><span class="pre">build_tut_dirs.py</span></code>.</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">shuffle</span></code></dt><dd><p>A kind of seed for the random nummber generators. Same <code class="docutils literal notranslate"><span class="pre">shuffle</span></code> values result in idfentical simulations.</p>
+<dt><code class="docutils literal notranslate"><span class="pre">shuffle</span></code></dt><dd><p>A kind of seed for the random number generators. Same <code class="docutils literal notranslate"><span class="pre">shuffle</span></code> values result in idfentical simulations.</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">start-time</span></code></dt><dd><p>The ‘real’ time corresponding to step 0.</p>
 </dd>
@@ -344,7 +344,7 @@ If the simulation does not run, there’s a chance that you find th readoon why 
 <p>The second part is a list of every step describing the numbers of births, deaths and moves, as well as the time the step took to execute.</p>
 <p>At the end there is a short summary of the state at the end of the program: number of iterations, total time of execution, nuber of surviving agents.
 This is follwed by the contents of the log file.</p>
-<p>If you look at the output for the steps, you see tat there are still no births, but there are moves an deaths:</p>
+<p>If you look at the output for the steps, you see that there are still no births, but there are moves an deaths:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>After step 45 (0.000115 s): total       20 agents
   sapiens       0 births r
   sapiens       0 deaths r

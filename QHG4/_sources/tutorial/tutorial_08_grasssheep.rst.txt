@@ -173,23 +173,167 @@ Apart from the own mass, the mass of an agents newborn is specified.
     
     #endif
     
-The Implmentation (GrassPop)
-----------------------------
+The Implementation (GrassPop)
+-----------------------------
 
-The Implmentation (GrassPop)
-----------------------------
+The Implementation (SheepPop)
+-----------------------------
 
 XML and DAT
 -----------
 
+The xml file for "GrassPop" is simple:
+
+.. code-block::xml
+
+    <class name="GrassPop" species_name="grass" species_id="104">
+
+      <module name="GrassManager">
+        <param  name="MinMass"    value="1.0"/>
+        <param  name="MaxMass"    value="10.0"/>
+        <param  name="GrowthRate" value="0.008"/>
+      </module>
+
+      <priorities>
+        <prio  name="GrassManager" value="1"/>
+      </priorities>
+
+    </class>
+
+The dat file for GrassPop contains 250'000 entries (on for each cell in the 500x5000 grid)
+
+.. code-block::text
+
+    #(NodeID);LifeState;AgentID;BirthTime;Gender;Age
+    (0);1;0;-10;0;5
+    (1);1;1;-10;0;5
+    (2);1;2;-10;0;5
+    ...
+
+The xml for SheepPop must provide values for all action attributes:
+
+.. code-block::xml
+
+    <class name="SheepPop" species_name="sheep" species_id="105">
+
+      <module name="WeightedMove">
+        <param  name="WeightedMove_prob" value="0.1"/>
+      </module>
+  
+      <module name="SingleEvaluator" id="Grass" >
+      </module>
+
+      <module name="Starver">
+        <param  name="StarveMass" value="0.4"/>
+        <param  name="MassDecay" value="0.1"/>
+      </module>
+
+      <module name="AnimalReproducer">
+        <param  name="MassFert" value="6.0"/>
+        <param  name="MassBaby" value="3.0"/>
+        <param  name="BirthProb" value="0.2"/>
+      </module>
+
+      <priorities>
+        <prio  name="SheepManager" value="2"/>
+        <prio  name="AnimalReproducer" value="4"/>
+        <prio  name="SingleEvaluator[Grass]" value="5"/>
+        <prio  name="WeightedMove" value="6"/>
+        <prio  name="Starver" value="7"/>
+      </priorities>
+    </class>
+
+In the dat file there is only one agent placed in the middle of the field:
+
+.. code-block::text
+
+    #(NodeID);LifeState;AgentID;BirthTime;Gender;Age
+    (125250);1;0;-10.0;0;8
+
+
 Grid
 ----
 
-For this example we use flat 500x500 geometry with torus identifications and uniform altitude
-.
+For this example we use flat 500x500 geometry with torus identifications and uniform altitude (250'000 cells).
+
 
 Compiling and Running
 ---------------------
+
+Assuming that you have created the tutorial directories with the script :ref:`build_tut_dirs.py<build_tut_dirs_ref>`,
+
+lets first create alternative population and action directories with the script :ref:`build_alt_modpop.py<build_alt_modpop_ref>`:
+
+.. code-block:: bash
+
+    ${QHG4_DIR}/useful_stuff/build_alt_modpop.py tut_08 GrassPop SheepPop
+
+This builds alternative population directories ``tut_08_pop`` and ``tut_08_mod`` with the files needed to compile ``GrassPop`` and SheepPop``.
+
+To compile, change to the QHG4 root directory and type:
+
+.. code-block:: bash
+
+    OPT=1 SHORT=tut_08 make clean QHGMain
+
+Here we set the environemnt variable ``OPT`` to get optimized compilation (see :ref:`Compiling QHG<Compiling_QHG_ref>`)
+
+Now cd to the tutorial subdirectory ``tutorial_08`` and start QHGMain
+
+.. code-block:: bash
+
+    ${QHG4_DIR}/app/QHGMain --read-config=tutorial_08.cfg > tutorial_08.out
+
+This tells QHGMain to read the parameters from  the file ``tutorial_08.cfg`` and write all output to the file ``tutorial_08.out`` (this output contains more information than the logfile)
+
+The config file ``tutorial_08.cfg`` was created when the tutorial directories were created with ``build_tut_dirs.py``.
+
+.. code-block:: text
+
+    --data-dirs=${QHG4_DIR}/tutorial_data/grids/
+    --events='write|grid+geo+pop:grass~+pop:sheep#@10'
+    --grid=torus_500x500.qdf
+    --log-file=tutorial_08.log 
+    --num-iters=5000
+    --output-dir=output/tutorial_08
+    --output-prefix=tut
+    --pops='tut_Grass.xml:tut_Grass.dat,tut_Sheep.xml:tut_Sheep.dat'
+    --shuffle=92244
+    --start-time=0
+
+  
+``data-dirs``
+    A list of directories to search for data.
+
+``events``
+    A list of events (see :ref:`Events<Events_ref>`). Here we write output files every 10 steps, containing the additional data arrays of GrassPop (in this case the array of available grassmass) but not the agent data, 
+    and for SheepPop only the agent data is written.
+
+``grid``
+    Path to the grid on which to run the simulation, in this case the 500x500 torus.
+
+``log-file``
+    Log file for 'high level' messages. 
+
+``num-iters``
+    Number of iterations for the simulation (5000 steps)
+
+``output-dir``
+    Output directory for qdf files.
+
+``output-prefix``
+    A prefix prepended to the names of all output files
+
+``pops``
+    The files for population attributes (``tut_Grass_500x500.xml``, ``tut_Sheep_500x500.xml``) and agent attributes (``tut_SexualPop.dat``). These files were created by ``build_tut_dirs.py``.
+
+``shuffle`` 
+    A kiind of seed for the random nummber generators. Same ``shuffle`` values result in identical simulations.
+
+``start-time``
+    The 'real' time corresponding to step 0.
+
+
 
 
 Visualizing the results

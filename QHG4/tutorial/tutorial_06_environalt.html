@@ -370,7 +370,7 @@ with the exception that we moved the starting point to South Africa.</p>
 --output-dir=output/tutorial_06
 --output-prefix=tut
 --pops=&#39;tut_EnvironAlt.xml:tut_EnvironAlt.dat&#39;
---shuffle=715278
+--shuffle=92244
 --start-time=-10000
 </pre></div>
 </div>
@@ -391,7 +391,7 @@ with the exception that we moved the starting point to South Africa.</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">pops</span></code></dt><dd><p>The files for population attributes (<code class="docutils literal notranslate"><span class="pre">tut_SexualPop.xml</span></code>) and agent attributes (<code class="docutils literal notranslate"><span class="pre">tut_SexualPop.dat</span></code>). These files were created by <code class="docutils literal notranslate"><span class="pre">build_tut_dirs.py</span></code>.</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">shuffle</span></code></dt><dd><p>A kiind of seed for the random nummber generators. Same <code class="docutils literal notranslate"><span class="pre">shuffle</span></code> values result in identical simulations.</p>
+<dt><code class="docutils literal notranslate"><span class="pre">shuffle</span></code></dt><dd><p>A kind of seed for the random number generators. Same <code class="docutils literal notranslate"><span class="pre">shuffle</span></code> values result in identical simulations.</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">start-time</span></code></dt><dd><p>The ‘real’ time corresponding to step 0.</p>
 </dd>
@@ -405,13 +405,14 @@ These QDF files can be visualized in two ways:</p>
 <h3><code class="docutils literal notranslate"><span class="pre">QDF2PNFNew</span></code><a class="headerlink" href="#qdf2pnfnew" title="Permalink to this heading">¶</a></h3>
 <p>The tool <a class="reference internal" href="../tools/QDF2PNGNew.html#qdf2pngnew-ref"><span class="std std-ref">QDF2PNGNew</span></a> projects data from the icosahedral grid to a plain rectilinear image.
 The images below were produced with calls like this:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./QDF2PNGNew -g ~/tutorials/tutorial_06/output/tutorial_06/tut_pop-sapiens_SG_003000.qdf <span class="se">\</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="si">${</span><span class="nv">QHG4_DIR</span><span class="si">}</span>/tools_io/QDF2PNGNew -g ~/tutorials/tutorial_06/output/tutorial_06/tut_pop-sapiens_SG_003000.qdf <span class="se">\</span>
              -q ~/tutorials/tutorial_06/output/tutorial_06/tut_pop-sapiens_SG_003000.qdf <span class="se">\</span>
              -s 720x360 -o tut06_003000.png <span class="se">\</span>
              -a  <span class="s1">&#39;alt|geo:-6000:0:6000,pop_sapiens|fadeout:0:10:#FFFF00FF&#39;</span> <span class="se">\</span>
              -r -25 -c over -t <span class="s2">&quot;step 3000&quot;</span>
 </pre></div>
 </div>
+<p>(replace “~/tutorials” with the name you gave for the tutorials directory)</p>
 <p>For details on how to call  <code class="docutils literal notranslate"><span class="pre">QDF2PNGNew</span></code>, refer to <a class="reference internal" href="../tools/QDF2PNGNew.html#qdf2pngnew-ref"><span class="std std-ref">its documentation</span></a>.</p>
 <figure class="align-default" id="id4">
 <img alt="../_images/tut06_Multi3.png" src="../_images/tut06_Multi3.png" />

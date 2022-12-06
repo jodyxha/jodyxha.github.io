@@ -419,7 +419,7 @@ The config file ``tutorial_06.cfg`` was created when the tutorial directories we
     --output-dir=output/tutorial_06
     --output-prefix=tut 
     --pops='tut_EnvironAlt.xml:tut_EnvironAlt.dat' 
-    --shuffle=715278 
+    --shuffle=92244 
     --start-time=-10000 
 
 
@@ -448,7 +448,7 @@ The config file ``tutorial_06.cfg`` was created when the tutorial directories we
     The files for population attributes (``tut_SexualPop.xml``) and agent attributes (``tut_SexualPop.dat``). These files were created by ``build_tut_dirs.py``.
 
 ``shuffle`` 
-    A kiind of seed for the random nummber generators. Same ``shuffle`` values result in identical simulations.
+    A kind of seed for the random number generators. Same ``shuffle`` values result in identical simulations.
 
 ``start-time``
     The 'real' time corresponding to step 0.
@@ -469,11 +469,13 @@ The images below were produced with calls like this:
 
 .. code-block:: bash
 
-    ./QDF2PNGNew -g ~/tutorials/tutorial_06/output/tutorial_06/tut_pop-sapiens_SG_003000.qdf \
+    ${QHG4_DIR}/tools_io/QDF2PNGNew -g ~/tutorials/tutorial_06/output/tutorial_06/tut_pop-sapiens_SG_003000.qdf \
                  -q ~/tutorials/tutorial_06/output/tutorial_06/tut_pop-sapiens_SG_003000.qdf \
                  -s 720x360 -o tut06_003000.png \
                  -a  'alt|geo:-6000:0:6000,pop_sapiens|fadeout:0:10:#FFFF00FF' \
                  -r -25 -c over -t "step 3000"
+
+(replace "~/tutorials" with the name you gave for the tutorials directory)
 
 For details on how to call  ``QDF2PNGNew``, refer to :ref:`its documentation<QDF2PNGNew_ref>`.
 
