@@ -7,15 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
     <title>QHG Tutorial 06 - Environment Interaction I &#8212; QHG4 4.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/jody.css" />
+    <link rel="stylesheet" type="text/css" href="../static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../static/jody.css" />
     
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/sphinx_highlight.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../static/documentation_options.js"></script>
+    <script src="../static/jquery.js"></script>
+    <script src="../static/underscore.js"></script>
+    <script src="../static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../static/doctools.js"></script>
+    <script src="../static/sphinx_highlight.js"></script>
     
     <link rel="shortcut icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -52,7 +52,7 @@
 <p>To do this we use a <a class="reference internal" href="../code_doc/actions/SingleEvaluator.html#singleevaluator-ref"><span class="std std-ref">SingleEvaluator</span></a>, and replace the <a class="reference internal" href="../code_doc/actions/RandomMove.html#randommove-ref"><span class="std std-ref">RandomMove</span></a> object by a <a class="reference internal" href="../code_doc/actions/WeightedMove.html#weightedmove-ref"><span class="std std-ref">WeightedMove</span></a> object.
 To each cell the <code class="docutils literal notranslate"><span class="pre">SingleEvaluator</span></code> assigns preference values (usually by means of a <a class="reference internal" href="../code_doc/utils/PolyLine.html#polyline-ref"><span class="std std-ref">PolyLine</span></a> object) to the cell itself and its neighbours. For each cell the preference values are cumulated which form the basis for a weighted random number drawn by <code class="docutils literal notranslate"><span class="pre">Weighted</span></code> move.</p>
 <figure class="align-default" id="id3">
-<img alt="../_images/SingleEvalFull.png" src="../_images/SingleEvalFull.png" />
+<img alt="../images/SingleEvalFull.png" src="../images/SingleEvalFull.png" />
 <figcaption>
 <p><span class="caption-text">The environment values (e.g. altitude) of a cell are copied to an array, to which a poly line function is applied.
 The results are cumulated and are used as a lookup table to create a weighted random number.
@@ -415,7 +415,7 @@ The images below were produced with calls like this:</p>
 <p>(replace “~/tutorials” with the name you gave for the tutorials directory)</p>
 <p>For details on how to call  <code class="docutils literal notranslate"><span class="pre">QDF2PNGNew</span></code>, refer to <a class="reference internal" href="../tools/QDF2PNGNew.html#qdf2pngnew-ref"><span class="std std-ref">its documentation</span></a>.</p>
 <figure class="align-default" id="id4">
-<img alt="../_images/tut06_Multi3.png" src="../_images/tut06_Multi3.png" />
+<img alt="../images/tut06_Multi3.png" src="../images/tut06_Multi3.png" />
 <figcaption>
 <p><span class="caption-text">Sequence of snapshots at intervals of 1000 steps.
 The yellow dots represent the agents.
@@ -427,7 +427,7 @@ In the first image the initial populaition sits at the center of the red circle.
 <h3><code class="docutils literal notranslate"><span class="pre">VisIt</span></code><a class="headerlink" href="#visit" title="Permalink to this heading">¶</a></h3>
 <p>With the visualization software <span class="xref std std-ref">VisIt</span> we can create images showing the data on the sphere:</p>
 <figure class="align-default" id="id5">
-<img alt="../_images/envalt.png" src="../_images/envalt.png" />
+<img alt="../images/envalt.png" src="../images/envalt.png" />
 <figcaption>
 <p><span class="caption-text">Sequence of snapshots at intervals of 1000 steps.
 The yellow dots represent the agents.</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
