@@ -10,7 +10,9 @@ PopLooper
 The class ``PopLooper`` is a container for populations used by the simulation. 
 Apart from implementing the interface :ref:`PopFinder<PopFInder_ref>`, it has methods for managing the populations.
 
-Code: `PopLooper.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/core/PopLooper.h>`_ `PopLooper.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/core/PopLooper.cpp>`_
+Code:
+    | `PopLooper.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/core/PopLooper.h>`_
+    | `PopLooper.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/core/PopLooper.cpp>`_ 
 
 
 Type definitions

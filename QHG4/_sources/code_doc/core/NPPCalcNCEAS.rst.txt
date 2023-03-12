@@ -1,0 +1,181 @@
+.. _NPPCalcNCEAS:
+
+NPPCalcNCEAS
+============
+
+.. rst-class:: hidden
+  
+    This page describes the class :index:`NPPCalcNCEAS`
+
+The class ``NPPCalcNCEASMiami`` is derived from ``NPPCalc`` and calculates NPP values 
+from climate data according to the `NCEAS model <https://www.frames.gov/catalog/6779>`_.
+
+It not only uses temperature and precipitation but also land cover class (here we use "grass", "bush" and "tree").
+To use it you have to estimate the proportion of each of the classes  at each cell.
+
+Code: 
+    | `NPPCalcNCEAS.h  <https://github.com/jodyxha/QHG4/blob/main/QHG4/core/NPPCalcNCEAS.h>`_ 
+    | `NPPCalcNCEAS.cpp  <https://github.com/jodyxha/QHG4/blob/main/QHG4/core/NPPCalcNCEAS.cpp>`_
+
+Public Methods
+--------------
+
+``constructor``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+   
+    NPPCalcNCEAS(WELL512 **apWell, double *pdWeights);
+
+``apWELL``
+    Array of WELL512 random number generators.
+
+``pdWeights``
+    Array of size 3 with weights for "grass", "bush" and "tree".
+
+Stores the RNG and the weights- 
+    
+.. -----------------------------------------------------------------------------
+
+
+``destructor``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+   
+    virtual ~NPPCalcNCEAS();
+
+The destructor deletes the array of weights.
+
+
+.. -----------------------------------------------------------------------------
+
+
+``calcNPP``
+^^^^^^^^^^^
+.. code-block:: c++
+   
+    virtual double calcNPP(double *dT, double *dP, int iNum, int iStride, double *dOut, double *dVariance=0);
+
+``dT``
+    Array of temperatures (average annual temperatrures in degrees Celsius).
+
+``dP``
+    Array of precipitation values (total annual rainfall  in mm).
+
+``iNum``
+    Number of element in arrays (dT and dP are supposed to have the same size).
+
+``dOut``
+    Output array.
+
+``dVariance``
+    Jiggle the result to achieve a certain variance.
+
+Fills an array with NPP values (gC/m2/year) calculated according to the  NCEAS Model from the provided Temperature and Precipitation values, 
+taking into account weighted comtributions from "grass", "bush", and "tree".
+
+.. -----------------------------------------------------------------------------
+
+
+``calcNPP``
+^^^^^^^^^^^
+.. code-block:: c++
+   
+    virtual double calcNPP(double dT, double dP, double dVariance=0);
+        
+``dT``
+    Temperature value (average annual temperature in degrees Celsius).
+
+``dP``
+    Precipitation value (total annual rainfall  in mm)
+
+Returns an NPP value (gC/m2/year)calcvulated according to the NCEAS Model from the provided Temperature and Precipitation values, 
+taking into account weighted comtributions from "grass", "bush", and "tree".
+
+Returns the maximum NPP value found.
+
+
+.. -----------------------------------------------------------------------------
+
+
+``calcGrassNPP``
+^^^^^^^^^^^^^^^^
+.. code-block:: c++
+   
+    double calcGrassNPP(double *dT, double *dP, int iNum, int iStride, double *dOut, double *adVariance=0);
+
+``dT``
+    Array of temperatures (average annual temperatrures in degrees Celsius).
+
+``dP``
+    Array of precipitation values (total anmnual rainfall  in mm).
+
+``iNum``
+    Number of element in arrays (dT and dP are supposed to have the same size).
+
+``dOut``
+    Output array.
+
+``dVariance``
+    Jiggle the result to achieve a certain variance.
+
+Fills an array with the grass contribution NPP values (gC/m2/year) calculated according to the NCEAS Model from the provided Temperature and Precipitation values.
+
+Returns the maximum NPP value found.
+
+.. -----------------------------------------------------------------------------
+
+
+``destructor``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+   
+    double calcBushNPP(double *dT, double *dP, int iNum, int iStride, double *dOut, double *adVariance=0);
+ 
+``dT``
+    Array of temperatures (average annual temperatrures in degrees Celsius).
+
+``dP``
+    Array of precipitation values (total anmnual rainfall  in mm).
+
+``iNum``
+    Number of element in arrays (dT and dP are supposed to have the same size).
+
+``dOut``
+    Output array.
+
+``dVariance``
+    Jiggle the result to achieve a certain variance.
+
+Fills an array with the bush contribution NPP values (gC/m2/year) calculated according to the NCEAS Model from the provided Temperature and Precipitation values.
+
+Returns the maximum NPP value found.
+
+.. -----------------------------------------------------------------------------
+
+
+``destructor``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+   
+    double calcTreeNPP(double *dT, double *dP, int iNum, int iStride, double *dOut, double *adVariance=0);
+    
+``dT``
+    Array of temperatures (average annual temperatrures in degrees Celsius).
+
+``dP``
+    Array of precipitation values (total anmnual rainfall  in mm).
+
+``iNum``
+    Number of element in arrays (dT and dP are supposed to have the same size).
+
+``dOut``
+    Output array.
+
+``dVariance``
+    Jiggle the result to achieve a certain variance.
+
+Fills an array with the tree contribution NPP values (gC/m2/year) calculated according to the NCEAS Model from the provided Temperature and Precipitation values.
+
+Returns the maximum NPP value found.
+

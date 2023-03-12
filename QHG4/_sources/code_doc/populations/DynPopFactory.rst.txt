@@ -26,7 +26,9 @@ The method ``createPop()`` should create a populaion instance and return it-
 Keep in mind that this is a relatively new feature and has not been fully tested yet. 
 
 
-Code: `DynPopFactory.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/DynPopFactory.h>`_ ,`DynPopFactory.cpp_template <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/DynPopFactory.cpp_template>`_
+Code:
+    | `DynPopFactory.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/DynPopFactory.h>`_
+    | `DynPopFactory.cpp_template <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/DynPopFactory.cpp_template>`_
 
 PublicMethods
 -------------

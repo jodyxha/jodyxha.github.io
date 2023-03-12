@@ -20,10 +20,15 @@ where
 ``prefix``
      prefix to be used for the naming of the alternative popuation and action subdirectories
 
+
 ``pop_name``
    name of a class whose c++ and h files are in the population subdirectory
 
 
+The ``prefix`` can la have the form ``path/to/alt_dirs/tut_05``.
+If the path does not exist, all the necessary intermediate subdirectories
+will be created.
+ 
 Example
 -------
 

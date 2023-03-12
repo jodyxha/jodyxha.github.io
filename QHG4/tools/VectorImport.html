@@ -52,9 +52,9 @@
 <p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/import/VectorImport.cpp">VectorImport.cpp</a></p>
 <section id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">$QHG4_DIR</span><span class="o">}</span>/import/VectorImport -s &lt;surf_file&gt;  -q &lt;qdf_file&gt;
-                               -v &lt;shp_file&gt; -d &lt;dbf_file&gt; -f &lt;field_name&gt;<span class="o">[</span>:&lt;match_val&gt;<span class="o">[</span>:&lt;use_val&gt;<span class="o">]]</span>
-                              <span class="o">[</span>-o &lt;output_qdf&gt;<span class="o">]</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">$QHG4_DIR</span><span class="o">}</span>/import/VectorImport<span class="w"> </span>-s<span class="w"> </span>&lt;surf_file&gt;<span class="w">  </span>-q<span class="w"> </span>&lt;qdf_file&gt;
+<span class="w">                               </span>-v<span class="w"> </span>&lt;shp_file&gt;<span class="w"> </span>-d<span class="w"> </span>&lt;dbf_file&gt;<span class="w"> </span>-f<span class="w"> </span>&lt;field_name&gt;<span class="o">[</span>:&lt;match_val&gt;<span class="o">[</span>:&lt;use_val&gt;<span class="o">]]</span>
+<span class="w">                              </span><span class="o">[</span>-o<span class="w"> </span>&lt;output_qdf&gt;<span class="o">]</span>
 </pre></div>
 </div>
 <p>where</p>
@@ -85,11 +85,11 @@
 <section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h2>
 <p>List the field names:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./VectorImport -d ~/rivers/ne_10m_rivers.dbf
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./VectorImport<span class="w"> </span>-d<span class="w"> </span>~/rivers/ne_10m_rivers.dbf
 </pre></div>
 </div>
 <p>Convert (using CellGrid and Geo from qdf file):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./VectorImport -q GridSG_ieq_256.qdf -v ~/rivers/ne_10m_rivers.shp -d ~/rivers/ne_10m_rivers.dbf -f strokeweig -o rivers_1a_256.qdf
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./VectorImport<span class="w"> </span>-q<span class="w"> </span>GridSG_ieq_256.qdf<span class="w"> </span>-v<span class="w"> </span>~/rivers/ne_10m_rivers.shp<span class="w"> </span>-d<span class="w"> </span>~/rivers/ne_10m_rivers.dbf<span class="w"> </span>-f<span class="w"> </span>strokeweig<span class="w"> </span>-o<span class="w"> </span>rivers_1a_256.qdf
 </pre></div>
 </div>
 <a class="reference internal image-reference" href="../images/water_rivers.png"><img alt="../images/water_rivers.png" class="align-center" src="../images/water_rivers.png" style="width: 409.6px; height: 409.6px;" /></a>

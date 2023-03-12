@@ -64,12 +64,18 @@ The red cells in the <code class="docutils literal notranslate"><span class="pre
 The green cells in the <code class="docutils literal notranslate"><span class="pre">L2List</span></code> denote the nodes of the PASSIVE chain, the white boxes represent currently unused elements.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
-<p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/LBController.h">LBController.h</a>, <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/LBController.cpp">LBController.cpp</a></p>
+<dl>
+<dt>Code:</dt><dd><div class="line-block">
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/LBController.h">LBController.h</a></div>
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/LBController.cpp">LBController.cpp</a></div>
+</div>
+</dd>
+</dl>
 <section id="public-methods">
 <h2>Public Methods<a class="headerlink" href="#public-methods" title="Permalink to this heading">¶</a></h2>
 <section id="constructor">
 <h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#constructor" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">LBController</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">iLayerSize</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">LBController</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">iLayerSize</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Creates a LBController with the specified layer size. The layer size must ve a power of two.</p>
@@ -80,21 +86,21 @@ The green cells in the <code class="docutils literal notranslate"><span class="p
 </section>
 <section id="id1">
 <h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">LBController</span><span class="p">();</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">LBController</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>Empty constructor.</p>
 </section>
 <section id="destructor">
 <h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="o">~</span><span class="n">LBController</span><span class="p">();</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="o">~</span><span class="n">LBController</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>The destructor.</p>
 </section>
 <section id="init">
 <h3><code class="docutils literal notranslate"><span class="pre">init</span></code><a class="headerlink" href="#init" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">init</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iLayerSize</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">init</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iLayerSize</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Initializes the LBController with the specified layer size. The layer size must ve a power of two.</p>
@@ -105,7 +111,7 @@ The green cells in the <code class="docutils literal notranslate"><span class="p
 </section>
 <section id="addbuffer">
 <h3><code class="docutils literal notranslate"><span class="pre">addBuffer</span></code><a class="headerlink" href="#addbuffer" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">addBuffer</span><span class="p">(</span><span class="n">LBBase</span><span class="w"> </span><span class="o">*</span><span class="n">pLB</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">addBuffer</span><span class="p">(</span><span class="n">LBBase</span><span class="w"> </span><span class="o">*</span><span class="n">pLB</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Adds a <code class="docutils literal notranslate"><span class="pre">LBBase</span></code> object to be managed. This object must have the same layer size as the one the <code class="docutils literal notranslate"><span class="pre">LBController</span></code> was created for.
@@ -118,7 +124,7 @@ Furthermore, it must have the same number of layers as any <code class="docutils
 </section>
 <section id="removebuffer">
 <h3><code class="docutils literal notranslate"><span class="pre">removeBuffer</span></code><a class="headerlink" href="#removebuffer" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">removeBuffer</span><span class="p">(</span><span class="n">LBBase</span><span class="w"> </span><span class="o">*</span><span class="n">pLB</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">removeBuffer</span><span class="p">(</span><span class="n">LBBase</span><span class="w"> </span><span class="o">*</span><span class="n">pLB</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Remove the specified LBBase.</p>
@@ -130,7 +136,7 @@ Furthermore, it must have the same number of layers as any <code class="docutils
 </section>
 <section id="addlayer">
 <h3><code class="docutils literal notranslate"><span class="pre">addLayer</span></code><a class="headerlink" href="#addlayer" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">addLayer</span><span class="p">();</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">addLayer</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>Add a new layer to the managed buffers.
@@ -139,7 +145,7 @@ This entails adding a new layer to each buffer and to add an <a class="reference
 </section>
 <section id="removelayer">
 <h3><code class="docutils literal notranslate"><span class="pre">removeLayer</span></code><a class="headerlink" href="#removelayer" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">removeLayer</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">iLayer</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">removeLayer</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">iLayer</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Remove the specified layer from all buffers, as well as the L2List needed for it.</p>
@@ -147,14 +153,14 @@ This entails adding a new layer to each buffer and to add an <a class="reference
 </section>
 <section id="getfreeindex">
 <h3><code class="docutils literal notranslate"><span class="pre">getFreeIndex</span></code><a class="headerlink" href="#getfreeindex" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">uint</span><span class="w"> </span><span class="nf">getFreeIndex</span><span class="p">();</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">uint</span><span class="w"> </span><span class="nf">getFreeIndex</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>Returns the first free index in the buffers.</p>
 </section>
 <section id="deleteelement">
 <h3><code class="docutils literal notranslate"><span class="pre">deleteElement</span></code><a class="headerlink" href="#deleteelement" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w">  </span><span class="nf">deleteElement</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">lIndex</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w">  </span><span class="nf">deleteElement</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">lIndex</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Deletes element with given index (i.e. move the correponding node from the ACTIVE to the PASSIVE chain of the L2List)</p>
@@ -166,7 +172,7 @@ This entails adding a new layer to each buffer and to add an <a class="reference
 </section>
 <section id="int-compactdata">
 <h3><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">compactData</span></code><a class="headerlink" href="#int-compactdata" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">compactData</span><span class="p">();</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">compactData</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>Compactify all buffers.</p>
@@ -174,14 +180,14 @@ This entails adding a new layer to each buffer and to add an <a class="reference
 </section>
 <section id="clear">
 <h3><code class="docutils literal notranslate"><span class="pre">clear</span></code><a class="headerlink" href="#clear" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">clear</span><span class="p">();</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">clear</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>Clear all ‘<code class="docutils literal notranslate"><span class="pre">LBBase</span></code> objects (i.e. mark their elements as PASSIVE in the <code class="docutils literal notranslate"><span class="pre">L2List</span></code>).</p>
 </section>
 <section id="reservespace2">
 <h3><code class="docutils literal notranslate"><span class="pre">reserveSpace2</span></code><a class="headerlink" href="#reservespace2" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">uint</span><span class="w"> </span><span class="nf">reserveSpace2</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">iNum</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">uint</span><span class="w"> </span><span class="nf">reserveSpace2</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">iNum</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Reserve iNum spaces in each buffer. In fact only L2List is manipulated for this.</p>
@@ -193,7 +199,7 @@ This entails adding a new layer to each buffer and to add an <a class="reference
 </section>
 <section id="getfirstindex">
 <h3><code class="docutils literal notranslate"><span class="pre">getFirstIndex</span></code><a class="headerlink" href="#getfirstindex" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">getFirstIndex</span><span class="p">(</span><span class="n">uchar</span><span class="w"> </span><span class="n">uState</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">getFirstIndex</span><span class="p">(</span><span class="n">uchar</span><span class="w"> </span><span class="n">uState</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Get the first element of the specified chain.</p>
@@ -205,7 +211,7 @@ This entails adding a new layer to each buffer and to add an <a class="reference
 </section>
 <section id="getnextindex">
 <h3><code class="docutils literal notranslate"><span class="pre">getNextIndex</span></code><a class="headerlink" href="#getnextindex" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">getNextIndex</span><span class="p">(</span><span class="n">uchar</span><span class="w"> </span><span class="n">uState</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iCur</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">getNextIndex</span><span class="p">(</span><span class="n">uchar</span><span class="w"> </span><span class="n">uState</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iCur</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Get the next element after <code class="docutils literal notranslate"><span class="pre">iCur</span></code> in the specified chain.</p>
@@ -219,7 +225,7 @@ This entails adding a new layer to each buffer and to add an <a class="reference
 </section>
 <section id="getlastindex">
 <h3><code class="docutils literal notranslate"><span class="pre">getLastIndex</span></code><a class="headerlink" href="#getlastindex" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">getLastIndex</span><span class="p">(</span><span class="n">uchar</span><span class="w"> </span><span class="n">uState</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">getLastIndex</span><span class="p">(</span><span class="n">uchar</span><span class="w"> </span><span class="n">uState</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Get the last element of the specified chain.</p>
@@ -231,49 +237,49 @@ This entails adding a new layer to each buffer and to add an <a class="reference
 </section>
 <section id="getlayersize">
 <h3><code class="docutils literal notranslate"><span class="pre">getLayerSize</span></code><a class="headerlink" href="#getlayersize" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">uint</span><span class="w"> </span><span class="nf">getLayerSize</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">uint</span><span class="w"> </span><span class="nf">getLayerSize</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Returns the layer size.</p>
 </section>
 <section id="getnumlayers">
 <h3><code class="docutils literal notranslate"><span class="pre">getNumLayers</span></code><a class="headerlink" href="#getnumlayers" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">uint</span><span class="w"> </span><span class="nf">getNumLayers</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">uint</span><span class="w"> </span><span class="nf">getNumLayers</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Returns number of layers.</p>
 </section>
 <section id="getnumused">
 <h3><code class="docutils literal notranslate"><span class="pre">getNumUsed</span></code><a class="headerlink" href="#getnumused" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">uint</span><span class="w"> </span><span class="nf">getNumUsed</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">uint</span><span class="w"> </span><span class="nf">getNumUsed</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Returns number used indexes,</p>
 </section>
 <section id="getnumfree">
 <h3><code class="docutils literal notranslate"><span class="pre">getNumFree</span></code><a class="headerlink" href="#getnumfree" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">uint</span><span class="w"> </span><span class="nf">getNumFree</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">uint</span><span class="w"> </span><span class="nf">getNumFree</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Returns number of unused indexes.</p>
 </section>
 <section id="id2">
 <h3><code class="docutils literal notranslate"><span class="pre">getNumUsed</span></code><a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">uint</span><span class="w"> </span><span class="nf">getNumUsed</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">uint</span><span class="w"> </span><span class="nf">getNumUsed</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Returns number of used elements in layer i.</p>
 </section>
 <section id="getnumunused">
 <h3><code class="docutils literal notranslate"><span class="pre">getNumUnused</span></code><a class="headerlink" href="#getnumunused" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">uint</span><span class="w"> </span><span class="nf">getNumUnused</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">uint</span><span class="w"> </span><span class="nf">getNumUnused</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Returns number of unused elements in layer i.</p>
 </section>
 <section id="getbufsize">
 <h3><code class="docutils literal notranslate"><span class="pre">getBufSize</span></code><a class="headerlink" href="#getbufsize" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">getBufSize</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iDumpMode</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">getBufSize</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iDumpMode</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Calculate buffer size required to serialize the LBController with specified dump mode.</p>
@@ -287,7 +293,7 @@ This entails adding a new layer to each buffer and to add an <a class="reference
 </section>
 <section id="serialize">
 <h3><code class="docutils literal notranslate"><span class="pre">serialize</span></code><a class="headerlink" href="#serialize" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">uchar</span><span class="w"> </span><span class="o">*</span><span class="nf">serialize</span><span class="p">(</span><span class="n">uchar</span><span class="w"> </span><span class="o">*</span><span class="n">pBuf</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">uchar</span><span class="w"> </span><span class="o">*</span><span class="nf">serialize</span><span class="p">(</span><span class="n">uchar</span><span class="w"> </span><span class="o">*</span><span class="n">pBuf</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Write the serialized <code class="docutils literal notranslate"><span class="pre">LBController</span></code> into the specified buffer.</p>
@@ -299,7 +305,7 @@ This entails adding a new layer to each buffer and to add an <a class="reference
 </section>
 <section id="deserialize">
 <h3><code class="docutils literal notranslate"><span class="pre">deserialize</span></code><a class="headerlink" href="#deserialize" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">deserialize</span><span class="p">(</span><span class="n">uchar</span><span class="w"> </span><span class="o">*</span><span class="n">pBuf</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">deserialize</span><span class="p">(</span><span class="n">uchar</span><span class="w"> </span><span class="o">*</span><span class="n">pBuf</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Creates <code class="docutils literal notranslate"><span class="pre">LBController</span></code> from serialized data in <code class="docutils literal notranslate"><span class="pre">pBuf</span></code>.</p>

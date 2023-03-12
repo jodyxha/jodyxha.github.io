@@ -29,7 +29,7 @@ Code:
 +------------------------------------+----------------+---------------------------------+
 | ``ATTR_GRASSMAN_MAX_MASS_NAME``    | "MaxMass"      | maximum attainable mass         |
 +------------------------------------+----------------+---------------------------------+
-| ``ATTR_GRASSMAN_GROWTH_RATE_NAME`` | "GrowthRate"   | groeth rate                     |
+| ``ATTR_GRASSMAN_GROWTH_RATE_NAME`` | "GrowthRate"   | growth rate                     |
 +------------------------------------+----------------+---------------------------------+
 
 

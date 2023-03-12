@@ -18,7 +18,9 @@ This file extends the attribute structure:
         stringmap smData;
     };
 
-Code: `GridGroupReader.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/GridGroupReader.h>`_, `GridGroupReader.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/GridGroupReader.cpp>`_
+Code:
+    | `GridGroupReader.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/GridGroupReader.h>`_
+    | `GridGroupReader.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/GridGroupReader.cpp>`_
 
 
 Public Methods

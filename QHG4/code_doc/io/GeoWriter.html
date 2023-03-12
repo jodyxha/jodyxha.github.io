@@ -51,12 +51,18 @@
 <span id="geowriter-ref"></span><h1>GeoWriter<a class="headerlink" href="#geowriter" title="Permalink to this heading">¶</a></h1>
 <p class="hidden">This page desctibes the class <span class="target" id="index-0"></span>GeoWriter</p>
 <p>The class <code class="docutils literal notranslate"><span class="pre">GeoWriter</span></code> is used to write the <a class="reference internal" href="../core/Geography.html#geography-ref"><span class="std std-ref">geography data</span></a> to a <a class="reference internal" href="../../formats/qdf/GeoGroup.html#geogroup-ref"><span class="std std-ref">geography group</span></a> in a qdf file.</p>
-<p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/io/GeoWriter.h">GeoWriter.h</a>, <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/io/GeoWriter.cpp">GeoWriter.cpp</a></p>
+<dl>
+<dt>Code:</dt><dd><div class="line-block">
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/io/GeoWriter.h">GeoWriter.h</a></div>
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/io/GeoWriter.cpp">GeoWriter.cpp</a></div>
+</div>
+</dd>
+</dl>
 <section id="public-methods">
 <h2>Public Methods<a class="headerlink" href="#public-methods" title="Permalink to this heading">¶</a></h2>
 <section id="constructor">
 <h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#constructor" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">GeoWriter</span><span class="p">(</span><span class="n">Geography</span><span class="w"> </span><span class="o">*</span><span class="n">pGG</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">GeoWriter</span><span class="p">(</span><span class="n">Geography</span><span class="w"> </span><span class="o">*</span><span class="n">pGG</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>The constructor.</p>
@@ -67,14 +73,14 @@
 </section>
 <section id="destructor">
 <h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">GeoWriter</span><span class="p">();</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">GeoWriter</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>The destructor.</p>
 </section>
 <section id="write">
 <h3><code class="docutils literal notranslate"><span class="pre">write</span></code><a class="headerlink" href="#write" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">write</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hFile</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">write</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hFile</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Write the geography data to an open qdf file.</p>
@@ -85,8 +91,8 @@
 </section>
 <section id="writetoqdf">
 <h3><code class="docutils literal notranslate"><span class="pre">writeToQDF</span></code><a class="headerlink" href="#writetoqdf" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">writeToQDF</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sFileName</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iStep</span><span class="p">,</span><span class="w"></span>
-<span class="w">               </span><span class="kt">float</span><span class="w"> </span><span class="n">fStartTime</span><span class="p">,</span><span class="w">            </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sInfoString</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">writeToQDF</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sFileName</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iStep</span><span class="p">,</span>
+<span class="w">               </span><span class="kt">float</span><span class="w"> </span><span class="n">fStartTime</span><span class="p">,</span><span class="w">            </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sInfoString</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Creates a new qdf file, creates a <a class="reference internal" href="../../formats/qdf/GeoGroup.html#geogroup-ref"><span class="std std-ref">geography group</span></a> and writes the geography data to it.</p>
@@ -104,7 +110,7 @@
 </section>
 <section id="replace">
 <h3><code class="docutils literal notranslate"><span class="pre">replace</span></code><a class="headerlink" href="#replace" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">replace</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hFile</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">replace</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hFile</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Replaces the geography data in the open qdf file with the new one.</p>
@@ -119,7 +125,7 @@
 <h2>Protected Methods<a class="headerlink" href="#protected-methods" title="Permalink to this heading">¶</a></h2>
 <section id="writegeoattributes">
 <h3><code class="docutils literal notranslate"><span class="pre">writeGeoAttributes</span></code><a class="headerlink" href="#writegeoattributes" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">writeGeoAttributes</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hGeoGroup</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">writeGeoAttributes</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hGeoGroup</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Writes the geography attributes to the geography group in the qdf file.</p>

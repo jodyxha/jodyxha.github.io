@@ -9,7 +9,9 @@ WELLUtils
 
 The module ``WELLUtils`` provides some helpful utilities for initialising and managinf :ref:`WELL512 <WELL512_ref>` objects.
 
-Code: `WELLUtils.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/WELLUtils.h>`_, `WELLUtils.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/WELLUtils.cpp>`_
+Code:
+    | `WELLUtils.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/WELLUtils.h>`_
+    | `WELLUtils.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/WELLUtils.cpp>`_
 
 
 Functions

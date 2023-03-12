@@ -20,7 +20,9 @@ This file extends the attribute structure:
         double  m_dSeaLevel;
     };
 
-Code: `GeoGroupReader.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/GeoGroupReader.h>`_, `GeoGroupReader.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/GeoGroupReader.cpp>`_
+Code:
+    | `GeoGroupReader.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/GeoGroupReader.h>`_
+    | `GeoGroupReader.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/GeoGroupReader.cpp>`_
 
 
 Public Methods

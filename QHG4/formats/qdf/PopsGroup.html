@@ -55,22 +55,22 @@
 <p>A population group contains some attributes as well as a subgroup for each of the population’s actions.
 Those action subgroups contain attributes (whose names are the corresponding parameter names) and their values.</p>
 <p>This is an example of an action subgroup:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">GROUP</span><span class="w"> </span><span class="s">&quot;OldAgeDeath&quot;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">ATTRIBUTE</span><span class="w"> </span><span class="s">&quot;OAD_max_age&quot;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">       </span><span class="n">DATATYPE</span><span class="w">  </span><span class="n">H5T_IEEE_F64LE</span><span class="w"></span>
-<span class="w">       </span><span class="n">DATASPACE</span><span class="w">  </span><span class="n">SIMPLE</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
-<span class="w">       </span><span class="n">DATA</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">       </span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="mf">64.1699</span><span class="w"></span>
-<span class="w">       </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="n">ATTRIBUTE</span><span class="w"> </span><span class="s">&quot;OAD_uncertainty&quot;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">       </span><span class="n">DATATYPE</span><span class="w">  </span><span class="n">H5T_IEEE_F64LE</span><span class="w"></span>
-<span class="w">       </span><span class="n">DATASPACE</span><span class="w">  </span><span class="n">SIMPLE</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
-<span class="w">       </span><span class="n">DATA</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">       </span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="mf">0.1</span><span class="w"></span>
-<span class="w">       </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="w"> </span><span class="p">}</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">GROUP</span><span class="w"> </span><span class="s">&quot;OldAgeDeath&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">ATTRIBUTE</span><span class="w"> </span><span class="s">&quot;OAD_max_age&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">       </span><span class="n">DATATYPE</span><span class="w">  </span><span class="n">H5T_IEEE_F64LE</span>
+<span class="w">       </span><span class="n">DATASPACE</span><span class="w">  </span><span class="n">SIMPLE</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+<span class="w">       </span><span class="n">DATA</span><span class="w"> </span><span class="p">{</span>
+<span class="w">       </span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="mf">64.1699</span>
+<span class="w">       </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">ATTRIBUTE</span><span class="w"> </span><span class="s">&quot;OAD_uncertainty&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">       </span><span class="n">DATATYPE</span><span class="w">  </span><span class="n">H5T_IEEE_F64LE</span>
+<span class="w">       </span><span class="n">DATASPACE</span><span class="w">  </span><span class="n">SIMPLE</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+<span class="w">       </span><span class="n">DATA</span><span class="w"> </span><span class="p">{</span>
+<span class="w">       </span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="mf">0.1</span>
+<span class="w">       </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w"> </span><span class="p">}</span>
 </pre></div>
 </div>
 <p>The following figure shows an example for the structue of the group “Populations” for two populations with different actions and data sets.</p>
@@ -124,36 +124,36 @@ Conceptually, this data set is an array of structuress containing the agents’ 
 </dd>
 </dl>
 <p>Example:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">DATASET</span><span class="w"> </span><span class="s">&quot;AgentDataSet&quot;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">DATATYPE</span><span class="w">  </span><span class="n">H5T_COMPOUND</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">H5T_STD_I32LE</span><span class="w"> </span><span class="s">&quot;LifeState&quot;</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="n">H5T_STD_I32LE</span><span class="w"> </span><span class="s">&quot;CellIdx&quot;</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="n">H5T_STD_I32LE</span><span class="w"> </span><span class="s">&quot;CellID&quot;</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="n">H5T_STD_I64LE</span><span class="w"> </span><span class="s">&quot;AgentID&quot;</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="n">H5T_IEEE_F32LE</span><span class="w"> </span><span class="s">&quot;BirthTime&quot;</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="n">H5T_STD_U8LE</span><span class="w"> </span><span class="s">&quot;Gender&quot;</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="n">DATASPACE</span><span class="w">  </span><span class="n">SIMPLE</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="mi">101</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="mi">101</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
-<span class="w">        </span><span class="n">DATA</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">              </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
-<span class="w">              </span><span class="mi">151</span><span class="p">,</span><span class="w"></span>
-<span class="w">              </span><span class="mi">151</span><span class="p">,</span><span class="w"></span>
-<span class="w">              </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
-<span class="w">              </span><span class="mi">-6</span><span class="p">,</span><span class="w"></span>
-<span class="w">              </span><span class="mi">0</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="p">},</span><span class="w"></span>
-<span class="w">        </span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">              </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
-<span class="w">              </span><span class="mi">92</span><span class="p">,</span><span class="w"></span>
-<span class="w">              </span><span class="mi">92</span><span class="p">,</span><span class="w"></span>
-<span class="w">              </span><span class="mi">2</span><span class="p">,</span><span class="w"></span>
-<span class="w">              </span><span class="mi">-7</span><span class="p">,</span><span class="w"></span>
-<span class="w">              </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="p">},</span><span class="w"></span>
-<span class="w">        </span><span class="p">...</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">DATASET</span><span class="w"> </span><span class="s">&quot;AgentDataSet&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">DATATYPE</span><span class="w">  </span><span class="n">H5T_COMPOUND</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">H5T_STD_I32LE</span><span class="w"> </span><span class="s">&quot;LifeState&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="n">H5T_STD_I32LE</span><span class="w"> </span><span class="s">&quot;CellIdx&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="n">H5T_STD_I32LE</span><span class="w"> </span><span class="s">&quot;CellID&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="n">H5T_STD_I64LE</span><span class="w"> </span><span class="s">&quot;AgentID&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="n">H5T_IEEE_F32LE</span><span class="w"> </span><span class="s">&quot;BirthTime&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="n">H5T_STD_U8LE</span><span class="w"> </span><span class="s">&quot;Gender&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">DATASPACE</span><span class="w">  </span><span class="n">SIMPLE</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="mi">101</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="mi">101</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+<span class="w">        </span><span class="n">DATA</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">              </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">              </span><span class="mi">151</span><span class="p">,</span>
+<span class="w">              </span><span class="mi">151</span><span class="p">,</span>
+<span class="w">              </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">              </span><span class="mi">-6</span><span class="p">,</span>
+<span class="w">              </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">              </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">              </span><span class="mi">92</span><span class="p">,</span>
+<span class="w">              </span><span class="mi">92</span><span class="p">,</span>
+<span class="w">              </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">              </span><span class="mi">-7</span><span class="p">,</span>
+<span class="w">              </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="p">...</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </section>

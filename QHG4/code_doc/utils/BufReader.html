@@ -53,16 +53,22 @@
 <p>The class <code class="docutils literal notranslate"><span class="pre">BufReader</span></code> provides an interface for buffered reading from a file.</p>
 <section id="typedefs">
 <h2>Typedefs<a class="headerlink" href="#typedefs" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">uint</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">uint</span><span class="p">;</span>
 </pre></div>
 </div>
-<p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/BufReader.h">BufReader.h</a>, <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/BufReader.cpp">BufReader.cpp</a></p>
+<dl>
+<dt>Code:</dt><dd><div class="line-block">
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/BufReader.h">BufReader.h</a></div>
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/BufReader.cpp">BufReader.cpp</a></div>
+</div>
+</dd>
+</dl>
 </section>
 <section id="public-methods">
 <h2>Public Methods<a class="headerlink" href="#public-methods" title="Permalink to this heading">¶</a></h2>
 <section id="createinstance">
 <h3><code class="docutils literal notranslate"><span class="pre">createInstance</span></code><a class="headerlink" href="#createinstance" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="n">BufReader</span><span class="w"> </span><span class="o">*</span><span class="nf">createInstance</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">pFile</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="n">iBufSize</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="n">BufReader</span><span class="w"> </span><span class="o">*</span><span class="nf">createInstance</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">pFile</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="n">iBufSize</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Create an instance of <code class="docutils literal notranslate"><span class="pre">BufReader</span></code> to read from the specified file.</p>
@@ -75,7 +81,7 @@
 </section>
 <section id="id1">
 <h3><code class="docutils literal notranslate"><span class="pre">createInstance</span></code><a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="n">BufReader</span><span class="w"> </span><span class="o">*</span><span class="nf">createInstance</span><span class="p">(</span><span class="kt">FILE</span><span class="w"> </span><span class="o">*</span><span class="n">fIn</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="n">iBufSize</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="n">BufReader</span><span class="w"> </span><span class="o">*</span><span class="nf">createInstance</span><span class="p">(</span><span class="kt">FILE</span><span class="w"> </span><span class="o">*</span><span class="n">fIn</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="n">iBufSize</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Create an instance of <code class="docutils literal notranslate"><span class="pre">BufReader</span></code> to read from the specified file.</p>
@@ -88,14 +94,14 @@
 </section>
 <section id="destructor">
 <h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="o">~</span><span class="n">BufReader</span><span class="p">();</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="o">~</span><span class="n">BufReader</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>The destructor.</p>
 </section>
 <section id="getnextchar">
 <h3><code class="docutils literal notranslate"><span class="pre">getNextChar</span></code><a class="headerlink" href="#getnextchar" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="nf">getNextChar</span><span class="p">();</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="nf">getNextChar</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>Gets the next character and moves the internal cursor by 1.
@@ -104,7 +110,7 @@ If the end of the buffer has been reached, the next block is read from the file.
 </section>
 <section id="getblock">
 <h3><code class="docutils literal notranslate"><span class="pre">getBlock</span></code><a class="headerlink" href="#getblock" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">getBlock</span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="n">iSize</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">getBlock</span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="n">iSize</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Reads a block of the specified size to the proveded buffer.</p>
@@ -118,7 +124,7 @@ If the end of the buffer has been reached, the next block is read from the file.
 </section>
 <section id="id2">
 <h3><code class="docutils literal notranslate"><span class="pre">getBlock</span></code><a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">getBlock</span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="o">*</span><span class="n">piSize</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">pLim</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">getBlock</span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="o">*</span><span class="n">piSize</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">pLim</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Reads a block until the string <code class="docutils literal notranslate"><span class="pre">pLim</span></code> has been read, but at most the specified number of characters.</p>
@@ -134,7 +140,7 @@ If the end of the buffer has been reached, the next block is read from the file.
 </section>
 <section id="skip">
 <h3><code class="docutils literal notranslate"><span class="pre">skip</span></code><a class="headerlink" href="#skip" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="nf">skip</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">iSkip</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="nf">skip</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">iSkip</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Skip ove the next <code class="docutils literal notranslate"><span class="pre">iSkip</span></code> characters</p>
@@ -142,7 +148,7 @@ If the end of the buffer has been reached, the next block is read from the file.
 </section>
 <section id="getpos">
 <h3><code class="docutils literal notranslate"><span class="pre">getPos</span></code><a class="headerlink" href="#getpos" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">long</span><span class="w"> </span><span class="nf">getPos</span><span class="p">();</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">long</span><span class="w"> </span><span class="nf">getPos</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>Get current position in file.</p>
@@ -150,7 +156,7 @@ If the end of the buffer has been reached, the next block is read from the file.
 </section>
 <section id="getcurpos">
 <h3><code class="docutils literal notranslate"><span class="pre">getCurPos</span></code><a class="headerlink" href="#getcurpos" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">long</span><span class="w"> </span><span class="nf">getCurPos</span><span class="p">();</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">long</span><span class="w"> </span><span class="nf">getCurPos</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>Get current position in buffer.</p>
@@ -158,7 +164,7 @@ If the end of the buffer has been reached, the next block is read from the file.
 </section>
 <section id="loadfromcurrentpos">
 <h3><code class="docutils literal notranslate"><span class="pre">loadFromCurrentPos</span></code><a class="headerlink" href="#loadfromcurrentpos" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">loadFromCurrentPos</span><span class="p">();</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">loadFromCurrentPos</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>Load the buffer from current file position.</p>
@@ -167,11 +173,41 @@ If the end of the buffer has been reached, the next block is read from the file.
 </section>
 <section id="protected-methods">
 <h2>Protected Methods<a class="headerlink" href="#protected-methods" title="Permalink to this heading">¶</a></h2>
-<p>&#64;&#64;TODO
-<span class="xref std std-ref">Bufreadertotototo</span></p>
-<p><code class="docutils literal notranslate"><span class="pre">BufReader()</span></code>
-<code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">initialize(const</span> <span class="pre">char</span> <span class="pre">*pFile,</span> <span class="pre">uint</span> <span class="pre">iBufSize)</span></code>
-<code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">initialize(FILE</span> <span class="pre">*fIn,</span> <span class="pre">uint</span> <span class="pre">iBufSize,</span> <span class="pre">bool</span> <span class="pre">bCloseFile)</span></code></p>
+<section id="constructor">
+<h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#constructor" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">BufReader</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>Initializes members.</p>
+</section>
+<section id="initialize">
+<h3><code class="docutils literal notranslate"><span class="pre">initialize</span></code><a class="headerlink" href="#initialize" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">initialize</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">pFile</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="n">iBufSize</span><span class="p">);</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">pFile</span></code></dt><dd><p>Name of the file to be read.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iBufSize</span></code></dt><dd><p>Buffer size.</p>
+</dd>
+</dl>
+<p>Opens the file, allocates the buffer and resets members.</p>
+</section>
+<section id="id3">
+<h3><code class="docutils literal notranslate"><span class="pre">initialize</span></code><a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">initialize</span><span class="p">(</span><span class="kt">FILE</span><span class="w"> </span><span class="o">*</span><span class="n">fIn</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="n">iBufSize</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">bCloseFile</span><span class="p">);</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">fIn</span></code></dt><dd><p>File handle to opened input file.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iBufSize</span></code></dt><dd><p>Buffer size.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">bCloseFile</span></code></dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">true</span></code> <code class="docutils literal notranslate"><span class="pre">BufReader</span></code> will close the file at the end of its life.</p>
+</dd>
+</dl>
+<p>Allocates the buffer and resets members.</p>
+</section>
 </section>
 </section>
 
@@ -200,7 +236,12 @@ If the end of the buffer has been reached, the next block is read from the file.
 <li><a class="reference internal" href="#loadfromcurrentpos"><code class="docutils literal notranslate"><span class="pre">loadFromCurrentPos</span></code></a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#protected-methods">Protected Methods</a></li>
+<li><a class="reference internal" href="#protected-methods">Protected Methods</a><ul>
+<li><a class="reference internal" href="#constructor"><code class="docutils literal notranslate"><span class="pre">constructor</span></code></a></li>
+<li><a class="reference internal" href="#initialize"><code class="docutils literal notranslate"><span class="pre">initialize</span></code></a></li>
+<li><a class="reference internal" href="#id3"><code class="docutils literal notranslate"><span class="pre">initialize</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

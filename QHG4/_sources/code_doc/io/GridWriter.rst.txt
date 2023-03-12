@@ -10,7 +10,9 @@ GridWriter
 
 The class ``GridWriter`` is used to write the :ref:`cell grid data <SCellGrid_ref>` to a :ref:`grid group <GridGroup_ref>` in a qdf file.
 
-Code: `GridWriter.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/GridWriter.h>`_, `GridWriter.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/GridWriter.cpp>`_
+Code:
+    | `GridWriter.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/GridWriter.h>`_
+    | `GridWriter.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/GridWriter.cpp>`_
 
 Public Methods
 --------------

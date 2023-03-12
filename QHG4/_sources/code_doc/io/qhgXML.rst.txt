@@ -12,6 +12,11 @@ The class ``qhgXMLTree`` represents the document tree generated from a :ref:`sim
 
 The class ``qhgNode`` represents a node in such an document tree, and provides methods for reading and writing.
 
+Code:
+    | `qhgXML.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/qhgXML.h>`_
+    | `qhgXML.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/qhgXML.cpp>`_
+
+
 Public Methods (``qhgNode``)
 ----------------------------
 

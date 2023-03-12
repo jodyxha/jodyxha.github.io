@@ -1,0 +1,194 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>NPPCalcMiami &#8212; QHG4 4.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../static/jody.css" />
+    
+    <script data-url_root="../../" id="documentation_options" src="../../static/documentation_options.js"></script>
+    <script src="../../static/jquery.js"></script>
+    <script src="../../static/underscore.js"></script>
+    <script src="../../static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../static/doctools.js"></script>
+    <script src="../../static/sphinx_highlight.js"></script>
+    
+    <link rel="shortcut icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="NPPCalcNCEAS" href="NPPCalcNCEAS.html" />
+    <link rel="prev" title="NPPCalc" href="NPPCalc.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="NPPCalcNCEAS.html" title="NPPCalcNCEAS"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="NPPCalc.html" title="NPPCalc"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../core.html" accesskey="U">core</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">NPPCalcMiami</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="nppcalcmiami">
+<span id="id1"></span><h1>NPPCalcMiami<a class="headerlink" href="#nppcalcmiami" title="Permalink to this heading">¶</a></h1>
+<p class="hidden">This page describes the class <span class="target" id="index-0"></span>NPPCalcMiami</p>
+<p>The class <code class="docutils literal notranslate"><span class="pre">NPPCalcMiami</span></code> is derived from <code class="docutils literal notranslate"><span class="pre">NPPCalc</span></code> and calculates NPP values
+from climate data according to the <a class="reference external" href="http://www.juergen-grieser.de/downloads/NetPrimaryProduction/npp_miami.pdf">Miami model</a>.</p>
+<dl>
+<dt>Code:</dt><dd><div class="line-block">
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/core/NPPCalcMiami.h">NPPCalcMiami.h</a></div>
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/core/NPPCalcMiami.cpp">NPPCalcMiami.cpp</a></div>
+</div>
+</dd>
+</dl>
+<section id="public-methods">
+<h2>Public Methods<a class="headerlink" href="#public-methods" title="Permalink to this heading">¶</a></h2>
+<section id="constructor">
+<h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#constructor" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">NPPCalcMiami</span><span class="p">(</span><span class="n">WELL512</span><span class="w"> </span><span class="o">**</span><span class="n">apWELL</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">apWELL</span></code></dt><dd><p>Array of WELL512 random number generators.</p>
+</dd>
+</dl>
+</section>
+<section id="destructor">
+<h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">NPPCalcMiami</span><span class="p">()</span><span class="w"> </span><span class="p">{};</span>
+</pre></div>
+</div>
+<p>The destructor does nothing.</p>
+</section>
+<section id="calcnpp">
+<h3><code class="docutils literal notranslate"><span class="pre">calcNPP</span></code><a class="headerlink" href="#calcnpp" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="nf">calcNPP</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">dT</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">dP</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iNum</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iStride</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">dOut</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">adVariance</span><span class="o">=</span><span class="nb">NULL</span><span class="p">);</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">dT</span></code></dt><dd><p>Array of temperatures (average annual temperatrures in degrees Celsius).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">dP</span></code></dt><dd><p>Array of precipitation values (total annual rainfall  in mm).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iNum</span></code></dt><dd><p>Number of element in arrays (dT and dP are supposed to have the same size).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">dOut</span></code></dt><dd><p>Output array.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">dVariance</span></code></dt><dd><p>Jiggle the result to achieve a certain variance (ignored for <code class="docutils literal notranslate"><span class="pre">NPPCalcMiami</span></code>).</p>
+</dd>
+</dl>
+<p>Fills an array with NPP values (gC/m2/year) calculated according to the Miami Model from the corresponding elements in <code class="docutils literal notranslate"><span class="pre">dT</span></code> and <code class="docutils literal notranslate"><span class="pre">dP</span></code>.</p>
+<p>Returns the maximum NPP value found.</p>
+</section>
+<section id="id2">
+<h3><code class="docutils literal notranslate"><span class="pre">calcNPP</span></code><a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="nf">calcNPP</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">dT</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dP</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dVariance</span><span class="o">=</span><span class="mi">0</span><span class="p">);</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">dT</span></code></dt><dd><p>Temperature value (average annual temperature in degrees Celsius).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">dP</span></code></dt><dd><p>Precipitation value (total annual rainfall  in mm)</p>
+</dd>
+</dl>
+<p>Returns an NPP value (gC/m2/year) calculated according to the Miami Model from the provided Temperature and Precipitation values.</p>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">NPPCalcMiami</a><ul>
+<li><a class="reference internal" href="#public-methods">Public Methods</a><ul>
+<li><a class="reference internal" href="#constructor"><code class="docutils literal notranslate"><span class="pre">constructor</span></code></a></li>
+<li><a class="reference internal" href="#destructor"><code class="docutils literal notranslate"><span class="pre">destructor</span></code></a></li>
+<li><a class="reference internal" href="#calcnpp"><code class="docutils literal notranslate"><span class="pre">calcNPP</span></code></a></li>
+<li><a class="reference internal" href="#id2"><code class="docutils literal notranslate"><span class="pre">calcNPP</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="NPPCalc.html"
+                          title="previous chapter">NPPCalc</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="NPPCalcNCEAS.html"
+                          title="next chapter">NPPCalcNCEAS</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/code_doc/core/NPPCalcMiami.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="NPPCalcNCEAS.html" title="NPPCalcNCEAS"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="NPPCalc.html" title="NPPCalc"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../core.html" >core</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">NPPCalcMiami</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+  </body>
+</html>

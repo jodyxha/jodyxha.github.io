@@ -15,7 +15,9 @@ It is implemented as a singleton.
 
 The caller of ``getArray()`` should know the type of the array.
 
-Code: `ArrayShare.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/ArrayShare.h>`_, `ArrayShare.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/ArrayShare.cpp>`_
+Code: 
+    | `ArrayShare.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/ArrayShare.h>`_
+    | `ArrayShare.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/ArrayShare.cpp>`_
 
 Typedefs
 --------

@@ -49,7 +49,7 @@
 <span id="events-ref"></span><h1>Events<a class="headerlink" href="#events" title="Permalink to this heading">¶</a></h1>
 <p>Events are needed to notify objects of some change of state.</p>
 <p>In QHG we have two kinds of events: events from the command line and internal events.</p>
-<p>The events on the commandline events are passed as values of the <a class="reference internal" href="code_doc/app/QHGMain.html#qhgmain-ref"><span class="std std-ref">–events option of QHGMain</span></a>.</p>
+<p>The events from the commandline events are passed as values of the <a class="reference internal" href="code_doc/app/QHGMain.html#qhgmain-ref"><span class="std std-ref">–events option of QHGMain</span></a>.</p>
 <section id="events-event-list">
 <h2>–events=&lt;event-list&gt;<a class="headerlink" href="#events-event-list" title="Permalink to this heading">¶</a></h2>
 <p>Set event list.</p>
@@ -124,9 +124,9 @@
 <div class="line">Write the specified data sets to file.</div>
 <div class="line">In case of “pop”, an optional filter character can be appended to the populaton name in order to filter the output:</div>
 <div class="line-block">
-<div class="line">‘#’   only write agent data</div>
-<div class="line">‘%’   only write status arrays</div>
-<div class="line">‘~’   only write additional data</div>
+<div class="line">‘<code class="docutils literal notranslate"><span class="pre">#</span></code>’   only write agent data</div>
+<div class="line">‘<code class="docutils literal notranslate"><span class="pre">%</span></code>’   only write status arrays</div>
+<div class="line">‘<code class="docutils literal notranslate"><span class="pre">~</span></code>’   only write additional data</div>
 </div>
 </div>
 <p><strong>for &lt;event-type&gt; == “env”:</strong></p>
@@ -186,10 +186,12 @@
 <p><strong>for &lt;event-type&gt; == “comm”:</strong></p>
 <div class="line-block">
 <div class="line"><code class="docutils literal notranslate"><span class="pre">event-params</span>&#160;&#160; <span class="pre">::=</span> <span class="pre">&lt;cmd-file&gt;</span>&#160; <span class="pre">|</span> <span class="pre">&lt;command&gt;</span></code></div>
-<div class="line"><code class="docutils literal notranslate"><span class="pre">command</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">::=</span> <span class="pre">&lt;iter_cmd&gt;</span> <span class="pre">|</span> <span class="pre">&lt;del_action_cmd&gt;</span> <span class="pre">|</span> <span class="pre">&lt;mod_pop_cmd&gt;</span> <span class="pre">|</span> <span class="pre">&lt;event&gt;</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">command</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">::=</span> <span class="pre">&lt;iter_cmd&gt;</span> <span class="pre">|</span> <span class="pre">&lt;del_action_cmd&gt;</span> <span class="pre">|</span> <span class="pre">&lt;mod_pop_cmd&gt;</span> <span class="pre">|</span> <span class="pre">&lt;dis_action_cmd&gt;</span> <span class="pre">|</span> <span class="pre">&lt;ena_action_cmd&gt;</span> <span class="pre">|</span> <span class="pre">&lt;event&gt;</span></code></div>
 <div class="line"><code class="docutils literal notranslate"><span class="pre">iter_cmd</span>&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">::=</span> <span class="pre">&quot;SET</span> <span class="pre">ITERS:&quot;&lt;num_iters&gt;</span></code></div>
 <div class="line"><code class="docutils literal notranslate"><span class="pre">del_action_cmd</span> <span class="pre">::=</span> <span class="pre">&quot;REMOVE</span> <span class="pre">ACTION:&quot;&lt;population&gt;:&lt;action_name&gt;</span></code></div>
 <div class="line"><code class="docutils literal notranslate"><span class="pre">mod_pop_cmd</span>&#160;&#160;&#160; <span class="pre">::=</span> <span class="pre">&quot;MOD</span> <span class="pre">POP:&quot;&lt;population&gt;:&lt;param_name&gt;:&lt;value&gt;</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">dis_action_cmd</span> <span class="pre">::=</span> <span class="pre">&quot;DISABLE</span> <span class="pre">ACTION:&quot;&lt;population&gt;:&lt;param_name&gt;:&lt;value&gt;</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">ena_action_cmd</span> <span class="pre">::=</span> <span class="pre">&quot;ENABLE</span> <span class="pre">ACTION:&quot;&lt;population&gt;:&lt;param_name&gt;:&lt;value&gt;</span></code></div>
 <div class="line"><code class="docutils literal notranslate"><span class="pre">event</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">:</span> <span class="pre">any</span> <span class="pre">event</span> <span class="pre">description;</span> <span class="pre">see</span> <span class="pre">definition</span> <span class="pre">above</span></code></div>
 </div>
 <p>The format of &lt;cmd-file&gt;</p>

@@ -17,7 +17,9 @@ where :math:`A =  p_0/e^{D*d_0}`
 In other words the probability for a crossing diminishes with growing distance between land masses.
 The values :math:`d_0`, :math:`p_0` and :math:`D` model the population's ability to navigate the open sea.
 
-Code: `Navigate.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/Navigate.h>`_ `Navigate.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/Navigate.cpp>`_
+Code: 
+    | `Navigate.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/Navigate.h>`_ 
+    | `Navigate.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/Navigate.cpp>`_
 
 **Attributes:**
 

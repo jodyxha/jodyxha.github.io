@@ -11,6 +11,10 @@ WELLDumpRestore
 
 This module contains only two functions to deal with dumping and restoring the internal state of the randomm number generator :ref:`WELL512<WELL512_ref>`. 
 
+Code:
+    | `WELLDumpRestore.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/WELLDumpRestore.h>`_
+    | `WELLDumpRestore.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/WELLDumpRestore.cpp>`_
+
 Public Functions
 ----------------
 

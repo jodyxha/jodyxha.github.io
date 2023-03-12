@@ -17,7 +17,9 @@ Typedefs
 
   typedef unsigned int uint;
 
-Code: `BufWriter.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/BufWriter.h>`_, `BufWriter.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/BufWriter.cpp>`_
+Code:
+    | `BufWriter.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/BufWriter.h>`_
+    | `BufWriter.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/BufWriter.cpp>`_
 
 
 
@@ -108,12 +110,41 @@ Get position in file.
 
 Returns position in file.
 
+.. -----------------------------------------------------------------------------
+
 Protected Methods
 -----------------
 
-@@TODO
-:ref:`Bufwriter_todododod<bufwritertododododdo>`
-``BufWriter()``
-``int initialize(const std::string sOut, int iBufSize)``
-``int dump()``
+``constructor``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
 
+    BufWriter();
+
+Initializes members.
+
+.. -----------------------------------------------------------------------------
+
+``initialize``
+^^^^^^^^^^^^^^
+.. code-block:: c++ 
+
+    int initialize((const std::string sOut, uint iBufSize);
+
+``sOut``
+    Name of file to write to.
+
+``iBufSize``
+    Buffer size.
+
+Opens the file, allocate Buffer and resets members.
+
+.. -----------------------------------------------------------------------------
+
+``dump``
+^^^^^^^^
+.. code-block:: c++
+
+    int dump();
+
+Writes the entire buffer to the file.

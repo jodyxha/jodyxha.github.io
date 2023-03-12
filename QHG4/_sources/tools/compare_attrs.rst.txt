@@ -106,4 +106,4 @@ The following two parameters are equivalent
 
 This command gives an output like this:
    
-.. image::   ../../images/compare_attrs2.png
+.. image:: ../../images/compare_attrs2.png

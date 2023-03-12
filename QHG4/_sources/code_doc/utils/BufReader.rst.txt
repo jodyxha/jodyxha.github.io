@@ -17,7 +17,9 @@ Typedefs
 
   typedef unsigned int uint;
 
-Code: `BufReader.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/BufReader.h>`_, `BufReader.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/BufReader.cpp>`_
+Code:
+    | `BufReader.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/BufReader.h>`_
+    | `BufReader.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/BufReader.cpp>`_
 
 
 Public Methods
@@ -165,14 +167,50 @@ Load the buffer from current file position.
 
 Returns 0 on success, -1 on failure.
 
+.. -----------------------------------------------------------------------------
 
 Protected Methods
 -----------------
 
-@@TODO 
-:ref:`Bufreadertotototo<bufreader_todododododo>`
+``constructor``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
 
-``BufReader()``
-``int initialize(const char *pFile, uint iBufSize)``
-``int initialize(FILE *fIn, uint iBufSize, bool bCloseFile)``
+    BufReader();
 
+Initializes members.
+
+.. -----------------------------------------------------------------------------
+
+``initialize``
+^^^^^^^^^^^^^^
+.. code-block:: c++ 
+
+    int initialize(const char *pFile, uint iBufSize);
+
+``pFile``
+    Name of the file to be read.
+
+``iBufSize``
+    Buffer size.
+
+Opens the file, allocates the buffer and resets members.
+
+.. -----------------------------------------------------------------------------
+
+``initialize``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    int initialize(FILE *fIn, uint iBufSize, bool bCloseFile);
+
+``fIn``
+    File handle to opened input file.
+
+``iBufSize``
+    Buffer size.
+
+``bCloseFile``
+    If ``true`` ``BufReader`` will close the file at the end of its life.
+
+Allocates the buffer and resets members.

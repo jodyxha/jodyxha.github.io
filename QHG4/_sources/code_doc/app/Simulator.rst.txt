@@ -11,10 +11,12 @@ Simulator
 
 The class ``Simulator`` is derived from :ref:`SimParams<SimParams_ref>` and contains the actual simulation loop and handles events.
 
-Code: `Simulator.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/app/Simulator.h>`_, `Simulator.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/app/Simulator.cpp>`_
+Code:
+    | `Simulator.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/app/Simulator.h>`_
+    | `Simulator.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/app/Simulator.cpp>`_
 
 
--- _Simulator_processes_reg:
+.. _Simulator_processes_reg:
 
 .. figure:: ../../../images/flowchart2.png
 

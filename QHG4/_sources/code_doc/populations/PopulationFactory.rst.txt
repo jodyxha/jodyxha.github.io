@@ -10,7 +10,8 @@ PopulationFactory
 The abstract base class pure virtual ``PopulationFactory`` serves as a base class for the classes 
 :ref:`StatPopFactory<StatPopFactory_ref>` and :ref:`DynPopFactory<DynPopFactory_ref>`.
 
-Code: `PopulationFactory.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/PopulationFactory.h>`_
+Code: 
+    | `PopulationFactory.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/PopulationFactory.h>`_
 
 
 Public Methods

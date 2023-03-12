@@ -12,8 +12,8 @@ For a particular ``IDGen`` object the generated IDs have the form ":math:`base +
 This makes it possible to create globally unique IDs even when running on multiple threads. 
 In such a case we use one ``IDGen`` object per thread where the offset of ``IDGen[i]`` is ``i`` and the increment is equal to the number of threads.
 
-Code: `IDGen.h  <https://github.com/jodyxha/QHG4/blob/main/QHG4/core/IDGen.h>`_
-
+Code: 
+    | `IDGen.h  <https://github.com/jodyxha/QHG4/blob/main/QHG4/core/IDGen.h>`_
 
 Public Methods
 --------------

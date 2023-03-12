@@ -52,12 +52,17 @@
 <p class="hidden">This page describes the class <span class="target" id="index-0"></span>Observer`</p>
 <p>The pure virtual class <code class="docutils literal notranslate"><span class="pre">Observer</span></code> defines an interface for the observers in the <a class="reference internal" href="../../ObserverPattern.html#observerpattern-ref"><span class="std std-ref">observer pattern</span></a>.</p>
 <p>It has to be used together with the <a class="reference internal" href="Observable.html#observable-ref"><span class="std std-ref">Observable</span></a> class.</p>
-<p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/Observer.h">Observer.h</a></p>
+<dl>
+<dt>Code:</dt><dd><div class="line-block">
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/Observer.h">Observer.h</a></div>
+</div>
+</dd>
+</dl>
 <section id="public-methods">
 <h2>Public Methods<a class="headerlink" href="#public-methods" title="Permalink to this heading">¶</a></h2>
 <section id="notify">
 <h3><code class="docutils literal notranslate"><span class="pre">notify</span></code><a class="headerlink" href="#notify" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">notify</span><span class="p">(</span><span class="n">Observable</span><span class="w"> </span><span class="o">*</span><span class="n">pObs</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iType</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">pCom</span><span class="p">)</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">notify</span><span class="p">(</span><span class="n">Observable</span><span class="w"> </span><span class="o">*</span><span class="n">pObs</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iType</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">pCom</span><span class="p">)</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
 </pre></div>
 </div>
 <dl class="simple">

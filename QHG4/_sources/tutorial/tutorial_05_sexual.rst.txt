@@ -15,23 +15,23 @@ All othe mechanisms are the same as in the previous chapter, with the exception 
 
 **Population code:**
 
-    | `tut_SexualPop.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_SexualPop.h>`_ |_|
-      `tut_SexualPop.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_SexualPop.cpp>`_
+    | `tut_SexualPop.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_SexualPop.h>`_
+    | `tut_SexualPop.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_SexualPop.cpp>`_
 
 **Action code:**
 
-    | `OldAge.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/OldAgeDeath.h>`_ |_|
-      `OldAge.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/OldAgeDeath.cpp>`_
-    | `AtanDeath.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/OldAgeDeath.h>`_ |_|
-      `AtanDeath.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/OldAgeDeath.cpp>`_ 
-    | `RandomMove.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/RandomMove.h>`_ |_|
-      `RandomMove.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/RandomMove.cpp>`_
-    | `Verhulst.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/Verhulst.h>`_ |_|
-      `Verhulst.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/Verhulst.cpp>`_
-    | `Fertilty.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/Fertility.h>`_ |_|
-      `Fertilty.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/Fertility.cpp>`_
-    | `RandomPair.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/RabdomPaiFertility.h>`_ |_|
-      `RandomPair.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/RabdomPaiFertility.cpp>`_
+    | `OldAge.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/OldAgeDeath.h>`_
+    | `OldAge.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/OldAgeDeath.cpp>`_
+    | `AtanDeath.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/OldAgeDeath.h>`_
+    | `AtanDeath.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/OldAgeDeath.cpp>`_ 
+    | `RandomMove.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/RandomMove.h>`_
+    | `RandomMove.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/RandomMove.cpp>`_
+    | `Verhulst.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/Verhulst.h>`_
+    | `Verhulst.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/Verhulst.cpp>`_
+    | `Fertilty.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/Fertility.h>`_
+    | `Fertilty.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/Fertility.cpp>`_
+    | `RandomPair.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/RabdomPaiFertility.h>`_
+    | `RandomPair.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/RabdomPaiFertility.cpp>`_
 
 The Header File
 ---------------

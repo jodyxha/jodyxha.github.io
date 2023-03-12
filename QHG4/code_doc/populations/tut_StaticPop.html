@@ -55,13 +55,19 @@ According to the <cite>Talking Heads &lt;https://www.youtube.com/watch?v=sZpZuIW
 <p>Since this class is so simple, its implementation is, too: it only implements a constructor.
 It also does not define its own agent class - it uses the agents defined for <code class="docutils literal notranslate"><span class="pre">SPopulation</span></code>.</p>
 <p>(The class <code class="docutils literal notranslate"><span class="pre">tut_StaticPop</span></code> is described in detail in the :ref:first part&lt;TutorialStatic_ref&gt;`  of the <a class="reference internal" href="../../tutorial.html#tutorial-ref"><span class="std std-ref">tutorial</span></a>).</p>
-<p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_StaticPop.h">tut_StaticPop.h</a>, <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_StaticPop.cpp">tut_StaticPop.cpp</a></p>
+<dl>
+<dt>Code:</dt><dd><div class="line-block">
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_StaticPop.h">tut_StaticPop.h</a></div>
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_StaticPop.cpp">tut_StaticPop.cpp</a></div>
+</div>
+</dd>
+</dl>
 <section id="public-methods">
 <h2>Public Methods<a class="headerlink" href="#public-methods" title="Permalink to this heading">¶</a></h2>
 <section id="constructor">
 <h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#constructor" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">tut_StaticPop</span><span class="p">(</span><span class="n">SCellGrid</span><span class="w"> </span><span class="o">*</span><span class="n">pCG</span><span class="p">,</span><span class="w"> </span><span class="n">PopFinder</span><span class="w"> </span><span class="o">*</span><span class="n">pPopFinder</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iLayerSize</span><span class="p">,</span><span class="w"></span>
-<span class="w">              </span><span class="n">IDGen</span><span class="w"> </span><span class="o">**</span><span class="n">apIDG</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="o">*</span><span class="n">aulState</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="o">*</span><span class="n">aiSeeds</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">tut_StaticPop</span><span class="p">(</span><span class="n">SCellGrid</span><span class="w"> </span><span class="o">*</span><span class="n">pCG</span><span class="p">,</span><span class="w"> </span><span class="n">PopFinder</span><span class="w"> </span><span class="o">*</span><span class="n">pPopFinder</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iLayerSize</span><span class="p">,</span>
+<span class="w">              </span><span class="n">IDGen</span><span class="w"> </span><span class="o">**</span><span class="n">apIDG</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="o">*</span><span class="n">aulState</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="o">*</span><span class="n">aiSeeds</span><span class="p">);</span>
 </pre></div>
 </div>
 <dl class="simple">

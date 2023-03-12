@@ -20,7 +20,9 @@ are required.
 
 (The class ``tut_OldAgeDiePop`` is described in detail in the :ref:`second part<TutorialOldAgeDie_ref>` of the :ref:`tutorial<Tutorial_ref>`).
 
-Code: `tut_OldAgeDiePop.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_OldAgeDiePop.h>`_, `tut_OldAgeDiePop.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_OldAgeDiePop.cpp>`_
+Code:
+    | `tut_OldAgeDiePop.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_OldAgeDiePop.h>`_
+    | `tut_OldAgeDiePop.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_OldAgeDiePop.cpp>`_
 
 Data types
 ----------
@@ -97,7 +99,7 @@ The destructor deletes the action objects created in the constructor.
 
 .. -----------------------------------------------------------------------------
 
-``addPopSpecificAgentData`TypeQDF``
+``addPopSpecificAgentDataTypeQDF``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 .. code-block:: c++
 

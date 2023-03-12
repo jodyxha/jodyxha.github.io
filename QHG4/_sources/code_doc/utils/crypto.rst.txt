@@ -9,7 +9,9 @@ crypto
 
 The module ``crypto`` contains implemention of some hash functions.
 
-Code: `crypto.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/crypto.h>`_, `crypto.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/crypto.cpp>`_
+Code:
+    | `crypto.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/crypto.h>`_
+    | `crypto.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/crypto.cpp>`_
 
 Functions
 ---------

@@ -83,7 +83,7 @@ where
 ``pos``
     position of text in image (``BL``, ``CL``, ``UL``, ``BC``,  ``CC``, ``UC``, ``BR``, ``CR``, ``UR``).
 
-.. image::  ../../images/textlayout.png
+.. image:: ../../images/textlayout.png
 
 
 ``-v``             

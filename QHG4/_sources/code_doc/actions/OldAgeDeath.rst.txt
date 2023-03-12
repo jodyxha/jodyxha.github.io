@@ -16,7 +16,9 @@ If the agent's age exceeds :math:`m_{agent}`, it is killed.
 
    The age of agent 1 exceeds his current maximuma age and will be killed. Agent 2 will survive.
 
-Code: `OldAgeDeath.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/OldAgeDeath.h>`_ `OldAgeDeath.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/OldAgeDeath.cpp>`_
+Code: 
+    | `OldAgeDeath.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/OldAgeDeath.h>`_ 
+    | `OldAgeDeath.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/OldAgeDeath.cpp>`_
 
 **Attributes**
 

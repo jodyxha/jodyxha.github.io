@@ -20,6 +20,7 @@
     <link rel="shortcut icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="How to design and build new Populations and Actions" href="how_to_build_a_pop.html" />
     <link rel="prev" title="QHG Tutorial 07 - Environment interaction II" href="tutorial_07_environcapalt.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
@@ -28,6 +29,9 @@
         <li class="right" style="margin-right: 10px">
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="how_to_build_a_pop.html" title="How to design and build new Populations and Actions"
+             accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="tutorial_07_environcapalt.html" title="QHG Tutorial 07 - Environment interaction II"
              accesskey="P">previous</a> |</li>
@@ -71,76 +75,95 @@ in this case is pathenogenetic (i.e. every agent can bear babies).</p>
 <p><strong>Population code:</strong></p>
 <blockquote>
 <div><div class="line-block">
-<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/GrassPop.h">GrassPop.h</a>,    <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/GrassPop.cpp">GrassPop.cpp</a></div>
-<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/SheepPop.h">SheepPop.h</a>,    <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/SheepPop.cpp">SheepPop.cpp</a></div>
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/GrassPop.h">GrassPop.h</a>,</div>
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/GrassPop.cpp">GrassPop.cpp</a></div>
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/SheepPop.h">SheepPop.h</a>,</div>
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/SheepPop.cpp">SheepPop.cpp</a></div>
 </div>
 </div></blockquote>
-<p>Action code:</p>
+<p><strong>Action code:</strong></p>
 <blockquote>
 <div><div class="line-block">
-<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/GrassManager.h">GrassManager.h</a>,    <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/GrassManager.cpp">GrassManager.cpp</a></div>
-<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/SheepManager.h">SheepManager.h</a>,    <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/SheepManager.cpp">SheepManager.cpp</a></div>
-<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/AnimalReproducer.h">AnimalReproducer.h</a>,    <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/SAnimalReproducer.cpp">AnimalReproducer.cpp</a></div>
-<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/Starver.h">Starver.h</a>,    <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/Starver.cpp">Starver.cpp</a></div>
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/GrassManager.h">GrassManager.h</a>,</div>
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/GrassManager.cpp">GrassManager.cpp</a></div>
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/SheepManager.h">SheepManager.h</a>,</div>
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/SheepManager.cpp">SheepManager.cpp</a></div>
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/AnimalReproducer.h">AnimalReproducer.h</a>,</div>
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/SAnimalReproducer.cpp">AnimalReproducer.cpp</a></div>
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/Starver.h">Starver.h</a>,</div>
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/Starver.cpp">Starver.cpp</a></div>
+</div>
+</div></blockquote>
+<p><strong>Contents</strong></p>
+<blockquote>
+<div><div class="line-block">
+<div class="line"><a class="reference internal" href="#header-grass-ref"><span class="std std-ref">HeaderFiles (GrassPop)</span></a></div>
+<div class="line"><a class="reference internal" href="#header-sheep-ref"><span class="std std-ref">Header FIles (SheepPop)</span></a></div>
+<div class="line"><a class="reference internal" href="#impl-grass-ref"><span class="std std-ref">The Implementation (GrassPop)</span></a></div>
+<div class="line"><a class="reference internal" href="#impl-sheep-ref"><span class="std std-ref">The Implementation (GrassPop)</span></a></div>
+<div class="line"><a class="reference internal" href="#xmldat-grass-sheep-ref"><span class="std std-ref">XML and DAT</span></a></div>
+<div class="line"><a class="reference internal" href="#grid-grass-sheep-ref"><span class="std std-ref">Grid</span></a></div>
+<div class="line"><a class="reference internal" href="#comp-run-grass-sheep-ref"><span class="std std-ref">Compiling and Running</span></a></div>
+<div class="line"><a class="reference internal" href="#visualize-run-grass-sheep-ref"><span class="std std-ref">Visualizing the Results</span></a></div>
 </div>
 </div></blockquote>
 <section id="the-header-files-grasspop">
-<h2>The Header Files (GrassPop)<a class="headerlink" href="#the-header-files-grasspop" title="Permalink to this heading">¶</a></h2>
+<span id="header-grass-ref"></span><h2>The Header Files (GrassPop)<a class="headerlink" href="#the-header-files-grasspop" title="Permalink to this heading">¶</a></h2>
 <p>The header file  <code class="docutils literal notranslate"><span class="pre">GrassPop.h</span></code> defines an agent with an (additional) member <code class="docutils literal notranslate"><span class="pre">m_dMass</span></code>.
 The class also contains two shared arrays</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef __GRASSPOP_H__</span>
 <span class="cp">#define __GRASSPOP_H__</span>
 
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;hdf5.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;hdf5.h&gt;</span>
 
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;SPopulation.h&quot;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;GrassManager.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;SPopulation.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;GrassManager.h&quot;</span>
 
 <span class="cp">#define SHARE_GRASS_MASS_AVAILABLE &quot;grass_mass_available&quot;</span>
 <span class="cp">#define SHARE_GRASS_MASS_CONSUMED  &quot;grass_mass_consumed&quot;</span>
 
-<span class="k">struct</span><span class="w"> </span><span class="nc">GrassAgent</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Agent</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">m_dMass</span><span class="p">;</span><span class="w"></span>
-<span class="p">};</span><span class="w"></span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">GrassAgent</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Agent</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">m_dMass</span><span class="p">;</span>
+<span class="p">};</span>
 
-<span class="k">class</span><span class="w"> </span><span class="nc">GrassPop</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">SPopulation</span><span class="o">&lt;</span><span class="n">GrassAgent</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="k">class</span><span class="w"> </span><span class="nc">GrassPop</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">SPopulation</span><span class="o">&lt;</span><span class="n">GrassAgent</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
 
-<span class="k">public</span><span class="o">:</span><span class="w"></span>
-<span class="w">    </span><span class="n">GrassPop</span><span class="p">(</span><span class="n">SCellGrid</span><span class="w"> </span><span class="o">*</span><span class="n">pCG</span><span class="p">,</span><span class="w"> </span><span class="n">PopFinder</span><span class="w"> </span><span class="o">*</span><span class="n">pPopFinder</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iLayerSize</span><span class="p">,</span><span class="w"> </span><span class="n">IDGen</span><span class="w"> </span><span class="o">**</span><span class="n">apIDG</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="o">*</span><span class="n">aulState</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="o">*</span><span class="n">aiSeeds</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="o">~</span><span class="n">GrassPop</span><span class="p">();</span><span class="w"></span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="n">GrassPop</span><span class="p">(</span><span class="n">SCellGrid</span><span class="w"> </span><span class="o">*</span><span class="n">pCG</span><span class="p">,</span><span class="w"> </span><span class="n">PopFinder</span><span class="w"> </span><span class="o">*</span><span class="n">pPopFinder</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iLayerSize</span><span class="p">,</span><span class="w"> </span><span class="n">IDGen</span><span class="w"> </span><span class="o">**</span><span class="n">apIDG</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="o">*</span><span class="n">aulState</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="o">*</span><span class="n">aiSeeds</span><span class="p">);</span>
+<span class="w">    </span><span class="o">~</span><span class="n">GrassPop</span><span class="p">();</span>
 
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="nf">addPopSpecificAgentData</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iAgentIndex</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">ppData</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">addPopSpecificAgentDataTypeQDF</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="o">*</span><span class="n">hAgentDataType</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="nf">addPopSpecificAgentData</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iAgentIndex</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">ppData</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">addPopSpecificAgentDataTypeQDF</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="o">*</span><span class="n">hAgentDataType</span><span class="p">);</span>
 
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="nf">writeAdditionalDataQDF</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hSpeciesGroup</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="nf">writeAdditionalDataQDF</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hSpeciesGroup</span><span class="p">);</span>
 
-<span class="k">protected</span><span class="o">:</span><span class="w"></span>
-<span class="w">    </span><span class="n">GrassManager</span><span class="o">&lt;</span><span class="n">GrassAgent</span><span class="o">&gt;</span><span class="w"> </span><span class="o">*</span><span class="n">m_pGM</span><span class="p">;</span><span class="w"></span>
+<span class="k">protected</span><span class="o">:</span>
+<span class="w">    </span><span class="n">GrassManager</span><span class="o">&lt;</span><span class="n">GrassAgent</span><span class="o">&gt;</span><span class="w"> </span><span class="o">*</span><span class="n">m_pGM</span><span class="p">;</span>
 
 <span class="w">    </span><span class="c1">//shared arrays</span>
-<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">m_pdGrassAvailable</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">m_pdGrassConsumed</span><span class="p">;</span><span class="w"></span>
-<span class="p">};</span><span class="w"></span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">m_pdGrassAvailable</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">m_pdGrassConsumed</span><span class="p">;</span>
+<span class="p">};</span>
 
 <span class="cp">#endif</span>
 </pre></div>
 </div>
 </section>
 <section id="the-header-file-sheeppop">
-<h2>The Header File (SheepPop)<a class="headerlink" href="#the-header-file-sheeppop" title="Permalink to this heading">¶</a></h2>
+<span id="header-sheep-ref"></span><h2>The Header File (SheepPop)<a class="headerlink" href="#the-header-file-sheeppop" title="Permalink to this heading">¶</a></h2>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef __SHEEPPOP_H__</span>
 <span class="cp">#define __SHEEPPOP_H__</span>
 
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;hdf5.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;hdf5.h&gt;</span>
 
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;SPopulation.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;SPopulation.h&quot;</span>
 
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;WeightedMove.h&quot;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;SingleEvaluator.h&quot;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;MultiEvaluator.h&quot;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;SheepManager.h&quot;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Starver.h&quot;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;AnimalReproducer.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;WeightedMove.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;SingleEvaluator.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;MultiEvaluator.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;SheepManager.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Starver.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;AnimalReproducer.h&quot;</span>
 
 <span class="c1">// here we just happen to know the share names</span>
 <span class="c1">// perhaps we should store them in a singleton?</span>
@@ -151,79 +174,415 @@ The class also contains two shared arrays</p>
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">SheepPop</span></code> expects the names of the two shared arrays to be “grass_mass_available” and  “grass_mass_consumed”.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">SheepAgent</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Agent</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">m_dMass</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">m_dBabyMass</span><span class="p">;</span><span class="w"></span>
-<span class="p">};</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">SheepAgent</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Agent</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">m_dMass</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">m_dBabyMass</span><span class="p">;</span>
+<span class="p">};</span>
 </pre></div>
 </div>
 <p>Apart from the own mass, the mass of an agents newborn is specified.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">SheepPop</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">SPopulation</span><span class="o">&lt;</span><span class="n">SheepAgent</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">SheepPop</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">SPopulation</span><span class="o">&lt;</span><span class="n">SheepAgent</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w"> </span><span class="k">public</span><span class="o">:</span><span class="w"></span>
-<span class="w">    </span><span class="n">SheepPop</span><span class="p">(</span><span class="n">SCellGrid</span><span class="w"> </span><span class="o">*</span><span class="n">pCG</span><span class="p">,</span><span class="w"> </span><span class="n">PopFinder</span><span class="w"> </span><span class="o">*</span><span class="n">pPopFinder</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iLayerSize</span><span class="p">,</span><span class="w"> </span><span class="n">IDGen</span><span class="w"> </span><span class="o">**</span><span class="n">apIDG</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="o">*</span><span class="n">aulState</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="o">*</span><span class="n">aiSeeds</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="o">~</span><span class="n">SheepPop</span><span class="p">();</span><span class="w"></span>
+<span class="w"> </span><span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="n">SheepPop</span><span class="p">(</span><span class="n">SCellGrid</span><span class="w"> </span><span class="o">*</span><span class="n">pCG</span><span class="p">,</span><span class="w"> </span><span class="n">PopFinder</span><span class="w"> </span><span class="o">*</span><span class="n">pPopFinder</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iLayerSize</span><span class="p">,</span><span class="w"> </span><span class="n">IDGen</span><span class="w"> </span><span class="o">**</span><span class="n">apIDG</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="o">*</span><span class="n">aulState</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="o">*</span><span class="n">aiSeeds</span><span class="p">);</span>
+<span class="w">    </span><span class="o">~</span><span class="n">SheepPop</span><span class="p">();</span>
 
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="nf">preLoop</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="nf">addPopSpecificAgentData</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iAgentIndex</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">ppData</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">addPopSpecificAgentDataTypeQDF</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="o">*</span><span class="n">hAgentDataType</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="nf">makePopSpecificOffspring</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iAgent</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iMother</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iFather</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="nf">preLoop</span><span class="p">();</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="nf">addPopSpecificAgentData</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iAgentIndex</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">ppData</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">addPopSpecificAgentDataTypeQDF</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="o">*</span><span class="n">hAgentDataType</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="nf">makePopSpecificOffspring</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iAgent</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iMother</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iFather</span><span class="p">);</span>
 
-<span class="w"> </span><span class="k">protected</span><span class="o">:</span><span class="w"></span>
+<span class="w"> </span><span class="k">protected</span><span class="o">:</span>
 
 <span class="w">    </span><span class="c1">// pointers to the action obkects</span>
-<span class="w">    </span><span class="n">SingleEvaluator</span><span class="o">&lt;</span><span class="n">SheepAgent</span><span class="o">&gt;</span><span class="w">   </span><span class="o">*</span><span class="n">m_pSEGrass</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">WeightedMove</span><span class="o">&lt;</span><span class="n">SheepAgent</span><span class="o">&gt;</span><span class="w">      </span><span class="o">*</span><span class="n">m_pWM</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">SheepManager</span><span class="o">&lt;</span><span class="n">SheepAgent</span><span class="o">&gt;</span><span class="w">      </span><span class="o">*</span><span class="n">m_pRM</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">Starver</span><span class="o">&lt;</span><span class="n">SheepAgent</span><span class="o">&gt;</span><span class="w">           </span><span class="o">*</span><span class="n">m_pRS</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">AnimalReproducer</span><span class="o">&lt;</span><span class="n">SheepAgent</span><span class="o">&gt;</span><span class="w">  </span><span class="o">*</span><span class="n">m_pAR</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">SingleEvaluator</span><span class="o">&lt;</span><span class="n">SheepAgent</span><span class="o">&gt;</span><span class="w">   </span><span class="o">*</span><span class="n">m_pSEGrass</span><span class="p">;</span>
+<span class="w">    </span><span class="n">WeightedMove</span><span class="o">&lt;</span><span class="n">SheepAgent</span><span class="o">&gt;</span><span class="w">      </span><span class="o">*</span><span class="n">m_pWM</span><span class="p">;</span>
+<span class="w">    </span><span class="n">SheepManager</span><span class="o">&lt;</span><span class="n">SheepAgent</span><span class="o">&gt;</span><span class="w">      </span><span class="o">*</span><span class="n">m_pSM</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Starver</span><span class="o">&lt;</span><span class="n">SheepAgent</span><span class="o">&gt;</span><span class="w">           </span><span class="o">*</span><span class="n">m_pRS</span><span class="p">;</span>
+<span class="w">    </span><span class="n">AnimalReproducer</span><span class="o">&lt;</span><span class="n">SheepAgent</span><span class="o">&gt;</span><span class="w">  </span><span class="o">*</span><span class="n">m_pAR</span><span class="p">;</span>
 
 
 <span class="w">    </span><span class="c1">// the shared arrays</span>
-<span class="w">    </span><span class="kt">double</span><span class="w">    </span><span class="o">*</span><span class="n">m_pdGrassMassAvailable</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="kt">double</span><span class="w">    </span><span class="o">*</span><span class="n">m_pdGrassMassConsumed</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">double</span><span class="w">    </span><span class="o">*</span><span class="n">m_pdGrassMassAvailable</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">double</span><span class="w">    </span><span class="o">*</span><span class="n">m_pdGrassMassConsumed</span><span class="p">;</span>
 
-<span class="w">    </span><span class="c1">// the array of preferences: filled by ``m_pEGrass`` and used by ``*m_pWM&#39;&#39;.</span>
-<span class="w">    </span><span class="kt">double</span><span class="w">    </span><span class="o">*</span><span class="n">m_adPreferences</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// the array of preferences: filled by ``m_pSEGrass`` and used by ``m_pWM&#39;&#39;.</span>
+<span class="w">    </span><span class="kt">double</span><span class="w">    </span><span class="o">*</span><span class="n">m_adPreferences</span><span class="p">;</span>
 
-<span class="p">};</span><span class="w"></span>
+<span class="p">};</span>
 
 <span class="cp">#endif</span>
 </pre></div>
 </div>
 </section>
 <section id="the-implementation-grasspop">
-<h2>The Implementation (GrassPop)<a class="headerlink" href="#the-implementation-grasspop" title="Permalink to this heading">¶</a></h2>
+<span id="impl-grass-ref"></span><h2>The Implementation (GrassPop)<a class="headerlink" href="#the-implementation-grasspop" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;omp.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;hdf5.h&gt;</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;SPopulation.cpp&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;LayerBuf.cpp&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Prioritizer.cpp&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Action.cpp&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;GrassManager.cpp&quot;</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;GrassPop.h&quot;</span>
+</pre></div>
+</div>
+<p>The constructor mainly creates the GrassManager action and registers it, and creates and shares the two arrays.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">//----------------------------------------------------------------------------</span>
+<span class="c1">// constructor</span>
+<span class="c1">//</span>
+<span class="n">GrassPop</span><span class="o">::</span><span class="n">GrassPop</span><span class="p">(</span><span class="n">SCellGrid</span><span class="w"> </span><span class="o">*</span><span class="n">pCG</span><span class="p">,</span><span class="w"> </span><span class="n">PopFinder</span><span class="w"> </span><span class="o">*</span><span class="n">pPopFinder</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iLayerSize</span><span class="p">,</span><span class="w"> </span><span class="n">IDGen</span><span class="w"> </span><span class="o">**</span><span class="n">apIDG</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="o">*</span><span class="n">aulState</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="o">*</span><span class="n">aiSeeds</span><span class="p">)</span>
+<span class="w">    </span><span class="o">:</span><span class="w"> </span><span class="n">SPopulation</span><span class="o">&lt;</span><span class="n">GrassAgent</span><span class="o">&gt;</span><span class="p">(</span><span class="n">pCG</span><span class="p">,</span><span class="w"> </span><span class="n">pPopFinder</span><span class="p">,</span><span class="w"> </span><span class="n">iLayerSize</span><span class="p">,</span><span class="w"> </span><span class="n">apIDG</span><span class="p">,</span><span class="w"> </span><span class="n">aulState</span><span class="p">,</span><span class="w"> </span><span class="n">aiSeeds</span><span class="p">),</span>
+<span class="w">    </span><span class="n">m_pGM</span><span class="p">(</span><span class="nb">NULL</span><span class="p">),</span>
+<span class="w">    </span><span class="n">m_pdGrassAvailable</span><span class="p">(</span><span class="nb">NULL</span><span class="p">),</span>
+<span class="w">    </span><span class="n">m_pdGrassConsumed</span><span class="p">(</span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+
+<span class="w">    </span><span class="n">ArrayShare</span><span class="w"> </span><span class="o">*</span><span class="n">pAS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ArrayShare</span><span class="o">::</span><span class="n">getInstance</span><span class="p">();</span>
+
+<span class="w">    </span><span class="c1">// create and share available grass mass array</span>
+<span class="w">    </span><span class="n">m_pdGrassAvailable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">double</span><span class="p">[</span><span class="n">pCG</span><span class="o">-&gt;</span><span class="n">m_iNumCells</span><span class="p">];</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">iResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pAS</span><span class="o">-&gt;</span><span class="n">shareArray</span><span class="p">(</span><span class="n">SHARE_GRASS_MASS_AVAILABLE</span><span class="p">,</span><span class="w"> </span><span class="n">pCG</span><span class="o">-&gt;</span><span class="n">m_iNumCells</span><span class="p">,</span><span class="w"> </span><span class="n">m_pdGrassAvailable</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">iResult</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Couldnt share array [%p] with name [%s]</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">m_pdGrassAvailable</span><span class="p">,</span><span class="w"> </span><span class="n">SHARE_GRASS_MASS_AVAILABLE</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;GrassPop shared [%p] as [%s]</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">m_pdGrassAvailable</span><span class="p">,</span><span class="w"> </span><span class="n">SHARE_GRASS_MASS_AVAILABLE</span><span class="p">);</span>
+
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// create and share consumed grass array</span>
+<span class="w">    </span><span class="n">m_pdGrassConsumed</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">double</span><span class="p">[</span><span class="n">pCG</span><span class="o">-&gt;</span><span class="n">m_iNumCells</span><span class="p">];</span>
+<span class="w">    </span><span class="n">iResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pAS</span><span class="o">-&gt;</span><span class="n">shareArray</span><span class="p">(</span><span class="n">SHARE_GRASS_MASS_CONSUMED</span><span class="p">,</span><span class="w"> </span><span class="n">pCG</span><span class="o">-&gt;</span><span class="n">m_iNumCells</span><span class="p">,</span><span class="w"> </span><span class="n">m_pdGrassConsumed</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">iResult</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Couldnt share array [%p] with name [%s]</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">m_pdGrassConsumed</span><span class="p">,</span><span class="w"> </span><span class="n">SHARE_GRASS_MASS_CONSUMED</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;GrassPop shared [%p] as [%s]</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">m_pdGrassConsumed</span><span class="p">,</span><span class="w"> </span><span class="n">SHARE_GRASS_MASS_CONSUMED</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// we only have one action</span>
+<span class="w">    </span><span class="n">m_pGM</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">GrassManager</span><span class="o">&lt;</span><span class="n">GrassAgent</span><span class="o">&gt;</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">m_pCG</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">SHARE_GRASS_MASS_AVAILABLE</span><span class="p">,</span><span class="w"> </span><span class="n">SHARE_GRASS_MASS_CONSUMED</span><span class="p">);</span>
+
+
+<span class="w">    </span><span class="n">m_prio</span><span class="p">.</span><span class="n">addAction</span><span class="p">(</span><span class="n">m_pGM</span><span class="p">);</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The destructor deletes the <code class="docutils literal notranslate"><span class="pre">GrassManager</span></code> action and the shared arrays.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">//----------------------------------------------------------------------------</span>
+<span class="c1">// destructor</span>
+<span class="c1">//    delete the allocated arrays</span>
+<span class="c1">//</span>
+<span class="n">GrassPop</span><span class="o">::~</span><span class="n">GrassPop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_pGM</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">delete</span><span class="w"> </span><span class="n">m_pGM</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_pdGrassAvailable</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">delete</span><span class="p">[]</span><span class="w"> </span><span class="n">m_pdGrassAvailable</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_pdGrassConsumed</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">delete</span><span class="p">[]</span><span class="w"> </span><span class="n">m_pdGrassConsumed</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">ArrayShare</span><span class="o">::</span><span class="n">freeInstance</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line">If the agent data is read from a dat file, we only need one double for the mass.</div>
+<div class="line">To handle HDF operations we needs to add the type information for the mass.</div>
+</div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">//----------------------------------------------------------------------------</span>
+<span class="c1">// addPopSpecificAgentData</span>
+<span class="c1">//   read additional data (m_dMass) from pop file</span>
+<span class="c1">//</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">GrassPop::addPopSpecificAgentData</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iAgentIndex</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">ppData</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">iResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">iResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">addAgentDataSingle</span><span class="p">(</span><span class="n">ppData</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">m_aAgents</span><span class="p">[</span><span class="n">iAgentIndex</span><span class="p">].</span><span class="n">m_dMass</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">iResult</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">//----------------------------------------------------------------------------</span>
+<span class="c1">// addPopSpecificAgentDataTypeQDF</span>
+<span class="c1">//    extend the agent data type to include additional data in the output</span>
+<span class="c1">//</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">GrassPop::addPopSpecificAgentDataTypeQDF</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="o">*</span><span class="n">hAgentDataType</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="n">GrassAgent</span><span class="w"> </span><span class="n">ga</span><span class="p">;</span>
+<span class="w">    </span><span class="n">H5Tinsert</span><span class="p">(</span><span class="o">*</span><span class="n">hAgentDataType</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Mass&quot;</span><span class="p">,</span><span class="w">  </span><span class="n">qoffsetof</span><span class="p">(</span><span class="n">ga</span><span class="p">,</span><span class="w"> </span><span class="n">m_dMass</span><span class="p">),</span><span class="w"> </span><span class="n">H5T_NATIVE_DOUBLE</span><span class="p">);</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">GrassPop</span></code> writes the array of available grass mass to file as an additional array.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">//----------------------------------------------------------------------------</span>
+<span class="c1">// writeAdditionalDataQDF</span>
+<span class="c1">//   write the available grass mass as an array in the population group</span>
+<span class="c1">//</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">GrassPop::writeAdditionalDataQDF</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hSpeciesGroup</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">stdprintf</span><span class="p">(</span><span class="s">&quot;GrassPop::writeAdditionalDataQDF() reached</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">iResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">qdf_writeArray</span><span class="p">(</span><span class="n">hSpeciesGroup</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;GrassMassAvail&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">m_pCG</span><span class="o">-&gt;</span><span class="n">m_iNumCells</span><span class="p">,</span><span class="w"> </span><span class="n">m_pdGrassAvailable</span><span class="p">,</span><span class="w"> </span><span class="n">H5T_NATIVE_DOUBLE</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">iResult</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">LOG_ERROR</span><span class="p">(</span><span class="s">&quot;[GrassPop::writeAdditionalDataQDF] couldn&#39;t write GrassMassAvail data&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">iResult</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 </section>
 <section id="the-implementation-sheeppop">
-<h2>The Implementation (SheepPop)<a class="headerlink" href="#the-implementation-sheeppop" title="Permalink to this heading">¶</a></h2>
+<span id="impl-sheep-ref"></span><h2>The Implementation (SheepPop)<a class="headerlink" href="#the-implementation-sheeppop" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;omp.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;hdf5.h&gt;</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;SPopulation.cpp&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;LayerBuf.cpp&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Prioritizer.cpp&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Action.cpp&quot;</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;SheepManager.cpp&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Starver.cpp&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;WeightedMove.cpp&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;SingleEvaluator.cpp&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;MultiEvaluator.cpp&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;AnimalReproducer.cpp&quot;</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;SheepPop.h&quot;</span>
+</pre></div>
+</div>
+<p>In its constructor <code class="docutils literal notranslate"><span class="pre">SheepPop</span></code> allocates an array for cell preferences based on available grass mass which will be filled by the <a class="reference internal" href="../code_doc/actions/SingleEvaluator.html#singleevaluator-ref"><span class="std std-ref">SingleEvaluator</span></a>
+object and used by the <span class="xref std std-ref">WeightedMove`</span> object. This array is conceptually an array of 7-tuples, with one tuple for each cell.
+The first element of such a tuple contains the preference value for the cell to which the tuple belongs.
+The following values contain the preference values for the neighboring cells.</p>
+<figure class="align-default">
+<a class="reference internal image-reference" href="../images/preferences.png"><img alt="../images/preferences.png" src="../images/preferences.png" style="width: 640.0px; height: 51.2px;" /></a>
+</figure>
+<p>Then the action objects (<a class="reference internal" href="../code_doc/actions/SingleEvaluator.html#singleevaluator-ref"><span class="std std-ref">SingleEvaluator</span></a>, <a class="reference internal" href="../code_doc/actions/WeightedMove.html#weightedmove-ref"><span class="std std-ref">WeightedMove</span></a>,  <a class="reference internal" href="../code_doc/actions/SheepManager.html#sheepmanager-ref"><span class="std std-ref">SheepManager</span></a>,
+<a class="reference internal" href="../code_doc/actions/Starver.html#starver-ref"><span class="std std-ref">Starver</span></a>, and <a class="reference internal" href="../code_doc/actions/AnimalReproducer.html#animalreproducer-ref"><span class="std std-ref">AnimalReproducer</span></a> are created and registered with the <a class="reference internal" href="../code_doc/core/Prioritizer.html#prioritizer-ref"><span class="std std-ref">Prioritizer</span></a>.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">//----------------------------------------------------------------------------</span>
+<span class="c1">// constructor</span>
+<span class="c1">//</span>
+<span class="n">SheepPop</span><span class="o">::</span><span class="n">SheepPop</span><span class="p">(</span><span class="n">SCellGrid</span><span class="w"> </span><span class="o">*</span><span class="n">pCG</span><span class="p">,</span><span class="w"> </span><span class="n">PopFinder</span><span class="w"> </span><span class="o">*</span><span class="n">pPopFinder</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iLayerSize</span><span class="p">,</span><span class="w"> </span><span class="n">IDGen</span><span class="w"> </span><span class="o">**</span><span class="n">apIDG</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="o">*</span><span class="n">aulState</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="o">*</span><span class="n">aiSeeds</span><span class="p">)</span>
+<span class="w">    </span><span class="o">:</span><span class="w"> </span><span class="n">SPopulation</span><span class="o">&lt;</span><span class="n">SheepAgent</span><span class="o">&gt;</span><span class="p">(</span><span class="n">pCG</span><span class="p">,</span><span class="w"> </span><span class="n">pPopFinder</span><span class="p">,</span><span class="w"> </span><span class="n">iLayerSize</span><span class="p">,</span><span class="w"> </span><span class="n">apIDG</span><span class="p">,</span><span class="w"> </span><span class="n">aulState</span><span class="p">,</span><span class="w"> </span><span class="n">aiSeeds</span><span class="p">),</span>
+<span class="w">    </span><span class="n">m_pSEGrass</span><span class="p">(</span><span class="nb">NULL</span><span class="p">),</span>
+<span class="w">    </span><span class="n">m_pWM</span><span class="p">(</span><span class="nb">NULL</span><span class="p">),</span>
+<span class="w">    </span><span class="n">m_pSM</span><span class="p">(</span><span class="nb">NULL</span><span class="p">),</span>
+<span class="w">    </span><span class="n">m_pSS</span><span class="p">(</span><span class="nb">NULL</span><span class="p">),</span>
+<span class="w">    </span><span class="n">m_pAR</span><span class="p">(</span><span class="nb">NULL</span><span class="p">),</span>
+<span class="w">    </span><span class="n">m_pdGrassMassAvailable</span><span class="p">(</span><span class="nb">NULL</span><span class="p">),</span>
+<span class="w">    </span><span class="n">m_pdGrassMassConsumed</span><span class="p">(</span><span class="nb">NULL</span><span class="p">),</span>
+<span class="w">    </span><span class="n">m_adPreferences</span><span class="p">(</span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">iMaxNeighbors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">m_pCG</span><span class="o">-&gt;</span><span class="n">m_iConnectivity</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">iArrSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">m_pCG</span><span class="o">-&gt;</span><span class="n">m_iNumCells</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">iMaxNeighbors</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">m_adPreferences</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">double</span><span class="p">[</span><span class="n">iArrSize</span><span class="p">];</span>
+<span class="w">    </span><span class="n">memset</span><span class="p">(</span><span class="n">m_adPreferences</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">pCG</span><span class="o">-&gt;</span><span class="n">m_iNumCells</span><span class="o">*</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">double</span><span class="p">));</span>
+
+<span class="w">    </span><span class="n">m_pSEGrass</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SingleEvaluator</span><span class="o">&lt;</span><span class="n">SheepAgent</span><span class="o">&gt;</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">m_pCG</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Grass&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">m_adPreferences</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="kt">double</span><span class="o">*</span><span class="p">)</span><span class="n">m_pdGrassMassAvailable</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="n">EVENT_ID_NONE</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">m_pWM</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">WeightedMove</span><span class="o">&lt;</span><span class="n">SheepAgent</span><span class="o">&gt;</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">m_pCG</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">m_apWELL</span><span class="p">,</span><span class="w"> </span><span class="n">m_adPreferences</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">m_pSM</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SheepManager</span><span class="o">&lt;</span><span class="n">SheepAgent</span><span class="o">&gt;</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">m_pCG</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">,</span>
+<span class="w">                                              </span><span class="n">SHARE_GRASS_MASS_AVAILABLE</span><span class="p">,</span><span class="w"> </span><span class="n">SHARE_GRASS_MASS_CONSUMED</span><span class="p">);</span>
+<span class="w">    </span><span class="n">m_pSS</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Starver</span><span class="o">&lt;</span><span class="n">SheepAgent</span><span class="o">&gt;</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">m_pCG</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">m_pAR</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">AnimalReproducer</span><span class="o">&lt;</span><span class="n">SheepAgent</span><span class="o">&gt;</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">m_pCG</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">m_apWELL</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">m_prio</span><span class="p">.</span><span class="n">addAction</span><span class="p">(</span><span class="n">m_pSEGrass</span><span class="p">);</span>
+<span class="w">    </span><span class="n">m_prio</span><span class="p">.</span><span class="n">addAction</span><span class="p">(</span><span class="n">m_pWM</span><span class="p">);</span>
+<span class="w">    </span><span class="n">m_prio</span><span class="p">.</span><span class="n">addAction</span><span class="p">(</span><span class="n">m_pSM</span><span class="p">);</span>
+<span class="w">    </span><span class="n">m_prio</span><span class="p">.</span><span class="n">addAction</span><span class="p">(</span><span class="n">m_pSS</span><span class="p">);</span>
+<span class="w">    </span><span class="n">m_prio</span><span class="p">.</span><span class="n">addAction</span><span class="p">(</span><span class="n">m_pAR</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>In the destructor the array allocated in the constructor as well as all action objects are deleted.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">//----------------------------------------------------------------------------</span>
+<span class="c1">// destructor</span>
+<span class="c1">//</span>
+<span class="n">SheepPop</span><span class="o">::~</span><span class="n">SheepPop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_adPreferences</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">delete</span><span class="p">[]</span><span class="w"> </span><span class="n">m_adPreferences</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_pSEGrass</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">delete</span><span class="w"> </span><span class="n">m_pSEGrass</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_pWM</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">delete</span><span class="w"> </span><span class="n">m_pWM</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_pSM</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">delete</span><span class="w"> </span><span class="n">m_pRM</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_pSS</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">delete</span><span class="w"> </span><span class="n">m_pRS</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_pAR</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">delete</span><span class="w"> </span><span class="n">m_pAR</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="n">ArrayShare</span><span class="o">::</span><span class="n">freeInstance</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>In the  method <code class="docutils literal notranslate"><span class="pre">preLoop</span></code> the array of available grass mass, which was created by <code class="docutils literal notranslate"><span class="pre">GrassPop</span></code>, is retrieved and passed to the <code class="docutils literal notranslate"><span class="pre">SingleEvaluator</span></code>.
+At the time of the constructor there is no guarantee, that the array has already been shared, so we do this here.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">//----------------------------------------------------------------------------</span>
+<span class="c1">// preLoop</span>
+<span class="c1">//   read additional data from pop file</span>
+<span class="c1">//</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">SheepPop::preLoop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">iResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="n">m_pdGrassMassAvailable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">ArrayShare</span><span class="o">::</span><span class="n">getInstance</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">getArray</span><span class="p">(</span><span class="n">SHARE_GRASS_MASS_AVAILABLE</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_pdGrassMassAvailable</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">iResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">m_pSEGrass</span><span class="o">-&gt;</span><span class="n">setInputData</span><span class="p">(</span><span class="n">m_pdGrassMassAvailable</span><span class="p">);</span>
+<span class="w">        </span><span class="n">iResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SPopulation</span><span class="o">&lt;</span><span class="n">SheepAgent</span><span class="o">&gt;::</span><span class="n">preLoop</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">iResult</span><span class="p">;</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line">If the agent data is read from a dat file, we need one value for the mass.</div>
+<div class="line">To handle HDF operations we needs to add the type information for the mass.</div>
+</div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">//----------------------------------------------------------------------------</span>
+<span class="c1">// addPopSpecificAgentData</span>
+<span class="c1">// read additional data from pop file</span>
+<span class="c1">//</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">SheepPop::addPopSpecificAgentData</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iAgentIndex</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">ppData</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">iResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">iResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">addAgentDataSingle</span><span class="p">(</span><span class="n">ppData</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">m_aAgents</span><span class="p">[</span><span class="n">iAgentIndex</span><span class="p">].</span><span class="n">m_dMass</span><span class="p">);</span>
+<span class="w">    </span><span class="n">m_aAgents</span><span class="p">[</span><span class="n">iAgentIndex</span><span class="p">].</span><span class="n">m_dBabyMass</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">iResult</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">//----------------------------------------------------------------------------</span>
+<span class="c1">// addPopSpecificAgentDataTypeQDF</span>
+<span class="c1">// extend the agent data type to include additional data in the output</span>
+<span class="c1">//</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">SheepPop::addPopSpecificAgentDataTypeQDF</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="o">*</span><span class="n">hAgentDataType</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="n">SheepAgent</span><span class="w"> </span><span class="n">ra</span><span class="p">;</span>
+<span class="w">    </span><span class="n">H5Tinsert</span><span class="p">(</span><span class="o">*</span><span class="n">hAgentDataType</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Mass&quot;</span><span class="p">,</span><span class="w">  </span><span class="n">qoffsetof</span><span class="p">(</span><span class="n">ra</span><span class="p">,</span><span class="w"> </span><span class="n">m_dMass</span><span class="p">),</span><span class="w"> </span><span class="n">H5T_NATIVE_DOUBLE</span><span class="p">);</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>When a baby is born we set its initial mass and subtract this from the parent’s mass.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">//----------------------------------------------------------------------------</span>
+<span class="c1">// makePopSpecificOffspring</span>
+<span class="c1">//</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">SheepPop::makePopSpecificOffspring</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iAgent</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iMother</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iFather</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">//int iThread = omp_get_thread_num();</span>
+
+<span class="w">    </span><span class="c1">//double fM = 31 + this-&gt;m_apWELL[iThread]-&gt;wrandr(0.0,1.0);</span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">fM</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">m_aAgents</span><span class="p">[</span><span class="n">iMother</span><span class="p">].</span><span class="n">m_dBabyMass</span><span class="p">;</span>
+<span class="w">    </span><span class="n">m_aAgents</span><span class="p">[</span><span class="n">iAgent</span><span class="p">].</span><span class="n">m_dMass</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fM</span><span class="p">;</span>
+<span class="w">    </span><span class="n">m_aAgents</span><span class="p">[</span><span class="n">iMother</span><span class="p">].</span><span class="n">m_dMass</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="n">fM</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">//    m_aAgents[iAgent].m_iMateIndex = -3;</span>
+<span class="w">    </span><span class="c1">//printf(&quot;birth: M %d (%f), B %d (%f)\n&quot;, iMother, m_aAgents[iMother].m_dMass, iAgent, m_aAgents[iAgent].m_dMass);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 </section>
 <section id="xml-and-dat">
-<h2>XML and DAT<a class="headerlink" href="#xml-and-dat" title="Permalink to this heading">¶</a></h2>
+<span id="xmldat-grass-sheep-ref"></span><h2>XML and DAT<a class="headerlink" href="#xml-and-dat" title="Permalink to this heading">¶</a></h2>
 <p>The xml file for “GrassPop” is simple:</p>
-<p>The dat file for GrassPop contains 250’000 entries (on for each cell in the 500x5000 grid)</p>
-<p>The xml for SheepPop must provide values for all action attributes:</p>
-<p>In the dat file there is only one agent placed in the middle of the field:</p>
-</section>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;class</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;GrassPop&quot;</span><span class="w"> </span><span class="na">species_name=</span><span class="s">&quot;grass&quot;</span><span class="w"> </span><span class="na">species_id=</span><span class="s">&quot;104&quot;</span><span class="nt">&gt;</span>
+
+<span class="w">  </span><span class="nt">&lt;module</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;GrassManager&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;param</span><span class="w">  </span><span class="na">name=</span><span class="s">&quot;MinMass&quot;</span><span class="w">    </span><span class="na">value=</span><span class="s">&quot;1.0&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;param</span><span class="w">  </span><span class="na">name=</span><span class="s">&quot;MaxMass&quot;</span><span class="w">    </span><span class="na">value=</span><span class="s">&quot;10.0&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;param</span><span class="w">  </span><span class="na">name=</span><span class="s">&quot;GrowthRate&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0.008&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/module&gt;</span>
+
+<span class="w">  </span><span class="nt">&lt;priorities&gt;</span>
+<span class="w">    </span><span class="nt">&lt;prio</span><span class="w">  </span><span class="na">name=</span><span class="s">&quot;GrassManager&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;1&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/priorities&gt;</span>
+
+<span class="nt">&lt;/class&gt;</span>
+</pre></div>
+</div>
+<p>Since we want grass to grow on every cell, and there should be only one grass agent per cell, the dat file for <code class="docutils literal notranslate"><span class="pre">GrassPop</span></code> contains 250’000 entries (one for each cell in the 500x5000 grid):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>#(NodeID);LifeState;AgentID;BirthTime;Gender;Age
+(0);1;0;-10;0;5
+(1);1;1;-10;0;5
+(2);1;2;-10;0;5
+...
+</pre></div>
+</div>
+<p>The xml for <code class="docutils literal notranslate"><span class="pre">SheepPop</span></code> must provide values for all action attributes:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;class</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;SheepPop&quot;</span><span class="w"> </span><span class="na">species_name=</span><span class="s">&quot;sheep&quot;</span><span class="w"> </span><span class="na">species_id=</span><span class="s">&quot;105&quot;</span><span class="nt">&gt;</span>
+
+<span class="w">  </span><span class="nt">&lt;module</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;WeightedMove&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;param</span><span class="w">  </span><span class="na">name=</span><span class="s">&quot;WeightedMove_prob&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0.1&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/module&gt;</span>
+
+<span class="w">  </span><span class="nt">&lt;module</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;SingleEvaluator&quot;</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;Grass&quot;</span><span class="w"> </span><span class="nt">&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/module&gt;</span>
+
+<span class="w">  </span><span class="nt">&lt;module</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Starver&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;param</span><span class="w">  </span><span class="na">name=</span><span class="s">&quot;StarveMass&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0.4&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;param</span><span class="w">  </span><span class="na">name=</span><span class="s">&quot;MassDecay&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0.1&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/module&gt;</span>
+
+<span class="w">  </span><span class="nt">&lt;module</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;AnimalReproducer&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;param</span><span class="w">  </span><span class="na">name=</span><span class="s">&quot;MassFert&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;6.0&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;param</span><span class="w">  </span><span class="na">name=</span><span class="s">&quot;MassBaby&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;3.0&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;param</span><span class="w">  </span><span class="na">name=</span><span class="s">&quot;BirthProb&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0.2&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/module&gt;</span>
+
+<span class="w">  </span><span class="nt">&lt;priorities&gt;</span>
+<span class="w">    </span><span class="nt">&lt;prio</span><span class="w">  </span><span class="na">name=</span><span class="s">&quot;SheepManager&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;2&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;prio</span><span class="w">  </span><span class="na">name=</span><span class="s">&quot;AnimalReproducer&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;4&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;prio</span><span class="w">  </span><span class="na">name=</span><span class="s">&quot;SingleEvaluator[Grass]&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;5&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;prio</span><span class="w">  </span><span class="na">name=</span><span class="s">&quot;WeightedMove&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;6&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;prio</span><span class="w">  </span><span class="na">name=</span><span class="s">&quot;Starver&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;7&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/priorities&gt;</span>
+<span class="nt">&lt;/class&gt;</span>
+</pre></div>
+</div>
+<p>In the dat file for <code class="docutils literal notranslate"><span class="pre">SheepPop</span></code> there is only one agent placed in the middle of the field:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>#(NodeID);LifeState;AgentID;BirthTime;Gender;Age
+(125250);1;0;-10.0;0;8
+</pre></div>
+</div>
+<span class="target" id="grid-grass-sheep-ref"></span></section>
 <section id="grid">
 <h2>Grid<a class="headerlink" href="#grid" title="Permalink to this heading">¶</a></h2>
 <p>For this example we use flat 500x500 geometry with torus identifications and uniform altitude (250’000 cells).</p>
-</section>
+<span class="target" id="comp-run-grass-sheep-ref"></span></section>
 <section id="compiling-and-running">
 <h2>Compiling and Running<a class="headerlink" href="#compiling-and-running" title="Permalink to this heading">¶</a></h2>
 <p>Assuming that you have created the tutorial directories with the script <a class="reference internal" href="../tools/build_tut_dirs.html#build-tut-dirs-ref"><span class="std std-ref">build_tut_dirs.py</span></a>,</p>
 <p>lets first create alternative population and action directories with the script <a class="reference internal" href="../tools/build_alt_modpop.html#build-alt-modpop-ref"><span class="std std-ref">build_alt_modpop.py</span></a>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="si">${</span><span class="nv">QHG4_DIR</span><span class="si">}</span>/useful_stuff/build_alt_modpop.py tut_08 GrassPop SheepPop
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="si">${</span><span class="nv">QHG4_DIR</span><span class="si">}</span>/useful_stuff/build_alt_modpop.py<span class="w"> </span>tut_08<span class="w"> </span>GrassPop<span class="w"> </span>SheepPop
 </pre></div>
 </div>
 <p>This builds alternative population directories <code class="docutils literal notranslate"><span class="pre">tut_08_pop</span></code> and <code class="docutils literal notranslate"><span class="pre">tut_08_mod</span></code> with the files needed to compile <code class="docutils literal notranslate"><span class="pre">GrassPop</span></code> and SheepPop``.</p>
 <p>To compile, change to the QHG4 root directory and type:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">OPT</span><span class="o">=</span><span class="m">1</span> <span class="nv">SHORT</span><span class="o">=</span>tut_08 make clean QHGMain
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">OPT</span><span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="nv">SHORT</span><span class="o">=</span>tut_08<span class="w"> </span>make<span class="w"> </span>clean<span class="w"> </span>QHGMain
 </pre></div>
 </div>
 <p>Here we set the environemnt variable <code class="docutils literal notranslate"><span class="pre">OPT</span></code> to get optimized compilation (see <a class="reference internal" href="../qhg4_compile.html#compiling-qhg-ref"><span class="std std-ref">Compiling QHG</span></a>)</p>
 <p>Now cd to the tutorial subdirectory <code class="docutils literal notranslate"><span class="pre">tutorial_08</span></code> and start QHGMain</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="si">${</span><span class="nv">QHG4_DIR</span><span class="si">}</span>/app/QHGMain --read-config<span class="o">=</span>tutorial_08.cfg &gt; tutorial_08.out
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="si">${</span><span class="nv">QHG4_DIR</span><span class="si">}</span>/app/QHGMain<span class="w"> </span>--read-config<span class="o">=</span>tutorial_08.cfg<span class="w"> </span>&gt;<span class="w"> </span>tutorial_08.out
 </pre></div>
 </div>
 <p>This tells QHGMain to read the parameters from  the file <code class="docutils literal notranslate"><span class="pre">tutorial_08.cfg</span></code> and write all output to the file <code class="docutils literal notranslate"><span class="pre">tutorial_08.out</span></code> (this output contains more information than the logfile)</p>
@@ -263,10 +622,10 @@ and for SheepPop only the agent data is written.</p>
 <dt><code class="docutils literal notranslate"><span class="pre">start-time</span></code></dt><dd><p>The ‘real’ time corresponding to step 0.</p>
 </dd>
 </dl>
-</section>
+<span class="target" id="visualize-run-grass-sheep-ref"></span></section>
 <section id="visualizing-the-results">
-<h2>Visualizing the results<a class="headerlink" href="#visualizing-the-results" title="Permalink to this heading">¶</a></h2>
-<p>A simulation with the attributes described above was run for x000 steps,
+<h2>Visualizing the Results<a class="headerlink" href="#visualizing-the-results" title="Permalink to this heading">¶</a></h2>
+<p>A simulation with the attributes described above was run for 10’000 steps,
 starting from with a single sheep agent in the center of the field.
 Initially each grass agent has half of the maximum mass.</p>
 <p>After every 10 time steps a snapshot of the simulation state was made.
@@ -294,7 +653,7 @@ These snapshots were turned into a video using VisIt’s “Save as Movie…” 
 <li><a class="reference internal" href="#xml-and-dat">XML and DAT</a></li>
 <li><a class="reference internal" href="#grid">Grid</a></li>
 <li><a class="reference internal" href="#compiling-and-running">Compiling and Running</a></li>
-<li><a class="reference internal" href="#visualizing-the-results">Visualizing the results</a></li>
+<li><a class="reference internal" href="#visualizing-the-results">Visualizing the Results</a></li>
 </ul>
 </li>
 </ul>
@@ -304,6 +663,11 @@ These snapshots were turned into a video using VisIt’s “Save as Movie…” 
     <h4>Previous topic</h4>
     <p class="topless"><a href="tutorial_07_environcapalt.html"
                           title="previous chapter">QHG Tutorial 07 - Environment interaction II</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="how_to_build_a_pop.html"
+                          title="next chapter">How to design and build new Populations and Actions</a></p>
   </div>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
@@ -332,6 +696,9 @@ These snapshots were turned into a video using VisIt’s “Save as Movie…” 
         <li class="right" style="margin-right: 10px">
           <a href="../genindex.html" title="General Index"
              >index</a></li>
+        <li class="right" >
+          <a href="how_to_build_a_pop.html" title="How to design and build new Populations and Actions"
+             >next</a> |</li>
         <li class="right" >
           <a href="tutorial_07_environcapalt.html" title="QHG Tutorial 07 - Environment interaction II"
              >previous</a> |</li>

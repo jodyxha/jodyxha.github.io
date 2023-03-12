@@ -11,7 +11,9 @@ The class ``GetOld`` is derived from ``Action`` and simply calculates the age of
 
 As it is, this action has no attributes besides its name.
 
-Code: `GetOld.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/GetOld.h>`_ `GetOld.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/GetOld.cpp>`_
+Code:
+    | `GetOld.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/GetOld.h>`_ 
+    | `GetOld.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/GetOld.cpp>`_
 
 +----------------------------------+---------------+---------------------+
 | ``ATTR_GETOLD_NAME``             | "GetOld"      | action name         |

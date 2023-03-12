@@ -11,8 +11,8 @@ they just exist - no agents die, no agents are born, and no agents move.
 
 **Population code:**
 
-   | `tut_StaticPop.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_StaticPop.h>`_ . |_| 
-     `tut_StaticPop.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_StaticPop.cpp>`_
+   | `tut_StaticPop.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_StaticPop.h>`_  
+   | `tut_StaticPop.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_StaticPop.cpp>`_
 
 **Action code:**
 

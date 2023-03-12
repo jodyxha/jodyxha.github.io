@@ -18,7 +18,9 @@ This file extends the attribute structure:
         int     m_iNumVegSpc;
     };
 
-Code: `VegGroupReader.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/VegGroupReader.h>`_, `VegGroupReader.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/VegGroupReader.cpp>`_
+Code:
+    | `VegGroupReader.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/VegGroupReader.h>`_
+    | `VegGroupReader.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/VegGroupReader.cpp>`_
 
 
 Public Methods

@@ -9,7 +9,9 @@ NavWriter
 
 The class ``NavWriter`` is used to write the :ref:`navigation data<Navigation_ref>` to the :ref:`navigation group<NavGroup_ref>` in a qdf file.
 
-Code: `NavWriter.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/NavWriter.h>`_, `NavWriter.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/NavWriter.cpp>`_
+Code:
+    | `NavWriter.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/NavWriter.h>`_
+    | `NavWriter.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/NavWriter.cpp>`_
 
 Public Methods
 --------------

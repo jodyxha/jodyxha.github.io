@@ -53,7 +53,7 @@
 <p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/useful_stuff/build_alt_modpop.py">build_alt_modpop.py</a></p>
 <section id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="si">${</span><span class="nv">QHG4_DIR</span><span class="si">}</span>/useful_stuff/build_alt_modpop.py &lt;prefix&gt; &lt;pop_name&gt;+
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="si">${</span><span class="nv">QHG4_DIR</span><span class="si">}</span>/useful_stuff/build_alt_modpop.py<span class="w"> </span>&lt;prefix&gt;<span class="w"> </span>&lt;pop_name&gt;+
 </pre></div>
 </div>
 <p>where</p>
@@ -63,10 +63,13 @@
 <dt><code class="docutils literal notranslate"><span class="pre">pop_name</span></code></dt><dd><p>name of a class whose c++ and h files are in the population subdirectory</p>
 </dd>
 </dl>
+<p>The <code class="docutils literal notranslate"><span class="pre">prefix</span></code> can la have the form <code class="docutils literal notranslate"><span class="pre">path/to/alt_dirs/tut_05</span></code>.
+If the path does not exist, all the necessary intermediate subdirectories
+will be created.</p>
 </section>
 <section id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="si">${</span><span class="nv">QHG4_DIR</span><span class="si">}</span>/useful_stuff/build_alt_modpop.py temp2 tut_PatrhenoPop tut_EnvironAltPop
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="si">${</span><span class="nv">QHG4_DIR</span><span class="si">}</span>/useful_stuff/build_alt_modpop.py<span class="w"> </span>temp2<span class="w"> </span>tut_PatrhenoPop<span class="w"> </span>tut_EnvironAltPop
 </pre></div>
 </div>
 <p>This will create the directories <code class="docutils literal notranslate"><span class="pre">temp2_mod</span></code> and <code class="docutils literal notranslate"><span class="pre">temp2_pop</span></code> filled

@@ -51,12 +51,18 @@
 <span id="wellutils-ref"></span><h1>WELLUtils<a class="headerlink" href="#wellutils" title="Permalink to this heading">¶</a></h1>
 <p class="hidden">This page describes the module <span class="target" id="index-0"></span>WELLUtils</p>
 <p>The module <code class="docutils literal notranslate"><span class="pre">WELLUtils</span></code> provides some helpful utilities for initialising and managinf <a class="reference internal" href="WELL512.html#well512-ref"><span class="std std-ref">WELL512</span></a> objects.</p>
-<p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/WELLUtils.h">WELLUtils.h</a>, <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/WELLUtils.cpp">WELLUtils.cpp</a></p>
+<dl>
+<dt>Code:</dt><dd><div class="line-block">
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/WELLUtils.h">WELLUtils.h</a></div>
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/WELLUtils.cpp">WELLUtils.cpp</a></div>
+</div>
+</dd>
+</dl>
 <section id="functions">
 <h2>Functions<a class="headerlink" href="#functions" title="Permalink to this heading">¶</a></h2>
 <section id="stringtoseed">
 <h3><code class="docutils literal notranslate"><span class="pre">stringToSeed</span></code><a class="headerlink" href="#stringtoseed" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">stringToSeed</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sSequence</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">uint32_t</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">vulState</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">stringToSeed</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sSequence</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">uint32_t</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">vulState</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Converts string representation of a state to a vector of uint32_t integers.</p>
@@ -70,7 +76,7 @@
 </section>
 <section id="phrasetoseed">
 <h3><code class="docutils literal notranslate"><span class="pre">phraseToSeed</span></code><a class="headerlink" href="#phrasetoseed" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">phraseToSeed</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sPhrase</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">uint32_t</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">vulState</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">phraseToSeed</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sPhrase</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">uint32_t</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">vulState</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Uses md5 to fill a vector with STATE_SIZE uint32_t.</p>
@@ -84,7 +90,7 @@
 </section>
 <section id="randomseed">
 <h3><code class="docutils literal notranslate"><span class="pre">randomSeed</span></code><a class="headerlink" href="#randomseed" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">randomSeed</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iSeed</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">uint32_t</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">vulState</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">randomSeed</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iSeed</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">uint32_t</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">vulState</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Uses the c library <code class="docutils literal notranslate"><span class="pre">rand()</span></code> function to fill a vector with STATE_SIZE uint32_t.</p>
@@ -97,7 +103,7 @@
 </section>
 <section id="createwell">
 <h3><code class="docutils literal notranslate"><span class="pre">createWELL</span></code><a class="headerlink" href="#createwell" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">WELL512</span><span class="w"> </span><span class="o">*</span><span class="nf">createWELL</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sPhrase</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">WELL512</span><span class="w"> </span><span class="o">*</span><span class="nf">createWELL</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sPhrase</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Creates a WELL512 and seeds it with the string sPhrase.</p>
@@ -109,7 +115,7 @@
 </section>
 <section id="buildwells">
 <h3><code class="docutils literal notranslate"><span class="pre">buildWells</span></code><a class="headerlink" href="#buildwells" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">WELL512</span><span class="w"> </span><span class="o">**</span><span class="nf">buildWELLs</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iNum</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="n">iSeed</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">WELL512</span><span class="w"> </span><span class="o">**</span><span class="nf">buildWELLs</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iNum</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="n">iSeed</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Creates an array of <code class="docutils literal notranslate"><span class="pre">iNum</span></code> pointers to <code class="docutils literal notranslate"><span class="pre">WELL512</span></code> objects.</p>
@@ -124,7 +130,7 @@ This pointer should be passed to <code class="docutils literal notranslate"><spa
 </section>
 <section id="destroywells">
 <h3><code class="docutils literal notranslate"><span class="pre">destroyWELLs</span></code><a class="headerlink" href="#destroywells" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">destroyWELLs</span><span class="p">(</span><span class="n">WELL512</span><span class="w"> </span><span class="o">**</span><span class="n">pWELLs</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iNum</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">destroyWELLs</span><span class="p">(</span><span class="n">WELL512</span><span class="w"> </span><span class="o">**</span><span class="n">pWELLs</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iNum</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Destroy an array of <code class="docutils literal notranslate"><span class="pre">WELL512</span></code> objects created by <code class="docutils literal notranslate"><span class="pre">buildWELLs()</span></code>.</p>
@@ -137,7 +143,7 @@ This pointer should be passed to <code class="docutils literal notranslate"><spa
 </section>
 <section id="showstate">
 <h3><code class="docutils literal notranslate"><span class="pre">showState</span></code><a class="headerlink" href="#showstate" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">showState</span><span class="p">(</span><span class="n">WELL512</span><span class="w"> </span><span class="o">*</span><span class="n">pWELL</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">showState</span><span class="p">(</span><span class="n">WELL512</span><span class="w"> </span><span class="o">*</span><span class="n">pWELL</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Prints the current index and state vector of the <code class="docutils literal notranslate"><span class="pre">WELL512</span></code> object to stdout. Mainly used for debugging.</p>
@@ -150,7 +156,7 @@ This pointer should be passed to <code class="docutils literal notranslate"><spa
 </section>
 <section id="showstates">
 <h3><code class="docutils literal notranslate"><span class="pre">showStates</span></code><a class="headerlink" href="#showstates" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">showStates</span><span class="p">(</span><span class="n">WELL512</span><span class="w"> </span><span class="o">**</span><span class="n">apWELL</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iNum</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">bFull</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">showStates</span><span class="p">(</span><span class="n">WELL512</span><span class="w"> </span><span class="o">**</span><span class="n">apWELL</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iNum</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">bFull</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Prints the current indexes and states of an array of <code class="docutils literal notranslate"><span class="pre">WELL512</span></code> objects. Mainly used for debugging.</p>
@@ -163,14 +169,14 @@ This pointer should be passed to <code class="docutils literal notranslate"><spa
 </section>
 <section id="strstate">
 <h3><code class="docutils literal notranslate"><span class="pre">strState</span></code><a class="headerlink" href="#strstate" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">strState</span><span class="p">(</span><span class="n">WELL512</span><span class="w"> </span><span class="o">*</span><span class="n">pWELL</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">strState</span><span class="p">(</span><span class="n">WELL512</span><span class="w"> </span><span class="o">*</span><span class="n">pWELL</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Creates a string containing index and state of the <code class="docutils literal notranslate"><span class="pre">WELL512</span></code> object.</p>
 </section>
 <section id="strstatehash">
 <h3><code class="docutils literal notranslate"><span class="pre">strStateHash</span></code><a class="headerlink" href="#strstatehash" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">strStateHash</span><span class="p">(</span><span class="n">WELL512</span><span class="w"> </span><span class="o">*</span><span class="n">pWELL</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">strStateHash</span><span class="p">(</span><span class="n">WELL512</span><span class="w"> </span><span class="o">*</span><span class="n">pWELL</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Calculates a md5 hash from the string representation of the WELL’s state.</p>

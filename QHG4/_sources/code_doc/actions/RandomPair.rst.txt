@@ -13,11 +13,13 @@ This class has no ``execute()`` method because all pairings must be done before 
 
 Note: the agent structures of the population must have a member ``int iMateIndex``
 
-Code: `RandomPair.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/RandomPair.h>`_ `RandomPair.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/RandomPair.cpp>`_
-
 .. figure:: ../../../images/pairing.png
 
     Pairing of agents within cells (blue: males, red: females).
+
+Code: 
+    | `RandomPair.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/RandomPair.h>`_ 
+    | `RandomPair.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/RandomPair.cpp>`_
 
 **Attributes:**
 

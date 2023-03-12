@@ -52,13 +52,19 @@
 <p class="hidden">This page describes <span class="target" id="index-0"></span>LineReader</p>
 <p>The class <code class="docutils literal notranslate"><span class="pre">LineReader</span></code> is an abstract base class for line-reading classes. There are two implementations, <code class="docutils literal notranslate"><span class="pre">LineReader_std</span></code> and <code class="docutils literal notranslate"><span class="pre">LineReader_gz</span></code>.</p>
 <p><code class="docutils literal notranslate"><span class="pre">LineReader_std</span></code> lets you comfortably read lines from a text file, whereas you can read lines directly from a gzipped text file. There are tw implementations</p>
-<p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/LineReader.h">LineReader.h</a>, <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/LineReader.cpp">LineReader.cpp</a></p>
+<dl>
+<dt>Code:</dt><dd><div class="line-block">
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/LineReader.h">LineReader.h</a></div>
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/LineReader.cpp">LineReader.cpp</a></div>
+</div>
+</dd>
+</dl>
 <section id="public-methods">
 <h2>Public Methods<a class="headerlink" href="#public-methods" title="Permalink to this heading">¶</a></h2>
 <section id="createinstance">
 <h3><code class="docutils literal notranslate"><span class="pre">createInstance</span></code><a class="headerlink" href="#createinstance" title="Permalink to this heading">¶</a></h3>
 <p>(<code class="docutils literal notranslate"><span class="pre">LineReader_std</span></code> and <code class="docutils literal notranslate"><span class="pre">LineReader_gz</span></code>)</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="n">LineReader</span><span class="w"> </span><span class="o">*</span><span class="nf">createInstance</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sFileName</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sMode</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iLineLen</span><span class="o">=</span><span class="n">MAX_LINE2</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="n">LineReader</span><span class="w"> </span><span class="o">*</span><span class="nf">createInstance</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sFileName</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sMode</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iLineLen</span><span class="o">=</span><span class="n">MAX_LINE2</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Create a <code class="docutils literal notranslate"><span class="pre">LineReader</span></code> for the specified file.</p>
@@ -75,7 +81,7 @@
 <section id="id1">
 <h3><code class="docutils literal notranslate"><span class="pre">createInstance</span></code><a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h3>
 <p>(<code class="docutils literal notranslate"><span class="pre">LineReader_std</span></code> only)</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="n">LineReader</span><span class="w"> </span><span class="o">*</span><span class="nf">createInstance</span><span class="p">(</span><span class="kt">FILE</span><span class="w"> </span><span class="o">*</span><span class="n">fIn</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iLineLen</span><span class="o">=</span><span class="n">MAX_LINE2</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="n">LineReader</span><span class="w"> </span><span class="o">*</span><span class="nf">createInstance</span><span class="p">(</span><span class="kt">FILE</span><span class="w"> </span><span class="o">*</span><span class="n">fIn</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iLineLen</span><span class="o">=</span><span class="n">MAX_LINE2</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Create a <code class="docutils literal notranslate"><span class="pre">LineReader</span></code> for the opened file.</p>
@@ -89,8 +95,8 @@
 </section>
 <section id="constructor">
 <h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#constructor" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">LineReader_std</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sFileName</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sMode</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iLineLen</span><span class="o">=</span><span class="n">MAX_LINE2</span><span class="p">);</span><span class="w"></span>
-<span class="n">LineReader_gz</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w">  </span><span class="n">sFileName</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">pMode</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iLineLen</span><span class="o">=</span><span class="n">MAX_LINE2</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">LineReader_std</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sFileName</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sMode</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iLineLen</span><span class="o">=</span><span class="n">MAX_LINE2</span><span class="p">);</span>
+<span class="n">LineReader_gz</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w">  </span><span class="n">sFileName</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">pMode</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iLineLen</span><span class="o">=</span><span class="n">MAX_LINE2</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>The constructor.</p>
@@ -105,8 +111,8 @@
 </section>
 <section id="id2">
 <h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">LineReader_std</span><span class="p">(</span><span class="kt">FILE</span><span class="w"> </span><span class="o">*</span><span class="n">fIn</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iLineLen</span><span class="o">=</span><span class="n">MAX_LINE2</span><span class="p">);</span><span class="w"></span>
-<span class="n">LineReader_gz</span><span class="p">(</span><span class="n">gzFile</span><span class="w"> </span><span class="n">fIn</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iLineLen</span><span class="o">=</span><span class="n">MAX_LINE2</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">LineReader_std</span><span class="p">(</span><span class="kt">FILE</span><span class="w"> </span><span class="o">*</span><span class="n">fIn</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iLineLen</span><span class="o">=</span><span class="n">MAX_LINE2</span><span class="p">);</span>
+<span class="n">LineReader_gz</span><span class="p">(</span><span class="n">gzFile</span><span class="w"> </span><span class="n">fIn</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iLineLen</span><span class="o">=</span><span class="n">MAX_LINE2</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Construcor for opened file.</p>
@@ -119,15 +125,15 @@
 </section>
 <section id="destructor">
 <h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="o">~</span><span class="n">LineReader_std</span><span class="p">();</span><span class="w"></span>
-<span class="o">~</span><span class="n">LineReader_gz</span><span class="p">();</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="o">~</span><span class="n">LineReader_std</span><span class="p">();</span>
+<span class="o">~</span><span class="n">LineReader_gz</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>The destructor.</p>
 </section>
 <section id="getnextline">
 <h3><code class="docutils literal notranslate"><span class="pre">getNextLine</span></code><a class="headerlink" href="#getnextline" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="nf">getNextLine</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iMode</span><span class="o">=</span><span class="n">GNL_IGNORE_ALL</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="nf">getNextLine</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iMode</span><span class="o">=</span><span class="n">GNL_IGNORE_ALL</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Get the next line.</p>
@@ -168,7 +174,7 @@
 <section id="read">
 <h3><code class="docutils literal notranslate"><span class="pre">read</span></code><a class="headerlink" href="#read" title="Permalink to this heading">¶</a></h3>
 <p>(<code class="docutils literal notranslate"><span class="pre">LineReader_std</span></code> and <code class="docutils literal notranslate"><span class="pre">LineReader_gz</span></code>)</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">uint</span><span class="w"> </span><span class="nf">read</span><span class="p">(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">pBuf</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="n">iSize</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">uint</span><span class="w"> </span><span class="nf">read</span><span class="p">(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">pBuf</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="n">iSize</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Read <code class="docutils literal notranslate"><span class="pre">iSize</span></code> characters into <code class="docutils literal notranslate"><span class="pre">pBuf</span></code>.</p>
@@ -183,7 +189,7 @@
 <section id="seek">
 <h3><code class="docutils literal notranslate"><span class="pre">seek</span></code><a class="headerlink" href="#seek" title="Permalink to this heading">¶</a></h3>
 <p>(<code class="docutils literal notranslate"><span class="pre">LineReader_std</span></code> and <code class="docutils literal notranslate"><span class="pre">LineReader_gz</span></code>)</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">seek</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">offset</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">whence</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">seek</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">offset</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">whence</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Move to a particular position in the file.</p>
@@ -210,7 +216,7 @@
 <section id="tell">
 <h3><code class="docutils literal notranslate"><span class="pre">tell</span></code><a class="headerlink" href="#tell" title="Permalink to this heading">¶</a></h3>
 <p>(<code class="docutils literal notranslate"><span class="pre">LineReader_std</span></code> and <code class="docutils literal notranslate"><span class="pre">LineReader_gz</span></code>)</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">long</span><span class="w"> </span><span class="nf">tell</span><span class="p">();</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">long</span><span class="w"> </span><span class="nf">tell</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>Returns the current position in the file.</p>
@@ -218,7 +224,7 @@
 <section id="iseof">
 <h3><code class="docutils literal notranslate"><span class="pre">isEoF</span></code><a class="headerlink" href="#iseof" title="Permalink to this heading">¶</a></h3>
 <p>(<code class="docutils literal notranslate"><span class="pre">LineReader_std</span></code> and <code class="docutils literal notranslate"><span class="pre">LineReader_gz</span></code>)</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="nf">isEoF</span><span class="p">();</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="nf">isEoF</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>Returns <code class="docutils literal notranslate"><span class="pre">true</span></code> if then of the file has been reached.</p>
@@ -226,42 +232,42 @@
 <section id="isready">
 <h3><code class="docutils literal notranslate"><span class="pre">isReady</span></code><a class="headerlink" href="#isready" title="Permalink to this heading">¶</a></h3>
 <p>(<code class="docutils literal notranslate"><span class="pre">LineReader_std</span></code> and <code class="docutils literal notranslate"><span class="pre">LineReader_gz</span></code>)</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="nf">isReady</span><span class="p">();</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="nf">isReady</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>Returns true if the LineReader is ready.</p>
 <section id="example">
 <h4>Example<a class="headerlink" href="#example" title="Permalink to this heading">¶</a></h4>
 <p>Compile with</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>g++ lr_example.cpp LineReader.cpp stdstrutils.cpp stdstrutilsT.h strutils.cpp --std<span class="o">=</span>c++20 -lz -o lr_example
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>g++<span class="w"> </span>lr_example.cpp<span class="w"> </span>LineReader.cpp<span class="w"> </span>stdstrutils.cpp<span class="w"> </span>stdstrutilsT.h<span class="w"> </span>strutils.cpp<span class="w"> </span>--std<span class="o">=</span>c++20<span class="w"> </span>-lz<span class="w"> </span>-o<span class="w"> </span>lr_example
 </pre></div>
 </div>
 <p>This example reads the lines of a file and prints the lines with a prepended line number.</p>
 <p>Code for <code class="docutils literal notranslate"><span class="pre">lr_example.cpp</span></code>:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cstdio&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span><span class="cp"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cstdio&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span>
 
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;LineReader.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;LineReader.h&quot;</span>
 
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iArgC</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">apArgV</span><span class="p">[])</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">iArgC</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">LineReader</span><span class="w"> </span><span class="o">*</span><span class="n">pLR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LineReader_std</span><span class="o">::</span><span class="n">createInstance</span><span class="p">(</span><span class="n">apArgV</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="s">&quot;rt&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">pLR</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
-<span class="w">            </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">pLine</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pLR</span><span class="o">-&gt;</span><span class="n">getNextLine</span><span class="p">(</span><span class="n">GNL_IGNORE_NONE</span><span class="p">);</span><span class="w"></span>
-<span class="w">            </span><span class="k">while</span><span class="w"> </span><span class="p">((</span><span class="n">pLine</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">pLR</span><span class="o">-&gt;</span><span class="n">isEoF</span><span class="p">()))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;[%05d] %s&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">,</span><span class="w"> </span><span class="n">pLine</span><span class="p">);</span><span class="w"></span>
-<span class="w">                </span><span class="n">pLine</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pLR</span><span class="o">-&gt;</span><span class="n">getNextLine</span><span class="p">(</span><span class="n">GNL_IGNORE_NONE</span><span class="p">);</span><span class="w"></span>
-<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iArgC</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">apArgV</span><span class="p">[])</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">iArgC</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">LineReader</span><span class="w"> </span><span class="o">*</span><span class="n">pLR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LineReader_std</span><span class="o">::</span><span class="n">createInstance</span><span class="p">(</span><span class="n">apArgV</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="s">&quot;rt&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">pLR</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">            </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">pLine</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pLR</span><span class="o">-&gt;</span><span class="n">getNextLine</span><span class="p">(</span><span class="n">GNL_IGNORE_NONE</span><span class="p">);</span>
+<span class="w">            </span><span class="k">while</span><span class="w"> </span><span class="p">((</span><span class="n">pLine</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">pLR</span><span class="o">-&gt;</span><span class="n">isEoF</span><span class="p">()))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;[%05d] %s&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">,</span><span class="w"> </span><span class="n">pLine</span><span class="p">);</span>
+<span class="w">                </span><span class="n">pLine</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pLR</span><span class="o">-&gt;</span><span class="n">getNextLine</span><span class="p">(</span><span class="n">GNL_IGNORE_NONE</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span>
 
-<span class="w">            </span><span class="k">delete</span><span class="w"> </span><span class="n">pLR</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Usage: %s &lt;text-file&gt;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">apArgV</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="k">delete</span><span class="w"> </span><span class="n">pLR</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Usage: %s &lt;text-file&gt;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">apArgV</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 
-<span class="p">}</span><span class="w"></span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </section>

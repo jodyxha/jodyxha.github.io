@@ -12,7 +12,9 @@ The class ``LineReader`` is an abstract base class for line-reading classes. The
 
 ``LineReader_std`` lets you comfortably read lines from a text file, whereas you can read lines directly from a gzipped text file. There are tw implementations
 
-Code: `LineReader.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/LineReader.h>`_, `LineReader.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/LineReader.cpp>`_
+Code:
+    | `LineReader.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/LineReader.h>`_
+    | `LineReader.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/LineReader.cpp>`_
 
 
 Public Methods

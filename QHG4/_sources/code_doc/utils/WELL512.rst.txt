@@ -11,7 +11,9 @@ The class ``WELL512`` is a pretty good pseudo randmom number generator based on 
 
 The internal state is defined by a state vector of 16 uint_32 numbers  and an index.
 
-Code: `WELL512.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/WELL512.h>`_, `WELL512.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/WELL512.cpp>`_
+Code:
+    | `WELL512.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/WELL512.h>`_
+    | `WELL512.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/WELL512.cpp>`_
 
 
 Public Methods

@@ -22,7 +22,9 @@ This file extends the attribute structure:
         uint     m_iNumBridges;
     };
 
-Code: `NavGroupReader.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/NavGroupReader.h>`_, `NavGroupReader.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/NavGroupReader.cpp>`_
+Code:
+    | `NavGroupReader.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/NavGroupReader.h>`_
+    | `NavGroupReader.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/NavGroupReader.cpp>`_
 
 
 Public Methods

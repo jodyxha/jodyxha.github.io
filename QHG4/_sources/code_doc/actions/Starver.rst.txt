@@ -8,7 +8,7 @@ Starver
    This page describes the class :index:`Starver`
 
 The class ``Starver`` is derived from ``Action`` and is used to decrease agnts' masses at each step.
-This class has been tailored for the use with ``SheepPop`` (see:ref:`QHG Tutorial 08 - Simple Predator-Prey<TutorialGrassRabbit_ref>`).
+This class has been tailored for the use with ``SheepPop`` (see :ref:`QHG Tutorial 08 - Simple Predator-Prey<TutorialGrassRabbit_ref>`).
 
 Code: 
     | `Starver.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/Starver.h>`_ 
@@ -32,7 +32,7 @@ Public Methods
 
 .. code-block:: c++
 
-   GrassManager(SPopulation<T> *pPop, SCellGrid *pCG, std::string sID);
+   Starver(SPopulation<T> *pPop, SCellGrid *pCG, std::string sID);
 
 ``pPop``
     A pointer to the :ref:`SPopulation<SPopulation_ref>` object performing this action.
@@ -49,7 +49,7 @@ Public Methods
 ^^^^^^^^^^^^^^
 .. code-block:: c++
 
-    virtual ~GrassManager();
+    virtual ~Starver();
 
 The destructor destroy some openMP locks.
 
@@ -124,7 +124,7 @@ Extracts the action's attributes from the ``ModuleComplex`` object.
 ``bStrict``
     Strictness of comparisons (ignored here).
 
-``pAction`` is equal to ``this``, if it is a ``GrassManager`` object whose attributes match those of ``this``.
+``pAction`` is equal to ``this``, if it is a ``Starver`` object whose attributes match those of ``this``.
 
 .. ---------------------------------------------------------------------------<--
 

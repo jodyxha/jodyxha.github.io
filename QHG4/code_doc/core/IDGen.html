@@ -21,7 +21,7 @@
     <link rel="shortcut icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="actions" href="../actions.html" />
+    <link rel="next" title="NPPCalc" href="NPPCalc.html" />
     <link rel="prev" title="AutoInterpolator" href="AutoInterpolator.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
@@ -31,7 +31,7 @@
           <a href="../../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="../actions.html" title="actions"
+          <a href="NPPCalc.html" title="NPPCalc"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="AutoInterpolator.html" title="AutoInterpolator"
@@ -55,12 +55,17 @@
 For a particular <code class="docutils literal notranslate"><span class="pre">IDGen</span></code> object the generated IDs have the form “<span class="math notranslate nohighlight">\(base + offset + k*increment\)</span>”.
 This makes it possible to create globally unique IDs even when running on multiple threads.
 In such a case we use one <code class="docutils literal notranslate"><span class="pre">IDGen</span></code> object per thread where the offset of <code class="docutils literal notranslate"><span class="pre">IDGen[i]</span></code> is <code class="docutils literal notranslate"><span class="pre">i</span></code> and the increment is equal to the number of threads.</p>
-<p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/core/IDGen.h">IDGen.h</a></p>
+<dl>
+<dt>Code:</dt><dd><div class="line-block">
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/core/IDGen.h">IDGen.h</a></div>
+</div>
+</dd>
+</dl>
 <section id="public-methods">
 <h2>Public Methods<a class="headerlink" href="#public-methods" title="Permalink to this heading">¶</a></h2>
 <section id="constructor">
 <h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#constructor" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">IDGen</span><span class="p">(</span><span class="n">idtype</span><span class="w"> </span><span class="n">iBase</span><span class="p">,</span><span class="w"> </span><span class="n">idtype</span><span class="w"> </span><span class="n">iOffs</span><span class="p">,</span><span class="w"> </span><span class="n">idtype</span><span class="w"> </span><span class="n">iIncrement</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">IDGen</span><span class="p">(</span><span class="n">idtype</span><span class="w"> </span><span class="n">iBase</span><span class="p">,</span><span class="w"> </span><span class="n">idtype</span><span class="w"> </span><span class="n">iOffs</span><span class="p">,</span><span class="w"> </span><span class="n">idtype</span><span class="w"> </span><span class="n">iIncrement</span><span class="p">);</span>
 </pre></div>
 </div>
 <dl class="simple">
@@ -75,7 +80,7 @@ In such a case we use one <code class="docutils literal notranslate"><span class
 </section>
 <section id="setbase">
 <h3><code class="docutils literal notranslate"><span class="pre">setBase</span></code><a class="headerlink" href="#setbase" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">setBase</span><span class="p">(</span><span class="n">idtype</span><span class="w"> </span><span class="n">iBase</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">setBase</span><span class="p">(</span><span class="n">idtype</span><span class="w"> </span><span class="n">iBase</span><span class="p">);</span>
 </pre></div>
 </div>
 <dl class="simple">
@@ -86,7 +91,7 @@ In such a case we use one <code class="docutils literal notranslate"><span class
 </section>
 <section id="setdata">
 <h3><code class="docutils literal notranslate"><span class="pre">setData</span></code><a class="headerlink" href="#setdata" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">setData</span><span class="p">(</span><span class="n">idtype</span><span class="w"> </span><span class="n">iBase</span><span class="p">,</span><span class="w"> </span><span class="n">idtype</span><span class="w"> </span><span class="n">iOffs</span><span class="p">,</span><span class="w"> </span><span class="n">idtype</span><span class="w"> </span><span class="n">iIncrement</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">setData</span><span class="p">(</span><span class="n">idtype</span><span class="w"> </span><span class="n">iBase</span><span class="p">,</span><span class="w"> </span><span class="n">idtype</span><span class="w"> </span><span class="n">iOffs</span><span class="p">,</span><span class="w"> </span><span class="n">idtype</span><span class="w"> </span><span class="n">iIncrement</span><span class="p">);</span>
 </pre></div>
 </div>
 <dl class="simple">
@@ -101,21 +106,21 @@ In such a case we use one <code class="docutils literal notranslate"><span class
 </section>
 <section id="getid">
 <h3><code class="docutils literal notranslate"><span class="pre">getID</span></code><a class="headerlink" href="#getid" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kr">inline</span><span class="w"> </span><span class="n">idtype</span><span class="w"> </span><span class="nf">getID</span><span class="p">();</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kr">inline</span><span class="w"> </span><span class="n">idtype</span><span class="w"> </span><span class="nf">getID</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>Returns the next ID.</p>
 </section>
 <section id="getcur">
 <h3><code class="docutils literal notranslate"><span class="pre">getCur</span></code><a class="headerlink" href="#getcur" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">idtype</span><span class="w"> </span><span class="nf">getCur</span><span class="p">();</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">idtype</span><span class="w"> </span><span class="nf">getCur</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>Returns the last generated ID (the actual internal state, needed for dump &amp; restore).</p>
 </section>
 <section id="setcur">
 <h3><code class="docutils literal notranslate"><span class="pre">setCur</span></code><a class="headerlink" href="#setcur" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w">   </span><span class="nf">setCur</span><span class="p">(</span><span class="n">idtype</span><span class="w"> </span><span class="n">iCur</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w">   </span><span class="nf">setCur</span><span class="p">(</span><span class="n">idtype</span><span class="w"> </span><span class="n">iCur</span><span class="p">);</span>
 </pre></div>
 </div>
 <dl class="simple">
@@ -159,8 +164,8 @@ In such a case we use one <code class="docutils literal notranslate"><span class
   </div>
   <div>
     <h4>Next topic</h4>
-    <p class="topless"><a href="../actions.html"
-                          title="next chapter">actions</a></p>
+    <p class="topless"><a href="NPPCalc.html"
+                          title="next chapter">NPPCalc</a></p>
   </div>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
@@ -190,7 +195,7 @@ In such a case we use one <code class="docutils literal notranslate"><span class
           <a href="../../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="../actions.html" title="actions"
+          <a href="NPPCalc.html" title="NPPCalc"
              >next</a> |</li>
         <li class="right" >
           <a href="AutoInterpolator.html" title="AutoInterpolator"

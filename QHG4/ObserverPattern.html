@@ -21,7 +21,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Tools" href="tools.html" />
-    <link rel="prev" title="Compiling QHG" href="qhg4_compile.html" /> 
+    <link rel="prev" title="Running QHG" href="qhg4_running.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -33,7 +33,7 @@
           <a href="tools.html" title="Tools"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="qhg4_compile.html" title="Compiling QHG"
+          <a href="qhg4_running.html" title="Running QHG"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">QHG4 4.1 documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">The Observer Pattern</a></li> 
@@ -56,19 +56,19 @@ The <code class="docutils literal notranslate"><span class="pre">Observable</spa
 <p>Relevant code:  <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/Observer.h">Observer.h</a>, <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/Observable.h">Observable.h</a>, <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/Observable.cpp">Observable.cpp</a></p>
 <p>For a more detailed description of the classes see <a class="reference internal" href="code_doc/utils/Observable.html#observable-ref"><span class="std std-ref">Observable</span></a> and <a class="reference internal" href="code_doc/utils/Observer.html#observer-ref"><span class="std std-ref">Observer</span></a>.</p>
 <p>Usually, to make an object observable, you either derive it from <code class="docutils literal notranslate"><span class="pre">Observable</span></code> or use multiple inheritance:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">DerivedObservable</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Base</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Observable</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="p">...</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">DerivedObservable</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Base</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Observable</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="p">...</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>To make an object an <code class="docutils literal notranslate"><span class="pre">Observer</span></code> you use mutiple inheritance:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">DerivedObserver</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Base</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Observer</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="p">...</span><span class="w"></span>
-<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">notify</span><span class="p">(</span><span class="n">Observable</span><span class="w"> </span><span class="o">*</span><span class="n">pObs</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iType</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">pCom</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">DerivedObserver</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Base</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Observer</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="p">...</span>
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">notify</span><span class="p">(</span><span class="n">Observable</span><span class="w"> </span><span class="o">*</span><span class="n">pObs</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iType</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">pCom</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="c1">// implementation for notify, e.g. reload data, or redraw etc.</span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="p">...</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="p">...</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </section>
@@ -82,8 +82,8 @@ The <code class="docutils literal notranslate"><span class="pre">Observable</spa
         <div class="sphinxsidebarwrapper">
   <div>
     <h4>Previous topic</h4>
-    <p class="topless"><a href="qhg4_compile.html"
-                          title="previous chapter">Compiling QHG</a></p>
+    <p class="topless"><a href="qhg4_running.html"
+                          title="previous chapter">Running QHG</a></p>
   </div>
   <div>
     <h4>Next topic</h4>
@@ -121,7 +121,7 @@ The <code class="docutils literal notranslate"><span class="pre">Observable</spa
           <a href="tools.html" title="Tools"
              >next</a> |</li>
         <li class="right" >
-          <a href="qhg4_compile.html" title="Compiling QHG"
+          <a href="qhg4_running.html" title="Running QHG"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">QHG4 4.1 documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">The Observer Pattern</a></li> 

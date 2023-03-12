@@ -54,55 +54,61 @@
 All data items are associated with a node of the <a class="reference internal" href="SCellGrid.html#scellgrid-ref"><span class="std std-ref">SCellGrid</span></a>.</p>
 <p>Initially the climate data was used to calculate net primary production.
 Currently the climate data is not used in QHG because there are simulated NPP data sets for  the past.</p>
-<p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/core/Climate.h">Climate.h</a> <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/core/Climate.cpp">Climate.cpp</a></p>
+<dl>
+<dt>Code:</dt><dd><div class="line-block">
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/core/Climate.h">Climate.h</a></div>
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/core/Climate.cpp">Climate.cpp</a></div>
+</div>
+</dd>
+</dl>
 <section id="public-members">
 <h2>Public Members<a class="headerlink" href="#public-members" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">uint</span><span class="w">         </span><span class="n">m_iNumCells</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">uint</span><span class="w">         </span><span class="n">m_iNumCells</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Number of cells.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="w">   </span><span class="n">climatecount</span><span class="w"> </span><span class="n">m_iNumSeasons</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="w">   </span><span class="n">climatecount</span><span class="w"> </span><span class="n">m_iNumSeasons</span><span class="p">;</span>
 
-<span class="n">Number</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">seasons</span><span class="p">.</span><span class="w"></span>
+<span class="n">Number</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">seasons</span><span class="p">.</span>
 </pre></div>
 </div>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Geography</span><span class="w">   </span><span class="o">*</span><span class="n">m_pGeography</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Geography</span><span class="w">   </span><span class="o">*</span><span class="n">m_pGeography</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Pointer to <a class="reference internal" href="Geography.html#geography-ref"><span class="std std-ref">Geography</span></a> object.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">climatecount</span><span class="w"> </span><span class="n">m_iSeasonMonths</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">climatecount</span><span class="w"> </span><span class="n">m_iSeasonMonths</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Season size in months (1,2,3,4,6,12).</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">climatecount</span><span class="w"> </span><span class="n">m_iCurSeason</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">climatecount</span><span class="w"> </span><span class="n">m_iCurSeason</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Current season (0,…m_iSeasonStep-1).</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">climatenumber</span><span class="w">  </span><span class="o">*</span><span class="n">m_adActualTemps</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">climatenumber</span><span class="w">  </span><span class="o">*</span><span class="n">m_adActualTemps</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Actual temperatures.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">climatenumber</span><span class="w">  </span><span class="o">*</span><span class="n">m_adActualRains</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">climatenumber</span><span class="w">  </span><span class="o">*</span><span class="n">m_adActualRains</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Actual seasonal rainfall.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">climatenumber</span><span class="w">  </span><span class="o">*</span><span class="n">m_adAnnualMeanTemp</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">climatenumber</span><span class="w">  </span><span class="o">*</span><span class="n">m_adAnnualMeanTemp</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Current annual mean temperature.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">climatenumber</span><span class="w">  </span><span class="o">*</span><span class="n">m_adAnnualRainfall</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">climatenumber</span><span class="w">  </span><span class="o">*</span><span class="n">m_adAnnualRainfall</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Current annual total rainfall.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">climatenumber</span><span class="w"> </span><span class="o">**</span><span class="n">m_aadSeasonalTempD</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">climatenumber</span><span class="w"> </span><span class="o">**</span><span class="n">m_aadSeasonalTempD</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Differences of seasonal temperature to mean annual temperature.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">climatenumber</span><span class="w"> </span><span class="o">**</span><span class="n">m_aadSeasonalRainR</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">climatenumber</span><span class="w"> </span><span class="o">**</span><span class="n">m_aadSeasonalRainR</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Ratios of seasonal rainfall to total annual rainfall.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w">         </span><span class="n">m_bUpdated</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w">         </span><span class="n">m_bUpdated</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Update flag.</p>
@@ -111,7 +117,7 @@ Currently the climate data is not used in QHG because there are simulated NPP da
 <h2>Public Methods<a class="headerlink" href="#public-methods" title="Permalink to this heading">¶</a></h2>
 <section id="constructor">
 <h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#constructor" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Climate</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">iNumCells</span><span class="p">,</span><span class="w"> </span><span class="n">climatecount</span><span class="w"> </span><span class="n">iNumSeasons</span><span class="p">,</span><span class="w"> </span><span class="n">Geography</span><span class="w"> </span><span class="o">*</span><span class="n">pGeography</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Climate</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">iNumCells</span><span class="p">,</span><span class="w"> </span><span class="n">climatecount</span><span class="w"> </span><span class="n">iNumSeasons</span><span class="p">,</span><span class="w"> </span><span class="n">Geography</span><span class="w"> </span><span class="o">*</span><span class="n">pGeography</span><span class="p">);</span>
 </pre></div>
 </div>
 <dl class="simple">
@@ -126,28 +132,28 @@ Currently the climate data is not used in QHG because there are simulated NPP da
 </section>
 <section id="destructor">
 <h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">Climate</span><span class="p">();</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">Climate</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>The destructor deletes all allocated arrays.</p>
 </section>
 <section id="preparearrays">
 <h3><code class="docutils literal notranslate"><span class="pre">prepareArrays</span></code><a class="headerlink" href="#preparearrays" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">prepareArrays</span><span class="p">();</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">prepareArrays</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>This method allocates all arrays needed by this class.</p>
 </section>
 <section id="setseason">
 <h3><code class="docutils literal notranslate"><span class="pre">setSeason</span></code><a class="headerlink" href="#setseason" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">setSeason</span><span class="p">(</span><span class="n">climatecount</span><span class="w"> </span><span class="n">iSeason</span><span class="o">=</span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">setSeason</span><span class="p">(</span><span class="n">climatecount</span><span class="w"> </span><span class="n">iSeason</span><span class="o">=</span><span class="mi">0</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Sets current season (only used if there is different climate data for various seasons).</p>
 </section>
 <section id="resetupdated">
 <h3><code class="docutils literal notranslate"><span class="pre">resetUpdated</span></code><a class="headerlink" href="#resetupdated" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">resetUpdated</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">m_bUpdated</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"> </span><span class="p">};</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">resetUpdated</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">m_bUpdated</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"> </span><span class="p">};</span>
 </pre></div>
 </div>
 <p>Reset update state.</p>

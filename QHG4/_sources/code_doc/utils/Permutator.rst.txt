@@ -9,7 +9,9 @@ Permutator
 
 The class ``Permutator`` allows you to get a random permutation or a randomly permutated subset of [0,... N-1].
 
-Code: `Permutator.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/Permutator.h>`_, `Permutator.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/Permutator.cpp>`_
+Code:
+    | `Permutator.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/Permutator.h>`_
+    | `Permutator.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/Permutator.cpp>`_
 
 
 Public Methods

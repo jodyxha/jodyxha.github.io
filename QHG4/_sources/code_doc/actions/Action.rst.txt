@@ -9,7 +9,9 @@ Action
 
 The class ``Action`` is an abstract base class from which all concrete actions must be derived.
 
-Code: `Action.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/Action.h>`_ `Action.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/Action.cpp>`_
+Code: 
+    | `Action.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/Action.h>`_ 
+    | `Action.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/Action.cpp>`_
 
 
 Public Methods

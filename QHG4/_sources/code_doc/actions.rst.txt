@@ -63,6 +63,7 @@ The attributes for an action are passed to QHG by means of an :ref:`XML-file<pop
    actions/VerhulstVarK
    actions/OldAgeDeath
    actions/ATanDeath
+   actions/SigDeath
    actions/GetOld
    actions/AnimalReproducer
 
@@ -86,8 +87,8 @@ The attributes for an action are passed to QHG by means of an :ref:`XML-file<pop
    :maxdepth: 1
 
    actions/Evaluator
+   actions/SingleEvaluator
    actions/MultiEvaluator
    actions/ShareEvaluator
-   actions/SingleEvaluator
 
         

@@ -33,11 +33,13 @@ The format of a population xml file:
 
 The DTD for population xml files:
 
-| ``<!ELEMENT class  (module+, priorities?) >``
+| ``<!ELEMENT class  (module+, priorities?, vardefs?) >``
 | ``<!ELEMENT module (param*) (module*) >``
 | ``<!ELEMENT param EMPTY >``
 | ``<!ELEMENT priorities (prio*) >``
 | ``<!ELEMENT prio  EMPTY >``
+| ``<!ELEMENT vardefs (var*) >``
+| ``<!ELEMENT var  EMPTY >``
 | ``<!ATTLIST class     name         CDATA #REQUIRED >``
 | ``<!ATTLIST class     species_name CDATA #REQUIRED >``
 | ``<!ATTLIST class     species_id   CDATA #REQUIRED >``
@@ -47,6 +49,8 @@ The DTD for population xml files:
 | ``<!ATTLIST param     value        CDATA #REQUIRED >``
 | ``<!ATTLIST prio      name         CDATA #REQUIRED >``
 | ``<!ATTLIST prio      value        CDATA #REQUIRED >``
+| ``<!ATTLIST var       name         CDATA #REQUIRED >``
+| ``<!ATTLIST var       value        CDATA #REQUIRED >``
 
 | An xml file contains one ``class`` tag, which contains one or more ``module`` tags and zero or one ``priorities`` tags.
 | A ``class`` tag must contain attributes denoting the population name, the species name and the species id.
@@ -57,7 +61,10 @@ The DTD for population xml files:
 | A ``param`` tag contains no subtags, but must have two attribute, one giving the name of the action's parameter and one giving its value.
 
 | The ``priorities`` tag bundles the ``prio`` tags which define the priority values for the different actions.
-| A ``prio`` tags contains no subtags, but must have two attributes, one giving the name of the action and one giving its priority value.
+| A ``prio`` tag contains no subtags, but must have two attributes, one giving the name of the action and one giving its priority value.
+
+| The ``vardefs`` tag bundles the ``var`` tags which define values for named variables (to be read by ``SPopulation::getPopParams()``).
+| A ``var`` tag contains no subtags, but must have two attributes, one giving the name of the variable and one giving its value.
 
 
 .. _pop_xml_example_ref:
@@ -126,4 +133,8 @@ These are the contents of a population xml file:
         <prio  name="RandomPair" value="3"/>
         <prio  name="WeightedMove" value="7"/>
       </priorities>
+      <vardefs>
+        <var name="initialState" value="random"/>
+        <var name="MutationRate" value="0.01"/>
+      </vardefs>
     </class>

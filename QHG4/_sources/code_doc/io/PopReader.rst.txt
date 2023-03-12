@@ -22,7 +22,9 @@ The information of found populations is stored in a vector of ``popinfo`` struct
 
     typedef std::vector<popinfo> popinfolist;
 
-Code: `PopReader.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/PopReader.h>`_, `PopReader.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/PopReader.cpp>`_
+Code:
+    | `PopReader.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/PopReader.h>`_
+    | `PopReader.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/PopReader.cpp>`_
 
 Public Methods
 --------------

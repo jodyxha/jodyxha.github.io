@@ -14,7 +14,9 @@ It is used in :ref:`SimParams<SimParams_ref>` to read populations from QDF files
 A peculiarity of ``StatPopFactory.cpp`` code is that it is generated from a template (``StatPopFactory.cpp_for_configure``) by the script ``configure.sh``
 The reason for this is to have ``new`` statements for all population classes (or a subset thereof, see :ref:`Alternative Population anf Action directories<Compiling_QHG_alternate_ref>`).
 
-Code: `StatPopFactory.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/StatPopFactory.h>`_ ,`StatPopFactory.cpp_template <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/StatPopFactory.cpp_template>`_
+Code: 
+    | `StatPopFactory.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/StatPopFactory.h>`_
+    | `StatPopFactory.cpp_template <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/StatPopFactory.cpp_template>`_
 
 PublicMethods
 -------------

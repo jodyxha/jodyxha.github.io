@@ -1,0 +1,208 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Running QHG &#8212; QHG4 4.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="static/jody.css" />
+    
+    <script data-url_root="./" id="documentation_options" src="static/documentation_options.js"></script>
+    <script src="static/jquery.js"></script>
+    <script src="static/underscore.js"></script>
+    <script src="static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="static/doctools.js"></script>
+    <script src="static/sphinx_highlight.js"></script>
+    
+    <link rel="shortcut icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="The Observer Pattern" href="ObserverPattern.html" />
+    <link rel="prev" title="Compiling QHG" href="qhg4_compile.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="ObserverPattern.html" title="The Observer Pattern"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="qhg4_compile.html" title="Compiling QHG"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">QHG4 4.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Running QHG</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="running-qhg">
+<span id="running-qhg-re"></span><h1>Running QHG<a class="headerlink" href="#running-qhg" title="Permalink to this heading">¶</a></h1>
+<p>In this document we descriebe the various ways to run QHG.</p>
+<section id="description-of-options">
+<h2>Description of Options<a class="headerlink" href="#description-of-options" title="Permalink to this heading">¶</a></h2>
+<p>Whe calling QHG without any options,</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>QHGMain
+</pre></div>
+</div>
+<p>you will be presented with a list of possible options.
+To get detailed information about an option, use the <code class="docutils literal notranslate"><span class="pre">--help=</span></code> option:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>QHGMain<span class="w"> </span>--help<span class="o">=</span>reads-config
+</pre></div>
+</div>
+<p>The same information can be found in the <a class="reference internal" href="code_doc/app/QHGMain.html#qhgmain-ref"><span class="std std-ref">code documentation QHGMain</span></a>.</p>
+<section id="running-with-explicit-options">
+<h3>Running with Explicit Options<a class="headerlink" href="#running-with-explicit-options" title="Permalink to this heading">¶</a></h3>
+<p>The basic way to run QHG is to list all options after the <code class="docutils literal notranslate"><span class="pre">QHGMain</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>QHGMain<span class="w"> </span>-data-dirs<span class="o">=</span><span class="si">${</span><span class="nv">QHG4_DIR</span><span class="si">}</span>/tutorial_data/grids/<span class="w">   </span><span class="se">\</span>
+<span class="w">     </span>--events<span class="o">=</span><span class="s1">&#39;write|grid+geo+pop:sapiens@20000&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">     </span>--grid<span class="o">=</span>ico32s.qdf<span class="w">   </span>--log-file<span class="o">=</span>tutorial_02.log<span class="w">  </span><span class="se">\</span>
+<span class="w">     </span>--num-iters<span class="o">=</span><span class="m">200</span><span class="w">     </span>--output-dir<span class="o">=</span>output/tutorial_02<span class="w"> </span><span class="se">\</span>
+<span class="w">     </span>--output-prefix<span class="o">=</span>tut<span class="w"> </span>--pops<span class="o">=</span><span class="s1">&#39;tut_OldAgeDie.xml:tut_OldAgeDie.dat&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">     </span>--shuffle<span class="o">=</span><span class="m">92244</span><span class="w"> </span>--start-time<span class="o">=</span><span class="m">0</span>
+</pre></div>
+</div>
+<p>This command could be on one line only - for better readbility it has been
+spread over several lines.</p>
+<p>It is veryx useful to capture the standard output seee additional information:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>QHGMain<span class="w"> </span>-data-dirs<span class="o">=</span>...<span class="w"> </span>...<span class="w"> </span>--start-time<span class="o">=</span><span class="m">0</span><span class="w"> </span>&gt;<span class="w"> </span>SimOutput.out
+</pre></div>
+</div>
+</section>
+<section id="using-a-configuraion-file">
+<h3>Using a Configuraion File<a class="headerlink" href="#using-a-configuraion-file" title="Permalink to this heading">¶</a></h3>
+<p>Since in normal use cases there are a lot of options, it might be usefule to us a configuration file.
+A configuration file is a simple text file containing all the options, one per lien,
+for example</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>--data-dirs=${QHG4_DIR}/tutorial_data/grids/
+--events=&#39;write|grid+geo+pop:sapiens@20000&#39;
+--grid=ico32s.qdf
+--log-file=tutorial_02.log
+--num-iters=200
+--output-dir=output/tutorial_02
+--output-prefix=tut
+--pops=&#39;tut_OldAgeDie.xml:tut_OldAgeDie.dat&#39;
+--shuffle=92244
+--start-time=0
+</pre></div>
+</div>
+<p>THen you can call HGQ like this:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>QHGMain<span class="w"> </span>--read-config<span class="o">=</span>my_config.cfg<span class="w"> </span>&gt;<span class="w"> </span>SimOutput.out
+</pre></div>
+</div>
+<p>Any options you explicitly add on the command line will override the ones in the configuration file.
+For instance,</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>QHGMain<span class="w"> </span>--read-config<span class="o">=</span>my_config.cfg<span class="w"> </span>--num-iters<span class="o">=</span><span class="m">600</span><span class="w"> </span>&gt;<span class="w"> </span>SimOutput.out
+</pre></div>
+</div>
+</div></blockquote>
+<p>Will run the simulation with the options defined in <code class="docutils literal notranslate"><span class="pre">my_config.cfg</span></code>,
+except for <code class="docutils literal notranslate"><span class="pre">--num_iters</span></code> which will be set to 600.</p>
+</section>
+<section id="working-with-plugins">
+<h3>Working with Plugins<a class="headerlink" href="#working-with-plugins" title="Permalink to this heading">¶</a></h3>
+<p>For this you will have to compile QHG like this:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">DYNAMIC_POPS</span><span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="nv">OPT</span><span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="nv">OUt</span><span class="o">=</span>QHGMainDyn<span class="w"> </span>make<span class="w"> </span>clean<span class="w"> </span>QHGMain
+</pre></div>
+</div>
+<p>(The “OUT=QHGMainDyn” will cause the compiled application to be renamed to “QHGMainDyn”.
+And you will have to have make some plugins,too
+(if xou have not built them already). For example</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">SHORT</span><span class="o">=</span>tut_08<span class="w"> </span><span class="nv">OPT</span><span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="nv">OUZT</span><span class="o">=</span>~/my_so_dir<span class="w"> </span>make<span class="w"> </span>plugina
+</pre></div>
+</div>
+<p>This will build the so-files for the plugin and save
+them in the specified directory.</p>
+<p>To run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>QHGMainDyn<span class="w"> </span>--read-config<span class="o">=</span>my_config.cfg<span class="w"> </span>--dyn-pops<span class="w"> </span>--so-dirs<span class="o">=</span>~/my_so_dir<span class="w"> </span>&gt;<span class="w"> </span>SimOutput.out
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Running QHG</a><ul>
+<li><a class="reference internal" href="#description-of-options">Description of Options</a><ul>
+<li><a class="reference internal" href="#running-with-explicit-options">Running with Explicit Options</a></li>
+<li><a class="reference internal" href="#using-a-configuraion-file">Using a Configuraion File</a></li>
+<li><a class="reference internal" href="#working-with-plugins">Working with Plugins</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="qhg4_compile.html"
+                          title="previous chapter">Compiling QHG</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="ObserverPattern.html"
+                          title="next chapter">The Observer Pattern</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/qhg4_running.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="ObserverPattern.html" title="The Observer Pattern"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="qhg4_compile.html" title="Compiling QHG"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">QHG4 4.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Running QHG</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+  </body>
+</html>

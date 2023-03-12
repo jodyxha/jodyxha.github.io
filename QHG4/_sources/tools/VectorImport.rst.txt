@@ -65,7 +65,7 @@ Convert (using CellGrid and Geo from qdf file):
 
 
 
-.. image::   ../../images/water_rivers.png
+.. image:: ../../images/water_rivers.png
    :scale: 80%
    :align: center
 

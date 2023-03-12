@@ -1,0 +1,88 @@
+.. _NPPCalcMiami:
+
+NPPCalcMiami
+============
+
+.. rst-class:: hidden
+  
+    This page describes the class :index:`NPPCalcMiami`
+
+The class ``NPPCalcMiami`` is derived from ``NPPCalc`` and calculates NPP values 
+from climate data according to the `Miami model <http://www.juergen-grieser.de/downloads/NetPrimaryProduction/npp_miami.pdf>`_.
+
+Code: 
+    | `NPPCalcMiami.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/core/NPPCalcMiami.h>`_ 
+    | `NPPCalcMiami.cpp  <https://github.com/jodyxha/QHG4/blob/main/QHG4/core/NPPCalcMiami.cpp>`_
+
+Public Methods
+--------------
+
+``constructor``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+   
+    NPPCalcMiami(WELL512 **apWELL)
+
+
+``apWELL``
+    Array of WELL512 random number generators.
+
+.. -----------------------------------------------------------------------------
+
+
+``destructor``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual ~NPPCalcMiami() {};
+
+The destructor does nothing.
+
+
+.. -----------------------------------------------------------------------------
+
+
+``calcNPP``
+^^^^^^^^^^^
+.. code-block:: c++
+
+        virtual double calcNPP(double *dT, double *dP, int iNum, int iStride, double *dOut, double *adVariance=NULL);
+
+``dT``
+    Array of temperatures (average annual temperatrures in degrees Celsius).
+
+``dP``
+    Array of precipitation values (total annual rainfall  in mm).
+
+``iNum``
+    Number of element in arrays (dT and dP are supposed to have the same size).
+
+``dOut``
+    Output array.
+
+``dVariance``
+    Jiggle the result to achieve a certain variance (ignored for ``NPPCalcMiami``).
+
+Fills an array with NPP values (gC/m2/year) calculated according to the Miami Model from the corresponding elements in ``dT`` and ``dP``. 
+
+Returns the maximum NPP value found.
+
+.. -----------------------------------------------------------------------------
+
+
+``calcNPP``
+^^^^^^^^^^^
+.. code-block:: c++
+
+        virtual double calcNPP(double dT, double dP, double dVariance=0);
+
+
+``dT``
+    Temperature value (average annual temperature in degrees Celsius).
+
+``dP``
+    Precipitation value (total annual rainfall  in mm)
+
+Returns an NPP value (gC/m2/year) calculated according to the Miami Model from the provided Temperature and Precipitation values.
+

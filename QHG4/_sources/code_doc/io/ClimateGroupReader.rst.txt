@@ -18,7 +18,9 @@ This file extends the attribute structure:
         int     m_iNumSeasons;
     };
 
-Code: `ClimateGroupReader.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/ClimateGroupReader.h>`_, `ClimateGroupReader.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/ClimateGroupReader.cpp>`_
+Code:
+    | `ClimateGroupReader.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/ClimateGroupReader.h>`_
+    | `ClimateGroupReader.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/ClimateGroupReader.cpp>`_
 
 
 Public Methods

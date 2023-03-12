@@ -26,7 +26,9 @@ are required.
 
 (The class ``tut_SexualPop`` ` is described in detail in the :ref:`sixth part<TutorialEnvironAlt_ref>`  of the :ref:`tutorial<Tutorial_ref>`).
 
-Code: `tut_EnvironAltPop.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_EnvironAltPop.h>`_, `tut_EnvironAltPop.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_EnvironAltPop.cpp>`_
+Code:
+    | `tut_EnvironAltPop.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_EnvironAltPop.h>`_
+    | `tut_EnvironAltPop.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_EnvironAltPop.cpp>`_
 
 
 Data types

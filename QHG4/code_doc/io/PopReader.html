@@ -52,22 +52,28 @@
 <p class="hidden">This page desctibes the class <span class="target" id="index-0"></span>PopReader</p>
 <p>The class <code class="docutils literal notranslate"><span class="pre">PopReader</span></code> is used to write the <a class="reference internal" href="../core/SPopulation.html#spopulation-ref"><span class="std std-ref">population data</span></a> as a subgroup of the <a class="reference internal" href="../../formats/qdf/PopsGroup.html#popgroup-ref"><span class="std std-ref">populations group</span></a> in a qdf file.</p>
 <p>The information of found populations is stored in a vector of <code class="docutils literal notranslate"><span class="pre">popinfo</span></code> structures:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">m_sClassName</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">m_sSpeciesName</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="kt">int</span><span class="w">  </span><span class="n">m_iNumCells</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"> </span><span class="n">popinfo</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">m_sClassName</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">m_sSpeciesName</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w">  </span><span class="n">m_iNumCells</span><span class="p">;</span>
+<span class="p">}</span><span class="w"> </span><span class="n">popinfo</span><span class="p">;</span>
 
-<span class="k">typedef</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">popinfo</span><span class="o">&gt;</span><span class="w"> </span><span class="n">popinfolist</span><span class="p">;</span><span class="w"></span>
+<span class="k">typedef</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">popinfo</span><span class="o">&gt;</span><span class="w"> </span><span class="n">popinfolist</span><span class="p">;</span>
 </pre></div>
 </div>
-<p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/io/PopReader.h">PopReader.h</a>, <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/io/PopReader.cpp">PopReader.cpp</a></p>
+<dl>
+<dt>Code:</dt><dd><div class="line-block">
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/io/PopReader.h">PopReader.h</a></div>
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/io/PopReader.cpp">PopReader.cpp</a></div>
+</div>
+</dd>
+</dl>
 <section id="public-methods">
 <h2>Public Methods<a class="headerlink" href="#public-methods" title="Permalink to this heading">¶</a></h2>
 <section id="create">
 <h3><code class="docutils literal notranslate"><span class="pre">create</span></code><a class="headerlink" href="#create" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="n">PopReader</span><span class="w"> </span><span class="o">*</span><span class="nf">create</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sFileName</span><span class="p">);</span><span class="w"></span>
-<span class="k">static</span><span class="w"> </span><span class="n">PopReader</span><span class="w"> </span><span class="o">*</span><span class="n">create</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hFile</span><span class="p">)</span><span class="o">:</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="n">PopReader</span><span class="w"> </span><span class="o">*</span><span class="nf">create</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sFileName</span><span class="p">);</span>
+<span class="k">static</span><span class="w"> </span><span class="n">PopReader</span><span class="w"> </span><span class="o">*</span><span class="n">create</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hFile</span><span class="p">)</span><span class="o">:</span>
 </pre></div>
 </div>
 <p>Create a <code class="docutils literal notranslate"><span class="pre">PopReader</span></code> object for the specified file.</p>
@@ -81,15 +87,15 @@
 </section>
 <section id="destructor">
 <h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="o">~</span><span class="n">PopReader</span><span class="p">();</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="o">~</span><span class="n">PopReader</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>Closes open HDF handles.</p>
 </section>
 <section id="open">
 <h3><code class="docutils literal notranslate"><span class="pre">open</span></code><a class="headerlink" href="#open" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">open</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sFilename</span><span class="p">);</span><span class="w"></span>
-<span class="kt">int</span><span class="w"> </span><span class="nf">open</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hFile</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">open</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sFilename</span><span class="p">);</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">open</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hFile</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Open the “Populations” group, and collects the names and attributes of all  population subgroups.</p>
@@ -103,15 +109,15 @@
 </section>
 <section id="getpoplist">
 <h3><code class="docutils literal notranslate"><span class="pre">getPopList</span></code><a class="headerlink" href="#getpoplist" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="n">popinfolist</span><span class="w"> </span><span class="o">&amp;</span><span class="nf">getPopList</span><span class="p">();</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="n">popinfolist</span><span class="w"> </span><span class="o">&amp;</span><span class="nf">getPopList</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>Returns the vector of <code class="docutils literal notranslate"><span class="pre">popinfo</span></code> structs.</p>
 </section>
 <section id="read">
 <h3><code class="docutils literal notranslate"><span class="pre">read</span></code><a class="headerlink" href="#read" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">read</span><span class="p">(</span><span class="n">PopBase</span><span class="w"> </span><span class="o">*</span><span class="n">pPopBase</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sSpeciesName</span><span class="p">,</span><span class="w"></span>
-<span class="w">         </span><span class="kt">int</span><span class="w"> </span><span class="n">iNumCells</span><span class="p">,</span><span class="w">     </span><span class="kt">bool</span><span class="w"> </span><span class="n">bRestore</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">read</span><span class="p">(</span><span class="n">PopBase</span><span class="w"> </span><span class="o">*</span><span class="n">pPopBase</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sSpeciesName</span><span class="p">,</span>
+<span class="w">         </span><span class="kt">int</span><span class="w"> </span><span class="n">iNumCells</span><span class="p">,</span><span class="w">     </span><span class="kt">bool</span><span class="w"> </span><span class="n">bRestore</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Reads the data from the AgentDataSet of the population group with the given name into the agent array of the population object.</p>

@@ -11,7 +11,9 @@ The class ``StatusWriter`` is responsible for writing outputs to :ref:`qdf files
 
 It owns specialized writers for the various environment and population data.
 
-Code: `StatusWriter.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/StatusWriter.h>`_, `StatusWriter.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/StatusWriter.cpp>`_
+Code:
+    | `StatusWriter.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/StatusWriter.h>`_
+    | `StatusWriter.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/StatusWriter.cpp>`_
 
 
 Public Methods

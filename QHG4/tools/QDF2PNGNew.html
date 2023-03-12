@@ -52,15 +52,15 @@
 <p>Code:  <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/tools_io/QDF2PNGNew.cpp">QDF2PNGNew.cpp</a> <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/tools_io/QDFImageExtractor.cpp">QDFImageExtractor.cpp</a></p>
 <section id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./QDF2PNGNew -g &lt;qdf_grid&gt; -q &lt;qdf_data&gt;<span class="o">[</span>,&lt;qdf_data&gt;<span class="o">]</span>*<span class="o">]</span>
-   -s &lt;w&gt;x&lt;h&gt; -o &lt;outpat&gt;  -a &lt;arrayspec&gt;,<span class="o">[</span>&lt;arrayspec&gt;<span class="o">]</span>*
-  <span class="o">[</span>-c &lt;operation&gt;<span class="o">]</span> <span class="o">[</span>-r &lt;lon_roll&gt;<span class="o">]</span> <span class="o">[</span>-w &lt;ww&gt;x&lt;hw&gt;+&lt;ox&gt;+&lt;oy&gt; <span class="o">][</span>-t &lt;text&gt;<span class="o">[</span>:&lt;pos&gt;<span class="o">]</span> <span class="o">[</span>-v<span class="o">]</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./QDF2PNGNew<span class="w"> </span>-g<span class="w"> </span>&lt;qdf_grid&gt;<span class="w"> </span>-q<span class="w"> </span>&lt;qdf_data&gt;<span class="o">[</span>,&lt;qdf_data&gt;<span class="o">]</span>*<span class="o">]</span>
+<span class="w">   </span>-s<span class="w"> </span>&lt;w&gt;x&lt;h&gt;<span class="w"> </span>-o<span class="w"> </span>&lt;outpat&gt;<span class="w">  </span>-a<span class="w"> </span>&lt;arrayspec&gt;,<span class="o">[</span>&lt;arrayspec&gt;<span class="o">]</span>*
+<span class="w">  </span><span class="o">[</span>-c<span class="w"> </span>&lt;operation&gt;<span class="o">]</span><span class="w"> </span><span class="o">[</span>-r<span class="w"> </span>&lt;lon_roll&gt;<span class="o">]</span><span class="w"> </span><span class="o">[</span>-w<span class="w"> </span>&lt;ww&gt;x&lt;hw&gt;+&lt;ox&gt;+&lt;oy&gt;<span class="w"> </span><span class="o">][</span>-t<span class="w"> </span>&lt;text&gt;<span class="o">[</span>:&lt;pos&gt;<span class="o">]</span><span class="w"> </span><span class="o">[</span>-v<span class="o">]</span>
 </pre></div>
 </div>
 <p>or</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./QDF2PNGNew -g &lt;qdf_grid&gt; -f &lt;batch_file&gt;
-   -s &lt;w&gt;x&lt;h&gt;  -a &lt;arrayspec&gt;,<span class="o">[</span>&lt;arrayspec&gt;<span class="o">]</span>*
-  <span class="o">[</span>-c &lt;operation&gt;<span class="o">]</span> <span class="o">[</span>-r &lt;lon_roll&gt;<span class="o">]</span> <span class="o">[</span>-t &lt;text&gt;<span class="o">[</span>:&lt;pos&gt;<span class="o">]]</span> <span class="o">[</span>-v<span class="o">]</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./QDF2PNGNew<span class="w"> </span>-g<span class="w"> </span>&lt;qdf_grid&gt;<span class="w"> </span>-f<span class="w"> </span>&lt;batch_file&gt;
+<span class="w">   </span>-s<span class="w"> </span>&lt;w&gt;x&lt;h&gt;<span class="w">  </span>-a<span class="w"> </span>&lt;arrayspec&gt;,<span class="o">[</span>&lt;arrayspec&gt;<span class="o">]</span>*
+<span class="w">  </span><span class="o">[</span>-c<span class="w"> </span>&lt;operation&gt;<span class="o">]</span><span class="w"> </span><span class="o">[</span>-r<span class="w"> </span>&lt;lon_roll&gt;<span class="o">]</span><span class="w"> </span><span class="o">[</span>-t<span class="w"> </span>&lt;text&gt;<span class="o">[</span>:&lt;pos&gt;<span class="o">]]</span><span class="w"> </span><span class="o">[</span>-v<span class="o">]</span>
 </pre></div>
 </div>
 <p>where</p>
@@ -272,11 +272,11 @@ lookup      :   info for lookup, with format &lt;lookup_name&gt;[:&lt;data&gt;]*
 </div>
 </div></blockquote>
 <p><strong>Call example</strong></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>QDF2PNGNew -g <span class="si">${</span><span class="nv">TUT_TOP</span><span class="si">}</span>/tutorial_06/output/tutorial_06/tut_pop-sapiens_SG_005000.qdf <span class="se">\</span>
-           -q <span class="si">${</span><span class="nv">TUT_TOP</span><span class="si">}</span>/tutorial_06/output/tutorial_06/tut_pop-sapiens_SG_005000.qdf <span class="se">\</span>
-           -s 720x360 -o step_005000.png <span class="se">\</span>
-           -a <span class="s1">&#39;alt|geo:-6000:0:6000,pop_sapiens|fadeout:0:10:#FFFF00FF&#39;</span>  <span class="se">\</span>
-           -r -25 -c over -t <span class="s2">&quot;step 5000&quot;</span>:BL:20
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>QDF2PNGNew<span class="w"> </span>-g<span class="w"> </span><span class="si">${</span><span class="nv">TUT_TOP</span><span class="si">}</span>/tutorial_06/output/tutorial_06/tut_pop-sapiens_SG_005000.qdf<span class="w"> </span><span class="se">\</span>
+<span class="w">           </span>-q<span class="w"> </span><span class="si">${</span><span class="nv">TUT_TOP</span><span class="si">}</span>/tutorial_06/output/tutorial_06/tut_pop-sapiens_SG_005000.qdf<span class="w"> </span><span class="se">\</span>
+<span class="w">           </span>-s<span class="w"> </span>720x360<span class="w"> </span>-o<span class="w"> </span>step_005000.png<span class="w"> </span><span class="se">\</span>
+<span class="w">           </span>-a<span class="w"> </span><span class="s1">&#39;alt|geo:-6000:0:6000,pop_sapiens|fadeout:0:10:#FFFF00FF&#39;</span><span class="w">  </span><span class="se">\</span>
+<span class="w">           </span>-r<span class="w"> </span>-25<span class="w"> </span>-c<span class="w"> </span>over<span class="w"> </span>-t<span class="w"> </span><span class="s2">&quot;step 5000&quot;</span>:BL:20
 </pre></div>
 </div>
 <p>This creates this image</p>

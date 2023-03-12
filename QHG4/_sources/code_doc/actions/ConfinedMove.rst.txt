@@ -15,7 +15,9 @@ The priority for this action shold be set to make it be executed after the mve a
 It uses the population's list of registered moves to eliminate those moves from the list who would cross the boundary.
 
 
-Code: `ConfinedMove.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/ConfinedMove.h>`_ `ConfinedMove.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/ConfinedMove.cpp>`_
+Code: 
+    | `ConfinedMove.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/ConfinedMove.h>`_ 
+    | `ConfinedMove.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/ConfinedMove.cpp>`_
 
 **Attributes:**
 

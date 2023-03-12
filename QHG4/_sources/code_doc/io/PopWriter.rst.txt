@@ -11,7 +11,9 @@ The class ``PopWriter`` is used to write the :ref:`population data<SPopulation_r
 
 It owns specialized writers for the various environment and population data.
 
-Code: `PopWriter.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/PopWriter.h>`_, `PopWriter.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/PopWriter.cpp>`_
+Code:
+    | `PopWriter.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/PopWriter.h>`_
+    | `PopWriter.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/PopWriter.cpp>`_
 
 PublicMethods
 -------------

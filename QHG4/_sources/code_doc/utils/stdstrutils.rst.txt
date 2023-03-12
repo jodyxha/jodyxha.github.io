@@ -23,6 +23,12 @@ The ``printf``-like functions in ``stdstrutilsT.h`` are implemented with variadi
 
 The functions in stdstrutils are used throughout QHG.
 
+Code:
+    | `stdstrutils.h   <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/stdstrutils.h>`_ 
+    | `stdstrutils.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/stdstrutils.cpp>`_ 
+    | `stdstrutilsT.h  <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/stdstrutilsT.h>`_ 
+
+
 Functions
 ---------
 

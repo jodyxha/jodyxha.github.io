@@ -9,7 +9,9 @@ VegWriter
 
 The class ``VegWriter`` is used to write the :ref:`vegetation data<Vegetation_ref>` to a :ref:`vegetation group<VegGroup_ref>` in a qdf file.
 
-Code: `VegWriter.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/VegWriter.h>`_, `VegWriter.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/VegWriter.cpp>`_
+Code:
+    | `VegWriter.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/VegWriter.h>`_
+    | `VegWriter.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/VegWriter.cpp>`_
 
 Public Methods
 --------------

@@ -10,7 +10,9 @@ QDFArray
 The classe ``QDFArray`` contains functions to simplify reading of one-dimensional data sets (arrays) from  QDF files.
 
 
-Code: `QDFArray.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/QDFArray.h>`_, `QDFArray.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/QDFArray.cpp>`_
+Code:
+    | `QDFArray.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/QDFArray.h>`_
+    | `QDFArray.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/QDFArray.cpp>`_
 
 Public Methods
 --------------

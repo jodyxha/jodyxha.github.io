@@ -16,15 +16,15 @@ For this we need to add two actions: :ref:`GetOld<GetOld_ref>` and :ref:`AtanDea
 
 **Population code:** 
 
-    | `tut_OldAgeDiePop.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_OldAgeDiePop.h>`_,  |_|
-      `tut_OldAgeDiePop.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_OldAgeDiePop.cpp>`_
+    | `tut_OldAgeDiePop.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_OldAgeDiePop.h>`_
+    | `tut_OldAgeDiePop.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_OldAgeDiePop.cpp>`_
 
 **Action code:**
 
-    | `AtanDeath.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/AtanDeath.h>`_,  |_|
-      `AtanDeath.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/AtanDeath.cpp>`_ 
-    | `OldAge.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/OldAgeDeath.h>`_, |_|
-      `OldAge.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/OldAgeDeath.cpp>`_
+    | `AtanDeath.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/AtanDeath.h>`_
+    | `AtanDeath.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/AtanDeath.cpp>`_ 
+    | `OldAge.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/OldAgeDeath.h>`_
+    | `OldAge.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/OldAgeDeath.cpp>`_
     
     
 The Header File

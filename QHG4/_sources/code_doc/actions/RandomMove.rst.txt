@@ -10,7 +10,9 @@ RandomMove
 The class ``RandomMove`` is derived from ``Action`` lets agents move in random directions.
 This class can be used for simulationg diffusion.
 
-Code: `RandomMove.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/RandomMove.h>`_ `RandomMove.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/RandomMove.cpp>`_
+Code: 
+    | `RandomMove.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/RandomMove.h>`_ 
+    | `RandomMove.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/RandomMove.cpp>`_
 
 **Attributes:**
 

@@ -16,7 +16,9 @@ Some of the functions  need the typ DPOINT
 
 which is defined in ``types.h``
 
-Code: `geomutils.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/geomutils.h>`_, `geomutils.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/geomutils.cpp>`_
+Code:
+    | `geomutils.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/geomutils.h>`_
+    | `geomutils.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/geomutils.cpp>`_
 
 Functions
 ---------

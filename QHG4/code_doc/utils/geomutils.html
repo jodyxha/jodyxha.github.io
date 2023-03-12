@@ -57,12 +57,18 @@
 <div><p>typedef std::pair&lt;double, double&gt;  DPOINT;</p>
 </div></blockquote>
 <p>which is defined in <code class="docutils literal notranslate"><span class="pre">types.h</span></code></p>
-<p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/geomutils.h">geomutils.h</a>, <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/geomutils.cpp">geomutils.cpp</a></p>
+<dl>
+<dt>Code:</dt><dd><div class="line-block">
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/geomutils.h">geomutils.h</a></div>
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/geomutils.cpp">geomutils.cpp</a></div>
+</div>
+</dd>
+</dl>
 <section id="functions">
 <h2>Functions<a class="headerlink" href="#functions" title="Permalink to this heading">¶</a></h2>
 <section id="spherinterpol">
 <h3><code class="docutils literal notranslate"><span class="pre">spherInterpol</span></code><a class="headerlink" href="#spherinterpol" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">sphercoord</span><span class="w"> </span><span class="nf">spherInterpol</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">sphercoord</span><span class="w"> </span><span class="o">&amp;</span><span class="n">dP1</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">sphercoord</span><span class="w"> </span><span class="o">&amp;</span><span class="n">dP2</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dT</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">sphercoord</span><span class="w"> </span><span class="nf">spherInterpol</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">sphercoord</span><span class="w"> </span><span class="o">&amp;</span><span class="n">dP1</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">sphercoord</span><span class="w"> </span><span class="o">&amp;</span><span class="n">dP2</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dT</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Finds the point at a fraction dT of thSpherical interpolation beetween the the two points</p>
@@ -78,7 +84,7 @@
 </section>
 <section id="id1">
 <h3><code class="docutils literal notranslate"><span class="pre">spherInterpol</span></code><a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Vec3D</span><span class="w"> </span><span class="nf">spherInterpol</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Vec3D</span><span class="w"> </span><span class="o">&amp;</span><span class="n">v1</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Vec3D</span><span class="w"> </span><span class="o">&amp;</span><span class="n">v2</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dT</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Vec3D</span><span class="w"> </span><span class="nf">spherInterpol</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Vec3D</span><span class="w"> </span><span class="o">&amp;</span><span class="n">v1</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Vec3D</span><span class="w"> </span><span class="o">&amp;</span><span class="n">v2</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dT</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Finds the point at a fraction dT of thSpherical interpolation beetween the the two points.</p>
@@ -94,7 +100,7 @@
 </section>
 <section id="cart2polard">
 <h3><code class="docutils literal notranslate"><span class="pre">cart2polarD</span></code><a class="headerlink" href="#cart2polard" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">sphercoord</span><span class="w"> </span><span class="nf">cart2PolarD</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Vec3D</span><span class="w"> </span><span class="o">&amp;</span><span class="n">v</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">sphercoord</span><span class="w"> </span><span class="nf">cart2PolarD</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Vec3D</span><span class="w"> </span><span class="o">&amp;</span><span class="n">v</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Convert a 3D vector to polar coordinates (degrees).</p>
@@ -106,7 +112,7 @@
 </section>
 <section id="polard2cart">
 <h3><code class="docutils literal notranslate"><span class="pre">polarD2cart</span></code><a class="headerlink" href="#polard2cart" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Vec3D</span><span class="w"> </span><span class="nf">polarD2Cart</span><span class="p">(</span><span class="n">sphercoord</span><span class="w"> </span><span class="o">&amp;</span><span class="n">p</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Vec3D</span><span class="w"> </span><span class="nf">polarD2Cart</span><span class="p">(</span><span class="n">sphercoord</span><span class="w"> </span><span class="o">&amp;</span><span class="n">p</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Convert spherical coordinates (in degrees) to a 3D vector.</p>
@@ -118,7 +124,7 @@
 </section>
 <section id="cart2polar">
 <h3><code class="docutils literal notranslate"><span class="pre">cart2polar</span></code><a class="headerlink" href="#cart2polar" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">sphercoord</span><span class="w"> </span><span class="nf">cart2Polar</span><span class="p">(</span><span class="n">cosnt</span><span class="w"> </span><span class="n">Vec3D</span><span class="w"> </span><span class="o">&amp;</span><span class="n">v</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">sphercoord</span><span class="w"> </span><span class="nf">cart2Polar</span><span class="p">(</span><span class="n">cosnt</span><span class="w"> </span><span class="n">Vec3D</span><span class="w"> </span><span class="o">&amp;</span><span class="n">v</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Convert a 3D vector to polar coordinates (radians).</p>
@@ -130,7 +136,7 @@
 </section>
 <section id="polar2cart">
 <h3><code class="docutils literal notranslate"><span class="pre">polar2cart</span></code><a class="headerlink" href="#polar2cart" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Vec3D</span><span class="w"> </span><span class="nf">polar2Cart</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">sphercoord</span><span class="w"> </span><span class="o">&amp;</span><span class="n">p</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Vec3D</span><span class="w"> </span><span class="nf">polar2Cart</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">sphercoord</span><span class="w"> </span><span class="o">&amp;</span><span class="n">p</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Convert spherical coordinates (in radians) to a 3D vector.</p>
@@ -142,10 +148,10 @@
 </section>
 <section id="spherdist">
 <h3><code class="docutils literal notranslate"><span class="pre">spherdist</span></code><a class="headerlink" href="#spherdist" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span><span class="w"> </span><span class="nf">spherdist</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">dLon1</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w">  </span><span class="n">dLat1</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dLon2</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dLat2</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dR</span><span class="p">);</span><span class="w"></span>
-<span class="kt">double</span><span class="w"> </span><span class="nf">spherdist</span><span class="p">(</span><span class="n">Vec3D</span><span class="w"> </span><span class="o">*</span><span class="n">v1</span><span class="p">,</span><span class="w"> </span><span class="n">Vec3D</span><span class="w"> </span><span class="o">*</span><span class="n">v2</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dR</span><span class="p">);</span><span class="w"></span>
-<span class="kt">double</span><span class="w"> </span><span class="nf">spherdist</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">dX0</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dY0</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dZ0</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dX1</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dY1</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dZ1</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dR</span><span class="p">);</span><span class="w"></span>
-<span class="kt">double</span><span class="w"> </span><span class="nf">spherdist</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">dX0</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dY0</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dZ0</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dLon2</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dLat2</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dR</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span><span class="w"> </span><span class="nf">spherdist</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">dLon1</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w">  </span><span class="n">dLat1</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dLon2</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dLat2</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dR</span><span class="p">);</span>
+<span class="kt">double</span><span class="w"> </span><span class="nf">spherdist</span><span class="p">(</span><span class="n">Vec3D</span><span class="w"> </span><span class="o">*</span><span class="n">v1</span><span class="p">,</span><span class="w"> </span><span class="n">Vec3D</span><span class="w"> </span><span class="o">*</span><span class="n">v2</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dR</span><span class="p">);</span>
+<span class="kt">double</span><span class="w"> </span><span class="nf">spherdist</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">dX0</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dY0</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dZ0</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dX1</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dY1</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dZ1</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dR</span><span class="p">);</span>
+<span class="kt">double</span><span class="w"> </span><span class="nf">spherdist</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">dX0</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dY0</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dZ0</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dLon2</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dLat2</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dR</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Calculate the distance between two points which are specified in different ways.</p>
@@ -165,7 +171,7 @@
 </section>
 <section id="spherdistdeg">
 <h3><code class="docutils literal notranslate"><span class="pre">spherdistDeg</span></code><a class="headerlink" href="#spherdistdeg" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span><span class="w"> </span><span class="nf">spherdistDeg</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">dLon1</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w">  </span><span class="n">dLat1</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dLon2</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dLat2</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dR</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span><span class="w"> </span><span class="nf">spherdistDeg</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">dLon1</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w">  </span><span class="n">dLat1</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dLon2</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dLat2</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dR</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Calculate the distance between two points whose spherical coordinates are given in degrees.</p>

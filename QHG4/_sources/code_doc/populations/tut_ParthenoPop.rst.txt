@@ -23,7 +23,9 @@ are required.
 
 (The class ``tut_ParthenoPop`` is described in detail in the :ref:`fourth part<TutorialPartheno_ref>` of the :ref:`tutorial<Tutorial_ref>`).
 
-Code: `tut_ParthenoPop.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_ParthenoPop.h>`_, `tut_ParthenoPop.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_ParthenoPop.cpp>`_
+Code:
+    | `tut_ParthenoPop.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_ParthenoPop.h>`_
+    | `tut_ParthenoPop.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_ParthenoPop.cpp>`_
 
 Data types
 ----------
@@ -106,8 +108,8 @@ The destructor deletes the action objects created in the constructor.
 
 .. -----------------------------------------------------------------------------
 
-``addPopSpecificAgentData`TypeQDF``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+``addPopSpecificAgentDataTypeQDF``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 .. code-block:: c++
 
     addPopSpecificAgentDataTypeQDF(hid_t *hAgentDataType);

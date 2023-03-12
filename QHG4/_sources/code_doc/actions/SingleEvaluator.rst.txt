@@ -39,7 +39,9 @@ where
     The environment values (e.g. altitude) of a cell are copied to an array, to which a poly line function is applied. 
     The results are cumulated for potential use by an other action, e.g. :ref:`WeightedMove<WeightedMove_ref>`.
 
-Code: `SingleEvaluator.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/SingleEvaluator.h>`_ `SingleEvaluator.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/SingleEvaluator.cpp>`_
+Code: 
+    | `SingleEvaluator.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/SingleEvaluator.h>`_ 
+    | `SingleEvaluator.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/SingleEvaluator.cpp>`_
 
 **Attributes**
 

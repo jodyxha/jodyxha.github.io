@@ -51,13 +51,18 @@
 <span id="scell-ref"></span><h1>SCell<a class="headerlink" href="#scell" title="Permalink to this heading">¶</a></h1>
 <p class="hidden">This page describes the struct <span class="target" id="index-0"></span>SCell</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">SCell</span></code>  represents a single node of the <a class="reference internal" href="SCellGrid.html#scellgrid-ref"><span class="std std-ref">cell grid</span></a>.</p>
-<p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/core/SCell.h">SCell.h</a></p>
+<dl>
+<dt>Code:</dt><dd><div class="line-block">
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/core/SCell.h">SCell.h</a></div>
+</div>
+</dd>
+</dl>
 <p>This is the declaration of the <code class="docutils literal notranslate"><span class="pre">SCell</span></code> struct:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">gridtype</span><span class="w">  </span><span class="n">m_iGlobalID</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">uchar</span><span class="w">   </span><span class="n">m_iNumNeighbors</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="kt">int</span><span class="w">     </span><span class="n">m_aNeighbors</span><span class="p">[</span><span class="n">MAX_NEIGH</span><span class="p">];</span><span class="w"></span>
-<span class="p">}</span><span class="w"> </span><span class="n">SCell</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">gridtype</span><span class="w">  </span><span class="n">m_iGlobalID</span><span class="p">;</span>
+<span class="w">    </span><span class="n">uchar</span><span class="w">   </span><span class="n">m_iNumNeighbors</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w">     </span><span class="n">m_aNeighbors</span><span class="p">[</span><span class="n">MAX_NEIGH</span><span class="p">];</span>
+<span class="p">}</span><span class="w"> </span><span class="n">SCell</span><span class="p">;</span>
 </pre></div>
 </div>
 <dl class="simple">

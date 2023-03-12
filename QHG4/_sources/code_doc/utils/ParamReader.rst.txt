@@ -13,7 +13,9 @@ The class ``ParamReader`` provides a useful interface for command line argument 
 | The method ``setOptions`` allows the setting of the flags and assignment to variables.
 | The method ``getParams`` can then be used to "collect" the set variables. 
 
-Code: `ParamReader.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/ParamReader.h>`_, `ParamReader.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/ParamReader.cpp>`_
+Code:
+    | `ParamReader.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/ParamReader.h>`_
+    | `ParamReader.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/ParamReader.cpp>`_
 
 
 Public Methods

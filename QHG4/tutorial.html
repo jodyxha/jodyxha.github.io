@@ -54,11 +54,11 @@
 <p>Make sure the environmental variable <code class="docutils literal notranslate"><span class="pre">$QHG4_DIR</span></code> contains the full path to the top directory of QHG.</p>
 <p>Next create a small directory tree for the tutorials in which all subdirectories contain the necessary data for one tutorial chapter.
 To do this, use the script <a class="reference internal" href="tools/build_tut_dirs.html#build-tut-dirs-ref"><span class="std std-ref">build_tut_dirs.py</span></a>.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">$</span><span class="p">{</span><span class="n">QHG4_DIR</span><span class="p">}</span><span class="o">/</span><span class="n">useful_stuff</span><span class="o">/</span><span class="n">build_tut_dirs</span><span class="p">.</span><span class="n">py</span><span class="w"> </span><span class="n">tutorial</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">$</span><span class="p">{</span><span class="n">QHG4_DIR</span><span class="p">}</span><span class="o">/</span><span class="n">useful_stuff</span><span class="o">/</span><span class="n">build_tut_dirs</span><span class="p">.</span><span class="n">py</span><span class="w"> </span><span class="n">tutorial</span>
 </pre></div>
 </div>
 <p>This will build the tutorial tree in the directory from which you call the script. Alternatively use a full path:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">$</span><span class="p">{</span><span class="n">QHG4_DIR</span><span class="p">}</span><span class="o">/</span><span class="n">useful_stuff</span><span class="o">/</span><span class="n">build_tut_dirs</span><span class="p">.</span><span class="n">py</span><span class="w"> </span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">QHG4</span><span class="o">/</span><span class="n">tutorial</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">$</span><span class="p">{</span><span class="n">QHG4_DIR</span><span class="p">}</span><span class="o">/</span><span class="n">useful_stuff</span><span class="o">/</span><span class="n">build_tut_dirs</span><span class="p">.</span><span class="n">py</span><span class="w"> </span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">QHG4</span><span class="o">/</span><span class="n">tutorial</span>
 </pre></div>
 </div>
 <p>In the tutorial we will refer to the directory you specified here as “top tutorial directory”</p>
@@ -79,6 +79,11 @@ To do this, use the script <a class="reference internal" href="tools/build_tut_d
 <li class="toctree-l1"><a class="reference internal" href="tutorial/tutorial_08_grasssheep.html">QHG Tutorial 08 - Simple Predator-Prey</a></li>
 </ul>
 </div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorial/how_to_build_a_pop.html">How to design and build new Populations and Actions</a></li>
+</ul>
+</div>
 </section>
 </section>
 
@@ -94,7 +99,9 @@ To do this, use the script <a class="reference internal" href="tools/build_tut_d
     <ul>
 <li><a class="reference internal" href="#">QHG Tutorial</a><ul>
 <li><a class="reference internal" href="#preparations">Preparations</a></li>
-<li><a class="reference internal" href="#tutorials">Tutorials</a></li>
+<li><a class="reference internal" href="#tutorials">Tutorials</a><ul>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

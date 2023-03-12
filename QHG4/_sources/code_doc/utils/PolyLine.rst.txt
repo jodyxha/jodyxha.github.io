@@ -21,7 +21,9 @@ We define
  
 
 
-Code: `PolyLine.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/PolyLine.h>`_ `PolyLine.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/PolyLine.cpp>`_
+Code:
+    | `PolyLine.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/PolyLine.h>`_
+    | `PolyLine.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/PolyLine.cpp>`_
 
 Public Methods
 --------------

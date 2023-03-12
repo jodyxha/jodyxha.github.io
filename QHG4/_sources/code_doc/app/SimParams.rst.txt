@@ -12,7 +12,9 @@ SimParams
 
 The class ``SimParams`` mainly handles the reading and checking of the parameters for the simulations.
 
-Code: `SimParams.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/app/SimParams.h>`_, `SimParams.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/app/SimParams.cpp>`_
+Code:
+    | `SimParams.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/app/SimParams.h>`_
+    | `SimParams.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/app/SimParams.cpp>`_
 
 (@@TODO)
 

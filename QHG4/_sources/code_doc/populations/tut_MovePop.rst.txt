@@ -21,7 +21,9 @@ are required.
 
 (The class ``tut_MovePop`` is described in detail in the :ref:`third part<TutorialMove_ref>` of the :ref:`tutorial<Tutorial_ref>`).
 
-Code: `tut_MovePop.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_MovePop.h>`_, `tut_MovePop.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_MovePop.cpp>`_
+Code:
+    | `tut_MovePop.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_MovePop.h>`_
+    | `tut_MovePop.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_MovePop.cpp>`_
 
 Data types
 ----------

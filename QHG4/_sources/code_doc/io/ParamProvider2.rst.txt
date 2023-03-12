@@ -13,6 +13,11 @@ Each node of a  ``ModuleComplex`` object has stringmap  for  actions attributes,
 
 ``ParamProvider`` reads a xml file and bundles the data found into ``ModuleComplex`` objects.
 
+Code:
+    | `ParamProvider2.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/ParamProvider2.h>`_
+    | `ParamProvider2.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/ParamProvider2.cpp>`_
+
+
 Public Methods (``ModuleComplex``)
 ----------------------------------
 

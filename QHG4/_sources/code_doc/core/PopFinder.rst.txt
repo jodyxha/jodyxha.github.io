@@ -9,7 +9,8 @@ PopFinder
 
 ``PopFinder`` is a pure virtual class used as an interface declaring only one method. In QHG this interface is implemented by :ref:`PopLooper<popLooper_ref>`. 
 
-Code: `PopFinder.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/core/PopFinder.h>`_ 
+Code: 
+    | `PopFinder.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/core/PopFinder.h>`_ 
 
 Public Methods
 --------------

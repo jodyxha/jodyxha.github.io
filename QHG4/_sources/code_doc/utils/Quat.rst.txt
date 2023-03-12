@@ -11,7 +11,9 @@ The class ``Quat`` represents quaternions.
 
 Quaternions are very handy to calculate and perform rotations.
 
-Code: `Quat.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/Quat.h>`_, `Quat.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/Quat.cpp>`_
+Code:
+    | `Quat.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/Quat.h>`_
+    | `Quat.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/Quat.cpp>`_
 
 
 Public Methods

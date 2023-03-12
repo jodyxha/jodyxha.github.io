@@ -28,7 +28,12 @@ and the scaling is set to a value such that function :math:`d_p(a_c+w) = 1`.
 
 This definition ensures that agents older than :math:`a_c+w` will certainly die.
 
-**Attribnutes**
+Code: 
+    | `ATanDeath.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/ATanDeath.h>`_ 
+    | `ATanDeath.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/ATanDeath.cpp>`_
+
+
+**Attributes**
 
 +--------------------------------+---------------------+---------------------------------------------+
 | ``ATTR_ATANDEATH_NAME``        | "ATanDeath"         | action name                                 |
@@ -82,7 +87,7 @@ The destructor does nothing,
 
     virtual int preLoop();
 
-Calculates the scale using the attribute valuess.
+Calculates the scale using the attribute values.
 
 .. -----------------------------------------------------------------------------
 
@@ -100,7 +105,7 @@ Calculates the scale using the attribute valuess.
 
 
 Calculates the deathprobability for the agent, 
-draws a random number r, and kills the agent if r is less than the death probability.
+draws a random number :math:`r`, and kills the agent if :math:`r` is less than the death probability.
 
 .. -----------------------------------------------------------------------------
 
@@ -156,7 +161,7 @@ Extracts the action's attributes from the ``ModuleComplex`` object.
 ``bStrict``
     Strictness of comparisons (ignored here).
 
-``pAction`` is equal to ``this``, if it is a ``GrassManager`` object whose attributes match those of ``this``.
+``pAction`` is equal to ``this``, if it is a ``ATanDeath`` object whose attributes match those of ``this``.
 
 
 .. -----------------------------------------------------------------------------

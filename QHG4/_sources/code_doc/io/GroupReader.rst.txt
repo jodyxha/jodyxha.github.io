@@ -33,7 +33,9 @@ The environment classes are :ref:`SCellGrid<SCellGrid_ref>`, :ref:`Geography<Geo
 
 
  
-Code: `GroupReader.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/GroupReader.h>`_, `GroupReader.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/GroupReader.cpp>`_
+Code:
+    | `GroupReader.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/GroupReader.h>`_
+    | `GroupReader.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/GroupReader.cpp>`_
 
 
 Public Methods

@@ -21,7 +21,7 @@
     <link rel="shortcut icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="SingleEvaluator" href="SingleEvaluator.html" />
+    <link rel="next" title="populations" href="../populations.html" />
     <link rel="prev" title="MultiEvaluator" href="MultiEvaluator.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
@@ -31,7 +31,7 @@
           <a href="../../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="SingleEvaluator.html" title="SingleEvaluator"
+          <a href="../populations.html" title="populations"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="MultiEvaluator.html" title="MultiEvaluator"
@@ -69,13 +69,17 @@ Usually this calculation is done by means of a poly line function providing the 
 </dd>
 </dl>
 <p>with <span class="math notranslate nohighlight">\(m\)</span> being the maximum number of integers, and <span class="math notranslate nohighlight">\(k\)</span> an integer,</p>
-<dl class="simple">
+<dl>
 <dt>the cumulated array is</dt><dd><p><span class="math notranslate nohighlight">\((c_i)_{0 \leq i \leq i+1}\)</span></p>
 </dd>
 <dt>where</dt><dd><p><span class="math notranslate nohighlight">\(c_0 = s_0\)</span>, and <span class="math notranslate nohighlight">\(c_i = s_i + c_{i-1}\)</span> for <span class="math notranslate nohighlight">\(i &gt; 0\)</span></p>
 </dd>
+<dt>Code:</dt><dd><div class="line-block">
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/ShareEvaluator.h">ShareEvaluator.h</a></div>
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/ShareEvaluator.cpp">ShareEvaluator.cpp</a></div>
+</div>
+</dd>
 </dl>
-<p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/ShareEvaluator.h">ShareEvaluator.h</a> <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/ShareEvaluator.cpp">ShareEvaluator.cpp</a></p>
 <p><strong>Attributes</strong></p>
 <table class="docutils align-default">
 <tbody>
@@ -99,8 +103,8 @@ where &lt;id&gt; is an arbitrary string (which must be passed to the constructor
 <h2>Public Methods<a class="headerlink" href="#public-methods" title="Permalink to this heading">¶</a></h2>
 <section id="constructor">
 <h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#constructor" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">ShareEvaluator</span><span class="p">(</span><span class="n">SPopulation</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="o">*</span><span class="n">pPop</span><span class="p">,</span><span class="w"> </span><span class="n">SCellGrid</span><span class="w"> </span><span class="o">*</span><span class="n">pCG</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sID</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">adOutputWeights</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">bCumulate</span><span class="p">,</span><span class="w"> </span><span class="n">intset</span><span class="w"> </span><span class="o">&amp;</span><span class="n">sTriggerIDs</span><span class="p">);</span><span class="w"></span>
-<span class="n">ShareEvaluator</span><span class="p">(</span><span class="n">SPopulation</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="o">*</span><span class="n">pPop</span><span class="p">,</span><span class="w"> </span><span class="n">SCellGrid</span><span class="w"> </span><span class="o">*</span><span class="n">pCG</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sID</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">adOutputWeights</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">bCumulate</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iTriggerID</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">ShareEvaluator</span><span class="p">(</span><span class="n">SPopulation</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="o">*</span><span class="n">pPop</span><span class="p">,</span><span class="w"> </span><span class="n">SCellGrid</span><span class="w"> </span><span class="o">*</span><span class="n">pCG</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sID</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">adOutputWeights</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">bCumulate</span><span class="p">,</span><span class="w"> </span><span class="n">intset</span><span class="w"> </span><span class="o">&amp;</span><span class="n">sTriggerIDs</span><span class="p">);</span>
+<span class="n">ShareEvaluator</span><span class="p">(</span><span class="n">SPopulation</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="o">*</span><span class="n">pPop</span><span class="p">,</span><span class="w"> </span><span class="n">SCellGrid</span><span class="w"> </span><span class="o">*</span><span class="n">pCG</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sID</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">adOutputWeights</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">bCumulate</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iTriggerID</span><span class="p">);</span>
 </pre></div>
 </div>
 <dl class="simple">
@@ -124,49 +128,49 @@ where &lt;id&gt; is an arbitrary string (which must be passed to the constructor
 </section>
 <section id="destructor">
 <h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">SingleEvaluator</span><span class="p">();</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">SingleEvaluator</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>The destructor deletes the <code class="docutils literal notranslate"><span class="pre">PolyLine</span></code> object if one has been created.</p>
 </section>
 <section id="preloop">
 <h3><code class="docutils literal notranslate"><span class="pre">preLoop</span></code><a class="headerlink" href="#preloop" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">preLoop</span><span class="p">();</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">preLoop</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>Creates the array name and tries to get it from <code class="docutils literal notranslate"><span class="pre">ArrayShare</span></code>.</p>
 </section>
 <section id="initialize">
 <h3><code class="docutils literal notranslate"><span class="pre">initialize</span></code><a class="headerlink" href="#initialize" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">initialize</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">fT</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">initialize</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">fT</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Recalculates the output data if required.</p>
 </section>
 <section id="finalize">
 <h3><code class="docutils literal notranslate"><span class="pre">finalize</span></code><a class="headerlink" href="#finalize" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">finalize</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">fT</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">finalize</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">fT</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Reset the update flags.</p>
 </section>
 <section id="extractattributesqdf">
 <h3><code class="docutils literal notranslate"><span class="pre">extractAttributesQDF</span></code><a class="headerlink" href="#extractattributesqdf" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">extractAttributesQDF</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hSpeciesGroup</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">extractAttributesQDF</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hSpeciesGroup</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Creates the attribute names for the poly line and the shared array and reads the array name and the poly name, then tries to read and construct the poly line.</p>
 </section>
 <section id="writeattributesqdf">
 <h3><code class="docutils literal notranslate"><span class="pre">writeAttributesQDF</span></code><a class="headerlink" href="#writeattributesqdf" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">writeAttributesQDF</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hSpeciesGroup</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">writeAttributesQDF</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hSpeciesGroup</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Creates the attributes names for the poly line  and the shared array  and writes them, then writes the poly line to file.</p>
 </section>
 <section id="trygetattributes">
 <h3><code class="docutils literal notranslate"><span class="pre">tryGetAttributes</span></code><a class="headerlink" href="#trygetattributes" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">tryGetAttributes</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">ModuleComplex</span><span class="w"> </span><span class="o">*</span><span class="n">pMC</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">tryGetAttributes</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">ModuleComplex</span><span class="w"> </span><span class="o">*</span><span class="n">pMC</span><span class="p">);</span>
 </pre></div>
 </div>
 <dl class="simple">
@@ -177,7 +181,7 @@ where &lt;id&gt; is an arbitrary string (which must be passed to the constructor
 </section>
 <section id="setoutputweights">
 <h3><code class="docutils literal notranslate"><span class="pre">setOutputWeights</span></code><a class="headerlink" href="#setoutputweights" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">setOutputWeights</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">adOutput</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">setOutputWeights</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">adOutput</span><span class="p">);</span>
 </pre></div>
 </div>
 <dl class="simple">
@@ -188,7 +192,7 @@ where &lt;id&gt; is an arbitrary string (which must be passed to the constructor
 </section>
 <section id="notify">
 <h3><code class="docutils literal notranslate"><span class="pre">notify</span></code><a class="headerlink" href="#notify" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">notify</span><span class="p">(</span><span class="n">Observable</span><span class="w"> </span><span class="o">*</span><span class="n">pObs</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iEvent</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">pData</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">notify</span><span class="p">(</span><span class="n">Observable</span><span class="w"> </span><span class="o">*</span><span class="n">pObs</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iEvent</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">pData</span><span class="p">);</span>
 </pre></div>
 </div>
 <dl class="simple">
@@ -206,7 +210,7 @@ where &lt;id&gt; is an arbitrary string (which must be passed to the constructor
 </section>
 <section id="isequal">
 <h3><code class="docutils literal notranslate"><span class="pre">isEqual</span></code><a class="headerlink" href="#isequal" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="nf">isEqual</span><span class="p">(</span><span class="n">Action</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="o">*</span><span class="n">pAction</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">bStrict</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="nf">isEqual</span><span class="p">(</span><span class="n">Action</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="o">*</span><span class="n">pAction</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">bStrict</span><span class="p">);</span>
 </pre></div>
 </div>
 <dl class="simple">
@@ -215,11 +219,11 @@ where &lt;id&gt; is an arbitrary string (which must be passed to the constructor
 <dt><code class="docutils literal notranslate"><span class="pre">bStrict</span></code></dt><dd><p>Strictness of comparisons (ignored here).</p>
 </dd>
 </dl>
-<p><code class="docutils literal notranslate"><span class="pre">pAction</span></code> is equal to <code class="docutils literal notranslate"><span class="pre">this</span></code>, if it is a <code class="docutils literal notranslate"><span class="pre">SharedEvaluator</span></code> and theit ID’s match.</p>
+<p><code class="docutils literal notranslate"><span class="pre">pAction</span></code> is equal to <code class="docutils literal notranslate"><span class="pre">this</span></code>, if it is a <code class="docutils literal notranslate"><span class="pre">ShareEvaluator</span></code> and their ID’s match.</p>
 </section>
 <section id="showattributes">
 <h3><code class="docutils literal notranslate"><span class="pre">showAttributes</span></code><a class="headerlink" href="#showattributes" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">showAttributes</span><span class="p">();</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">showAttributes</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>Displays the poly line data.</p>
@@ -227,13 +231,13 @@ where &lt;id&gt; is an arbitrary string (which must be passed to the constructor
 </section>
 <section id="protected-methods">
 <h2>Protected Methods<a class="headerlink" href="#protected-methods" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">calcValues</span><span class="p">();</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">calcValues</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>The elements at position <code class="docutils literal notranslate"><span class="pre">iCellIndex*(m_iMaxNeighbors+1)</span></code> are set to the poly line evaluation of <code class="docutils literal notranslate"><span class="pre">m_adInput[iCellIndex]</span></code> if there is aa poly line. Otherwise it is set to <code class="docutils literal notranslate"><span class="pre">m_adInput[iCellINdex]</span></code>.</p>
 <section id="id1">
 <h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">exchangeAndCumulate</span><span class="p">();</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">exchangeAndCumulate</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>The “free” positions in the output array (those corresponding to the neighbors) are set to the evaluation values of the neighbors.</p>
@@ -284,8 +288,8 @@ where &lt;id&gt; is an arbitrary string (which must be passed to the constructor
   </div>
   <div>
     <h4>Next topic</h4>
-    <p class="topless"><a href="SingleEvaluator.html"
-                          title="next chapter">SingleEvaluator</a></p>
+    <p class="topless"><a href="../populations.html"
+                          title="next chapter">populations</a></p>
   </div>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
@@ -315,7 +319,7 @@ where &lt;id&gt; is an arbitrary string (which must be passed to the constructor
           <a href="../../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="SingleEvaluator.html" title="SingleEvaluator"
+          <a href="../populations.html" title="populations"
              >next</a> |</li>
         <li class="right" >
           <a href="MultiEvaluator.html" title="MultiEvaluator"

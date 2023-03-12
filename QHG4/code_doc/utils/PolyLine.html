@@ -62,13 +62,19 @@
 <div class="line"><span class="math notranslate nohighlight">\(f(x) = v_N\)</span> for <span class="math notranslate nohighlight">\(x &gt;= x_{N-1}\)</span>,</div>
 <div class="line"><span class="math notranslate nohighlight">\(f(x) = v_{i-1} + (x - x_{i-1})(v_i - v_{i-1})/(x_i - x_{i-1})\)</span> for <span class="math notranslate nohighlight">\(x_{i-1} &lt;= x &lt; x_i\)</span> (linear interpolation)</div>
 </div>
-<p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/PolyLine.h">PolyLine.h</a> <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/PolyLine.cpp">PolyLine.cpp</a></p>
+<dl>
+<dt>Code:</dt><dd><div class="line-block">
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/PolyLine.h">PolyLine.h</a></div>
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/PolyLine.cpp">PolyLine.cpp</a></div>
+</div>
+</dd>
+</dl>
 <section id="public-methods">
 <h2>Public Methods<a class="headerlink" href="#public-methods" title="Permalink to this heading">¶</a></h2>
 <section id="constructors">
 <h3><code class="docutils literal notranslate"><span class="pre">constructors</span></code><a class="headerlink" href="#constructors" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">PolyLine</span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iNumSegments</span><span class="p">);</span><span class="w"></span>
-<span class="n">PolyLine</span><span class="p">(</span><span class="n">PolyLine</span><span class="w"> </span><span class="o">*</span><span class="n">pPL</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">PolyLine</span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iNumSegments</span><span class="p">);</span>
+<span class="n">PolyLine</span><span class="p">(</span><span class="n">PolyLine</span><span class="w"> </span><span class="o">*</span><span class="n">pPL</span><span class="p">);</span>
 </pre></div>
 </div>
 <dl class="simple">
@@ -81,13 +87,13 @@
 </section>
 <section id="destructor">
 <h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="o">~</span><span class="n">PolyLine</span><span class="p">();</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="o">~</span><span class="n">PolyLine</span><span class="p">();</span>
 </pre></div>
 </div>
 </section>
 <section id="addpoint">
 <h3><code class="docutils literal notranslate"><span class="pre">addPoint</span></code><a class="headerlink" href="#addpoint" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">addPoint</span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">fX</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">fV</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">addPoint</span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">fX</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">fV</span><span class="p">);</span>
 </pre></div>
 </div>
 <dl class="simple">
@@ -102,7 +108,7 @@
 </section>
 <section id="constructor">
 <h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#constructor" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span><span class="w"> </span><span class="nf">getVal</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">fX</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span><span class="w"> </span><span class="nf">getVal</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">fX</span><span class="p">);</span>
 </pre></div>
 </div>
 <dl class="simple">
@@ -113,7 +119,7 @@
 </section>
 <section id="write">
 <h3><code class="docutils literal notranslate"><span class="pre">write</span></code><a class="headerlink" href="#write" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">write</span><span class="p">(</span><span class="kt">FILE</span><span class="w"> </span><span class="o">*</span><span class="n">fOut</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">write</span><span class="p">(</span><span class="kt">FILE</span><span class="w"> </span><span class="o">*</span><span class="n">fOut</span><span class="p">);</span>
 </pre></div>
 </div>
 <dl class="simple">
@@ -124,7 +130,7 @@
 </section>
 <section id="diplay">
 <h3><code class="docutils literal notranslate"><span class="pre">diplay</span></code><a class="headerlink" href="#diplay" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">display</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">pIndent</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sCaption</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">display</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">pIndent</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sCaption</span><span class="p">);</span>
 </pre></div>
 </div>
 <dl class="simple">
@@ -137,7 +143,7 @@
 </section>
 <section id="readfromstring">
 <h3><code class="docutils literal notranslate"><span class="pre">readFromString</span></code><a class="headerlink" href="#readfromstring" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="n">PolyLine</span><span class="w"> </span><span class="o">*</span><span class="nf">readFromString</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sData</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="n">PolyLine</span><span class="w"> </span><span class="o">*</span><span class="nf">readFromString</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sData</span><span class="p">);</span>
 </pre></div>
 </div>
 <dl class="simple">

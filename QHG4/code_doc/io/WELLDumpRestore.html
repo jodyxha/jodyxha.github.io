@@ -51,11 +51,18 @@
 <span id="welldumprestore-ref"></span><h1>WELLDumpRestore<a class="headerlink" href="#welldumprestore" title="Permalink to this heading">¶</a></h1>
 <p class="hidden">This page gives an overview of the module <span class="target" id="index-0"></span>WELLDumpRestorefile formats</p>
 <p>This module contains only two functions to deal with dumping and restoring the internal state of the randomm number generator <a class="reference internal" href="../utils/WELL512.html#well512-ref"><span class="std std-ref">WELL512</span></a>.</p>
+<dl>
+<dt>Code:</dt><dd><div class="line-block">
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/io/WELLDumpRestore.h">WELLDumpRestore.h</a></div>
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/io/WELLDumpRestore.cpp">WELLDumpRestore.cpp</a></div>
+</div>
+</dd>
+</dl>
 <section id="public-functions">
 <h2>Public Functions<a class="headerlink" href="#public-functions" title="Permalink to this heading">¶</a></h2>
 <section id="dumpwell">
 <h3><code class="docutils literal notranslate"><span class="pre">dumpWELL</span></code><a class="headerlink" href="#dumpwell" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">dumpWELL</span><span class="p">(</span><span class="n">WELL512</span><span class="w"> </span><span class="o">**</span><span class="n">apWELL</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iNumWELL</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sOwner</span><span class="p">,</span><span class="w"> </span><span class="n">hid_t</span><span class="w"> </span><span class="n">hSpeciesGroup</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">dumpWELL</span><span class="p">(</span><span class="n">WELL512</span><span class="w"> </span><span class="o">**</span><span class="n">apWELL</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iNumWELL</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sOwner</span><span class="p">,</span><span class="w"> </span><span class="n">hid_t</span><span class="w"> </span><span class="n">hSpeciesGroup</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Dump the internal state of the random number generators.</p>
@@ -74,7 +81,7 @@
 </section>
 <section id="restorewell">
 <h3><code class="docutils literal notranslate"><span class="pre">restoreWELL</span></code><a class="headerlink" href="#restorewell" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">restoreWELL</span><span class="p">(</span><span class="n">WELL512</span><span class="w"> </span><span class="o">**</span><span class="n">apWELL</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iNumWELL</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sOwner</span><span class="p">,</span><span class="w"> </span><span class="n">hid_t</span><span class="w"> </span><span class="n">hSpeciesGroup</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">restoreWELL</span><span class="p">(</span><span class="n">WELL512</span><span class="w"> </span><span class="o">**</span><span class="n">apWELL</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iNumWELL</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sOwner</span><span class="p">,</span><span class="w"> </span><span class="n">hid_t</span><span class="w"> </span><span class="n">hSpeciesGroup</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Restore the internal state of the random number generators.</p>

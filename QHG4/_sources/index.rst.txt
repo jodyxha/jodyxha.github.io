@@ -14,7 +14,8 @@ QHG4 documentation
 
 .. toctree::
    :maxdepth: 1
-  
+        
+   what_is_qhg  
    qhg4_simulation_framework
    Populations
    AgentManagement
@@ -36,9 +37,9 @@ Compiling and Running
    :maxdepth: 1
 
    qhg4_compile
-   code_doc/app/QHGMain
+   qhg4_running
 
-**VArious**
+**Various**
 
 .. toctree::
    :maxdepth: 1

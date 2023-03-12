@@ -54,23 +54,29 @@
 <p>An observable can have more than one <a class="reference internal" href="Observer.html#observer-ref"><span class="std std-ref">observer</span></a>.</p>
 <p>When an important value changes in the observable, it sends notifications to all its observers.</p>
 <p>Usually <code class="docutils literal notranslate"><span class="pre">Observable</span></code> serves as a parent class for multiple inheritance,  e.g.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">MultiEvaluator</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Evaluator</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Observable</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">MultiEvaluator</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Evaluator</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Observable</span>
 </pre></div>
 </div>
-<p>Code:  <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/Observable.h">Observable.h</a> <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/Observable.cpp">Observable.cpp</a></p>
+<dl>
+<dt>Code:</dt><dd><div class="line-block">
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG3/blob/main/QHG4/utils/Observable.h">Observable.h</a></div>
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/Observable.cpp">Observable.cpp</a></div>
+</div>
+</dd>
+</dl>
 </section>
 <section id="public-methods">
 <h1>Public Methods<a class="headerlink" href="#public-methods" title="Permalink to this heading">¶</a></h1>
 <section id="constructor">
 <h2><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#constructor" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Observable</span><span class="p">();</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Observable</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>The constructor does nothing.</p>
 </section>
 <section id="addobserver">
 <h2><code class="docutils literal notranslate"><span class="pre">addObserver</span></code><a class="headerlink" href="#addobserver" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">addObserver</span><span class="p">(</span><span class="n">Observer</span><span class="w"> </span><span class="o">*</span><span class="n">pObs</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">addObserver</span><span class="p">(</span><span class="n">Observer</span><span class="w"> </span><span class="o">*</span><span class="n">pObs</span><span class="p">);</span>
 </pre></div>
 </div>
 <dl class="simple">
@@ -80,7 +86,7 @@
 </section>
 <section id="notifyobservers">
 <h2><code class="docutils literal notranslate"><span class="pre">notifyObservers</span></code><a class="headerlink" href="#notifyobservers" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">notifyObservers</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iType</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">pCom</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">notifyObservers</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iType</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">pCom</span><span class="p">);</span>
 </pre></div>
 </div>
 <dl class="simple">
@@ -91,7 +97,7 @@
 </dl>
 <p>Notifies all <code class="docutils literal notranslate"><span class="pre">Observer</span></code> objects by calling their <code class="docutils literal notranslate"><span class="pre">notify</span></code> method, passing <code class="docutils literal notranslate"><span class="pre">this</span></code> as the first parameter:</p>
 <blockquote>
-<div><div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">m_vObservers</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">notify</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">iType</span><span class="p">,</span><span class="w"> </span><span class="n">pCom</span><span class="p">)</span><span class="w"></span>
+<div><div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">m_vObservers</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">notify</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">iType</span><span class="p">,</span><span class="w"> </span><span class="n">pCom</span><span class="p">)</span>
 </pre></div>
 </div>
 </div></blockquote>

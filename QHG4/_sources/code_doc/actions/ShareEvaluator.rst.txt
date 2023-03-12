@@ -35,7 +35,9 @@ the cumulated array is
 where
     :math:`c_0 = s_0`, and :math:`c_i = s_i + c_{i-1}` for :math:`i > 0`
 
-Code: `ShareEvaluator.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/ShareEvaluator.h>`_ `ShareEvaluator.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/ShareEvaluator.cpp>`_
+Code: 
+    | `ShareEvaluator.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/ShareEvaluator.h>`_ 
+    | `ShareEvaluator.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/ShareEvaluator.cpp>`_
 
 **Attributes**
 
@@ -206,7 +208,7 @@ The variable ``m_adOutputWeights`` is set to a pointer to the  previously filled
 ``bStrict``
     Strictness of comparisons (ignored here).
 
-``pAction`` is equal to ``this``, if it is a ``SharedEvaluator`` and theit ID's match.
+``pAction`` is equal to ``this``, if it is a ``ShareEvaluator`` and their ID's match.
 
 .. -----------------------------------------------------------------------------
 

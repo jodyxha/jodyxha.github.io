@@ -56,16 +56,22 @@
 </div>
 <section id="typedefs">
 <h2>Typedefs<a class="headerlink" href="#typedefs" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">uint</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">uint</span><span class="p">;</span>
 </pre></div>
 </div>
-<p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/BufWriter.h">BufWriter.h</a>, <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/BufWriter.cpp">BufWriter.cpp</a></p>
+<dl>
+<dt>Code:</dt><dd><div class="line-block">
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/BufWriter.h">BufWriter.h</a></div>
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/BufWriter.cpp">BufWriter.cpp</a></div>
+</div>
+</dd>
+</dl>
 </section>
 <section id="public-methods">
 <h2>Public Methods<a class="headerlink" href="#public-methods" title="Permalink to this heading">¶</a></h2>
 <section id="createinstance-string-int">
 <h3><code class="docutils literal notranslate"><span class="pre">createInstance(string,</span> <span class="pre">int)</span></code><a class="headerlink" href="#createinstance-string-int" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="n">BufWriter</span><span class="w"> </span><span class="o">*</span><span class="nf">createInstance</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sOut</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iBufSize</span><span class="o">=</span><span class="n">DEF_BUF_SIZE</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="n">BufWriter</span><span class="w"> </span><span class="o">*</span><span class="nf">createInstance</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sOut</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iBufSize</span><span class="o">=</span><span class="n">DEF_BUF_SIZE</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Creates a new instance for writing to file <code class="docutils literal notranslate"><span class="pre">sOut</span></code></p>
@@ -73,14 +79,14 @@
 </section>
 <section id="destructor">
 <h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="o">~</span><span class="n">BufWriter</span><span class="p">();</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="o">~</span><span class="n">BufWriter</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>The destructor.</p>
 </section>
 <section id="addchars">
 <h3><code class="docutils literal notranslate"><span class="pre">addChars</span></code><a class="headerlink" href="#addchars" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">addChars</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">pData</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iNum</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">addChars</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">pData</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iNum</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Writes <code class="docutils literal notranslate"><span class="pre">iNum</span></code> characters from <code class="docutils literal notranslate"><span class="pre">pData</span></code> to the buffer.</p>
@@ -94,7 +100,7 @@
 </section>
 <section id="addchar">
 <h3><code class="docutils literal notranslate"><span class="pre">addChar</span></code><a class="headerlink" href="#addchar" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">addChar</span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="n">c</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">addChar</span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="n">c</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Writes a single character to the buffer.</p>
@@ -106,7 +112,7 @@
 </section>
 <section id="addline">
 <h3><code class="docutils literal notranslate"><span class="pre">addLine</span></code><a class="headerlink" href="#addline" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">addLine</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">pLine</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">addLine</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">pLine</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Writes a string to the buffer.</p>
@@ -118,7 +124,7 @@
 </section>
 <section id="getpos">
 <h3><code class="docutils literal notranslate"><span class="pre">getPos</span></code><a class="headerlink" href="#getpos" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">long</span><span class="w"> </span><span class="nf">getPos</span><span class="p">();</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">long</span><span class="w"> </span><span class="nf">getPos</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>Get position in file.</p>
@@ -127,11 +133,33 @@
 </section>
 <section id="protected-methods">
 <h2>Protected Methods<a class="headerlink" href="#protected-methods" title="Permalink to this heading">¶</a></h2>
-<p>&#64;&#64;TODO
-<span class="xref std std-ref">Bufwriter_todododod</span>
-<code class="docutils literal notranslate"><span class="pre">BufWriter()</span></code>
-<code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">initialize(const</span> <span class="pre">std::string</span> <span class="pre">sOut,</span> <span class="pre">int</span> <span class="pre">iBufSize)</span></code>
-<code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">dump()</span></code></p>
+<section id="constructor">
+<h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#constructor" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">BufWriter</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>Initializes members.</p>
+</section>
+<section id="initialize">
+<h3><code class="docutils literal notranslate"><span class="pre">initialize</span></code><a class="headerlink" href="#initialize" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">initialize</span><span class="p">((</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sOut</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="n">iBufSize</span><span class="p">);</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">sOut</span></code></dt><dd><p>Name of file to write to.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iBufSize</span></code></dt><dd><p>Buffer size.</p>
+</dd>
+</dl>
+<p>Opens the file, allocate Buffer and resets members.</p>
+</section>
+<section id="dump">
+<h3><code class="docutils literal notranslate"><span class="pre">dump</span></code><a class="headerlink" href="#dump" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">dump</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>Writes the entire buffer to the file.</p>
+</section>
 </section>
 </section>
 
@@ -156,7 +184,12 @@
 <li><a class="reference internal" href="#getpos"><code class="docutils literal notranslate"><span class="pre">getPos</span></code></a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#protected-methods">Protected Methods</a></li>
+<li><a class="reference internal" href="#protected-methods">Protected Methods</a><ul>
+<li><a class="reference internal" href="#constructor"><code class="docutils literal notranslate"><span class="pre">constructor</span></code></a></li>
+<li><a class="reference internal" href="#initialize"><code class="docutils literal notranslate"><span class="pre">initialize</span></code></a></li>
+<li><a class="reference internal" href="#dump"><code class="docutils literal notranslate"><span class="pre">dump</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

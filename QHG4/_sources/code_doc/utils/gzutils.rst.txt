@@ -9,7 +9,9 @@ gzutils
 
 The functions in the module ``gzutils`` allow the reading and writing of gzipped files.
 
-Code: `gzutils.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/gzutils.h>`_ , `gzutils.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/gzutils.cpp>`_
+Code:
+    | `gzutils.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/gzutils.h>`_
+    | `gzutils.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/gzutils.cpp>`_
 
 ``Functions``
 ^^^^^^^^^^^^^

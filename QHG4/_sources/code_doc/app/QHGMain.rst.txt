@@ -12,7 +12,8 @@ QHGMain
 
 ``QHGMain.cpp`` consists mainly of the ``main()`` function, in which the logfile is initialized, a :ref:`Simulator <Simulator_ref>` object is created and the simulation loop is started. 
 
-Code: `QHGMain.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/app/QHGMain.cpp>`_
+Code: 
+    | `QHGMain.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/app/QHGMain.cpp>`_
 
 Calling QHGMain
 ---------------

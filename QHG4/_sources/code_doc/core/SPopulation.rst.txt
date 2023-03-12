@@ -16,7 +16,9 @@ An important feature of a population are its actions. These actions (derived fro
 such as mating, producing offspring, movement etc.
 
 
-Code: `SPopulation.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/core/SPopulation.h>`_ `SPopulation.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/core/SPopulation.cpp>`_
+Code: 
+    | `SPopulation.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/core/SPopulation.h>`_ 
+    | `SPopulation.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/core/SPopulation.cpp>`_
 
 The agent structure 
 --------------------
@@ -159,7 +161,8 @@ This method is called before data is written to the output file. Useful to prepa
 ``fTime``
     Current simulation step. 
 
-This method loops through all ctions of the specified priority level and applies them to all agents of the  population.
+This method loops through all actions of the specified priority level and 
+applies their ``execute()`` methods them to all agents of the  population.
 
 .. -----------------------------------------------------------------------------
 
@@ -176,24 +179,24 @@ This method is called at the beginning of a simulation step before ``doActions()
 
 .. -----------------------------------------------------------------------------
 
-``initListIdx``
-^^^^^^^^^^^^^^^
-.. code-block:: c++
-
-  virtual void initListIdx();
-
-This method clears the nirth, death and move registration lists.
-
-.. -----------------------------------------------------------------------------
-
 ``finalizeStep``
 ^^^^^^^^^^^^^^^^
 .. code-block:: c++
 
     virtual int finalizeStep();
 
-This method is called just afer ``doActions()`` at the end of the simulation step.
-.
+This method is called just after ``doActions()`` at the end of the simulation step.
+
+.. -----------------------------------------------------------------------------
+
+``initListIdx``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+  virtual void initListIdx();
+
+This method clears the birth, death and move registration lists.
+
 .. -----------------------------------------------------------------------------
 
 ``registerBirth``
@@ -569,6 +572,7 @@ Update the total count of ``ACTIVE`` locations.
     virtual int checkLists();    
 
 Checks the validity of the linked lists. Returns a negative number on error.
+This check slows down execution time considerably. It is only used for debugging.
 
 .. -----------------------------------------------------------------------------
 

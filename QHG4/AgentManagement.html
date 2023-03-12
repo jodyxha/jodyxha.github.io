@@ -70,7 +70,7 @@ This approach turned out to be a bad choice - profiling showed that most of the 
 <p>Each of the structures represent the data of one agent. This setup allows easy parallelisation over agents.</p>
 <p>The agent structures are defined in the header file of a population class (see <a class="reference internal" href="code_doc/core/SPopulation.html#spopulation-ref"><span class="std std-ref">SPopulations</span></a>), which also holds the container for the agent structures,
 In QHG tthis container is realized with a <code class="docutils literal notranslate"><span class="pre">LayerBuf</span></code> object, which, in essence, is a vector of agent arrays.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">*&gt;</span><span class="w">  </span><span class="n">m_vUsedLayers</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">*&gt;</span><span class="w">  </span><span class="n">m_vUsedLayers</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Initially the vector is empty.</p>

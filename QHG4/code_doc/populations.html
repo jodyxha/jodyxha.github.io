@@ -21,7 +21,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="PopulationFactory" href="populations/PopulationFactory.html" />
-    <link rel="prev" title="SingleEvaluator" href="actions/SingleEvaluator.html" /> 
+    <link rel="prev" title="ShareEvaluator" href="actions/ShareEvaluator.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -33,7 +33,7 @@
           <a href="populations/PopulationFactory.html" title="PopulationFactory"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="actions/SingleEvaluator.html" title="SingleEvaluator"
+          <a href="actions/ShareEvaluator.html" title="ShareEvaluator"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">QHG4 4.1 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../code_doc.html" accesskey="U">Code Documentation</a> &#187;</li>
@@ -59,8 +59,8 @@ This implies that for the handling of additional agent members new action classe
 The actions created here must be deleted in the population’s destructor.</p>
 <p>Apart from the constructor, new population classes only override a few methods of <code class="docutils literal notranslate"><span class="pre">SPopulation</span></code>.</p>
 <p>If he agent structure is not the edfault, the population must implement the methods</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">addPopSpecificAgentData</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iAgentIndex</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">ppData</span><span class="p">);</span><span class="w"></span>
-<span class="kt">void</span><span class="w"> </span><span class="nf">addPopSpecificAgentDataTypeQDF</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="o">*</span><span class="n">hAgentDataType</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">addPopSpecificAgentData</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iAgentIndex</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">ppData</span><span class="p">);</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">addPopSpecificAgentDataTypeQDF</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="o">*</span><span class="n">hAgentDataType</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>These methods specify how a string is converted to the values for the new attributes of the agent,
@@ -106,8 +106,8 @@ but before the sumulations starts, this can be done in</p>
         <div class="sphinxsidebarwrapper">
   <div>
     <h4>Previous topic</h4>
-    <p class="topless"><a href="actions/SingleEvaluator.html"
-                          title="previous chapter">SingleEvaluator</a></p>
+    <p class="topless"><a href="actions/ShareEvaluator.html"
+                          title="previous chapter">ShareEvaluator</a></p>
   </div>
   <div>
     <h4>Next topic</h4>
@@ -145,7 +145,7 @@ but before the sumulations starts, this can be done in</p>
           <a href="populations/PopulationFactory.html" title="PopulationFactory"
              >next</a> |</li>
         <li class="right" >
-          <a href="actions/SingleEvaluator.html" title="SingleEvaluator"
+          <a href="actions/ShareEvaluator.html" title="ShareEvaluator"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">QHG4 4.1 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../code_doc.html" >Code Documentation</a> &#187;</li>

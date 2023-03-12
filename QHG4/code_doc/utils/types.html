@@ -51,42 +51,47 @@
 <span id="types-ref"></span><h1>types<a class="headerlink" href="#types" title="Permalink to this heading">¶</a></h1>
 <p class="hidden">This page describes the file <span class="target" id="index-0"></span>type</p>
 <p>The file <code class="docutils literal notranslate"><span class="pre">types.h</span></code> contains type definitions used throughout QHG4.</p>
-<p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/types.h">types.h</a></p>
+<dl>
+<dt>Code:</dt><dd><div class="line-block">
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/types.h">types.h</a></div>
+</div>
+</dd>
+</dl>
 <section id="type-definitions">
 <h2>Type Definitions<a class="headerlink" href="#type-definitions" title="Permalink to this heading">¶</a></h2>
 <section id="short-names-for-various-c-number-types">
 <h3>Short Names for Various C++ Number Types<a class="headerlink" href="#short-names-for-various-c-number-types" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w">       </span><span class="n">uchar</span><span class="p">;</span><span class="w"></span>
-<span class="k">typedef</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">short</span><span class="w">      </span><span class="n">ushort</span><span class="p">;</span><span class="w"></span>
-<span class="k">typedef</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w">        </span><span class="n">uint</span><span class="p">;</span><span class="w"></span>
-<span class="k">typedef</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w">       </span><span class="n">ulong</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w">       </span><span class="n">uchar</span><span class="p">;</span>
+<span class="k">typedef</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">short</span><span class="w">      </span><span class="n">ushort</span><span class="p">;</span>
+<span class="k">typedef</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w">        </span><span class="n">uint</span><span class="p">;</span>
+<span class="k">typedef</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w">       </span><span class="n">ulong</span><span class="p">;</span>
 
-<span class="k">typedef</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w">           </span><span class="n">llong</span><span class="p">;</span><span class="w"></span>
-<span class="k">typedef</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w">  </span><span class="n">ullong</span><span class="p">;</span><span class="w"></span>
-<span class="k">typedef</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="kt">double</span><span class="w">         </span><span class="n">ldouble</span><span class="p">;</span><span class="w"></span>
+<span class="k">typedef</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w">           </span><span class="n">llong</span><span class="p">;</span>
+<span class="k">typedef</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w">  </span><span class="n">ullong</span><span class="p">;</span>
+<span class="k">typedef</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="kt">double</span><span class="w">         </span><span class="n">ldouble</span><span class="p">;</span>
 
-<span class="k">typedef</span><span class="w"> </span><span class="kt">int</span><span class="w">                 </span><span class="n">gridtype</span><span class="p">;</span><span class="w"></span>
-<span class="k">typedef</span><span class="w"> </span><span class="kt">long</span><span class="w">                </span><span class="n">idtype</span><span class="p">;</span><span class="w"></span>
+<span class="k">typedef</span><span class="w"> </span><span class="kt">int</span><span class="w">                 </span><span class="n">gridtype</span><span class="p">;</span>
+<span class="k">typedef</span><span class="w"> </span><span class="kt">long</span><span class="w">                </span><span class="n">idtype</span><span class="p">;</span>
 </pre></div>
 </div>
 </section>
 <section id="short-names-for-specialized-containers">
 <h3>Short Names for Specialized Containers<a class="headerlink" href="#short-names-for-specialized-containers" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">set</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w">              </span><span class="n">intset</span><span class="p">;</span><span class="w"></span>
-<span class="k">typedef</span><span class="w"> </span><span class="n">intset</span><span class="o">::</span><span class="n">iterator</span><span class="w">           </span><span class="n">intset_it</span><span class="p">;</span><span class="w"></span>
-<span class="k">typedef</span><span class="w"> </span><span class="n">intset</span><span class="o">::</span><span class="n">const_iterator</span><span class="w">     </span><span class="n">intset_cit</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">set</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w">              </span><span class="n">intset</span><span class="p">;</span>
+<span class="k">typedef</span><span class="w"> </span><span class="n">intset</span><span class="o">::</span><span class="n">iterator</span><span class="w">           </span><span class="n">intset_it</span><span class="p">;</span>
+<span class="k">typedef</span><span class="w"> </span><span class="n">intset</span><span class="o">::</span><span class="n">const_iterator</span><span class="w">     </span><span class="n">intset_cit</span><span class="p">;</span>
 
-<span class="k">typedef</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">uchar</span><span class="o">&gt;</span><span class="w">                 </span><span class="n">ucharvec</span><span class="p">;</span><span class="w"></span>
-<span class="k">typedef</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w">                   </span><span class="n">intvec</span><span class="p">;</span><span class="w"></span>
-<span class="k">typedef</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">uint</span><span class="o">&gt;</span><span class="w">                  </span><span class="n">uintvec</span><span class="p">;</span><span class="w"></span>
-<span class="k">typedef</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">stringmap</span><span class="p">;</span><span class="w"></span>
-<span class="k">typedef</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">stringmap</span><span class="o">&gt;</span><span class="w">   </span><span class="n">strstrmap</span><span class="p">;</span><span class="w"></span>
-<span class="k">typedef</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w">           </span><span class="n">stringvec</span><span class="p">;</span><span class="w"></span>
+<span class="k">typedef</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">uchar</span><span class="o">&gt;</span><span class="w">                 </span><span class="n">ucharvec</span><span class="p">;</span>
+<span class="k">typedef</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w">                   </span><span class="n">intvec</span><span class="p">;</span>
+<span class="k">typedef</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">uint</span><span class="o">&gt;</span><span class="w">                  </span><span class="n">uintvec</span><span class="p">;</span>
+<span class="k">typedef</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">stringmap</span><span class="p">;</span>
+<span class="k">typedef</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">stringmap</span><span class="o">&gt;</span><span class="w">   </span><span class="n">strstrmap</span><span class="p">;</span>
+<span class="k">typedef</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w">           </span><span class="n">stringvec</span><span class="p">;</span>
 
-<span class="k">typedef</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">idtype</span><span class="o">&gt;</span><span class="w">    </span><span class="n">idvec</span><span class="p">;</span><span class="w"></span>
-<span class="k">typedef</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">set</span><span class="o">&lt;</span><span class="n">idtype</span><span class="o">&gt;</span><span class="w">       </span><span class="n">idset</span><span class="p">;</span><span class="w"></span>
-<span class="k">typedef</span><span class="w"> </span><span class="n">idset</span><span class="o">::</span><span class="n">iterator</span><span class="w">        </span><span class="n">idset_it</span><span class="p">;</span><span class="w"></span>
-<span class="k">typedef</span><span class="w"> </span><span class="n">idset</span><span class="o">::</span><span class="n">const_iterator</span><span class="w">  </span><span class="n">idset_cit</span><span class="p">;</span><span class="w"></span>
+<span class="k">typedef</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">idtype</span><span class="o">&gt;</span><span class="w">    </span><span class="n">idvec</span><span class="p">;</span>
+<span class="k">typedef</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">set</span><span class="o">&lt;</span><span class="n">idtype</span><span class="o">&gt;</span><span class="w">       </span><span class="n">idset</span><span class="p">;</span>
+<span class="k">typedef</span><span class="w"> </span><span class="n">idset</span><span class="o">::</span><span class="n">iterator</span><span class="w">        </span><span class="n">idset_it</span><span class="p">;</span>
+<span class="k">typedef</span><span class="w"> </span><span class="n">idset</span><span class="o">::</span><span class="n">const_iterator</span><span class="w">  </span><span class="n">idset_cit</span><span class="p">;</span>
 </pre></div>
 </div>
 </section>

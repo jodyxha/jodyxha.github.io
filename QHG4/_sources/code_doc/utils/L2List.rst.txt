@@ -18,6 +18,10 @@ Inside a ``L2List`` there are two chains: ``ACTIVE`` and ``PASSIVE`` representin
 
 L2List is used by :ref:`LayerBuf <LayerBuf_ref>` and :ref:`LBContoller<LBController_ref>`.
 
+Code:
+    | `L2List.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/L2List.h>`_
+    | `L2List.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/L2List.cpp>`_
+
 Structures
 ----------
 
@@ -29,8 +33,6 @@ Structures
     } L2Node;
 
 Representation of a node for the doubly linked list
-
-Code: `L2List.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/L2List.h>`_ , `L2List.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/L2List.cpp>`_
 
 Public Methods
 --------------

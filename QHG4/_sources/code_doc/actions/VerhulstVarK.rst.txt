@@ -13,7 +13,9 @@ It incorporates a :ref:`LinearBirth<LInearBirth_ref>` and a :ref:`LinearDeath<Li
 
 .. figure:: ../../../images/LinBirthDeathCoords.png
 
-Code: `VerhulstVarK.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/VerhulstVarK.h>`_ `VerhulstVarK.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/VerhulstVarK.cpp>`_
+Code: 
+    | `VerhulstVarK.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/VerhulstVarK.h>`_ 
+    | `VerhulstVarK.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/VerhulstVarK.cpp>`_
 
 **Attributes**
 
@@ -180,4 +182,4 @@ This method can change the values of :math:`b_0` (``ATTR_VERHULST_B0_NAME``), :m
 ``bStrict``
     Strictness of comparisons (ignored here).
 
-``pAction`` is equal to ``this``, if it is a ``Verhulst`` object whose ``LinearBirth`` and ``LinearDeth`` are equal.
+``pAction`` is equal to ``this``, if it is a ``VerhulstVarK`` object whose ``LinearBirth`` and ``LinearDeath`` are equal.

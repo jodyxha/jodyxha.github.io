@@ -8,18 +8,18 @@ NPPCapacity
    This page describes the class :index:`NPPCapacity``
 
 The class ``NPPCapacity`` is derived from ``Action`` and 
-is used to calculate per-cell capacities based on NPP, sweetwater and coastel effects.
+is used to calculate per-cell capacities based on NPP, sweetwater and coastal effects.
 
 First an initial capacity is calculated from the local NPP using a ramp function. 
-Then, if water is present in the cell, the cpacity is multiplied with a "water factor".
-If the cell us close to the coast (i.e. if the entry in Geography's ``Coastal`` array 
+Then, if water is present in the cell, the capacity is multiplied with a "water factor".
+If the cell is close to the coast (i.e. if the entry in Geography's ``Coastal`` array 
 is greater than 0), the capacity is multiplied by a coastal factor.
 
 .. figure:: ../../../images/npp_ramp.png
 
 The attributes regarding coastal and water only work if the geography has the 
 appropriate data in its ``m_AdCoastal`` and ``m_adWater`` arrays.
-Uually these arrays are added to the gridfile by means of the tools 
+Usually these arrays are added to the gridfile by means of the tools 
 :ref:`VectorImport<VectorImport_ref>` and :ref:`Coastal<Coastal_ref>`.
 
 Code: 
@@ -59,7 +59,7 @@ Public Methods
 
 .. code-block:: c++
 
-   NPPCapacity(SPopulation<T> *pPop, SCellGrid *pCG, std::string sID, WELL512 **apWELL, double *adCapacities, int iStride);,                const std::string sNameGrassMassAvail, const std::string sNameGrassMassConsumed);
+   NPPCapacity(SPopulation<T> *pPop, SCellGrid *pCG, std::string sID, WELL512 **apWELL, double *adCapacities, int iStride);
 
 ``pPop``
     A pointer to the :ref:`SPopulation<SPopulation_ref>` object performing this action.
@@ -87,7 +87,7 @@ Creates a ``NPPCalc`` objects (in case temoerature and precipitation nee to be c
 ^^^^^^^^^^^^^^
 .. code-block:: c++
 
-    virtual ~GrassManager();
+    virtual ~NPPCapacity();
 
 The destructor deletes the ``NPPCalc`` object.
 
@@ -154,8 +154,18 @@ Extracts the action's attributes from the ``ModuleComplex`` object.
 ``dValue``
     Value to set the attribute to.
 
-This method can change the values of :math:`m_{min}` (``ATTR_GRASSMAN_MIN_MASS_NAME``),
-:math:`m_{max}` (``ATTR_GRASSMAN_MAX_MASS_NAME``), or :math:`r` (``ATTR_GRASSMAN_GROWTH_RATE_NAME``).
+
+This method can change the values of 
+  | water factor (ATTR_NPPCAP_WATERFACTOR_NAME),
+  | coastal factor (ATTR_NPPCAP_COASTALFACTOR_NAME).
+  | coastal maximum latitude (ATTR_NPPCAP_COASTAL_MAX_LAT_NAME).
+  | coastal minimum latitude (ATTR_NPPCAP_COASTAL_MIN_LAT_NAME),
+  | :math:`NPP_{min}` (ATTR_NPPCAP_NPPMIN_NAME),
+  | :math:`NPP_{max}`  (ATTR_NPPCAP_NPPMAX_NAME),
+  | :math:`K_{min}` (ATTR_NPPCAP_KMIN_NAME),
+  | :math:`K_{max}` (ATTR_NPPCAP_KMIN_NAME), or
+  | efficiency (ATTR_NPPCAP_EFFICIENCY_NAME)
+
 
 
 .. -----------------------------------------------------------------------------
@@ -172,7 +182,7 @@ This method can change the values of :math:`m_{min}` (``ATTR_GRASSMAN_MIN_MASS_N
 ``bStrict``
     Strictness of comparisons (ignored here).
 
-``pAction`` is equal to ``this``, if it is a ``GrassManager`` object whose attributes match those of ``this``.
+``pAction`` is equal to ``this``, if it is a ``NPPCapacity`` object whose attributes match those of ``this``.
 
 
 .. -----------------------------------------------------------------------------
@@ -183,7 +193,7 @@ This method can change the values of :math:`m_{min}` (``ATTR_GRASSMAN_MIN_MASS_N
 
     virtual void recalculate();
 
-Recaclulates the Coacity based on NPP, qater and coastal distance.
+Recaclulates the Coacity based on NPP, water and coastal distance.
 
 .. -----------------------------------------------------------------------------
 

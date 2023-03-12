@@ -53,7 +53,8 @@ they just exist - no agents die, no agents are born, and no agents move.</p>
 <p><strong>Population code:</strong></p>
 <blockquote>
 <div><div class="line-block">
-<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_StaticPop.h">tut_StaticPop.h</a> .    <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_StaticPop.cpp">tut_StaticPop.cpp</a></div>
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_StaticPop.h">tut_StaticPop.h</a></div>
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_StaticPop.cpp">tut_StaticPop.cpp</a></div>
 </div>
 </div></blockquote>
 <p><strong>Action code:</strong></p>
@@ -69,12 +70,12 @@ And since the agents don’t do anything, no action classes are rquired.</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef __TUT_STATICPOP_H__</span>
 <span class="cp">#define __TUT_STATICPOP_H__</span>
 
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;SPopulation.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;SPopulation.h&quot;</span>
 
-<span class="k">class</span><span class="w"> </span><span class="nc">tut_StaticPop</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">SPopulation</span><span class="o">&lt;</span><span class="n">Agent</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="k">public</span><span class="o">:</span><span class="w"></span>
-<span class="w">    </span><span class="n">tut_StaticPop</span><span class="p">(</span><span class="n">SCellGrid</span><span class="w"> </span><span class="o">*</span><span class="n">pCG</span><span class="p">,</span><span class="w"> </span><span class="n">PopFinder</span><span class="w"> </span><span class="o">*</span><span class="n">pPopFinder</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iLayerSize</span><span class="p">,</span><span class="w"> </span><span class="n">IDGen</span><span class="w"> </span><span class="o">**</span><span class="n">apIDG</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="o">*</span><span class="n">aulState</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="o">*</span><span class="n">aiSeeds</span><span class="p">);</span><span class="w"></span>
-<span class="p">};</span><span class="w"></span>
+<span class="k">class</span><span class="w"> </span><span class="nc">tut_StaticPop</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">SPopulation</span><span class="o">&lt;</span><span class="n">Agent</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="n">tut_StaticPop</span><span class="p">(</span><span class="n">SCellGrid</span><span class="w"> </span><span class="o">*</span><span class="n">pCG</span><span class="p">,</span><span class="w"> </span><span class="n">PopFinder</span><span class="w"> </span><span class="o">*</span><span class="n">pPopFinder</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iLayerSize</span><span class="p">,</span><span class="w"> </span><span class="n">IDGen</span><span class="w"> </span><span class="o">**</span><span class="n">apIDG</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="o">*</span><span class="n">aulState</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="o">*</span><span class="n">aiSeeds</span><span class="p">);</span>
+<span class="p">};</span>
 
 <span class="cp">#endif</span>
 </pre></div>
@@ -86,40 +87,40 @@ And since the agents don’t do anything, no action classes are rquired.</p>
 <h2>The Implementation<a class="headerlink" href="#the-implementation" title="Permalink to this heading">¶</a></h2>
 <p>The implementation of the constructor is also very simple:
 it just calls the constructor of its parent class <code class="docutils literal notranslate"><span class="pre">SPopulation</span></code>.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Prioritizer.cpp&quot;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;LayerBuf.cpp&quot;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Action.cpp&quot;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;SPopulation.cpp&quot;</span><span class="cp"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Prioritizer.cpp&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;LayerBuf.cpp&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Action.cpp&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;SPopulation.cpp&quot;</span>
 
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;tut_StaticPop.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;tut_StaticPop.h&quot;</span>
 
 <span class="c1">//----------------------------------------------------------------------------</span>
 <span class="c1">// constructor</span>
 <span class="c1">//</span>
-<span class="n">tut_StaticPop</span><span class="o">::</span><span class="n">tut_StaticPop</span><span class="p">(</span><span class="n">SCellGrid</span><span class="w"> </span><span class="o">*</span><span class="n">pCG</span><span class="p">,</span><span class="w"> </span><span class="n">PopFinder</span><span class="w"> </span><span class="o">*</span><span class="n">pPopFinder</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iLayerSize</span><span class="p">,</span><span class="w"> </span><span class="n">IDGen</span><span class="w"> </span><span class="o">**</span><span class="n">apIDG</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="o">*</span><span class="n">aulState</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="o">*</span><span class="n">aiSeeds</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="o">:</span><span class="w"> </span><span class="n">SPopulation</span><span class="o">&lt;</span><span class="n">Agent</span><span class="o">&gt;</span><span class="p">(</span><span class="n">pCG</span><span class="p">,</span><span class="w"> </span><span class="n">pPopFinder</span><span class="p">,</span><span class="w"> </span><span class="n">iLayerSize</span><span class="p">,</span><span class="w"> </span><span class="n">apIDG</span><span class="p">,</span><span class="w"> </span><span class="n">aulState</span><span class="p">,</span><span class="w"> </span><span class="n">aiSeeds</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="n">tut_StaticPop</span><span class="o">::</span><span class="n">tut_StaticPop</span><span class="p">(</span><span class="n">SCellGrid</span><span class="w"> </span><span class="o">*</span><span class="n">pCG</span><span class="p">,</span><span class="w"> </span><span class="n">PopFinder</span><span class="w"> </span><span class="o">*</span><span class="n">pPopFinder</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iLayerSize</span><span class="p">,</span><span class="w"> </span><span class="n">IDGen</span><span class="w"> </span><span class="o">**</span><span class="n">apIDG</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="o">*</span><span class="n">aulState</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="o">*</span><span class="n">aiSeeds</span><span class="p">)</span>
+<span class="w">    </span><span class="o">:</span><span class="w"> </span><span class="n">SPopulation</span><span class="o">&lt;</span><span class="n">Agent</span><span class="o">&gt;</span><span class="p">(</span><span class="n">pCG</span><span class="p">,</span><span class="w"> </span><span class="n">pPopFinder</span><span class="p">,</span><span class="w"> </span><span class="n">iLayerSize</span><span class="p">,</span><span class="w"> </span><span class="n">apIDG</span><span class="p">,</span><span class="w"> </span><span class="n">aulState</span><span class="p">,</span><span class="w"> </span><span class="n">aiSeeds</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <section id="the-includes">
 <h3>The #includes<a class="headerlink" href="#the-includes" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Action.cpp&quot;</span><span class="cp"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Action.cpp&quot;</span>
 </pre></div>
 </div>
 <p>For completing the <code class="docutils literal notranslate"><span class="pre">Action</span></code> templates.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Prioritizer.cpp&quot;</span><span class="cp"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Prioritizer.cpp&quot;</span>
 </pre></div>
 </div>
 <p>For completing the <code class="docutils literal notranslate"><span class="pre">Prioritizer</span></code> templates</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;LayerBuf.cpp&quot;</span><span class="cp"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;LayerBuf.cpp&quot;</span>
 </pre></div>
 </div>
 <p>For completing the <code class="docutils literal notranslate"><span class="pre">LayerBuf</span></code> templates</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;SPopulation.cpp&quot;</span><span class="cp"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;SPopulation.cpp&quot;</span>
 </pre></div>
 </div>
 <p>For completing the <code class="docutils literal notranslate"><span class="pre">SPopulation</span></code> templates</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;tut_StaticPop.h&quot;</span><span class="cp"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;tut_StaticPop.h&quot;</span>
 </pre></div>
 </div>
 <p>Declaration of the <code class="docutils literal notranslate"><span class="pre">tut_StaticPop</span></code> class.</p>
@@ -131,21 +132,21 @@ it just calls the constructor of its parent class <code class="docutils literal 
 <p>In order to run a simulation we must provide the actions with some parameters by means of an <a class="reference internal" href="../formats/pop/pop_xml.html#pop-xml-ref"><span class="std std-ref">XML file</span></a>.
 Furthermore we have to provide the positions and attributes of the initial agents with a <a class="reference internal" href="../formats/pop/pop_dat.html#pop-dat-ref"><span class="std std-ref">DAT file</span></a></p>
 <p>Since this simple population class does nothing, it has no need of any action and therefore the XML file <code class="docutils literal notranslate"><span class="pre">tut_Static.xml</span></code> is quite simple:</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;class</span> <span class="na">name=</span><span class="s">&quot;tut_StaticPop&quot;</span> <span class="na">species_name=</span><span class="s">&quot;sapiens&quot;</span> <span class="na">species_id=</span><span class="s">&quot;104&quot;</span> <span class="nt">/&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;class</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;tut_StaticPop&quot;</span><span class="w"> </span><span class="na">species_name=</span><span class="s">&quot;sapiens&quot;</span><span class="w"> </span><span class="na">species_id=</span><span class="s">&quot;104&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
 </pre></div>
 </div>
 <p>which is a shorthand notation of</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;class</span> <span class="na">name=</span><span class="s">&quot;tut_StaticPop&quot;</span> <span class="na">species_name=</span><span class="s">&quot;sapiens&quot;</span> <span class="na">species_id=</span><span class="s">&quot;104&quot;</span><span class="nt">&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;class</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;tut_StaticPop&quot;</span><span class="w"> </span><span class="na">species_name=</span><span class="s">&quot;sapiens&quot;</span><span class="w"> </span><span class="na">species_id=</span><span class="s">&quot;104&quot;</span><span class="nt">&gt;</span>
 <span class="nt">&lt;/class&gt;</span>
 </pre></div>
 </div>
 <p>The dat file <code class="docutils literal notranslate"><span class="pre">tut_Static.dat</span></code> defines positions and attributes for 20 agents.</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#Longitude;Latitude;LifeState;AgentID;BirthTime;Gender</span>
-<span class="mi">8</span><span class="p">;</span><span class="mi">47</span><span class="p">;</span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="mf">-10.0</span><span class="p">;</span><span class="mi">0</span><span class="w"></span>
-<span class="mi">8</span><span class="p">;</span><span class="mi">47</span><span class="p">;</span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="mf">-10.0</span><span class="p">;</span><span class="mi">0</span><span class="w"></span>
-<span class="mi">8</span><span class="p">;</span><span class="mi">47</span><span class="p">;</span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="mf">-10.0</span><span class="p">;</span><span class="mi">0</span><span class="w"></span>
-<span class="p">...</span><span class="w"></span>
-<span class="mi">8</span><span class="p">;</span><span class="mi">47</span><span class="p">;</span><span class="mi">1</span><span class="p">;</span><span class="mi">20</span><span class="p">;</span><span class="mf">-10.0</span><span class="p">;</span><span class="mi">0</span><span class="w"></span>
+<span class="mi">8</span><span class="p">;</span><span class="mi">47</span><span class="p">;</span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="mf">-10.0</span><span class="p">;</span><span class="mi">0</span>
+<span class="mi">8</span><span class="p">;</span><span class="mi">47</span><span class="p">;</span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="mf">-10.0</span><span class="p">;</span><span class="mi">0</span>
+<span class="mi">8</span><span class="p">;</span><span class="mi">47</span><span class="p">;</span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="mf">-10.0</span><span class="p">;</span><span class="mi">0</span>
+<span class="p">...</span>
+<span class="mi">8</span><span class="p">;</span><span class="mi">47</span><span class="p">;</span><span class="mi">1</span><span class="p">;</span><span class="mi">20</span><span class="p">;</span><span class="mf">-10.0</span><span class="p">;</span><span class="mi">0</span>
 </pre></div>
 </div>
 <p>In this example all agents are placed at the same location, and all agents are female (Gender: 0=female, 1=male)</p>
@@ -159,18 +160,18 @@ Furthermore we have to provide the positions and attributes of the initial agent
 <p>We assume that you have created the tutorial directories with the script <a class="reference internal" href="../tools/build_tut_dirs.html#build-tut-dirs-ref"><span class="std std-ref">build_tut_dirs.py</span></a>.
 This copies all relevant files to the tutorial subdirectories.</p>
 <p>First lets create alternative population and action directories with the script <a class="reference internal" href="../tools/build_alt_modpop.html#build-alt-modpop-ref"><span class="std std-ref">build_alt_modpop.py</span></a>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="si">${</span><span class="nv">QHG4_DIR</span><span class="si">}</span>/useful_stuff/build_alt_modpop.py tut_01 tut_StaticPop
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="si">${</span><span class="nv">QHG4_DIR</span><span class="si">}</span>/useful_stuff/build_alt_modpop.py<span class="w"> </span>tut_01<span class="w"> </span>tut_StaticPop
 </pre></div>
 </div>
 <p>This builds alternative population directories <code class="docutils literal notranslate"><span class="pre">tut_01_pop</span></code> and <code class="docutils literal notranslate"><span class="pre">tut_01_mod</span></code>.</p>
 <p>To compile, cd to the QHG4 root directory and start the compilation:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="si">${</span><span class="nv">QHG4_DIR</span><span class="si">}</span>
-<span class="nv">SHORT</span><span class="o">=</span>tut_01 make clean QHGMain
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">QHG4_DIR</span><span class="si">}</span>
+<span class="nv">SHORT</span><span class="o">=</span>tut_01<span class="w"> </span>make<span class="w"> </span>clean<span class="w"> </span>QHGMain
 </pre></div>
 </div>
 <p>This is the simplest way to compile QHG (for more information see <a class="reference internal" href="../qhg4_compile.html#compiling-qhg-ref"><span class="std std-ref">Compiling QHG</span></a>)</p>
 <p>Now cd to the tutorial subdirectory “tutorial_01’ and start QHGMain</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="si">${</span><span class="nv">QHG4_DIR</span><span class="si">}</span>/app/QHGMain --read-config<span class="o">=</span>tutorial_01.cfg &gt; tutorial_01.out
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="si">${</span><span class="nv">QHG4_DIR</span><span class="si">}</span>/app/QHGMain<span class="w"> </span>--read-config<span class="o">=</span>tutorial_01.cfg<span class="w"> </span>&gt;<span class="w"> </span>tutorial_01.out
 </pre></div>
 </div>
 <p>This tells QHGMain to read the parameters from  the file <code class="docutils literal notranslate"><span class="pre">tutorial_01.cfg</span></code> and write all output to the file <code class="docutils literal notranslate"><span class="pre">tutorial_01.out</span></code> (this output contains more information than the logfile)</p>

@@ -9,7 +9,8 @@ SCell
 
 The ``SCell``  represents a single node of the :ref:`cell grid<SCellGrid_ref>`.
 
-Code: `SCell.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/core/SCell.h>`_ 
+Code: 
+    | `SCell.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/core/SCell.h>`_ 
 
 
 This is the declaration of the ``SCell`` struct:

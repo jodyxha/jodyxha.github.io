@@ -55,28 +55,34 @@
 Typically, these load events happen every 1000 steps or so.
 <code class="docutils literal notranslate"><span class="pre">AutoInterpolator</span></code> calculates the changes in the data for one step between the currently loaded data and the next data to be loaded.
 In regular intervals, the differences are added to the arrays, and the populations are made aware of the changes.</p>
-<p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/core/AutoInterpolator.h">AutoInterpolator.h</a> <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/core/AutoInterpolator.cpp">AutoInterpolator.cpp</a></p>
+<dl>
+<dt>Code:</dt><dd><div class="line-block">
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/core/AutoInterpolator.h">AutoInterpolator.h</a></div>
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/core/AutoInterpolator.cpp">AutoInterpolator.cpp</a></div>
+</div>
+</dd>
+</dl>
 <section id="type-definitions">
 <h2>Type Definitions<a class="headerlink" href="#type-definitions" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">uint</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="o">*&gt;</span><span class="w">            </span><span class="n">length_array</span><span class="p">;</span><span class="w"></span>
-<span class="k">typedef</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">length_array</span><span class="o">&gt;</span><span class="w"> </span><span class="n">named_arrays</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">uint</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="o">*&gt;</span><span class="w">            </span><span class="n">length_array</span><span class="p">;</span>
+<span class="k">typedef</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">length_array</span><span class="o">&gt;</span><span class="w"> </span><span class="n">named_arrays</span><span class="p">;</span>
 
-<span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">group_file</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">set</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">vGroups</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w">           </span><span class="n">sFile</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"> </span><span class="n">group_file</span><span class="p">;</span><span class="w"></span>
-<span class="k">typedef</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="n">group_file</span><span class="o">&gt;</span><span class="w">           </span><span class="n">timed_files</span><span class="p">;</span><span class="w"></span>
+<span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">group_file</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">set</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">vGroups</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w">           </span><span class="n">sFile</span><span class="p">;</span>
+<span class="p">}</span><span class="w"> </span><span class="n">group_file</span><span class="p">;</span>
+<span class="k">typedef</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="n">group_file</span><span class="o">&gt;</span><span class="w">           </span><span class="n">timed_files</span><span class="p">;</span>
 
-<span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">target_info</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w">           </span><span class="n">sFullName</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w">           </span><span class="n">sGroup</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w">           </span><span class="n">sArray</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"> </span><span class="n">target_info</span><span class="p">;</span><span class="w"></span>
-<span class="k">typedef</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">target_info</span><span class="o">&gt;</span><span class="w">            </span><span class="n">target_list</span><span class="p">;</span><span class="w"></span>
+<span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">target_info</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w">           </span><span class="n">sFullName</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w">           </span><span class="n">sGroup</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w">           </span><span class="n">sArray</span><span class="p">;</span>
+<span class="p">}</span><span class="w"> </span><span class="n">target_info</span><span class="p">;</span>
+<span class="k">typedef</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">target_info</span><span class="o">&gt;</span><span class="w">            </span><span class="n">target_list</span><span class="p">;</span>
 
-<span class="k">typedef</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="o">&gt;</span><span class="w">         </span><span class="n">array_sizes</span><span class="p">;</span><span class="w"></span>
+<span class="k">typedef</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="o">&gt;</span><span class="w">         </span><span class="n">array_sizes</span><span class="p">;</span>
 
-<span class="k">typedef</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w">                    </span><span class="n">event_list</span><span class="p">;</span><span class="w"></span>
+<span class="k">typedef</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w">                    </span><span class="n">event_list</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>The type <code class="docutils literal notranslate"><span class="pre">named_arrays</span></code>  associates a name with an array and its length.</p>
@@ -86,7 +92,7 @@ In regular intervals, the differences are added to the arrays, and the populatio
 <h2>Public Methods<a class="headerlink" href="#public-methods" title="Permalink to this heading">¶</a></h2>
 <section id="createinstance">
 <h3><code class="docutils literal notranslate"><span class="pre">createInstance</span></code><a class="headerlink" href="#createinstance" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="n">AutoInterpolator</span><span class="w"> </span><span class="o">*</span><span class="nf">createInstance</span><span class="p">(</span><span class="n">SCellGrid</span><span class="w"> </span><span class="o">*</span><span class="n">pCG</span><span class="p">,</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sEnvEventFile</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">fStartTime</span><span class="p">,</span><span class="w"> </span><span class="n">target_list</span><span class="w"> </span><span class="o">&amp;</span><span class="n">vTargets</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="n">AutoInterpolator</span><span class="w"> </span><span class="o">*</span><span class="nf">createInstance</span><span class="p">(</span><span class="n">SCellGrid</span><span class="w"> </span><span class="o">*</span><span class="n">pCG</span><span class="p">,</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sEnvEventFile</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">fStartTime</span><span class="p">,</span><span class="w"> </span><span class="n">target_list</span><span class="w"> </span><span class="o">&amp;</span><span class="n">vTargets</span><span class="p">);</span>
 </pre></div>
 </div>
 <dl class="simple">
@@ -103,14 +109,14 @@ In regular intervals, the differences are added to the arrays, and the populatio
 </section>
 <section id="destructor">
 <h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">AutoInterpolator</span><span class="p">();</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">AutoInterpolator</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>The destructor deletes arrays that have been allocated.</p>
 </section>
 <section id="interpolate">
 <h3><code class="docutils literal notranslate"><span class="pre">interpolate</span></code><a class="headerlink" href="#interpolate" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">interpolate</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iSteps</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">interpolate</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iSteps</span><span class="p">);</span>
 </pre></div>
 </div>
 <dl class="simple">
@@ -121,7 +127,7 @@ In regular intervals, the differences are added to the arrays, and the populatio
 </section>
 <section id="startinterpolations">
 <h3><code class="docutils literal notranslate"><span class="pre">startInterpolations</span></code><a class="headerlink" href="#startinterpolations" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">startInterpolations</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iFirstStep</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">startInterpolations</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iFirstStep</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Loads the arrays to be interpolated. If the current time is less than the time stamp of the first file in the list,
@@ -130,28 +136,28 @@ Otherwise the file list is searched for the first file with a timestamp greater 
 </section>
 <section id="calcnextdiff">
 <h3><code class="docutils literal notranslate"><span class="pre">calcNextDiff</span></code><a class="headerlink" href="#calcnextdiff" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">calcNextDiff</span><span class="p">();</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">calcNextDiff</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>Calculatesthe  differences betwee the values of the next array and those of the current array,</p>
 </section>
 <section id="getcurstep">
 <h3><code class="docutils literal notranslate"><span class="pre">getCurStep</span></code><a class="headerlink" href="#getcurstep" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">getCurStep</span><span class="p">();</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">getCurStep</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>Returns the step of the next file to be loaded.</p>
 </section>
 <section id="getevents">
 <h3><code class="docutils literal notranslate"><span class="pre">getEvents</span></code><a class="headerlink" href="#getevents" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="n">event_list</span><span class="w"> </span><span class="o">&amp;</span><span class="nf">getEvents</span><span class="p">();</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="n">event_list</span><span class="w"> </span><span class="o">&amp;</span><span class="nf">getEvents</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>Returns the current vector of events (basically a vector of integers such as EVENT_ID_GEO or EVENT_ID_VEG).</p>
 </section>
 <section id="checknewinterpolation">
 <h3><code class="docutils literal notranslate"><span class="pre">checkNewInterpolation</span></code><a class="headerlink" href="#checknewinterpolation" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">checkNewInterpolation</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iCheckStep</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">checkNewInterpolation</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iCheckStep</span><span class="p">);</span>
 </pre></div>
 </div>
 <dl class="simple">
@@ -163,7 +169,7 @@ Otherwise the file list is searched for the first file with a timestamp greater 
 </section>
 <section id="displayfiles">
 <h3><code class="docutils literal notranslate"><span class="pre">displayFiles</span></code><a class="headerlink" href="#displayfiles" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">displayFiles</span><span class="p">();</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">displayFiles</span><span class="p">();</span>
 </pre></div>
 </div>
 <div class="line-block">
@@ -173,7 +179,7 @@ Otherwise the file list is searched for the first file with a timestamp greater 
 </section>
 <section id="displayarrays">
 <h3><code class="docutils literal notranslate"><span class="pre">displayArrays</span></code><a class="headerlink" href="#displayarrays" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">displayArrays</span><span class="p">();</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">displayArrays</span><span class="p">();</span>
 </pre></div>
 </div>
 <div class="line-block">

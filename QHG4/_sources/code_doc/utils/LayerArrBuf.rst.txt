@@ -19,7 +19,9 @@ Most of the functions do the calculation from array positions to actual element 
 
 .. figure:: ../../../images/LayerArrBuf_full.png
 
-Code: `LayerArrBuf.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/LayerArrBuf.h>`_ , `LayerArrBuf.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/LayerArrBuf.cpp>`_
+Code:
+    | `LayerArrBuf.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/LayerArrBuf.h>`_
+    | `LayerArrBuf.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/LayerArrBuf.cpp>`_
 
 Public Methods
 --------------

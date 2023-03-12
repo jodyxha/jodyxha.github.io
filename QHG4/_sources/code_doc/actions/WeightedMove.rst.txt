@@ -10,7 +10,9 @@ WeightedMove
 The class ``WeightedMove`` is derived from ``Action`` and lets agents move in directions with weighted probabilities.
 This class uses an array assigning a value to each cell of the grid and forms a small array of probabilities corresponding to the neighbors of each cell.
 
-Code: `WeightedMove.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/WeightedMove.h>`_ `WeightedMove.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/WeightedMove.cpp>`_
+Code: 
+    | `WeightedMove.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/WeightedMove.h>`_ 
+    | `WeightedMove.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/WeightedMove.cpp>`_
 
 **Attributes:**
 

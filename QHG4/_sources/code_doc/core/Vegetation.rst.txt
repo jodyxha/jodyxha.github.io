@@ -13,7 +13,9 @@ In earlier versions of QHG, different vegetation types (grass, shrub, tree) were
 
 Newer paleo simulations by Axel Timmermann directly provide Net Primary Production (NPP).
 
-Code: `Vegetation.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/core/Vegetation.h>`_ `Vegetation.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/core/Vegetation.cpp>`_
+Code: 
+    | `Vegetation.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/core/Vegetation.h>`_ 
+    | `Vegetation.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/core/Vegetation.cpp>`_
 
 
 Public Members

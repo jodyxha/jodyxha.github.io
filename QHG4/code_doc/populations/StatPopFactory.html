@@ -54,13 +54,19 @@
 <p>It is used in <a class="reference internal" href="../app/SimParams.html#simparams-ref"><span class="std std-ref">SimParams</span></a> to read populations from QDF files and XML files.</p>
 <p>A peculiarity of <code class="docutils literal notranslate"><span class="pre">StatPopFactory.cpp</span></code> code is that it is generated from a template (<code class="docutils literal notranslate"><span class="pre">StatPopFactory.cpp_for_configure</span></code>) by the script <code class="docutils literal notranslate"><span class="pre">configure.sh</span></code>
 The reason for this is to have <code class="docutils literal notranslate"><span class="pre">new</span></code> statements for all population classes (or a subset thereof, see <a class="reference internal" href="../../qhg4_compile.html#compiling-qhg-alternate-ref"><span class="std std-ref">Alternative Population anf Action directories</span></a>).</p>
-<p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/StatPopFactory.h">StatPopFactory.h</a> ,`StatPopFactory.cpp_template &lt;<a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/StatPopFactory.cpp_template">https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/StatPopFactory.cpp_template</a>&gt;`_</p>
+<dl>
+<dt>Code:</dt><dd><div class="line-block">
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/StatPopFactory.h">StatPopFactory.h</a></div>
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/StatPopFactory.cpp_template">StatPopFactory.cpp_template</a></div>
+</div>
+</dd>
+</dl>
 <section id="publicmethods">
 <h2>PublicMethods<a class="headerlink" href="#publicmethods" title="Permalink to this heading">¶</a></h2>
 <section id="constructor">
 <h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#constructor" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">StatPopFactory</span><span class="p">(</span><span class="n">SCellGrid</span><span class="w"> </span><span class="o">*</span><span class="n">pCG</span><span class="p">,</span><span class="w"> </span><span class="n">PopFinder</span><span class="w"> </span><span class="o">*</span><span class="n">pPopFinder</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iLayerSize</span><span class="p">,</span><span class="w"></span>
-<span class="w">               </span><span class="n">IDGen</span><span class="w"> </span><span class="o">**</span><span class="n">apIDG</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="o">*</span><span class="n">aulState</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="o">*</span><span class="n">aiSeeds</span><span class="p">)</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">StatPopFactory</span><span class="p">(</span><span class="n">SCellGrid</span><span class="w"> </span><span class="o">*</span><span class="n">pCG</span><span class="p">,</span><span class="w"> </span><span class="n">PopFinder</span><span class="w"> </span><span class="o">*</span><span class="n">pPopFinder</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iLayerSize</span><span class="p">,</span>
+<span class="w">               </span><span class="n">IDGen</span><span class="w"> </span><span class="o">**</span><span class="n">apIDG</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="o">*</span><span class="n">aulState</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="o">*</span><span class="n">aiSeeds</span><span class="p">)</span>
 </pre></div>
 </div>
 <dl class="simple">
@@ -82,7 +88,7 @@ Useful for predator-prey relation ships because predators must be able to find t
 </section>
 <section id="createpopulationbyname">
 <h3><code class="docutils literal notranslate"><span class="pre">createPopulationByName</span></code><a class="headerlink" href="#createpopulationbyname" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">PopBase</span><span class="w"> </span><span class="o">*</span><span class="nf">createPopulationByName</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sClassName</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">PopBase</span><span class="w"> </span><span class="o">*</span><span class="nf">createPopulationByName</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sClassName</span><span class="p">);</span>
 </pre></div>
 </div>
 <dl class="simple">
@@ -92,23 +98,23 @@ Useful for predator-prey relation ships because predators must be able to find t
 <p>Creates a <code class="docutils literal notranslate"><span class="pre">PopBase</span></code> object corresponding to the provided name
 (usually called when reading a population from a QDF file).</p>
 <p>The big <code class="docutils literal notranslate"><span class="pre">if-else</span></code> statement used to determine the correct population is generated at compile time:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sClassName</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">stdprintf</span><span class="p">(</span><span class="s">&quot;empty Class ID</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="p">...</span><span class="w"></span>
-<span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sClassName</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;tut_EnvironAltPop&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">     </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">bVerbose</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;PopulationFactory is creating tut_EnvironAltPop</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
-<span class="w">     </span><span class="n">pPop</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">tut_EnvironAltPop</span><span class="p">(</span><span class="n">m_pCG</span><span class="p">,</span><span class="n">m_pPopFinder</span><span class="p">,</span><span class="n">m_iLayerSize</span><span class="p">,</span><span class="n">m_apIDG</span><span class="p">,</span><span class="n">m_aulState</span><span class="p">,</span><span class="n">m_aiSeeds</span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sClassName</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;tut_EnvironCapAltPop&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="p">...</span><span class="w"></span>
-<span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">stdprintf</span><span class="p">(</span><span class="s">&quot;unknown  Class Name [%s]</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sClassName</span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sClassName</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">stdprintf</span><span class="p">(</span><span class="s">&quot;empty Class ID</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="p">...</span>
+<span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sClassName</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;tut_EnvironAltPop&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">     </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">bVerbose</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;PopulationFactory is creating tut_EnvironAltPop</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
+<span class="w">     </span><span class="n">pPop</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">tut_EnvironAltPop</span><span class="p">(</span><span class="n">m_pCG</span><span class="p">,</span><span class="n">m_pPopFinder</span><span class="p">,</span><span class="n">m_iLayerSize</span><span class="p">,</span><span class="n">m_apIDG</span><span class="p">,</span><span class="n">m_aulState</span><span class="p">,</span><span class="n">m_aiSeeds</span><span class="p">);</span>
+<span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sClassName</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;tut_EnvironCapAltPop&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="p">...</span>
+<span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">stdprintf</span><span class="p">(</span><span class="s">&quot;unknown  Class Name [%s]</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sClassName</span><span class="p">);</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </section>
 <section id="readpopulation">
 <h3><code class="docutils literal notranslate"><span class="pre">readPopulation</span></code><a class="headerlink" href="#readpopulation" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="n">PopBase</span><span class="w"> </span><span class="o">*</span><span class="nf">readPopulation</span><span class="p">(</span><span class="n">ParamProvider2</span><span class="w"> </span><span class="o">*</span><span class="n">pPP</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="n">PopBase</span><span class="w"> </span><span class="o">*</span><span class="nf">readPopulation</span><span class="p">(</span><span class="n">ParamProvider2</span><span class="w"> </span><span class="o">*</span><span class="n">pPP</span><span class="p">);</span>
 </pre></div>
 </div>
 <dl class="simple">

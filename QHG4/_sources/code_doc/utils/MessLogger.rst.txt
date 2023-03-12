@@ -17,7 +17,10 @@ All the logXXX() methods can be called like ``printf``.
  
 ``MessLogger`` is realized as a singleton.
 
-Code: `MessLogger.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/MessLogger.h>`_, `MessLogger.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/MessLogger.cpp>`_
+Code:
+    | `MessLogger.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/MessLogger.h>`_
+    | `MessLogger.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/MessLogger.cpp>`_
+    | `MessLoggerT.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/MessLoggerT.h>`_
 
 
 

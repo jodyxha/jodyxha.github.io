@@ -52,7 +52,7 @@
 <p class="hidden">This page describes the class <span class="target" id="index-0"></span>SheepManager</p>
 <p>The class <code class="docutils literal notranslate"><span class="pre">SheepManager</span></code> is derived from <code class="docutils literal notranslate"><span class="pre">Action</span></code> and is used
 to distribute the available grass mass in each cell among the local sheep.
-This class has been tailored for the use with <code class="docutils literal notranslate"><span class="pre">SheepPop</span></code> (see:ref:<cite>QHG Tutorial 08 - Simple Predator-Prey&lt;TutorialGrassRabbit_ref&gt;</cite>).</p>
+This class has been tailored for the use with <code class="docutils literal notranslate"><span class="pre">SheepPop</span></code> (see <a class="reference internal" href="../../tutorial/tutorial_08_grasssheep.html#tutorialgrassrabbit-ref"><span class="std std-ref">QHG Tutorial 08 - Simple Predator-Prey</span></a>).</p>
 <p>It uses the shared array of available grass mass and fills the shared array of consumed grass mass.</p>
 <dl>
 <dt>Code:</dt><dd><div class="line-block">
@@ -74,8 +74,8 @@ This class has been tailored for the use with <code class="docutils literal notr
 <h2>Public Methods<a class="headerlink" href="#public-methods" title="Permalink to this heading">¶</a></h2>
 <section id="constructor">
 <h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#constructor" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">SheepManager</span><span class="p">(</span><span class="n">SPopulation</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="o">*</span><span class="n">pPop</span><span class="p">,</span><span class="w"> </span><span class="n">SCellGrid</span><span class="w"> </span><span class="o">*</span><span class="n">pCG</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sID</span><span class="p">,</span><span class="w"></span>
-<span class="w">             </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sNameGrassMassAvail</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sNameGrassMassConsumed</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">SheepManager</span><span class="p">(</span><span class="n">SPopulation</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="o">*</span><span class="n">pPop</span><span class="p">,</span><span class="w"> </span><span class="n">SCellGrid</span><span class="w"> </span><span class="o">*</span><span class="n">pCG</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sID</span><span class="p">,</span>
+<span class="w">             </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sNameGrassMassAvail</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sNameGrassMassConsumed</span><span class="p">);</span>
 </pre></div>
 </div>
 <dl class="simple">
@@ -94,21 +94,21 @@ This class has been tailored for the use with <code class="docutils literal notr
 </section>
 <section id="destructor">
 <h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">SheepManager</span><span class="p">();</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">SheepManager</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>The destructor deletes the array created in the constructor.</p>
 </section>
 <section id="preloop">
 <h3><code class="docutils literal notranslate"><span class="pre">preLoop</span></code><a class="headerlink" href="#preloop" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">preLoop</span><span class="p">();</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">preLoop</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>Loads the shared arrays and fills the shared array of available grass mass (<code class="docutils literal notranslate"><span class="pre">m_sNameGrassMassAvail</span></code>).</p>
 </section>
-<section id="initialioze">
-<h3><code class="docutils literal notranslate"><span class="pre">initialioze</span></code><a class="headerlink" href="#initialioze" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">execute</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iAgentIndex</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">fT</span><span class="p">);</span><span class="w"></span>
+<section id="initialize">
+<h3><code class="docutils literal notranslate"><span class="pre">initialize</span></code><a class="headerlink" href="#initialize" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">execute</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iAgentIndex</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">fT</span><span class="p">);</span>
 </pre></div>
 </div>
 <dl class="simple">
@@ -121,7 +121,7 @@ This class has been tailored for the use with <code class="docutils literal notr
 </section>
 <section id="finalize">
 <h3><code class="docutils literal notranslate"><span class="pre">finalize</span></code><a class="headerlink" href="#finalize" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">finalize</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">fT</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">finalize</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">fT</span><span class="p">);</span>
 </pre></div>
 </div>
 <dl class="simple">
@@ -132,7 +132,7 @@ This class has been tailored for the use with <code class="docutils literal notr
 </section>
 <section id="isequal">
 <h3><code class="docutils literal notranslate"><span class="pre">isEqual</span></code><a class="headerlink" href="#isequal" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="nf">isEqual</span><span class="p">(</span><span class="n">Action</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="o">*</span><span class="n">pAction</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">bStrict</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="nf">isEqual</span><span class="p">(</span><span class="n">Action</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="o">*</span><span class="n">pAction</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">bStrict</span><span class="p">);</span>
 </pre></div>
 </div>
 <dl class="simple">
@@ -148,18 +148,18 @@ This class has been tailored for the use with <code class="docutils literal notr
 <h2>Protected Methods<a class="headerlink" href="#protected-methods" title="Permalink to this heading">¶</a></h2>
 <section id="feedsheep">
 <h3><code class="docutils literal notranslate"><span class="pre">feedSheep</span></code><a class="headerlink" href="#feedsheep" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">feedSheep</span><span class="p">();</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">feedSheep</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>Determines the amount of grass mass each sheep in a cell will get,
-and writes the total comsumed mass per cell into the shared array of consumed masses (‘’m_sNameGrassMassConsumed``).</p>
+and writes the total comsumed mass per cell into the shared array of consumed masses (<code class="docutils literal notranslate"><span class="pre">m_sNameGrassMassConsumed</span></code>).</p>
 </section>
 <section id="makecellvecssheep">
 <h3><code class="docutils literal notranslate"><span class="pre">makeCellVecsSheep</span></code><a class="headerlink" href="#makecellvecssheep" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">makeCellVecsSheep</span><span class="p">();</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">makeCellVecsSheep</span><span class="p">();</span>
 </pre></div>
 </div>
-<p>Fills an array with per-cell information about shepp’s id and masses.</p>
+<p>Fills an array with per-cell information about sheep’s ids and masses.</p>
 </section>
 </section>
 </section>
@@ -179,7 +179,7 @@ and writes the total comsumed mass per cell into the shared array of consumed ma
 <li><a class="reference internal" href="#constructor"><code class="docutils literal notranslate"><span class="pre">constructor</span></code></a></li>
 <li><a class="reference internal" href="#destructor"><code class="docutils literal notranslate"><span class="pre">destructor</span></code></a></li>
 <li><a class="reference internal" href="#preloop"><code class="docutils literal notranslate"><span class="pre">preLoop</span></code></a></li>
-<li><a class="reference internal" href="#initialioze"><code class="docutils literal notranslate"><span class="pre">initialioze</span></code></a></li>
+<li><a class="reference internal" href="#initialize"><code class="docutils literal notranslate"><span class="pre">initialize</span></code></a></li>
 <li><a class="reference internal" href="#finalize"><code class="docutils literal notranslate"><span class="pre">finalize</span></code></a></li>
 <li><a class="reference internal" href="#isequal"><code class="docutils literal notranslate"><span class="pre">isEqual</span></code></a></li>
 </ul>

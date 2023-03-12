@@ -56,26 +56,32 @@
 <div class="line">The method <code class="docutils literal notranslate"><span class="pre">setOptions</span></code> allows the setting of the flags and assignment to variables.</div>
 <div class="line">The method <code class="docutils literal notranslate"><span class="pre">getParams</span></code> can then be used to “collect” the set variables.</div>
 </div>
-<p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/ParamReader.h">ParamReader.h</a>, <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/ParamReader.cpp">ParamReader.cpp</a></p>
+<dl>
+<dt>Code:</dt><dd><div class="line-block">
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/ParamReader.h">ParamReader.h</a></div>
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/ParamReader.cpp">ParamReader.cpp</a></div>
+</div>
+</dd>
+</dl>
 <section id="public-methods">
 <h2>Public Methods<a class="headerlink" href="#public-methods" title="Permalink to this heading">¶</a></h2>
 <section id="constructor">
 <h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#constructor" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">ParamReader</span><span class="p">();</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">ParamReader</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>The constructor.</p>
 </section>
 <section id="destructor">
 <h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="o">~</span><span class="n">ParamReader</span><span class="p">();</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="o">~</span><span class="n">ParamReader</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>The destructor.</p>
 </section>
 <section id="setoptions">
 <h3><code class="docutils literal notranslate"><span class="pre">setOptions</span></code><a class="headerlink" href="#setoptions" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">setOptions</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iNumOptions</span><span class="p">,</span><span class="w"> </span><span class="p">...);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">setOptions</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iNumOptions</span><span class="p">,</span><span class="w"> </span><span class="p">...);</span>
 </pre></div>
 </div>
 <p>Assign variables to flags.</p>
@@ -87,9 +93,9 @@ See <a class="reference internal" href="#paramreader-ex-ref"><span class="std st
 </dd>
 </dl>
 <p>The option-definition has two possible formats:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">simple</span><span class="o">-</span><span class="n">opt</span><span class="w">   </span><span class="o">::=</span><span class="w"> </span><span class="s">&quot;-&quot;</span><span class="w">  </span><span class="o">&lt;</span><span class="n">option</span><span class="o">-</span><span class="kt">char</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;:&quot;</span><span class="w"> </span><span class="o">&lt;</span><span class="n">option</span><span class="o">-</span><span class="n">type</span><span class="o">&gt;</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;!&quot;</span><span class="p">]</span><span class="w"></span>
-<span class="kt">long</span><span class="o">-</span><span class="n">opt</span><span class="w">     </span><span class="o">::=</span><span class="w"> </span><span class="s">&quot;--&quot;</span><span class="w"> </span><span class="o">&lt;</span><span class="n">option</span><span class="o">-</span><span class="n">name</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;:&quot;</span><span class="w"> </span><span class="o">&lt;</span><span class="n">option</span><span class="o">-</span><span class="n">type</span><span class="o">&gt;</span><span class="w"></span>
-<span class="n">option</span><span class="o">-</span><span class="n">type</span><span class="w">  </span><span class="o">::=</span><span class="w"> </span><span class="sc">&#39;c&#39;</span><span class="o">|</span><span class="w"> </span><span class="sc">&#39;h&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="sc">&#39;i&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="sc">&#39;l&#39;</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="sc">&#39;f&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="sc">&#39;d&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="sc">&#39;b&#39;</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="sc">&#39;s&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="sc">&#39;S&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="sc">&#39;0&#39;</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">simple</span><span class="o">-</span><span class="n">opt</span><span class="w">   </span><span class="o">::=</span><span class="w"> </span><span class="s">&quot;-&quot;</span><span class="w">  </span><span class="o">&lt;</span><span class="n">option</span><span class="o">-</span><span class="kt">char</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;:&quot;</span><span class="w"> </span><span class="o">&lt;</span><span class="n">option</span><span class="o">-</span><span class="n">type</span><span class="o">&gt;</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;!&quot;</span><span class="p">]</span>
+<span class="kt">long</span><span class="o">-</span><span class="n">opt</span><span class="w">     </span><span class="o">::=</span><span class="w"> </span><span class="s">&quot;--&quot;</span><span class="w"> </span><span class="o">&lt;</span><span class="n">option</span><span class="o">-</span><span class="n">name</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;:&quot;</span><span class="w"> </span><span class="o">&lt;</span><span class="n">option</span><span class="o">-</span><span class="n">type</span><span class="o">&gt;</span>
+<span class="n">option</span><span class="o">-</span><span class="n">type</span><span class="w">  </span><span class="o">::=</span><span class="w"> </span><span class="sc">&#39;c&#39;</span><span class="o">|</span><span class="w"> </span><span class="sc">&#39;h&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="sc">&#39;i&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="sc">&#39;l&#39;</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="sc">&#39;f&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="sc">&#39;d&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="sc">&#39;b&#39;</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="sc">&#39;s&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="sc">&#39;S&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="sc">&#39;0&#39;</span>
 </pre></div>
 </div>
 <p>The the meaning of the option types is found in <a class="reference internal" href="#paramreader-opts-ref"><span class="std std-ref">this table</span></a>.</p>
@@ -97,7 +103,7 @@ See <a class="reference internal" href="#paramreader-ex-ref"><span class="std st
 </section>
 <section id="getparams">
 <h3><code class="docutils literal notranslate"><span class="pre">getParams</span></code><a class="headerlink" href="#getparams" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w">  </span><span class="nf">getParams</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iArgC</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">apArgV</span><span class="p">[],</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">bOverwrite</span><span class="o">=</span><span class="nb">false</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w">  </span><span class="nf">getParams</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iArgC</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">apArgV</span><span class="p">[],</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">bOverwrite</span><span class="o">=</span><span class="nb">false</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Read the command line parameters and set variables.</p>
@@ -113,7 +119,7 @@ See <a class="reference internal" href="#paramreader-ex-ref"><span class="std st
 </section>
 <section id="id1">
 <h3><code class="docutils literal notranslate"><span class="pre">getParams</span></code><a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w">  </span><span class="nf">getParams</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sConfigFile</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">bOverwrite</span><span class="o">=</span><span class="nb">false</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w">  </span><span class="nf">getParams</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sConfigFile</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">bOverwrite</span><span class="o">=</span><span class="nb">false</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Read a config file and set variables.</p>
@@ -127,7 +133,7 @@ See <a class="reference internal" href="#paramreader-ex-ref"><span class="std st
 </section>
 <section id="getmandatoryparams">
 <h3><code class="docutils literal notranslate"><span class="pre">getMandatoryParams</span></code><a class="headerlink" href="#getmandatoryparams" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">uint</span><span class="w"> </span><span class="nf">getMandatoryParams</span><span class="p">(</span><span class="n">stringvec</span><span class="w"> </span><span class="o">&amp;</span><span class="n">vMand</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">uint</span><span class="w"> </span><span class="nf">getMandatoryParams</span><span class="p">(</span><span class="n">stringvec</span><span class="w"> </span><span class="o">&amp;</span><span class="n">vMand</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Gets the names of the mandatory options and puts them into <code class="docutils literal notranslate"><span class="pre">vMand</span></code>.</p>
@@ -139,7 +145,7 @@ See <a class="reference internal" href="#paramreader-ex-ref"><span class="std st
 </section>
 <section id="getunknownparams">
 <h3><code class="docutils literal notranslate"><span class="pre">getUnknownParams</span></code><a class="headerlink" href="#getunknownparams" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">uint</span><span class="w"> </span><span class="nf">getUnknownParams</span><span class="p">(</span><span class="n">stringvec</span><span class="w"> </span><span class="o">&amp;</span><span class="n">vUnknown</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">uint</span><span class="w"> </span><span class="nf">getUnknownParams</span><span class="p">(</span><span class="n">stringvec</span><span class="w"> </span><span class="o">&amp;</span><span class="n">vUnknown</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Gets the names of the unknown options and puts them into <code class="docutils literal notranslate"><span class="pre">vUnknown</span></code>.</p>
@@ -151,7 +157,7 @@ See <a class="reference internal" href="#paramreader-ex-ref"><span class="std st
 </section>
 <section id="getfreeparams">
 <h3><code class="docutils literal notranslate"><span class="pre">getFreeParams</span></code><a class="headerlink" href="#getfreeparams" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">uint</span><span class="w"> </span><span class="nf">getFreeParams</span><span class="p">(</span><span class="n">stringvec</span><span class="w"> </span><span class="o">&amp;</span><span class="n">vFree</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">uint</span><span class="w"> </span><span class="nf">getFreeParams</span><span class="p">(</span><span class="n">stringvec</span><span class="w"> </span><span class="o">&amp;</span><span class="n">vFree</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Gets the names of the free parameters and puts them into <code class="docutils literal notranslate"><span class="pre">vFree</span></code>.</p>
@@ -163,7 +169,7 @@ See <a class="reference internal" href="#paramreader-ex-ref"><span class="std st
 </section>
 <section id="writeconfigfile">
 <h3><code class="docutils literal notranslate"><span class="pre">writeConfigFile</span></code><a class="headerlink" href="#writeconfigfile" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="nf">writeConfigFile</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sConfigFile</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sOmit</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="nf">writeConfigFile</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sConfigFile</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sOmit</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Writes a config file containing the values passed to <code class="docutils literal notranslate"><span class="pre">getParams()</span></code>  which can be used as input to <code class="docutils literal notranslate"><span class="pre">getParams()</span></code> at a later time.</p>
@@ -177,7 +183,7 @@ See <a class="reference internal" href="#paramreader-ex-ref"><span class="std st
 </section>
 <section id="collectoptions">
 <h3><code class="docutils literal notranslate"><span class="pre">collectOptions</span></code><a class="headerlink" href="#collectoptions" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">collectOptions</span><span class="p">(</span><span class="n">stringvec</span><span class="w"> </span><span class="o">&amp;</span><span class="n">vsOptions</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">collectOptions</span><span class="p">(</span><span class="n">stringvec</span><span class="w"> </span><span class="o">&amp;</span><span class="n">vsOptions</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Fills a <code class="docutils literal notranslate"><span class="pre">vsOptions</span></code> with options and values.</p>
@@ -188,35 +194,35 @@ See <a class="reference internal" href="#paramreader-ex-ref"><span class="std st
 </section>
 <section id="geterrormessage">
 <h3><code class="docutils literal notranslate"><span class="pre">getErrorMessage</span></code><a class="headerlink" href="#geterrormessage" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">getErrorMessage</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iResult</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">getErrorMessage</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iResult</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Returns the error message corresponding to the <a class="reference internal" href="#paramreader-err-ref"><span class="std std-ref">error code</span></a> <code class="docutils literal notranslate"><span class="pre">iResult</span></code>.</p>
 </section>
 <section id="getbadarg">
 <h3><code class="docutils literal notranslate"><span class="pre">getBadArg</span></code><a class="headerlink" href="#getbadarg" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">getBadArg</span><span class="p">();</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">getBadArg</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>Returns the option that caused an error.</p>
 </section>
 <section id="getbadval">
 <h3><code class="docutils literal notranslate"><span class="pre">getBadVal</span></code><a class="headerlink" href="#getbadval" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">getBadVal</span><span class="p">();</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">getBadVal</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>Returns the value of the option that caused an error.</p>
 </section>
 <section id="display">
 <h3><code class="docutils literal notranslate"><span class="pre">display</span></code><a class="headerlink" href="#display" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">display</span><span class="p">();</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">display</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>Display the options and their values to stdout, one option per line.</p>
 </section>
 <section id="id2">
 <h3><code class="docutils literal notranslate"><span class="pre">display</span></code><a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">display</span><span class="p">(</span><span class="kt">FILE</span><span class="w"> </span><span class="o">*</span><span class="n">fOut</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">bLines</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">display</span><span class="p">(</span><span class="kt">FILE</span><span class="w"> </span><span class="o">*</span><span class="n">fOut</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">bLines</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Writes the options and their values to <code class="docutils literal notranslate"><span class="pre">fOut</span></code>.</p>
@@ -323,67 +329,67 @@ See <a class="reference internal" href="#paramreader-ex-ref"><span class="std st
 <section id="example">
 <span id="paramreader-ex-ref"></span><h4>Example<a class="headerlink" href="#example" title="Permalink to this heading">¶</a></h4>
 <p>Compile with</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>g++ prex.cpp ParamReader.cpp stdstrutils.cpp stdstrutilsT.h --std<span class="o">=</span>c++20 -o pr_example
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>g++<span class="w"> </span>prex.cpp<span class="w"> </span>ParamReader.cpp<span class="w"> </span>stdstrutils.cpp<span class="w"> </span>stdstrutilsT.h<span class="w"> </span>--std<span class="o">=</span>c++20<span class="w"> </span>-o<span class="w"> </span>pr_example
 </pre></div>
 </div>
 <p>Code for <code class="docutils literal notranslate"><span class="pre">pr_example.cpp</span></code>:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cstdio&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cstdio&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
 
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;ParamReader.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;ParamReader.h&quot;</span>
 
-<span class="k">typedef</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w">             </span><span class="n">uint</span><span class="p">;</span><span class="w"></span>
-<span class="k">typedef</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">stringvec</span><span class="p">;</span><span class="w"></span>
+<span class="k">typedef</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w">             </span><span class="n">uint</span><span class="p">;</span>
+<span class="k">typedef</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">stringvec</span><span class="p">;</span>
 
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iArgC</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">apArgV</span><span class="p">[])</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">     </span><span class="kt">int</span><span class="w"> </span><span class="n">iResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iArgC</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">apArgV</span><span class="p">[])</span><span class="w"> </span><span class="p">{</span>
+<span class="w">     </span><span class="kt">int</span><span class="w"> </span><span class="n">iResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
 
-<span class="w">     </span><span class="kt">bool</span><span class="w">   </span><span class="n">bHelp</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
-<span class="w">     </span><span class="kt">double</span><span class="w"> </span><span class="n">dValue</span><span class="w">      </span><span class="o">=</span><span class="w">  </span><span class="mi">-1</span><span class="p">;</span><span class="w"></span>
-<span class="w">     </span><span class="kt">int</span><span class="w">    </span><span class="n">iSel</span><span class="w">        </span><span class="o">=</span><span class="w">  </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-<span class="w">     </span><span class="kt">char</span><span class="w">   </span><span class="n">c1</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="sc">&#39;\0&#39;</span><span class="p">;</span><span class="w"></span>
-<span class="w">     </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sName</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;default_name&quot;</span><span class="p">;</span><span class="w"></span>
-<span class="w">     </span><span class="kt">char</span><span class="w">  </span><span class="o">*</span><span class="n">psOpt</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span><span class="w"></span>
+<span class="w">     </span><span class="kt">bool</span><span class="w">   </span><span class="n">bHelp</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="w">     </span><span class="kt">double</span><span class="w"> </span><span class="n">dValue</span><span class="w">      </span><span class="o">=</span><span class="w">  </span><span class="mi">-1</span><span class="p">;</span>
+<span class="w">     </span><span class="kt">int</span><span class="w">    </span><span class="n">iSel</span><span class="w">        </span><span class="o">=</span><span class="w">  </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">     </span><span class="kt">char</span><span class="w">   </span><span class="n">c1</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="sc">&#39;\0&#39;</span><span class="p">;</span>
+<span class="w">     </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sName</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;default_name&quot;</span><span class="p">;</span>
+<span class="w">     </span><span class="kt">char</span><span class="w">  </span><span class="o">*</span><span class="n">psOpt</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
 
-<span class="w">     </span><span class="n">ParamReader</span><span class="w"> </span><span class="o">*</span><span class="n">pPR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ParamReader</span><span class="p">();</span><span class="w"></span>
-<span class="w">     </span><span class="kt">bool</span><span class="w"> </span><span class="n">bOK</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pPR</span><span class="o">-&gt;</span><span class="n">setOptions</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="w"></span>
-<span class="w">                                </span><span class="s">&quot;-h:0&quot;</span><span class="p">,</span><span class="w">          </span><span class="o">&amp;</span><span class="n">bHelp</span><span class="p">,</span><span class="w"></span>
-<span class="w">                                </span><span class="s">&quot;-v:d!&quot;</span><span class="p">,</span><span class="w">         </span><span class="o">&amp;</span><span class="n">dValue</span><span class="p">,</span><span class="w"></span>
-<span class="w">                                </span><span class="s">&quot;--selector:i!&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">iSel</span><span class="p">,</span><span class="w"></span>
-<span class="w">                                </span><span class="s">&quot;-n:s&quot;</span><span class="p">,</span><span class="w">          </span><span class="o">&amp;</span><span class="n">sName</span><span class="p">,</span><span class="w"></span>
-<span class="w">                                </span><span class="s">&quot;--optional:S&quot;</span><span class="p">,</span><span class="w">  </span><span class="o">&amp;</span><span class="n">psOpt</span><span class="p">,</span><span class="w"></span>
-<span class="w">                                </span><span class="s">&quot;-t:c&quot;</span><span class="p">,</span><span class="w">          </span><span class="o">&amp;</span><span class="n">c1</span><span class="p">);</span><span class="w"></span>
+<span class="w">     </span><span class="n">ParamReader</span><span class="w"> </span><span class="o">*</span><span class="n">pPR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ParamReader</span><span class="p">();</span>
+<span class="w">     </span><span class="kt">bool</span><span class="w"> </span><span class="n">bOK</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pPR</span><span class="o">-&gt;</span><span class="n">setOptions</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span>
+<span class="w">                                </span><span class="s">&quot;-h:0&quot;</span><span class="p">,</span><span class="w">          </span><span class="o">&amp;</span><span class="n">bHelp</span><span class="p">,</span>
+<span class="w">                                </span><span class="s">&quot;-v:d!&quot;</span><span class="p">,</span><span class="w">         </span><span class="o">&amp;</span><span class="n">dValue</span><span class="p">,</span>
+<span class="w">                                </span><span class="s">&quot;--selector:i!&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">iSel</span><span class="p">,</span>
+<span class="w">                                </span><span class="s">&quot;-n:s&quot;</span><span class="p">,</span><span class="w">          </span><span class="o">&amp;</span><span class="n">sName</span><span class="p">,</span>
+<span class="w">                                </span><span class="s">&quot;--optional:S&quot;</span><span class="p">,</span><span class="w">  </span><span class="o">&amp;</span><span class="n">psOpt</span><span class="p">,</span>
+<span class="w">                                </span><span class="s">&quot;-t:c&quot;</span><span class="p">,</span><span class="w">          </span><span class="o">&amp;</span><span class="n">c1</span><span class="p">);</span>
 
-<span class="w">     </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">bOK</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">         </span><span class="n">iResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pPR</span><span class="o">-&gt;</span><span class="n">getParams</span><span class="p">(</span><span class="n">iArgC</span><span class="p">,</span><span class="w"> </span><span class="n">apArgV</span><span class="p">);</span><span class="w"></span>
-<span class="w">         </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">iResult</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">             </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Successs!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w">             </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;  bHelp:     %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">bHelp</span><span class="o">?</span><span class="s">&quot;true&quot;</span><span class="o">:</span><span class="s">&quot;false&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w">             </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;  dValue:    %f</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">dValue</span><span class="p">);</span><span class="w"></span>
-<span class="w">             </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;  iSel:      %i</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">iSel</span><span class="p">);</span><span class="w"></span>
-<span class="w">             </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;  sName:     %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sName</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span><span class="w"></span>
-<span class="w">             </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;  psOpt:     %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">psOpt</span><span class="p">);</span><span class="w"></span>
-<span class="w">             </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">iResult</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                 </span><span class="n">stringvec</span><span class="w"> </span><span class="n">vFree</span><span class="p">;</span><span class="w"></span>
-<span class="w">                 </span><span class="n">uint</span><span class="w"> </span><span class="n">iNum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pPR</span><span class="o">-&gt;</span><span class="n">getFreeParams</span><span class="p">(</span><span class="n">vFree</span><span class="p">);</span><span class="w"></span>
-<span class="w">                     </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Found %d free param%s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">iNum</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">iNum</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span><span class="o">?</span><span class="s">&quot;&quot;</span><span class="o">:</span><span class="s">&quot;s&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w">                 </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">iNum</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                     </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;  %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">vFree</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">c_str</span><span class="p">());</span><span class="w"></span>
-<span class="w">                 </span><span class="p">}</span><span class="w"></span>
-<span class="w">                 </span><span class="n">iResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-<span class="w">             </span><span class="p">}</span><span class="w"></span>
-<span class="w">         </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">             </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Have Error</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w">             </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;code    : %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">iResult</span><span class="p">);</span><span class="w"></span>
-<span class="w">             </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;message : %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">pPR</span><span class="o">-&gt;</span><span class="n">getErrorMessage</span><span class="p">(</span><span class="n">iResult</span><span class="p">).</span><span class="n">c_str</span><span class="p">());</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">        </span><span class="k">delete</span><span class="w"> </span><span class="n">pPR</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Error in setOptions</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">iResult</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">     </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">bOK</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">         </span><span class="n">iResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pPR</span><span class="o">-&gt;</span><span class="n">getParams</span><span class="p">(</span><span class="n">iArgC</span><span class="p">,</span><span class="w"> </span><span class="n">apArgV</span><span class="p">);</span>
+<span class="w">         </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">iResult</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">             </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Successs!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">             </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;  bHelp:     %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">bHelp</span><span class="o">?</span><span class="s">&quot;true&quot;</span><span class="o">:</span><span class="s">&quot;false&quot;</span><span class="p">);</span>
+<span class="w">             </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;  dValue:    %f</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">dValue</span><span class="p">);</span>
+<span class="w">             </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;  iSel:      %i</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">iSel</span><span class="p">);</span>
+<span class="w">             </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;  sName:     %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sName</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span>
+<span class="w">             </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;  psOpt:     %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">psOpt</span><span class="p">);</span>
+<span class="w">             </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">iResult</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                 </span><span class="n">stringvec</span><span class="w"> </span><span class="n">vFree</span><span class="p">;</span>
+<span class="w">                 </span><span class="n">uint</span><span class="w"> </span><span class="n">iNum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pPR</span><span class="o">-&gt;</span><span class="n">getFreeParams</span><span class="p">(</span><span class="n">vFree</span><span class="p">);</span>
+<span class="w">                     </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Found %d free param%s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">iNum</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">iNum</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span><span class="o">?</span><span class="s">&quot;&quot;</span><span class="o">:</span><span class="s">&quot;s&quot;</span><span class="p">);</span>
+<span class="w">                 </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">iNum</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                     </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;  %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">vFree</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">c_str</span><span class="p">());</span>
+<span class="w">                 </span><span class="p">}</span>
+<span class="w">                 </span><span class="n">iResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">             </span><span class="p">}</span>
+<span class="w">         </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">             </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Have Error</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">             </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;code    : %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">iResult</span><span class="p">);</span>
+<span class="w">             </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;message : %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">pPR</span><span class="o">-&gt;</span><span class="n">getErrorMessage</span><span class="p">(</span><span class="n">iResult</span><span class="p">).</span><span class="n">c_str</span><span class="p">());</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">delete</span><span class="w"> </span><span class="n">pPR</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Error in setOptions</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">iResult</span><span class="p">;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </section>

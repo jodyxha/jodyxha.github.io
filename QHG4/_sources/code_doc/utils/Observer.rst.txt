@@ -12,7 +12,8 @@ The pure virtual class ``Observer`` defines an interface for the observers in th
 It has to be used together with the :ref:`Observable<Observable_ref>` class.
 
  
-Code: `Observer.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/Observer.h>`_
+Code: 
+    | `Observer.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/Observer.h>`_
 
 
 Public Methods

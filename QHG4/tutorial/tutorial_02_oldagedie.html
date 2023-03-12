@@ -54,14 +54,17 @@
 <p><strong>Population code:</strong></p>
 <blockquote>
 <div><div class="line-block">
-<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_OldAgeDiePop.h">tut_OldAgeDiePop.h</a>,    <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_OldAgeDiePop.cpp">tut_OldAgeDiePop.cpp</a></div>
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_OldAgeDiePop.h">tut_OldAgeDiePop.h</a></div>
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_OldAgeDiePop.cpp">tut_OldAgeDiePop.cpp</a></div>
 </div>
 </div></blockquote>
 <p><strong>Action code:</strong></p>
 <blockquote>
 <div><div class="line-block">
-<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/AtanDeath.h">AtanDeath.h</a>,    <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/AtanDeath.cpp">AtanDeath.cpp</a></div>
-<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/OldAgeDeath.h">OldAge.h</a>,    <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/OldAgeDeath.cpp">OldAge.cpp</a></div>
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/AtanDeath.h">AtanDeath.h</a></div>
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/AtanDeath.cpp">AtanDeath.cpp</a></div>
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/OldAgeDeath.h">OldAge.h</a></div>
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/OldAgeDeath.cpp">OldAge.cpp</a></div>
 </div>
 </div></blockquote>
 <section id="the-header-file">
@@ -71,32 +74,32 @@
 <span class="cp">#define __TUT_OLDAGEDIEPOP_H__</span>
 
 <span class="c1">// the actions we will use</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;AtanDeath.h&quot;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;GetOld.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;AtanDeath.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;GetOld.h&quot;</span>
 
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;SPopulation.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;SPopulation.h&quot;</span>
 
 <span class="c1">// our agents need to have an age</span>
-<span class="k">struct</span><span class="w"> </span><span class="nc">tut_OldAgeDieAgent</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Agent</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">m_fAge</span><span class="p">;</span><span class="w"></span>
-<span class="p">};</span><span class="w"></span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">tut_OldAgeDieAgent</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Agent</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">m_fAge</span><span class="p">;</span>
+<span class="p">};</span>
 
-<span class="k">class</span><span class="w"> </span><span class="nc">tut_OldAgeDiePop</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">SPopulation</span><span class="o">&lt;</span><span class="n">tut_OldAgeDieAgent</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="k">class</span><span class="w"> </span><span class="nc">tut_OldAgeDiePop</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">SPopulation</span><span class="o">&lt;</span><span class="n">tut_OldAgeDieAgent</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w"> </span><span class="k">public</span><span class="o">:</span><span class="w"></span>
-<span class="w">    </span><span class="n">tut_OldAgeDiePop</span><span class="p">(</span><span class="n">SCellGrid</span><span class="w"> </span><span class="o">*</span><span class="n">pCG</span><span class="p">,</span><span class="w"> </span><span class="n">PopFinder</span><span class="w"> </span><span class="o">*</span><span class="n">pPopFinder</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iLayerSize</span><span class="p">,</span><span class="w"> </span><span class="n">IDGen</span><span class="w"> </span><span class="o">**</span><span class="n">apIDG</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="o">*</span><span class="n">aulState</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="o">*</span><span class="n">aiSeeds</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">tut_OldAgeDiePop</span><span class="p">();</span><span class="w"></span>
+<span class="w"> </span><span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="n">tut_OldAgeDiePop</span><span class="p">(</span><span class="n">SCellGrid</span><span class="w"> </span><span class="o">*</span><span class="n">pCG</span><span class="p">,</span><span class="w"> </span><span class="n">PopFinder</span><span class="w"> </span><span class="o">*</span><span class="n">pPopFinder</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iLayerSize</span><span class="p">,</span><span class="w"> </span><span class="n">IDGen</span><span class="w"> </span><span class="o">**</span><span class="n">apIDG</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="o">*</span><span class="n">aulState</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="o">*</span><span class="n">aiSeeds</span><span class="p">);</span>
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">tut_OldAgeDiePop</span><span class="p">();</span>
 
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="nf">addPopSpecificAgentData</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iAgentIndex</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">ppData</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="nf">addPopSpecificAgentData</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iAgentIndex</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">ppData</span><span class="p">);</span>
 
-<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">addPopSpecificAgentDataTypeQDF</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="o">*</span><span class="n">hAgentDataType</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">addPopSpecificAgentDataTypeQDF</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="o">*</span><span class="n">hAgentDataType</span><span class="p">);</span>
 
-<span class="k">protected</span><span class="o">:</span><span class="w"></span>
+<span class="k">protected</span><span class="o">:</span>
 
-<span class="w">    </span><span class="n">GetOld</span><span class="o">&lt;</span><span class="n">tut_OldAgeDieAgent</span><span class="o">&gt;</span><span class="w"> </span><span class="o">*</span><span class="n">m_pGO</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">AtanDeath</span><span class="o">&lt;</span><span class="n">tut_OldAgeDieAgent</span><span class="o">&gt;</span><span class="w"> </span><span class="o">*</span><span class="n">m_pAD</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">GetOld</span><span class="o">&lt;</span><span class="n">tut_OldAgeDieAgent</span><span class="o">&gt;</span><span class="w"> </span><span class="o">*</span><span class="n">m_pGO</span><span class="p">;</span>
+<span class="w">    </span><span class="n">AtanDeath</span><span class="o">&lt;</span><span class="n">tut_OldAgeDieAgent</span><span class="o">&gt;</span><span class="w"> </span><span class="o">*</span><span class="n">m_pAD</span><span class="p">;</span>
 
-<span class="p">};</span><span class="w"></span>
+<span class="p">};</span>
 <span class="cp">#endif</span>
 </pre></div>
 </div>
@@ -107,44 +110,44 @@ to make sure the new member is read and written together with the rest of the ag
 <section id="the-implementation">
 <h2>The Implementation<a class="headerlink" href="#the-implementation" title="Permalink to this heading">¶</a></h2>
 <p>In the implementation we have to include <code class="docutils literal notranslate"><span class="pre">hdf5.h</span></code> because we need to modify some HDF5 structures:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;hdf5.h&gt;</span><span class="cp"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;hdf5.h&gt;</span>
 </pre></div>
 </div>
 <p>Furthermore, we have to add includes of the cpp files for the new actions and include the header file of this class:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;SPopulation.cpp&quot;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;LayerBuf.cpp&quot;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Prioritizer.cpp&quot;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Action.cpp&quot;</span><span class="cp"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;SPopulation.cpp&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;LayerBuf.cpp&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Prioritizer.cpp&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Action.cpp&quot;</span>
 
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;GetOld.cpp&quot;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;AtanDeath.cpp&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;GetOld.cpp&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;AtanDeath.cpp&quot;</span>
 
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;tut_OldAgeDiePop.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;tut_OldAgeDiePop.h&quot;</span>
 </pre></div>
 </div>
 <p>The constructor now must create instances of the two actions and add them to the priority list.</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">//----------------------------------------------------------------------------</span>
 <span class="c1">// constructor</span>
 <span class="c1">//</span>
-<span class="n">tut_OldAgeDiePop</span><span class="o">::</span><span class="n">tut_OldAgeDiePop</span><span class="p">(</span><span class="n">SCellGrid</span><span class="w"> </span><span class="o">*</span><span class="n">pCG</span><span class="p">,</span><span class="w"> </span><span class="n">PopFinder</span><span class="w"> </span><span class="o">*</span><span class="n">pPopFinder</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iLayerSize</span><span class="p">,</span><span class="w"> </span><span class="n">IDGen</span><span class="w"> </span><span class="o">**</span><span class="n">apIDG</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="o">*</span><span class="n">aulState</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="o">*</span><span class="n">aiSeeds</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="o">:</span><span class="w"> </span><span class="n">SPopulation</span><span class="o">&lt;</span><span class="n">tut_OldAgeDieAgent</span><span class="o">&gt;</span><span class="p">(</span><span class="n">pCG</span><span class="p">,</span><span class="w"> </span><span class="n">pPopFinder</span><span class="p">,</span><span class="w"> </span><span class="n">iLayerSize</span><span class="p">,</span><span class="w"> </span><span class="n">apIDG</span><span class="p">,</span><span class="w"> </span><span class="n">aulState</span><span class="p">,</span><span class="w"> </span><span class="n">aiSeeds</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="n">tut_OldAgeDiePop</span><span class="o">::</span><span class="n">tut_OldAgeDiePop</span><span class="p">(</span><span class="n">SCellGrid</span><span class="w"> </span><span class="o">*</span><span class="n">pCG</span><span class="p">,</span><span class="w"> </span><span class="n">PopFinder</span><span class="w"> </span><span class="o">*</span><span class="n">pPopFinder</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iLayerSize</span><span class="p">,</span><span class="w"> </span><span class="n">IDGen</span><span class="w"> </span><span class="o">**</span><span class="n">apIDG</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="o">*</span><span class="n">aulState</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="o">*</span><span class="n">aiSeeds</span><span class="p">)</span>
+<span class="w">    </span><span class="o">:</span><span class="w"> </span><span class="n">SPopulation</span><span class="o">&lt;</span><span class="n">tut_OldAgeDieAgent</span><span class="o">&gt;</span><span class="p">(</span><span class="n">pCG</span><span class="p">,</span><span class="w"> </span><span class="n">pPopFinder</span><span class="p">,</span><span class="w"> </span><span class="n">iLayerSize</span><span class="p">,</span><span class="w"> </span><span class="n">apIDG</span><span class="p">,</span><span class="w"> </span><span class="n">aulState</span><span class="p">,</span><span class="w"> </span><span class="n">aiSeeds</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">    </span><span class="n">m_pGO</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">GetOld</span><span class="o">&lt;</span><span class="n">tut_OldAgeDieAgent</span><span class="o">&gt;</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">m_pCG</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">m_pAD</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">AtanDeath</span><span class="o">&lt;</span><span class="n">tut_OldAgeDieAgent</span><span class="o">&gt;</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">m_pCG</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">m_apWELL</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">m_pGO</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">GetOld</span><span class="o">&lt;</span><span class="n">tut_OldAgeDieAgent</span><span class="o">&gt;</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">m_pCG</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">m_pAD</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">AtanDeath</span><span class="o">&lt;</span><span class="n">tut_OldAgeDieAgent</span><span class="o">&gt;</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">m_pCG</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">m_apWELL</span><span class="p">);</span>
 
-<span class="w">    </span><span class="n">m_prio</span><span class="p">.</span><span class="n">addAction</span><span class="p">(</span><span class="n">m_pAD</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">m_prio</span><span class="p">.</span><span class="n">addAction</span><span class="p">(</span><span class="n">m_pGO</span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">m_prio</span><span class="p">.</span><span class="n">addAction</span><span class="p">(</span><span class="n">m_pAD</span><span class="p">);</span>
+<span class="w">    </span><span class="n">m_prio</span><span class="p">.</span><span class="n">addAction</span><span class="p">(</span><span class="n">m_pGO</span><span class="p">);</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>The destructor must delete the two action instances:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">//----------------------------------------------------------------------------</span>
 <span class="c1">// destructor</span>
 <span class="c1">//</span>
-<span class="n">tut_OldAgeDiePop</span><span class="o">::~</span><span class="n">tut_OldAgeDiePop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">delete</span><span class="w"> </span><span class="n">m_pGO</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="k">delete</span><span class="w"> </span><span class="n">m_pAD</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="n">tut_OldAgeDiePop</span><span class="o">::~</span><span class="n">tut_OldAgeDiePop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">delete</span><span class="w"> </span><span class="n">m_pGO</span><span class="p">;</span>
+<span class="w">    </span><span class="k">delete</span><span class="w"> </span><span class="n">m_pAD</span><span class="p">;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>The method <code class="docutils literal notranslate"><span class="pre">addPopSpecificAgentData()</span></code> must read the age from the input string:</p>
@@ -152,14 +155,14 @@ to make sure the new member is read and written together with the rest of the ag
 <span class="c1">// addPopSpecificAgentData</span>
 <span class="c1">// read additional data from pop file</span>
 <span class="c1">//</span>
-<span class="kt">int</span><span class="w"> </span><span class="nf">tut_OldAgeDiePop::addPopSpecificAgentData</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iAgentIndex</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">ppData</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">tut_OldAgeDiePop::addPopSpecificAgentData</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iAgentIndex</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">ppData</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">iResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">iResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 
-<span class="w">    </span><span class="n">iResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">addAgentDataSingle</span><span class="p">(</span><span class="n">ppData</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">m_aAgents</span><span class="p">[</span><span class="n">iAgentIndex</span><span class="p">].</span><span class="n">m_fAge</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">iResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">addAgentDataSingle</span><span class="p">(</span><span class="n">ppData</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">m_aAgents</span><span class="p">[</span><span class="n">iAgentIndex</span><span class="p">].</span><span class="n">m_fAge</span><span class="p">);</span>
 
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">iResult</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">iResult</span><span class="p">;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>The method <code class="docutils literal notranslate"><span class="pre">addPopSpecificAgentDataTypeQDF()</span></code> extends the agent’s HDF  data type with the age field:</p>
@@ -167,11 +170,11 @@ to make sure the new member is read and written together with the rest of the ag
 <span class="c1">// addPopSpecificAgentDataTypeQDF</span>
 <span class="c1">// extend the agent data type to include additional data in the output</span>
 <span class="c1">//</span>
-<span class="kt">void</span><span class="w"> </span><span class="nf">tut_OldAgeDiePop::addPopSpecificAgentDataTypeQDF</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="o">*</span><span class="n">hAgentDataType</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">tut_OldAgeDiePop::addPopSpecificAgentDataTypeQDF</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="o">*</span><span class="n">hAgentDataType</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">    </span><span class="n">tut_OldAgeDieAgent</span><span class="w"> </span><span class="n">oada</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">H5Tinsert</span><span class="p">(</span><span class="o">*</span><span class="n">hAgentDataType</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Age&quot;</span><span class="p">,</span><span class="w">  </span><span class="n">qoffsetof</span><span class="p">(</span><span class="n">oada</span><span class="p">,</span><span class="w"> </span><span class="n">m_fAge</span><span class="p">),</span><span class="w"> </span><span class="n">H5T_NATIVE_FLOAT</span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">tut_OldAgeDieAgent</span><span class="w"> </span><span class="n">oada</span><span class="p">;</span>
+<span class="w">    </span><span class="n">H5Tinsert</span><span class="p">(</span><span class="o">*</span><span class="n">hAgentDataType</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Age&quot;</span><span class="p">,</span><span class="w">  </span><span class="n">qoffsetof</span><span class="p">(</span><span class="n">oada</span><span class="p">,</span><span class="w"> </span><span class="n">m_fAge</span><span class="p">),</span><span class="w"> </span><span class="n">H5T_NATIVE_FLOAT</span><span class="p">);</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_OldAgeDiePop.cpp">tut_OldAgeDiePop.cpp</a></p>
@@ -179,17 +182,17 @@ to make sure the new member is read and written together with the rest of the ag
 <section id="xml-and-dat">
 <h2>XML and DAT<a class="headerlink" href="#xml-and-dat" title="Permalink to this heading">¶</a></h2>
 <p>The xml file for the population attributes now contains entries for the new actions:</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;class</span> <span class="na">name=</span><span class="s">&quot;tut_OldAgeDiePop&quot;</span> <span class="na">species_name=</span><span class="s">&quot;sapiens&quot;</span> <span class="na">species_id=</span><span class="s">&quot;104&quot;</span><span class="nt">&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;class</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;tut_OldAgeDiePop&quot;</span><span class="w"> </span><span class="na">species_name=</span><span class="s">&quot;sapiens&quot;</span><span class="w"> </span><span class="na">species_id=</span><span class="s">&quot;104&quot;</span><span class="nt">&gt;</span>
 
-  <span class="nt">&lt;module</span> <span class="na">name=</span><span class="s">&quot;OldAgeDeath&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;param</span>  <span class="na">name=</span><span class="s">&quot;OAD_max_age&quot;</span> <span class="na">value=</span><span class="s">&quot;60.0&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;param</span>  <span class="na">name=</span><span class="s">&quot;OAD_uncertainty&quot;</span> <span class="na">value=</span><span class="s">&quot;0.1&quot;</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;/module&gt;</span>
+<span class="w">  </span><span class="nt">&lt;module</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;OldAgeDeath&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;param</span><span class="w">  </span><span class="na">name=</span><span class="s">&quot;OAD_max_age&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;60.0&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;param</span><span class="w">  </span><span class="na">name=</span><span class="s">&quot;OAD_uncertainty&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0.1&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/module&gt;</span>
 
-  <span class="nt">&lt;priorities&gt;</span>
-    <span class="nt">&lt;prio</span>  <span class="na">name=</span><span class="s">&quot;GetOld&quot;</span> <span class="na">value=</span><span class="s">&quot;8&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;prio</span>  <span class="na">name=</span><span class="s">&quot;OldAgeDeath&quot;</span> <span class="na">value=</span><span class="s">&quot;10&quot;</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;/priorities&gt;</span>
+<span class="w">  </span><span class="nt">&lt;priorities&gt;</span>
+<span class="w">    </span><span class="nt">&lt;prio</span><span class="w">  </span><span class="na">name=</span><span class="s">&quot;GetOld&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;8&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;prio</span><span class="w">  </span><span class="na">name=</span><span class="s">&quot;OldAgeDeath&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;10&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/priorities&gt;</span>
 
 <span class="nt">&lt;/class&gt;</span>
 </pre></div>
@@ -215,18 +218,18 @@ to make sure the new member is read and written together with the rest of the ag
 <h2>Compiling and Running<a class="headerlink" href="#compiling-and-running" title="Permalink to this heading">¶</a></h2>
 <p>Again, we assume that you have created the tutorial directories with the script <a class="reference internal" href="../tools/build_tut_dirs.html#build-tut-dirs-ref"><span class="std std-ref">build_tut_dirs.py</span></a>.</p>
 <p>First lets create alternative population and action directories with the script <a class="reference internal" href="../tools/build_alt_modpop.html#build-alt-modpop-ref"><span class="std std-ref">build_alt_modpop.py</span></a>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="si">${</span><span class="nv">QHG4_DIR</span><span class="si">}</span>/useful_stuff/build_alt_modpop.py tut_02 tut_OldAgeDiePop
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="si">${</span><span class="nv">QHG4_DIR</span><span class="si">}</span>/useful_stuff/build_alt_modpop.py<span class="w"> </span>tut_02<span class="w"> </span>tut_OldAgeDiePop
 </pre></div>
 </div>
 <p>This builds alternative population directories <code class="docutils literal notranslate"><span class="pre">tut_02_pop</span></code> and <code class="docutils literal notranslate"><span class="pre">tut_02_mod</span></code> with the files needed to compile <code class="docutils literal notranslate"><span class="pre">tut_OldAgeDiePop</span></code>.</p>
 <p>To compile, change to the QHG4 root directory and start the compilation:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="si">${</span><span class="nv">QHG4_DIR</span><span class="si">}</span>
-<span class="nv">SHORT</span><span class="o">=</span>tut_02 make clean QHGMain
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">QHG4_DIR</span><span class="si">}</span>
+<span class="nv">SHORT</span><span class="o">=</span>tut_02<span class="w"> </span>make<span class="w"> </span>clean<span class="w"> </span>QHGMain
 </pre></div>
 </div>
 <p>This is the simplest way to compile QHG (for more information see <a class="reference internal" href="../qhg4_compile.html#compiling-qhg-ref"><span class="std std-ref">Compiling QHG</span></a>)</p>
 <p>Now cd to the tutorial subdirectory “tutorial_02” and start QHGMain</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="si">${</span><span class="nv">QHG4_DIR</span><span class="si">}</span>/app/QHGMain --read-config<span class="o">=</span>tutorial_02.cfg &gt; tutorial_02.out
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="si">${</span><span class="nv">QHG4_DIR</span><span class="si">}</span>/app/QHGMain<span class="w"> </span>--read-config<span class="o">=</span>tutorial_02.cfg<span class="w"> </span>&gt;<span class="w"> </span>tutorial_02.out
 </pre></div>
 </div>
 <p>This tells QHGMain to read the parameters from  the file <code class="docutils literal notranslate"><span class="pre">tutorial_02.cfg</span></code> and write all output to the file <code class="docutils literal notranslate"><span class="pre">tutorial_02.out</span></code> (this output contains more information than the logfile)</p>

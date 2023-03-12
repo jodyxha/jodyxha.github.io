@@ -11,9 +11,10 @@ The pure virtual class ``Evaluator`` is derived from ``Action`` as well as ``Obs
 
 The implementation of the :ref:`Observer<Observer_ref>` interface allows this action to be notified of events.
 
-Code: `Evaluator.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/Evaluator.h>`_
+Code: 
+    | `Evaluator.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/Evaluator.h>`_
 
-This clss has no attributes.
+This class has no attributes.
 
 
 Public Methods

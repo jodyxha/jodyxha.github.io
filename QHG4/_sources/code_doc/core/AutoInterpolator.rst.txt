@@ -15,7 +15,9 @@ Typically, these load events happen every 1000 steps or so.
 In regular intervals, the differences are added to the arrays, and the populations are made aware of the changes.
   
 
-Code: `AutoInterpolator.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/core/AutoInterpolator.h>`_ `AutoInterpolator.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/core/AutoInterpolator.cpp>`_
+Code:
+    | `AutoInterpolator.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/core/AutoInterpolator.h>`_
+    | `AutoInterpolator.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/core/AutoInterpolator.cpp>`_ 
 
 Type Definitions
 ----------------

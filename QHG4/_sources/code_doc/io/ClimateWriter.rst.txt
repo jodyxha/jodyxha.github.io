@@ -9,7 +9,9 @@ ClimateWriter
 
 The class ``ClimateWriter`` is used to write the :ref:`climate data<Climate_ref>` to the :ref:`climate group<ClimateGroup_ref>` in a qdf file.
 
-Code: `ClimateWriter.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/ClimateWriter.h>`_, `ClimateWriter.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/ClimateWriter.cpp>`_
+Code:
+    | `ClimateWriter.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/ClimateWriter.h>`_
+    | `ClimateWriter.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/ClimateWriter.cpp>`_
 
 Public Methods
 --------------

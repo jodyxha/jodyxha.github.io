@@ -35,6 +35,10 @@ Blocked maximum: only do maximum for elements where none of the corresponding Ev
 
 Note: Generally the ``Evaluators`` used in  a ``MultiEvaluator`` shoud **not be cumulated**.
 
+Code: 
+    | `MultiEvaluator.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/MultiEvaluator.h>`_
+    | `MultiEvaluator.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/MultiEvaluator.cpp>`_
+
 **Attributes**
 
 +----------------------+------------------+-------------------+

@@ -54,17 +54,23 @@
 <p><strong>Population code:</strong></p>
 <blockquote>
 <div><div class="line-block">
-<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_ParthenoPop.h">tut_ParthenoPop.h</a>    <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_ParthenoPop.cpp">tut_ParthenoPop.cpp</a></div>
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_ParthenoPop.h">tut_ParthenoPop.h</a></div>
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_ParthenoPop.cpp">tut_ParthenoPop.cpp</a></div>
 </div>
 </div></blockquote>
 <p><strong>Action code:</strong></p>
 <blockquote>
 <div><div class="line-block">
-<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/OldAgeDeath.h">OldAge.h</a>    <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/OldAgeDeath.cpp">OldAge.cpp</a></div>
-<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/OldAgeDeath.h">AtanDeath.h</a>    <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/OldAgeDeath.cpp">AtanDeath.cpp</a></div>
-<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/RandomMove.h">RandomMove.h</a>    <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/RandomMove.cpp">RandomMove.cpp</a></div>
-<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/Verhulst.h">Verhulst.h</a>    <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/Verhulst.cpp">Verhulst.cpp</a></div>
-<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/Fertility.h">Fertilty.h</a>    <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/Fertility.cpp">Fertilty.cpp</a></div>
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/OldAgeDeath.h">OldAge.h</a></div>
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/OldAgeDeath.cpp">OldAge.cpp</a></div>
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/OldAgeDeath.h">AtanDeath.h</a></div>
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/OldAgeDeath.cpp">AtanDeath.cpp</a></div>
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/RandomMove.h">RandomMove.h</a></div>
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/RandomMove.cpp">RandomMove.cpp</a></div>
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/Verhulst.h">Verhulst.h</a></div>
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/Verhulst.cpp">Verhulst.cpp</a></div>
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/Fertility.h">Fertilty.h</a></div>
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/Fertility.cpp">Fertilty.cpp</a></div>
 </div>
 </div></blockquote>
 <section id="the-header-file">
@@ -73,49 +79,49 @@
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef __TUT_PARTHENOPOP_H__</span>
 <span class="cp">#define __TUT_PARTHENOPOP_H__</span>
 
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;SPopulation.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;SPopulation.h&quot;</span>
 
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;GetOld.h&quot;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;OldAgeDeath.h&quot;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;RandomMove.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;GetOld.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;OldAgeDeath.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;RandomMove.h&quot;</span>
 
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Fertility.h&quot;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Verhulst.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Fertility.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Verhulst.h&quot;</span>
 
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;tut_ParthenoPop.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;tut_ParthenoPop.h&quot;</span>
 </pre></div>
 </div>
 <p>The agents need to member fields for reproduction:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">tut_ParthenoAgent</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Agent</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">tut_ParthenoAgent</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Agent</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">m_fAge</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">m_fAge</span><span class="p">;</span>
 
-<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">m_fLastBirth</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">m_iMateIndex</span><span class="p">;</span><span class="w"></span>
-<span class="p">};</span><span class="w"></span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">m_fLastBirth</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">m_iMateIndex</span><span class="p">;</span>
+<span class="p">};</span>
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">m_fLastBirth</span></code> records the step at which this agent had its last birth. <code class="docutils literal notranslate"><span class="pre">MateIndex</span></code> is required, because the <code class="docutils literal notranslate"><span class="pre">Verhulst</span></code> action can also handle sexual reproduction. For our purposes we’ll simply set an agents mate index to its own index.</p>
 <p>The class gets two additional pointers for the new actions:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">tut_ParthenoPop</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w">  </span><span class="n">SPopulation</span><span class="o">&lt;</span><span class="n">tut_ParthenoAgent</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="k">public</span><span class="o">:</span><span class="w"></span>
-<span class="w">    </span><span class="n">tut_ParthenoPop</span><span class="p">(</span><span class="n">SCellGrid</span><span class="w"> </span><span class="o">*</span><span class="n">pCG</span><span class="p">,</span><span class="w"> </span><span class="n">PopFinder</span><span class="w"> </span><span class="o">*</span><span class="n">pPopFinder</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iLayerSize</span><span class="p">,</span><span class="w"> </span><span class="n">IDGen</span><span class="w"> </span><span class="o">**</span><span class="n">apIDG</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="o">*</span><span class="n">aulState</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="o">*</span><span class="n">aiSeeds</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">tut_ParthenoPop</span><span class="p">();</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">tut_ParthenoPop</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w">  </span><span class="n">SPopulation</span><span class="o">&lt;</span><span class="n">tut_ParthenoAgent</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="n">tut_ParthenoPop</span><span class="p">(</span><span class="n">SCellGrid</span><span class="w"> </span><span class="o">*</span><span class="n">pCG</span><span class="p">,</span><span class="w"> </span><span class="n">PopFinder</span><span class="w"> </span><span class="o">*</span><span class="n">pPopFinder</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iLayerSize</span><span class="p">,</span><span class="w"> </span><span class="n">IDGen</span><span class="w"> </span><span class="o">**</span><span class="n">apIDG</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="o">*</span><span class="n">aulState</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="o">*</span><span class="n">aiSeeds</span><span class="p">);</span>
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">tut_ParthenoPop</span><span class="p">();</span>
 
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="nf">addPopSpecificAgentData</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iAgentIndex</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">ppData</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">addPopSpecificAgentDataTypeQDF</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="o">*</span><span class="n">hAgentDataType</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="nf">addPopSpecificAgentData</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iAgentIndex</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">ppData</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">addPopSpecificAgentDataTypeQDF</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="o">*</span><span class="n">hAgentDataType</span><span class="p">);</span>
 
-<span class="kt">int</span><span class="w"> </span><span class="nf">makePopSpecificOffspring</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iAgent</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iMother</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iFather</span><span class="p">);</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">makePopSpecificOffspring</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iAgent</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iMother</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iFather</span><span class="p">);</span>
 
-<span class="k">protected</span><span class="o">:</span><span class="w"></span>
-<span class="w">    </span><span class="n">GetOld</span><span class="o">&lt;</span><span class="n">tut_ParthenoAgent</span><span class="o">&gt;</span><span class="w">       </span><span class="o">*</span><span class="n">m_pGO</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">OldAgeDeath</span><span class="o">&lt;</span><span class="n">tut_ParthenoAgent</span><span class="o">&gt;</span><span class="w">  </span><span class="o">*</span><span class="n">m_pOAD</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">RandomMove</span><span class="o">&lt;</span><span class="n">tut_ParthenoAgent</span><span class="o">&gt;</span><span class="w">   </span><span class="o">*</span><span class="n">m_pRM</span><span class="p">;</span><span class="w"></span>
+<span class="k">protected</span><span class="o">:</span>
+<span class="w">    </span><span class="n">GetOld</span><span class="o">&lt;</span><span class="n">tut_ParthenoAgent</span><span class="o">&gt;</span><span class="w">       </span><span class="o">*</span><span class="n">m_pGO</span><span class="p">;</span>
+<span class="w">    </span><span class="n">OldAgeDeath</span><span class="o">&lt;</span><span class="n">tut_ParthenoAgent</span><span class="o">&gt;</span><span class="w">  </span><span class="o">*</span><span class="n">m_pOAD</span><span class="p">;</span>
+<span class="w">    </span><span class="n">RandomMove</span><span class="o">&lt;</span><span class="n">tut_ParthenoAgent</span><span class="o">&gt;</span><span class="w">   </span><span class="o">*</span><span class="n">m_pRM</span><span class="p">;</span>
 
-<span class="w">    </span><span class="n">Verhulst</span><span class="o">&lt;</span><span class="n">tut_ParthenoAgent</span><span class="o">&gt;</span><span class="w">     </span><span class="o">*</span><span class="n">m_pVerhulst</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">Fertility</span><span class="o">&lt;</span><span class="n">tut_ParthenoAgent</span><span class="o">&gt;</span><span class="w">    </span><span class="o">*</span><span class="n">m_pFert</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">Verhulst</span><span class="o">&lt;</span><span class="n">tut_ParthenoAgent</span><span class="o">&gt;</span><span class="w">     </span><span class="o">*</span><span class="n">m_pVerhulst</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Fertility</span><span class="o">&lt;</span><span class="n">tut_ParthenoAgent</span><span class="o">&gt;</span><span class="w">    </span><span class="o">*</span><span class="n">m_pFert</span><span class="p">;</span>
 
-<span class="p">};</span><span class="w"></span>
+<span class="p">};</span>
 </pre></div>
 </div>
 <p>The input/output auxiliary functions <code class="docutils literal notranslate"><span class="pre">addPopSpecificAgentData()</span></code> and <code class="docutils literal notranslate"><span class="pre">addPopSpecificAgentDataTypeQDF()</span></code> will have to be modified to take into account the new agent member fields.
@@ -125,77 +131,77 @@ Then there is also a new method <code class="docutils literal notranslate"><span
 <section id="the-implementation">
 <h2>The Implementation<a class="headerlink" href="#the-implementation" title="Permalink to this heading">¶</a></h2>
 <p>In the implementation we have to include <code class="docutils literal notranslate"><span class="pre">hdf5.h</span></code> because we need to modify some HDF5 structures:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;omp.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;hdf5.h&gt;</span><span class="cp"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;omp.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;hdf5.h&gt;</span>
 </pre></div>
 </div>
 <p>Furthermore, we have to add includes of the cpp files for the new actions and include the header file of this class:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;SPopulation.cpp&quot;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;LayerBuf.cpp&quot;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Prioritizer.cpp&quot;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Action.cpp&quot;</span><span class="cp"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;SPopulation.cpp&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;LayerBuf.cpp&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Prioritizer.cpp&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Action.cpp&quot;</span>
 
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;GetOld.cpp&quot;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;OldAgeDeath.cpp&quot;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;RandomMove.cpp&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;GetOld.cpp&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;OldAgeDeath.cpp&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;RandomMove.cpp&quot;</span>
 
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Verhulst.cpp&quot;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Fertility.cpp&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Verhulst.cpp&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Fertility.cpp&quot;</span>
 
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;tut_ParthenoPop.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;tut_ParthenoPop.h&quot;</span>
 </pre></div>
 </div>
 <p>The constructor now must create instances of all actions and add them to the priority list.</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">//----------------------------------------------------------------------------</span>
 <span class="c1">// constructor</span>
 <span class="c1">//</span>
-<span class="n">tut_ParthenoPop</span><span class="o">::</span><span class="n">tut_ParthenoPop</span><span class="p">(</span><span class="n">SCellGrid</span><span class="w"> </span><span class="o">*</span><span class="n">pCG</span><span class="p">,</span><span class="w"> </span><span class="n">PopFinder</span><span class="w"> </span><span class="o">*</span><span class="n">pPopFinder</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iLayerSize</span><span class="p">,</span><span class="w"> </span><span class="n">IDGen</span><span class="w"> </span><span class="o">**</span><span class="n">apIDG</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="o">*</span><span class="n">aulState</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="o">*</span><span class="n">aiSeeds</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="o">:</span><span class="w"> </span><span class="n">SPopulation</span><span class="o">&lt;</span><span class="n">tut_ParthenoAgent</span><span class="o">&gt;</span><span class="p">(</span><span class="n">pCG</span><span class="p">,</span><span class="w"> </span><span class="n">pPopFinder</span><span class="p">,</span><span class="w"> </span><span class="n">iLayerSize</span><span class="p">,</span><span class="w"> </span><span class="n">apIDG</span><span class="p">,</span><span class="w"> </span><span class="n">aulState</span><span class="p">,</span><span class="w"> </span><span class="n">aiSeeds</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="n">tut_ParthenoPop</span><span class="o">::</span><span class="n">tut_ParthenoPop</span><span class="p">(</span><span class="n">SCellGrid</span><span class="w"> </span><span class="o">*</span><span class="n">pCG</span><span class="p">,</span><span class="w"> </span><span class="n">PopFinder</span><span class="w"> </span><span class="o">*</span><span class="n">pPopFinder</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iLayerSize</span><span class="p">,</span><span class="w"> </span><span class="n">IDGen</span><span class="w"> </span><span class="o">**</span><span class="n">apIDG</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="o">*</span><span class="n">aulState</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="o">*</span><span class="n">aiSeeds</span><span class="p">)</span>
+<span class="w">    </span><span class="o">:</span><span class="w"> </span><span class="n">SPopulation</span><span class="o">&lt;</span><span class="n">tut_ParthenoAgent</span><span class="o">&gt;</span><span class="p">(</span><span class="n">pCG</span><span class="p">,</span><span class="w"> </span><span class="n">pPopFinder</span><span class="p">,</span><span class="w"> </span><span class="n">iLayerSize</span><span class="p">,</span><span class="w"> </span><span class="n">apIDG</span><span class="p">,</span><span class="w"> </span><span class="n">aulState</span><span class="p">,</span><span class="w"> </span><span class="n">aiSeeds</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 
 
-<span class="w">    </span><span class="n">m_pGO</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">GetOld</span><span class="o">&lt;</span><span class="n">tut_ParthenoAgent</span><span class="o">&gt;</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">m_pCG</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">m_pOAD</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">OldAgeDeath</span><span class="o">&lt;</span><span class="n">tut_ParthenoAgent</span><span class="o">&gt;</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">m_pCG</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">m_apWELL</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">m_pRM</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RandomMove</span><span class="o">&lt;</span><span class="n">tut_ParthenoAgent</span><span class="o">&gt;</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">m_pCG</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">m_apWELL</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">m_pGO</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">GetOld</span><span class="o">&lt;</span><span class="n">tut_ParthenoAgent</span><span class="o">&gt;</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">m_pCG</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">m_pOAD</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">OldAgeDeath</span><span class="o">&lt;</span><span class="n">tut_ParthenoAgent</span><span class="o">&gt;</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">m_pCG</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">m_apWELL</span><span class="p">);</span>
+<span class="w">    </span><span class="n">m_pRM</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RandomMove</span><span class="o">&lt;</span><span class="n">tut_ParthenoAgent</span><span class="o">&gt;</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">m_pCG</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">m_apWELL</span><span class="p">);</span>
 
-<span class="w">    </span><span class="n">m_pVerhulst</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Verhulst</span><span class="o">&lt;</span><span class="n">tut_ParthenoAgent</span><span class="o">&gt;</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">m_pCG</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">m_apWELL</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">m_pFert</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Fertility</span><span class="o">&lt;</span><span class="n">tut_ParthenoAgent</span><span class="o">&gt;</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">m_pCG</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">m_pVerhulst</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Verhulst</span><span class="o">&lt;</span><span class="n">tut_ParthenoAgent</span><span class="o">&gt;</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">m_pCG</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">m_apWELL</span><span class="p">);</span>
+<span class="w">    </span><span class="n">m_pFert</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Fertility</span><span class="o">&lt;</span><span class="n">tut_ParthenoAgent</span><span class="o">&gt;</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">m_pCG</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">);</span>
 
 
 <span class="w">    </span><span class="c1">// adding all actions to prioritizer</span>
 
-<span class="w">    </span><span class="n">m_prio</span><span class="p">.</span><span class="n">addAction</span><span class="p">(</span><span class="n">m_pGO</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">m_prio</span><span class="p">.</span><span class="n">addAction</span><span class="p">(</span><span class="n">m_pOAD</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">m_prio</span><span class="p">.</span><span class="n">addAction</span><span class="p">(</span><span class="n">m_pRM</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">m_prio</span><span class="p">.</span><span class="n">addAction</span><span class="p">(</span><span class="n">m_pGO</span><span class="p">);</span>
+<span class="w">    </span><span class="n">m_prio</span><span class="p">.</span><span class="n">addAction</span><span class="p">(</span><span class="n">m_pOAD</span><span class="p">);</span>
+<span class="w">    </span><span class="n">m_prio</span><span class="p">.</span><span class="n">addAction</span><span class="p">(</span><span class="n">m_pRM</span><span class="p">);</span>
 
-<span class="w">    </span><span class="n">m_prio</span><span class="p">.</span><span class="n">addAction</span><span class="p">(</span><span class="n">m_pVerhulst</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">m_prio</span><span class="p">.</span><span class="n">addAction</span><span class="p">(</span><span class="n">m_pFert</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">m_prio</span><span class="p">.</span><span class="n">addAction</span><span class="p">(</span><span class="n">m_pVerhulst</span><span class="p">);</span>
+<span class="w">    </span><span class="n">m_prio</span><span class="p">.</span><span class="n">addAction</span><span class="p">(</span><span class="n">m_pFert</span><span class="p">);</span>
 
-<span class="p">}</span><span class="w"></span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>The destructor must delete all instances created in the constructor:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">//----------------------------------------------------------------------------</span>
 <span class="c1">// destructor</span>
 <span class="c1">//</span>
-<span class="n">tut_ParthenoPop</span><span class="o">::~</span><span class="n">tut_ParthenoPop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="n">tut_ParthenoPop</span><span class="o">::~</span><span class="n">tut_ParthenoPop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_pGO</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="k">delete</span><span class="w"> </span><span class="n">m_pGO</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_pOAD</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="k">delete</span><span class="w"> </span><span class="n">m_pOAD</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_pRM</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="k">delete</span><span class="w"> </span><span class="n">m_pRM</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="w">     </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_pVerhulst</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="k">delete</span><span class="w"> </span><span class="n">m_pVerhulst</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_pFert</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="k">delete</span><span class="w"> </span><span class="n">m_pFert</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_pGO</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">delete</span><span class="w"> </span><span class="n">m_pGO</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_pOAD</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">delete</span><span class="w"> </span><span class="n">m_pOAD</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_pRM</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">delete</span><span class="w"> </span><span class="n">m_pRM</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">     </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_pVerhulst</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">delete</span><span class="w"> </span><span class="n">m_pVerhulst</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_pFert</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">delete</span><span class="w"> </span><span class="n">m_pFert</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
 
-<span class="p">}</span><span class="w"></span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>The method <code class="docutils literal notranslate"><span class="pre">addPopSpecificAgentData()</span></code> must read the age and the last birth step from the input string.
@@ -204,20 +210,20 @@ The mate index is volatile - it is set and used during a step, and is ignored ot
 <span class="c1">// addPopSpecificAgentData</span>
 <span class="c1">// read additional data from pop file (the mat index is volatile, so we don&#39;t try to read it)</span>
 <span class="c1">//</span>
-<span class="kt">int</span><span class="w"> </span><span class="nf">tut_ParthenoPop::addPopSpecificAgentData</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iAgentIndex</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">ppData</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">tut_ParthenoPop::addPopSpecificAgentData</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iAgentIndex</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">ppData</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">iResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">iResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">iResult</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">iResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">addAgentDataSingle</span><span class="p">(</span><span class="n">ppData</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">m_aAgents</span><span class="p">[</span><span class="n">iAgentIndex</span><span class="p">].</span><span class="n">m_fAge</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">iResult</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">iResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">addAgentDataSingle</span><span class="p">(</span><span class="n">ppData</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">m_aAgents</span><span class="p">[</span><span class="n">iAgentIndex</span><span class="p">].</span><span class="n">m_fAge</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">iResult</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">iResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">addAgentDataSingle</span><span class="p">(</span><span class="n">ppData</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">m_aAgents</span><span class="p">[</span><span class="n">iAgentIndex</span><span class="p">].</span><span class="n">m_fLastBirth</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">iResult</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">iResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">addAgentDataSingle</span><span class="p">(</span><span class="n">ppData</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">m_aAgents</span><span class="p">[</span><span class="n">iAgentIndex</span><span class="p">].</span><span class="n">m_fLastBirth</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">iResult</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">iResult</span><span class="p">;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>The method <code class="docutils literal notranslate"><span class="pre">addPopSpecificAgentDataTypeQDF()</span></code> extends the agent’s HDF  data type with the age field and the lastbirth field:</p>
@@ -225,30 +231,30 @@ The mate index is volatile - it is set and used during a step, and is ignored ot
 <span class="c1">// addPopSpecificAgentDataTypeQDF</span>
 <span class="c1">// extend the agent data type to include additional data in the output</span>
 <span class="c1">//</span>
-<span class="kt">void</span><span class="w"> </span><span class="nf">tut_ParthenoPop::addPopSpecificAgentDataTypeQDF</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="o">*</span><span class="n">hAgentDataType</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">tut_ParthenoPop::addPopSpecificAgentDataTypeQDF</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="o">*</span><span class="n">hAgentDataType</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">    </span><span class="n">tut_ParthenoAgent</span><span class="w"> </span><span class="n">sa</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">H5Tinsert</span><span class="p">(</span><span class="o">*</span><span class="n">hAgentDataType</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Age&quot;</span><span class="p">,</span><span class="w">  </span><span class="n">qoffsetof</span><span class="p">(</span><span class="n">sa</span><span class="p">,</span><span class="w"> </span><span class="n">m_fAge</span><span class="p">),</span><span class="w"> </span><span class="n">H5T_NATIVE_FLOAT</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">H5Tinsert</span><span class="p">(</span><span class="o">*</span><span class="n">hAgentDataType</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;LastBirth&quot;</span><span class="p">,</span><span class="w">  </span><span class="n">qoffsetof</span><span class="p">(</span><span class="n">sa</span><span class="p">,</span><span class="w"> </span><span class="n">m_fLastBirth</span><span class="p">),</span><span class="w"> </span><span class="n">H5T_NATIVE_FLOAT</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">tut_ParthenoAgent</span><span class="w"> </span><span class="n">sa</span><span class="p">;</span>
+<span class="w">    </span><span class="n">H5Tinsert</span><span class="p">(</span><span class="o">*</span><span class="n">hAgentDataType</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Age&quot;</span><span class="p">,</span><span class="w">  </span><span class="n">qoffsetof</span><span class="p">(</span><span class="n">sa</span><span class="p">,</span><span class="w"> </span><span class="n">m_fAge</span><span class="p">),</span><span class="w"> </span><span class="n">H5T_NATIVE_FLOAT</span><span class="p">);</span>
+<span class="w">    </span><span class="n">H5Tinsert</span><span class="p">(</span><span class="o">*</span><span class="n">hAgentDataType</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;LastBirth&quot;</span><span class="p">,</span><span class="w">  </span><span class="n">qoffsetof</span><span class="p">(</span><span class="n">sa</span><span class="p">,</span><span class="w"> </span><span class="n">m_fLastBirth</span><span class="p">),</span><span class="w"> </span><span class="n">H5T_NATIVE_FLOAT</span><span class="p">);</span>
 
 <span class="w">    </span><span class="c1">// the mate index is volatile, so we don&#39;t add it to the type</span>
-<span class="p">}</span><span class="w"></span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>The method <code class="docutils literal notranslate"><span class="pre">makePopSpecificOffspring()</span></code> initializes the agents’ new fields:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">//----------------------------------------------------------------------------</span>
 <span class="c1">// makePopSpecificOffspring</span>
 <span class="c1">//</span>
-<span class="kt">int</span><span class="w"> </span><span class="nf">tut_ParthenoPop::makePopSpecificOffspring</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iAgent</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iMother</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iFather</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">iResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">tut_ParthenoPop::makePopSpecificOffspring</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iAgent</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iMother</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iFather</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">iResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 
-<span class="w">    </span><span class="n">m_aAgents</span><span class="p">[</span><span class="n">iAgent</span><span class="p">].</span><span class="n">m_fAge</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">m_aAgents</span><span class="p">[</span><span class="n">iAgent</span><span class="p">].</span><span class="n">m_fLastBirth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">-1.0</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">m_aAgents</span><span class="p">[</span><span class="n">iAgent</span><span class="p">].</span><span class="n">m_iMateIndex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">iAgent</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">m_aAgents</span><span class="p">[</span><span class="n">iAgent</span><span class="p">].</span><span class="n">m_iGender</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">m_aAgents</span><span class="p">[</span><span class="n">iAgent</span><span class="p">].</span><span class="n">m_fAge</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">;</span>
+<span class="w">    </span><span class="n">m_aAgents</span><span class="p">[</span><span class="n">iAgent</span><span class="p">].</span><span class="n">m_fLastBirth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">-1.0</span><span class="p">;</span>
+<span class="w">    </span><span class="n">m_aAgents</span><span class="p">[</span><span class="n">iAgent</span><span class="p">].</span><span class="n">m_iMateIndex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">iAgent</span><span class="p">;</span>
+<span class="w">    </span><span class="n">m_aAgents</span><span class="p">[</span><span class="n">iAgent</span><span class="p">].</span><span class="n">m_iGender</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">iResult</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">iResult</span><span class="p">;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>The agent has age 0 at birth, hasn’t given birth so far, it will be its own mate (see above), and the gender is set to fremale.</p>
@@ -257,36 +263,36 @@ The mate index is volatile - it is set and used during a step, and is ignored ot
 <section id="xml-and-dat">
 <h2>XML and DAT<a class="headerlink" href="#xml-and-dat" title="Permalink to this heading">¶</a></h2>
 <p>The xml file for the population attributes now contains entries for the new actions:</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>  <span class="nt">&lt;class</span> <span class="na">name=</span><span class="s">&quot;tut_ParthenoPop&quot;</span> <span class="na">species_name=</span><span class="s">&quot;sapiens&quot;</span> <span class="na">species_id=</span><span class="s">&quot;104&quot;</span><span class="nt">&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="nt">&lt;class</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;tut_ParthenoPop&quot;</span><span class="w"> </span><span class="na">species_name=</span><span class="s">&quot;sapiens&quot;</span><span class="w"> </span><span class="na">species_id=</span><span class="s">&quot;104&quot;</span><span class="nt">&gt;</span>
 
-  <span class="nt">&lt;module</span> <span class="na">name=</span><span class="s">&quot;OldAgeDeath&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;param</span>  <span class="na">name=</span><span class="s">&quot;OAD_max_age&quot;</span> <span class="na">value=</span><span class="s">&quot;60.0&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;param</span>  <span class="na">name=</span><span class="s">&quot;OAD_uncertainty&quot;</span> <span class="na">value=</span><span class="s">&quot;0.1&quot;</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;/module&gt;</span>
-  <span class="nt">&lt;module</span> <span class="na">name=</span><span class="s">&quot;RandomMove&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;param</span>  <span class="na">name=</span><span class="s">&quot;RandomMove_prob&quot;</span> <span class="na">value=</span><span class="s">&quot;0.01&quot;</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;/module&gt;</span>
+<span class="w">  </span><span class="nt">&lt;module</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;OldAgeDeath&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;param</span><span class="w">  </span><span class="na">name=</span><span class="s">&quot;OAD_max_age&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;60.0&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;param</span><span class="w">  </span><span class="na">name=</span><span class="s">&quot;OAD_uncertainty&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0.1&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/module&gt;</span>
+<span class="w">  </span><span class="nt">&lt;module</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;RandomMove&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;param</span><span class="w">  </span><span class="na">name=</span><span class="s">&quot;RandomMove_prob&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0.01&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/module&gt;</span>
 
-  <span class="nt">&lt;module</span> <span class="na">name=</span><span class="s">&quot;Fertility&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;param</span>  <span class="na">name=</span><span class="s">&quot;Fertility_interbirth&quot;</span> <span class="na">value=</span><span class="s">&quot;2.0&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;param</span>  <span class="na">name=</span><span class="s">&quot;Fertility_max_age&quot;</span> <span class="na">value=</span><span class="s">&quot;50.0&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;param</span>  <span class="na">name=</span><span class="s">&quot;Fertility_min_age&quot;</span> <span class="na">value=</span><span class="s">&quot;15.0&quot;</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;/module&gt;</span>
+<span class="w">  </span><span class="nt">&lt;module</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Fertility&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;param</span><span class="w">  </span><span class="na">name=</span><span class="s">&quot;Fertility_interbirth&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;2.0&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;param</span><span class="w">  </span><span class="na">name=</span><span class="s">&quot;Fertility_max_age&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;50.0&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;param</span><span class="w">  </span><span class="na">name=</span><span class="s">&quot;Fertility_min_age&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;15.0&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/module&gt;</span>
 
-  <span class="nt">&lt;module</span> <span class="na">name=</span><span class="s">&quot;Verhulst&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;param</span>  <span class="na">name=</span><span class="s">&quot;Verhulst_b0&quot;</span> <span class="na">value=</span><span class="s">&quot;0.8&quot;</span> <span class="nt">/&gt;</span>
-    <span class="nt">&lt;param</span>  <span class="na">name=</span><span class="s">&quot;Verhulst_d0&quot;</span> <span class="na">value=</span><span class="s">&quot;0.001&quot;</span> <span class="nt">/&gt;</span>
-    <span class="nt">&lt;param</span>  <span class="na">name=</span><span class="s">&quot;Verhulst_theta&quot;</span> <span class="na">value=</span><span class="s">&quot;0.1&quot;</span> <span class="nt">/&gt;</span>
-    <span class="nt">&lt;param</span>  <span class="na">name=</span><span class="s">&quot;Verhulst_K&quot;</span> <span class="na">value=</span><span class="s">&quot;20&quot;</span> <span class="nt">/&gt;</span>
-  <span class="nt">&lt;/module&gt;</span>
+<span class="w">  </span><span class="nt">&lt;module</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Verhulst&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;param</span><span class="w">  </span><span class="na">name=</span><span class="s">&quot;Verhulst_b0&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0.8&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;param</span><span class="w">  </span><span class="na">name=</span><span class="s">&quot;Verhulst_d0&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0.001&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;param</span><span class="w">  </span><span class="na">name=</span><span class="s">&quot;Verhulst_theta&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0.1&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;param</span><span class="w">  </span><span class="na">name=</span><span class="s">&quot;Verhulst_K&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;20&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/module&gt;</span>
 
-  <span class="nt">&lt;priorities&gt;</span>
-    <span class="nt">&lt;prio</span>  <span class="na">name=</span><span class="s">&quot;GetOld&quot;</span> <span class="na">value=</span><span class="s">&quot;2&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;prio</span>  <span class="na">name=</span><span class="s">&quot;OldAgeDeath&quot;</span> <span class="na">value=</span><span class="s">&quot;3&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;prio</span>  <span class="na">name=</span><span class="s">&quot;RandomMove&quot;</span> <span class="na">value=</span><span class="s">&quot;6&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;prio</span>  <span class="na">name=</span><span class="s">&quot;Fertility&quot;</span> <span class="na">value=</span><span class="s">&quot;4&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;prio</span>  <span class="na">name=</span><span class="s">&quot;Verhulst&quot;</span> <span class="na">value=</span><span class="s">&quot;5&quot;</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;/priorities&gt;</span>
+<span class="w">  </span><span class="nt">&lt;priorities&gt;</span>
+<span class="w">    </span><span class="nt">&lt;prio</span><span class="w">  </span><span class="na">name=</span><span class="s">&quot;GetOld&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;2&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;prio</span><span class="w">  </span><span class="na">name=</span><span class="s">&quot;OldAgeDeath&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;3&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;prio</span><span class="w">  </span><span class="na">name=</span><span class="s">&quot;RandomMove&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;6&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;prio</span><span class="w">  </span><span class="na">name=</span><span class="s">&quot;Fertility&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;4&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;prio</span><span class="w">  </span><span class="na">name=</span><span class="s">&quot;Verhulst&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;5&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/priorities&gt;</span>
 <span class="nt">&lt;/class&gt;</span>
 </pre></div>
 </div>
@@ -312,17 +318,17 @@ The mate index is volatile - it is set and used during a step, and is ignored ot
 <h2>Compiling and Running<a class="headerlink" href="#compiling-and-running" title="Permalink to this heading">¶</a></h2>
 <p>Again, we assume that you have created the tutorial directories with the script <a class="reference internal" href="../tools/build_tut_dirs.html#build-tut-dirs-ref"><span class="std std-ref">build_tut_dirs.py</span></a>.</p>
 <p>First lets create alternative population and action directories with the script <a class="reference internal" href="../tools/build_alt_modpop.html#build-alt-modpop-ref"><span class="std std-ref">build_alt_modpop.py</span></a>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="si">${</span><span class="nv">QHG4_DIR</span><span class="si">}</span>/useful_stuff/build_alt_modpop.py tut_04 tut_ParthenoPop
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="si">${</span><span class="nv">QHG4_DIR</span><span class="si">}</span>/useful_stuff/build_alt_modpop.py<span class="w"> </span>tut_04<span class="w"> </span>tut_ParthenoPop
 </pre></div>
 </div>
 <p>This builds alternative population directories <code class="docutils literal notranslate"><span class="pre">tut_04_pop</span></code> and <code class="docutils literal notranslate"><span class="pre">tut_04_mod</span></code> with the files needed to compile <code class="docutils literal notranslate"><span class="pre">tut_ParthenoPop</span></code>.</p>
 <p>To compile, change to the QHG4 root directory and type:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">SHORT</span><span class="o">=</span>tut_04 make clean QHGMain
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">SHORT</span><span class="o">=</span>tut_04<span class="w"> </span>make<span class="w"> </span>clean<span class="w"> </span>QHGMain
 </pre></div>
 </div>
 <p>This is the simplest way to compile QHG (for more information see <a class="reference internal" href="../qhg4_compile.html#compiling-qhg-ref"><span class="std std-ref">Compiling QHG</span></a>)</p>
 <p>Now cd to the tutorial subdirectory “tutorial_04’ and start QHGMain</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="si">${</span><span class="nv">QHG4_DIR</span><span class="si">}</span>/app/QHGMain --read-config<span class="o">=</span>tutorial_04.cfg &gt; tutorial_04.out
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="si">${</span><span class="nv">QHG4_DIR</span><span class="si">}</span>/app/QHGMain<span class="w"> </span>--read-config<span class="o">=</span>tutorial_04.cfg<span class="w"> </span>&gt;<span class="w"> </span>tutorial_04.out
 </pre></div>
 </div>
 <p>This tells QHGMain to read the parameters from  the file <code class="docutils literal notranslate"><span class="pre">tutorial_04.cfg</span></code> and write all output to the file <code class="docutils literal notranslate"><span class="pre">tutorial_04.out</span></code> (this output contains more information than the logfile)</p>
@@ -418,12 +424,12 @@ Number of agents after last step
 <p>The execution of s single step with more than 200’000 agents took 0.2 seconds
 This is quite fast, but we can do better: recompile QHG again, but this time we use optimization.
 This is done by defining the environment variable <code class="docutils literal notranslate"><span class="pre">OPT</span></code> for the compilation:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="si">${</span><span class="nv">QHG4_DIR</span><span class="si">}</span>
-<span class="nv">OPT</span><span class="o">=</span><span class="m">1</span> <span class="nv">SHORT</span><span class="o">=</span>tut_04 make clean QHGMain
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">QHG4_DIR</span><span class="si">}</span>
+<span class="nv">OPT</span><span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="nv">SHORT</span><span class="o">=</span>tut_04<span class="w"> </span>make<span class="w"> </span>clean<span class="w"> </span>QHGMain
 </pre></div>
 </div>
 <p>Change back to the tutoriall directory aAnd run it again:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="si">${</span><span class="nv">QHG4_DIR</span><span class="si">}</span>/app/QHGMain --read-config<span class="o">=</span>tutorial_04.cfg &gt; tutorial_04o.out
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="si">${</span><span class="nv">QHG4_DIR</span><span class="si">}</span>/app/QHGMain<span class="w"> </span>--read-config<span class="o">=</span>tutorial_04.cfg<span class="w"> </span>&gt;<span class="w"> </span>tutorial_04o.out
 </pre></div>
 </div>
 <p>Now look at the output file:</p>

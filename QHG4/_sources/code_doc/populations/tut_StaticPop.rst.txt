@@ -16,7 +16,9 @@ It also does not define its own agent class - it uses the agents defined for ``S
 
 (The class ``tut_StaticPop`` is described in detail in the :ref:first part<TutorialStatic_ref>`  of the :ref:`tutorial<Tutorial_ref>`).
 
-Code: `tut_StaticPop.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_StaticPop.h>`_, `tut_StaticPop.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_StaticPop.cpp>`_
+Code:
+    | `tut_StaticPop.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_StaticPop.h>`_
+    | `tut_StaticPop.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_StaticPop.cpp>`_
 
 
 Public Methods

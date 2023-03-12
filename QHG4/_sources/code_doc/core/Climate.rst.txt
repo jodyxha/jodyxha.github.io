@@ -14,7 +14,9 @@ Initially the climate data was used to calculate net primary production.
 Currently the climate data is not used in QHG because there are simulated NPP data sets for  the past.
 
 
-Code: `Climate.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/core/Climate.h>`_ `Climate.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/core/Climate.cpp>`_
+Code:
+    | `Climate.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/core/Climate.h>`_
+    | `Climate.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/core/Climate.cpp>`_
 
 Public Members
 --------------

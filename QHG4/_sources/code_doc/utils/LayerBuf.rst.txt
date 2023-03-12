@@ -13,7 +13,9 @@ It is implemented as ``std::vector`` of arrays of T. When more space is needed, 
 
 .. figure:: ../../../images/LayerBuf_full.png
 
-Code: `LayerBuf.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/LayerBuf.h>`_, `LayerBuf.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/LayerBuf.cpp>`_
+Code:
+    | `LayerBuf.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/LayerBuf.h>`_
+    | `LayerBuf.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/LayerBuf.cpp>`_
 
 Public Methods
 --------------

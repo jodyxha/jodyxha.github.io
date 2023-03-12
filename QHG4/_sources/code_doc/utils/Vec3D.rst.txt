@@ -15,7 +15,9 @@ The operators allow you to use expressions such as
   0.3*(a-b)*(c+d)
 
 
-Code: `Vec3D.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/Vec3D.h>`_, `Vec3D.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/Vec3D.cpp>`_
+Code:
+    | `Vec3D.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/Vec3D.h>`_
+    | `Vec3D.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/Vec3D.cpp>`_
 
 
 Public Methods

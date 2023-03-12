@@ -20,7 +20,7 @@
     <link rel="shortcut icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="The Observer Pattern" href="ObserverPattern.html" />
+    <link rel="next" title="Running QHG" href="qhg4_running.html" />
     <link rel="prev" title="Simulator" href="code_doc/app/Simulator.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
@@ -30,7 +30,7 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="ObserverPattern.html" title="The Observer Pattern"
+          <a href="qhg4_running.html" title="Running QHG"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="code_doc/app/Simulator.html" title="Simulator"
@@ -61,41 +61,53 @@ but so far not on WIndows or MAc.</p>
 <li><p><code class="docutils literal notranslate"><span class="pre">crypto</span></code> library</p></li>
 </ul>
 <p><strong>Library Installation for</strong> <code class="docutils literal notranslate"><span class="pre">gentoo</span></code> <strong>linux</strong>:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span><span class="w"> </span><span class="n">emerge</span><span class="w"> </span><span class="n">sci</span><span class="o">-</span><span class="n">libs</span><span class="o">/</span><span class="n">hdf5</span><span class="w"> </span><span class="n">sys</span><span class="o">-</span><span class="n">libs</span><span class="o">/</span><span class="n">zlib</span><span class="w"> </span><span class="n">dev</span><span class="o">-</span><span class="n">libs</span><span class="o">/</span><span class="n">openssl</span><span class="w"> </span><span class="n">sci</span><span class="o">-</span><span class="n">libs</span><span class="o">/</span><span class="n">gsl</span><span class="w"> </span><span class="n">media</span><span class="o">-</span><span class="n">libs</span><span class="o">/</span><span class="n">libpng</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span><span class="w"> </span><span class="n">emerge</span><span class="w"> </span><span class="n">sci</span><span class="o">-</span><span class="n">libs</span><span class="o">/</span><span class="n">hdf5</span><span class="w"> </span><span class="n">sys</span><span class="o">-</span><span class="n">libs</span><span class="o">/</span><span class="n">zlib</span><span class="w"> </span><span class="n">dev</span><span class="o">-</span><span class="n">libs</span><span class="o">/</span><span class="n">openssl</span><span class="w"> </span><span class="n">sci</span><span class="o">-</span><span class="n">libs</span><span class="o">/</span><span class="n">gsl</span><span class="w"> </span><span class="n">media</span><span class="o">-</span><span class="n">libs</span><span class="o">/</span><span class="n">libpng</span>
 </pre></div>
 </div>
 <p><strong>Library Installation for</strong> <code class="docutils literal notranslate"><span class="pre">CentOS</span></code>:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span><span class="w"> </span><span class="n">yum</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">zlib</span><span class="o">-</span><span class="n">devel</span><span class="p">.</span><span class="n">x86_64</span><span class="w"></span>
-<span class="n">sudo</span><span class="w"> </span><span class="n">yum</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">openssl</span><span class="o">-</span><span class="n">devel</span><span class="p">.</span><span class="n">x86_64</span><span class="w"></span>
-<span class="n">sudo</span><span class="w"> </span><span class="n">yum</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">hdf5</span><span class="o">-</span><span class="n">devel</span><span class="p">.</span><span class="n">x86_64</span><span class="w"> </span><span class="n">hdf5</span><span class="p">.</span><span class="n">x86_64</span><span class="w"></span>
-<span class="n">sudo</span><span class="w"> </span><span class="n">yum</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">gsl</span><span class="o">-</span><span class="n">devel</span><span class="p">.</span><span class="n">x86_64</span><span class="w"> </span><span class="n">gsl</span><span class="p">.</span><span class="n">x86_64</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span><span class="w"> </span><span class="n">yum</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">zlib</span><span class="o">-</span><span class="n">devel</span><span class="p">.</span><span class="n">x86_64</span>
+<span class="n">sudo</span><span class="w"> </span><span class="n">yum</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">openssl</span><span class="o">-</span><span class="n">devel</span><span class="p">.</span><span class="n">x86_64</span>
+<span class="n">sudo</span><span class="w"> </span><span class="n">yum</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">hdf5</span><span class="o">-</span><span class="n">devel</span><span class="p">.</span><span class="n">x86_64</span><span class="w"> </span><span class="n">hdf5</span><span class="p">.</span><span class="n">x86_64</span>
+<span class="n">sudo</span><span class="w"> </span><span class="n">yum</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">gsl</span><span class="o">-</span><span class="n">devel</span><span class="p">.</span><span class="n">x86_64</span><span class="w"> </span><span class="n">gsl</span><span class="p">.</span><span class="n">x86_64</span>
 </pre></div>
 </div>
 <p><strong>Library Installation for</strong> <code class="docutils literal notranslate"><span class="pre">ubuntu</span></code>:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span><span class="w"> </span><span class="n">apt</span><span class="o">-</span><span class="n">get</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">zlib1g</span><span class="o">-</span><span class="n">dev</span><span class="w"> </span><span class="n">libssl</span><span class="o">-</span><span class="n">dev</span><span class="w"></span>
-<span class="n">sudo</span><span class="w"> </span><span class="n">apt</span><span class="o">-</span><span class="n">get</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">libgsl0</span><span class="o">-</span><span class="n">dev</span><span class="w"></span>
-<span class="n">sudo</span><span class="w"> </span><span class="n">apt</span><span class="o">-</span><span class="n">get</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">libhdf5</span><span class="o">-</span><span class="n">serial</span><span class="o">-</span><span class="n">dev</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span><span class="w"> </span><span class="n">apt</span><span class="o">-</span><span class="n">get</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">zlib1g</span><span class="o">-</span><span class="n">dev</span><span class="w"> </span><span class="n">libssl</span><span class="o">-</span><span class="n">dev</span>
+<span class="n">sudo</span><span class="w"> </span><span class="n">apt</span><span class="o">-</span><span class="n">get</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">libgsl0</span><span class="o">-</span><span class="n">dev</span>
+<span class="n">sudo</span><span class="w"> </span><span class="n">apt</span><span class="o">-</span><span class="n">get</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">libhdf5</span><span class="o">-</span><span class="n">serial</span><span class="o">-</span><span class="n">dev</span>
 </pre></div>
 </div>
 <p>For some tools to work the python modules <code class="docutils literal notranslate"><span class="pre">h5py</span></code>, <code class="docutils literal notranslate"><span class="pre">netcdf4-python</span></code>, and <code class="docutils literal notranslate"><span class="pre">numpy</span></code> are required.</p>
 <p><strong>Installing module for</strong> <code class="docutils literal notranslate"><span class="pre">gentoo</span></code>:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span><span class="w"> </span><span class="n">emerge</span><span class="w"> </span><span class="n">dev</span><span class="o">-</span><span class="n">python</span><span class="o">/</span><span class="n">h5py</span><span class="w"></span>
-<span class="n">sudo</span><span class="w"> </span><span class="n">emerge</span><span class="w"> </span><span class="n">dev</span><span class="o">-</span><span class="n">python</span><span class="o">/</span><span class="n">netcdf4</span><span class="o">-</span><span class="n">python</span><span class="w"></span>
-<span class="n">sudo</span><span class="w"> </span><span class="n">emerge</span><span class="w"> </span><span class="n">dev</span><span class="o">-</span><span class="n">python</span><span class="o">/</span><span class="n">numpy</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span><span class="w"> </span><span class="n">emerge</span><span class="w"> </span><span class="n">dev</span><span class="o">-</span><span class="n">python</span><span class="o">/</span><span class="n">h5py</span>
+<span class="n">sudo</span><span class="w"> </span><span class="n">emerge</span><span class="w"> </span><span class="n">dev</span><span class="o">-</span><span class="n">python</span><span class="o">/</span><span class="n">netcdf4</span><span class="o">-</span><span class="n">python</span>
+<span class="n">sudo</span><span class="w"> </span><span class="n">emerge</span><span class="w"> </span><span class="n">dev</span><span class="o">-</span><span class="n">python</span><span class="o">/</span><span class="n">numpy</span>
 </pre></div>
 </div>
 <p><strong>Installing modules for</strong> <code class="docutils literal notranslate"><span class="pre">CentOS</span></code></p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span><span class="w"> </span><span class="n">yum</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">h5py</span><span class="p">.</span><span class="n">x86_64</span><span class="w"></span>
-<span class="n">sudo</span><span class="w"> </span><span class="n">yum</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">numpy</span><span class="p">.</span><span class="n">x86_64</span><span class="w"></span>
-<span class="n">sudo</span><span class="w"> </span><span class="n">yum</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">netcdf4</span><span class="o">-</span><span class="n">python</span><span class="p">.</span><span class="n">x86_64</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span><span class="w"> </span><span class="n">yum</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">h5py</span><span class="p">.</span><span class="n">x86_64</span>
+<span class="n">sudo</span><span class="w"> </span><span class="n">yum</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">numpy</span><span class="p">.</span><span class="n">x86_64</span>
+<span class="n">sudo</span><span class="w"> </span><span class="n">yum</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">netcdf4</span><span class="o">-</span><span class="n">python</span><span class="p">.</span><span class="n">x86_64</span>
 </pre></div>
 </div>
 <p><strong>Installing modules for</strong> <code class="docutils literal notranslate"><span class="pre">ubuntu</span></code></p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span><span class="w"> </span><span class="n">apt</span><span class="o">-</span><span class="n">get</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">libhdf5</span><span class="o">-</span><span class="n">dev</span><span class="w"></span>
-<span class="n">sudo</span><span class="w"> </span><span class="n">apt</span><span class="o">-</span><span class="n">get</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">python3</span><span class="o">-</span><span class="n">numpy</span><span class="w"></span>
-<span class="n">sudo</span><span class="w"> </span><span class="n">apt</span><span class="o">-</span><span class="n">get</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">python</span><span class="o">-</span><span class="n">netcdf4</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span><span class="w"> </span><span class="n">apt</span><span class="o">-</span><span class="n">get</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">libhdf5</span><span class="o">-</span><span class="n">dev</span>
+<span class="n">sudo</span><span class="w"> </span><span class="n">apt</span><span class="o">-</span><span class="n">get</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">python3</span><span class="o">-</span><span class="n">numpy</span>
+<span class="n">sudo</span><span class="w"> </span><span class="n">apt</span><span class="o">-</span><span class="n">get</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">python</span><span class="o">-</span><span class="n">netcdf4</span>
 </pre></div>
 </div>
+</section>
+<section id="required-environment-variables">
+<h2>Required Environment Variables<a class="headerlink" href="#required-environment-variables" title="Permalink to this heading">¶</a></h2>
+<p>Make sure that the vairable QHG4_DIR is set to the root of the
+directory containing the QHG4 download.</p>
+<p>On the commandline this can be done by</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">QHG4_DIR</span><span class="o">=</span>/home/user17/progs/QHG4
+</pre></div>
+</div>
+<p>But this woule have to be done evry time a new terminal si opened.
+For this reason, it makes more sense to put this line into a file whic is
+executed when a shell is poened (e.g.``~/.bash_rc`` for bash shells)</p>
 </section>
 <section id="compile-targets">
 <h2>Compile targets<a class="headerlink" href="#compile-targets" title="Permalink to this heading">¶</a></h2>
@@ -105,15 +117,17 @@ but so far not on WIndows or MAc.</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">QHGMain</span></code></dt><dd><p>The QHG simulator</p>
 </dd>
+<dt><code class="docutils literal notranslate"><span class="pre">plugins</span></code></dt><dd><p>Build populaztion plugins.</p>
+</dd>
 <dt><code class="docutils literal notranslate"><span class="pre">tools_n</span></code></dt><dd><p>Recompile all tools</p>
 </dd>
 </dl>
 <p>Example</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">make</span><span class="w"> </span><span class="n">QHGMain</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">make</span><span class="w"> </span><span class="n">QHGMain</span>
 </pre></div>
 </div>
 <p>Only compiles new and depending files and build QHGMain.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">make</span><span class="w"> </span><span class="n">clean</span><span class="w"> </span><span class="n">QHGMain</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">make</span><span class="w"> </span><span class="n">clean</span><span class="w"> </span><span class="n">QHGMain</span>
 </pre></div>
 </div>
 <p>Compiles QHG from scratch.</p>
@@ -121,56 +135,69 @@ but so far not on WIndows or MAc.</p>
 <section id="compile-options">
 <h2>Compile options<a class="headerlink" href="#compile-options" title="Permalink to this heading">¶</a></h2>
 <dl class="simple">
-<dt><code class="docutils literal notranslate"><span class="pre">OPT</span></code></dt><dd><p>If set to 1, optimize the compilation (<code class="docutils literal notranslate"><span class="pre">-O3</span></code>)</p>
+<dt><code class="docutils literal notranslate"><span class="pre">OPT</span></code></dt><dd><p>If set to 1, optimize the compilation (<code class="docutils literal notranslate"><span class="pre">-O3</span></code>). Recognized by all targets.</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">SHORT</span></code></dt><dd><p>Sets the prefix for alternative population and action directories.</p>
+<dt><code class="docutils literal notranslate"><span class="pre">SHORT</span></code></dt><dd><p>Sets the prefix for alternative population and action directories.
+Used by targets <code class="docutils literal notranslate"><span class="pre">QHGMain</span></code> and <code class="docutils literal notranslate"><span class="pre">plugins</span></code>.</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">OUT</span></code></dt><dd><p>Sets the output name</p>
+<dt><code class="docutils literal notranslate"><span class="pre">OUT</span></code></dt><dd><p>Sets the output name. Used by target <code class="docutils literal notranslate"><span class="pre">QHGMain</span></code></p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">DYNAMIC_POPS</span></code></dt><dd><p>Create a version QHGMain without statically linked actions and populkations.
+Such a QHGMain must use plugins. Recognized by target “QHGMain”</p>
 </dd>
 </dl>
 <p>Examples</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">OUT</span><span class="o">=</span><span class="n">QHGTest</span><span class="w"> </span><span class="n">OPT</span><span class="o">=</span><span class="mi">1</span><span class="w"> </span><span class="n">make</span><span class="w"> </span><span class="n">clean</span><span class="w"> </span><span class="n">QHGMain</span><span class="w"></span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">OUT</span><span class="o">=</span>QHGTest<span class="w"> </span><span class="nv">OPT</span><span class="o">=</span><span class="m">1</span><span class="w"> </span>make<span class="w"> </span>clean<span class="w"> </span>QHGMain
 </pre></div>
 </div>
 <p>Build an optimized QHG from scratch and name the executable <code class="docutils literal notranslate"><span class="pre">QHGTest</span></code></p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">SHORT</span><span class="o">=</span><span class="n">tut</span><span class="w"> </span><span class="n">OPT</span><span class="o">=</span><span class="mi">1</span><span class="w"> </span><span class="n">make</span><span class="w"> </span><span class="n">clean</span><span class="w"> </span><span class="n">QHGMain</span><span class="w"></span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">SHORT</span><span class="o">=</span>tut<span class="w"> </span><span class="nv">OPT</span><span class="o">=</span><span class="m">1</span><span class="w"> </span>make<span class="w"> </span>clean<span class="w"> </span>QHGMain
 </pre></div>
 </div>
 <p>Build an optimized QHG from scratch, but use the alternative population and action directories <code class="docutils literal notranslate"><span class="pre">tut_pop</span></code> and <code class="docutils literal notranslate"><span class="pre">tut_mod</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">DYNAMIC_POPS</span><span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="nv">OPT</span><span class="o">=</span><span class="m">1</span><span class="w"> </span>make<span class="w"> </span>clean<span class="w"> </span>QHGMain
+</pre></div>
+</div>
+<p>Build an optimized QHG for the use with plugins  from scratch.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">SHORT</span><span class="o">=</span>tut_08<span class="w"> </span>make<span class="w"> </span>plugina
+</pre></div>
+</div>
+<p>Build plugins for the populations found in the alternative compilation directory <code class="docutils literal notranslate"><span class="pre">tut_08</span></code>-</p>
 </section>
 <section id="alternative-population-and-action-directories">
 <span id="compiling-qhg-alternate-ref"></span><h2>Alternative Population and Action directories<a class="headerlink" href="#alternative-population-and-action-directories" title="Permalink to this heading">¶</a></h2>
 <p>If there are many files for population classes in the <code class="docutils literal notranslate"><span class="pre">populations</span></code> subdirectory, it can be useful to set up alternative directories containing only the minimum number of files required to build QHG with a particular population class.</p>
 <p>There is a script in the subdirectory which you can use for this:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">build_alt_modpop</span><span class="p">.</span><span class="n">py</span><span class="w"> </span><span class="o">&lt;</span><span class="n">prefix</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="n">pop_name</span><span class="o">&gt;+</span><span class="w"></span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>build_alt_modpop.py<span class="w"> </span>&lt;prefix&gt;<span class="w"> </span>&lt;pop_name&gt;+
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">prefix</span></code> is used to create the names of the alternatove directories, <code class="docutils literal notranslate"><span class="pre">pop_name</span></code> is the name of a population class in <code class="docutils literal notranslate"><span class="pre">populations</span></code>. The script expects that &lt;pop_name&gt;.h and &lt;pop_name&gt;.cpp exist in <code class="docutils literal notranslate"><span class="pre">populations</span></code></p>
 <p>Example:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">build_alt_modpop</span><span class="p">.</span><span class="n">py</span><span class="w"> </span><span class="n">tut</span><span class="w"> </span><span class="n">tut_StaticPop</span><span class="w"> </span><span class="n">tut_MovePop</span><span class="w"></span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>build_alt_modpop.py<span class="w"> </span>tut<span class="w"> </span>tut_StaticPop<span class="w"> </span>tut_MovePop
 </pre></div>
 </div>
 <p>This will create the directories <code class="docutils literal notranslate"><span class="pre">tut_pop</span></code> and <code class="docutils literal notranslate"><span class="pre">tut_mod</span></code> which are filled with the required files from  <code class="docutils literal notranslate"><span class="pre">actions</span></code> and <code class="docutils literal notranslate"><span class="pre">population</span></code>:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">$</span><span class="w"> </span><span class="n">ls</span><span class="w"> </span><span class="n">tut_mod</span><span class="o">/</span><span class="w"></span>
-<span class="n">Action</span><span class="p">.</span><span class="n">cpp</span><span class="w">  </span><span class="n">Action</span><span class="p">.</span><span class="n">h</span><span class="w">  </span><span class="n">GetOld</span><span class="p">.</span><span class="n">cpp</span><span class="w">  </span><span class="n">GetOld</span><span class="p">.</span><span class="n">h</span><span class="w">  </span><span class="n">Makefile</span><span class="w">  </span><span class="n">OldAgeDeath</span><span class="p">.</span><span class="n">cpp</span><span class="w">  </span><span class="n">OldAgeDeath</span><span class="p">.</span><span class="n">h</span><span class="w">  </span><span class="n">RandomMove</span><span class="p">.</span><span class="n">cpp</span><span class="w">  </span><span class="n">RandomMove</span><span class="p">.</span><span class="n">h</span><span class="w"></span>
-<span class="n">$</span><span class="w"> </span><span class="n">ls</span><span class="w"> </span><span class="n">tut_pop</span><span class="o">/</span><span class="w"></span>
-<span class="n">DynPopFactory</span><span class="p">.</span><span class="n">cpp</span><span class="w">  </span><span class="n">DynPopFactory</span><span class="p">.</span><span class="n">h</span><span class="w">  </span><span class="n">ids</span><span class="p">.</span><span class="n">cpp</span><span class="w">  </span><span class="n">ids</span><span class="p">.</span><span class="n">h_for_configure</span><span class="w">  </span><span class="n">Makefile</span><span class="w">  </span><span class="n">PopulationFactory</span><span class="p">.</span><span class="n">h</span><span class="w">  </span><span class="n">StatPopFactory</span><span class="p">.</span><span class="n">cpp_for_configure</span><span class="w">  </span><span class="n">StatPopFactory</span><span class="p">.</span><span class="n">h</span><span class="w">  </span><span class="n">tut_MovePop</span><span class="p">.</span><span class="n">cpp</span><span class="w">  </span><span class="n">tut_MovePop</span><span class="p">.</span><span class="n">h</span><span class="w">  </span><span class="n">tut_StaticPop</span><span class="p">.</span><span class="n">cpp</span><span class="w">  </span><span class="n">tut_StaticPop</span><span class="p">.</span><span class="n">h</span><span class="w"></span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ls<span class="w"> </span>tut_mod/
+Action.cpp<span class="w">  </span>Action.h<span class="w">  </span>GetOld.cpp<span class="w">  </span>GetOld.h<span class="w">  </span>Makefile<span class="w">  </span>OldAgeDeath.cpp<span class="w">  </span>OldAgeDeath.h<span class="w">  </span>RandomMove.cpp<span class="w">  </span>RandomMove.h
+$<span class="w"> </span>ls<span class="w"> </span>tut_pop/
+DynPopFactory.cpp<span class="w">  </span>DynPopFactory.h<span class="w">  </span>ids.cpp<span class="w">  </span>ids.h_for_configure<span class="w">  </span>Makefile<span class="w">  </span>PopulationFactory.h<span class="w">  </span>StatPopFactory.cpp_for_configure<span class="w">  </span>StatPopFactory.h<span class="w">  </span>tut_MovePop.cpp<span class="w">  </span>tut_MovePop.h<span class="w">  </span>tut_StaticPop.cpp<span class="w">  </span>tut_StaticPop.h
 </pre></div>
 </div>
 <p>Now you can compile QHGMain like this:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">SHORT</span><span class="o">=</span><span class="n">tut</span><span class="w"> </span><span class="n">make</span><span class="w"> </span><span class="n">clean</span><span class="w"> </span><span class="n">QHGMain</span><span class="w"></span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">SHORT</span><span class="o">=</span>tut<span class="w"> </span>make<span class="w"> </span>clean<span class="w"> </span>QHGMain
 </pre></div>
 </div>
 </section>
 <section id="build-alt-modpop-py">
 <h2><code class="docutils literal notranslate"><span class="pre">build_alt_modpop.py</span></code><a class="headerlink" href="#build-alt-modpop-py" title="Permalink to this heading">¶</a></h2>
 <p>You can also use the script <a class="reference internal" href="tools/build_alt_modpop.html#build-alt-modpop-ref"><span class="std std-ref">build_alt_modpop.py</span></a>:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">$</span><span class="p">{</span><span class="n">QHG4_DIR</span><span class="p">}</span><span class="o">/</span><span class="n">useful_stuff</span><span class="o">/</span><span class="n">build_alt_modpop</span><span class="p">.</span><span class="n">py</span><span class="w"> </span><span class="n">test</span><span class="w"> </span><span class="n">tut_StaticPop</span><span class="w"> </span><span class="n">tut_MovePop</span><span class="w"></span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="si">${</span><span class="nv">QHG4_DIR</span><span class="si">}</span>/useful_stuff/build_alt_modpop.py<span class="w"> </span><span class="nb">test</span><span class="w"> </span>tut_StaticPop<span class="w"> </span>tut_MovePop
 </pre></div>
 </div>
-<p>This will create the directories <code class="docutils literal notranslate"><span class="pre">test_pop</span></code> and <code class="docutils literal notranslate"><span class="pre">test_mod</span></code> filled with the files required to build QHG whith the classes <code class="docutils literal notranslate"><span class="pre">tut_StaticPop</span></code> and  <code class="docutils literal notranslate"><span class="pre">tut_MovePop</span></code></p>
+<p>This will create the directories <code class="docutils literal notranslate"><span class="pre">test_pop</span></code> and <code class="docutils literal notranslate"><span class="pre">test_mod</span></code> filled with
+the files required to build QHG whith the classes <code class="docutils literal notranslate"><span class="pre">tut_StaticPop</span></code> and  <code class="docutils literal notranslate"><span class="pre">tut_MovePop</span></code></p>
 <p>Now you can cd to the QHG root directory and compile like this</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">SHORT</span><span class="o">=</span><span class="n">test</span><span class="w"> </span><span class="n">make</span><span class="w"> </span><span class="n">clean</span><span class="w"> </span><span class="n">QHGMain</span><span class="w"></span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">SHORT</span><span class="o">=</span><span class="nb">test</span><span class="w"> </span>make<span class="w"> </span>clean<span class="w"> </span>QHGMain
 </pre></div>
 </div>
 </section>
@@ -188,6 +215,7 @@ but so far not on WIndows or MAc.</p>
     <ul>
 <li><a class="reference internal" href="#">Compiling QHG</a><ul>
 <li><a class="reference internal" href="#dependencies">Dependencies</a></li>
+<li><a class="reference internal" href="#required-environment-variables">Required Environment Variables</a></li>
 <li><a class="reference internal" href="#compile-targets">Compile targets</a></li>
 <li><a class="reference internal" href="#compile-options">Compile options</a></li>
 <li><a class="reference internal" href="#alternative-population-and-action-directories">Alternative Population and Action directories</a></li>
@@ -204,8 +232,8 @@ but so far not on WIndows or MAc.</p>
   </div>
   <div>
     <h4>Next topic</h4>
-    <p class="topless"><a href="ObserverPattern.html"
-                          title="next chapter">The Observer Pattern</a></p>
+    <p class="topless"><a href="qhg4_running.html"
+                          title="next chapter">Running QHG</a></p>
   </div>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
@@ -235,7 +263,7 @@ but so far not on WIndows or MAc.</p>
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="ObserverPattern.html" title="The Observer Pattern"
+          <a href="qhg4_running.html" title="Running QHG"
              >next</a> |</li>
         <li class="right" >
           <a href="code_doc/app/Simulator.html" title="Simulator"

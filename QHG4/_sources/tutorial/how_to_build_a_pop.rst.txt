@@ -1,0 +1,498 @@
+.. _how_to_build_a_pop_ref:
+
+.. |_| unicode:: 0xA0 0xA0 0xA0 0xA0
+   :trim:
+
+
+How to design and build new Populations and Actions
+===================================================
+
+As an example, let us try to model viral infections in a community.
+
+The Layout
+----------
+
+We have a population which can be infected by a virus, but initially everybody has zero immunity.
+The virus multiplies in the agent, and when a certain virus load is reached,
+that individual  becomes infectious, and can infect other agents in the same 
+cell with a certain probability.
+If the virus load reaches the *lethality level* the agent dies.
+
+When an agent is infected, the multiplication of the virus is
+decreased by the agents immunity: the higher the immunity,
+the smaller the virus' effective growth rate  
+
+Immunity is inheritable: a baby's immunity is the average of the parents' immunity with some mutation.
+
+This setup could lead top various outcomes:
+  - total wipe out of the agents (if the lethality level is low, the infections probablity is high, or the growth rate is high.
+  - adaptation: immunity int the population has reached a reasonable level so lethality is delayed.
+  - virus extinction: global maximum immunity.
+
+
+Requirements
+------------
+
+Population
+~~~~~~~~~~
+
+We need sexual reproduction for our population. 
+This means we can build our new population starting from a copy of 
+``tut_SexualPop`` from tutorial 5.
+Furthermore our agents have 2 additional fields, a float for the virus load, 
+and a float for immunity.
+
+Actions
+~~~~~~~
+
+The virus has 5 attributes
+  - the infection probabiity
+  - the initial load (the "amount of virus" a newly infected agent gets.
+  - the virus growth rate (logidtic growth)
+  - the contagion level (if the virus load exceeds this, the agent becomes contagious)
+  - the lethality level (if the virus load exceeds this, the agent dies)
+
+In its ``execute()`` method it "grows" each agent's virus load. 
+Then, if the virus load exeeds the lthality level, it is regisatered for death.
+Otherwise we try to infect all other agents in the same cell
+Naively we would simply increase the virus load of each agent by a small amout,
+but since ``execute()`` is executed in parallel, this could lead to a problem
+if two thread happen to increase the virus load of the same agent at (more or less) the same time.
+
+Avoiding Race Conditions
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+A race condition is a situatiom in parallel program where the execution
+of non-atomic operations depends on the order of the threads and the exact 
+time at which they execute the code.
+  
+The oprator ``+=`` is not atomic, for instance. 
+The statement ``x += 2``  actually comprises three atomic instructions:
+- get value of variable x into register 1
+- add 2 to register 1
+- put value of register 1 into variable x
+
+So if ``x`` has the value 3, and we execute the code
+
+.. code-block:: c++
+
+    x += 2;
+
+with two threads, the result may be either 5 or 7:
+
+.. figure:: ../../images/race_cond.png
+ 
+   Depening on the timing and the order of execution, 
+   even simple parallelized code sections may giv eunexpected results.    
+      
+
+In order to avoid a race condition, we do not change theviral load of he agents,
+but we keep the store the loads an agent gets in in an array of maps, one map per thread.
+Each of these maps relates an agent index to the amount of ciral loads it gets.
+Inside such a map there is no threat of a race condition so we can simply add the 
+incoming loads as they come in.
+
+In the method ``finalize()`` which is executed after ``execute()`` we loop through all maps
+and actually increase the viral load of anagents by the amounts related to its index in the maps.
+
+Similar considerations apply to creating the vectors of agent IDs for each cell.
+Here to we hava an array of maps relating cell indexes to vectors of agent indexes.
+again there is one map for each thread, so we may push back agent indexes to thevectors in the 
+map of a thread without problems.
+
+Implementation of ``Virus``
+---------------------------
+
+The header file
+~~~~~~~~~~~~~~~
+
+The file ``Virus.h`` starts with the necessary includes for the header file:
+
+.. code-block:: c++
+
+    #ifndef __VIRUS_H__
+    #define __VIRUS_H__
+    
+    
+    #include "Action.h"
+    #include "ParamProvider2.h"
+    
+Next we define the name for the attributes
+
+.. code-block:: c++
+
+    #define ATTR_VIRUS_NAME                 "Virus"
+    #define ATTR_VIRUS_INFECTION_PROB_NAME  "InfectionProb"
+    #define ATTR_VIRUS_INITIAL_LOAD_NAME    "InitialLoad"
+    #define ATTR_VIRUS_GROWTH_RATE_NAME     "GrowthRate"
+    #define ATTR_VIRUS_CONTAGION_LEVEL_NAME "ContagionLevel"
+    #define ATTR_VIRUS_LETHALITY_LEVEL_NAME "LethalityLevel"
+
+Now follows the declaration of the ``Virus`` class which is derived from ``Action`` 
+
+.. code-block:: c++
+       
+    template<typename T>
+    class AnimalReproducer : public Action<T> {
+    
+As usual we have a construcot and a destructor.
+We particularily need both the ``execute()`` method and the ``finalizeStep()`` method,
+as well as the methods that deal with reading and writing the attribute values.
+
+.. code-block:: c++
+ 
+     public:
+        Virus(SPopulation<T> *pPop, SCellGrid *pCG, std::string sID, WELL512 **apWELL);
+        virtual ~Virus();
+
+        virtual int execute(int iA, float fT);
+        virtual int finalizeStep();
+
+        virtual int extractAttributesQDF(hid_t hSpeciesGroup);
+        virtual int writeAttributesQDF(hid_t hSpeciesGroup);
+    
+        virtual int tryGetAttributes(const ModuleComplex *pMC);
+    
+     
+And finally the members: the random number generators and the attributes.
+
+.. code-block:: c++
+ 
+    protected:
+        WELL512 **m_apWELL;
+        float m_fInfectionProb;
+        float m_fInitialLoad;
+        float m_fGrowthRate;
+        float m_fContagionLevel;
+        float m_fLethalityLevel; 
+    
+        int m_iNumThreads;
+        cellagentmap  *m_amCellAgents;
+        agentloadmap  *m_amAgentInfects; 
+
+
+        static const char *asNames[];
+    
+    };
+    
+    
+    #endif
+
+The entire file can be found here: `Virus.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/Virus.h>`_ 
+
+
+The c++ file
+~~~~~~~~~~~~
+
+At the beginning of ``Virus.cpp`` we must put the header files we need:
+
+.. code-block:: c++
+
+    #include <omp.h>
+
+    #include "MessLoggerT.h"
+
+    #include "clsutils.cpp"
+    #include "ParamProvider2.h"
+    #include "SPopulation.h"
+    #include "SCell.h"
+    #include "WELL512.h"
+    #include "QDFUtils.h"
+    #include "QDFUtilsT.h"
+    #include "Virus.h"
+
+We also need to define attribute names to read and write the action's attributes.
+ 
+.. code-block:: c++
+
+    template<typename T>
+    const char *Virus<T>::asNames[] = {
+        ATTR_VIRUS_INFECTION_PROB_NAME,
+        ATTR_VIRUS_INITIAL_LOAD_NAME,
+        ATTR_VIRUS_GROWTH_RATE_NAME,
+        ATTR_VIRUS_CONTAGION_LEVEL_NAME,
+        ATTR_VIRUS_LETHALITY_LEVEL_NAME,
+    };
+
+
+``constructor``
+^^^^^^^^^^^^^^^
+
+There is not much to do in the constructor: intialisation of the variables,
+and savin the attribute names.
+ 
+.. code-block:: c++
+
+    template<typename T>
+    Virus<T>::Virus(SPopulation<T> *pPop, SCellGrid *pCG, std::string sID, WELL512 **apWELL) 
+        : Action<T>(pPop,pCG,ATTR_VIRUS_NAME,sID),
+        m_apWELL(apWELL),
+        m_fInfectionProb(0),
+        m_fInitialLoad(0),
+        m_fGrowthRate(0),
+        m_fContagionLevel(0), 
+        m_fLethalityLevel(0),
+        m_iNumThreads(omp_get_max_threads()) {
+        
+        this->m_vNames.insert(this->m_vNames.end(), asNames, asNames+sizeof(asNames)/sizeof(char*));
+
+        int iNumCells = this->m_pCG->m_iNumCells;
+
+        // create array with one int map for each thread
+        m_amCellAgents = new cellagentmap[m_iNumThreads];
+
+        // create array with one map for each thread
+        m_amAgentInfects = new  agentloadmap[m_iNumThreads];
+
+    }
+
+``destructor``
+^^^^^^^^^^^^^^
+
+The destructor doesn't do anything
+ 
+.. code-block:: c++
+    
+    template<typename T>
+    Virus<T>::~Virus() {
+        // selete the arrays
+        delete[] m_amCellAgents;
+        delete[] m_amAgentInfects;
+    }
+
+``initialize``
+^^^^^^^^^^^^^^
+
+The method initialize is called before ``execute()``.
+IHere the array ov maps relating sellindexes to agent indexes (``m_amCellAGents``) is filled,
+and the array of maps relting agent IDs to virus loads (``m_amAgentInfects``) is resaet.
+
+Note that since ``initialize`` is not called in a parllelized contrxt,
+we can use parallelized loops with the full set of available threads.
+ 
+.. code-block:: c++
+
+    template<typename T>
+    int Virus<T>::initialize(float fT) {
+        int iResult = 0;
+
+        // clear the agent arrays and the infection registerr
+        for (int iT = 0; iT < m_iNumThreads; iT++) {
+            m_amCellAgents[iT].clear();
+            m_amAgentInfects[iT].clear();
+        }
+
+        int iFirstAgent = this->m_pPop->getFirstAgentIndex();
+        int iLastAgent  = this->m_pPop->getLastAgentIndex();
+
+    #pragma omp parallel for 
+        for (int iA = iFirstAgent; iA <= iLastAgent; iA++) {
+            int iT = omp_get_thread_num();
+            T* pA = &(this->m_pPop->m_aAgents[iA]);
+            m_amCellAgents[iT][pA->m_iCellIndex]->push_back(iA);
+        }
+
+        return iResult;
+    }
+
+``execute``
+^^^^^^^^^^^
+
+The ``execute()`` method is applied to every agent (in parallel).
+This method is usually the one most of the action's work is done. 
+Here is what we need the virus to do for each agent:
+- let the the agent's virus load grow logisically
+- if the agent's virus load exceeds the lethality level its register it for death
+- if the agent's viorus load exceeds the contagion level, it infects all agents in the cell (infection: increase the ``m_fIncoming`` value of the agent)
+
+ 
+.. code-block:: c++
+
+    template<typename T>
+    int Virus<T>::execute(int iAgentIndex, float fT) {
+        int iResult = 0;
+
+        int iT = omp_get_thread_num();
+    
+        T *pa = &(this->m_pPop->m_aAgents[iAgentIndex]);
+        // we only handle agents not already marked as dead
+        if (pa->m_iLifeState > 0) {
+
+            // perform the logistic growth of the agent's viral load
+            float fM = pa->m_fViralLoad;
+            pa->m_fViralLoad += m_fGrowthRate*fM*(1-fM); 
+
+            int iCellIndex = pa->m_iCellIndex;
+
+            // check if the agent must die
+            if (pa->m_fViralLoad > m_fLethalityLevel) {
+                this->m_pPop->registerDeath(iCellIndex, iAgentIndex);
+
+                // is the agent contagious?
+            } else if  (pa->m_fViralLoad > m_fContagionLevel) {
+                // loop through agents in cell
+                for (uint i = 0; i < m_amCellAgents[iT][iCellIndex].size(); i++) {
+                    int iOtherAgent = m_amCellAgents[iCellIndex][i];
+                    // we only infect other agents
+                    if (iOtherAgent != iAgentIndex) {
+                        // infect!
+                        double dR =  this->m_apWELL[omp_get_thread_num()]->wrandd();
+                        // we reduce the effective infection probability by multiplyint it with (1-immunity)
+                        if (dR < m_fInfectionProb * (1-pa->m_fImmunity)) {
+                            // register infection load for agent
+                            m_amAgentInfects[iT][iOtherAgent] += m_fInitialLoad;
+                        }
+                    }
+                }
+            }
+        }
+        return iResult;
+    }
+
+
+``finalize``
+^^^^^^^^^^^^
+
+The nethod ``finalize`` is called after all calls to `execute()``.
+Here we finally add to each agent's virus load the colllected virusload
+passed from its neighbors. Dusing ``execute()`` several maps may have entries 
+for the same agent. 
+
+.. code-block:: c++
+
+    template<typename T>
+    int Virus<T>::finalize(float fT) {
+        int iResult = 0;
+
+        for (int iT = 0; iT < m_iNumThreads; iT++) {
+            for (agentloadmap::const_iterator it = m_amAgentInfects[iT].begin(); it !=  m_amAgentInfects[iT].end(); ++it) {
+                // first:  agent index
+                // second: infecttload
+            
+                T *pa = &(this->m_pPop->m_aAgents[it->first]);
+                pa->m_fViralLoad += it->second;
+            }
+        }
+        return iResult;
+    }
+
+Here we need to do
+
+.. code-block:: c++
+
+    virtual int finalize(float fT);
+
+    virtual int extractAttributesQDF(hid_t hSpeciesGroup);
+    virtual int writeAttributesQDF(hid_t hSpeciesGroup);
+    
+    virtual int tryGetAttributes(const ModuleComplex *pMC);
+
+TODOTODOTODOTODOTODO
+
+Implementation of ``VirusHost``
+-------------------------------
+
+The header file
+~~~~~~~~~~~~~~~
+
+First  we have the includes for the header files of all required 
+actions (among them ``Virus.h``), and the header file for the 
+population's base class ``SPopulation``
+
+.. code-block:: c++
+
+    #include "GetOld.h"
+    #include "ATanDeath.h"
+    #include "RandomMove.h"
+    #include "Fertility.h"
+    #include "Verhulst.h"
+    #include "RandomPair.h"
+    #include "Virus.h"
+    #include "SPopulation.h"
+
+Now the declaration of the agent structure: we have members for agent fertility,
+and the members for the viral infections virus load, immunity and incoming virus load.
+
+.. code-block:: c++
+
+    struct VirusHostAgent : Agent {
+
+        float m_fAge;
+        float m_fLastBirth;
+        int m_iMateIndex;
+        
+        float m_fViralLoad;
+        float m_fImmunity;
+        float m_fIncoming;
+    };
+
+The declaration of the ``VirusHostPop`` class derived from ``SPopulation``:
+
+.. code-block:: c++
+
+    class VirusHostPop : public  SPopulation<VirusHostAgent> {
+
+The public methods are the usual: constructor, destructor and methods to
+add agent data from a dat file and to write agent data to a QDF file.
+In addition to that a method for setting the inital state of the baby 
+(which we've also encountered before), and a method to get a parameter 
+for the population from the XML file (here we need the mutation rate).
+
+.. code-block:: c++
+
+    public:
+        VirusHostPop(SCellGrid *pCG, PopFinder *pPopFinder, int iLayerSize, IDGen **apIDG, uint32_t *aulState, uint *aiSeeds);
+        virtual ~VirusHostPop_SexualPop();
+
+        int addPopSpecificAgentData(int iAgentIndex, char **ppData);
+        void addPopSpecificAgentDataTypeQDF(hid_t *hAgentDataType);
+
+        int makePopSpecificOffspring(int iAgent, int iMother, int iFather);
+        int getPopParams(const stringmap &mVarDefs);
+
+In the ``protected`` section thereare ointers to the actions of this population
+and the variable for the mutation rate.
+
+.. code-block:: c++
+
+    protected:
+        GetOld<VirusHostAgent>      *m_pGO;
+        ATanDeath<VirusHostAgent>   *m_pAD;
+        RandomMove<VirusHostAgent>  *m_pRM;
+        Fertility<VirusHostAgen>    *m_pFert;
+        Verhulst<VirusHostAgen>     *m_pVerhulst;
+        RandomPair<VirusHostAgen>   *m_pPair;
+        Virus<VirusHostAgen>        *m_pVirus;
+      
+        float m_fMutationRate;                        
+
+
+TODO
+  The c++ file   
+
+
+
+
+Sharing arrays
+
+additional arrays
+-----------------
+
+.. code-block:: text
+
+    HostPop: like SexualPop
+    but:
+      agent: double virusload, double immunity
+      pop:   additional class virus
+             makePopSpecificOffspring: average parent immunity + mutate
+
+    Virus Action
+      attrs: infection level, lethal level, infection_prob, initial load 
+      exec:  logistic growth on agent's virus load (0 remains 0)
+             if (virusload > lethal_level)
+                registerDeath
+             else if (virusLoad > infecion level)
+                 for all agents a in cell
+                     r = random
+                     if r < infdectopnprob*(1-a.immunity)
+                       a.virusload = initial load   | `tut_ParthenoPop.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_ParthenoPop.h>`_ 

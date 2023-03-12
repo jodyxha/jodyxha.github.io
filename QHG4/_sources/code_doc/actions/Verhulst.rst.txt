@@ -13,7 +13,9 @@ It incorporates a :ref:`LinearBirth<LinearBirth_ref>` and a :ref:`LinearDeath<Li
 
 .. figure:: ../../../images/LinBirthDeathCoords.png
 
-Code: `Verhulst.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/Verhulst.h>`_ `Verhulst.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/Verhulst.cpp>`_
+Code:
+    | `Verhulst.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/Verhulst.h>`_
+    | `Verhulst.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/Verhulst.cpp>`_ 
 
 **Attributes**
 
@@ -76,8 +78,8 @@ Deletes the ``LinearBirth`` and ``LinearDeath`` objects.
 ``fT``
     Simulation time step.
 
-Calls the ``intialize()`` method of the ``LinearBirth`` and ``LinearDeath`` objects.
-(at this point we expect those objects have been created by a call to ``extractAttributesQDF()``.
+Calls the ``intialize()`` method of the ``LinearBirth`` and ``LinearDeath`` objects
+(at this point we expect those objects have been created by a call to ``extractAttributesQDF()``).
 
 .. -----------------------------------------------------------------------------
 
@@ -160,7 +162,10 @@ Extracts the action's attributes from the ``ModuleComplex`` object.
 ``dValue``
     Value to set the attribute to.
 
-This method can change the values of :math:`b_0` (``ATTR_VERHULST_B0_NAME``), :math:`d_0` (``ATTR_VERHULST_D0_NAME``), :math:`\theta` (``ATTR_VERHULST_TURNOVER_NAME``) or the global capacity :math:`K` (``ATTR_VERHULST_CAPACITY_NAME``).
+This method can change the values of :math:`b_0` (``ATTR_VERHULST_B0_NAME``), 
+:math:`d_0` (``ATTR_VERHULST_D0_NAME``), 
+:math:`\theta` (``ATTR_VERHULST_TURNOVER_NAME``),
+or the global capacity :math:`K` (``ATTR_VERHULST_CAPACITY_NAME``).
    
  .. -----------------------------------------------------------------------------
 
@@ -177,4 +182,4 @@ This method can change the values of :math:`b_0` (``ATTR_VERHULST_B0_NAME``), :m
 ``bStrict``
     Strictness of comparisons (ignored here).
 
-``pAction`` is equal to ``this``, if it is a ``Verhulst`` object whose ``LinearBirth`` and ``LinearDeth`` objects match.
+``pAction`` is equal to ``this``, if it is a ``Verhulst`` object whose ``LinearBirth`` and ``LinearDeath`` objects match.

@@ -23,7 +23,7 @@ Code:
 +------------------------------------+--------------------+---------------------------------+
 | ``ATTR_ANIMALREP_NAME``            | "AnimalReproducer" | action name                     |
 +------------------------------------+--------------------+---------------------------------+
-| ``ATTR_ANIMALREP_MASS_FERT_NAME``  | "MassFert"         | minimum fertiliyty mass         |
+| ``ATTR_ANIMALREP_MASS_FERT_NAME``  | "MassFert"         | minimum fertility mass          |
 +------------------------------------+--------------------+---------------------------------+
 | ``ATTR_ANIMALREP_MASS_BABY_NAME``  | "MassBaby"         | new baby mass                   |
 +------------------------------------+--------------------+---------------------------------+
@@ -38,7 +38,7 @@ Public Methods
 
 .. code-block:: c++
 
-   GrassManager(SPopulation<T> *pPop, SCellGrid *pCG, std::string sID, WELL512 **apWELL); 
+   AnimalReproducer(SPopulation<T> *pPop, SCellGrid *pCG, std::string sID, WELL512 **apWELL); 
  
 ``pPop``
     A pointer to the :ref:`SPopulation<SPopulation_ref>` object performing this action.
@@ -60,7 +60,7 @@ Public Methods
 ^^^^^^^^^^^^^^
 .. code-block:: c++
 
-    virtual ~GrassManager();
+    virtual ~AnimalReproducer();
 
 The destructor does nothing.
 

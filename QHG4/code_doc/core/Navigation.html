@@ -54,46 +54,53 @@
 <p>The class <code class="docutils literal notranslate"><span class="pre">Navigation</span></code> provides “tunnels” or “bridges” connecting points an different land masses.</p>
 <p>The action <a class="reference internal" href="../actions/Navigate.html#navigate-ref"><span class="std std-ref">Navigate</span></a> provides means to assign crossing probabilities to bridges.</p>
 <p>The bridges are usually automatically calculated (with the tool “SeaWays”), but bridges  can also ne added manually</p>
+<dl>
+<dt>Code:</dt><dd><div class="line-block">
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/core/Navigation.h">Navigation.h</a></div>
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/core/Navigation.cpp">Navigation.cpp</a></div>
+</div>
+</dd>
+</dl>
 <section id="type-definitions">
 <h2>Type Definitions<a class="headerlink" href="#type-definitions" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">gridtype</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="o">&gt;</span><span class="w">   </span><span class="n">distlist</span><span class="p">;</span><span class="w"></span>
-<span class="k">typedef</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">gridtype</span><span class="p">,</span><span class="w"> </span><span class="n">distlist</span><span class="o">&gt;</span><span class="w"> </span><span class="n">distancemap</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">gridtype</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="o">&gt;</span><span class="w">   </span><span class="n">distlist</span><span class="p">;</span>
+<span class="k">typedef</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">gridtype</span><span class="p">,</span><span class="w"> </span><span class="n">distlist</span><span class="o">&gt;</span><span class="w"> </span><span class="n">distancemap</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>A <code class="docutils literal notranslate"><span class="pre">distancemap</span></code> assigns a origins and istances to destinations.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">gridtype</span><span class="p">,</span><span class="n">gridtype</span><span class="o">&gt;</span><span class="w"> </span><span class="n">bridgedef</span><span class="p">;</span><span class="w"></span>
-<span class="k">typedef</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">bridgedef</span><span class="o">&gt;</span><span class="w">        </span><span class="n">bridgelist</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">gridtype</span><span class="p">,</span><span class="n">gridtype</span><span class="o">&gt;</span><span class="w"> </span><span class="n">bridgedef</span><span class="p">;</span>
+<span class="k">typedef</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">bridgedef</span><span class="o">&gt;</span><span class="w">        </span><span class="n">bridgelist</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>A <code class="docutils literal notranslate"><span class="pre">bridgedef</span></code> holds the origin and destination of a bridge; a <code class="docutils literal notranslate"><span class="pre">bridgelist</span></code> is a vector containing bridge definitiions.</p>
 </section>
 <section id="public-members">
 <h2>Public Members<a class="headerlink" href="#public-members" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">uint</span><span class="w">     </span><span class="n">m_iNumPorts</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">uint</span><span class="w">     </span><span class="n">m_iNumPorts</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>The number of ports (i.e. origin points).</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">uint</span><span class="w">     </span><span class="n">m_iNumDests</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">uint</span><span class="w">     </span><span class="n">m_iNumDests</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>The number of destination points.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">uint</span><span class="w">     </span><span class="n">m_iNumDists</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">uint</span><span class="w">     </span><span class="n">m_iNumDists</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Number of entries in the distance map.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span><span class="w">   </span><span class="n">m_dSampleDist</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span><span class="w">   </span><span class="n">m_dSampleDist</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>The sampling distance is needed to calculate crossing probabilities.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">uint</span><span class="w">     </span><span class="n">m_iNumBridges</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">uint</span><span class="w">     </span><span class="n">m_iNumBridges</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Number of bridges.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">distancemap</span><span class="w"> </span><span class="n">m_mDestinations</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">distancemap</span><span class="w"> </span><span class="n">m_mDestinations</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Map for all involved distances.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">bridgelist</span><span class="w">  </span><span class="n">m_vBridges</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">bridgelist</span><span class="w">  </span><span class="n">m_vBridges</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>The list of ‘manual’ bridges.</p>
@@ -102,21 +109,21 @@
 <h2>Public Methods<a class="headerlink" href="#public-methods" title="Permalink to this heading">¶</a></h2>
 <section id="constructor">
 <h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#constructor" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Navigation</span><span class="p">();</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Navigation</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>The constructor initializes the members.</p>
 </section>
 <section id="destructor">
 <h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">Navigation</span><span class="p">();</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">Navigation</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>The destructor does nothing.</p>
 </section>
 <section id="setdata">
 <h3><code class="docutils literal notranslate"><span class="pre">setData</span></code><a class="headerlink" href="#setdata" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">setData</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">distancemap</span><span class="w"> </span><span class="o">&amp;</span><span class="n">mDests</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dSampleDist</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">setData</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">distancemap</span><span class="w"> </span><span class="o">&amp;</span><span class="n">mDests</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dSampleDist</span><span class="p">);</span>
 </pre></div>
 </div>
 <dl class="simple">
@@ -129,7 +136,7 @@
 </section>
 <section id="setbridges">
 <h3><code class="docutils literal notranslate"><span class="pre">setBridges</span></code><a class="headerlink" href="#setbridges" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">setBridges</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">bridgelist</span><span class="w"> </span><span class="o">&amp;</span><span class="n">vBridges</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">setBridges</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">bridgelist</span><span class="w"> </span><span class="o">&amp;</span><span class="n">vBridges</span><span class="p">);</span>
 </pre></div>
 </div>
 <dl class="simple">
@@ -140,7 +147,7 @@
 </section>
 <section id="checksizes">
 <h3><code class="docutils literal notranslate"><span class="pre">checkSizes</span></code><a class="headerlink" href="#checksizes" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">checkSizes</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">iNumPorts</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="n">iNumDests</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="n">iNumDists</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">checkSizes</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">iNumPorts</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="n">iNumDests</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="n">iNumDists</span><span class="p">);</span>
 </pre></div>
 </div>
 <dl class="simple">

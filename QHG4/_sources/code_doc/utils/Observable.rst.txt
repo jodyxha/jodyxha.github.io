@@ -19,7 +19,9 @@ Usually ``Observable`` serves as a parent class for multiple inheritance,  e.g.
 
     class MultiEvaluator : public Evaluator<T>, public Observable
 
-Code:  `Observable.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/Observable.h>`_ `Observable.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/Observable.cpp>`_
+Code:
+    | `Observable.h <https://github.com/jodyxha/QHG3/blob/main/QHG4/utils/Observable.h>`_
+    | `Observable.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/Observable.cpp>`_
 
 
 Public Methods

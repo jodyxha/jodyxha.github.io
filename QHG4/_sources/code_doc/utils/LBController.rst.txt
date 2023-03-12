@@ -19,7 +19,9 @@ LBController
     The green cells in the ``L2List`` denote the nodes of the PASSIVE chain, the white boxes represent currently unused elements.
 
   
-Code: `LBController.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/LBController.h>`_, `LBController.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/LBController.cpp>`_
+Code:
+    | `LBController.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/LBController.h>`_
+    | `LBController.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/LBController.cpp>`_
 
 
 

@@ -9,7 +9,8 @@ types
 
 The file ``types.h`` contains type definitions used throughout QHG4.
 
-Code: `types.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/types.h>`_
+Code: 
+    | `types.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/types.h>`_
 
 Type Definitions
 ----------------

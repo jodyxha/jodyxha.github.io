@@ -16,6 +16,10 @@ The action :ref:`Navigate<Navigate_ref>` provides means to assign crossing proba
 
 The bridges are usually automatically calculated (with the tool "SeaWays"), but bridges  can also ne added manually
 
+Code: 
+    | `Navigation.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/core/Navigation.h>`_ 
+    | `Navigation.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/core/Navigation.cpp>`_
+
 Type Definitions
 ----------------
 

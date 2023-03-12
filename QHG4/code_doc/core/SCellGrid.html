@@ -57,26 +57,32 @@ QHG supports flat grids with 4 or 6 neighborhoods, as well as icosahedral grids.
 <img alt="../../images/some_grids.png" src="../../images/some_grids.png" />
 </figure>
 <p>QDF files containing regular cell grids can be created with the tool <a class="reference internal" href="../../tools/Def2QDF.html#def2qdf-ref"><span class="std std-ref">Def2QDF</span></a>.</p>
-<p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/core/SCellGrid.h">SCellGrid.h</a> <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/core/SCellGrid.cpp">SCellGrid.cpp</a></p>
+<dl>
+<dt>Code:</dt><dd><div class="line-block">
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/core/SCellGrid.h">SCellGrid.h</a></div>
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/core/SCellGrid.cpp">SCellGrid.cpp</a></div>
+</div>
+</dd>
+</dl>
 <section id="public-members">
 <h2>Public Members<a class="headerlink" href="#public-members" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w">         </span><span class="n">m_iID</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w">         </span><span class="n">m_iID</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>The cell grid’s ID</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">uint</span><span class="w">        </span><span class="n">m_iNumCells</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">uint</span><span class="w">        </span><span class="n">m_iNumCells</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>The number of cells in the grid.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">SCell</span><span class="w">       </span><span class="o">*</span><span class="n">m_aCells</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">SCell</span><span class="w">       </span><span class="o">*</span><span class="n">m_aCells</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>The array of <a class="reference internal" href="SCell.html#scell-ref"><span class="std std-ref">SCell</span></a> objects.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w">       </span><span class="n">m_iType</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w">       </span><span class="n">m_iType</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>The type of the grid: cartesian with 4-neighborhood (0), cartesian with 6-neighborhood (1, subdivided icosahedron(3).</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w">       </span><span class="n">m_iConnectivity</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w">       </span><span class="n">m_iConnectivity</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>The grid’s connectivity (4 or 6).</p>
@@ -85,7 +91,7 @@ QHG supports flat grids with 4 or 6 neighborhoods, as well as icosahedral grids.
 <h2>Public Methods<a class="headerlink" href="#public-methods" title="Permalink to this heading">¶</a></h2>
 <section id="constructor">
 <h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#constructor" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">SCellGrid</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iID</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="n">iNumCells</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">stringmap</span><span class="w"> </span><span class="o">&amp;</span><span class="n">smSurfaceData</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">SCellGrid</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iID</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="n">iNumCells</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">stringmap</span><span class="w"> </span><span class="o">&amp;</span><span class="n">smSurfaceData</span><span class="p">);</span>
 </pre></div>
 </div>
 <dl class="simple">
@@ -102,42 +108,42 @@ In QHG the <a class="reference internal" href="../io/GridGroupReader.html#gridgr
 </section>
 <section id="destructor">
 <h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="o">~</span><span class="n">SCellGrid</span><span class="p">();</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="o">~</span><span class="n">SCellGrid</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>The destructor deletes the array of <code class="docutils literal notranslate"><span class="pre">SCell</span></code> objects.</p>
 </section>
 <section id="setgeography">
 <h3><code class="docutils literal notranslate"><span class="pre">setGeography</span></code><a class="headerlink" href="#setgeography" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">setGeography</span><span class="p">(</span><span class="n">Geography</span><span class="o">*</span><span class="w"> </span><span class="n">pGeo</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">setGeography</span><span class="p">(</span><span class="n">Geography</span><span class="o">*</span><span class="w"> </span><span class="n">pGeo</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Sets the <a class="reference internal" href="Geography.html#geography-ref"><span class="std std-ref">Geography</span></a> object.</p>
 </section>
 <section id="setclimate">
 <h3><code class="docutils literal notranslate"><span class="pre">setClimate</span></code><a class="headerlink" href="#setclimate" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">setClimate</span><span class="p">(</span><span class="n">Climate</span><span class="o">*</span><span class="w"> </span><span class="n">pClim</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">setClimate</span><span class="p">(</span><span class="n">Climate</span><span class="o">*</span><span class="w"> </span><span class="n">pClim</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Sets the <a class="reference internal" href="Climate.html#climate-ref"><span class="std std-ref">Climate</span></a> object.</p>
 </section>
 <section id="setvegetation">
 <h3><code class="docutils literal notranslate"><span class="pre">setVegetation</span></code><a class="headerlink" href="#setvegetation" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">setVegetation</span><span class="p">(</span><span class="n">Vegetation</span><span class="o">*</span><span class="w"> </span><span class="n">pVeg</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">setVegetation</span><span class="p">(</span><span class="n">Vegetation</span><span class="o">*</span><span class="w"> </span><span class="n">pVeg</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Sets the <a class="reference internal" href="Vegetation.html#vegetation-ref"><span class="std std-ref">Vegetation*</span></a> object.</p>
 </section>
 <section id="setnavigation">
 <h3><code class="docutils literal notranslate"><span class="pre">setNavigation</span></code><a class="headerlink" href="#setnavigation" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">setNavigation</span><span class="p">(</span><span class="n">Navigation</span><span class="o">*</span><span class="w"> </span><span class="n">pNav</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">setNavigation</span><span class="p">(</span><span class="n">Navigation</span><span class="o">*</span><span class="w"> </span><span class="n">pNav</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Sets the <a class="reference internal" href="Navigation.html#navigation-ref"><span class="std std-ref">Navigation</span></a> object.</p>
 </section>
 <section id="iscartesian">
 <h3><code class="docutils literal notranslate"><span class="pre">isCartesian</span></code><a class="headerlink" href="#iscartesian" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="nf">isCartesian</span><span class="p">();</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="nf">isCartesian</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>Returns <code class="docutils literal notranslate"><span class="pre">true</span></code> if the grid is not icosahedral.</p>

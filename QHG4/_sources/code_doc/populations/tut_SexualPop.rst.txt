@@ -24,7 +24,9 @@ are required.
 
 (The class ``tut_SexualPop`` is described in detail in the :ref:`fifth part<TutorialSexual_ref>` of the :ref:`tutorial<Tutorial_ref>`).
 
-Code: `tut_SexualPop.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_SexualPop.h>`_, `tut_SexualPop.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_SexualPop.cpp>`_
+Code:
+    | `tut_SexualPop.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_SexualPop.h>`_
+    | `tut_SexualPop.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_SexualPop.cpp>`_
 
 
 Data types
@@ -110,8 +112,8 @@ The destructor deletes the action objects created in the constructor.
 
 .. -----------------------------------------------------------------------------
 
-``addPopSpecificAgentData`TypeQDF``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+``addPopSpecificAgentDataTypeQDF``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 .. code-block:: c++
 
     addPopSpecificAgentDataTypeQDF(hid_t *hAgentDataType);

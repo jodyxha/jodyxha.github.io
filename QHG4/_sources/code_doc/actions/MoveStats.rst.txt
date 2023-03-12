@@ -16,7 +16,9 @@ This is evidently only useful if the agents are started from a small region.
 
 The resulting data sets are written to QDF-files as ``Hops_new``, ``Dist_new`` and ``Time_new``  to the subgroup ``/Populations/<species_name>/MoveStats/`` 
 
-Code: `MoveStats.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/MoveStats.h>`_ `MoveStats.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/MoveStats.cpp>`_
+Code: 
+    | `MoveStats.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/MoveStats.h>`_ 
+    | `MoveStats.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/MoveStats.cpp>`_
 
 **Attributes**
 

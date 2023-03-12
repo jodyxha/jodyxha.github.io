@@ -11,7 +11,9 @@ The module ``QDFUtils`` contain functions to simplify interactions with QDF file
 
 It als contains string constants for the names of HDF datasets and groups used in QDF files. 
 
-Code: `QDFUtils.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/QDFUtils.h>`_, `QDFUtils.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/QDFUtils.cpp>`_, `QDFUtilsT.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/QDFUtilsT.h>`_
+Code:
+    | `QDFUtils.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/QDFUtils.h>`_, `QDFUtils.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/QDFUtils.cpp>`_
+    | `QDFUtilsT.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/QDFUtilsT.h>`_
 
 
 

@@ -69,6 +69,22 @@ For some tools to work the python modules ``h5py``, ``netcdf4-python``, and ``nu
     sudo apt-get install python-netcdf4
 
 
+Required Environment Variables
+------------------------------
+
+Make sure that the vairable QHG4_DIR is set to the root of the 
+directory containing the QHG4 download.
+
+On the commandline this can be done by 
+
+.. code-block:: bash
+
+    export QHG4_DIR=/home/user17/progs/QHG4
+
+But this woule have to be done evry time a new terminal si opened. 
+For this reason, it makes more sense to put this line into a file whic is
+executed when a shell is poened (e.g.``~/.bash_rc`` for bash shells)
+ 
 Compile targets
 ---------------
 
@@ -80,8 +96,12 @@ There are various targets  to compile:
 ``QHGMain``
     The QHG simulator
 
+``plugins``
+    Build populaztion plugins.
+
 ``tools_n``
     Recompile all tools
+
 
 Example
 
@@ -103,27 +123,46 @@ Compile options
 ---------------
 
 ``OPT``
-    If set to 1, optimize the compilation (``-O3``)
+    If set to 1, optimize the compilation (``-O3``). Recognized by all targets.
 
 ``SHORT``
     Sets the prefix for alternative population and action directories.
+    Used by targets ``QHGMain`` and ``plugins``.
 
 ``OUT``
-    Sets the output name
+    Sets the output name. Used by target ``QHGMain``
+
+``DYNAMIC_POPS``
+    Create a version QHGMain without statically linked actions and populkations. 
+    Such a QHGMain must use plugins. Recognized by target "QHGMain"
 
 Examples
 
-.. code-block:: c++
+.. code-block:: bash
 
     OUT=QHGTest OPT=1 make clean QHGMain
 
 Build an optimized QHG from scratch and name the executable ``QHGTest``
 
-.. code-block:: c++
+.. code-block:: bash
 
     SHORT=tut OPT=1 make clean QHGMain
 
 Build an optimized QHG from scratch, but use the alternative population and action directories ``tut_pop`` and ``tut_mod``.
+
+.. code-block:: bash
+
+    DYNAMIC_POPS=1 OPT=1 make clean QHGMain
+
+Build an optimized QHG for the use with plugins  from scratch.
+
+.. code-block:: bash
+
+    SHORT=tut_08 make plugina
+
+Build plugins for the populations found in the alternative compilation directory ``tut_08``-
+
+
 
 
 
@@ -137,7 +176,7 @@ If there are many files for population classes in the ``populations`` subdirecto
 
 There is a script in the subdirectory which you can use for this:
 
-.. code-block:: c++
+.. code-block:: bash
 
     build_alt_modpop.py <prefix> <pop_name>+
 
@@ -145,13 +184,13 @@ There is a script in the subdirectory which you can use for this:
 
 Example:
 
-.. code-block:: c++
+.. code-block:: bash
 
     build_alt_modpop.py tut tut_StaticPop tut_MovePop
 
 This will create the directories ``tut_pop`` and ``tut_mod`` which are filled with the required files from  ``actions`` and ``population``:
 
-.. code-block:: c++
+.. code-block:: bash
  
     $ ls tut_mod/
     Action.cpp  Action.h  GetOld.cpp  GetOld.h  Makefile  OldAgeDeath.cpp  OldAgeDeath.h  RandomMove.cpp  RandomMove.h
@@ -160,7 +199,7 @@ This will create the directories ``tut_pop`` and ``tut_mod`` which are filled wi
 
 Now you can compile QHGMain like this:
 
-.. code-block:: c++
+.. code-block:: bash
 
     SHORT=tut make clean QHGMain
 
@@ -170,15 +209,16 @@ Now you can compile QHGMain like this:
 
 You can also use the script :ref:`build_alt_modpop.py<build_alt_modpop_ref>`:
 
-.. code-block:: c++
+.. code-block:: bash
    
     ${QHG4_DIR}/useful_stuff/build_alt_modpop.py test tut_StaticPop tut_MovePop
 
-This will create the directories ``test_pop`` and ``test_mod`` filled with the files required to build QHG whith the classes ``tut_StaticPop`` and  ``tut_MovePop``
+This will create the directories ``test_pop`` and ``test_mod`` filled with 
+the files required to build QHG whith the classes ``tut_StaticPop`` and  ``tut_MovePop``
 
 Now you can cd to the QHG root directory and compile like this
 
-.. code-block:: c++
+.. code-block:: bash
 
     SHORT=test make clean QHGMain
 

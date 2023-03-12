@@ -10,7 +10,9 @@ Geography
 The ``Geography`` incorporates geographical data such as lobitude, latitude, altitude, ice covering etc.
 All data items are associated with a node of the :ref:`SCellGrid<SCellGrid_ref>`.
 
-Code: `Geography.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/core/Geography.h>`_ `Geography.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/core/Geography.cpp>`_
+Code:
+    | `Geography.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/core/Geography.h>`_
+    | `Geography.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/core/Geography.cpp>`_
 
 Public Members
 --------------

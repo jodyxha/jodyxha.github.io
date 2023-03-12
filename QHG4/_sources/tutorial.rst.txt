@@ -46,3 +46,8 @@ All populations used in QHG are derived from :ref:`SPopulation<SPopulation_ref>`
    tutorial/tutorial_06_environalt
    tutorial/tutorial_07_environcapalt
    tutorial/tutorial_08_grasssheep
+   
+.. toctree::
+   :maxdepth: 1
+
+   tutorial/how_to_build_a_pop

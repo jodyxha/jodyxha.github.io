@@ -14,5 +14,6 @@ This makes it possible to fill containers with differently instantiated ``SPopul
 
 Refer to the :ref:`documentation of SPopulation<SPopulation_ref>` for more information on the methods.
 
-Code: `PopBase.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/core/PopBase.h>`_
+Code: 
+    | `PopBase.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/core/PopBase.h>`_
 

@@ -9,7 +9,9 @@ Fertility
 
 The class ``Fertility`` is derived from ``Action``, and determines the agents' fertility. 
 
-Code: `Fertility.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/Fertility.h>`_ `Fertility.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/Fertility.cpp>`_
+Code: 
+    | `Fertility.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/Fertility.h>`_ 
+    | `Fertility.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/Fertility.cpp>`_
 
 
 **Attributes**

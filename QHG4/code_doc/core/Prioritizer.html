@@ -52,11 +52,17 @@
 <p class="hidden">This page describes the class <span class="target" id="index-0"></span>Prioritizer</p>
 <p>The class <code class="docutils literal notranslate"><span class="pre">Prioritizer</span></code> is used to manage an <a class="reference internal" href="SPopulation.html#spopulation-ref"><span class="std std-ref">SPopulation</span></a>’s actions based on their priority level.
 In qhg an action with lower priority level is exec uted <em>before</em> an action with a higher priority level (cf. <a class="reference internal" href="../../ActionPrio.html#actionprio-ref"><span class="std std-ref">Actions and Priorities</span></a>).</p>
-<p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/core/Prioritizer.h">Prioritizer.h</a> <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/core/Prioritizer.cpp">Prioritizer.cpp</a></p>
+<dl>
+<dt>Code:</dt><dd><div class="line-block">
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/core/Prioritizer.h">Prioritizer.h</a></div>
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/core/Prioritizer.cpp">Prioritizer.cpp</a></div>
+</div>
+</dd>
+</dl>
 <section id="type-definitions">
 <h2>Type Definitions<a class="headerlink" href="#type-definitions" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">uint</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="n">Action</span><span class="o">&lt;</span><span class="n">A</span><span class="o">&gt;*</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">actlist</span><span class="p">;</span><span class="w"></span>
-<span class="k">typedef</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">Action</span><span class="o">&lt;</span><span class="n">A</span><span class="o">&gt;*</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">namelist</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">uint</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="n">Action</span><span class="o">&lt;</span><span class="n">A</span><span class="o">&gt;*</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">actlist</span><span class="p">;</span>
+<span class="k">typedef</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">Action</span><span class="o">&lt;</span><span class="n">A</span><span class="o">&gt;*</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">namelist</span><span class="p">;</span>
 </pre></div>
 </div>
 <div class="line-block">
@@ -68,21 +74,21 @@ In qhg an action with lower priority level is exec uted <em>before</em> an actio
 <h2>Public Methods<a class="headerlink" href="#public-methods" title="Permalink to this heading">¶</a></h2>
 <section id="constructor">
 <h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#constructor" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Prioritizer</span><span class="p">();</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Prioritizer</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>The constructor does nothing.</p>
 </section>
 <section id="destructor">
 <h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">Prioritizer</span><span class="p">()</span><span class="w"> </span><span class="p">{};</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">Prioritizer</span><span class="p">()</span><span class="w"> </span><span class="p">{};</span>
 </pre></div>
 </div>
 <p>The destructor does nothing.</p>
 </section>
 <section id="setprio">
 <h3><code class="docutils literal notranslate"><span class="pre">setPrio</span></code><a class="headerlink" href="#setprio" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">setPrio</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">iPrio</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">name</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">setPrio</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">iPrio</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">name</span><span class="p">);</span>
 </pre></div>
 </div>
 <dl>
@@ -97,7 +103,7 @@ In qhg an action with lower priority level is exec uted <em>before</em> an actio
 </section>
 <section id="addaction">
 <h3><code class="docutils literal notranslate"><span class="pre">addAction</span></code><a class="headerlink" href="#addaction" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">addAction</span><span class="p">(</span><span class="n">Action</span><span class="o">&lt;</span><span class="n">A</span><span class="o">&gt;</span><span class="w"> </span><span class="o">*</span><span class="n">act</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">addAction</span><span class="p">(</span><span class="n">Action</span><span class="o">&lt;</span><span class="n">A</span><span class="o">&gt;</span><span class="w"> </span><span class="o">*</span><span class="n">act</span><span class="p">);</span>
 </pre></div>
 </div>
 <dl class="simple">
@@ -107,7 +113,7 @@ In qhg an action with lower priority level is exec uted <em>before</em> an actio
 </section>
 <section id="removeaction">
 <h3><code class="docutils literal notranslate"><span class="pre">removeAction</span></code><a class="headerlink" href="#removeaction" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">removeAction</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">name</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">removeAction</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">name</span><span class="p">);</span>
 </pre></div>
 </div>
 <dl class="simple">
@@ -117,7 +123,7 @@ In qhg an action with lower priority level is exec uted <em>before</em> an actio
 </section>
 <section id="hasaction">
 <h3><cite>hasAction`</cite><a class="headerlink" href="#hasaction" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="nf">hasAction</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">name</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="nf">hasAction</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">name</span><span class="p">);</span>
 </pre></div>
 </div>
 <dl class="simple">
@@ -128,7 +134,7 @@ In qhg an action with lower priority level is exec uted <em>before</em> an actio
 </section>
 <section id="hasparam">
 <h3><code class="docutils literal notranslate"><span class="pre">hasParam</span></code><a class="headerlink" href="#hasparam" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="nf">hasParam</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">name</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="nf">hasParam</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">name</span><span class="p">);</span>
 </pre></div>
 </div>
 <dl class="simple">
@@ -139,14 +145,14 @@ In qhg an action with lower priority level is exec uted <em>before</em> an actio
 </section>
 <section id="getmaxprio">
 <h3><code class="docutils literal notranslate"><span class="pre">getMaxPrio</span></code><a class="headerlink" href="#getmaxprio" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="nf">getMaxPrio</span><span class="p">();</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="nf">getMaxPrio</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>Returns the highest priority level.</p>
 </section>
 <section id="getprios">
 <h3><code class="docutils literal notranslate"><span class="pre">getPrios</span></code><a class="headerlink" href="#getprios" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="nf">getPrios</span><span class="p">(</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">set</span><span class="o">&lt;</span><span class="n">uint</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">vPrios</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="nf">getPrios</span><span class="p">(</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">set</span><span class="o">&lt;</span><span class="n">uint</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">vPrios</span><span class="p">);</span>
 </pre></div>
 </div>
 <dl class="simple">
@@ -158,7 +164,7 @@ In qhg an action with lower priority level is exec uted <em>before</em> an actio
 </section>
 <section id="getnumactionsforprio">
 <h3><code class="docutils literal notranslate"><span class="pre">getNumActionsForPrio</span></code><a class="headerlink" href="#getnumactionsforprio" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">uint</span><span class="w"> </span><span class="nf">getNumActionsForPrio</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">iPrio</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">uint</span><span class="w"> </span><span class="nf">getNumActionsForPrio</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">iPrio</span><span class="p">);</span>
 </pre></div>
 </div>
 <dl class="simple">
@@ -169,7 +175,7 @@ In qhg an action with lower priority level is exec uted <em>before</em> an actio
 </section>
 <section id="getaction">
 <h3><code class="docutils literal notranslate"><span class="pre">getAction</span></code><a class="headerlink" href="#getaction" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Action</span><span class="o">&lt;</span><span class="n">A</span><span class="o">&gt;</span><span class="w"> </span><span class="o">*</span><span class="n">getAction</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iPrio</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iWhich</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Action</span><span class="o">&lt;</span><span class="n">A</span><span class="o">&gt;</span><span class="w"> </span><span class="o">*</span><span class="n">getAction</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iPrio</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iWhich</span><span class="p">);</span>
 </pre></div>
 </div>
 <dl class="simple">
@@ -182,7 +188,7 @@ In qhg an action with lower priority level is exec uted <em>before</em> an actio
 </section>
 <section id="extractactionparamsqdf">
 <h3><code class="docutils literal notranslate"><span class="pre">extractActionParamsQDF</span></code><a class="headerlink" href="#extractactionparamsqdf" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">extractActionParamsQDF</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hSpeciesGroup</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">extractActionParamsQDF</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hSpeciesGroup</span><span class="p">);</span>
 </pre></div>
 </div>
 <dl class="simple">
@@ -193,7 +199,7 @@ In qhg an action with lower priority level is exec uted <em>before</em> an actio
 </section>
 <section id="writeactionparamsqdf">
 <h3><code class="docutils literal notranslate"><span class="pre">writeActionParamsQDF</span></code><a class="headerlink" href="#writeactionparamsqdf" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">writeActionParamsQDF</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hSpeciesGroup</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">writeActionParamsQDF</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hSpeciesGroup</span><span class="p">);</span>
 </pre></div>
 </div>
 <dl class="simple">
@@ -204,7 +210,7 @@ In qhg an action with lower priority level is exec uted <em>before</em> an actio
 </section>
 <section id="getactionattributes">
 <h3><code class="docutils literal notranslate"><span class="pre">getActionAttributes</span></code><a class="headerlink" href="#getactionattributes" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">getActionAttributes</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">modulemap</span><span class="w"> </span><span class="o">&amp;</span><span class="n">mModules</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">getActionAttributes</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">modulemap</span><span class="w"> </span><span class="o">&amp;</span><span class="n">mModules</span><span class="p">);</span>
 </pre></div>
 </div>
 <dl class="simple">
@@ -215,7 +221,7 @@ In qhg an action with lower priority level is exec uted <em>before</em> an actio
 </section>
 <section id="dumpactionstatesqdf">
 <h3><code class="docutils literal notranslate"><span class="pre">dumpActionStatesQDF</span></code><a class="headerlink" href="#dumpactionstatesqdf" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">dumpActionStatesQDF</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hSpeciesGroup</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">dumpActionStatesQDF</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hSpeciesGroup</span><span class="p">);</span>
 </pre></div>
 </div>
 <dl class="simple">
@@ -233,7 +239,7 @@ In qhg an action with lower priority level is exec uted <em>before</em> an actio
 </section>
 <section id="modifyattribute">
 <h3><code class="docutils literal notranslate"><span class="pre">modifyAttribute</span></code><a class="headerlink" href="#modifyattribute" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">modifyAttribute</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sAttrName</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dValue</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">modifyAttribute</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sAttrName</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dValue</span><span class="p">);</span>
 </pre></div>
 </div>
 <dl class="simple">
@@ -246,7 +252,7 @@ In qhg an action with lower priority level is exec uted <em>before</em> an actio
 </section>
 <section id="isequal">
 <h3><code class="docutils literal notranslate"><span class="pre">isEqual</span></code><a class="headerlink" href="#isequal" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="nf">isEqual</span><span class="p">(</span><span class="n">Prioritizer</span><span class="o">&lt;</span><span class="n">A</span><span class="o">&gt;</span><span class="w"> </span><span class="o">*</span><span class="n">pP</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">bStrict</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="nf">isEqual</span><span class="p">(</span><span class="n">Prioritizer</span><span class="o">&lt;</span><span class="n">A</span><span class="o">&gt;</span><span class="w"> </span><span class="o">*</span><span class="n">pP</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">bStrict</span><span class="p">);</span>
 </pre></div>
 </div>
 <dl class="simple">
@@ -259,7 +265,7 @@ In qhg an action with lower priority level is exec uted <em>before</em> an actio
 </section>
 <section id="showattributes">
 <h3><code class="docutils literal notranslate"><span class="pre">showAttributes</span></code><a class="headerlink" href="#showattributes" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">showAttributes</span><span class="p">();</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">showAttributes</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>Displays the attributes of all registerd actions.</p>

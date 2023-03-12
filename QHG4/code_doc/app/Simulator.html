@@ -51,10 +51,15 @@
 <span id="simulator-ref"></span><h1>Simulator<a class="headerlink" href="#simulator" title="Permalink to this heading">¶</a></h1>
 <p class="hidden">This page describes the class <span class="target" id="index-0"></span>Simulator</p>
 <p>The class <code class="docutils literal notranslate"><span class="pre">Simulator</span></code> is derived from <a class="reference internal" href="SimParams.html#simparams-ref"><span class="std std-ref">SimParams</span></a> and contains the actual simulation loop and handles events.</p>
-<p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/app/Simulator.h">Simulator.h</a>, <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/app/Simulator.cpp">Simulator.cpp</a></p>
-<p>– _Simulator_processes_reg:</p>
+<dl>
+<dt>Code:</dt><dd><div class="line-block">
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/app/Simulator.h">Simulator.h</a></div>
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/app/Simulator.cpp">Simulator.cpp</a></div>
+</div>
+</dd>
+</dl>
 <figure class="align-default" id="id1">
-<img alt="../../images/flowchart2.png" src="../../images/flowchart2.png" />
+<span id="simulator-processes-reg"></span><img alt="../../images/flowchart2.png" src="../../images/flowchart2.png" />
 <figcaption>
 <p><span class="caption-text">The processes of a simulation.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </figcaption>
@@ -80,35 +85,35 @@ to ensure that the order of the actions is ensured.</p>
 <h2>Public Methods<a class="headerlink" href="#public-methods" title="Permalink to this heading">¶</a></h2>
 <section id="constructor">
 <h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#constructor" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Simulator</span><span class="p">();</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Simulator</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>Some initialisation.</p>
 </section>
 <section id="destructor">
 <h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">Simulator</span><span class="p">();</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">Simulator</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>The destructor deletes some objects that have been created.</p>
 </section>
 <section id="isready">
 <h3><code class="docutils literal notranslate"><span class="pre">isReady</span></code><a class="headerlink" href="#isready" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="nf">isReady</span><span class="p">();</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="nf">isReady</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>Returns true if everything is ok  for the simulation to start (a valid cell grid exists and there is at least one non-empty population)</p>
 </section>
 <section id="runsimulation">
 <h3><code class="docutils literal notranslate"><span class="pre">runSimulation</span></code><a class="headerlink" href="#runsimulation" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">runSimulation</span><span class="p">();</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">runSimulation</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>This method runs the simulation. It calls <code class="docutils literal notranslate"><span class="pre">preLoop()</span></code>, <code class="docutils literal notranslate"><span class="pre">runLoop()</span></code> and <code class="docutils literal notranslate"><span class="pre">postLoop()</span></code>.</p>
 </section>
 <section id="writestate">
 <h3><code class="docutils literal notranslate"><span class="pre">writeState</span></code><a class="headerlink" href="#writestate" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">writeState</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sQDFOut</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iWhat</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">vSub</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iDumpMode</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">writeState</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sQDFOut</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iWhat</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">vSub</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iDumpMode</span><span class="p">);</span>
 </pre></div>
 </div>
 <dl class="simple">
@@ -209,14 +214,14 @@ to ensure that the order of the actions is ensured.</p>
 </section>
 <section id="showinput">
 <h3><code class="docutils literal notranslate"><span class="pre">showInput</span></code><a class="headerlink" href="#showinput" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">showInputs</span><span class="p">();</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">showInputs</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>Displays the environment and population groups used in this simulation.</p>
 </section>
 <section id="setinterrupt">
 <h3><code class="docutils literal notranslate"><span class="pre">setInterrupt</span></code><a class="headerlink" href="#setinterrupt" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">setInterrupt</span><span class="p">();</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">setInterrupt</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>After this method is called, QHG will try to terminate gracefully when interrupted.</p>

@@ -15,21 +15,21 @@ For this we need to add two new actions:  :ref:`Fertility<Fertility_ref>` and :r
 
 **Population code:**
   
-    | `tut_ParthenoPop.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_ParthenoPop.h>`_ |_|
-      `tut_ParthenoPop.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_ParthenoPop.cpp>`_
+    | `tut_ParthenoPop.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_ParthenoPop.h>`_ 
+    | `tut_ParthenoPop.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_ParthenoPop.cpp>`_
 
 **Action code:**
 
-    | `OldAge.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/OldAgeDeath.h>`_ |_|
-      `OldAge.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/OldAgeDeath.cpp>`_
-    | `AtanDeath.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/OldAgeDeath.h>`_ |_|
-      `AtanDeath.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/OldAgeDeath.cpp>`_ 
-    | `RandomMove.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/RandomMove.h>`_ |_|
-      `RandomMove.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/RandomMove.cpp>`_
-    | `Verhulst.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/Verhulst.h>`_ |_|
-      `Verhulst.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/Verhulst.cpp>`_
-    | `Fertilty.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/Fertility.h>`_ |_|
-      `Fertilty.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/Fertility.cpp>`_
+    | `OldAge.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/OldAgeDeath.h>`_
+    | `OldAge.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/OldAgeDeath.cpp>`_
+    | `AtanDeath.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/OldAgeDeath.h>`_
+    | `AtanDeath.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/OldAgeDeath.cpp>`_ 
+    | `RandomMove.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/RandomMove.h>`_
+    | `RandomMove.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/RandomMove.cpp>`_
+    | `Verhulst.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/Verhulst.h>`_
+    | `Verhulst.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/Verhulst.cpp>`_
+    | `Fertilty.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/Fertility.h>`_
+    | `Fertilty.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/Fertility.cpp>`_
 
 The Header File
 ---------------

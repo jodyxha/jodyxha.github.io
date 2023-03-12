@@ -53,22 +53,28 @@
 <p>The class <code class="docutils literal notranslate"><span class="pre">DynPopFactory</span></code> is derived from the abstract base classs <a class="reference internal" href="PopulationFactory.html#populationfactory-ref"><span class="std std-ref">PopulationFactory</span></a>.</p>
 <p>It is used to find shared object files encapsulating population classes, load them and create instances of the population classes on demand.
 The shared object libraries must have names of the form XXXPopWrappers.so and must contain the methods</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">getInfo</span><span class="p">();</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">getInfo</span><span class="p">();</span>
 
-<span class="n">PopBase</span><span class="w"> </span><span class="o">*</span><span class="nf">createPop</span><span class="p">(</span><span class="n">SCellGrid</span><span class="w"> </span><span class="o">*</span><span class="n">pCG</span><span class="p">,</span><span class="w"> </span><span class="n">PopFinder</span><span class="w"> </span><span class="o">*</span><span class="n">pPopFinder</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iLayerSize</span><span class="p">,</span><span class="w"></span>
-<span class="w">                   </span><span class="n">IDGen</span><span class="w"> </span><span class="o">**</span><span class="n">apIDG</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="o">*</span><span class="n">aulState</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="o">*</span><span class="n">aiSeeds</span><span class="p">);</span><span class="w"></span>
+<span class="n">PopBase</span><span class="w"> </span><span class="o">*</span><span class="nf">createPop</span><span class="p">(</span><span class="n">SCellGrid</span><span class="w"> </span><span class="o">*</span><span class="n">pCG</span><span class="p">,</span><span class="w"> </span><span class="n">PopFinder</span><span class="w"> </span><span class="o">*</span><span class="n">pPopFinder</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iLayerSize</span><span class="p">,</span>
+<span class="w">                   </span><span class="n">IDGen</span><span class="w"> </span><span class="o">**</span><span class="n">apIDG</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="o">*</span><span class="n">aulState</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="o">*</span><span class="n">aiSeeds</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>The method <code class="docutils literal notranslate"><span class="pre">getInfo()</span></code> should return the classname, e.g. “tut_EnvironCapAltPop”.
 The method <code class="docutils literal notranslate"><span class="pre">createPop()</span></code> should create a populaion instance and return it-</p>
 <p>Keep in mind that this is a relatively new feature and has not been fully tested yet.</p>
-<p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/DynPopFactory.h">DynPopFactory.h</a> ,`DynPopFactory.cpp_template &lt;<a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/DynPopFactory.cpp_template">https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/DynPopFactory.cpp_template</a>&gt;`_</p>
+<dl>
+<dt>Code:</dt><dd><div class="line-block">
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/DynPopFactory.h">DynPopFactory.h</a></div>
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/DynPopFactory.cpp_template">DynPopFactory.cpp_template</a></div>
+</div>
+</dd>
+</dl>
 <section id="publicmethods">
 <h2>PublicMethods<a class="headerlink" href="#publicmethods" title="Permalink to this heading">¶</a></h2>
 <section id="createinstance">
 <h3><code class="docutils literal notranslate"><span class="pre">createInstance</span></code><a class="headerlink" href="#createinstance" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="n">DynPopFactory</span><span class="w"> </span><span class="o">*</span><span class="nf">createInstance</span><span class="p">(</span><span class="n">stringvec</span><span class="w"> </span><span class="n">vSODirs</span><span class="p">,</span><span class="w"> </span><span class="n">SCellGrid</span><span class="w"> </span><span class="o">*</span><span class="n">pCG</span><span class="p">,</span><span class="w"> </span><span class="n">PopFinder</span><span class="w"> </span><span class="o">*</span><span class="n">pPopFinder</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iLayerSize</span><span class="p">,</span><span class="w"></span>
-<span class="w">                                     </span><span class="n">IDGen</span><span class="w"> </span><span class="o">**</span><span class="n">apIDG</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="o">*</span><span class="n">aulState</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="o">*</span><span class="n">aiSeeds</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="n">DynPopFactory</span><span class="w"> </span><span class="o">*</span><span class="nf">createInstance</span><span class="p">(</span><span class="n">stringvec</span><span class="w"> </span><span class="n">vSODirs</span><span class="p">,</span><span class="w"> </span><span class="n">SCellGrid</span><span class="w"> </span><span class="o">*</span><span class="n">pCG</span><span class="p">,</span><span class="w"> </span><span class="n">PopFinder</span><span class="w"> </span><span class="o">*</span><span class="n">pPopFinder</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iLayerSize</span><span class="p">,</span>
+<span class="w">                                     </span><span class="n">IDGen</span><span class="w"> </span><span class="o">**</span><span class="n">apIDG</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="o">*</span><span class="n">aulState</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="o">*</span><span class="n">aiSeeds</span><span class="p">);</span>
 </pre></div>
 </div>
 <dl class="simple">
@@ -92,14 +98,14 @@ Useful for predator-prey relation ships because predators must be able to find t
 </section>
 <section id="destructor">
 <h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">DynPopFactory</span><span class="p">();</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">DynPopFactory</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>Closes all handles to the shared libraries.</p>
 </section>
 <section id="createpopulationbyname">
 <h3><code class="docutils literal notranslate"><span class="pre">createPopulationByName</span></code><a class="headerlink" href="#createpopulationbyname" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">PopBase</span><span class="w"> </span><span class="o">*</span><span class="nf">createPopulationByName</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sClassName</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">PopBase</span><span class="w"> </span><span class="o">*</span><span class="nf">createPopulationByName</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sClassName</span><span class="p">);</span>
 </pre></div>
 </div>
 <dl class="simple">
@@ -110,7 +116,7 @@ Useful for predator-prey relation ships because predators must be able to find t
 </section>
 <section id="readpopulation">
 <h3><code class="docutils literal notranslate"><span class="pre">readPopulation</span></code><a class="headerlink" href="#readpopulation" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="n">PopBase</span><span class="w"> </span><span class="o">*</span><span class="nf">readPopulation</span><span class="p">(</span><span class="n">ParamProvider2</span><span class="w"> </span><span class="o">*</span><span class="n">pPP</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="n">PopBase</span><span class="w"> </span><span class="o">*</span><span class="nf">readPopulation</span><span class="p">(</span><span class="n">ParamProvider2</span><span class="w"> </span><span class="o">*</span><span class="n">pPP</span><span class="p">);</span>
 </pre></div>
 </div>
 <dl class="simple">
@@ -124,14 +130,14 @@ Useful for predator-prey relation ships because predators must be able to find t
 <h2>Protected Methods<a class="headerlink" href="#protected-methods" title="Permalink to this heading">¶</a></h2>
 <section id="init">
 <h3><code class="docutils literal notranslate"><span class="pre">init</span></code><a class="headerlink" href="#init" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">init</span><span class="p">(</span><span class="n">stringvec</span><span class="w"> </span><span class="n">vSODirs</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">init</span><span class="p">(</span><span class="n">stringvec</span><span class="w"> </span><span class="n">vSODirs</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Initalizes some variables and calls <code class="docutils literal notranslate"><span class="pre">collectPlugins()</span></code> to load all population shared objects in the directories specified in <code class="docutils literal notranslate"><span class="pre">vSODirs</span></code>.</p>
 </section>
 <section id="collectplugins">
 <h3><code class="docutils literal notranslate"><span class="pre">collectPlugins</span></code><a class="headerlink" href="#collectplugins" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">collectPlugins</span><span class="p">();</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">collectPlugins</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>Loops through the list of so-directories and calls <code class="docutils literal notranslate"><span class="pre">collectPluginsInDir()</span></code> for each directory.</p>

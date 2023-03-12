@@ -28,7 +28,8 @@ It is completely virtual:
 
   };
 
-Code: `LBBase.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/LBBase.h>`_
+Code:
+    | `LBBase.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/LBBase.h>`_
 
 
 Public Methods

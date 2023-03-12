@@ -51,12 +51,18 @@
 <span id="permutator-ref"></span><h1>Permutator<a class="headerlink" href="#permutator" title="Permalink to this heading">¶</a></h1>
 <p class="hidden">This page describes the class <span class="target" id="index-0"></span>Permutator</p>
 <p>The class <code class="docutils literal notranslate"><span class="pre">Permutator</span></code> allows you to get a random permutation or a randomly permutated subset of [0,… N-1].</p>
-<p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/Permutator.h">Permutator.h</a>, <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/Permutator.cpp">Permutator.cpp</a></p>
+<dl>
+<dt>Code:</dt><dd><div class="line-block">
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/Permutator.h">Permutator.h</a></div>
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/Permutator.cpp">Permutator.cpp</a></div>
+</div>
+</dd>
+</dl>
 <section id="public-methods">
 <h2>Public Methods<a class="headerlink" href="#public-methods" title="Permalink to this heading">¶</a></h2>
 <section id="createinstance">
 <h3><code class="docutils literal notranslate"><span class="pre">createInstance</span></code><a class="headerlink" href="#createinstance" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="n">Permutator</span><span class="w"> </span><span class="o">*</span><span class="nf">createInstance</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">iInitSize</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="n">Permutator</span><span class="w"> </span><span class="o">*</span><span class="nf">createInstance</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">iInitSize</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Create a <code class="docutils literal notranslate"><span class="pre">Permutator</span></code> instance with specified buffer size.</p>
@@ -68,15 +74,15 @@
 </section>
 <section id="destructor">
 <h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="o">~</span><span class="n">Permutator</span><span class="p">();</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="o">~</span><span class="n">Permutator</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>The destructor frees the memory allocated for the buffer.</p>
 </section>
 <section id="permute">
 <h3><code class="docutils literal notranslate"><span class="pre">permute</span></code><a class="headerlink" href="#permute" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="o">*</span><span class="nf">permute</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">iNumTot</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="n">iNumSel</span><span class="p">,</span><span class="w"> </span><span class="n">WELL512</span><span class="w"> </span><span class="o">*</span><span class="n">pWELL</span><span class="p">);</span><span class="w"></span>
-<span class="k">const</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="o">*</span><span class="nf">permute</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">iNumTot</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="n">iNumSel</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="o">*</span><span class="nf">permute</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">iNumTot</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="n">iNumSel</span><span class="p">,</span><span class="w"> </span><span class="n">WELL512</span><span class="w"> </span><span class="o">*</span><span class="n">pWELL</span><span class="p">);</span>
+<span class="k">const</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="o">*</span><span class="nf">permute</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">iNumTot</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="n">iNumSel</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Replaces the first <code class="docutils literal notranslate"><span class="pre">iNumSel</span></code> elements of its internal buffer with random elements from [1,iNumTot-1].
@@ -95,11 +101,11 @@ The version without a <code class="docutils literal notranslate"><span class="pr
 </section>
 <section id="permutebuf">
 <h3><code class="docutils literal notranslate"><span class="pre">permuteBuf</span></code><a class="headerlink" href="#permutebuf" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span><span class="p">;</span><span class="w"></span>
-<span class="n">T</span><span class="w"> </span><span class="o">*</span><span class="nf">permuteBuf</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">iNumTot</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="n">iNumSel</span><span class="p">,</span><span class="w"> </span><span class="n">WELL512</span><span class="w"> </span><span class="o">*</span><span class="n">pWELL</span><span class="p">,</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="o">*</span><span class="n">pBuf</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="n">T</span><span class="w"> </span><span class="o">*</span><span class="nf">permuteBuf</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">iNumTot</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="n">iNumSel</span><span class="p">,</span><span class="w"> </span><span class="n">WELL512</span><span class="w"> </span><span class="o">*</span><span class="n">pWELL</span><span class="p">,</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="o">*</span><span class="n">pBuf</span><span class="p">);</span>
 
-<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span><span class="w"></span>
-<span class="n">T</span><span class="w"> </span><span class="o">*</span><span class="n">permuteBuf</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">iNumTot</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="n">iNumSel</span><span class="p">,</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="o">*</span><span class="n">pBuf</span><span class="p">);</span><span class="w"></span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
+<span class="n">T</span><span class="w"> </span><span class="o">*</span><span class="n">permuteBuf</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">iNumTot</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="n">iNumSel</span><span class="p">,</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="o">*</span><span class="n">pBuf</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Replaces the first <code class="docutils literal notranslate"><span class="pre">iNumSel</span></code> elements of <code class="docutils literal notranslate"><span class="pre">pBuf</span></code> with random elements from <code class="docutils literal notranslate"><span class="pre">pBuf</span></code>.
@@ -116,28 +122,28 @@ The version without a <code class="docutils literal notranslate"><span class="pr
 </section>
 <section id="getsize">
 <h3><code class="docutils literal notranslate"><span class="pre">getSize</span></code><a class="headerlink" href="#getsize" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">uint</span><span class="w"> </span><span class="nf">getSize</span><span class="p">();</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">uint</span><span class="w"> </span><span class="nf">getSize</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>Returns size of buffer.</p>
 </section>
 <section id="getprevtot">
 <h3><code class="docutils literal notranslate"><span class="pre">getPrevTot</span></code><a class="headerlink" href="#getprevtot" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">uint</span><span class="w"> </span><span class="nf">getPrevTot</span><span class="p">();</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">uint</span><span class="w"> </span><span class="nf">getPrevTot</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>Returns previous size of buffer.</p>
 </section>
 <section id="getperm">
 <h3><code class="docutils literal notranslate"><span class="pre">getPerm</span></code><a class="headerlink" href="#getperm" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="n">uint</span><span class="o">*</span><span class="w"> </span><span class="n">getPerm</span><span class="p">()</span><span class="o">:</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="n">uint</span><span class="o">*</span><span class="w"> </span><span class="n">getPerm</span><span class="p">()</span><span class="o">:</span>
 </pre></div>
 </div>
 <p>Return a pointer to the internal buffer.</p>
 </section>
 <section id="setsize">
 <h3><code class="docutils literal notranslate"><span class="pre">setSize</span></code><a class="headerlink" href="#setsize" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">setSize</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">iSize</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">setSize</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">iSize</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Set size of buffer.</p>
@@ -147,74 +153,74 @@ The version without a <code class="docutils literal notranslate"><span class="pr
 <h2>Protected Methods<a class="headerlink" href="#protected-methods" title="Permalink to this heading">¶</a></h2>
 <section id="constructor">
 <h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#constructor" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Permutator</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">iInitSize</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Permutator</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">iInitSize</span><span class="p">);</span>
 </pre></div>
 </div>
 </section>
 <section id="init">
 <h3><code class="docutils literal notranslate"><span class="pre">init</span></code><a class="headerlink" href="#init" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">init</span><span class="p">();</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">init</span><span class="p">();</span>
 </pre></div>
 </div>
 </section>
 <section id="resize">
 <h3><code class="docutils literal notranslate"><span class="pre">resize</span></code><a class="headerlink" href="#resize" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">resize</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">iNewSize</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">resize</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">iNewSize</span><span class="p">);</span>
 </pre></div>
 </div>
 <section id="example">
 <h4>Example<a class="headerlink" href="#example" title="Permalink to this heading">¶</a></h4>
 <p>Compile with</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>g++ perm_example.cpp Permutator.cpp WELL512.cpp
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>g++<span class="w"> </span>perm_example.cpp<span class="w"> </span>Permutator.cpp<span class="w"> </span>WELL512.cpp
 </pre></div>
 </div>
 <p>Code for <code class="docutils literal notranslate"><span class="pre">Permutator</span></code>:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cstdio&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cstdlib&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;utility&gt;</span><span class="cp"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cstdio&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cstdlib&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;utility&gt;</span>
 
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;WELL512.h&quot;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Permutator.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;WELL512.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Permutator.h&quot;</span>
 
 
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iArgC</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">apArgV</span><span class="p">[])</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iArgC</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">apArgV</span><span class="p">[])</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">iResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">iResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 
 
 <span class="w">    </span><span class="c1">// WELL512 seeded with current time</span>
-<span class="w">    </span><span class="n">WELL512</span><span class="w"> </span><span class="o">*</span><span class="n">pWELL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">WELL512</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="n">WELL512</span><span class="w"> </span><span class="o">*</span><span class="n">pWELL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">WELL512</span><span class="p">();</span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">apairs</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="p">{{</span><span class="mi">0</span><span class="p">,</span><span class="s">&quot;zero&quot;</span><span class="p">},</span><span class="w">  </span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="s">&quot;one&quot;</span><span class="p">},</span><span class="w">  </span><span class="p">{</span><span class="mi">2</span><span class="p">,</span><span class="s">&quot;two&quot;</span><span class="p">},</span><span class="w"></span>
-<span class="w">                                           </span><span class="p">{</span><span class="mi">3</span><span class="p">,</span><span class="s">&quot;three&quot;</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="mi">4</span><span class="p">,</span><span class="s">&quot;four&quot;</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="mi">5</span><span class="p">,</span><span class="s">&quot;five&quot;</span><span class="p">},{</span><span class="mi">6</span><span class="p">,</span><span class="s">&quot;six&quot;</span><span class="p">}};</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">apairs</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="p">{{</span><span class="mi">0</span><span class="p">,</span><span class="s">&quot;zero&quot;</span><span class="p">},</span><span class="w">  </span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="s">&quot;one&quot;</span><span class="p">},</span><span class="w">  </span><span class="p">{</span><span class="mi">2</span><span class="p">,</span><span class="s">&quot;two&quot;</span><span class="p">},</span>
+<span class="w">                                           </span><span class="p">{</span><span class="mi">3</span><span class="p">,</span><span class="s">&quot;three&quot;</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="mi">4</span><span class="p">,</span><span class="s">&quot;four&quot;</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="mi">5</span><span class="p">,</span><span class="s">&quot;five&quot;</span><span class="p">},{</span><span class="mi">6</span><span class="p">,</span><span class="s">&quot;six&quot;</span><span class="p">}};</span>
 
-<span class="w">    </span><span class="n">Permutator</span><span class="w"> </span><span class="o">*</span><span class="n">pPerm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Permutator</span><span class="o">::</span><span class="n">createInstance</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">Permutator</span><span class="w"> </span><span class="o">*</span><span class="n">pPerm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Permutator</span><span class="o">::</span><span class="n">createInstance</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
 
 <span class="w">    </span><span class="c1">// select 3 random elements from [0,4]</span>
-<span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">pRes1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pPerm</span><span class="o">-&gt;</span><span class="n">permute</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="n">pWELL</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot; %d&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">pRes1</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">pRes1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pPerm</span><span class="o">-&gt;</span><span class="n">permute</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="n">pWELL</span><span class="p">);</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot; %d&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">pRes1</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
 
 <span class="w">    </span><span class="c1">// get a random permutation of [0,9]</span>
-<span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">pRes2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pPerm</span><span class="o">-&gt;</span><span class="n">permute</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w"> </span><span class="n">pWELL</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">9</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot; %d&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">pRes2</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">pRes2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pPerm</span><span class="o">-&gt;</span><span class="n">permute</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w"> </span><span class="n">pWELL</span><span class="p">);</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">9</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot; %d&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">pRes2</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
 
 <span class="w">    </span><span class="c1">// select 4 random elements from the array apairs</span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="o">*</span><span class="n">pRes3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pPerm</span><span class="o">-&gt;</span><span class="n">permuteBuf</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="n">pWELL</span><span class="p">,</span><span class="w"> </span><span class="n">apairs</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot; %d:%s&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">pRes3</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">first</span><span class="p">,</span><span class="w"> </span><span class="n">pRes3</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">second</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="o">*</span><span class="n">pRes3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pPerm</span><span class="o">-&gt;</span><span class="n">permuteBuf</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="n">pWELL</span><span class="p">,</span><span class="w"> </span><span class="n">apairs</span><span class="p">);</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot; %d:%s&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">pRes3</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">first</span><span class="p">,</span><span class="w"> </span><span class="n">pRes3</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">second</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
 
-<span class="w">    </span><span class="k">delete</span><span class="w"> </span><span class="n">pPerm</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="k">delete</span><span class="w"> </span><span class="n">pWELL</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">iResult</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">delete</span><span class="w"> </span><span class="n">pPerm</span><span class="p">;</span>
+<span class="w">    </span><span class="k">delete</span><span class="w"> </span><span class="n">pWELL</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">iResult</span><span class="p">;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </section>

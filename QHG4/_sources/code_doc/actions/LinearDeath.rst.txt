@@ -20,7 +20,9 @@ where :math:`b_0` is the birth probability for :math:`N = 0`, and :math:`\theta`
 
 These death probabilities only depend on the environment, not on the agents' attributes.
 
-Code: `LinearDeath.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/LinearDeath.h>`_ `LinearDeath.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/LinearDeath.cpp>`_
+Code: 
+    | `LinearDeath.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/LinearDeath.h>`_ 
+    | `LinearDeath.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/LinearDeath.cpp>`_
 
 
 **Attributes**

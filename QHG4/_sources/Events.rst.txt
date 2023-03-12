@@ -7,7 +7,7 @@ Events are needed to notify objects of some change of state.
 
 In QHG we have two kinds of events: events from the command line and internal events.
 
-The events on the commandline events are passed as values of the :ref:`--events option of QHGMain<QHGMain_ref>`.
+The events from the commandline events are passed as values of the :ref:`--events option of QHGMain<QHGMain_ref>`.
 
 .. -----------------------------------------------------------------------------
 
@@ -82,9 +82,9 @@ Event types
 
 | Write the specified data sets to file.
 | In case of "pop", an optional filter character can be appended to the populaton name in order to filter the output:
-|       '#'   only write agent data
-|       '%'   only write status arrays
-|       '~'   only write additional data
+|       '``#``'   only write agent data
+|       '``%``'   only write status arrays
+|       '``~``'   only write additional data
 
 **for <event-type> == "env":**
 
@@ -144,10 +144,12 @@ where
 **for <event-type> == "comm":**
 
 | ``event-params   ::= <cmd-file>  | <command>``
-| ``command        ::= <iter_cmd> | <del_action_cmd> | <mod_pop_cmd> | <event>``
+| ``command        ::= <iter_cmd> | <del_action_cmd> | <mod_pop_cmd> | <dis_action_cmd> | <ena_action_cmd> | <event>``
 | ``iter_cmd       ::= "SET ITERS:"<num_iters>``
 | ``del_action_cmd ::= "REMOVE ACTION:"<population>:<action_name>``
 | ``mod_pop_cmd    ::= "MOD POP:"<population>:<param_name>:<value>``
+| ``dis_action_cmd ::= "DISABLE ACTION:"<population>:<param_name>:<value>``
+| ``ena_action_cmd ::= "ENABLE ACTION:"<population>:<param_name>:<value>``
 | ``event          : any event description; see definition above``
 
 The format of <cmd-file> 

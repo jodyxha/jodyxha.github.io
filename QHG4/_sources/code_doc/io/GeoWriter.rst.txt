@@ -9,7 +9,9 @@ GeoWriter
 
 The class ``GeoWriter`` is used to write the :ref:`geography data<Geography_ref>` to a :ref:`geography group<GeoGroup_ref>` in a qdf file.
 
-Code: `GeoWriter.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/GeoWriter.h>`_, `GeoWriter.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/GeoWriter.cpp>`_
+Code:
+    | `GeoWriter.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/GeoWriter.h>`_
+    | `GeoWriter.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/io/GeoWriter.cpp>`_
 
 Public Methods
 --------------

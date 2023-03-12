@@ -9,7 +9,7 @@ SheepManager
 
 The class ``SheepManager`` is derived from ``Action`` and is used
 to distribute the available grass mass in each cell among the local sheep.
-This class has been tailored for the use with ``SheepPop`` (see:ref:`QHG Tutorial 08 - Simple Predator-Prey<TutorialGrassRabbit_ref>`).
+This class has been tailored for the use with ``SheepPop`` (see :ref:`QHG Tutorial 08 - Simple Predator-Prey<TutorialGrassRabbit_ref>`).
 
 It uses the shared array of available grass mass and fills the shared array of consumed grass mass.
 
@@ -75,8 +75,8 @@ Loads the shared arrays and fills the shared array of available grass mass (``m_
 
 .. -----------------------------------------------------------------------------
 
-``initialioze``
-^^^^^^^^^^^^^^^
+``initialize``
+^^^^^^^^^^^^^^
 .. code-block:: c++
 
     virtual int execute(int iAgentIndex, float fT);
@@ -133,7 +133,7 @@ Protected Methods
     int feedSheep();
     
 Determines the amount of grass mass each sheep in a cell will get,
-and writes the total comsumed mass per cell into the shared array of consumed masses (''m_sNameGrassMassConsumed``).
+and writes the total comsumed mass per cell into the shared array of consumed masses (``m_sNameGrassMassConsumed``).
  
 .. -----------------------------------------------------------------------------
 
@@ -143,4 +143,4 @@ and writes the total comsumed mass per cell into the shared array of consumed ma
 
     int makeCellVecsSheep();
 
-Fills an array with per-cell information about shepp's id and masses.
+Fills an array with per-cell information about sheep's ids and masses.
