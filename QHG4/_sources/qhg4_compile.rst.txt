@@ -109,7 +109,7 @@ Example
 
     make QHGMain
 
-Only compiles new and depending files and build QHGMain.
+Only compiles new and depending files and builds QHGMain.
 
 
 .. code-block:: c++
@@ -130,11 +130,12 @@ Compile options
     Used by targets ``QHGMain`` and ``plugins``.
 
 ``OUT``
-    Sets the output name. Used by target ``QHGMain``
+    Sets the output name. Used by targets ``QHGMain`` and ``plugins``
 
 ``DYNAMIC_POPS``
-    Create a version QHGMain without statically linked actions and populkations. 
-    Such a QHGMain must use plugins. Recognized by target "QHGMain"
+    Create sa version QHGMain which can load plugins without statically linked actions or populations. 
+    To run actual simulations you must provided with compiled plugins (see "make plugins" below).
+    Used by target ``QHGMain``
 
 Examples
 

@@ -19,6 +19,12 @@ The documentation for QHG is structured by code directory.
    icosa
    (genes)
    geoinfo
+   code_doc/plugin_stub
+   dynpops
+   utils_qhg
+
+   visual
+   import
 
 **tools**
 
@@ -29,7 +35,7 @@ The documentation for QHG is structured by code directory.
    tools_io
    tools_qdf
    code_doc/useful_stuff
-   utils_qhg
+  
    visual
 
     

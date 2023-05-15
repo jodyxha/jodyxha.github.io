@@ -47,10 +47,9 @@ Compiling and Running
    ObserverPattern
    tools
    tutorial
+   visit_visualization
 
-
-
-| TODO: visualisation: VisIt, QDF-Plugin
+| DONE: visualisation: VisIt, QDF-Plugin
 
 :ref:`a lot of things to do<allotofthingstodotodotodotodo>`
    

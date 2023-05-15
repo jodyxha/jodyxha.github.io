@@ -353,7 +353,7 @@ The Implementation (SheepPop)
     #include "SheepPop.h"
 
 In its constructor ``SheepPop`` allocates an array for cell preferences based on available grass mass which will be filled by the :ref:`SingleEvaluator<SingleEvaluator_ref>` 
-object and used by the :ref:`WeightedMove`` object. This array is conceptually an array of 7-tuples, with one tuple for each cell. 
+object and used by the :ref:`WeightedMove_ref` object. This array is conceptually an array of 7-tuples, with one tuple for each cell. 
 The first element of such a tuple contains the preference value for the cell to which the tuple belongs. 
 The following values contain the preference values for the neighboring cells.
 

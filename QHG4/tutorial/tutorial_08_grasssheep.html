@@ -7,15 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
     <title>QHG Tutorial 08 - Simple Predator-Prey &#8212; QHG4 4.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../static/jody.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jody.css" />
     
-    <script data-url_root="../" id="documentation_options" src="../static/documentation_options.js"></script>
-    <script src="../static/jquery.js"></script>
-    <script src="../static/underscore.js"></script>
-    <script src="../static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../static/doctools.js"></script>
-    <script src="../static/sphinx_highlight.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     
     <link rel="shortcut icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -54,7 +54,7 @@ and moving agents representing sheep who like to eat grass.</p>
 <p>Sheep and grass populatins communcate with each other by means of
 shared arrays.</p>
 <figure class="align-default">
-<img alt="../images/grasssheep_comm.png" src="../images/grasssheep_comm.png" />
+<img alt="../_images/grasssheep_comm.png" src="../_images/grasssheep_comm.png" />
 </figure>
 <p>The Grass agents have a member variable mass, and an action <a class="reference internal" href="../code_doc/actions/GrassManager.html#grassmanager-ref"><span class="std std-ref">GrassManager</span></a>
 which increases the mass logistically to a maximum value.
@@ -359,11 +359,11 @@ The class also contains two shared arrays</p>
 </pre></div>
 </div>
 <p>In its constructor <code class="docutils literal notranslate"><span class="pre">SheepPop</span></code> allocates an array for cell preferences based on available grass mass which will be filled by the <a class="reference internal" href="../code_doc/actions/SingleEvaluator.html#singleevaluator-ref"><span class="std std-ref">SingleEvaluator</span></a>
-object and used by the <span class="xref std std-ref">WeightedMove`</span> object. This array is conceptually an array of 7-tuples, with one tuple for each cell.
+object and used by the <a class="reference internal" href="../code_doc/actions/WeightedMove.html#weightedmove-ref"><span class="std std-ref">WeightedMove</span></a> object. This array is conceptually an array of 7-tuples, with one tuple for each cell.
 The first element of such a tuple contains the preference value for the cell to which the tuple belongs.
 The following values contain the preference values for the neighboring cells.</p>
 <figure class="align-default">
-<a class="reference internal image-reference" href="../images/preferences.png"><img alt="../images/preferences.png" src="../images/preferences.png" style="width: 640.0px; height: 51.2px;" /></a>
+<a class="reference internal image-reference" href="../_images/preferences.png"><img alt="../_images/preferences.png" src="../_images/preferences.png" style="width: 640.0px; height: 51.2px;" /></a>
 </figure>
 <p>Then the action objects (<a class="reference internal" href="../code_doc/actions/SingleEvaluator.html#singleevaluator-ref"><span class="std std-ref">SingleEvaluator</span></a>, <a class="reference internal" href="../code_doc/actions/WeightedMove.html#weightedmove-ref"><span class="std std-ref">WeightedMove</span></a>,  <a class="reference internal" href="../code_doc/actions/SheepManager.html#sheepmanager-ref"><span class="std std-ref">SheepManager</span></a>,
 <a class="reference internal" href="../code_doc/actions/Starver.html#starver-ref"><span class="std std-ref">Starver</span></a>, and <a class="reference internal" href="../code_doc/actions/AnimalReproducer.html#animalreproducer-ref"><span class="std std-ref">AnimalReproducer</span></a> are created and registered with the <a class="reference internal" href="../code_doc/core/Prioritizer.html#prioritizer-ref"><span class="std std-ref">Prioritizer</span></a>.</p>
@@ -632,7 +632,7 @@ Initially each grass agent has half of the maximum mass.</p>
 These snapshots were turned into a video using VisIt’s “Save as Movie…” command.</p>
 <p>The colors represent the maximum available grass mass in each cell (blue:0, red max).</p>
 <p>Each black dot represents a single sheep agent.</p>
-<video controls width="800" src=" ../static/movie_500_G3.mp4" type="video/mp4"  ></video></section>
+<video controls width="800" src=" ../_static/movie_500_G3.mp4" type="video/mp4"  ></video></section>
 </section>
 
 

@@ -1,0 +1,149 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>make_links.py &#8212; QHG4 4.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jody.css" />
+    
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    
+    <link rel="shortcut icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="svn_configure.sh" href="svn_configure.sh.html" />
+    <link rel="prev" title="plugin_stub" href="../plugin_stub.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="svn_configure.sh.html" title="svn_configure.sh"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../plugin_stub.html" title="plugin_stub"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../plugin_stub.html" accesskey="U">plugin_stub</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">make_links.py</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="make-links-py">
+<span id="makelinks-py-ref"></span><h1>make_links.py<a class="headerlink" href="#make-links-py" title="Permalink to this heading">¶</a></h1>
+<p class="hidden">This page describes the script <span class="target" id="index-0"></span>make_links.py</p>
+<p>The script <code class="docutils literal notranslate"><span class="pre">make_links.py</span></code> recreates the links for the header files and source files needed to compile plugin_stub.
+It is called by the Makefile prior to any compilation in this directory.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/python</span>
+
+<span class="kn">from</span> <span class="nn">sys</span> <span class="kn">import</span> <span class="n">argv</span><span class="p">,</span> <span class="n">exit</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">linkfiles</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;core&quot;</span>       <span class="p">:</span> <span class="p">[</span><span class="s2">&quot;PopBase.h&quot;</span><span class="p">],</span>
+             <span class="s2">&quot;actions&quot;</span>    <span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Action.h&quot;</span><span class="p">,</span>
+                             <span class="s2">&quot;Action.cpp&quot;</span><span class="p">],</span>
+             <span class="s2">&quot;populations&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;PopulationFactory.h&quot;</span><span class="p">,</span>
+                             <span class="s2">&quot;DynPopFactory.h&quot;</span><span class="p">,</span>
+                             <span class="s2">&quot;DynPopFactory.cpp&quot;</span><span class="p">]</span>
+             <span class="p">}</span>
+
+<span class="n">qhg_base</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;QHG4_DIR&quot;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">subdir</span> <span class="ow">in</span> <span class="n">linkfiles</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">linkfiles</span><span class="p">[</span><span class="n">subdir</span><span class="p">]:</span>
+        <span class="n">fCur</span> <span class="o">=</span> <span class="s2">&quot;./&quot;</span><span class="o">+</span><span class="n">f</span>
+
+        <span class="c1"># remove file if it already exists</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">fCur</span><span class="p">):</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">fCur</span><span class="p">)</span>
+        <span class="c1">#-- end if</span>
+
+        <span class="c1"># create the actual link</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;linking </span><span class="si">%s</span><span class="s2"> </span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">/</span><span class="si">%s</span><span class="s2">/</span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">qhg_base</span><span class="p">,</span><span class="n">subdir</span><span class="p">,</span><span class="n">f</span><span class="p">),</span> <span class="n">fCur</span><span class="p">))</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">symlink</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">/</span><span class="si">%s</span><span class="s2">/</span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">qhg_base</span><span class="p">,</span> <span class="n">subdir</span><span class="p">,</span> <span class="n">f</span><span class="p">),</span> <span class="n">fCur</span><span class="p">)</span>
+    <span class="c1">#-- end for</span>
+<span class="c1">#-- end for</span>
+</pre></div>
+</div>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="../plugin_stub.html"
+                          title="previous chapter">plugin_stub</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="svn_configure.sh.html"
+                          title="next chapter">svn_configure.sh</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/code_doc/plugin_stub/make_links.py.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="svn_configure.sh.html" title="svn_configure.sh"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../plugin_stub.html" title="plugin_stub"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../plugin_stub.html" >plugin_stub</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">make_links.py</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+  </body>
+</html>
