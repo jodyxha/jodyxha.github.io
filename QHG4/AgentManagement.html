@@ -7,15 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
     <title>Agents: Parallelisation and Management &#8212; QHG4 4.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/jody.css" />
+    <link rel="stylesheet" type="text/css" href="static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="static/jody.css" />
     
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
+    <script data-url_root="./" id="documentation_options" src="static/documentation_options.js"></script>
+    <script src="static/jquery.js"></script>
+    <script src="static/underscore.js"></script>
+    <script src="static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="static/doctools.js"></script>
+    <script src="static/sphinx_highlight.js"></script>
     
     <link rel="shortcut icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
     <link rel="index" title="Index" href="genindex.html" />
@@ -65,7 +65,7 @@ Whenever an agent was born a new instance was created (with <code class="docutil
 This approach turned out to be a bad choice - profiling showed that most of the run time was used for agent creation and deletion.</p>
 <p>The current implementation uses an array of structures instead of an array of instances.</p>
 <figure class="align-default">
-<img alt="_images/agman.png" src="_images/agman.png" />
+<img alt="images/agman.png" src="images/agman.png" />
 </figure>
 <p>Each of the structures represent the data of one agent. This setup allows easy parallelisation over agents.</p>
 <p>The agent structures are defined in the header file of a population class (see <a class="reference internal" href="code_doc/core/SPopulation.html#spopulation-ref"><span class="std std-ref">SPopulations</span></a>), which also holds the container for the agent structures,
@@ -78,7 +78,7 @@ In QHG tthis container is realized with a <code class="docutils literal notransl
 Empty arrays are not immediately deleted. If such an array exists it is added to the vector instead of a new one, thus avoiding the allocation of a new one</p>
 <p>The <a class="reference internal" href="code_doc/utils/LayerBuf.html#layerbuf-ref"><span class="std std-ref">LayerBuf</span></a> holding the agents is controlled by a <a class="reference internal" href="code_doc/utils/LBController.html#lbcontroller-ref"><span class="std std-ref">LBController</span></a>, which has a <a class="reference internal" href="code_doc/utils/L2List.html#l2list-ref"><span class="std std-ref">L2List</span></a> to control used and unused locations for each of its layers.</p>
 <figure class="align-default">
-<img alt="_images/LBController_single.png" src="_images/LBController_single.png" />
+<img alt="images/LBController_single.png" src="images/LBController_single.png" />
 </figure>
 <p><span class="xref std std-ref">concrete implementation</span></p>
 </section>
@@ -87,7 +87,7 @@ Empty arrays are not immediately deleted. If such an array exists it is added to
 <p>At any given time the cntainer has active locations (the ones currently in use) as well as passive locations (currently unused).
 This setup requires some book-keeping. For this reason <code class="docutils literal notranslate"><span class="pre">SPopulation</span></code>  has an <code class="docutils literal notranslate"><span class="pre">LBController</span></code> which controls the indexes of the active and passive array locations by means of 2 doubly linked lists (<a class="reference internal" href="code_doc/utils/L2List.html#l2list-ref"><span class="std std-ref">L2List</span></a>).</p>
 <figure class="align-default">
-<img alt="_images/L2L_A1.png" src="_images/L2L_A1.png" />
+<img alt="images/L2L_A1.png" src="images/L2L_A1.png" />
 </figure>
 <p>Whenever a new agent needs to be added the index of the first passive location is moved to the active list and the new agents data is written to the corresponding position.
 Whenever an agent dies, the index of its location is moved from the active list to the passive list.</p>
@@ -99,7 +99,7 @@ Whenever an agent dies, the index of its location is moved from the active list 
 </ul>
 <p>This leaves the index of interest isolated.</p>
 <figure class="align-default">
-<img alt="_images/L2L_A2.png" src="_images/L2L_A2.png" />
+<img alt="images/L2L_A2.png" src="images/L2L_A2.png" />
 </figure>
 <p>Now find the highest active index less than the index of <code class="docutils literal notranslate"><span class="pre">this</span></code> (in our example: index 0).</p>
 <p>If there is no such index:</p>
@@ -116,7 +116,7 @@ Whenever an agent dies, the index of its location is moved from the active list 
 <li><p>set <code class="docutils literal notranslate"><span class="pre">this.prev</span></code> to <code class="docutils literal notranslate"><span class="pre">last</span></code></p></li>
 </ul>
 <figure class="align-default">
-<img alt="_images/L2L_A3.png" src="_images/L2L_A3.png" />
+<img alt="images/L2L_A3.png" src="images/L2L_A3.png" />
 </figure>
 <p>Moving a used location to passive state requires a similar set of operations.
 It is important to keep in mind that operations on the lists <em>must not be parallelized</em>.
@@ -130,7 +130,7 @@ When new agents are born we place their data into the structures pointed at by t
 If more agents are born than have died, the surplus agents have to do a normal birth process: change a passive location to an active one and copy their data there.
 If there are less new agents than dead ones, the left over locations are carried over to the next step’s dead agent list.</p>
 <figure class="align-default">
-<img alt="_images/RecycleDead2.png" src="_images/RecycleDead2.png" />
+<img alt="images/RecycleDead2.png" src="images/RecycleDead2.png" />
 </figure>
 </section>
 </section>
