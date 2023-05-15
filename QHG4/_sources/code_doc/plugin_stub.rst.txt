@@ -1,0 +1,25 @@
+plugin_stub
+===========
+
+.. rst-class:: hidden
+
+   This page describes the directory :index:`plugin_stub`
+
+The directory ``plugin_stub`` contains links to same base classes as well as some tools.
+
+
+.. toctree::
+   :Caption: Classes (links into other directories)
+   :maxdepth: 1
+        
+   core/PopBase
+   actions/Action
+   populations/PopulationFactory        
+   populations/DynPopFactory     
+
+.. toctree::
+   :Caption: Tools
+   :maxdepth: 1
+   
+   plugin_stub/make_links.py
+   plugin_stub/svn_configure.sh

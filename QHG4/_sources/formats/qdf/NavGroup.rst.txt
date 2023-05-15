@@ -1,0 +1,43 @@
+.. _NavGroup_ref:
+
+"Navigation"
+------------
+
+.. rst-class:: hidden
+
+   This page describes :index:`navigation group`
+
+The **navigation group** contains data which is used to let agents cross the ocean to reach islands.
+
+The crossing possibilities for agents are like bridges which you can only cross with a small probability.
+
+.. figure:: ../../../images/visit_nav.png
+
+Attributes
+^^^^^^^^^^
+
+- **NumDests**
+    Number of destination locations
+
+- **NumDists**
+    Number of distance entries (between "ports" and destinations)
+
+- **NumPorts**
+    Number of starting locations
+
+- **SampleDist**
+    (@@TODO)
+
+
+
+DataSets
+^^^^^^^^
+
+**DestIDs**
+    List of the IDs of the destination nodes
+
+**Distances**
+    List of distances between ports and destinations
+
+**Multiplicities**
+  (@@TODO)

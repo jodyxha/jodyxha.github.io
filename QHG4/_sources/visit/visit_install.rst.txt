@@ -1,0 +1,89 @@
+.. _visit_install_ref:
+
+Installing VisIt
+================
+
+Because we want to implement plugins for VisIt, we can't use a precompiled version, 
+but must compile it from scratch.
+
+Download the Sources
+~~~~~~~~~~~~~~~~~~~~
+Create a directory into the VisIt and 3rd party code are to be downloaded to. It is advantageous to have full read, write and execute rights to this directory.
+For this example let's call it "~/visit_sources".
+
+Go to the `download page of VisIt <https://visit-dav.github.io/visit-website/releases-as-tables/#latest>`_ 
+and in the table under "Series 3.3" select the leftmost "tgz" in the row titled "Source", as well as the "sh" in the row titled "build_visit" to download them to your visit source file ``~/visit_sources``..
+
+.. figure:: ../images/visit_releases.png
+
+Change to your directory ``~/visit_sources`` - you will have 2 files: ``visit3.3.2.tar.gz`` and ``build_visit3_3_2``.
+
+Make build_visit3_3_2 executable:
+  
+.. code-block:: bash
+  
+    chmod 775 build_visit3_3_2
+
+Build VisIt
+~~~~~~~~~~~
+Then start the build process
+
+.. code-block:: bash
+  
+    ./build_visit3_3_2
+    
+Answer the questions with yes and hit returh.
+
+This will download and compile variuos 3rd party codes.
+
+If the build aborts during the compilation of ``Qt``,  a small addition must be made to ``build_visit3_3_2``:
+
+Add the line
+
+.. code-block:: bash
+ 
+   qt_flags="${qt_flags} -skip webengine"
+
+after the line
+
+.. code-block:: bash
+
+    qt_flags="${qt_flags} -skip wayland"
+
+and then start the script again. Now it should finish without a problem.
+
+
+.. _visit_install_bin_ref:
+
+Installing the VisIt binaries
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Once the building of visit has completed, there'll be a file ``visit3_3_2.linux-x86_64.tar.gz``. 
+The last lines of ``build_visit3_3_2 will bes message regarding the installation of visit 
+by calling ``.visit-install VERSION ARCH DESTINATION``. Assuming we want to install it in /opt/visit_3.3.2 (make sure you have access), 
+this command would be
+
+.. code-block:: bash
+
+    ./visit-install 3_3_2 linux-x86_64 /opt/visit_3.3.2
+
+Now visit is installed and can be started with the command
+
+
+.. code-block:: bash
+
+    /opt/visit_3.3.2/bin/visit
+
+At this point, VisIt can be started, but it will be unable visualize data from QDF files.
+
+To simplify things you may want to add an alias to your ``~/.bashrc`` (or whichever script is executed when opening a shell):
+
+.. code-block:: bash
+
+    alias visit=/opt/visit_3.3.2/bin/visit
+
+yo cou can call VisIt by simply typing ``visit``.
+
+
+
+  

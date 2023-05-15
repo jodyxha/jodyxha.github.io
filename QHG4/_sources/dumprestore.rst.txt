@@ -1,0 +1,65 @@
+.. _dump_restore_ref:
+
+Dumping and Restoring
+=====================
+
+.. rst-class:: hidden
+
+   This page gives an overview of :index:`dumping and restoring`
+
+
+During normal operation QHG only creates partial outputs of its state: files containing the environment or agent data for a particular time.
+
+QHG also supports dumping (writing a snapshot of the complete internal state of the program to file)
+and restoring (reading a snapshot of the complete internal state of the program from file).
+
+This lets you exactly reproduce a simualtion run, allowing to write more outputs or even to debug something happening very late in the simulation.
+
+Every action can dump and restore its state:
+
+.. code-block:: c++
+
+    template<typename T>
+    class Action { 
+    public:
+        // ...
+        virtual int dumpStateQDF(hid_t hSpeciesGroup) {return 0; };
+        virtual int restoreStateQDF(hid_t hSpeciesGroup) {return 0; };
+        // ...
+    }
+
+and every population can dump and restore the population data, the individual agents' data, move statistics and additional data:
+
+.. code-block:: c++
+
+    class PopBase {
+    public:
+        // ...
+        virtual int dumpSpeciesDataQDF(hid_t hSpeciesGroup, int iDumpMode)=0;
+        virtual int restoreSpeciesDataQDF(hid_t hSpeciesGroup)=0;
+        virtual int dumpAgentDataQDF(hid_t hDataSpace, hid_t hDataSet, hid_t hAgentType)=0;
+        virtual int restoreAgentDataQDF(hid_t hDataSpace, hid_t hDataSet, hid_t hAgentType)=0;
+        virtual int dumpStatArrsQDF(hid_t hSpeciesGroup)=0;
+        virtual int restoreStatArrsQDF(hid_t hSpeciesGroup)=0;
+        virtual int dumpAdditionalDataQDF(hid_t hSpeciesGroup)=0;
+        virtual int restoreAdditionalDataQDF(hid_t hSpeciesGroup)=0;
+        // ...
+    }
+
+
+The easiest way to create a dump pass an event to start the simulation:
+
+``--events='dump|flat'``
+
+This will create a QDF file containning the environment dump, as well as a QDF dump file for every population in he simulation.
+
+
+To restore a dumped simulation, you hav to start QHG with the dumped files and the "resume" option:
+
+.. code-block:: text
+
+    --grid=environment_dump.qdf
+    --pops=population1_dump.qdf,population2_dump.qdf
+    --resume
+
+Keep in mind that the number of processors for the restoreed run must be the same as in the original run. Otherwise the random numbers quickly got out of synch.

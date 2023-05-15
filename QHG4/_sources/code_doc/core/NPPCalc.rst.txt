@@ -1,0 +1,102 @@
+.. _NPPCalc_ref:
+
+NPPCalc
+=======
+
+.. rst-class:: hidden
+  
+    This page describes the class :index:`NPPCalc`
+
+The class ``NPPCalc`` is an abstract base class for various methods to calculate NPP from climate data.
+
+Code: 
+    | `NPPCalc.h  <https://github.com/jodyxha/QHG4/blob/main/QHG4/core/NPPCalc.h>`_
+
+Public Methods
+--------------
+
+
+``constructor``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+   
+    NPPCalc(WELL512 **apWELL)
+
+``apWELL``
+    Array of WELL512 random numbre generators.
+      
+The constructor stores the random number generators.
+
+.. -----------------------------------------------------------------------------
+
+``destructor``
+^^^^^^^^^^^^^^
+
+.. code-block:: c++
+
+    virtual ~NPPCalc() {};
+
+The destructor does nothing.
+
+.. -----------------------------------------------------------------------------
+
+``calcNPP``
+^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual double calcNPP(double *dT, double *dP, int iNum, int iStride, double *dOut, double *dVariance=0)=0;
+    
+``dT``
+    Array of temperatures (average annual temperatures in  degrees Celsius).
+
+``dP``
+    Array of precipitation values (total annual rainfall  in mm).
+
+``iNum``
+    Number of element in arrays (dT and dP are supposed to have the same size).
+
+``dOut``
+    Output array.
+
+``dVariance``
+    Jiggle the result to achieve a certain variance
+
+Fills an array with NPP values (gC/m2/year) calculated from the corresponding elements in ``dT`` and ``dP``.
+
+Returns the maximum NPP value found.
+
+This method must be implemented by derived classes.
+ 
+.. -----------------------------------------------------------------------------
+
+``calcNPP``
+^^^^^^^^^^^
+.. code-block:: c++
+
+        virtual double calcNPP(double dT, double dP, double dVariance=0)=0;
+
+``dT``
+    Temperature value (average annual temperature in degrees Celsius).
+
+``dP``
+    Precipitation value (total annual rainfall  in mm)
+
+Returns an NPP value (gC/m2/year) from the provided Temperature and Precipitation values.
+
+This method must be implemented in derived classes.
+
+.. -----------------------------------------------------------------------------
+
+
+Protected Methods
+-----------------
+
+``calcVariance``
+^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    double calcVariance(double dVariance);
+
+``dVariance``
+    Variance for random number
