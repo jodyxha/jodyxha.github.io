@@ -1,0 +1,214 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Making movies from QDF files &#8212; QHG4 4.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jody.css" />
+    
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    
+    <link rel="shortcut icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Visualize QDF files with VisIt" href="visit_visualize_qdf.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="visit_visualize_qdf.html" title="Visualize QDF files with VisIt"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../visit_visualization.html" accesskey="U">Visualizing QDF files with VisIt</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Making movies from QDF files</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="making-movies-from-qdf-files">
+<span id="visit-movies-ref"></span><h1>Making movies from QDF files<a class="headerlink" href="#making-movies-from-qdf-files" title="Permalink to this heading">¶</a></h1>
+<p>In order to make movies, you have to create files with numerical suffixes before the <code class="docutils literal notranslate"><span class="pre">.qdf</span></code>:
+For instance:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>tut_pop-grass_A_pop-sheep_P_SG_000000.qdf
+tut_pop-grass_A_pop-sheep_P_SG_000010.qdf
+tut_pop-grass_A_pop-sheep_P_SG_000020.qdf
+<span class="w">   </span>...
+tut_pop_sapiens_SG_000000.qdf
+tut_pop_sapiens_SG_001000.qdf
+tut_pop_sapiens_SG_002000.qdf
+<span class="w">   </span>...
+</pre></div>
+</div>
+<p>VisIt will group such sequences of files in the “File open” dialog</p>
+<section id="opening-files">
+<h2>Opening FIles<a class="headerlink" href="#opening-files" title="Permalink to this heading">¶</a></h2>
+<p>To load a group of file click on the “Open” button in the upper left of the control window:</p>
+<blockquote>
+<div><figure class="align-default">
+<img alt="images/visit_file_grouped.png" src="images/visit_file_grouped.png" />
+</figure>
+</div></blockquote>
+<p>Make sure that the drop-down list “File grouping” is set to “Smart”.</p>
+<p>Now click on one of the blocks, say the block “tut_pop-grass_A_pop-sheep_P_SG_*.qdf”
+and press OK.</p>
+</section>
+<section id="specify-what-to-visualize">
+<h2>Specify what to visualize<a class="headerlink" href="#specify-what-to-visualize" title="Permalink to this heading">¶</a></h2>
+<p>You can now start to set the plots and meshes you want to see as if there was only a single input file.
+So you can follow the steps described in the <a class="reference internal" href="visit_visualize_qdf.html#visit-visualize-qdf-2d-ref"><span class="std std-ref">section for visualizing 2D data</span></a>.</p>
+<p>At the end of this process you will see an image of the first file of the block.</p>
+</section>
+<section id="preview-the-movie">
+<h2>Preview the movie<a class="headerlink" href="#preview-the-movie" title="Permalink to this heading">¶</a></h2>
+<p>Using the buttons of the time control</p>
+<blockquote>
+<div><figure class="align-default">
+<img alt="images/visit_time_control.png" src="images/visit_time_control.png" />
+</figure>
+</div></blockquote>
+<dl class="simple">
+<dt>you can</dt><dd><ul class="simple">
+<li><p>go one step back (left pointing arrow with bar)</p></li>
+<li><p>play the movie backwards (left pointing arrow)</p></li>
+<li><p>stop the movie (square)</p></li>
+<li><p>play the movie forwards (rightt pointing arrow)</p></li>
+<li><p>go one step ahead (right pointing arrow with bar)</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="saving-the-movie">
+<h2>Saving the movie<a class="headerlink" href="#saving-the-movie" title="Permalink to this heading">¶</a></h2>
+<p>To save the movie in a video format such as MP4,
+choose “Save movie …” from the “file”-menu of the control window.</p>
+<p>In the first dialog make sure the option “New simple movie” is selacted.</p>
+<blockquote>
+<div><figure class="align-default">
+<img alt="images/visit_movie_dlg01.png" src="images/visit_movie_dlg01.png" />
+</figure>
+</div></blockquote>
+<p>Press “Next &gt;”.</p>
+<p>In the second dialog, you have to select the movie format.</p>
+<blockquote>
+<div><figure class="align-default">
+<img alt="images/visit_movie_dlg02.png" src="images/visit_movie_dlg02.png" />
+</figure>
+</div></blockquote>
+<p>We choose “MPEG Movie” in the “Format” drop-down list nand press the right-pointing arrow “-&gt;” in the middle of the dial0g.
+The enrty “MPEG movie” should appear in the list on the right hand side. Press “Next &gt;”.</p>
+<p>In this dialog you can select at which speed the movie should play, and wether to start with first and end with the last frame or not.</p>
+<blockquote>
+<div><figure class="align-default">
+<img alt="images/visit_movie_dlg03.png" src="images/visit_movie_dlg03.png" />
+</figure>
+</div></blockquote>
+<p>Press “Next&gt;”.</p>
+<p>In the new diqalog specify an output directory and a base file name, The base file name is used to name the png images of the frames, and for the name of the finished movie.</p>
+<blockquote>
+<div><figure class="align-default">
+<img alt="images/visit_movie_dlg04.png" src="images/visit_movie_dlg04.png" />
+</figure>
+</div></blockquote>
+<p>Press “Next&gt;”.</p>
+<p>In this dialog make sure “No” is selected (i.e., we don’t want to be notifiedby email).</p>
+<blockquote>
+<div><figure class="align-default">
+<img alt="images/visit_movie_dlg05.png" src="images/visit_movie_dlg05.png" />
+</figure>
+</div></blockquote>
+<p>Press “Next&gt;”.</p>
+<p>In the final dialog, leave “Now, use currently allocated processes” selected.</p>
+<blockquote>
+<div><figure class="align-default">
+<img alt="images/visit_movie_dlg06.png" src="images/visit_movie_dlg06.png" />
+</figure>
+</div></blockquote>
+<p>Press “Finish”.</p>
+<p>Now VisIt loops through all images, creates PNG files and combines them in a movie file.</p>
+<p>You can practice movie-making by selectng the other block (“tut_pop_sapiens_SG_*.qdf”) and going through the same steps as above.</p>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Making movies from QDF files</a><ul>
+<li><a class="reference internal" href="#opening-files">Opening FIles</a></li>
+<li><a class="reference internal" href="#specify-what-to-visualize">Specify what to visualize</a></li>
+<li><a class="reference internal" href="#preview-the-movie">Preview the movie</a></li>
+<li><a class="reference internal" href="#saving-the-movie">Saving the movie</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="visit_visualize_qdf.html"
+                          title="previous chapter">Visualize QDF files with VisIt</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/visit/visit_movies.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="visit_visualize_qdf.html" title="Visualize QDF files with VisIt"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../visit_visualization.html" >Visualizing QDF files with VisIt</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Making movies from QDF files</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+  </body>
+</html>
