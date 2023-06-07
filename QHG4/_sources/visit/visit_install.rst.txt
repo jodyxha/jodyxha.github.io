@@ -14,7 +14,7 @@ For this example let's call it "~/visit_sources".
 Go to the `download page of VisIt <https://visit-dav.github.io/visit-website/releases-as-tables/#latest>`_ 
 and in the table under "Series 3.3" select the leftmost "tgz" in the row titled "Source", as well as the "sh" in the row titled "build_visit" to download them to your visit source file ``~/visit_sources``..
 
-.. figure:: ../images/visit_releases.png
+.. figure:: ../../images/visit_releases.png
 
 Change to your directory ``~/visit_sources`` - you will have 2 files: ``visit3.3.2.tar.gz`` and ``build_visit3_3_2``.
 

@@ -23,7 +23,7 @@ Opening FIles
 ~~~~~~~~~~~~~
 To load a group of file click on the "Open" button in the upper left of the control window:
 
-   .. figure:: ../images/visit_file_grouped.png
+   .. figure:: ../../images/visit_file_grouped.png
 
 Make sure that the drop-down list "File grouping" is set to "Smart".
 
@@ -41,7 +41,7 @@ Preview the movie
 ~~~~~~~~~~~~~~~~~
 Using the buttons of the time control
 
-   .. figure:: ../images/visit_time_control.png
+   .. figure:: ../../images/visit_time_control.png
 
 you can
   - go one step back (left pointing arrow with bar)
@@ -58,38 +58,38 @@ choose "Save movie ..." from the "file"-menu of the control window.
 
 In the first dialog make sure the option "New simple movie" is selacted. 
 
-   .. figure:: ../images/visit_movie_dlg01.png
+   .. figure:: ../../images/visit_movie_dlg01.png
 
 Press "Next >".
 
 In the second dialog, you have to select the movie format.
 
-   .. figure:: ../images/visit_movie_dlg02.png
+   .. figure:: ../../images/visit_movie_dlg02.png
 
 We choose "MPEG Movie" in the "Format" drop-down list nand press the right-pointing arrow "->" in the middle of the dial0g.
 The enrty "MPEG movie" should appear in the list on the right hand side. Press "Next >".
 
 In this dialog you can select at which speed the movie should play, and wether to start with first and end with the last frame or not.
 
-   .. figure:: ../images/visit_movie_dlg03.png
+   .. figure:: ../../images/visit_movie_dlg03.png
 
 Press "Next>".
 
 In the new diqalog specify an output directory and a base file name, The base file name is used to name the png images of the frames, and for the name of the finished movie.
 
-   .. figure:: ../images/visit_movie_dlg04.png
+   .. figure:: ../../images/visit_movie_dlg04.png
 
 Press "Next>".
 
 In this dialog make sure "No" is selected (i.e., we don't want to be notifiedby email).
 
-   .. figure:: ../images/visit_movie_dlg05.png
+   .. figure:: ../../images/visit_movie_dlg05.png
 
 Press "Next>".
 
 In the final dialog, leave "Now, use currently allocated processes" selected.
 
-   .. figure:: ../images/visit_movie_dlg06.png
+   .. figure:: ../../images/visit_movie_dlg06.png
 
 
 Press "Finish".

@@ -488,7 +488,7 @@ For details on how to call  ``QDF2PNGNew``, refer to :ref:`its documentation<QDF
 ``VisIt``
 ^^^^^^^^^
 With the visualization software :ref:`VisIt<visit_visualization_ref>` we can create images showing the data on the sphere:
-
+                                            
 
 .. figure:: ../../images/envalt.png
 

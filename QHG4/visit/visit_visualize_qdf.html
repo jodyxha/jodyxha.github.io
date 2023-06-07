@@ -48,9 +48,9 @@
             
   <section id="visualize-qdf-files-with-visit">
 <span id="visit-visualize-qdf-ref"></span><h1>Visualize QDF files with VisIt<a class="headerlink" href="#visualize-qdf-files-with-visit" title="Permalink to this heading">¶</a></h1>
-<p>Visit has a large variety of plots such as pseudocolor plots, vector plots.
-Every plot needs a particular set of data, so it can not plot any dataset.</p>
-<p>For the QDF data produced by QHG4 we mostly do mesh plots (for meshes and individuals) and pseudocolor plots (for value fields).</p>
+<p>Visit has a large variety of plots such as pseudocolor plots, vector plots and others.
+Every plot needs a particular set of data, so it can not plot an arbitrary unknowny dataset.</p>
+<p>For the QDF data produced by QHG4 we mostly do mesh plots (for meshes and individuals) and pseudocolor plots (for value fields, like environment data).</p>
 <p>The example qdf files used here can be found in the subdirectory <code class="docutils literal notranslate"><span class="pre">tutorial_data/example_qdf</span></code> of the QHG root directory.</p>
 <p>When you start visit</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./visit
@@ -58,53 +58,53 @@ Every plot needs a particular set of data, so it can not plot any dataset.</p>
 </div>
 <p>You will see two windows, a control window to the left, and a plot window on the right.</p>
 <figure class="align-default">
-<img alt="images/visit_layout.png" src="images/visit_layout.png" />
+<img alt="../images/visit_layout.png" src="../images/visit_layout.png" />
 </figure>
 <section id="opening-files">
 <h2>Opening Files<a class="headerlink" href="#opening-files" title="Permalink to this heading">¶</a></h2>
 <p>To load a QDF file click on the “Open” button on the upper left of the control window,
 This will open a file dialog:</p>
 <figure class="align-default">
-<img alt="images/visit_file_grouped.png" src="images/visit_file_grouped.png" />
+<img alt="../images/visit_file_grouped.png" src="../images/visit_file_grouped.png" />
 </figure>
 <p>Notice that some files are bundled into groups.
 VisIt does this to make it possible to load an entire group of similarly named files (e.g. to make an animation or a movie).</p>
 <p>To get rid of the grouping, click on the drop down list “File Grouping” and select “Off”.</p>
 <figure class="align-default">
-<img alt="images/visit_file_single.png" src="images/visit_file_single.png" />
+<img alt="../images/visit_file_single.png" src="../images/visit_file_single.png" />
 </figure>
 </section>
 <section id="visualizing-2d-data">
 <span id="visit-visualize-qdf-2d-ref"></span><h2>Visualizing 2D data<a class="headerlink" href="#visualizing-2d-data" title="Permalink to this heading">¶</a></h2>
 <p>Now select a qdf file containing 2D data by double clicking it, for instance <code class="docutils literal notranslate"><span class="pre">tut_pop-grass_A_pop-sheep-P_SG_004960.qdf</span></code> (this file comes from a simulation where mobile sheep
 eat stationary grass. When there is no grass available in a cell, the sheep will starve unless it finds another cell with grass).</p>
-<p>Notice that in the control dialog, the button “Add” (middle left) is now active.
+<p>After the file has been loaded, the button “Add” (middle left) in the control dialog becomes active.
 Clicking this button you see all generally available plots, but not all of them are able to handle QDF data.</p>
 <p>To start with, select “Mesh”, and from the pop-up menu choose “Sheep”</p>
 <figure class="align-default">
-<img alt="images/visit_menu_mesh.png" src="images/visit_menu_mesh.png" />
+<img alt="../images/visit_menu_mesh.png" src="../images/visit_menu_mesh.png" />
 </figure>
 <p>If you click on the button “Draw”, you see the sheep agents as black dots.</p>
 <figure class="align-default">
-<img alt="images/visit_2D_grid.png" src="images/visit_2D_grid.png" />
+<img alt="../images/visit_2D_grid.png" src="../images/visit_2D_grid.png" />
 </figure>
-<p>Next, we add a pseudocolor plot for the available grass.</p>
+<p>Next, we add a pseudocolor plot for the available grass: add a pseudocolor plot and select <code class="docutils literal notranslate"><span class="pre">grass_GrasssMassAvail</span></code>.</p>
 <figure class="align-default">
-<img alt="images/visit_menu_pseudocolor.png" src="images/visit_menu_pseudocolor.png" />
+<img alt="../images/visit_menu_pseudocolor.png" src="../images/visit_menu_pseudocolor.png" />
 </figure>
 <p>By default, the palette for pseudocolors plots goes from blue (low values) over green to red (high values).</p>
 <p>Ater pressing on “Draw”, you’ll notice that the pseudocolor plot is visible, but the sheep have vanished.</p>
 <figure class="align-default">
-<img alt="images/visit_2D_pseudocolor.png" src="images/visit_2D_pseudocolor.png" />
+<img alt="../images/visit_2D_pseudocolor.png" src="../images/visit_2D_pseudocolor.png" />
 </figure>
 <p>To see both the sheep and the availabla grass, you have to change the order of the plots:
 Do a right-click on the sheep plot in the dialog’s list, and from there select “Move towards last”</p>
 <figure class="align-default">
-<img alt="images/visit_plot_move.png" src="images/visit_plot_move.png" />
+<img alt="../images/visit_plot_move.png" src="../images/visit_plot_move.png" />
 </figure>
 <p>And now enjoy the result:</p>
 <figure class="align-default">
-<img alt="images/visit_2D_finished.png" src="images/visit_2D_finished.png" />
+<img alt="../images/visit_2D_finished.png" src="../images/visit_2D_finished.png" />
 </figure>
 <p>You can toggle between showing a plot and hiding it by selecting it in the list in the dialog and pressing the button “Hide/Show”.
 To completely remove a plot, select it and press “Delete”.</p>
@@ -115,38 +115,91 @@ To completely remove a plot, select it and press “Delete”.</p>
 Then select a 3D data file, such as <code class="docutils literal notranslate"><span class="pre">tut_pop-sapiens_SG_005000.png</span></code>, press “Add” and select “sapiens” from the submenu of the Mesh plot. and then press “Draw”.</p>
 <p>This produces a 3D plot of all agents found in the data. You can rotate the plot by dragging the mouse around the plot window.</p>
 <figure class="align-default">
-<img alt="images/visit_3D_grid_bw.png" src="images/visit_3D_grid_bw.png" />
+<img alt="../images/visit_3D_grid_bw.png" src="../images/visit_3D_grid_bw.png" />
 </figure>
+<p>By default VisIt uses a minimal volume encompasssing the loaded data. Since the agents do not cover the entire globe, only a part of the earth is visible.</p>
 <p>Let’s change the color of the agents now. Do a double-click on the mesh plot in the list to open the mesh plot attributes.</p>
 <figure class="align-default">
-<img alt="images/visit_grid_color.png" src="images/visit_grid_color.png" />
+<img alt="../images/visit_grid_color.png" src="../images/visit_grid_color.png" />
 </figure>
 <p>In the upper left of the dialog activate the radio button “Custom” and click on the rectangle beside it.
 In the small color selector choose a bright color, e.g. yellow, then click on “Apply” in the lower left corner,
 then “Dismiss” in the lower right corner to hide the dialog.</p>
 <figure class="align-default">
-<img alt="images/visit_3D_grid_color.png" src="images/visit_3D_grid_color.png" />
+<img alt="../images/visit_3D_grid_color.png" src="../images/visit_3D_grid_color.png" />
 </figure>
 <p>To plot the earth itself we will use the altitude values.</p>
 <p>Click on “Add” and select “Altitude” from the “Pseudocolor” submenu, then press “Draw”.</p>
 <figure class="align-default">
-<img alt="images/visit_pseudocolor_bad.png" src="images/visit_pseudocolor_bad.png" />
+<img alt="../images/visit_pseudocolor_bad.png" src="../images/visit_pseudocolor_bad.png" />
 </figure>
 <p>You see a sphere, but it seems the default palette is not very useful here.
-We’ll use a color map we created to display altitudes better.</p>
+We’ll use a custom color map created to display altitudes better (see below on how to install it).</p>
 <p>So double-click on the Altitude plot in the list.</p>
 <figure class="align-default">
-<img alt="images/visit_3D_attributes.png" src="images/visit_3D_attributes.png" />
+<img alt="../images/visit_3D_attributes.png" src="../images/visit_3D_attributes.png" />
 </figure>
 <p>In the plot attribute dialog, set “Minimum” to -6000 and “Maximum” to 6000 (you may have to click the checkboxes to eneble the text fields),
 and click on the big button in the middle of the dialog (initially this is labeled “Default”). In the pop-up list locate geo2 and click it.</p>
 <figure class="align-default">
-<img alt="images/visit_pseudocolor_color.png" src="images/visit_pseudocolor_color.png" />
+<img alt="../images/visit_pseudocolor_color.png" src="../images/visit_pseudocolor_color.png" />
 </figure>
 <p>Then press on “Apply” , and “Dismiss” to hide the dialog.</p>
 <figure class="align-default">
-<img alt="images/visit_3D_grid.png" src="images/visit_3D_grid.png" />
+<img alt="../images/visit_3D_grid.png" src="../images/visit_3D_grid.png" />
 </figure>
+</section>
+<section id="installing-a-custom-color-table">
+<h2>Installing a custom color table<a class="headerlink" href="#installing-a-custom-color-table" title="Permalink to this heading">¶</a></h2>
+<p>Please consult hte <span class="xref std std-ref">colr table chapter of the VisIt manual</span>
+to get a basic understanding of color tables and how to create, modify, and export them.</p>
+<p>When you create and export a color table, visit saves this as a <code class="docutils literal notranslate"><span class="pre">.ct</span></code> file in the directory``~/.visit``.</p>
+<p>The file <code class="docutils literal notranslate"><span class="pre">geo.ct</span></code> looks like this</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
+<span class="nt">&lt;Object</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;ColorTable&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;Field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Version&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;string&quot;</span><span class="nt">&gt;</span>2.12.3<span class="nt">&lt;/Field&gt;</span>
+<span class="w">    </span><span class="nt">&lt;Object</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;ColorControlPointList&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;Object</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;ColorControlPoint&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;Field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;colors&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;unsignedCharArray&quot;</span><span class="w"> </span><span class="na">length=</span><span class="s">&quot;4&quot;</span><span class="nt">&gt;</span>0<span class="w"> </span>0<span class="w"> </span>255<span class="w"> </span>255<span class="w"> </span><span class="nt">&lt;/Field&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/Object&gt;</span>
+<span class="w">        </span><span class="nt">&lt;Object</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;ColorControlPoint&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;Field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;colors&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;unsignedCharArray&quot;</span><span class="w"> </span><span class="na">length=</span><span class="s">&quot;4&quot;</span><span class="nt">&gt;</span>0<span class="w"> </span>0<span class="w"> </span>255<span class="w"> </span>255<span class="w"> </span><span class="nt">&lt;/Field&gt;</span>
+<span class="w">            </span><span class="nt">&lt;Field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;position&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;float&quot;</span><span class="nt">&gt;</span>0.05<span class="nt">&lt;/Field&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/Object&gt;</span>
+<span class="w">        </span><span class="nt">&lt;Object</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;ColorControlPoint&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;Field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;colors&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;unsignedCharArray&quot;</span><span class="w"> </span><span class="na">length=</span><span class="s">&quot;4&quot;</span><span class="nt">&gt;</span>0<span class="w"> </span>255<span class="w"> </span>255<span class="w"> </span>255<span class="w"> </span><span class="nt">&lt;/Field&gt;</span>
+<span class="w">            </span><span class="nt">&lt;Field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;position&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;float&quot;</span><span class="nt">&gt;</span>0.5i03<span class="nt">&lt;/Field&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/Object&gt;</span>
+<span class="w">        </span><span class="nt">&lt;Object</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;ColorControlPoint&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;Field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;colors&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;unsignedCharArray&quot;</span><span class="w"> </span><span class="na">length=</span><span class="s">&quot;4&quot;</span><span class="nt">&gt;</span>13<span class="w"> </span>139<span class="w"> </span>0<span class="w"> </span>255<span class="w"> </span><span class="nt">&lt;/Field&gt;</span>
+<span class="w">            </span><span class="nt">&lt;Field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;position&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;float&quot;</span><span class="nt">&gt;</span>0.503<span class="nt">&lt;/Field&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/Object&gt;</span>
+<span class="w">        </span><span class="nt">&lt;Object</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;ColorControlPoint&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;Field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;colors&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;unsignedCharArray&quot;</span><span class="w"> </span><span class="na">length=</span><span class="s">&quot;4&quot;</span><span class="nt">&gt;</span>203<span class="w"> </span>203<span class="w"> </span>77<span class="w"> </span>255<span class="w"> </span><span class="nt">&lt;/Field&gt;</span>
+<span class="w">            </span><span class="nt">&lt;Field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;position&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;float&quot;</span><span class="nt">&gt;</span>0.6724138<span class="nt">&lt;/Field&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/Object&gt;</span>
+<span class="w">        </span><span class="nt">&lt;Object</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;ColorControlPoint&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;Field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;colors&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;unsignedCharArray&quot;</span><span class="w"> </span><span class="na">length=</span><span class="s">&quot;4&quot;</span><span class="nt">&gt;</span>216<span class="w"> </span>82<span class="w"> </span>0<span class="w"> </span>255<span class="w"> </span><span class="nt">&lt;/Field&gt;</span>
+<span class="w">            </span><span class="nt">&lt;Field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;position&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;float&quot;</span><span class="nt">&gt;</span>0.95<span class="nt">&lt;/Field&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/Object&gt;</span>
+<span class="w">        </span><span class="nt">&lt;Object</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;ColorControlPoint&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;Field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;colors&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;unsignedCharArray&quot;</span><span class="w"> </span><span class="na">length=</span><span class="s">&quot;4&quot;</span><span class="nt">&gt;</span>255<span class="w"> </span>255<span class="w"> </span>255<span class="w"> </span>255<span class="w"> </span><span class="nt">&lt;/Field&gt;</span>
+<span class="w">            </span><span class="nt">&lt;Field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;position&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;float&quot;</span><span class="nt">&gt;</span>1<span class="nt">&lt;/Field&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/Object&gt;</span>
+<span class="w">        </span><span class="nt">&lt;Field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;category&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;string&quot;</span><span class="nt">&gt;</span>UserDefined<span class="nt">&lt;/Field&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/Object&gt;</span>
+<span class="nt">&lt;/Object&gt;</span>
+</pre></div>
+</div>
+<p>Obviously this is an xml file.</p>
+<p>To install this color table oon your computer, create a file called <code class="docutils literal notranslate"><span class="pre">geo2.ct</span></code> ,
+copy and paste the above text into it,  and save it in the directory <code class="docutils literal notranslate"><span class="pre">~/.visit</span></code>
+(i.e. the (invisible) subdirectory <code class="docutils literal notranslate"><span class="pre">.visit</span></code> in your home directoryfile).</p>
+<p>The next time you start VisIt you shoud see “geo2.ct” in the pseudocolor plot’s color tables.</p>
+<p>When using geo2 the ramge should be symmetric around 0 (thus the values “-6000” and “6000” above),
+i.e. the value 0 should be in the exct middle between the two extremes.
+This must be the case such that negative values (i.e. underwater cells) are colored in bluish hues,
+while positive values ares drawn with greenish and brownish colors.</p>
 </section>
 </section>
 
@@ -164,6 +217,7 @@ and click on the big button in the middle of the dialog (initially this is label
 <li><a class="reference internal" href="#opening-files">Opening Files</a></li>
 <li><a class="reference internal" href="#visualizing-2d-data">Visualizing 2D data</a></li>
 <li><a class="reference internal" href="#visualizing-3d-data">Visualizing 3D data</a></li>
+<li><a class="reference internal" href="#installing-a-custom-color-table">Installing a custom color table</a></li>
 </ul>
 </li>
 </ul>
