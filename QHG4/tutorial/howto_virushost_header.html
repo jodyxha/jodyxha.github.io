@@ -1,0 +1,211 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>The Header File for the Population Class VirusHostPop &#8212; QHG4 4.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../static/jody.css" />
+    
+    <script data-url_root="../" id="documentation_options" src="../static/documentation_options.js"></script>
+    <script src="../static/jquery.js"></script>
+    <script src="../static/underscore.js"></script>
+    <script src="../static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../static/doctools.js"></script>
+    <script src="../static/sphinx_highlight.js"></script>
+    
+    <link rel="shortcut icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="The Source File for the Population Class VirusHostPop" href="howto_virushost_source.html" />
+    <link rel="prev" title="The Source File for the Action Class Virus" href="howto_virus_source.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="howto_virushost_source.html" title="The Source File for the Population Class VirusHostPop"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="howto_virus_source.html" title="The Source File for the Action Class Virus"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../tutorial.html" >QHG Tutorial</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="how_to_build_actions_pops.html" accesskey="U">How to Design and Build New Populations and Actions</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">The Header File for the Population Class <code class="docutils literal notranslate"><span class="pre">VirusHostPop</span></code></a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="the-header-file-for-the-population-class-virushostpop">
+<span id="howto-virushost-header-ref"></span><h1>The Header File for the Population Class <code class="docutils literal notranslate"><span class="pre">VirusHostPop</span></code><a class="headerlink" href="#the-header-file-for-the-population-class-virushostpop" title="Permalink to this heading">¶</a></h1>
+<p>Since our <cite>Virus`</cite> action makes certain assumptions about the agents,
+we can’t use an arbitary population class.
+In particular, the agent structure needs fields for the virus load and immunity.</p>
+<section id="the-header-file">
+<h2>The header file<a class="headerlink" href="#the-header-file" title="Permalink to this heading">¶</a></h2>
+<p>First  we have the includes for the header files of all required
+actions (among them <code class="docutils literal notranslate"><span class="pre">Virus.h</span></code>), and the header file for the
+population’s base class <code class="docutils literal notranslate"><span class="pre">SPopulation</span></code></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;GetOld.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;ATanDeath.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;RandomMove.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Fertility.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Verhulst.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;RandomPair.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Virus.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;SPopulation.h&quot;</span>
+</pre></div>
+</div>
+<p>Some constants needed to extract mutation rate and inheritance types</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">VAR_VIRUSHOST_MUT_RATE_NAME</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;MutationRate&quot;</span><span class="p">;</span>
+<span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">VAR_VIRUSHOST_IMM_INHERIT_NAME</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ImmunityInheritance&quot;</span><span class="p">;</span>
+<span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">INH_TYPES</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="s">&quot;mix&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s">&quot;mat&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s">&quot;pat&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s">&quot;min&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s">&quot;max&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="p">};</span>
+
+<span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">INH_MIX</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">INH_MAT</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">INH_PAT</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+<span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">INH_MIN</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span>
+<span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">INH_MAX</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Now follows  the declaration of the agent structure:
+we have members for agent aging, fertility, and mating,
+as well as members for the viral infections: virus load anf immunity.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">VirusHostAgent</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Agent</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">m_fAge</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">m_fLastBirth</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">m_iMateIndex</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">m_fViralLoad</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">m_fImmunity</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>The declaration of the <code class="docutils literal notranslate"><span class="pre">VirusHostPop</span></code> class derived from <code class="docutils literal notranslate"><span class="pre">SPopulation</span></code>:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">VirusHostPop</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w">  </span><span class="n">SPopulation</span><span class="o">&lt;</span><span class="n">VirusHostAgent</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+</pre></div>
+</div>
+<p>The public methods are the usual: constructor, destructor and methods to
+add agent data from a <cite>populatiom dat file&lt;pop_dat_ref&gt;</cite> and to write agent data to a QDF file.
+In addition to that there is a method for setting the inital state of the baby
+(which we’ve also encountered before), and a method to get a parameter
+for the population from the <cite>populaition xml file&lt;pop_xml_ref&gt;</cite> (in this case we need the mutation rate, and the inheritance type).</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="n">VirusHostPop</span><span class="p">(</span><span class="n">SCellGrid</span><span class="w"> </span><span class="o">*</span><span class="n">pCG</span><span class="p">,</span><span class="w"> </span><span class="n">PopFinder</span><span class="w"> </span><span class="o">*</span><span class="n">pPopFinder</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iLayerSize</span><span class="p">,</span><span class="w"> </span><span class="n">IDGen</span><span class="w"> </span><span class="o">**</span><span class="n">apIDG</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="o">*</span><span class="n">aulState</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="o">*</span><span class="n">aiSeeds</span><span class="p">);</span>
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">VirusHostPop_SexualPop</span><span class="p">();</span>
+
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="nf">addPopSpecificAgentData</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iAgentIndex</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">ppData</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">addPopSpecificAgentDataTypeQDF</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="o">*</span><span class="n">hAgentDataType</span><span class="p">);</span>
+
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="nf">makePopSpecificOffspring</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iAgent</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iMother</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iFather</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="nf">getPopParams</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">stringmap</span><span class="w"> </span><span class="o">&amp;</span><span class="n">mVarDefs</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>In the <code class="docutils literal notranslate"><span class="pre">protected</span></code> section there are pointers to the actions of this population
+and the variable for the mutation rate.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">protected</span><span class="o">:</span>
+<span class="w">    </span><span class="n">GetOld</span><span class="o">&lt;</span><span class="n">VirusHostAgent</span><span class="o">&gt;</span><span class="w">      </span><span class="o">*</span><span class="n">m_pGO</span><span class="p">;</span>
+<span class="w">    </span><span class="n">ATanDeath</span><span class="o">&lt;</span><span class="n">VirusHostAgent</span><span class="o">&gt;</span><span class="w">   </span><span class="o">*</span><span class="n">m_pAD</span><span class="p">;</span>
+<span class="w">    </span><span class="n">RandomMove</span><span class="o">&lt;</span><span class="n">VirusHostAgent</span><span class="o">&gt;</span><span class="w">  </span><span class="o">*</span><span class="n">m_pRM</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Fertility</span><span class="o">&lt;</span><span class="n">VirusHostAgen</span><span class="o">&gt;</span><span class="w">    </span><span class="o">*</span><span class="n">m_pFert</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Verhulst</span><span class="o">&lt;</span><span class="n">VirusHostAgen</span><span class="o">&gt;</span><span class="w">     </span><span class="o">*</span><span class="n">m_pVerhulst</span><span class="p">;</span>
+<span class="w">    </span><span class="n">RandomPair</span><span class="o">&lt;</span><span class="n">VirusHostAgen</span><span class="o">&gt;</span><span class="w">   </span><span class="o">*</span><span class="n">m_pPair</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Virus</span><span class="o">&lt;</span><span class="n">VirusHostAgen</span><span class="o">&gt;</span><span class="w">        </span><span class="o">*</span><span class="n">m_pVirus</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">m_fMutationRate</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>The entire file can be found here: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/VirusHostPop.h">VirusHostPop.h</a></p>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">The Header File for the Population Class <code class="docutils literal notranslate"><span class="pre">VirusHostPop</span></code></a><ul>
+<li><a class="reference internal" href="#the-header-file">The header file</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="howto_virus_source.html"
+                          title="previous chapter">The Source File for the Action Class <code class="docutils literal notranslate"><span class="pre">Virus</span></code></a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="howto_virushost_source.html"
+                          title="next chapter">The Source File for the Population Class <code class="docutils literal notranslate"><span class="pre">VirusHostPop</span></code></a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/tutorial/howto_virushost_header.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="howto_virushost_source.html" title="The Source File for the Population Class VirusHostPop"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="howto_virus_source.html" title="The Source File for the Action Class Virus"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../tutorial.html" >QHG Tutorial</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="how_to_build_actions_pops.html" >How to Design and Build New Populations and Actions</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">The Header File for the Population Class <code class="docutils literal notranslate"><span class="pre">VirusHostPop</span></code></a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+  </body>
+</html>

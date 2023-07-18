@@ -60,7 +60,7 @@ and in the table under “Series 3.3” select the leftmost “tgz” in the row
 <img alt="../images/visit_releases.png" src="../images/visit_releases.png" />
 </figure>
 <p>Change to your directory <code class="docutils literal notranslate"><span class="pre">~/visit_sources</span></code> - you will have 2 files: <code class="docutils literal notranslate"><span class="pre">visit3.3.2.tar.gz</span></code> and <code class="docutils literal notranslate"><span class="pre">build_visit3_3_2</span></code>.</p>
-<p>Make build_visit3_3_2 executable:</p>
+<p>Make <code class="docutils literal notranslate"><span class="pre">build_visit3_3_2</span></code> executable:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>chmod<span class="w"> </span><span class="m">775</span><span class="w"> </span>build_visit3_3_2
 </pre></div>
 </div>
@@ -72,7 +72,7 @@ and in the table under “Series 3.3” select the leftmost “tgz” in the row
 </pre></div>
 </div>
 <p>Answer the questions with yes and hit returh.</p>
-<p>This will download and compile variuos 3rd party codes.</p>
+<p>This will download and compile various 3rd party codes.</p>
 <p>If the build aborts during the compilation of <code class="docutils literal notranslate"><span class="pre">Qt</span></code>,  a small addition must be made to <code class="docutils literal notranslate"><span class="pre">build_visit3_3_2</span></code>:</p>
 <p>Add the line</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">qt_flags</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">qt_flags</span><span class="si">}</span><span class="s2"> -skip webengine&quot;</span>
@@ -87,8 +87,8 @@ and in the table under “Series 3.3” select the leftmost “tgz” in the row
 <section id="installing-the-visit-binaries">
 <span id="visit-install-bin-ref"></span><h2>Installing the VisIt binaries<a class="headerlink" href="#installing-the-visit-binaries" title="Permalink to this heading">¶</a></h2>
 <p>Once the building of visit has completed, there’ll be a file <code class="docutils literal notranslate"><span class="pre">visit3_3_2.linux-x86_64.tar.gz</span></code>.
-The last lines of <code class="docutils literal notranslate"><span class="pre">build_visit3_3_2</span> <span class="pre">will</span> <span class="pre">bes</span> <span class="pre">message</span> <span class="pre">regarding</span> <span class="pre">the</span> <span class="pre">installation</span> <span class="pre">of</span> <span class="pre">visit</span>
-<span class="pre">by</span> <span class="pre">calling</span> <span class="pre">``.visit-install</span> <span class="pre">VERSION</span> <span class="pre">ARCH</span> <span class="pre">DESTINATION</span></code>. Assuming we want to install it in /opt/visit_3.3.2 (make sure you have access),
+The last lines of <code class="docutils literal notranslate"><span class="pre">build_visit3_3_2_log</span></code> will be a message regarding the installation of visit
+by calling <code class="docutils literal notranslate"><span class="pre">./visit-install</span> <span class="pre">VERSION</span> <span class="pre">ARCH</span> <span class="pre">DESTINATION</span></code>. Assuming we want to install it in the directory <code class="docutils literal notranslate"><span class="pre">/opt/visit_3.3.2</span></code> (make sure you have access),
 this command would be</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./visit-install<span class="w"> </span>3_3_2<span class="w"> </span>linux-x86_64<span class="w"> </span>/opt/visit_3.3.2
 </pre></div>

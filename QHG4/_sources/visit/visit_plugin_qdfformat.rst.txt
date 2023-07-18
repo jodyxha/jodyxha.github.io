@@ -5,12 +5,12 @@ Building the QDF Format Plugin
 
 In order to enable VisIt to read and interpret out QDF files. we had to implement a plugin for this.
 
-The plugin code must be compiled with the tools Visit wa compiled with.
+The plugin code must be compiled with the tools VisIt was compiled with.
 
 Environment Variables
 ~~~~~~~~~~~~~~~~~~~~~
 
-The build script for the plugin ``Build_PLUGIN.sh`` expects the environment variables XML2CMAKE_BIN and CMAKE_VISIT to be set to the corresponding binaries.
+The build script for the plugin ``Build_PLUGIN.sh`` expects the environment variables ``XML2CMAKE_BIN`` and ``CMAKE_VISIT`` to be set to the corresponding binaries.
 The best way is to export these variables in a script that will be executed whenever a shell starts, in bash that would be ``~/.bashrc``.
 
 In this file add the lines
@@ -26,7 +26,7 @@ and then type
 
     . ~/bash_rc
 
-to activate the changes for the current terminal.
+to activate the changes for the current terminal. Any terminal opened after that will already have these environment variables set correctly.
 
 Compiling the Plugin
 ~~~~~~~~~~~~~~~~~~~~

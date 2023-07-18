@@ -28,7 +28,7 @@ The directory ``utils`` contains various utility files
    utils/Quat
    utils/WELL512 
    utils/WELLUtils
-   utils/crypto 
+   utils/CryptoDigest 
    utils/PolyLine
    utils/geomutils
   

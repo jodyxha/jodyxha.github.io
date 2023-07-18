@@ -31,7 +31,7 @@ QHG4 documentation
    formats   
    code_doc
 
-Compiling and Running
+**Compiling and Running**
 
 .. toctree::
    :maxdepth: 1

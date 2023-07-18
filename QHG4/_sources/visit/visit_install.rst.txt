@@ -18,7 +18,7 @@ and in the table under "Series 3.3" select the leftmost "tgz" in the row titled 
 
 Change to your directory ``~/visit_sources`` - you will have 2 files: ``visit3.3.2.tar.gz`` and ``build_visit3_3_2``.
 
-Make build_visit3_3_2 executable:
+Make ``build_visit3_3_2`` executable:
   
 .. code-block:: bash
   
@@ -34,7 +34,7 @@ Then start the build process
     
 Answer the questions with yes and hit returh.
 
-This will download and compile variuos 3rd party codes.
+This will download and compile various 3rd party codes.
 
 If the build aborts during the compilation of ``Qt``,  a small addition must be made to ``build_visit3_3_2``:
 
@@ -59,8 +59,8 @@ Installing the VisIt binaries
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Once the building of visit has completed, there'll be a file ``visit3_3_2.linux-x86_64.tar.gz``. 
-The last lines of ``build_visit3_3_2 will bes message regarding the installation of visit 
-by calling ``.visit-install VERSION ARCH DESTINATION``. Assuming we want to install it in /opt/visit_3.3.2 (make sure you have access), 
+The last lines of ``build_visit3_3_2_log`` will be a message regarding the installation of visit 
+by calling ``./visit-install VERSION ARCH DESTINATION``. Assuming we want to install it in the directory ``/opt/visit_3.3.2`` (make sure you have access), 
 this command would be
 
 .. code-block:: bash

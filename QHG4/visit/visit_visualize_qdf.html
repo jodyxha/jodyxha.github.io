@@ -49,11 +49,11 @@
   <section id="visualize-qdf-files-with-visit">
 <span id="visit-visualize-qdf-ref"></span><h1>Visualize QDF files with VisIt<a class="headerlink" href="#visualize-qdf-files-with-visit" title="Permalink to this heading">¶</a></h1>
 <p>Visit has a large variety of plots such as pseudocolor plots, vector plots and others.
-Every plot needs a particular set of data, so it can not plot an arbitrary unknowny dataset.</p>
+Every plot needs a particular set of data, so it can not plot an arbitrary unknown dataset.</p>
 <p>For the QDF data produced by QHG4 we mostly do mesh plots (for meshes and individuals) and pseudocolor plots (for value fields, like environment data).</p>
 <p>The example qdf files used here can be found in the subdirectory <code class="docutils literal notranslate"><span class="pre">tutorial_data/example_qdf</span></code> of the QHG root directory.</p>
-<p>When you start visit</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./visit
+<p>When you start VisIt by typing</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>visit
 </pre></div>
 </div>
 <p>You will see two windows, a control window to the left, and a plot window on the right.</p>
@@ -196,10 +196,10 @@ to get a basic understanding of color tables and how to create, modify, and expo
 copy and paste the above text into it,  and save it in the directory <code class="docutils literal notranslate"><span class="pre">~/.visit</span></code>
 (i.e. the (invisible) subdirectory <code class="docutils literal notranslate"><span class="pre">.visit</span></code> in your home directoryfile).</p>
 <p>The next time you start VisIt you shoud see “geo2.ct” in the pseudocolor plot’s color tables.</p>
-<p>When using geo2 the ramge should be symmetric around 0 (thus the values “-6000” and “6000” above),
-i.e. the value 0 should be in the exct middle between the two extremes.
-This must be the case such that negative values (i.e. underwater cells) are colored in bluish hues,
-while positive values ares drawn with greenish and brownish colors.</p>
+<p>When using geo2 the range should be symmetric around 0 (thus the values “-6000” and “6000” above),
+i.e. the value 0 should be in the exact middle between the two extremes.
+This must be the case so that negative values (i.e. underwater cells) are colored in bluish hues,
+while positive values are drawn with greenish and brownish colors.</p>
 </section>
 </section>
 

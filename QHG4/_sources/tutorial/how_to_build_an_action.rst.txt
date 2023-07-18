@@ -1,4 +1,0 @@
-.. _how_to_build_an_action_ref:
-
-How to build a new Action
-=========================

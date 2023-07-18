@@ -159,7 +159,7 @@ Build an optimized QHG for the use with plugins  from scratch.
 
 .. code-block:: bash
 
-    SHORT=tut_08 make plugina
+    SHORT=tut_08 make plugins
 
 Build plugins for the populations found in the alternative compilation directory ``tut_08``-
 
@@ -170,8 +170,8 @@ Build plugins for the populations found in the alternative compilation directory
 
 .. _Compiling_QHG_alternate_ref:
 
-Alternative Population and Action directories
----------------------------------------------
+Alternative Populations and Action Directories
+----------------------------------------------
 
 If there are many files for population classes in the ``populations`` subdirectory, it can be useful to set up alternative directories containing only the minimum number of files required to build QHG with a particular population class.
 

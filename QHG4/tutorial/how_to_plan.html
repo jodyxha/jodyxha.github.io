@@ -1,0 +1,223 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>How to Design New Populations and Actions &#8212; QHG4 4.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../static/jody.css" />
+    
+    <script data-url_root="../" id="documentation_options" src="../static/documentation_options.js"></script>
+    <script src="../static/jquery.js"></script>
+    <script src="../static/underscore.js"></script>
+    <script src="../static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../static/doctools.js"></script>
+    <script src="../static/sphinx_highlight.js"></script>
+    
+    <link rel="shortcut icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="The Header File for the Action Class Virus" href="howto_virus_header.html" />
+    <link rel="prev" title="How to Design and Build New Populations and Actions" href="how_to_build_actions_pops.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="howto_virus_header.html" title="The Header File for the Action Class Virus"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="how_to_build_actions_pops.html" title="How to Design and Build New Populations and Actions"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../tutorial.html" >QHG Tutorial</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="how_to_build_actions_pops.html" accesskey="U">How to Design and Build New Populations and Actions</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">How to Design New Populations and Actions</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="how-to-design-new-populations-and-actions">
+<span id="how-to-plan-ref"></span><h1>How to Design New Populations and Actions<a class="headerlink" href="#how-to-design-new-populations-and-actions" title="Permalink to this heading">¶</a></h1>
+<p>As an example, we try to model viral infections in a community.</p>
+<section id="the-layout">
+<h2>The Layout<a class="headerlink" href="#the-layout" title="Permalink to this heading">¶</a></h2>
+<p>We have a population which can be infected by a virus. Infected individuals
+start out with a small virus load which increases over time. When the load
+crosses a certain threshold, the agent will infect other agents in the same cell.
+If the laod increases past a second threshold, the individual dies.
+Agents how ever can have a partrial immunity, which will reduce the risk
+of infection and slow down the virus growth (at full immunity, the infection
+risk is 0 a the virus load does not grow).</p>
+<p>Additionally, we’ll assume that immunity is inheritable properry:
+we allow for 5 different types of inheritance:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">mix</span></code>:  the baby’s immunity is the average of the parents’ immunities</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mat</span></code>:  the baby’s immunity is set to the mother’s immunity</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pat</span></code>:  the baby’s immunity is set to the father’s immunity</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">min</span></code>:  the baby’s immunity is set to the lesser of the parents’ immunities</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max</span></code>:  the baby’s immunity is set to the larger of the parents’ immunities</p></li>
+</ul>
+<p>Furthermore, a baby’s immunity can be modified by mutations.</p>
+<p>Inheritance type and mutation rates are read from the <a class="reference internal" href="../formats/pop/pop_xml.html#pop-xml-ref"><span class="std std-ref">population XML file</span></a>.</p>
+</section>
+<section id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this heading">¶</a></h2>
+<section id="population">
+<h3>Population<a class="headerlink" href="#population" title="Permalink to this heading">¶</a></h3>
+<p>We need sexual reproduction for our population.
+This means we can build our new population starting from a copy of
+<code class="docutils literal notranslate"><span class="pre">tut_SexualPop</span></code> from tutorial 5.
+Furthermore, our agents have 2 additional fields, a float for the virus load,
+and a float for immunity.</p>
+</section>
+<section id="actions">
+<h3>Actions<a class="headerlink" href="#actions" title="Permalink to this heading">¶</a></h3>
+<p>We model the virus as action.</p>
+<dl class="simple">
+<dt>The virus has 5 attributes</dt><dd><ul class="simple">
+<li><p>the infection probabiity</p></li>
+<li><p>the initial load (the “amount of virus” a newly infected agent gets.</p></li>
+<li><p>the virus growth rate (logidtic growth)</p></li>
+<li><p>the contagion level (if the virus load exceeds this, the agent becomes contagious)</p></li>
+<li><p>the lethality level (if the virus load exceeds this, the agent dies)</p></li>
+</ul>
+</dd>
+</dl>
+<p>In its <code class="docutils literal notranslate"><span class="pre">execute()</span></code> method it “grows” each agent’s virus load.
+Then, if the virus load exceeds the lethality level in an agent,
+it is regisatered for death.
+Otherwise we try to infect all other agents in the same cell
+Naively we would simply increase the virus load of each agent by a small amount,
+but since <code class="docutils literal notranslate"><span class="pre">execute()</span></code> is executed in parallel, this could lead to a problem
+if two threads happen to increase the virus load of the same agent at
+(more or less) the same time.</p>
+</section>
+<section id="avoiding-race-conditions">
+<h3>Avoiding Race Conditions<a class="headerlink" href="#avoiding-race-conditions" title="Permalink to this heading">¶</a></h3>
+<p>A race condition is a situatiom in parallel program where the execution
+of non-atomic operations depends on the order of the threads and the exact
+time at which they execute the code.</p>
+<p>The oprator <code class="docutils literal notranslate"><span class="pre">+=</span></code> is not atomic, for instance.
+The statement <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">+=</span> <span class="pre">2</span></code>  actually comprises three atomic instructions:
+- get value of variable x into register 1
+- add 2 to register 1
+- put value of register 1 into variable x</p>
+<p>So if <code class="docutils literal notranslate"><span class="pre">x</span></code> has the value 3, and we execute the code</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>with two threads, the result may be either 5 or 7:</p>
+<figure class="align-default" id="id1">
+<img alt="../images/race_cond.png" src="../images/race_cond.png" />
+<figcaption>
+<p><span class="caption-text">Depending on the timing and the order of execution,
+even simple parallelized code sections may give unexpected results.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>In order to avoid a race condition, we do not change the viral load of the
+agents directly, but we keep the store the loads an agent gets in in an array
+of std::maps, one map per thread.
+Each of these maps relates an agent index to the amount of viral loads it gets.
+Inside such a map there is no threat of a race condition so we can simply add
+the incoming loads as they come in (we parallelize over the agents, so no two
+threads try to change the map entry of the same agent).</p>
+<p>In the method <code class="docutils literal notranslate"><span class="pre">finalize()</span></code> which is executed after <code class="docutils literal notranslate"><span class="pre">execute()</span></code> we loop
+through all maps and actually increase the viral load of each agent by the
+amounts related to its index in the maps.</p>
+<p>Similar considerations apply to creating the vectors of agent IDs for each cell.
+Here to we have an array of maps relating cell indexes to vectors of agent
+indexes. Again, there is one map for each thread, so we may push back agent
+indexes to the vectors in the map of a thread without problems.</p>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">How to Design New Populations and Actions</a><ul>
+<li><a class="reference internal" href="#the-layout">The Layout</a></li>
+<li><a class="reference internal" href="#requirements">Requirements</a><ul>
+<li><a class="reference internal" href="#population">Population</a></li>
+<li><a class="reference internal" href="#actions">Actions</a></li>
+<li><a class="reference internal" href="#avoiding-race-conditions">Avoiding Race Conditions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="how_to_build_actions_pops.html"
+                          title="previous chapter">How to Design and Build New Populations and Actions</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="howto_virus_header.html"
+                          title="next chapter">The Header File for the Action Class <code class="docutils literal notranslate"><span class="pre">Virus</span></code></a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/tutorial/how_to_plan.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="howto_virus_header.html" title="The Header File for the Action Class Virus"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="how_to_build_actions_pops.html" title="How to Design and Build New Populations and Actions"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../tutorial.html" >QHG Tutorial</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="how_to_build_actions_pops.html" >How to Design and Build New Populations and Actions</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">How to Design New Populations and Actions</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+  </body>
+</html>

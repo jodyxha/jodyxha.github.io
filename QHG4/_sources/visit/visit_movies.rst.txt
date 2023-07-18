@@ -12,6 +12,11 @@ For instance:
   tut_pop-grass_A_pop-sheep_P_SG_000010.qdf
   tut_pop-grass_A_pop-sheep_P_SG_000020.qdf
      ...
+
+or
+
+.. code-block:: bash
+
   tut_pop_sapiens_SG_000000.qdf
   tut_pop_sapiens_SG_001000.qdf
   tut_pop_sapiens_SG_002000.qdf
@@ -54,7 +59,7 @@ Saving the movie
 ~~~~~~~~~~~~~~~~
 
 To save the movie in a video format such as MP4,
-choose "Save movie ..." from the "file"-menu of the control window.
+choose "Save movie ..." from the "File"-menu of the control window.
 
 In the first dialog make sure the option "New simple movie" is selacted. 
 
@@ -96,7 +101,9 @@ Press "Finish".
 
 Now VisIt loops through all images, creates PNG files and combines them in a movie file.
 
-You can practice movie-making by selectng the other block ("tut_pop_sapiens_SG_*.qdf") and going through the same steps as above.
+Yu can look at such a video in the :ref:`tutorial<visualize_run_grass_sheep_ref>`.
+
+To practice movie-making, select the other block ("tut_pop_sapiens_SG_*.qdf") and go through the same steps as above.
 
 
 

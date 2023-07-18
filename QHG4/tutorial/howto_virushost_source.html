@@ -1,0 +1,369 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>The Source File for the Population Class VirusHostPop &#8212; QHG4 4.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../static/jody.css" />
+    
+    <script data-url_root="../" id="documentation_options" src="../static/documentation_options.js"></script>
+    <script src="../static/jquery.js"></script>
+    <script src="../static/underscore.js"></script>
+    <script src="../static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../static/doctools.js"></script>
+    <script src="../static/sphinx_highlight.js"></script>
+    
+    <link rel="shortcut icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Compiling QHG4 for Virus and VirusHostPop" href="howto_compile.html" />
+    <link rel="prev" title="The Header File for the Population Class VirusHostPop" href="howto_virushost_header.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="howto_compile.html" title="Compiling QHG4 for Virus and VirusHostPop"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="howto_virushost_header.html" title="The Header File for the Population Class VirusHostPop"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../tutorial.html" >QHG Tutorial</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="how_to_build_actions_pops.html" accesskey="U">How to Design and Build New Populations and Actions</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">The Source File for the Population Class <code class="docutils literal notranslate"><span class="pre">VirusHostPop</span></code></a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="the-source-file-for-the-population-class-virushostpop">
+<span id="howto-virushost-source-ref"></span><h1>The Source File for the Population Class <code class="docutils literal notranslate"><span class="pre">VirusHostPop</span></code><a class="headerlink" href="#the-source-file-for-the-population-class-virushostpop" title="Permalink to this heading">¶</a></h1>
+<p>The first section contains the <code class="docutils literal notranslate"><span class="pre">#includes</span></code> for the required base classes, actions, and constants.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;omp.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;hdf5.h&gt;</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;EventConsts.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;SPopulation.cpp&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;LayerBuf.cpp&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Prioritizer.cpp&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Action.cpp&quot;</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;GetOld.cpp&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;ATanDeath.cpp&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;RandomMove.cpp&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Fertility.cpp&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Verhulst.cpp&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;RandomPair.cpp&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Virus.cpp&quot;</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;VirusHostPop.h&quot;</span>
+</pre></div>
+</div>
+<p>Most of these includea re needed to <code class="docutils literal notranslate"><span class="pre">close</span></code> the templates.</p>
+<section id="constructor">
+<h2>constructor<a class="headerlink" href="#constructor" title="Permalink to this heading">¶</a></h2>
+<p>Here we instantiate all actions and initialize the fields.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">VirusHostPop</span><span class="o">::</span><span class="n">VirusHostPop</span><span class="p">(</span><span class="n">SCellGrid</span><span class="w"> </span><span class="o">*</span><span class="n">pCG</span><span class="p">,</span><span class="w"> </span><span class="n">PopFinder</span><span class="w"> </span><span class="o">*</span><span class="n">pPopFinder</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iLayerSize</span><span class="p">,</span><span class="w"> </span><span class="n">IDGen</span><span class="w"> </span><span class="o">**</span><span class="n">apIDG</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="o">*</span><span class="n">aulState</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="o">*</span><span class="n">aiSeeds</span><span class="p">)</span>
+<span class="w">    </span><span class="o">:</span><span class="w"> </span><span class="n">SPopulation</span><span class="o">&lt;</span><span class="n">VirusHostAgent</span><span class="o">&gt;</span><span class="p">(</span><span class="n">pCG</span><span class="p">,</span><span class="w"> </span><span class="n">pPopFinder</span><span class="p">,</span><span class="w"> </span><span class="n">iLayerSize</span><span class="p">,</span><span class="w"> </span><span class="n">apIDG</span><span class="p">,</span><span class="w"> </span><span class="n">aulState</span><span class="p">,</span><span class="w"> </span><span class="n">aiSeeds</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+
+<span class="w">    </span><span class="n">m_pGO</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">GetOld</span><span class="o">&lt;</span><span class="n">VirusHostAgent</span><span class="o">&gt;</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">m_pCG</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">m_pAD</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ATanDeath</span><span class="o">&lt;</span><span class="n">VirusHostAgent</span><span class="o">&gt;</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">m_pCG</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">m_apWELL</span><span class="p">);</span>
+<span class="w">    </span><span class="n">m_pRM</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RandomMove</span><span class="o">&lt;</span><span class="n">VirusHostAgent</span><span class="o">&gt;</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">m_pCG</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">m_apWELL</span><span class="p">);</span>
+<span class="w">    </span><span class="n">m_pFert</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Fertility</span><span class="o">&lt;</span><span class="n">VirusHostAgent</span><span class="o">&gt;</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">m_pCG</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">m_pVerhulst</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Verhulst</span><span class="o">&lt;</span><span class="n">VirusHostAgent</span><span class="o">&gt;</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">m_pCG</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">m_apWELL</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">m_pPair</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RandomPair</span><span class="o">&lt;</span><span class="n">VirusHostAgent</span><span class="o">&gt;</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">m_pCG</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">m_apWELL</span><span class="p">);</span>
+<span class="w">    </span><span class="n">m_pVirus</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Virus</span><span class="o">&lt;</span><span class="n">VirusHostAgent</span><span class="o">&gt;</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">m_pCG</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">m_apWELL</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">m_prio</span><span class="p">.</span><span class="n">addAction</span><span class="p">(</span><span class="n">m_pGO</span><span class="p">);</span>
+<span class="w">    </span><span class="n">m_prio</span><span class="p">.</span><span class="n">addAction</span><span class="p">(</span><span class="n">m_pAD</span><span class="p">);</span>
+<span class="w">    </span><span class="n">m_prio</span><span class="p">.</span><span class="n">addAction</span><span class="p">(</span><span class="n">m_pRM</span><span class="p">);</span>
+<span class="w">    </span><span class="n">m_prio</span><span class="p">.</span><span class="n">addAction</span><span class="p">(</span><span class="n">m_pFert</span><span class="p">);</span>
+<span class="w">    </span><span class="n">m_prio</span><span class="p">.</span><span class="n">addAction</span><span class="p">(</span><span class="n">m_pVerhulst</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">m_prio</span><span class="p">.</span><span class="n">addAction</span><span class="p">(</span><span class="n">m_pPair</span><span class="p">);</span>
+<span class="w">    </span><span class="n">m_prio</span><span class="p">.</span><span class="n">addAction</span><span class="p">(</span><span class="n">m_pVirus</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">m_fMutationRate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">;</span>
+<span class="w">    </span><span class="n">m_sInheritType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;mix&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="destructor">
+<h2>destructor<a class="headerlink" href="#destructor" title="Permalink to this heading">¶</a></h2>
+<p>The destructor deletes all action created in the constructor.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">VirusHostPop</span><span class="o">::~</span><span class="n">VirusHostPop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_pGO</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">delete</span><span class="w"> </span><span class="n">m_pGO</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_pAD</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">delete</span><span class="w"> </span><span class="n">m_pAD</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_pRM</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">delete</span><span class="w"> </span><span class="n">m_pRM</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_pFert</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">delete</span><span class="w"> </span><span class="n">m_pFert</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_pVerhulst</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">delete</span><span class="w"> </span><span class="n">m_pVerhulst</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_pPair</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">delete</span><span class="w"> </span><span class="n">m_pPair</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_pVirus</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">delete</span><span class="w"> </span><span class="n">m_pVirus</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="getpopparams">
+<h2>getPopParams<a class="headerlink" href="#getpopparams" title="Permalink to this heading">¶</a></h2>
+<p>This method tries to extract mutation rate and inheritance type from the
+stringmap created by the population XML reader.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>int  VirusHostPop::getPopParams(const stringmap &amp;mVarDefs) {
+    int iResult = -1;
+
+    stringmap::const_iterator it = mVarDefs.find(VAR_VIRUSHOST_MUT_RATE_NAME);
+    if (it != mVarDefs.end()) {
+        float fMutTemp = 0;
+        if (strToNum(it-&gt;second, &amp;fMutTemp)) {
+            m_fMutationRate = fMutTemp;
+            printf(&quot;[VirusHostPop::getPopParams] have mutation rate %f\n&quot;, m_fMutationRate);
+            iResult = 0;
+        } else {
+            // couldn&#39;t convert string to float
+        }
+    } else {
+        // there is no key VAR_VIRUSHOST_MUT_RATE_NAME
+    }
+
+    it = mVarDefs.find(VAR_VIRUSHOST_IMM_INHERIT_NAME);
+    if (it != mVarDefs.end()) {
+        std::string sInheritType = it-&gt;second;
+
+        // handle the &quot;+&quot;
+        if (!sInheritType.ends_with(&quot;+&quot;)) {
+            m_fMutationRate = 0;
+        } else {
+            // drop the plus
+            sInheritType = sInheritType.substr(0, sInheritType.size()-1);
+        }
+        // check if valid inherit type
+        bool bSearching = true;
+        for (int i  = 0; bSearching &amp;&amp; (i &lt; 5); i++) {
+            if (sInheritType == INH_TYPES[i]) {
+                bSearching = false;
+            }
+        }
+
+        if (bSearching) {
+            printf(&quot;[VirusHostPop::getPopParams] unknown inherit type [%s]\n&quot;, sInheritType.c_str());
+        } else {
+            m_sInheritType = sInheritType;
+            printf(&quot;[VirusHostPop::getPopParams] have inherit type [%s]\n&quot;, m_sInheritType.c_str());
+            iResult = 0;
+        }
+
+    } else {
+        // there is no key VAR_VIRUSHOST_IMM_INHERIT_NAME
+    }
+    return iResult;
+}
+</pre></div>
+</div>
+</section>
+<section id="makepopspecificoffspring">
+<h2>makePopSpecificOffspring<a class="headerlink" href="#makepopspecificoffspring" title="Permalink to this heading">¶</a></h2>
+<p>This method is called when a baby is born in order to initialize it’s field.
+In particular, the baby’s immunity level is determined by the inhertiance type.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">VirusHostPop::makePopSpecificOffspring</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iAgent</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iMother</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iFather</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">iResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">m_aAgents</span><span class="p">[</span><span class="n">iAgent</span><span class="p">].</span><span class="n">m_fAge</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">;</span>
+<span class="w">    </span><span class="n">m_aAgents</span><span class="p">[</span><span class="n">iAgent</span><span class="p">].</span><span class="n">m_fLastBirth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">;</span>
+<span class="w">    </span><span class="n">m_aAgents</span><span class="p">[</span><span class="n">iAgent</span><span class="p">].</span><span class="n">m_iMateIndex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">-3</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// SPopulation assigns random genders to a baby, ehich is ok here</span>
+<span class="w">    </span><span class="n">m_aAgents</span><span class="p">[</span><span class="n">iAgent</span><span class="p">].</span><span class="n">m_fViralLoad</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+
+<span class="w">    </span><span class="c1">// register this date as the last birth of the mother</span>
+<span class="w">    </span><span class="n">m_aAgents</span><span class="p">[</span><span class="n">iAgent</span><span class="p">].</span><span class="n">m_fLastBirth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">m_fCurTime</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// the offspring&#39;s immunity is the average of the parents&#39; immunities plus a little fuzz factor.</span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">fImm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_sInheritType</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">INH_TYPES</span><span class="p">[</span><span class="n">INH_MIX</span><span class="p">])</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">fImm</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="p">(</span><span class="n">m_aAgents</span><span class="p">[</span><span class="n">iMother</span><span class="p">].</span><span class="n">m_fImmunity</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">m_aAgents</span><span class="p">[</span><span class="n">iFather</span><span class="p">].</span><span class="n">m_fImmunity</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_sInheritType</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">INH_TYPES</span><span class="p">[</span><span class="n">INH_MAT</span><span class="p">])</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">fImm</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="n">m_aAgents</span><span class="p">[</span><span class="n">iMother</span><span class="p">].</span><span class="n">m_fImmunity</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_sInheritType</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">INH_TYPES</span><span class="p">[</span><span class="n">INH_PAT</span><span class="p">])</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">fImm</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="n">m_aAgents</span><span class="p">[</span><span class="n">iFather</span><span class="p">].</span><span class="n">m_fImmunity</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_sInheritType</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">INH_TYPES</span><span class="p">[</span><span class="n">INH_MIN</span><span class="p">])</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">fImm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">m_aAgents</span><span class="p">[</span><span class="n">iMother</span><span class="p">].</span><span class="n">m_fImmunity</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">m_aAgents</span><span class="p">[</span><span class="n">iFather</span><span class="p">].</span><span class="n">m_fImmunity</span><span class="p">)</span><span class="o">?</span><span class="n">m_aAgents</span><span class="p">[</span><span class="n">iMother</span><span class="p">].</span><span class="n">m_fImmunity</span><span class="o">:</span><span class="n">m_aAgents</span><span class="p">[</span><span class="n">iFather</span><span class="p">].</span><span class="n">m_fImmunity</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_sInheritType</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">INH_TYPES</span><span class="p">[</span><span class="n">INH_MAX</span><span class="p">])</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">fImm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">m_aAgents</span><span class="p">[</span><span class="n">iMother</span><span class="p">].</span><span class="n">m_fImmunity</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">m_aAgents</span><span class="p">[</span><span class="n">iFather</span><span class="p">].</span><span class="n">m_fImmunity</span><span class="p">)</span><span class="o">?</span><span class="n">m_aAgents</span><span class="p">[</span><span class="n">iMother</span><span class="p">].</span><span class="n">m_fImmunity</span><span class="o">:</span><span class="n">m_aAgents</span><span class="p">[</span><span class="n">iFather</span><span class="p">].</span><span class="n">m_fImmunity</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// shouldn&#39;t happen</span>
+<span class="w">        </span><span class="n">iResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">//mutate</span>
+<span class="w">    </span><span class="n">fImm</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">m_apWELL</span><span class="p">[</span><span class="n">omp_get_thread_num</span><span class="p">()]</span><span class="o">-&gt;</span><span class="n">wgauss</span><span class="p">(</span><span class="n">m_fMutationRate</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">fImm</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">fImm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">fImm</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">fImm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">m_aAgents</span><span class="p">[</span><span class="n">iAgent</span><span class="p">].</span><span class="n">m_fImmunity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fImm</span><span class="p">;</span>
+
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_aAgents</span><span class="p">[</span><span class="n">iMother</span><span class="p">].</span><span class="n">m_fViralLoad</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">m_aAgents</span><span class="p">[</span><span class="n">iAgent</span><span class="p">].</span><span class="n">m_fViralLoad</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.2</span><span class="p">;</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Babyinfect: %d -&gt; %d</span><span class="se">\n</span><span class="s">n&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">iMother</span><span class="p">,</span><span class="w"> </span><span class="n">iAgent</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+
+<span class="w">    </span><span class="c1">//printf(&quot;[VirusHostPop::makePopSpecificOffsprin] baby %d vl %f, imm %f\n&quot;,  iAgent, m_aAgents[iAgent].m_fViralLoad, m_aAgents[iAgent].m_fImmunity);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">iResult</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="addpopspecificagentdata">
+<h2>addPopSpecificAgentData<a class="headerlink" href="#addpopspecificagentdata" title="Permalink to this heading">¶</a></h2>
+<p>This method reads agent specific data from the <cite>population dat file&lt;pop_dat_ref&gt;</cite>.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">VirusHostPop::addPopSpecificAgentData</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iAgentIndex</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">ppData</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">iResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">iResult</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">iResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">addAgentDataSingle</span><span class="p">(</span><span class="n">ppData</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">m_aAgents</span><span class="p">[</span><span class="n">iAgentIndex</span><span class="p">].</span><span class="n">m_fAge</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">iResult</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">iResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">addAgentDataSingle</span><span class="p">(</span><span class="n">ppData</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">m_aAgents</span><span class="p">[</span><span class="n">iAgentIndex</span><span class="p">].</span><span class="n">m_fLastBirth</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">iResult</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">iResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">addAgentDataSingle</span><span class="p">(</span><span class="n">ppData</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">m_aAgents</span><span class="p">[</span><span class="n">iAgentIndex</span><span class="p">].</span><span class="n">m_fViralLoad</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">iResult</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">iResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">addAgentDataSingle</span><span class="p">(</span><span class="n">ppData</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">m_aAgents</span><span class="p">[</span><span class="n">iAgentIndex</span><span class="p">].</span><span class="n">m_fImmunity</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">iResult</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="addpopspecificagentdatatypeqdf">
+<h2>addPopSpecificAgentDataTypeQDF<a class="headerlink" href="#addpopspecificagentdatatypeqdf" title="Permalink to this heading">¶</a></h2>
+<p>This method creates a HDF data type to handlle I/O of agents.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">VirusHostPop::addPopSpecificAgentDataTypeQDF</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="o">*</span><span class="n">hAgentDataType</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="n">VirusHostAgent</span><span class="w"> </span><span class="n">va</span><span class="p">;</span>
+<span class="w">    </span><span class="n">H5Tinsert</span><span class="p">(</span><span class="o">*</span><span class="n">hAgentDataType</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Age&quot;</span><span class="p">,</span><span class="w">       </span><span class="n">qoffsetof</span><span class="p">(</span><span class="n">va</span><span class="p">,</span><span class="w"> </span><span class="n">m_fAge</span><span class="p">),</span><span class="w"> </span><span class="n">H5T_NATIVE_FLOAT</span><span class="p">);</span>
+<span class="w">    </span><span class="n">H5Tinsert</span><span class="p">(</span><span class="o">*</span><span class="n">hAgentDataType</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;LastBirth&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">qoffsetof</span><span class="p">(</span><span class="n">va</span><span class="p">,</span><span class="w"> </span><span class="n">m_fLastBirth</span><span class="p">),</span><span class="w"> </span><span class="n">H5T_NATIVE_FLOAT</span><span class="p">);</span>
+<span class="w">    </span><span class="n">H5Tinsert</span><span class="p">(</span><span class="o">*</span><span class="n">hAgentDataType</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ViralLoad&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">qoffsetof</span><span class="p">(</span><span class="n">va</span><span class="p">,</span><span class="w"> </span><span class="n">m_fViralLoad</span><span class="p">),</span><span class="w"> </span><span class="n">H5T_NATIVE_FLOAT</span><span class="p">);</span>
+<span class="w">    </span><span class="n">H5Tinsert</span><span class="p">(</span><span class="o">*</span><span class="n">hAgentDataType</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Immunity&quot;</span><span class="p">,</span><span class="w">  </span><span class="n">qoffsetof</span><span class="p">(</span><span class="n">va</span><span class="p">,</span><span class="w"> </span><span class="n">m_fImmunity</span><span class="p">),</span><span class="w"> </span><span class="n">H5T_NATIVE_FLOAT</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">The Source File for the Population Class <code class="docutils literal notranslate"><span class="pre">VirusHostPop</span></code></a><ul>
+<li><a class="reference internal" href="#constructor">constructor</a></li>
+<li><a class="reference internal" href="#destructor">destructor</a></li>
+<li><a class="reference internal" href="#getpopparams">getPopParams</a></li>
+<li><a class="reference internal" href="#makepopspecificoffspring">makePopSpecificOffspring</a></li>
+<li><a class="reference internal" href="#addpopspecificagentdata">addPopSpecificAgentData</a></li>
+<li><a class="reference internal" href="#addpopspecificagentdatatypeqdf">addPopSpecificAgentDataTypeQDF</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="howto_virushost_header.html"
+                          title="previous chapter">The Header File for the Population Class <code class="docutils literal notranslate"><span class="pre">VirusHostPop</span></code></a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="howto_compile.html"
+                          title="next chapter">Compiling QHG4 for <code class="docutils literal notranslate"><span class="pre">Virus</span></code> and <code class="docutils literal notranslate"><span class="pre">VirusHostPop</span></code></a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/tutorial/howto_virushost_source.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="howto_compile.html" title="Compiling QHG4 for Virus and VirusHostPop"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="howto_virushost_header.html" title="The Header File for the Population Class VirusHostPop"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../tutorial.html" >QHG Tutorial</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="how_to_build_actions_pops.html" >How to Design and Build New Populations and Actions</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">The Source File for the Population Class <code class="docutils literal notranslate"><span class="pre">VirusHostPop</span></code></a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+  </body>
+</html>

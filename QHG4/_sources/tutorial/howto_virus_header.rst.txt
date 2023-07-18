@@ -1,0 +1,129 @@
+.. _howto_virus_header_ref:
+
+The Header File for the Action Class ``Virus``
+==============================================
+
+The file ``Virus.h`` starts with the necessary includes for the header file:
+
+.. code-block:: c++
+
+    #ifndef __VIRUS_H__
+    #define __VIRUS_H__
+    
+    #include "types.h"
+    #include "Action.h"
+    #include "ParamProvider2.h"
+    
+Next we define the names for the attributes
+
+.. code-block:: c++
+
+    #define ATTR_VIRUS_NAME                 "Virus"
+    #define ATTR_VIRUS_INFECTION_PROB_NAME  "InfectionProb"
+    #define ATTR_VIRUS_INITIAL_LOAD_NAME    "InitialLoad"
+    #define ATTR_VIRUS_GROWTH_RATE_NAME     "GrowthRate"
+    #define ATTR_VIRUS_CONTAGION_LEVEL_NAME "ContagionLevel"
+    #define ATTR_VIRUS_LETHALITY_LEVEL_NAME "LethalityLevel"
+
+.. glossary::
+        
+   ATTR_VIRUS_NAME  
+      The name of the action. Every action must have such an attribute ``ATTR_XXXX_NAME``.
+   
+   ATTR_VIRUS_INFECTION_PROB_NAME
+      This attribute is used to read and write the **infection probability** 
+      to or from  a QDF file.
+      The infection probabilty is needed to decide if an infection takes place
+      when an already infected agents shares a cell with an toher ahent.
+
+
+   ATTR_VIRUS_INITIAL_LOAD_NAME    
+      This attribute is used to read and write the **initial load**
+      to or from a QDF file.
+      The initial load is the virus load a newly infected agent receives. 
+
+   ATTR_VIRUS_GROWTH_RATE_NAME     
+      This attribute is used to read and write the **growth rate** 
+      to or from a QDF file.
+      The growth rate defines how fast the virus multiplies in a host 
+      (it is the slpe of a logistic curve used in the calculation) 
+
+   ATTR_VIRUS_CONTAGION_LEVEL_NAME 
+      This attribute is used to read and write the **contagion level**
+      to or from a QDF file.
+      An agent becomes infectious if its virus load exceeds the this number.
+ 
+   ATTR_VIRUS_LETHALITY_LEVEL_NAME 
+      This attribute is used to read and write the **lethality level**
+      to or from a QDF file.
+      An agent dies if its virus load exceeds the this number.
+
+
+
+
+Next in the file there are some ``typedefs`` for easier reading
+
+.. code-block:: c++
+
+  typedef std::map<int, intvec> cellagentmap;
+  typedef std::map<int, float>  agentloadmap;
+
+The ``cellagentmap`` associates cell IDs with vector of agent indexes.
+
+The ``agentloadmap`` associates an agent ID to the total virus load this agent receives (it could be infected by various other agents).
+The use of this map is unproblematic in a parallel section because we 
+parallelize over the agent IDs. 
+
+There will be arrays of these maps with as many entries as there are threads.
+
+
+Now follows the declaration of the ``Virus`` class which is derived from ``Action`` 
+
+.. code-block:: c++
+       
+    template<typename T>
+    class Virus : public Action<T> {
+    
+As usual we have a constructor and a destructor.
+We particularily need both the ``execute()`` method and the ``finalize()`` method,
+as well as the methods that deal with reading and writing the attribute values.
+
+.. code-block:: c++
+ 
+     public:
+        Virus(SPopulation<T> *pPop, SCellGrid *pCG, std::string sID, WELL512 **apWELL);
+        virtual ~Virus();
+
+        virtual int execute(int iA, float fT);
+        virtual int finalizeStep();
+
+        virtual int extractAttributesQDF(hid_t hSpeciesGroup);
+        virtual int writeAttributesQDF(hid_t hSpeciesGroup);
+    
+        virtual int tryGetAttributes(const ModuleComplex *pMC);
+    
+     
+And finally the members: the random number generators, the attributes, and the maps.
+
+.. code-block:: c++
+ 
+    protected:
+        WELL512 **m_apWELL;
+        float m_fInfectionProb;
+        float m_fInitialLoad;
+        float m_fGrowthRate;
+        float m_fContagionLevel;
+        float m_fLethalityLevel; 
+    
+        int m_iNumThreads;
+        cellagentmap  *m_amCellAgents;
+        agentloadmap  *m_amAgentInfects; 
+
+
+        static const char *asNames[];
+    
+    };
+    
+    
+The entire file can be found here: `Virus.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/Virus.h>`_ 
+

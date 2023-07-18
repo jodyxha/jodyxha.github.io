@@ -1,0 +1,422 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>CryptoDigest &#8212; QHG4 4.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../static/jody.css" />
+    
+    <script data-url_root="../../" id="documentation_options" src="../../static/documentation_options.js"></script>
+    <script src="../../static/jquery.js"></script>
+    <script src="../../static/underscore.js"></script>
+    <script src="../../static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../static/doctools.js"></script>
+    <script src="../../static/sphinx_highlight.js"></script>
+    
+    <link rel="shortcut icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="PolyLine" href="PolyLine.html" />
+    <link rel="prev" title="WELLUtils" href="WELLUtils.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="PolyLine.html" title="PolyLine"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="WELLUtils.html" title="WELLUtils"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../utils.html" accesskey="U">utils</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">CryptoDigest</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="cryptodigest">
+<span id="cryptodigest-ref"></span><h1>CryptoDigest<a class="headerlink" href="#cryptodigest" title="Permalink to this heading">¶</a></h1>
+<p>This page describes the class <span class="target" id="index-0"></span>CryptoDigest</p>
+<p>The class <code class="docutils literal notranslate"><span class="pre">CryptoDigest</span></code> provides some tools to calculate various digests for strigs files and generic data.</p>
+<dl>
+<dt>Code:</dt><dd><div class="line-block">
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/CyptoDigest.h">CryptoDigest.h</a></div>
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/CryptoDigest.cpp">CryptoDigest.cpp</a></div>
+</div>
+</dd>
+</dl>
+<section id="public-methods">
+<h2>Public Methods<a class="headerlink" href="#public-methods" title="Permalink to this heading">¶</a></h2>
+<section id="destructor">
+<h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="o">~</span><span class="n">CryptoDigest</span><span class="p">();</span>
+</pre></div>
+</div>
+</section>
+<section id="adddata">
+<h3><code class="docutils literal notranslate"><span class="pre">addData</span></code><a class="headerlink" href="#adddata" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">addData</span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">pData</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iDataLen</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Adds data to the current digest.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">pData</span></code></dt><dd><p>Pointer to the data to be added.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iDataLen</span></code></dt><dd><p>Leght of the data t be added.</p>
+</dd>
+</dl>
+</section>
+<section id="getdigest">
+<h3><code class="docutils literal notranslate"><span class="pre">getDigest</span></code><a class="headerlink" href="#getdigest" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="nf">getDigest</span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">piDigestLen</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Returns the digest of the data added so far. The length of the data is returned in <code class="docutils literal notranslate"><span class="pre">piDigestLen</span></code>.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">piDigestLen</span></code></dt><dd><p>Pointer to an unsigned int to holld the length of the digest.</p>
+</dd>
+</dl>
+</section>
+<section id="digeststring">
+<h3><code class="docutils literal notranslate"><span class="pre">digestString</span></code><a class="headerlink" href="#digeststring" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="nf">digestString</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sData</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">piDigestLen</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Returns the digest of a single string. The length of the data is returned in <code class="docutils literal notranslate"><span class="pre">piDigestLen</span></code>.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">sData</span></code></dt><dd><p>The string to digest.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">piDigestLen</span></code></dt><dd><p>Pointer to an unsigned int to holld the length of the digest.</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="public-static-methods">
+<h2>Public Static Methods<a class="headerlink" href="#public-static-methods" title="Permalink to this heading">¶</a></h2>
+<section id="createinstance">
+<h3><code class="docutils literal notranslate"><span class="pre">createInstance</span></code><a class="headerlink" href="#createinstance" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="n">CryptoDigest</span><span class="w"> </span><span class="o">*</span><span class="nf">createInstance</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sType</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Creates and returns a <code class="docutils literal notranslate"><span class="pre">CryptoDigest</span></code> object.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">sType</span></code></dt><dd><p>Name of the digest type. May be <code class="docutils literal notranslate"><span class="pre">sha256</span></code>, <code class="docutils literal notranslate"><span class="pre">sha512</span></code>, or <code class="docutils literal notranslate"><span class="pre">md5</span></code>.</p>
+</dd>
+</dl>
+</section>
+<section id="md5sum-string">
+<h3><code class="docutils literal notranslate"><span class="pre">md5sum_string</span></code><a class="headerlink" href="#md5sum-string" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="nf">md5sum_string</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sData</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">piDigestLen</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Returns the MD5 digest of a single string. The length of the digest is returned in <code class="docutils literal notranslate"><span class="pre">piDigestLen</span></code>.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">sData</span></code></dt><dd><p>The string to digest.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">piDigestLen</span></code></dt><dd><p>Pointer to an unsigned int to holld the length of the digest.</p>
+</dd>
+</dl>
+</section>
+<section id="sha256sum-string">
+<h3><code class="docutils literal notranslate"><span class="pre">sha256sum_string</span></code><a class="headerlink" href="#sha256sum-string" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="nf">sha256sum_string</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sData</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">piDigestLen</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Returns the SHA256 digest of a single string. The length of the digest is returned in <code class="docutils literal notranslate"><span class="pre">piDigestLen</span></code>.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">sData</span></code></dt><dd><p>The string to digest.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">piDigestLen</span></code></dt><dd><p>Pointer to an unsigned int to holld the length of the digest.</p>
+</dd>
+</dl>
+</section>
+<section id="sha512sum-string">
+<h3><code class="docutils literal notranslate"><span class="pre">sha512sum_string</span></code><a class="headerlink" href="#sha512sum-string" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="nf">sha512sum_string</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sData</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">piDigestLen</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Returns the SHA512 digest of a single string. The length of the digest is returned in <code class="docutils literal notranslate"><span class="pre">piDigestLen</span></code>.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">sData</span></code></dt><dd><p>The string to digest.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">piDigestLen</span></code></dt><dd><p>Pointer to an unsigned int to holld the length of the digest.</p>
+</dd>
+</dl>
+</section>
+<section id="md5sum-data">
+<h3><code class="docutils literal notranslate"><span class="pre">md5sum_data</span></code><a class="headerlink" href="#md5sum-data" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="nf">md5sum_data</span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">pData</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iDataLen</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">piDigestLen</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Returns the MD5 digest of data (must be cast to <code class="docutils literal notranslate"><span class="pre">unsigned</span> <span class="pre">char</span></code>). The length of the digest is returned in <code class="docutils literal notranslate"><span class="pre">piDigestLen</span></code>.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">pData</span></code></dt><dd><p>Pointer to the data.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iDataLen</span></code></dt><dd><p>Length of the data to be digested.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">piDigestLen</span></code></dt><dd><p>Pointer to an unsigned int to holld the length of the digest.</p>
+</dd>
+</dl>
+</section>
+<section id="sha256sum-data">
+<h3><code class="docutils literal notranslate"><span class="pre">sha256sum_data</span></code><a class="headerlink" href="#sha256sum-data" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="nf">sha256sum_data</span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">pData</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iDataLen</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">piDigestLen</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Returns the SHA256 digest of data (must be cast to <code class="docutils literal notranslate"><span class="pre">unsigned</span> <span class="pre">char</span></code>). The length of the digest is returned in <code class="docutils literal notranslate"><span class="pre">piDigestLen</span></code>.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">pData</span></code></dt><dd><p>Pointer to the data.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iDataLen</span></code></dt><dd><p>Length of the data to be digested.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">piDigestLen</span></code></dt><dd><p>Pointer to an unsigned int to holld the length of the digest.</p>
+</dd>
+</dl>
+</section>
+<section id="sha512sum-data">
+<h3><code class="docutils literal notranslate"><span class="pre">sha512sum_data</span></code><a class="headerlink" href="#sha512sum-data" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="nf">sha512sum_data</span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">pData</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iDataLen</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">piDigestLen</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Returns the SHA512 digest of data (must be cast to <code class="docutils literal notranslate"><span class="pre">unsigned</span> <span class="pre">char</span></code>). The length of the digest is returned in <code class="docutils literal notranslate"><span class="pre">piDigestLen</span></code>.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">pData</span></code></dt><dd><p>Pointer to the data.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iDataLen</span></code></dt><dd><p>Length of the data to be digested.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">piDigestLen</span></code></dt><dd><p>Pointer to an unsigned int to holld the length of the digest.</p>
+</dd>
+</dl>
+</section>
+<section id="md5sum-file">
+<h3><code class="docutils literal notranslate"><span class="pre">md5sum_file</span></code><a class="headerlink" href="#md5sum-file" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="nf">md5sum_file</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sFileName</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">piDigestLen</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Returns the MD5 digest of the file contents.  The length of the digest is returned in <code class="docutils literal notranslate"><span class="pre">piDigestLen</span></code>.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">sFileName</span></code></dt><dd><p>Name of the file the contents of which shoud be digested.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">piDigestLen</span></code></dt><dd><p>Pointer to an unsigned int to holld the length of the digest.</p>
+</dd>
+</dl>
+</section>
+<section id="sha256sum-file">
+<h3><code class="docutils literal notranslate"><span class="pre">sha256sum_file</span></code><a class="headerlink" href="#sha256sum-file" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="nf">sha256sum_file</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sFileName</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">piDigestLen</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Returns the SHA256 digest of the file contents.  The length of the digest is returned in <code class="docutils literal notranslate"><span class="pre">piDigestLen</span></code>.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">sFileName</span></code></dt><dd><p>Name of the file the contents of which shoud be digested.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">piDigestLen</span></code></dt><dd><p>Pointer to an unsigned int to holld the length of the digest.</p>
+</dd>
+</dl>
+</section>
+<section id="sha512sum-file">
+<h3><code class="docutils literal notranslate"><span class="pre">sha512sum_file</span></code><a class="headerlink" href="#sha512sum-file" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="nf">sha512sum_file</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sFileName</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">piDigestLen</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Returns the SHA512 digest of the file contents.  The length of the digest is returned in <code class="docutils literal notranslate"><span class="pre">piDigestLen</span></code>.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">sFileName</span></code></dt><dd><p>Name of the file the contents of which shoud be digested.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">piDigestLen</span></code></dt><dd><p>Pointer to an unsigned int to holld the length of the digest.</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="protected-methods">
+<h2>Protected Methods<a class="headerlink" href="#protected-methods" title="Permalink to this heading">¶</a></h2>
+<section id="constructor">
+<h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#constructor" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">CryptoDigest</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>Empty constructor.</p>
+</section>
+<section id="init">
+<h3><code class="docutils literal notranslate"><span class="pre">init</span></code><a class="headerlink" href="#init" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">init</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sType</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Initializes the CryptDigest object for a particular digest type.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">sType</span></code></dt><dd><p>The name of the digest type (<code class="docutils literal notranslate"><span class="pre">md5</span></code>, <code class="docutils literal notranslate"><span class="pre">sha256</span></code>, or <code class="docutils literal notranslate"><span class="pre">sha512</span></code>).</p>
+</dd>
+</dl>
+<p>Returns -1 on failure, 0 omn success.</p>
+</section>
+</section>
+<section id="protected-static-methods">
+<h2>Protected Static Methods<a class="headerlink" href="#protected-static-methods" title="Permalink to this heading">¶</a></h2>
+<section id="genericsum-string">
+<h3><code class="docutils literal notranslate"><span class="pre">genericsum_string</span></code><a class="headerlink" href="#genericsum-string" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="nf">genericsum_string</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sDigestName</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sData</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">piDigestLen</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Returns a digest of the specified type from the provided data.
+The length of the digest is returned in <code class="docutils literal notranslate"><span class="pre">piDigestLen</span></code>.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">sDigestName</span></code></dt><dd><p>The name of the digest type (<code class="docutils literal notranslate"><span class="pre">md5</span></code>, <code class="docutils literal notranslate"><span class="pre">sha256</span></code>, or <code class="docutils literal notranslate"><span class="pre">sha512</span></code>).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sData</span></code></dt><dd><p>The string to digest.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">piDigestLen</span></code></dt><dd><p>Pointer to an unsigned int to holld the length of the digest.</p>
+</dd>
+</dl>
+</section>
+<section id="genericsum-file">
+<h3><code class="docutils literal notranslate"><span class="pre">genericsum_file</span></code><a class="headerlink" href="#genericsum-file" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="nf">genericsum_file</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sDigestName</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sFileName</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">piDigestLen</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Returns a digest of the specified type from the file’s contents.
+The length of the digest is returned in <code class="docutils literal notranslate"><span class="pre">piDigestLen</span></code>.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">sDigestName</span></code></dt><dd><p>The name of the digest type (<code class="docutils literal notranslate"><span class="pre">md5</span></code>, <code class="docutils literal notranslate"><span class="pre">sha256</span></code>, or <code class="docutils literal notranslate"><span class="pre">sha512</span></code>).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sFileName</span></code></dt><dd><p>The file whose contents are to be digested.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">piDigestLen</span></code></dt><dd><p>Pointer to an unsigned int to holld the length of the digest.</p>
+</dd>
+</dl>
+</section>
+<section id="genericsum-data">
+<h3><code class="docutils literal notranslate"><span class="pre">genericsum_data</span></code><a class="headerlink" href="#genericsum-data" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="nf">genericsum_data</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sDigestName</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">pData</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iDataLen</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">piDigestLen</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Returns a digest of the specified type from the provided array.
+The length of the digest is returned in <code class="docutils literal notranslate"><span class="pre">piDigestLen</span></code>.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">sDigestName</span></code></dt><dd><p>The name of the digest type (<code class="docutils literal notranslate"><span class="pre">md5</span></code>, <code class="docutils literal notranslate"><span class="pre">sha256</span></code>, or <code class="docutils literal notranslate"><span class="pre">sha512</span></code>).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">pData</span></code></dt><dd><p>Pointer to an array of data to be digested (should be cast to <code class="docutils literal notranslate"><span class="pre">unsigned</span> <span class="pre">char</span></code>).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">iDataLen</span></code></dt><dd><p>The length of the data to be digested.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">piDigestLen</span></code></dt><dd><p>Pointer to an unsigned int to holld the length of the digest.</p>
+</dd>
+</dl>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">CryptoDigest</a><ul>
+<li><a class="reference internal" href="#public-methods">Public Methods</a><ul>
+<li><a class="reference internal" href="#destructor"><code class="docutils literal notranslate"><span class="pre">destructor</span></code></a></li>
+<li><a class="reference internal" href="#adddata"><code class="docutils literal notranslate"><span class="pre">addData</span></code></a></li>
+<li><a class="reference internal" href="#getdigest"><code class="docutils literal notranslate"><span class="pre">getDigest</span></code></a></li>
+<li><a class="reference internal" href="#digeststring"><code class="docutils literal notranslate"><span class="pre">digestString</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#public-static-methods">Public Static Methods</a><ul>
+<li><a class="reference internal" href="#createinstance"><code class="docutils literal notranslate"><span class="pre">createInstance</span></code></a></li>
+<li><a class="reference internal" href="#md5sum-string"><code class="docutils literal notranslate"><span class="pre">md5sum_string</span></code></a></li>
+<li><a class="reference internal" href="#sha256sum-string"><code class="docutils literal notranslate"><span class="pre">sha256sum_string</span></code></a></li>
+<li><a class="reference internal" href="#sha512sum-string"><code class="docutils literal notranslate"><span class="pre">sha512sum_string</span></code></a></li>
+<li><a class="reference internal" href="#md5sum-data"><code class="docutils literal notranslate"><span class="pre">md5sum_data</span></code></a></li>
+<li><a class="reference internal" href="#sha256sum-data"><code class="docutils literal notranslate"><span class="pre">sha256sum_data</span></code></a></li>
+<li><a class="reference internal" href="#sha512sum-data"><code class="docutils literal notranslate"><span class="pre">sha512sum_data</span></code></a></li>
+<li><a class="reference internal" href="#md5sum-file"><code class="docutils literal notranslate"><span class="pre">md5sum_file</span></code></a></li>
+<li><a class="reference internal" href="#sha256sum-file"><code class="docutils literal notranslate"><span class="pre">sha256sum_file</span></code></a></li>
+<li><a class="reference internal" href="#sha512sum-file"><code class="docutils literal notranslate"><span class="pre">sha512sum_file</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#protected-methods">Protected Methods</a><ul>
+<li><a class="reference internal" href="#constructor"><code class="docutils literal notranslate"><span class="pre">constructor</span></code></a></li>
+<li><a class="reference internal" href="#init"><code class="docutils literal notranslate"><span class="pre">init</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#protected-static-methods">Protected Static Methods</a><ul>
+<li><a class="reference internal" href="#genericsum-string"><code class="docutils literal notranslate"><span class="pre">genericsum_string</span></code></a></li>
+<li><a class="reference internal" href="#genericsum-file"><code class="docutils literal notranslate"><span class="pre">genericsum_file</span></code></a></li>
+<li><a class="reference internal" href="#genericsum-data"><code class="docutils literal notranslate"><span class="pre">genericsum_data</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="WELLUtils.html"
+                          title="previous chapter">WELLUtils</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="PolyLine.html"
+                          title="next chapter">PolyLine</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/code_doc/utils/CryptoDigest.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="PolyLine.html" title="PolyLine"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="WELLUtils.html" title="WELLUtils"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../utils.html" >utils</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">CryptoDigest</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+  </body>
+</html>

@@ -49,10 +49,10 @@
   <section id="building-the-qdf-format-plugin">
 <span id="visit-plugin-qdfformat-ref"></span><h1>Building the QDF Format Plugin<a class="headerlink" href="#building-the-qdf-format-plugin" title="Permalink to this heading">¶</a></h1>
 <p>In order to enable VisIt to read and interpret out QDF files. we had to implement a plugin for this.</p>
-<p>The plugin code must be compiled with the tools Visit wa compiled with.</p>
+<p>The plugin code must be compiled with the tools VisIt was compiled with.</p>
 <section id="environment-variables">
 <h2>Environment Variables<a class="headerlink" href="#environment-variables" title="Permalink to this heading">¶</a></h2>
-<p>The build script for the plugin <code class="docutils literal notranslate"><span class="pre">Build_PLUGIN.sh</span></code> expects the environment variables XML2CMAKE_BIN and CMAKE_VISIT to be set to the corresponding binaries.
+<p>The build script for the plugin <code class="docutils literal notranslate"><span class="pre">Build_PLUGIN.sh</span></code> expects the environment variables <code class="docutils literal notranslate"><span class="pre">XML2CMAKE_BIN</span></code> and <code class="docutils literal notranslate"><span class="pre">CMAKE_VISIT</span></code> to be set to the corresponding binaries.
 The best way is to export these variables in a script that will be executed whenever a shell starts, in bash that would be <code class="docutils literal notranslate"><span class="pre">~/.bashrc</span></code>.</p>
 <p>In this file add the lines</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">XML2CMAKE_BIN</span><span class="o">=</span>/opt/visit_3.3.2/bin/xml2cmake
@@ -63,7 +63,7 @@ The best way is to export these variables in a script that will be executed when
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>.<span class="w"> </span>~/bash_rc
 </pre></div>
 </div>
-<p>to activate the changes for the current terminal.</p>
+<p>to activate the changes for the current terminal. Any terminal opened after that will already have these environment variables set correctly.</p>
 </section>
 <section id="compiling-the-plugin">
 <h2>Compiling the Plugin<a class="headerlink" href="#compiling-the-plugin" title="Permalink to this heading">¶</a></h2>
