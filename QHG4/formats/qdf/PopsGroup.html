@@ -49,7 +49,9 @@
 <p>The <strong>populations group</strong> is a container for all population groups; it has no attributes or data sets.</p>
 <p>The names of any population group is simply the name of the species.</p>
 <p>A population group contains some attributes as well as a subgroup for each of the population’s actions.
-Those action subgroups contain attributes (whose names are the corresponding parameter names) and their values.</p>
+Those action subgroups contain attributes (whose names are the corresponding parameter names) and their values.
+Action subgroups may even contain subgroups with arbitrary structure themselves - it is the action’s
+responsibility to write and read that data.</p>
 <p>This is an example of an action subgroup:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">GROUP</span><span class="w"> </span><span class="s">&quot;OldAgeDeath&quot;</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">ATTRIBUTE</span><span class="w"> </span><span class="s">&quot;OAD_max_age&quot;</span><span class="w"> </span><span class="p">{</span>
@@ -153,6 +155,81 @@ Conceptually, this data set is an array of structuress containing the agents’ 
 </pre></div>
 </div>
 </section>
+<section id="subgroups-within-action-subgroups">
+<h2>Subgroups within action subgroups<a class="headerlink" href="#subgroups-within-action-subgroups" title="Permalink to this heading">¶</a></h2>
+<p>Action subgroups of a population can contain attributes, data sets and subgroups with arbitrary contents.
+Usually the implementation corresponding to the action subgroup is responsible for reading and writing the data.</p>
+<p>Here is an example of a action subgroup <code class="docutils literal notranslate"><span class="pre">AgentBinSplitter</span></code> containing
+a subgroup <code class="docutils literal notranslate"><span class="pre">SubPopGroups</span></code>  which again contains 2 subgroups, <code class="docutils literal notranslate"><span class="pre">SubPop_000</span></code> and <code class="docutils literal notranslate"><span class="pre">SubPop_001</span></code>
+(each of which contains a data set).</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">GROUP</span><span class="w"> </span><span class="s">&quot;Populations&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="n">GROUP</span><span class="w"> </span><span class="s">&quot;sapiens&quot;</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">   </span><span class="p">...</span>
+
+<span class="w">      </span><span class="n">GROUP</span><span class="w"> </span><span class="s">&quot;AgentBinSplitter&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">         </span><span class="n">GROUP</span><span class="w"> </span><span class="s">&quot;SubPopulations&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">GROUP</span><span class="w"> </span><span class="s">&quot;SubPop_000&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">               </span><span class="n">DATASET</span><span class="w"> </span><span class="s">&quot;AgentDataSet&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                  </span><span class="n">DATATYPE</span><span class="w">  </span><span class="n">H5T_COMPOUND</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                     </span><span class="n">H5T_STD_I32LE</span><span class="w"> </span><span class="s">&quot;LifeState&quot;</span><span class="p">;</span>
+<span class="w">                     </span><span class="n">H5T_STD_I32LE</span><span class="w"> </span><span class="s">&quot;CellIdx&quot;</span><span class="p">;</span>
+<span class="w">                     </span><span class="n">H5T_STD_I32LE</span><span class="w"> </span><span class="s">&quot;CellID&quot;</span><span class="p">;</span>
+<span class="w">                     </span><span class="n">H5T_STD_I64LE</span><span class="w"> </span><span class="s">&quot;AgentID&quot;</span><span class="p">;</span>
+<span class="w">                     </span><span class="n">H5T_IEEE_F32LE</span><span class="w"> </span><span class="s">&quot;BirthTime&quot;</span><span class="p">;</span>
+<span class="w">                     </span><span class="n">H5T_STD_U8LE</span><span class="w"> </span><span class="s">&quot;Gender&quot;</span><span class="p">;</span>
+<span class="w">                     </span><span class="n">H5T_IEEE_F32LE</span><span class="w"> </span><span class="s">&quot;Age&quot;</span><span class="p">;</span>
+<span class="w">                     </span><span class="n">H5T_IEEE_F32LE</span><span class="w"> </span><span class="s">&quot;LastBirth&quot;</span><span class="p">;</span>
+<span class="w">                     </span><span class="n">H5T_IEEE_F32LE</span><span class="w"> </span><span class="s">&quot;ViralLoad&quot;</span><span class="p">;</span>
+<span class="w">                     </span><span class="n">H5T_IEEE_F32LE</span><span class="w"> </span><span class="s">&quot;Immunity&quot;</span><span class="p">;</span>
+<span class="w">                  </span><span class="p">}</span>
+<span class="w">                  </span><span class="n">DATASPACE</span><span class="w">  </span><span class="n">SIMPLE</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+<span class="w">               </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="n">GROUP</span><span class="w"> </span><span class="s">&quot;SubPop_001&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">               </span><span class="n">DATASET</span><span class="w"> </span><span class="s">&quot;AgentDataSet&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                  </span><span class="n">DATATYPE</span><span class="w">  </span><span class="n">H5T_COMPOUND</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                     </span><span class="n">H5T_STD_I32LE</span><span class="w"> </span><span class="s">&quot;LifeState&quot;</span><span class="p">;</span>
+<span class="w">                     </span><span class="n">H5T_STD_I32LE</span><span class="w"> </span><span class="s">&quot;CellIdx&quot;</span><span class="p">;</span>
+<span class="w">                     </span><span class="n">H5T_STD_I32LE</span><span class="w"> </span><span class="s">&quot;CellID&quot;</span><span class="p">;</span>
+<span class="w">                     </span><span class="n">H5T_STD_I64LE</span><span class="w"> </span><span class="s">&quot;AgentID&quot;</span><span class="p">;</span>
+<span class="w">                     </span><span class="n">H5T_IEEE_F32LE</span><span class="w"> </span><span class="s">&quot;BirthTime&quot;</span><span class="p">;</span>
+<span class="w">                     </span><span class="n">H5T_STD_U8LE</span><span class="w"> </span><span class="s">&quot;Gender&quot;</span><span class="p">;</span>
+<span class="w">                     </span><span class="n">H5T_IEEE_F32LE</span><span class="w"> </span><span class="s">&quot;Age&quot;</span><span class="p">;</span>
+<span class="w">                     </span><span class="n">H5T_IEEE_F32LE</span><span class="w"> </span><span class="s">&quot;LastBirth&quot;</span><span class="p">;</span>
+<span class="w">                     </span><span class="n">H5T_IEEE_F32LE</span><span class="w"> </span><span class="s">&quot;ViralLoad&quot;</span><span class="p">;</span>
+<span class="w">                     </span><span class="n">H5T_IEEE_F32LE</span><span class="w"> </span><span class="s">&quot;Immunity&quot;</span><span class="p">;</span>
+<span class="w">                  </span><span class="p">}</span>
+<span class="w">                  </span><span class="n">DATASPACE</span><span class="w">  </span><span class="n">SIMPLE</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+<span class="w">               </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="n">GROUP</span><span class="w"> </span><span class="s">&quot;SubPop_002&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">               </span><span class="n">DATASET</span><span class="w"> </span><span class="s">&quot;AgentDataSet&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                  </span><span class="n">DATATYPE</span><span class="w">  </span><span class="n">H5T_COMPOUND</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                     </span><span class="n">H5T_STD_I32LE</span><span class="w"> </span><span class="s">&quot;LifeState&quot;</span><span class="p">;</span>
+<span class="w">                     </span><span class="n">H5T_STD_I32LE</span><span class="w"> </span><span class="s">&quot;CellIdx&quot;</span><span class="p">;</span>
+<span class="w">                     </span><span class="n">H5T_STD_I32LE</span><span class="w"> </span><span class="s">&quot;CellID&quot;</span><span class="p">;</span>
+<span class="w">                     </span><span class="n">H5T_STD_I64LE</span><span class="w"> </span><span class="s">&quot;AgentID&quot;</span><span class="p">;</span>
+<span class="w">                     </span><span class="n">H5T_IEEE_F32LE</span><span class="w"> </span><span class="s">&quot;BirthTime&quot;</span><span class="p">;</span>
+<span class="w">                     </span><span class="n">H5T_STD_U8LE</span><span class="w"> </span><span class="s">&quot;Gender&quot;</span><span class="p">;</span>
+<span class="w">                     </span><span class="n">H5T_IEEE_F32LE</span><span class="w"> </span><span class="s">&quot;Age&quot;</span><span class="p">;</span>
+<span class="w">                     </span><span class="n">H5T_IEEE_F32LE</span><span class="w"> </span><span class="s">&quot;LastBirth&quot;</span><span class="p">;</span>
+<span class="w">                     </span><span class="n">H5T_IEEE_F32LE</span><span class="w"> </span><span class="s">&quot;ViralLoad&quot;</span><span class="p">;</span>
+<span class="w">                     </span><span class="n">H5T_IEEE_F32LE</span><span class="w"> </span><span class="s">&quot;Immunity&quot;</span><span class="p">;</span>
+<span class="w">                  </span><span class="p">}</span>
+<span class="w">                  </span><span class="n">DATASPACE</span><span class="w">  </span><span class="n">SIMPLE</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+<span class="w">               </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">         </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">   </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Note: every agent subgroup named “<code class="docutils literal notranslate"><span class="pre">SubPopulations</span></code>” is recognized by the
+<a class="reference internal" href="../../visit/visit_plugin_qdfformat.html#visit-plugin-qdfformat-ref"><span class="std std-ref">QDF format visit plugin</span></a>, and its subgroups
+are interpreted as (simple) population groups.</p>
+</section>
 </section>
 
 
@@ -168,6 +245,7 @@ Conceptually, this data set is an array of structuress containing the agents’ 
 <li><a class="reference internal" href="#">“Populations”</a><ul>
 <li><a class="reference internal" href="#population-group-attributes">Population Group Attributes</a></li>
 <li><a class="reference internal" href="#population-group-dataset">Population Group Dataset</a></li>
+<li><a class="reference internal" href="#subgroups-within-action-subgroups">Subgroups within action subgroups</a></li>
 </ul>
 </li>
 </ul>
