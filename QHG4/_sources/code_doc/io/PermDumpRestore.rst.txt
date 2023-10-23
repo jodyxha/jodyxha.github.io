@@ -1,0 +1,19 @@
+.. _PermDumpRestore_ref:
+
+
+PermDumpRestore
+===============
+
+.. rst-class:: hidden
+
+   This page gives an overview of the module :index:`PermDumpRestorefile formats`
+
+
+This module contains only two functions to deal with dumpin and restoring the internal state of :ref:`Permutators<Permutator_ref>`. 
+
+Public Functions
+----------------
+
+
+
+:ref:`PermDumpstoreTODOTODOTODO<PermDumpstoreTODOTODOTODOPermDumpstoreTODOTODOTODO>`

@@ -1,0 +1,71 @@
+.. _VectorImport_ref:
+
+VectorImport
+============
+
+This tool importgs GIS vector data for rivers, in particular ``Polyline`` data into the ``m_adWater`` array in the geography group of a QDF file.
+
+Code: `VectorImport.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/import/VectorImport.cpp>`_
+
+Usage
+-----
+
+.. code-block:: bash
+
+ $QHG4_DIR}/import/VectorImport -s <surf_file>  -q <qdf_file>
+                                -v <shp_file> -d <dbf_file> -f <field_name>[:<match_val>[:<use_val>]]
+                               [-o <output_qdf>]
+
+where
+
+``surf_file``
+    a surface description file (.ico, .ieq, ...). Can be omitted if the grid of qdf_gile is an EQsahedron.
+
+``qdf_file``
+    qdf file corresponding to <surf_file>.
+
+``shp_file``
+     SHP file containig vector data.
+
+``dbf_file``
+     DBF file corresponding to <shp_file>.
+
+``field_name``
+     name of field in <dbf_file> to extract. To see all possible field names, call with '-d <dbf_file> only.
+
+``matchval``
+     target value to select indexes.
+
+``useval``
+     value to use instead of matchval.
+
+``output_qdf``
+     name of output qdf to create. If omitted and input_qdf is given, input_qdf will be modified
+
+* ``<surf_file>`` and ``<ign_file>`` are needed to create a cell grid with Geography.
+
+* all points contained in the poly lines are extracted and the values for <field_name> are used as entries in the QDF files "Water" array corresponding to the points' coordinates
+
+* If <match_val> is specified, only polylines whose <field_name> value equals <match_val> are used, and the array is set to <use_val> (or 1.0) in the corresponding places
+
+Examples
+--------
+
+List the field names:
+
+.. code-block:: bash
+
+  ./VectorImport -d ~/rivers/ne_10m_rivers.dbf
+
+Convert (using CellGrid and Geo from qdf file):
+
+.. code-block:: bash
+
+  ./VectorImport -q GridSG_ieq_256.qdf -v ~/rivers/ne_10m_rivers.shp -d ~/rivers/ne_10m_rivers.dbf -f strokeweig -o rivers_1a_256.qdf
+
+
+
+.. image:: ../../images/water_rivers.png
+   :scale: 80%
+   :align: center
+

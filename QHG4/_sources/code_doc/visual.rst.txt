@@ -1,0 +1,24 @@
+.. _visual_overview.ref:
+
+visual
+======
+
+.. rst-class:: hidden
+
+   This page describes the directory :index:`visual`
+
+The directory ``visual`` contains some tools for the creation and modification of PNG images:
+
+* ``PNGImage``: a wrapper for the png library with many useful auxiliary functions
+* ``AlphaComposer``: alpha compositing images
+* ``TextRenderer``: render text onto an image
+* ``XXXLookup``: color lookup tables assigning an rgba color to an iunput value:  
+
+.. toctree::
+   :maxdepth: 1
+        
+   visual/PNGImage
+   visual/AlphaComposer
+   visual/TextRenderer
+   
+   visual/LookUps             

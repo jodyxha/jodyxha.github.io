@@ -1,0 +1,36 @@
+.. _ObserverPattern_ref:
+
+The Observer Pattern
+====================
+
+The intent of this pattern is to define a one-to-many dependency between objects so that when one object changes state, all its dependents are notified and updated automatically (see "Design Patterns", E.Gamma et.al.).
+
+.. figure:: ../images/observer_pat.png
+
+
+In our implementation we have a class ``Observable``, and an interface ``Observer``, basically derclaring a virtual ``notify()`` method.
+The ``Observable`` maintains a list of registered ``Oserver`` objects and has a method ``notifyObservers()`` which sends a notification to all registered ``Observer`` implementations.
+
+Relevant code:  `Observer.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/Observer.h>`_, `Observable.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/Observable.h>`_, `Observable.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/Observable.cpp>`_
+
+For a more detailed description of the classes see :ref:`Observable<Observable_ref>` and :ref:`Observer<Observer_ref>`.
+
+Usually, to make an object observable, you either derive it from ``Observable`` or use multiple inheritance:
+
+.. code-block:: c++
+  
+    class DerivedObservable : public Base, public Observable {
+        ...
+    }
+        
+To make an object an ``Observer`` you use mutiple inheritance:
+
+.. code-block:: c++
+  
+    class DerivedObserver : public Base, public Observer {
+        ...
+        virtual void notify(Observable *pObs, int iType, const void *pCom) {
+            // implementation for notify, e.g. reload data, or redraw etc.
+        }
+        ...
+    }

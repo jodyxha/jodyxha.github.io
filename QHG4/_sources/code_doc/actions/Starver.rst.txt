@@ -1,0 +1,130 @@
+.. _Starver_ref:
+
+Starver
+=======
+
+.. rst-class:: hidden
+
+   This page describes the class :index:`Starver`
+
+The class ``Starver`` is derived from ``Action`` and is used to decrease agnts' masses at each step.
+This class has been tailored for the use with ``SheepPop`` (see :ref:`QHG Tutorial 08 - Simple Predator-Prey<TutorialGrassRabbit_ref>`).
+
+Code: 
+    | `Starver.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/Starver.h>`_ 
+    | `Starver.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/Starver.cpp>`_
+
+**Attributes**
+
++------------------------------------+--------------------+--------------------------------------+
+| ``ATTR_STARVER_NAME``              | "AnimalReproducer" | action name                          |
++------------------------------------+--------------------+--------------------------------------+
+| ``ATTR_STARVER_STARVE_MASS_NAME``  | "MassFert"         | minimum fertility mass               |
++------------------------------------+--------------------+--------------------------------------+
+| ``ATTR_STARVER_MASS_DECAY_NAME``   | "MassBaby"         | decay (fraction of mass to subtract) |
++------------------------------------+--------------------+--------------------------------------+
+
+Public Methods
+--------------
+
+``constructor``
+^^^^^^^^^^^^^^^
+
+.. code-block:: c++
+
+   Starver(SPopulation<T> *pPop, SCellGrid *pCG, std::string sID);
+
+``pPop``
+    A pointer to the :ref:`SPopulation<SPopulation_ref>` object performing this action.
+
+``pCG``
+    A pointer to the  :ref:`SCellGrid<SCellGrid_ref>` object on which the simulation runs.
+
+``sID``
+    An ID for this action.
+
+.. -----------------------------------------------------------------------------
+
+``destructor``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual ~Starver();
+
+The destructor destroy some openMP locks.
+
+.. -----------------------------------------------------------------------------
+
+``execute``
+^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int execute(int iAgentIndex, float fT);
+
+``iAgentIndex``
+    Index of the current agent.
+
+``fT``
+    Current simulation step.
+
+Decreases the agent's mass: :math:`m_A = (1 - d) \cdot m_A` , 
+where :math:`m_A` is the agent's mass, and :math:`d` is the decay factor.
+
+.. -----------------------------------------------------------------------------
+
+``extractAttributesQDF``
+^^^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int extractAttributesQDF(hid_t hSpeciesGroup);
+
+``hSpeciesGroup``
+    HDF handle for the species group to read from.
+
+This method reads the atttributes of this action from a QDF.
+
+.. -----------------------------------------------------------------------------
+
+``writeAttributesQDF``
+^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int writeAttributesQDF(hid_t hSpeciesGroup);
+
+``hSpeciesGroup``
+    HDF handle for the species group to write to.
+
+This method writes the attributes of this action to the specified group in a QDF file.
+
+.. -----------------------------------------------------------------------------
+
+``tryGetAttributes``
+^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int tryGetAttributes(const ModuleComplex *pMC);
+
+``pMC``
+    A ``ModuleComplex`` object.
+
+Extracts the action's attributes from the ``ModuleComplex`` object.
+
+
+.. -----------------------------------------------------------------------------
+
+``isEqual``
+^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual bool isEqual(Action<T> *pAction, bool bStrict);
+
+``pAction``
+    Pointer to an action object to compare with this.
+
+``bStrict``
+    Strictness of comparisons (ignored here).
+
+``pAction`` is equal to ``this``, if it is a ``Starver`` object whose attributes match those of ``this``.
+
+.. ---------------------------------------------------------------------------<--
+

@@ -1,0 +1,114 @@
+.. _AlphaComposer_ref:
+
+AlphaComposer
+=============
+
+.. rst-class:: hidden
+
+   This page describes the class :index:`AlphaComposer`
+
+The class ``AlphaComposer`` provides methods to alpha-overlay ``uchar`` or ``double`` arrays.
+
+After initialisation you call the methods ``addMatrix()`` and ``addPNGData()`` to add layers.
+
+Code:
+    | `AlphaComposer.h  <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/AlphaComposer.h>`_ 
+    | `AlphaComposer.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/AlphaComposer.cpp>`_
+
+
+.. -----------------------------------------------------------------------------
+
+
+
+Public Methods
+--------------
+
+``createInstance``
+^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    static AlphaComposer *createInstance(int iW, int iH);
+
+``iW``
+    Width of image data.
+
+``iH``
+    Height of image data.
+
+Prepares a png data target array.
+
+.. -----------------------------------------------------------------------------
+
+``destructor``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    ~AlphaComposer();
+
+The destructor deletes the png data target array.
+
+.. -----------------------------------------------------------------------------
+
+``addMatrix``
+^^^^^^^^^^^^^
+.. code-block:: c++
+
+    uchar **addMatrix(double **ppdData, LookUp *pLU);
+
+``ppData``
+    A ``iW``x``iH`` array of doubles. eaach element is a simple value (no color data).
+
+``pLU``
+    A color lookup table
+
+The lookup table translates the elements from ``ppData`` to red, green, blue and alpha values,
+    which are added to the png data target array.
+
+
+.. -----------------------------------------------------------------------------
+
+``addPNGData``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    uchar **addPNGData(uchar **ppdData);
+
+``ppdData``
+    An array holding the rgba values as ``uchar``. The actual array format is ``iH x 4*iW``,
+    where the 4 rgba ``uchar`` values are written one after the other. (``aucData[13][4*25]``: red value for pixel (13,25), ``aucData[13][4*25+2]``: blue value for pixel (13,25)).
+
+Adds the data from ``ppData`` to the png data target array.
+
+.. -----------------------------------------------------------------------------
+
+``addPNGDataPar``
+^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    uchar **addPNGDataPar(uchar **ppdData);
+
+``ppdData``
+    An array holding the rgba values as ``uchar``. The actual array format is ``iH x 4*iW``,
+    where the 4 rgba ``uchar`` values are written one after the other. (``aucData[13][4*25]``: red value for pixel (13,25), ``aucData[13][4*25+2]``: blue value for pixel (13,25)).
+
+Basically, a parallelized version of ``addPNGData()``.
+
+.. -----------------------------------------------------------------------------
+
+``clear``
+^^^^^^^^^
+.. code-block:: c++
+
+    void    clear();
+
+Clears the png data target array.
+
+.. -----------------------------------------------------------------------------
+
+``getData``
+^^^^^^^^^^^
+.. code-block:: c++
+
+    uchar **getData();
+
+Returns the contents of the png data target array.

@@ -1,0 +1,146 @@
+.. _SheepManager_ref:
+
+SheepManager
+============
+
+.. rst-class:: hidden
+
+   This page describes the class :index:`SheepManager`
+
+The class ``SheepManager`` is derived from ``Action`` and is used
+to distribute the available grass mass in each cell among the local sheep.
+This class has been tailored for the use with ``SheepPop`` (see :ref:`QHG Tutorial 08 - Simple Predator-Prey<TutorialGrassRabbit_ref>`).
+
+It uses the shared array of available grass mass and fills the shared array of consumed grass mass.
+
+Code: 
+    | `SheepManager.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/SheepManager.h>`_ 
+    | `SheepManager.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/SheepManager.cpp>`_
+
+**Attributes**
+
++------------------------------------+----------------+---------------------------------+
+| ``ATTR_SHEEPMAN_NAME``             | "SheepManager" | action name                     |
++------------------------------------+----------------+---------------------------------+
+
+Public Methods
+--------------
+
+``constructor``
+^^^^^^^^^^^^^^^^
+
+.. code-block:: c++
+
+   SheepManager(SPopulation<T> *pPop, SCellGrid *pCG, std::string sID,
+                const std::string sNameGrassMassAvail, const std::string sNameGrassMassConsumed);
+
+``pPop``
+    A pointer to the :ref:`SPopulation<SPopulation_ref>` object performing this action.
+
+``pCG``
+    A pointer to the  :ref:`SCellGrid<SCellGrid_ref>` object on which the simulation runs.
+
+``sID``
+    An ID for this action.
+
+``sNameGrassMassAvail``
+    Name of the shared array containing the per-cell available grass masses.
+
+``sNameGrassMassConsumed``
+    Name of the shared array containing the per-cell consumed grass masses.
+
+        
+Creates some arrays
+
+.. -----------------------------------------------------------------------------
+
+``destructor``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual ~SheepManager();
+
+The destructor deletes the array created in the constructor.
+
+
+.. -----------------------------------------------------------------------------
+
+``preLoop``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int preLoop();
+
+Loads the shared arrays and fills the shared array of available grass mass (``m_sNameGrassMassAvail``).
+
+.. -----------------------------------------------------------------------------
+
+``initialize``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int execute(int iAgentIndex, float fT);
+
+``iAgentIndex``
+    Index of the current agent.
+
+``fT``
+    Current simulation step.
+
+Calls ``feedSheep()`` and updates the per-cell sheep array.
+
+.. -----------------------------------------------------------------------------
+
+``finalize``
+^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int finalize(float fT);
+
+``fT``
+    Current simulation step.
+
+Currently does nothing.
+
+.. -----------------------------------------------------------------------------
+
+``isEqual``
+^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual bool isEqual(Action<T> *pAction, bool bStrict);
+
+``pAction``
+    Pointer to an action object to compare with this.
+
+``bStrict``
+    Strictness of comparisons (ignored here).
+
+``pAction`` is equal to ``this``, if it is a ``SheepManager`` object whose attributes match those of ``this``.
+
+.. -----------------------------------------------------------------------------
+
+
+Protected Methods
+-----------------
+
+.. -----------------------------------------------------------------------------
+
+``feedSheep``
+^^^^^^^^^^^^^
+.. code-block:: c++
+
+    int feedSheep();
+    
+Determines the amount of grass mass each sheep in a cell will get,
+and writes the total comsumed mass per cell into the shared array of consumed masses (``m_sNameGrassMassConsumed``).
+ 
+.. -----------------------------------------------------------------------------
+
+``makeCellVecsSheep``
+^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    int makeCellVecsSheep();
+
+Fills an array with per-cell information about sheep's ids and masses.

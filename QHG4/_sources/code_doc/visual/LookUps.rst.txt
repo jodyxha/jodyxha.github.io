@@ -1,0 +1,180 @@
+.. _LookUps_ref::
+
+Color Lookup Tables
+===================
+
+
+.. rst-class:: hidden
+
+   This page describes the classes :index:`LookUp`, :index:`RainbowLookUp``, :index:`Rainbow2LookUp``, :index:`GeoLookUp``, :index:`Geo2LookUp``, :index:`TwoToneLookUp``, :index:`FadeOutLookUp``, :index:`FadeToLookUp``
+
+All Lookup classes are derived from the abtract base class ``LookUp``, which declares the methods `getColor()`` which translate a ``double`` value to a red value, a green value, a blue value.
+The all have a minimmum level and a maximum level which are used to calculate the colr fo a value.
+
+LookUp
+------
+
+``constructor``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    LookUp(double dMinLevel, double dMaxLevel) : m_dMinLevel(dMinLevel), m_dMaxLevel(dMaxLevel);
+
+``dMinLevel``
+    Minimum level.
+
+``dMaxvel``
+    Maximum level.
+
+.. -----------------------------------------------------------------------------
+
+``getColor``
+^^^^^^^^^^^^
+.. code-block:: c++
+
+   virtual void getColor(double dValue, double &dRed, double &dGreen, double &dBlue, double &dAlpha)=0;
+   virtual void getColor(double dValue, unsigned char &uRed, unsigned char &uGreen, unsigned char &uBlue, unsigned char &uAlpha);
+
+These virtual functions are implemented by th derived classes.
+
+``dValue``
+    The value to be translated.
+
+``dRed``
+    The resulting ``red`` value as double (in [0,1]).
+
+``dGreen``
+    The resulting ``green`` value as double (in [0,1]).
+
+``dBlue``
+    The resulting ``blue`` value as double (in [0,1]).
+
+``dAlpha``
+    The resulting ``alpha`` value as double (in [0,1]).
+
+
+``uRed``
+    The resulting ``red`` value as uchar (in [0,255]).
+
+``uGreen``
+    The resulting ``green`` value as uchar (in [0,255]).
+
+``uBlue``
+    The resulting ``blue`` value as uchar (in [0,255]).
+
+``uAlpha``
+    The resulting ``blue`` value as uchar (in [0,255]).
+
+.. -----------------------------------------------------------------------------
+
+RainbowLookUp
+-------------
+
+.. figure:: ../../../images/LU_Ex_Rainbow.png
+
+
+``constructor``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    RainbowLookUp(double dMinLevel, double dMaxLevel);
+
+.. -----------------------------------------------------------------------------
+
+Rainbow2LookUp
+--------------
+
+.. figure:: ../../../images/LU_Ex_Rainbow2.png
+
+
+``constructor``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    Rainbow2LookUp(double dMinLevel, double dMaxLevel);
+
+.. -----------------------------------------------------------------------------
+
+GeoLookUp
+---------
+
+.. figure:: ../../../images/LU_Ex_Geo.png
+
+
+``constructor``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    GeoLookUp(double dMinLevel, double dSeaLevel, double dMaxLevel);
+
+``dSeaLevel`` is the value where the colr switches from nluish to greenish.
+
+.. -----------------------------------------------------------------------------
+
+Geo2LookUp
+----------
+
+.. figure:: ../../../images/LU_Ex_Geo2.png
+
+
+``constructor``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    Geo2LookUp(double dMinLevel, double dSeaLevel, double dMaxLevel);
+
+Like ``GeoLookUp``, wuth the exception that high values are colored whitish.
+
+.. -----------------------------------------------------------------------------
+
+TwoToneLookUp
+--------------
+
+.. figure:: ../../../images/LU_Ex_TwoTone.png
+
+
+``constructor``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    TwoToneLookUp(double dSepLevel, 
+                  double dR1, double dG1, double dB1, double dA1,
+                  double dR2, double dG2, double dB2, double dA2);
+
+At the value ``dSepLevel``, the color changes from the first color to the second one.
+
+
+.. -----------------------------------------------------------------------------
+
+FadeOutLookUp
+-------------
+
+.. figure:: ../../../images/LU_Ex_FadeOut.png
+
+
+``constructor``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    FadeOutLookUp(double dMin, double dMax,
+                  double dR, double dG, double dB, double dA);
+
+The color for low values i transparent and gradually changes to the specified color.
+
+.. -----------------------------------------------------------------------------
+
+FadeToLookUp
+------------
+
+.. figure:: ../../../images/LU_Ex_FadeTo.png
+
+
+``constructor``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    FadeToLookUp(double dMin, double dMax,
+                 double dR0, double dG0, double dB0, double dA0,
+                 double dR1, double dG1, double dB1, double dA1);
+
+The color linearly morphs from (dR0, dG0, dB0. dA0) to (dR1, dG1, dB1, dA1) as the value increases.

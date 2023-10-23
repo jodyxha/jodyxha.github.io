@@ -1,0 +1,338 @@
+.. _CryptoDigest_ref:
+
+CryptoDigest
+============   
+
+This page describes the class :index:`CryptoDigest`
+
+The class ``CryptoDigest`` provides some tools to calculate various digests for strigs files and generic data.
+
+Code:
+    | `CryptoDigest.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/CyptoDigest.h>`_
+    | `CryptoDigest.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/utils/CryptoDigest.cpp>`_
+
+
+Public Methods
+--------------
+
+``destructor``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    ~CryptoDigest();
+
+.. -----------------------------------------------------------------------------
+
+``addData``
+^^^^^^^^^^^
+.. code-block:: c++
+
+    int addData(unsigned char *pData, unsigned int iDataLen);
+
+Adds data to the current digest.
+
+``pData``
+    Pointer to the data to be added.
+
+``iDataLen``
+    Leght of the data t be added.
+
+.. -----------------------------------------------------------------------------
+
+``getDigest``
+^^^^^^^^^^^^^
+.. code-block:: c++
+
+    unsigned char *getDigest(unsigned int *piDigestLen);
+
+Returns the digest of the data added so far. The length of the data is returned in ``piDigestLen``.
+
+``piDigestLen``
+    Pointer to an unsigned int to holld the length of the digest.
+
+.. -----------------------------------------------------------------------------
+
+``digestString``
+^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    unsigned char *digestString(std::string sData, unsigned int *piDigestLen);
+
+Returns the digest of a single string. The length of the data is returned in ``piDigestLen``.
+
+``sData``
+    The string to digest.
+
+``piDigestLen``
+    Pointer to an unsigned int to holld the length of the digest.
+
+.. -----------------------------------------------------------------------------
+
+Public Static Methods
+---------------------
+
+``createInstance``
+^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    static CryptoDigest *createInstance(std::string sType);
+
+Creates and returns a ``CryptoDigest`` object.
+
+``sType``
+    Name of the digest type. May be ``sha256``, ``sha512``, or ``md5``.
+
+.. -----------------------------------------------------------------------------
+
+``md5sum_string``
+^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    static unsigned char *md5sum_string(std::string sData, unsigned int *piDigestLen);
+
+Returns the MD5 digest of a single string. The length of the digest is returned in ``piDigestLen``.
+
+
+``sData``
+    The string to digest.
+
+``piDigestLen``
+    Pointer to an unsigned int to holld the length of the digest.
+
+
+.. -----------------------------------------------------------------------------
+
+``sha256sum_string``
+^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    static unsigned char *sha256sum_string(std::string sData, unsigned int *piDigestLen);
+
+Returns the SHA256 digest of a single string. The length of the digest is returned in ``piDigestLen``.
+
+
+``sData``
+    The string to digest.
+
+``piDigestLen``
+    Pointer to an unsigned int to holld the length of the digest.
+
+.. -----------------------------------------------------------------------------
+
+``sha512sum_string``
+^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    static unsigned char *sha512sum_string(std::string sData, unsigned int *piDigestLen);
+
+Returns the SHA512 digest of a single string. The length of the digest is returned in ``piDigestLen``.
+
+
+``sData``
+    The string to digest.
+
+``piDigestLen``
+    Pointer to an unsigned int to holld the length of the digest.
+
+
+.. -----------------------------------------------------------------------------
+
+``md5sum_data``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    static unsigned char *md5sum_data(unsigned char *pData, unsigned int iDataLen, unsigned int *piDigestLen);
+    
+Returns the MD5 digest of data (must be cast to ``unsigned char``). The length of the digest is returned in ``piDigestLen``.
+
+``pData``
+    Pointer to the data.
+
+``iDataLen``
+    Length of the data to be digested.
+
+``piDigestLen``
+    Pointer to an unsigned int to holld the length of the digest.
+
+.. -----------------------------------------------------------------------------
+
+``sha256sum_data``
+^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    static unsigned char *sha256sum_data(unsigned char *pData, unsigned int iDataLen, unsigned int *piDigestLen);
+    
+Returns the SHA256 digest of data (must be cast to ``unsigned char``). The length of the digest is returned in ``piDigestLen``.
+
+``pData``
+    Pointer to the data.
+
+``iDataLen``
+    Length of the data to be digested.
+
+``piDigestLen``
+    Pointer to an unsigned int to holld the length of the digest.
+
+.. -----------------------------------------------------------------------------
+
+``sha512sum_data``
+^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    static unsigned char *sha512sum_data(unsigned char *pData, unsigned int iDataLen, unsigned int *piDigestLen);
+    
+Returns the SHA512 digest of data (must be cast to ``unsigned char``). The length of the digest is returned in ``piDigestLen``.
+
+``pData``
+    Pointer to the data.
+
+``iDataLen``
+    Length of the data to be digested.
+
+``piDigestLen``
+    Pointer to an unsigned int to holld the length of the digest.
+
+.. -----------------------------------------------------------------------------
+
+``md5sum_file``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    static unsigned char *md5sum_file(std::string sFileName, unsigned int *piDigestLen);
+
+Returns the MD5 digest of the file contents.  The length of the digest is returned in ``piDigestLen``.
+
+``sFileName``
+    Name of the file the contents of which shoud be digested.
+
+``piDigestLen``
+    Pointer to an unsigned int to holld the length of the digest.
+
+.. -----------------------------------------------------------------------------
+
+``sha256sum_file``
+^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    static unsigned char *sha256sum_file(std::string sFileName, unsigned int *piDigestLen);
+
+Returns the SHA256 digest of the file contents.  The length of the digest is returned in ``piDigestLen``.
+
+``sFileName``
+    Name of the file the contents of which shoud be digested.
+
+``piDigestLen``
+    Pointer to an unsigned int to holld the length of the digest.
+
+.. -----------------------------------------------------------------------------
+
+``sha512sum_file``
+^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    static unsigned char *sha512sum_file(std::string sFileName, unsigned int *piDigestLen);
+
+Returns the SHA512 digest of the file contents.  The length of the digest is returned in ``piDigestLen``.
+
+``sFileName``
+    Name of the file the contents of which shoud be digested.
+
+``piDigestLen``
+    Pointer to an unsigned int to holld the length of the digest.
+
+.. -----------------------------------------------------------------------------
+
+
+Protected Methods
+-----------------
+
+``constructor``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    CryptoDigest();
+
+Empty constructor.
+
+.. -----------------------------------------------------------------------------
+
+``init``
+^^^^^^^^
+.. code-block:: c++
+
+    int init(std::string sType);
+
+Initializes the CryptDigest object for a particular digest type.
+
+``sType``
+    The name of the digest type (``md5``, ``sha256``, or ``sha512``).
+
+Returns -1 on failure, 0 omn success.
+
+.. -----------------------------------------------------------------------------
+
+Protected Static Methods
+------------------------
+
+``genericsum_string``
+^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    static unsigned char *genericsum_string(std::string sDigestName, std::string sData, unsigned int *piDigestLen);
+
+Returns a digest of the specified type from the provided data. 
+The length of the digest is returned in ``piDigestLen``.
+
+``sDigestName``
+    The name of the digest type (``md5``, ``sha256``, or ``sha512``).
+
+``sData``
+    The string to digest.
+
+``piDigestLen``
+    Pointer to an unsigned int to holld the length of the digest.
+
+
+.. -----------------------------------------------------------------------------
+
+``genericsum_file``
+^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    static unsigned char *genericsum_file(std::string sDigestName, std::string sFileName, unsigned int *piDigestLen);
+
+Returns a digest of the specified type from the file's contents. 
+The length of the digest is returned in ``piDigestLen``.
+
+``sDigestName``
+    The name of the digest type (``md5``, ``sha256``, or ``sha512``).
+
+``sFileName``
+    The file whose contents are to be digested.
+
+``piDigestLen``
+    Pointer to an unsigned int to holld the length of the digest.
+
+.. -----------------------------------------------------------------------------
+
+``genericsum_data``
+^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    static unsigned char *genericsum_data(std::string sDigestName, unsigned char *pData, unsigned int iDataLen, unsigned int *piDigestLen);
+
+Returns a digest of the specified type from the provided array. 
+The length of the digest is returned in ``piDigestLen``.
+
+``sDigestName``
+    The name of the digest type (``md5``, ``sha256``, or ``sha512``).
+
+``pData``
+    Pointer to an array of data to be digested (should be cast to ``unsigned char``).
+
+``iDataLen``
+    The length of the data to be digested.
+
+``piDigestLen``
+    Pointer to an unsigned int to holld the length of the digest.
+    

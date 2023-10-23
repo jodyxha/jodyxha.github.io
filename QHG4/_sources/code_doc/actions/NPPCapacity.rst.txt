@@ -1,0 +1,217 @@
+.. _NPPCapacity_ref:
+
+NPPCapacity
+===========
+
+.. rst-class:: hidden
+
+   This page describes the class :index:`NPPCapacity``
+
+The class ``NPPCapacity`` is derived from ``Action`` and 
+is used to calculate per-cell capacities based on NPP, sweetwater and coastal effects.
+
+First an initial capacity is calculated from the local NPP using a ramp function. 
+Then, if water is present in the cell, the capacity is multiplied with a "water factor".
+If the cell is close to the coast (i.e. if the entry in Geography's ``Coastal`` array 
+is greater than 0), the capacity is multiplied by a coastal factor.
+
+.. figure:: ../../../images/npp_ramp.png
+
+The attributes regarding coastal and water only work if the geography has the 
+appropriate data in its ``m_AdCoastal`` and ``m_adWater`` arrays.
+Usually these arrays are added to the gridfile by means of the tools 
+:ref:`VectorImport<VectorImport_ref>` and :ref:`Coastal<Coastal_ref>`.
+
+Code: 
+    | `NPPCapacity.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/NPPCapacity.h>`_ 
+    | `NPPCapacity.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/NPPCapacity.cpp>`_
+
+**Attrinutes**
+
++--------------------------------------+-------------------------------+------------------------------+
+| ``ATTR_NPPCAP_NAAME``                | "NPPCapacity"                 | action name                  |
++--------------------------------------+-------------------------------+------------------------------+
+| ``ATTR_NPPCAP_WATERFACTOR_NAME``     | "NPPCap_water_factor"         | water factor                 |
++--------------------------------------+-------------------------------+------------------------------+
+| ``ATTR_NPPCAP_COASTALFACTOR_NAME``   | "NPPCap_coastal_factor"       | coastal factor               |
++--------------------------------------+-------------------------------+------------------------------+
+| ``ATTR_NPPCAP_COASTAL_MIN_LAT_NAME`` | "NPPCap_coastal_min_latitude" | minimum latitude for coastal |
++--------------------------------------+-------------------------------+------------------------------+
+| ``ATTR_NPPCAP_COASTAL_MAX_LAT_NAME`` | "PPCap_coastal_max_latitude"  | maximum latitude for coastal |
++--------------------------------------+-------------------------------+------------------------------+
+| ``ATTR_NPPCAP_NPPMIN_NAME``          | "NPPCap_NPP_min"              | minimum NPP value            |
++--------------------------------------+-------------------------------+------------------------------+
+| ``ATTR_NPPCAP_NPPMAX_NAME``          | "NPPCap_NPP_max"              | maximum NPP Value            |
++--------------------------------------+-------------------------------+------------------------------+
+| ``ATTR_NPPCAP_KMAX_NAME``            | "NPPCap_K_max"                | maximum capacity             |
++--------------------------------------+-------------------------------+------------------------------+
+| ``ATTR_NPPCAP_KMIN_NAME``            | "NPPCap_K_min"                | minimum capacity             |
++--------------------------------------+-------------------------------+------------------------------+
+| ``ATTR_NPPCAP_EFFICIENCY_NAME``      | "NPPCap_efficiency"           | efficiency                   |
++--------------------------------------+-------------------------------+------------------------------+
+
+
+Public Methods
+--------------
+
+``constructor``
+^^^^^^^^^^^^^^^
+
+.. code-block:: c++
+
+   NPPCapacity(SPopulation<T> *pPop, SCellGrid *pCG, std::string sID, WELL512 **apWELL, double *adCapacities, int iStride);
+
+``pPop``
+    A pointer to the :ref:`SPopulation<SPopulation_ref>` object performing this action.
+
+``pCG``
+    A pointer to the  :ref:`SCellGrid<SCellGrid_ref>` object on which the simulation runs.
+
+``sID``
+    An ID for this action.
+
+``apWELL``
+    A pointer to an array of :ref:`WELL512 random number generators<WELL512_ref>` (one for each thread). 
+
+``adCapacities``
+    Array to hold calculated capacity values (can be used by ``WifghtedMove``, for example);
+
+``iStride``
+    Distance between original elements in ``adCapacities``. Usually thios is 1.
+
+Creates a ``NPPCalc`` objects (in case temoerature and precipitation nee to be converted to NPP.
+
+.. -----------------------------------------------------------------------------
+
+``destructor``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual ~NPPCapacity();
+
+The destructor deletes the ``NPPCalc`` object.
+
+.. -----------------------------------------------------------------------------
+
+``preLoop``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int preLoop();
+
+Performs sanity checks and recalculates capacities.
+
+.. -----------------------------------------------------------------------------
+
+``extractAttributesQDF``
+^^^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int extractAttributesQDF(hid_t hSpeciesGroup);
+
+``hSpeciesGroup``
+    HDF handle for the species group to read from.
+
+This method reads the atttributes of this action from a QDF.
+
+.. -----------------------------------------------------------------------------
+
+``writeAttributesQDF``
+^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int writeAttributesQDF(hid_t hSpeciesGroup);
+
+``hSpeciesGroup``
+    HDF handle for the species group to write to.
+
+This method writes the attributes of this action to the specified group in a QDF file.
+
+.. -----------------------------------------------------------------------------
+
+``tryGetAttributes``
+^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int tryGetAttributes(const ModuleComplex *pMC);
+
+``pMC``
+    A ``ModuleComplex`` object.
+
+Extracts the action's attributes from the ``ModuleComplex`` object.
+
+.. -----------------------------------------------------------------------------
+
+``modifyAttributes``
+^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int modifyAttributes(const std::string sAttrName, double dValue);
+
+`sAttrName``
+    Name of attribute to change.
+
+``dValue``
+    Value to set the attribute to.
+
+
+This method can change the values of 
+  | water factor (ATTR_NPPCAP_WATERFACTOR_NAME),
+  | coastal factor (ATTR_NPPCAP_COASTALFACTOR_NAME).
+  | coastal maximum latitude (ATTR_NPPCAP_COASTAL_MAX_LAT_NAME).
+  | coastal minimum latitude (ATTR_NPPCAP_COASTAL_MIN_LAT_NAME),
+  | :math:`NPP_{min}` (ATTR_NPPCAP_NPPMIN_NAME),
+  | :math:`NPP_{max}`  (ATTR_NPPCAP_NPPMAX_NAME),
+  | :math:`K_{min}` (ATTR_NPPCAP_KMIN_NAME),
+  | :math:`K_{max}` (ATTR_NPPCAP_KMIN_NAME), or
+  | efficiency (ATTR_NPPCAP_EFFICIENCY_NAME)
+
+
+
+.. -----------------------------------------------------------------------------
+
+``isEqual``
+^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual bool isEqual(Action<T> *pAction, bool bStrict);
+
+``pAction``
+    Pointer to an action object to compare with this.
+
+``bStrict``
+    Strictness of comparisons (ignored here).
+
+``pAction`` is equal to ``this``, if it is a ``NPPCapacity`` object whose attributes match those of ``this``.
+
+
+.. -----------------------------------------------------------------------------
+
+``recalculate``
+^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual void recalculate();
+
+Recaclulates the Coacity based on NPP, water and coastal distance.
+
+.. -----------------------------------------------------------------------------
+
+``notify``
+^^^^^^^^^^
+.. code-block:: c++
+
+    virtual void notify(Observable *pObs, int iEvent, const void *pData);
+
+``pObs``
+    The observable which sends the event.
+
+``iEvent``
+    ID of the event.
+
+``pData``
+    Pointer to data pertaining to the event. It must be cast to the correct type.
+
+| (implementation of the ``Observer`` interface)
+| If the event tyoe is EVENT_ID_FLUSH, the update flag is set, if any of the ``Evaluator`` objects' update flag is set.
+

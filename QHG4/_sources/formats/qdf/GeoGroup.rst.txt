@@ -1,0 +1,51 @@
+.. _GeoGroup_ref:
+
+"Geography"
+-----------
+
+.. rst-class:: hidden
+
+   This page describes :index:`geography group`
+
+The **geography group** contains data and attributes pertaining to geography, such as coordinates, altitudes, sea levele ice coverage etc.
+
+Attributes
+^^^^^^^^^^
+
+- **NumCells**
+    Number of grid cells.
+
+- **MaxNeigh**
+    Maximium number of neighbors for nodes.
+
+- **Radius**
+    Earth radius (0 for LTC grids).
+
+- **SeaLevel**
+    Sea level (difference to present-day sea level).
+
+
+DataSets
+^^^^^^^^
+
+**Longitude**
+    An array contining the longitude for each node.
+
+**Latitude**
+    An array contining the latitude for each node.
+
+**Altitude**
+    An array containing the altitude (above sealevel) for each node.
+
+**Water**
+    Array of fresh water ampouns (rivers) for each cell.
+
+**IceCover**
+    Array of bools, true if the corresponding node is covered with ice.
+
+**Coastal**
+    Array of bools, true if the corresponding node is close to the coast
+
+**Distances**    
+    An array of size ``NumCells*MacNeighbors``, where ``Distances[MaxNeighbors*i + j]`` is the distance from node i to its neighbor number j.
+

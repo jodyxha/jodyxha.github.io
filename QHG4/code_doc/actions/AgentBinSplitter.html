@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>AgentBinsSplitter &#8212; QHG4 4.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../static/jody.css" />
+    
+    <script data-url_root="../../" id="documentation_options" src="../../static/documentation_options.js"></script>
+    <script src="../../static/doctools.js"></script>
+    <script src="../../static/sphinx_highlight.js"></script>
+    
+    <link rel="icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="populations" href="../populations.html" />
+    <link rel="prev" title="ShareEvaluator" href="ShareEvaluator.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../populations.html" title="populations"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="ShareEvaluator.html" title="ShareEvaluator"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../actions.html" accesskey="U">actions</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">AgentBinsSplitter</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="agentbinssplitter">
+<span id="agentbinsplitter-ref"></span><h1>AgentBinsSplitter<a class="headerlink" href="#agentbinssplitter" title="Permalink to this heading">¶</a></h1>
+<p class="hidden">This page describes the class <span class="target" id="index-0"></span>AgentBinSplitter</p>
+<p>The class <code class="docutils literal notranslate"><span class="pre">AgentBinSplitter</span></code> is derived from <code class="docutils literal notranslate"><span class="pre">Action</span></code>.
+It splits the current population into bins, pertaining to the values of a particular (numerical) agent variable.
+It writes the subpopulations into a sub group of the agenrt group called <code class="docutils literal notranslate"><span class="pre">SubPopulations</span></code> in the QDF file.</p>
+<dl>
+<dt>Code:</dt><dd><div class="line-block">
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/AgentBinSplitter.h">AgentBinSplitter.h</a></div>
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/AgentBinSplitter.cpp">AgentBinSplitter.cpp</a></div>
+</div>
+</dd>
+</dl>
+<p><strong>Attributes</strong></p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ATTR_ABS_NAME</span></code></p></td>
+<td><p>“AgentBinSplitter”</p></td>
+<td><p>action name</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ATTR_ABS_BIN_MIN_NAME</span></code></p></td>
+<td><p>“BinMin”</p></td>
+<td><p>minimum value for binning</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ATTR_ABS_BIN_MAX_NAME</span></code></p></td>
+<td><p>“BinMax”</p></td>
+<td><p>maximum value for binning</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ATTR_ABS_NUM_BINS_NAME</span></code></p></td>
+<td><p>“NumBins”</p></td>
+<td><p>number of bins</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ATTR_ABS_VAR_FIELD_NAME</span></code></p></td>
+<td><p>“VarField”</p></td>
+<td><p>name of agent variable to use</p></td>
+</tr>
+</tbody>
+</table>
+<section id="public-methods">
+<h2>Public Methods<a class="headerlink" href="#public-methods" title="Permalink to this heading">¶</a></h2>
+<section id="constructor">
+<h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#constructor" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">AgentBinSplitter</span><span class="p">(</span><span class="n">SPopulation</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="o">*</span><span class="n">pPop</span><span class="p">,</span><span class="w"> </span><span class="n">SCellGrid</span><span class="w"> </span><span class="o">*</span><span class="n">pCG</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sID</span><span class="p">,</span><span class="w"> </span><span class="n">LBController</span><span class="w"> </span><span class="o">*</span><span class="n">pAgentController</span><span class="p">);</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">pPop</span></code></dt><dd><p>A pointer to the <a class="reference internal" href="../core/SPopulation.html#spopulation-ref"><span class="std std-ref">SPopulation</span></a> object performing this action.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">pCG</span></code></dt><dd><p>A pointer to the  <a class="reference internal" href="../core/SCellGrid.html#scellgrid-ref"><span class="std std-ref">SCellGrid</span></a> object on which the simulation runs.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sID</span></code></dt><dd><p>An ID for this action.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">pAgentController</span></code></dt><dd><p>A pointer to the <code class="docutils literal notranslate"><span class="pre">LBController</span></code> of the population’s agents.</p>
+</dd>
+</dl>
+<p>The constructor creates <code class="docutils literal notranslate"><span class="pre">LBController</span></code> and <code class="docutils literal notranslate"><span class="pre">LayerBuf</span></code> arrays for each of the subpopulations.</p>
+<section id="destructor">
+<h4><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Permalink to this heading">¶</a></h4>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">AgentBinSplitter</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>The destructor destroys the arrays created in the constructor.</p>
+</section>
+<section id="preloop">
+<h4><code class="docutils literal notranslate"><span class="pre">preLoop</span></code><a class="headerlink" href="#preloop" title="Permalink to this heading">¶</a></h4>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">preLoop</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>Initializes the arrays.</p>
+</section>
+<section id="prewrite">
+<h4><code class="docutils literal notranslate"><span class="pre">preWrite</span></code><a class="headerlink" href="#prewrite" title="Permalink to this heading">¶</a></h4>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">preWrite</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">fTime</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Does the actual binning.</p>
+<blockquote>
+<div></div></blockquote>
+</section>
+<section id="writeadditionaldataqdf">
+<h4><code class="docutils literal notranslate"><span class="pre">writeAdditionalDataQDF</span></code><a class="headerlink" href="#writeadditionaldataqdf" title="Permalink to this heading">¶</a></h4>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">writeAdditionalDataQDF</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hActionGroup</span><span class="p">);</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">hActionGroup</span></code></dt><dd><p>HDF Handle to the action’s group.</p>
+</dd>
+</dl>
+<p>Writes the binned populations into subgroups of a “SubPopulations” subgroup of the actions group.</p>
+</section>
+<section id="trygetattributes">
+<h4><code class="docutils literal notranslate"><span class="pre">tryGetAttributes</span></code><a class="headerlink" href="#trygetattributes" title="Permalink to this heading">¶</a></h4>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">tryGetAttributes</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">ModuleComplex</span><span class="w"> </span><span class="o">*</span><span class="n">pMC</span><span class="p">);</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">pMC</span></code></dt><dd><p>A <code class="docutils literal notranslate"><span class="pre">ModuleComplex</span></code> object.</p>
+</dd>
+</dl>
+<p>Extracts the action’s attributes from the <code class="docutils literal notranslate"><span class="pre">ModuleComplex</span></code> object.</p>
+</section>
+<section id="extractattributesqdf">
+<h4><code class="docutils literal notranslate"><span class="pre">extractAttributesQDF</span></code><a class="headerlink" href="#extractattributesqdf" title="Permalink to this heading">¶</a></h4>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">extractAttributesQDF</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hSpeciesGroup</span><span class="p">);</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">hSpeciesGroup</span></code></dt><dd><p>HDF handle for the species group to read from.</p>
+</dd>
+</dl>
+<p>This method reads the atttributes of this action from a QDF.</p>
+</section>
+<section id="writeattributesqdf">
+<h4><code class="docutils literal notranslate"><span class="pre">writeAttributesQDF</span></code><a class="headerlink" href="#writeattributesqdf" title="Permalink to this heading">¶</a></h4>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">writeAttributesQDF</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hSpeciesGroup</span><span class="p">);</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">hSpeciesGroup</span></code></dt><dd><p>HDF handle for the species group to write to.</p>
+</dd>
+</dl>
+<p>This method writes the attributes of this action to the specified group in a QDF file.</p>
+</section>
+</section>
+</section>
+<section id="protected-methods">
+<h2>Protected Methods<a class="headerlink" href="#protected-methods" title="Permalink to this heading">¶</a></h2>
+<section id="getvariableoffset">
+<h3><code class="docutils literal notranslate"><span class="pre">getVariableOffset</span></code><a class="headerlink" href="#getvariableoffset" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">getVariableOffset</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>Determines the offset of the specified variable in an agent structure.</p>
+</section>
+<section id="id1">
+<h3><code class="docutils literal notranslate"><span class="pre">getVariableOffset</span></code><a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span><span class="w"> </span><span class="nf">getDVal</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="o">&amp;</span><span class="n">ag</span><span class="p">);</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">ag</span></code></dt><dd><p>The agent structure from which to extract the value.</p>
+</dd>
+</dl>
+<p>Extracts the value of the variable in the agent structure <code class="docutils literal notranslate"><span class="pre">ag</span></code>.</p>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">AgentBinsSplitter</a><ul>
+<li><a class="reference internal" href="#public-methods">Public Methods</a><ul>
+<li><a class="reference internal" href="#constructor"><code class="docutils literal notranslate"><span class="pre">constructor</span></code></a><ul>
+<li><a class="reference internal" href="#destructor"><code class="docutils literal notranslate"><span class="pre">destructor</span></code></a></li>
+<li><a class="reference internal" href="#preloop"><code class="docutils literal notranslate"><span class="pre">preLoop</span></code></a></li>
+<li><a class="reference internal" href="#prewrite"><code class="docutils literal notranslate"><span class="pre">preWrite</span></code></a></li>
+<li><a class="reference internal" href="#writeadditionaldataqdf"><code class="docutils literal notranslate"><span class="pre">writeAdditionalDataQDF</span></code></a></li>
+<li><a class="reference internal" href="#trygetattributes"><code class="docutils literal notranslate"><span class="pre">tryGetAttributes</span></code></a></li>
+<li><a class="reference internal" href="#extractattributesqdf"><code class="docutils literal notranslate"><span class="pre">extractAttributesQDF</span></code></a></li>
+<li><a class="reference internal" href="#writeattributesqdf"><code class="docutils literal notranslate"><span class="pre">writeAttributesQDF</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#protected-methods">Protected Methods</a><ul>
+<li><a class="reference internal" href="#getvariableoffset"><code class="docutils literal notranslate"><span class="pre">getVariableOffset</span></code></a></li>
+<li><a class="reference internal" href="#id1"><code class="docutils literal notranslate"><span class="pre">getVariableOffset</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="ShareEvaluator.html"
+                          title="previous chapter">ShareEvaluator</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="../populations.html"
+                          title="next chapter">populations</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/code_doc/actions/AgentBinSplitter.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../populations.html" title="populations"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="ShareEvaluator.html" title="ShareEvaluator"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">QHG4 4.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../code_doc.html" >Code Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../actions.html" >actions</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">AgentBinsSplitter</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.0.1.
+    </div>
+  </body>
+</html>

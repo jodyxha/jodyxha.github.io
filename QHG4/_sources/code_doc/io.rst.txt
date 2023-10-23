@@ -1,0 +1,55 @@
+io
+==
+
+.. rst-class:: hidden
+
+   This page describes the directory :index:`io`
+
+The directory ``io`` contains various classes and modules for input and output
+ 
+.. toctree::
+   :caption: Reading QDF files
+   :maxdepth: 1
+        
+   io/GroupReader
+   io/GridGroupReader
+   io/GeoGroupReader
+   io/ClimateGroupReader
+   io/VegGroupReader
+   io/NavGroupReader
+   io/PopReader
+
+.. toctree::
+   :caption: Writing QDF files
+   :maxdepth: 1
+
+   io/StatusWriter
+   io/GridWriter
+   io/GeoWriter
+   io/ClimateWriter
+   io/VegWriter
+   io/NavWriter
+   io/PopWriter
+
+.. toctree::
+   :caption: QDF utility functions
+   :maxdepth: 1
+
+   io/QDFUtils
+   io/QDFUtilConsts
+   io/QDFArray
+   io/SequenceIOUtils
+
+.. toctree::
+   :caption: Reading from XML population files
+   :maxdepth: 1
+
+   io/qhgXML
+   io/ParamProvider2
+
+.. toctree::
+   :caption: Restoring from dump
+   :maxdepth: 1
+
+   io/WELLDumpRestore
+   io/PermDumpRestore

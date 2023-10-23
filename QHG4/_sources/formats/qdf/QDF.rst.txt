@@ -1,0 +1,55 @@
+.. _QDF_ref:
+
+The QDF Format
+==============
+
+.. rst-class:: hidden
+
+   This page describes the :index:`QDF file format`
+
+Most input files and all output files for QHG4 have the **QDF** file format.
+QDF is a subset of the `HDF5 file format <https://www.hdfgroup.org/solutions/hdf5>`_, which is widely used to manage large datasets of scientific data.
+
+HDF has a hierarchical structure of so-called *groups*. The top level group is designated with "/".
+Every group can contain other groups, as well as *attributes* and *data sets*.
+
+QDF uses groups to store :ref:`environmental data <Environment_ov_ref>` as well as population data, and attributes to hold the parameters of a population's :ref:`action <Actions_ov_ref>`.
+
+The structure of QDF
+--------------------
+
+
+Groups
+^^^^^^
+The top level of a qdf file can contain the following groups:
+
+.. toctree::
+  :maxdepth: 1
+
+  GridGroup
+  GeoGroup
+  ClimateGroup
+  VegGroup
+  NavGroup
+  PopsGroup 
+   
+Apart from "Populations", all groups contain only data sets and attributes. "Populations" contains one group for each species involved.
+  
+
+Attributes
+^^^^^^^^^^
+The top level of a qdf file usually contains the attributes
+
+- **QHG**
+    Contains the string "A QHG4 Data File"
+
+- **Step**
+    For output files, the alue of this attribute is the simulation step for which the qdf file is wwritten.
+
+- **StartTime** 
+    The starting time of the simulation (e.g. "-75000").  
+
+- **Info**
+    Arbitrary information
+
+The root may have additional attributes but generally, they are ignored.

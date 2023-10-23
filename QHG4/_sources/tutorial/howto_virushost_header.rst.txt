@@ -1,0 +1,107 @@
+.. _howto_virushost_header_ref:
+
+The Header File for the Population Class ``VirusHostPop``
+=========================================================
+
+Since our `Virus`` action makes certain assumptions about the agents, 
+we can't use an arbitary population class.
+In particular, the agent structure needs fields for the virus load and immunity.
+
+The header file
+~~~~~~~~~~~~~~~
+
+First  we have the includes for the header files of all required 
+actions (among them ``Virus.h``), and the header file for the 
+population's base class ``SPopulation``
+
+.. code-block:: c++
+
+    #include "GetOld.h"
+    #include "ATanDeath.h"
+    #include "RandomMove.h"
+    #include "Fertility.h"
+    #include "Verhulst.h"
+    #include "RandomPair.h"
+    #include "Virus.h"
+    #include "SPopulation.h"
+
+Some constants needed to extract mutation rate and inheritance types
+
+.. code-block:: c++
+
+    const std::string VAR_VIRUSHOST_MUT_RATE_NAME    = "MutationRate";
+    const std::string VAR_VIRUSHOST_IMM_INHERIT_NAME = "ImmunityInheritance";
+    const std::string INH_TYPES[] = {
+        "mix",
+        "mat", 
+        "pat", 
+        "min",
+        "max",
+        }; 
+    
+    const int INH_MIX     = 0;
+    const int INH_MAT     = 1;
+    const int INH_PAT     = 2;
+    const int INH_MIN     = 3; 
+    const int INH_MAX     = 4; 
+    
+    
+Now follows  the declaration of the agent structure: 
+we have members for agent aging, fertility, and mating, 
+as well as members for the viral infections: virus load anf immunity.
+    
+.. code-block:: c++
+    
+    struct VirusHostAgent : Agent {
+
+        float m_fAge;
+        float m_fLastBirth;
+        int m_iMateIndex;
+        
+        float m_fViralLoad;
+        float m_fImmunity;
+    };
+
+The declaration of the ``VirusHostPop`` class derived from ``SPopulation``:
+
+.. code-block:: c++
+
+    class VirusHostPop : public  SPopulation<VirusHostAgent> {
+
+The public methods are the usual: constructor, destructor and methods to
+add agent data from a `populatiom dat file<pop_dat_ref>` and to write agent data to a QDF file.
+In addition to that there is a method for setting the inital state of the baby 
+(which we've also encountered before), and a method to get a parameter 
+for the population from the `populaition xml file<pop_xml_ref>` (in this case we need the mutation rate, and the inheritance type).
+
+.. code-block:: c++
+
+    public:
+        VirusHostPop(SCellGrid *pCG, PopFinder *pPopFinder, int iLayerSize, IDGen **apIDG, uint32_t *aulState, uint *aiSeeds);
+        virtual ~VirusHostPop_SexualPop();
+
+        int addPopSpecificAgentData(int iAgentIndex, char **ppData);
+        void addPopSpecificAgentDataTypeQDF(hid_t *hAgentDataType);
+
+        int makePopSpecificOffspring(int iAgent, int iMother, int iFather);
+        int getPopParams(const stringmap &mVarDefs);
+
+In the ``protected`` section there are pointers to the actions of this population
+and the variable for the mutation rate.
+
+.. code-block:: c++
+
+    protected:
+        GetOld<VirusHostAgent>      *m_pGO;
+        ATanDeath<VirusHostAgent>   *m_pAD;
+        RandomMove<VirusHostAgent>  *m_pRM;
+        Fertility<VirusHostAgen>    *m_pFert;
+        Verhulst<VirusHostAgen>     *m_pVerhulst;
+        RandomPair<VirusHostAgen>   *m_pPair;
+        Virus<VirusHostAgen>        *m_pVirus;
+      
+        float m_fMutationRate;                        
+
+
+The entire file can be found here: `VirusHostPop.h <https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/VirusHostPop.h>`_ 
+

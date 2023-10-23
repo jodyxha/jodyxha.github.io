@@ -1,0 +1,88 @@
+populations
+===========
+
+.. rst-class:: hidden
+
+   This page describes the directory :index:`populations`
+
+The directory ``populations`` contains some population classes.
+
+In QHG, all population classes are derived from the base class :ref:`SPopulation<SPopulation_ref>`.
+Usually each population defines its own agent structure if the agents has more members than the default ones:
+
+.. code-block::c++
+
+    struct Agent {
+        uint     m_iLifeState;
+        int      m_iCellIndex;
+        idtype   m_ulID;
+        gridtype m_ulCellID;
+        float    m_fBirthTime;
+        uchar    m_iGender;
+    };
+
+Population objects rarely access the members of an agent structure. 
+Usually the populations' actions manipulate the agent data.
+This implies that for the handling of additional agent members new action classes must probably be implemented.  
+ 
+The constructor of a population is the place where all actions are created and added to the priority handler. 
+The actions created here must be deleted in the population's destructor.
+
+Apart from the constructor, new population classes only override a few methods of ``SPopulation``. 
+
+If he agent structure is not the edfault, the population must implement the methods
+
+.. code-block:: c++
+   
+    int addPopSpecificAgentData(int iAgentIndex, char **ppData);
+    void addPopSpecificAgentDataTypeQDF(hid_t *hAgentDataType);
+
+These methods specify how a string is converted to the values for the new attributes of the agent, 
+and extend the QDF datatype for the agent structure for writing to QDF, repectively.
+
+If the birth of an agent requires additional operations, this can be done by implementing
+
+.. code-block::c++
+       
+    makePopSpecificOffspring(int iAgent, int iMother, int iFather);
+
+This can perform the initialisation of new variables in the agent structures, 
+or more complicated things such as calculating hybridisations, or mixing genomes.
+
+If code must be executed after the population is fully loaded and all actions have loaded their attributes, 
+but before the sumulations starts, this can be done in 
+
+.. code-block()
+
+    int preLoop();
+
+If you implement this action, be sure to call ``SPopulation<T>::preLoop()`` to make sure all actions' ``preLoop()`` methods are called.
+
+
+
+**basic**
+
+.. toctree:: 
+   :maxdepth: 1
+
+   populations/PopulationFactory
+   populations/StatPopFactory
+   populations/DynPopFactory
+
+
+**tutorial**
+
+.. toctree:: 
+   :maxdepth: 1
+
+   populations/tut_StaticPop
+   populations/tut_OldAgeDiePop
+   populations/tut_MovePop
+   populations/tut_ParthenoPop
+   populations/tut_SexualPop
+   populations/tut_EnvironAltPop
+
+**other**
+
+- maybe Fischer-Kolmogorov (check if exists on plankton)
+- maybe predator prey

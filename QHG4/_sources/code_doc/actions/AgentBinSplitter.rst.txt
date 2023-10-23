@@ -1,0 +1,165 @@
+.. _AgentBinSplitter_ref:
+
+AgentBinsSplitter
+=================
+
+.. rst-class:: hidden
+
+   This page describes the class :index:`AgentBinSplitter`
+
+The class ``AgentBinSplitter`` is derived from ``Action``.
+It splits the current population into bins, pertaining to the values of a particular (numerical) agent variable.
+It writes the subpopulations into a sub group of the agenrt group called ``SubPopulations`` in the QDF file.
+
+
+Code:
+    | `AgentBinSplitter.h  <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/AgentBinSplitter.h>`_ 
+    | `AgentBinSplitter.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/AgentBinSplitter.cpp>`_
+
+**Attributes**
+
++------------------------------+--------------------+-------------------------------+
+| ``ATTR_ABS_NAME``            | "AgentBinSplitter" | action name                   |
++------------------------------+--------------------+-------------------------------+
+| ``ATTR_ABS_BIN_MIN_NAME``    | "BinMin"           | minimum value for binning     |
++------------------------------+--------------------+-------------------------------+
+| ``ATTR_ABS_BIN_MAX_NAME``    | "BinMax"           | maximum value for binning     |
++------------------------------+--------------------+-------------------------------+
+| ``ATTR_ABS_NUM_BINS_NAME``   | "NumBins"          | number of bins                |
++------------------------------+--------------------+-------------------------------+
+| ``ATTR_ABS_VAR_FIELD_NAME``  | "VarField"         | name of agent variable to use |
++------------------------------+--------------------+-------------------------------+
+
+Public Methods
+--------------
+
+``constructor``
+~~~~~~~~~~~~~~~
+
+.. code-block:: c++
+
+    AgentBinSplitter(SPopulation<T> *pPop, SCellGrid *pCG, std::string sID, LBController *pAgentController);
+
+
+``pPop``
+    A pointer to the :ref:`SPopulation<SPopulation_ref>` object performing this action.
+
+``pCG``
+    A pointer to the  :ref:`SCellGrid<SCellGrid_ref>` object on which the simulation runs.
+
+``sID``
+    An ID for this action.
+
+``pAgentController``
+    A pointer to the ``LBController`` of the population's agents.
+
+The constructor creates ``LBController`` and ``LayerBuf`` arrays for each of the subpopulations.
+
+.. -----------------------------------------------------------------------------
+
+``destructor``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual ~AgentBinSplitter();
+
+The destructor destroys the arrays created in the constructor.
+
+.. -----------------------------------------------------------------------------
+
+``preLoop``
+^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int preLoop();
+
+Initializes the arrays.
+
+.. -----------------------------------------------------------------------------
+
+``preWrite``
+^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int preWrite(float fTime);
+
+Does the actual binning. 
+
+
+ .. -----------------------------------------------------------------------------
+
+``writeAdditionalDataQDF``
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+ 
+     virtual int writeAdditionalDataQDF(hid_t hActionGroup);
+
+``hActionGroup``
+     HDF Handle to the action's group.
+
+Writes the binned populations into subgroups of a "SubPopulations" subgroup of the actions group.
+
+.. -----------------------------------------------------------------------------
+
+``tryGetAttributes``
+^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int tryGetAttributes(const ModuleComplex *pMC);
+
+``pMC``
+    A ``ModuleComplex`` object.
+
+Extracts the action's attributes from the ``ModuleComplex`` object.
+
+.. -----------------------------------------------------------------------------
+
+``extractAttributesQDF``
+^^^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int extractAttributesQDF(hid_t hSpeciesGroup);
+
+``hSpeciesGroup``
+    HDF handle for the species group to read from.
+
+This method reads the atttributes of this action from a QDF.
+
+.. -----------------------------------------------------------------------------
+
+``writeAttributesQDF``
+^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual int writeAttributesQDF(hid_t hSpeciesGroup);
+
+``hSpeciesGroup``
+    HDF handle for the species group to write to.
+
+This method writes the attributes of this action to the specified group in a QDF file.
+
+.. -----------------------------------------------------------------------------
+
+Protected Methods
+-----------------
+
+``getVariableOffset``
+~~~~~~~~~~~~~~~~~~~~~
+.. code-block:: c++
+
+    int getVariableOffset();
+
+Determines the offset of the specified variable in an agent structure.
+
+.. -----------------------------------------------------------------------------
+
+``getVariableOffset``
+~~~~~~~~~~~~~~~~~~~~~
+.. code-block:: c++
+
+    double getDVal(T &ag);
+
+``ag``
+    The agent structure from which to extract the value.
+
+Extracts the value of the variable in the agent structure ``ag``.

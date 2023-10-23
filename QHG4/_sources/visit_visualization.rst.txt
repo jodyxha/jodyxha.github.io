@@ -1,0 +1,16 @@
+.. _visit_visualization_ref:
+
+Visualizing QDF files with VisIt
+================================
+
+`VisIt <https://visit-dav.github.io/visit-website>`_ is an Open Source, interactive, scalable, visualization, animation and analysis tool hosted on github.
+It supports many file formats, but since the file structure of QDF files is homegrown, we had to implement a plugin which enables VisIt to read QDF files.
+
+
+.. toctree::
+   :maxdepth: 1
+
+   visit/visit_install
+   visit/visit_plugin_qdfformat
+   visit/visit_visualize_qdf
+   visit/visit_movies

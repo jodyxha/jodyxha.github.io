@@ -1,0 +1,30 @@
+.. _VegGroup_ref:
+
+"Vegetation"
+------------
+
+.. rst-class:: hidden
+
+   This page describes :index:`vegetation group`
+
+The **vegetation group** contains data and attributes pertaining to the vegetation; currently this comprises only  NPP (net primatry production).
+
+Attributes
+^^^^^^^^^^
+
+- **NumCells**
+    Number of nodes
+
+- **NumSpecies**
+    Number of plant species (currently not used)
+
+
+DataSets
+^^^^^^^^
+
+**BaseNPP**
+    Net primary production (grams carbon per square meter and year) fo each cell
+
+**NPP**
+    Net primary production plus contributions from fresh water and coast-
+

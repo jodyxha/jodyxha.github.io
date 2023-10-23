@@ -1,0 +1,44 @@
+core
+====
+
+.. rst-class:: hidden
+
+   This page describes the directory :index:`core`
+
+The directory ``core`` contains classes for environment data and for population handling.
+
+
+.. toctree::
+   :caption: environment classes  
+   :maxdepth: 1
+
+   core/SCell
+   core/SCellGrid
+   core/Geography
+   core/Climate
+   core/Vegetation
+   core/Navigation
+
+
+.. toctree::
+   :caption: population related
+   :maxdepth: 1
+
+   core/PopBase
+   core/SPopulation
+   core/PopFinder
+   core/PopLooper
+   core/Prioritizer
+
+
+.. toctree::
+   :caption: various
+   :maxdepth: 1
+
+   core/AutoInterpolator   
+   core/IDGen
+   core/NPPCalc
+   core/NPPCalcMiami
+   core/NPPCalcNCEAS
+
+   

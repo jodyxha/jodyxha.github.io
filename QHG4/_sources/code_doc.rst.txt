@@ -1,0 +1,40 @@
+Code Documentation
+==================
+
+The documentation for QHG is structured by code directory.
+
+
+**QHG**
+
+.. toctree::
+   :maxdepth: 1
+
+   code_doc/utils
+   code_doc/core
+   code_doc/actions
+   code_doc/populations
+   code_doc/io
+   code_doc/app
+
+   icosa
+   (genes)
+   geoinfo
+   code_doc/plugin_stub
+   dynpops
+   utils_qhg
+
+   
+   import
+
+**tools**
+
+.. toctree::
+   :maxdepth: 1
+   
+   (tools_ico)
+   tools_io
+   tools_qdf
+   code_doc/useful_stuff
+   code_doc/visual       
+   
+    

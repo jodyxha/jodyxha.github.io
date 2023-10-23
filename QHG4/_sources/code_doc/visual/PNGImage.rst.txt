@@ -1,0 +1,172 @@
+.. _PNGImage_ref:
+
+PNGImage
+========
+
+.. rst-class:: hidden
+
+   This page describes the class :index:`PNGImage`
+
+The class ``PNGImage`` provides methods to create PNG files from data, as well as reading (non compressed) PNGfiles.
+
+Code:
+    | `PNGImage.h   <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/PNGImage.h>`_ 
+    | `PNGImage.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/PNGImage.cpp>`_
+
+
+Public Methods
+--------------
+
+``constructor``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+
+    PNGImage(int iWidth, int iHeight, int iBitDepth=8, int iColorType=PNG_COLOR_TYPE_RGB_ALPHA);
+    PNGImage();
+
+``iWidth``
+     Width of image to create.
+
+``iHeight``
+     Height of image to create.
+
+``iBitDepth``
+     | Number of bits to encode each channel: 
+     | 8 gives the best color resolution (8 bit red, 8 bit green, 8bit blue, 8 bit alpha).
+    
+``iColorType``
+     Color type of image. The following constants can be found in ``png.h``, the header file for the png library: 
+
++---------------------------+-----------------------+
+| PNG_COLOR_TYPE_GRAY       | grayscale image       |
++---------------------------+-----------------------+
+| PNG_COLOR_TYPE_PALETTE    | colors from palette   |
++---------------------------+-----------------------+
+| PNG_COLOR_TYPE_RGB        | rgb image             |
++---------------------------+-----------------------+
+| PNG_COLOR_TYPE_RGB_ALPHA  | rgba image            |
++---------------------------+-----------------------+
+| PNG_COLOR_TYPE_GRAY_ALPHA | graysscale with alpha |
++---------------------------+-----------------------+
+
+The constructor with no arguments is called when one intends to read a png file.
+
+
+.. -----------------------------------------------------------------------------
+
+``destructor``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    virtual ~PNGImage();
+
+The destructor deletes various arrays and destroys some PNG-related structures.
+
+
+.. -----------------------------------------------------------------------------
+
+``createPNGFromData``
+^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    bool createPNGFromData(double ***aadData, const std::string sOutputFile); 
+
+    bool createPNGFromData(uchar  **aaucData, const std::string sOutputFile); 
+
+``aadData``
+    An array holding the rgba values as ``double``s (``aaData[13][25][1]``: green value for pixel (13,25)).
+
+``aaucData``
+    An array holding the rgba values as ``uchar``s. The actual array format is ``iH x 4*iW``,
+    where the 4 rgba ``uchar``s are written one after the other. (``aucData[13][4*25]``: red value for pixel (13,25), ``aucData[13][4*25+2]``: blue value for pixel (13,25)).
+
+Creates PNG data from the data provided and writes it to the output file.
+
+.. -----------------------------------------------------------------------------
+
+``isInitialized``
+^^^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    bool isInitialized();
+
+Returns ``true`` if the data to be written has been properly initialized.
+
+.. -----------------------------------------------------------------------------
+
+``setPalette``
+^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    void setPalette(uchar **pPaletteEntries, int iNumPaletteEntries, bool bUseAlpha=false); 
+ 
+Set a color palette with colors to be used (the PNG array values are indexes into the palette).
+
+.. -----------------------------------------------------------------------------
+
+``readPNGFile``
+^^^^^^^^^^^^^^^
+.. code-block:: c++
+
+    bool readPNGFile(const std::string sInputFile);
+
+Reads the PNG data from the PNG file ``sInputFile``. The data can be obtained by the methods ``getRow()`` and ``getRows()``. 
+
+
+image info
+^^^^^^^^^^
+.. code-block:: c++
+
+    int getWidth();
+    int getHeight();
+    int getColorType();
+    int getBitDepth();
+    int getByteWidth();
+    int getNumChannels();
+    int getText(char ***ppKeys, char ***ppValues);
+
+These methods return information about the curren PNG data. Usually called after reading a PNG file with ``readPNGFile()``.
+.. -----------------------------------------------------------------------------
+
+
+``getRow``
+^^^^^^^^^^
+.. code-block:: c++
+
+    uchar *getRow(int iIndex);
+
+``iIndex``
+    Number of the row to return.
+
+Returns the specified row of the current image data.
+
+.. -----------------------------------------------------------------------------
+
+``getRows``
+^^^^^^^^^^^
+.. code-block:: c++
+
+    uchar **getRows();
+
+Returns the entire image data.
+
+.. -----------------------------------------------------------------------------
+
+``setRow``
+^^^^^^^^^^
+.. code-block:: c++
+
+    void setRow(int iIndex, uchar *ucRow);
+    void setRow(int iIndex, int *piRow);
+
+``iIndex``
+    Number of the row to replace.
+
+``ucRow``
+    ``uchar`` color values for the row to replaced.
+
+``piRow``
+    ``int`` color values for the row to be replaced.
+
+
