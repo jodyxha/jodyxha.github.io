@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../../">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>PNGImage &#8212; QHG4 4.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../static/jody.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jody.css?v=dac31e62" />
     
-    <script data-url_root="../../" id="documentation_options" src="../../static/documentation_options.js"></script>
-    <script src="../../static/doctools.js"></script>
-    <script src="../../static/sphinx_highlight.js"></script>
+    <script src="../../_static/documentation_options.js?v=3b2dd2c4"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     
     <link rel="icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -44,9 +44,9 @@
           <div class="body" role="main">
             
   <section id="pngimage">
-<span id="pngimage-ref"></span><h1>PNGImage<a class="headerlink" href="#pngimage" title="Permalink to this heading">¶</a></h1>
+<span id="pngimage-ref"></span><h1>PNGImage<a class="headerlink" href="#pngimage" title="Link to this heading">¶</a></h1>
 <p class="hidden">This page describes the class <span class="target" id="index-0"></span>PNGImage</p>
-<p>The class <code class="docutils literal notranslate"><span class="pre">PNGImage</span></code> provides methods to create PNG files from data, as well as reading (non compressed) PNGfiles.</p>
+<p>The class <code class="docutils literal notranslate"><span class="pre">PNGImage</span></code> provides methods to create PNG files from data, as well as reading (non compressed) PNG files.</p>
 <dl>
 <dt>Code:</dt><dd><div class="line-block">
 <div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/PNGImage.h">PNGImage.h</a></div>
@@ -55,9 +55,9 @@
 </dd>
 </dl>
 <section id="public-methods">
-<h2>Public Methods<a class="headerlink" href="#public-methods" title="Permalink to this heading">¶</a></h2>
+<h2>Public Methods<a class="headerlink" href="#public-methods" title="Link to this heading">¶</a></h2>
 <section id="constructor">
-<h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#constructor" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#constructor" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">PNGImage</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iWidth</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iHeight</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iBitDepth</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iColorType</span><span class="o">=</span><span class="n">PNG_COLOR_TYPE_RGB_ALPHA</span><span class="p">);</span>
 <span class="n">PNGImage</span><span class="p">();</span>
 </pre></div>
@@ -97,14 +97,14 @@
 <p>The constructor with no arguments is called when one intends to read a png file.</p>
 </section>
 <section id="destructor">
-<h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">PNGImage</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>The destructor deletes various arrays and destroys some PNG-related structures.</p>
 </section>
 <section id="createpngfromdata">
-<h3><code class="docutils literal notranslate"><span class="pre">createPNGFromData</span></code><a class="headerlink" href="#createpngfromdata" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">createPNGFromData</span></code><a class="headerlink" href="#createpngfromdata" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="nf">createPNGFromData</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="o">***</span><span class="n">aadData</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sOutputFile</span><span class="p">);</span>
 
 <span class="kt">bool</span><span class="w"> </span><span class="nf">createPNGFromData</span><span class="p">(</span><span class="n">uchar</span><span class="w">  </span><span class="o">**</span><span class="n">aaucData</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sOutputFile</span><span class="p">);</span>
@@ -113,35 +113,35 @@
 <dl class="simple">
 <dt><code class="docutils literal notranslate"><span class="pre">aadData</span></code></dt><dd><p>An array holding the rgba values as <code class="docutils literal notranslate"><span class="pre">double``s</span> <span class="pre">(``aaData[13][25][1]</span></code>: green value for pixel (13,25)).</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">aaucData</span></code></dt><dd><p>An array holding the rgba values as <code class="docutils literal notranslate"><span class="pre">uchar``s.</span> <span class="pre">The</span> <span class="pre">actual</span> <span class="pre">array</span> <span class="pre">format</span> <span class="pre">is</span> <span class="pre">``iH</span> <span class="pre">x</span> <span class="pre">4*iW</span></code>,
-where the 4 rgba <code class="docutils literal notranslate"><span class="pre">uchar``s</span> <span class="pre">are</span> <span class="pre">written</span> <span class="pre">one</span> <span class="pre">after</span> <span class="pre">the</span> <span class="pre">other.</span> <span class="pre">(``aucData[13][4*25]</span></code>: red value for pixel (13,25), <code class="docutils literal notranslate"><span class="pre">aucData[13][4*25+2]</span></code>: blue value for pixel (13,25)).</p>
+<dt><code class="docutils literal notranslate"><span class="pre">aaucData</span></code></dt><dd><p>An array holding the rgba values as <code class="docutils literal notranslate"><span class="pre">uchar</span></code>. The actual array format is <code class="docutils literal notranslate"><span class="pre">iH</span> <span class="pre">x</span> <span class="pre">4*iW</span></code>,
+where the 4 rgba <code class="docutils literal notranslate"><span class="pre">uchar</span></code> are written one after the other. (<code class="docutils literal notranslate"><span class="pre">aucData[13][4*25]</span></code>: red value for pixel (13,25), <code class="docutils literal notranslate"><span class="pre">aucData[13][4*25+2]</span></code>: blue value for pixel (13,25)).</p>
 </dd>
 </dl>
 <p>Creates PNG data from the data provided and writes it to the output file.</p>
 </section>
 <section id="isinitialized">
-<h3><code class="docutils literal notranslate"><span class="pre">isInitialized</span></code><a class="headerlink" href="#isinitialized" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">isInitialized</span></code><a class="headerlink" href="#isinitialized" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="nf">isInitialized</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>Returns <code class="docutils literal notranslate"><span class="pre">true</span></code> if the data to be written has been properly initialized.</p>
 </section>
 <section id="setpalette">
-<h3><code class="docutils literal notranslate"><span class="pre">setPalette</span></code><a class="headerlink" href="#setpalette" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">setPalette</span></code><a class="headerlink" href="#setpalette" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">setPalette</span><span class="p">(</span><span class="n">uchar</span><span class="w"> </span><span class="o">**</span><span class="n">pPaletteEntries</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iNumPaletteEntries</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">bUseAlpha</span><span class="o">=</span><span class="nb">false</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Set a color palette with colors to be used (the PNG array values are indexes into the palette).</p>
 </section>
 <section id="readpngfile">
-<h3><code class="docutils literal notranslate"><span class="pre">readPNGFile</span></code><a class="headerlink" href="#readpngfile" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">readPNGFile</span></code><a class="headerlink" href="#readpngfile" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="nf">readPNGFile</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sInputFile</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Reads the PNG data from the PNG file <code class="docutils literal notranslate"><span class="pre">sInputFile</span></code>. The data can be obtained by the methods <code class="docutils literal notranslate"><span class="pre">getRow()</span></code> and <code class="docutils literal notranslate"><span class="pre">getRows()</span></code>.</p>
 </section>
 <section id="image-info">
-<h3>image info<a class="headerlink" href="#image-info" title="Permalink to this heading">¶</a></h3>
+<h3>image info<a class="headerlink" href="#image-info" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">getWidth</span><span class="p">();</span>
 <span class="kt">int</span><span class="w"> </span><span class="nf">getHeight</span><span class="p">();</span>
 <span class="kt">int</span><span class="w"> </span><span class="nf">getColorType</span><span class="p">();</span>
@@ -151,11 +151,10 @@ where the 4 rgba <code class="docutils literal notranslate"><span class="pre">uc
 <span class="kt">int</span><span class="w"> </span><span class="nf">getText</span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="o">***</span><span class="n">ppKeys</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">***</span><span class="n">ppValues</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>These methods return information about the curren PNG data. Usually called after reading a PNG file with <code class="docutils literal notranslate"><span class="pre">readPNGFile()</span></code>.
-.. —————————————————————————–</p>
+<p>These methods return information about the curren PNG data. Usually called after reading a PNG file with <code class="docutils literal notranslate"><span class="pre">readPNGFile()</span></code>.</p>
 </section>
 <section id="getrow">
-<h3><code class="docutils literal notranslate"><span class="pre">getRow</span></code><a class="headerlink" href="#getrow" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">getRow</span></code><a class="headerlink" href="#getrow" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">uchar</span><span class="w"> </span><span class="o">*</span><span class="nf">getRow</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iIndex</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -166,14 +165,14 @@ where the 4 rgba <code class="docutils literal notranslate"><span class="pre">uc
 <p>Returns the specified row of the current image data.</p>
 </section>
 <section id="getrows">
-<h3><code class="docutils literal notranslate"><span class="pre">getRows</span></code><a class="headerlink" href="#getrows" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">getRows</span></code><a class="headerlink" href="#getrows" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">uchar</span><span class="w"> </span><span class="o">**</span><span class="nf">getRows</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>Returns the entire image data.</p>
 </section>
 <section id="setrow">
-<h3><code class="docutils literal notranslate"><span class="pre">setRow</span></code><a class="headerlink" href="#setrow" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">setRow</span></code><a class="headerlink" href="#setrow" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">setRow</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iIndex</span><span class="p">,</span><span class="w"> </span><span class="n">uchar</span><span class="w"> </span><span class="o">*</span><span class="n">ucRow</span><span class="p">);</span>
 <span class="kt">void</span><span class="w"> </span><span class="nf">setRow</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iIndex</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">piRow</span><span class="p">);</span>
 </pre></div>
@@ -269,8 +268,8 @@ where the 4 rgba <code class="docutils literal notranslate"><span class="pre">uc
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2022, jodyxha.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.0.1.
+    &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
   </body>
 </html>

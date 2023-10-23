@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../../">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>AlphaComposer &#8212; QHG4 4.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../static/jody.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jody.css?v=dac31e62" />
     
-    <script data-url_root="../../" id="documentation_options" src="../../static/documentation_options.js"></script>
-    <script src="../../static/doctools.js"></script>
-    <script src="../../static/sphinx_highlight.js"></script>
+    <script src="../../_static/documentation_options.js?v=3b2dd2c4"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     
     <link rel="icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -44,7 +44,7 @@
           <div class="body" role="main">
             
   <section id="alphacomposer">
-<span id="alphacomposer-ref"></span><h1>AlphaComposer<a class="headerlink" href="#alphacomposer" title="Permalink to this heading">¶</a></h1>
+<span id="alphacomposer-ref"></span><h1>AlphaComposer<a class="headerlink" href="#alphacomposer" title="Link to this heading">¶</a></h1>
 <p class="hidden">This page describes the class <span class="target" id="index-0"></span>AlphaComposer</p>
 <p>The class <code class="docutils literal notranslate"><span class="pre">AlphaComposer</span></code> provides methods to alpha-overlay <code class="docutils literal notranslate"><span class="pre">uchar</span></code> or <code class="docutils literal notranslate"><span class="pre">double</span></code> arrays.</p>
 <p>After initialisation you call the methods <code class="docutils literal notranslate"><span class="pre">addMatrix()</span></code> and <code class="docutils literal notranslate"><span class="pre">addPNGData()</span></code> to add layers.</p>
@@ -56,9 +56,9 @@
 </dd>
 </dl>
 <section id="public-methods">
-<h2>Public Methods<a class="headerlink" href="#public-methods" title="Permalink to this heading">¶</a></h2>
+<h2>Public Methods<a class="headerlink" href="#public-methods" title="Link to this heading">¶</a></h2>
 <section id="createinstance">
-<h3><code class="docutils literal notranslate"><span class="pre">createInstance</span></code><a class="headerlink" href="#createinstance" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">createInstance</span></code><a class="headerlink" href="#createinstance" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="n">AlphaComposer</span><span class="w"> </span><span class="o">*</span><span class="nf">createInstance</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iW</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iH</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -71,19 +71,19 @@
 <p>Prepares a png data target array.</p>
 </section>
 <section id="destructor">
-<h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="o">~</span><span class="n">AlphaComposer</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>The destructor deletes the png data target array.</p>
 </section>
 <section id="addmatrix">
-<h3><code class="docutils literal notranslate"><span class="pre">addMatrix</span></code><a class="headerlink" href="#addmatrix" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">addMatrix</span></code><a class="headerlink" href="#addmatrix" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">uchar</span><span class="w"> </span><span class="o">**</span><span class="nf">addMatrix</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="o">**</span><span class="n">ppdData</span><span class="p">,</span><span class="w"> </span><span class="n">LookUp</span><span class="w"> </span><span class="o">*</span><span class="n">pLU</span><span class="p">);</span>
 </pre></div>
 </div>
 <dl class="simple">
-<dt><code class="docutils literal notranslate"><span class="pre">ppData</span></code></dt><dd><p>A <code class="docutils literal notranslate"><span class="pre">iW``x``iH</span></code> array of doubles. eaach element is a simple value (no color data).</p>
+<dt><code class="docutils literal notranslate"><span class="pre">ppData</span></code></dt><dd><p>A <code class="docutils literal notranslate"><span class="pre">iW</span></code> x <code class="docutils literal notranslate"><span class="pre">iH</span></code> array of doubles. eaach element is a simple value (no color data).</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">pLU</span></code></dt><dd><p>A color lookup table</p>
 </dd>
@@ -92,7 +92,7 @@
 </dl>
 </section>
 <section id="addpngdata">
-<h3><code class="docutils literal notranslate"><span class="pre">addPNGData</span></code><a class="headerlink" href="#addpngdata" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">addPNGData</span></code><a class="headerlink" href="#addpngdata" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">uchar</span><span class="w"> </span><span class="o">**</span><span class="nf">addPNGData</span><span class="p">(</span><span class="n">uchar</span><span class="w"> </span><span class="o">**</span><span class="n">ppdData</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -104,7 +104,7 @@ where the 4 rgba <code class="docutils literal notranslate"><span class="pre">uc
 <p>Adds the data from <code class="docutils literal notranslate"><span class="pre">ppData</span></code> to the png data target array.</p>
 </section>
 <section id="addpngdatapar">
-<h3><code class="docutils literal notranslate"><span class="pre">addPNGDataPar</span></code><a class="headerlink" href="#addpngdatapar" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">addPNGDataPar</span></code><a class="headerlink" href="#addpngdatapar" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">uchar</span><span class="w"> </span><span class="o">**</span><span class="nf">addPNGDataPar</span><span class="p">(</span><span class="n">uchar</span><span class="w"> </span><span class="o">**</span><span class="n">ppdData</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -116,14 +116,14 @@ where the 4 rgba <code class="docutils literal notranslate"><span class="pre">uc
 <p>Basically, a parallelized version of <code class="docutils literal notranslate"><span class="pre">addPNGData()</span></code>.</p>
 </section>
 <section id="clear">
-<h3><code class="docutils literal notranslate"><span class="pre">clear</span></code><a class="headerlink" href="#clear" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">clear</span></code><a class="headerlink" href="#clear" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w">    </span><span class="nf">clear</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>Clears the png data target array.</p>
 </section>
 <section id="getdata">
-<h3><code class="docutils literal notranslate"><span class="pre">getData</span></code><a class="headerlink" href="#getdata" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">getData</span></code><a class="headerlink" href="#getdata" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">uchar</span><span class="w"> </span><span class="o">**</span><span class="nf">getData</span><span class="p">();</span>
 </pre></div>
 </div>
@@ -208,8 +208,8 @@ where the 4 rgba <code class="docutils literal notranslate"><span class="pre">uc
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2022, jodyxha.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.0.1.
+    &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
   </body>
 </html>
