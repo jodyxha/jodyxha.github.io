@@ -46,11 +46,11 @@
   <section id="pngimage">
 <span id="pngimage-ref"></span><h1>PNGImage<a class="headerlink" href="#pngimage" title="Link to this heading">¶</a></h1>
 <p class="hidden">This page describes the class <span class="target" id="index-0"></span>PNGImage</p>
-<p>The class <code class="docutils literal notranslate"><span class="pre">PNGImage</span></code> provides methods to create PNG files from data, as well as reading (non compressed) PNG files.</p>
+<p>The class <code class="docutils literal notranslate"><span class="pre">PNGImage</span></code> provides methods to create PNG files from data, as well as reading data from (non compressed) PNG files.</p>
 <dl>
 <dt>Code:</dt><dd><div class="line-block">
-<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/PNGImage.h">PNGImage.h</a></div>
-<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/PNGImage.cpp">PNGImage.cpp</a></div>
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/visual/PNGImage.h">PNGImage.h</a></div>
+<div class="line"><a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/visual/PNGImage.cpp">PNGImage.cpp</a></div>
 </div>
 </dd>
 </dl>
@@ -90,7 +90,7 @@
 <td><p>rgba image</p></td>
 </tr>
 <tr class="row-odd"><td><p>PNG_COLOR_TYPE_GRAY_ALPHA</p></td>
-<td><p>graysscale with alpha</p></td>
+<td><p>grayscale with alpha</p></td>
 </tr>
 </tbody>
 </table>
@@ -114,7 +114,7 @@
 <dt><code class="docutils literal notranslate"><span class="pre">aadData</span></code></dt><dd><p>An array holding the rgba values as <code class="docutils literal notranslate"><span class="pre">double</span></code> ( <code class="docutils literal notranslate"><span class="pre">aaData[13][25][1]</span></code> : green value for pixel (13,25)).</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">aaucData</span></code></dt><dd><p>An array holding the rgba values as <code class="docutils literal notranslate"><span class="pre">uchar</span></code>. The actual array format is <code class="docutils literal notranslate"><span class="pre">iH</span> <span class="pre">x</span> <span class="pre">4*iW</span></code>,
-where the 4 rgba <code class="docutils literal notranslate"><span class="pre">uchar</span></code> are written one after the other. (<code class="docutils literal notranslate"><span class="pre">aucData[13][4*25]</span></code>: red value for pixel (13,25), <code class="docutils literal notranslate"><span class="pre">aucData[13][4*25+2]</span></code>: blue value for pixel (13,25)).</p>
+where the 4 rgba <code class="docutils literal notranslate"><span class="pre">uchar</span></code> values are written one after the other (<code class="docutils literal notranslate"><span class="pre">aucData[13][4*25]</span></code>: red value for pixel (13,25), <code class="docutils literal notranslate"><span class="pre">aucData[13][4*25+2]</span></code>: blue value for pixel (13,25)).</p>
 </dd>
 </dl>
 <p>Creates PNG data from the data provided and writes it to the output file.</p>
@@ -151,7 +151,7 @@ where the 4 rgba <code class="docutils literal notranslate"><span class="pre">uc
 <span class="kt">int</span><span class="w"> </span><span class="nf">getText</span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="o">***</span><span class="n">ppKeys</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">***</span><span class="n">ppValues</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>These methods return information about the curren PNG data. Usually called after reading a PNG file with <code class="docutils literal notranslate"><span class="pre">readPNGFile()</span></code>.</p>
+<p>These methods return information about the current PNG data. Usually called after reading a PNG file with <code class="docutils literal notranslate"><span class="pre">readPNGFile()</span></code>.</p>
 </section>
 <section id="getrow">
 <h3><code class="docutils literal notranslate"><span class="pre">getRow</span></code><a class="headerlink" href="#getrow" title="Link to this heading">¶</a></h3>
@@ -180,7 +180,7 @@ where the 4 rgba <code class="docutils literal notranslate"><span class="pre">uc
 <dl class="simple">
 <dt><code class="docutils literal notranslate"><span class="pre">iIndex</span></code></dt><dd><p>Number of the row to replace.</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">ucRow</span></code></dt><dd><p><code class="docutils literal notranslate"><span class="pre">uchar</span></code> color values for the row to replaced.</p>
+<dt><code class="docutils literal notranslate"><span class="pre">ucRow</span></code></dt><dd><p><code class="docutils literal notranslate"><span class="pre">uchar</span></code> color values for the row to be replaced.</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">piRow</span></code></dt><dd><p><code class="docutils literal notranslate"><span class="pre">int</span></code> color values for the row to be replaced.</p>
 </dd>
