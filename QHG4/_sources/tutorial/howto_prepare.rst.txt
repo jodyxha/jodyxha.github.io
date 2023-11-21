@@ -23,7 +23,7 @@ Note that the times in the modules ``ATanDeath`` and ``Fertility`` are given in 
 
 Also, the values in the module``Verhulst`` are much smaller compared to the values used in :ref:`tutorieal 05 <TutorialSexual_ref>`.
 
-.. code-block:: text
+.. code-block:: xml
 
     <class name="VirusHostPop" species_name="sapiens" species_id="104">
     
@@ -71,7 +71,7 @@ Also, the values in the module``Verhulst`` are much smaller compared to the valu
     
       <vardefs>
         <var name="MutationRate" value="0.00"/>
-        <var vname="ImmunityInheritance" value="min"
+        <var vname="ImmunityInheritance" value="min">
       </vardefs>
     
     </class>

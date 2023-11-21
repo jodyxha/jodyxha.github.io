@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../../">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Vegetation &#8212; QHG4 4.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../static/jody.css" />
+    <link rel="stylesheet" type="text/css" href="../../static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../static/jody.css?v=dac31e62" />
     
-    <script data-url_root="../../" id="documentation_options" src="../../static/documentation_options.js"></script>
-    <script src="../../static/doctools.js"></script>
-    <script src="../../static/sphinx_highlight.js"></script>
+    <script src="../../static/documentation_options.js?v=3b2dd2c4"></script>
+    <script src="../../static/doctools.js?v=888ff710"></script>
+    <script src="../../static/sphinx_highlight.js?v=dc90522c"></script>
     
     <link rel="icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -44,10 +44,11 @@
           <div class="body" role="main">
             
   <section id="vegetation">
-<span id="vegetation-ref"></span><h1>Vegetation<a class="headerlink" href="#vegetation" title="Permalink to this heading">¶</a></h1>
+<span id="vegetation-ref"></span><h1>Vegetation<a class="headerlink" href="#vegetation" title="Link to this heading">¶</a></h1>
 <p class="hidden">This page describes the class <span class="target" id="index-0"></span>Vegetation</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">Vegetation</span></code> class contains some vegetation-related data.</p>
-<p>In earlier versions of QHG, different vegetation types (grass, shrub, tree) were estimated from climate data, and from them calculate net primary production.</p>
+<p>In earlier versions of QHG, different vegetation types (grass, shrub, tree)
+were estimated from climate data, and from them, the net primary production was then calculated.</p>
 <p>Newer paleo simulations by Axel Timmermann directly provide Net Primary Production (NPP).</p>
 <dl>
 <dt>Code:</dt><dd><div class="line-block">
@@ -57,7 +58,7 @@
 </dd>
 </dl>
 <section id="public-members">
-<h2>Public Members<a class="headerlink" href="#public-members" title="Permalink to this heading">¶</a></h2>
+<h2>Public Members<a class="headerlink" href="#public-members" title="Link to this heading">¶</a></h2>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">uint</span><span class="w"> </span><span class="n">m_iNumCells</span><span class="p">;</span>
 </pre></div>
 </div>
@@ -76,9 +77,9 @@
 <p>Modified NPP: increases due to water in the cell or closenes to the shore.</p>
 </section>
 <section id="public-methods">
-<h2>Public Methods<a class="headerlink" href="#public-methods" title="Permalink to this heading">¶</a></h2>
+<h2>Public Methods<a class="headerlink" href="#public-methods" title="Link to this heading">¶</a></h2>
 <section id="update">
-<h3><code class="docutils literal notranslate"><span class="pre">update</span></code><a class="headerlink" href="#update" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">update</span></code><a class="headerlink" href="#update" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">update</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">fTime</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -89,7 +90,7 @@
 <p>Called for general update events (currently unused).</p>
 </section>
 <section id="climateupdate">
-<h3><code class="docutils literal notranslate"><span class="pre">climateUpdate</span></code><a class="headerlink" href="#climateupdate" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">climateUpdate</span></code><a class="headerlink" href="#climateupdate" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">climateUpdate</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">fTime</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -170,8 +171,8 @@
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2022, jodyxha.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.0.1.
+    &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
   </body>
 </html>

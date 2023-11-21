@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="./">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Events &#8212; QHG4 4.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="static/jody.css" />
+    <link rel="stylesheet" type="text/css" href="static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="static/jody.css?v=dac31e62" />
     
-    <script data-url_root="./" id="documentation_options" src="static/documentation_options.js"></script>
-    <script src="static/doctools.js"></script>
-    <script src="static/sphinx_highlight.js"></script>
+    <script src="static/documentation_options.js?v=3b2dd2c4"></script>
+    <script src="static/doctools.js?v=888ff710"></script>
+    <script src="static/sphinx_highlight.js?v=dc90522c"></script>
     
     <link rel="icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
     <link rel="index" title="Index" href="genindex.html" />
@@ -42,12 +42,12 @@
           <div class="body" role="main">
             
   <section id="events">
-<span id="events-ref"></span><h1>Events<a class="headerlink" href="#events" title="Permalink to this heading">¶</a></h1>
+<span id="events-ref"></span><h1>Events<a class="headerlink" href="#events" title="Link to this heading">¶</a></h1>
 <p>Events are needed to notify objects of some change of state.</p>
 <p>In QHG we have two kinds of events: events from the command line and internal events.</p>
 <p>The events from the commandline events are passed as values of the <a class="reference internal" href="code_doc/app/QHGMain.html#qhgmain-ref"><span class="std std-ref">–events option of QHGMain</span></a>.</p>
 <section id="events-event-list">
-<h2>–events=&lt;event-list&gt;<a class="headerlink" href="#events-event-list" title="Permalink to this heading">¶</a></h2>
+<h2>–events=&lt;event-list&gt;<a class="headerlink" href="#events-event-list" title="Link to this heading">¶</a></h2>
 <p>Set event list.</p>
 <div class="line-block">
 <div class="line">The event-list string is a comma-separated list of events:</div>
@@ -59,7 +59,7 @@
 <div class="line"><code class="docutils literal notranslate"><span class="pre">event</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">::=</span> <span class="pre">&lt;event-type&gt;</span> <span class="pre">&quot;|&quot;</span> <span class="pre">&lt;event-params&gt;</span> <span class="pre">&quot;&#64;&quot;</span> <span class="pre">&lt;event-times&gt;</span></code></div>
 </div>
 <section id="event-times-and-triggers">
-<h3>event times and triggers<a class="headerlink" href="#event-times-and-triggers" title="Permalink to this heading">¶</a></h3>
+<h3>event times and triggers<a class="headerlink" href="#event-times-and-triggers" title="Link to this heading">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">&lt;event-times&gt;</span></code> defines at which times the event should be triggered.</p>
 <div class="line-block">
 <div class="line"><code class="docutils literal notranslate"><span class="pre">event-times</span>&#160;&#160;&#160;&#160;&#160; <span class="pre">::=</span> <span class="pre">&lt;full-trigger&gt;</span> <span class="pre">[</span> <span class="pre">&quot;+&quot;</span> <span class="pre">&lt;full-trigger&gt;]*</span></code></div>
@@ -100,7 +100,7 @@
 </div>
 </section>
 <section id="event-types">
-<h3>Event types<a class="headerlink" href="#event-types" title="Permalink to this heading">¶</a></h3>
+<h3>Event types<a class="headerlink" href="#event-types" title="Link to this heading">¶</a></h3>
 <div class="line-block">
 <div class="line"><code class="docutils literal notranslate"><span class="pre">event-type</span>&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">::=</span> <span class="pre">&lt;standard_types&gt;</span> <span class="pre">|</span> <span class="pre">&lt;tech-types&gt;</span></code></div>
 <div class="line"><code class="docutils literal notranslate"><span class="pre">standard-type</span>&#160;&#160;&#160; <span class="pre">::=</span> <span class="pre">&quot;write&quot;</span> <span class="pre">|</span> <span class="pre">&quot;env&quot;</span> <span class="pre">|</span> <span class="pre">&quot;arr&quot;</span> <span class="pre">|</span> <span class="pre">&quot;pop&quot;</span> <span class="pre">|</span> <span class="pre">&quot;file&quot;</span></code></div>
@@ -198,10 +198,10 @@
 <div class="line-block">
 <div class="line">If the &lt;cmd-file&gt; has changed since the last triggered time the contents will be executed:</div>
 <div class="line-block">
-<div class="line">iter_cmd:        set new iteration limit</div>
-<div class="line">del_action_cmd:  remove action from prio list</div>
-<div class="line">mod_pop_cmd:     hange parameter of population</div>
-<div class="line">event:           add event to event manager’s list</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">iter_cmd</span></code>: set new iteration limit</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">del_action_cmd</span></code>: remove action from prio list</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">mod_pop_cmd</span></code>: change parameter of population</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">event</span></code>: add event to event manager’s list</div>
 </div>
 </div>
 <p><strong>for &lt;event-type&gt; == “check”:</strong></p>
@@ -223,8 +223,8 @@
 <p>Scrambles the order of connections between nodes</p>
 </section>
 <section id="example">
-<h3>Example<a class="headerlink" href="#example" title="Permalink to this heading">¶</a></h3>
-<p>Here is a full example for an eventlist:</p>
+<h3>Example<a class="headerlink" href="#example" title="Link to this heading">¶</a></h3>
+<p>Here is a full example for an event list:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>--events<span class="o">=</span><span class="s1">&#39;env|geo+climate:map120.qdf@[120],write|pop:GrassLover|grid@5+[20:30]1,comm|REMOVE ACTION sapiens:ConfinedMove@[3000]&#39;</span>
 </pre></div>
 </div>
@@ -310,8 +310,8 @@
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2022, jodyxha.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.0.1.
+    &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
   </body>
 </html>

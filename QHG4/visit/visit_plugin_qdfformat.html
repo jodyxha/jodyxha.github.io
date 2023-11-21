@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Building the QDF Format Plugin &#8212; QHG4 4.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../static/jody.css" />
+    <link rel="stylesheet" type="text/css" href="../static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../static/jody.css?v=dac31e62" />
     
-    <script data-url_root="../" id="documentation_options" src="../static/documentation_options.js"></script>
-    <script src="../static/doctools.js"></script>
-    <script src="../static/sphinx_highlight.js"></script>
+    <script src="../static/documentation_options.js?v=3b2dd2c4"></script>
+    <script src="../static/doctools.js?v=888ff710"></script>
+    <script src="../static/sphinx_highlight.js?v=dc90522c"></script>
     
     <link rel="icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -43,11 +43,11 @@
           <div class="body" role="main">
             
   <section id="building-the-qdf-format-plugin">
-<span id="visit-plugin-qdfformat-ref"></span><h1>Building the QDF Format Plugin<a class="headerlink" href="#building-the-qdf-format-plugin" title="Permalink to this heading">¶</a></h1>
+<span id="visit-plugin-qdfformat-ref"></span><h1>Building the QDF Format Plugin<a class="headerlink" href="#building-the-qdf-format-plugin" title="Link to this heading">¶</a></h1>
 <p>In order to enable VisIt to read and interpret out QDF files. we had to implement a plugin for this.</p>
 <p>The plugin code must be compiled with the tools VisIt was compiled with.</p>
 <section id="environment-variables">
-<h2>Environment Variables<a class="headerlink" href="#environment-variables" title="Permalink to this heading">¶</a></h2>
+<h2>Environment Variables<a class="headerlink" href="#environment-variables" title="Link to this heading">¶</a></h2>
 <p>The build script for the plugin <code class="docutils literal notranslate"><span class="pre">Build_PLUGIN.sh</span></code> expects the environment variables <code class="docutils literal notranslate"><span class="pre">XML2CMAKE_BIN</span></code> and <code class="docutils literal notranslate"><span class="pre">CMAKE_VISIT</span></code> to be set to the corresponding binaries.
 The best way is to export these variables in a script that will be executed whenever a shell starts, in bash that would be <code class="docutils literal notranslate"><span class="pre">~/.bashrc</span></code>.</p>
 <p>In this file add the lines</p>
@@ -62,7 +62,7 @@ The best way is to export these variables in a script that will be executed when
 <p>to activate the changes for the current terminal. Any terminal opened after that will already have these environment variables set correctly.</p>
 </section>
 <section id="compiling-the-plugin">
-<h2>Compiling the Plugin<a class="headerlink" href="#compiling-the-plugin" title="Permalink to this heading">¶</a></h2>
+<h2>Compiling the Plugin<a class="headerlink" href="#compiling-the-plugin" title="Link to this heading">¶</a></h2>
 <p>In the QHG code tree, go to the qdf format plugin directory and run the script <code class="docutils literal notranslate"><span class="pre">BUILD_PLUGIN.sh</span></code>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">QHG4_DIR</span><span class="si">}</span>/visit_plugins/qdfformat/
 
@@ -141,8 +141,8 @@ The best way is to export these variables in a script that will be executed when
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2022, jodyxha.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.0.1.
+    &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
   </body>
 </html>

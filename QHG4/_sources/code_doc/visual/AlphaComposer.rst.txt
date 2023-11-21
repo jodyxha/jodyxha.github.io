@@ -12,8 +12,8 @@ The class ``AlphaComposer`` provides methods to alpha-overlay ``uchar`` or ``dou
 After initialisation you call the methods ``addMatrix()`` and ``addPNGData()`` to add layers.
 
 Code:
-    | `AlphaComposer.h  <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/AlphaComposer.h>`_ 
-    | `AlphaComposer.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/AlphaComposer.cpp>`_
+    | `AlphaComposer.h  <https://github.com/jodyxha/QHG4/blob/main/QHG4/visual/AlphaComposer.h>`_ 
+    | `AlphaComposer.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/visual/AlphaComposer.cpp>`_
 
 
 .. -----------------------------------------------------------------------------
@@ -56,7 +56,7 @@ The destructor deletes the png data target array.
     uchar **addMatrix(double **ppdData, LookUp *pLU);
 
 ``ppData``
-    A ``iW``x``iH`` array of doubles. eaach element is a simple value (no color data).
+    A ``iW`` x ``iH`` array of doubles. each element is a simple value (no color data).
 
 ``pLU``
     A color lookup table

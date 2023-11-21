@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../../">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>tut_SexualPop &#8212; QHG4 4.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../static/jody.css" />
+    <link rel="stylesheet" type="text/css" href="../../static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../static/jody.css?v=dac31e62" />
     
-    <script data-url_root="../../" id="documentation_options" src="../../static/documentation_options.js"></script>
-    <script src="../../static/doctools.js"></script>
-    <script src="../../static/sphinx_highlight.js"></script>
+    <script src="../../static/documentation_options.js?v=3b2dd2c4"></script>
+    <script src="../../static/doctools.js?v=888ff710"></script>
+    <script src="../../static/sphinx_highlight.js?v=dc90522c"></script>
     
     <link rel="icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -44,7 +44,7 @@
           <div class="body" role="main">
             
   <section id="tut-sexualpop">
-<span id="tut-sexualpop-ref"></span><h1>tut_SexualPop<a class="headerlink" href="#tut-sexualpop" title="Permalink to this heading">¶</a></h1>
+<span id="tut-sexualpop-ref"></span><h1>tut_SexualPop<a class="headerlink" href="#tut-sexualpop" title="Link to this heading">¶</a></h1>
 <p class="hidden">This page describes the class <span class="target" id="index-0"></span>tut_SexualPop</p>
 <p>The class <code class="docutils literal notranslate"><span class="pre">tut_SexualPop</span></code> is derived from <a class="reference internal" href="../core/SPopulation.html#spopulation-ref"><span class="std std-ref">SPopulation</span></a>.</p>
 <p>Apart from aging, dyining and moving, the agents can sexually reproduce.</p>
@@ -67,7 +67,7 @@
 </dd>
 </dl>
 <section id="data-types">
-<h2>Data types<a class="headerlink" href="#data-types" title="Permalink to this heading">¶</a></h2>
+<h2>Data types<a class="headerlink" href="#data-types" title="Link to this heading">¶</a></h2>
 <p>The actions <code class="docutils literal notranslate"><span class="pre">GetOld</span></code> and <code class="docutils literal notranslate"><span class="pre">OldAgeDeath</span></code> expect the agents to have a float member <code class="docutils literal notranslate"><span class="pre">m_fAge</span></code>,
 the action <code class="docutils literal notranslate"><span class="pre">Fertility</span></code> additionally requires a float member <code class="docutils literal notranslate"><span class="pre">m_fLastBirth</span></code>,
 and the action <code class="docutils literal notranslate"><span class="pre">Verhulst</span></code> requires an int member <code class="docutils literal notranslate"><span class="pre">m_iMateIndex</span></code>.</p>
@@ -82,9 +82,9 @@ and the action <code class="docutils literal notranslate"><span class="pre">Verh
 </div>
 </section>
 <section id="public-methods">
-<h2>Public Methods<a class="headerlink" href="#public-methods" title="Permalink to this heading">¶</a></h2>
+<h2>Public Methods<a class="headerlink" href="#public-methods" title="Link to this heading">¶</a></h2>
 <section id="constructor">
-<h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#constructor" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#constructor" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">tut_SexualPop</span><span class="p">(</span><span class="n">SCellGrid</span><span class="w"> </span><span class="o">*</span><span class="n">pCG</span><span class="p">,</span><span class="w"> </span><span class="n">PopFinder</span><span class="w"> </span><span class="o">*</span><span class="n">pPopFinder</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iLayerSize</span><span class="p">,</span>
 <span class="w">              </span><span class="n">IDGen</span><span class="w"> </span><span class="o">**</span><span class="n">apIDG</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="o">*</span><span class="n">aulState</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="o">*</span><span class="n">aiSeeds</span><span class="p">);</span>
 </pre></div>
@@ -108,14 +108,14 @@ and the action <code class="docutils literal notranslate"><span class="pre">Verh
 and <a class="reference internal" href="../actions/RandomPair.html#randompair-ref"><span class="std std-ref">RandomPair</span></a>, and registers them with the <a class="reference internal" href="../core/Prioritizer.html#prioritizer-ref"><span class="std std-ref">Prioritizer</span></a>.</p>
 </section>
 <section id="destructor">
-<h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="o">~</span><span class="n">tut_SexualPop</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>The destructor deletes the action objects created in the constructor.</p>
 </section>
 <section id="addpopspecificagentdata">
-<h3><code class="docutils literal notranslate"><span class="pre">addPopSpecificAgentData</span></code><a class="headerlink" href="#addpopspecificagentdata" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">addPopSpecificAgentData</span></code><a class="headerlink" href="#addpopspecificagentdata" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">addPopSpecificAgentData</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iAgentIndex</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">ppData</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -131,7 +131,7 @@ and <a class="reference internal" href="../actions/RandomPair.html#randompair-re
 </div>
 </section>
 <section id="addpopspecificagentdatatypeqdf">
-<h3><code class="docutils literal notranslate"><span class="pre">addPopSpecificAgentDataTypeQDF</span></code><a class="headerlink" href="#addpopspecificagentdatatypeqdf" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">addPopSpecificAgentDataTypeQDF</span></code><a class="headerlink" href="#addpopspecificagentdatatypeqdf" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">addPopSpecificAgentDataTypeQDF</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="o">*</span><span class="n">hAgentDataType</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -142,7 +142,7 @@ and <a class="reference internal" href="../actions/RandomPair.html#randompair-re
 <p>This method extends the existing HDF data type, by entriues for the agent’s age member, and the last birth.</p>
 </section>
 <section id="makepopspecificoffspring">
-<h3><code class="docutils literal notranslate"><span class="pre">makePopSpecificOffspring</span></code><a class="headerlink" href="#makepopspecificoffspring" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">makePopSpecificOffspring</span></code><a class="headerlink" href="#makepopspecificoffspring" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">makePopSpecificOffspring</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iAgent</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iMother</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iFather</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -234,8 +234,8 @@ and <a class="reference internal" href="../actions/RandomPair.html#randompair-re
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2022, jodyxha.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.0.1.
+    &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
   </body>
 </html>

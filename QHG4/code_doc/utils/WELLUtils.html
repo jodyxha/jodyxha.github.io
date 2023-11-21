@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../../">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>WELLUtils &#8212; QHG4 4.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../static/jody.css" />
+    <link rel="stylesheet" type="text/css" href="../../static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../static/jody.css?v=dac31e62" />
     
-    <script data-url_root="../../" id="documentation_options" src="../../static/documentation_options.js"></script>
-    <script src="../../static/doctools.js"></script>
-    <script src="../../static/sphinx_highlight.js"></script>
+    <script src="../../static/documentation_options.js?v=3b2dd2c4"></script>
+    <script src="../../static/doctools.js?v=888ff710"></script>
+    <script src="../../static/sphinx_highlight.js?v=dc90522c"></script>
     
     <link rel="icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -44,7 +44,7 @@
           <div class="body" role="main">
             
   <section id="wellutils">
-<span id="wellutils-ref"></span><h1>WELLUtils<a class="headerlink" href="#wellutils" title="Permalink to this heading">¶</a></h1>
+<span id="wellutils-ref"></span><h1>WELLUtils<a class="headerlink" href="#wellutils" title="Link to this heading">¶</a></h1>
 <p class="hidden">This page describes the module <span class="target" id="index-0"></span>WELLUtils</p>
 <p>The module <code class="docutils literal notranslate"><span class="pre">WELLUtils</span></code> provides some helpful utilities for initialising and managinf <a class="reference internal" href="WELL512.html#well512-ref"><span class="std std-ref">WELL512</span></a> objects.</p>
 <dl>
@@ -55,9 +55,9 @@
 </dd>
 </dl>
 <section id="functions">
-<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this heading">¶</a></h2>
+<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h2>
 <section id="stringtoseed">
-<h3><code class="docutils literal notranslate"><span class="pre">stringToSeed</span></code><a class="headerlink" href="#stringtoseed" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">stringToSeed</span></code><a class="headerlink" href="#stringtoseed" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">stringToSeed</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sSequence</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">uint32_t</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">vulState</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -71,7 +71,7 @@
 <p>Returns 0 on success, -1 if wrong number of hexadecimals in string.</p>
 </section>
 <section id="phrasetoseed">
-<h3><code class="docutils literal notranslate"><span class="pre">phraseToSeed</span></code><a class="headerlink" href="#phrasetoseed" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">phraseToSeed</span></code><a class="headerlink" href="#phrasetoseed" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">phraseToSeed</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sPhrase</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">uint32_t</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">vulState</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -85,7 +85,7 @@
 <p>Returns 0 on success, -1 if empty string is passed.</p>
 </section>
 <section id="randomseed">
-<h3><code class="docutils literal notranslate"><span class="pre">randomSeed</span></code><a class="headerlink" href="#randomseed" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">randomSeed</span></code><a class="headerlink" href="#randomseed" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">randomSeed</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iSeed</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">uint32_t</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">vulState</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -98,7 +98,7 @@
 </dl>
 </section>
 <section id="createwell">
-<h3><code class="docutils literal notranslate"><span class="pre">createWELL</span></code><a class="headerlink" href="#createwell" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">createWELL</span></code><a class="headerlink" href="#createwell" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">WELL512</span><span class="w"> </span><span class="o">*</span><span class="nf">createWELL</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sPhrase</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -110,7 +110,7 @@
 <p>Returns a pointer to the generated WELL512 object.</p>
 </section>
 <section id="buildwells">
-<h3><code class="docutils literal notranslate"><span class="pre">buildWells</span></code><a class="headerlink" href="#buildwells" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">buildWells</span></code><a class="headerlink" href="#buildwells" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">WELL512</span><span class="w"> </span><span class="o">**</span><span class="nf">buildWELLs</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iNum</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="n">iSeed</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -125,7 +125,7 @@
 This pointer should be passed to <code class="docutils literal notranslate"><span class="pre">destroyWELLs()</span></code> if the WELLs aren’t needed anymore.</p>
 </section>
 <section id="destroywells">
-<h3><code class="docutils literal notranslate"><span class="pre">destroyWELLs</span></code><a class="headerlink" href="#destroywells" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">destroyWELLs</span></code><a class="headerlink" href="#destroywells" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">destroyWELLs</span><span class="p">(</span><span class="n">WELL512</span><span class="w"> </span><span class="o">**</span><span class="n">pWELLs</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iNum</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -138,7 +138,7 @@ This pointer should be passed to <code class="docutils literal notranslate"><spa
 </dl>
 </section>
 <section id="showstate">
-<h3><code class="docutils literal notranslate"><span class="pre">showState</span></code><a class="headerlink" href="#showstate" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">showState</span></code><a class="headerlink" href="#showstate" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">showState</span><span class="p">(</span><span class="n">WELL512</span><span class="w"> </span><span class="o">*</span><span class="n">pWELL</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -151,7 +151,7 @@ This pointer should be passed to <code class="docutils literal notranslate"><spa
 </dl>
 </section>
 <section id="showstates">
-<h3><code class="docutils literal notranslate"><span class="pre">showStates</span></code><a class="headerlink" href="#showstates" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">showStates</span></code><a class="headerlink" href="#showstates" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">showStates</span><span class="p">(</span><span class="n">WELL512</span><span class="w"> </span><span class="o">**</span><span class="n">apWELL</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iNum</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">bFull</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -164,14 +164,14 @@ This pointer should be passed to <code class="docutils literal notranslate"><spa
 </dl>
 </section>
 <section id="strstate">
-<h3><code class="docutils literal notranslate"><span class="pre">strState</span></code><a class="headerlink" href="#strstate" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">strState</span></code><a class="headerlink" href="#strstate" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">strState</span><span class="p">(</span><span class="n">WELL512</span><span class="w"> </span><span class="o">*</span><span class="n">pWELL</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Creates a string containing index and state of the <code class="docutils literal notranslate"><span class="pre">WELL512</span></code> object.</p>
 </section>
 <section id="strstatehash">
-<h3><code class="docutils literal notranslate"><span class="pre">strStateHash</span></code><a class="headerlink" href="#strstatehash" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">strStateHash</span></code><a class="headerlink" href="#strstatehash" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">strStateHash</span><span class="p">(</span><span class="n">WELL512</span><span class="w"> </span><span class="o">*</span><span class="n">pWELL</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -180,7 +180,7 @@ This pointer should be passed to <code class="docutils literal notranslate"><spa
 </section>
 </section>
 <section id="example">
-<h2>Example<a class="headerlink" href="#example" title="Permalink to this heading">¶</a></h2>
+<h2>Example<a class="headerlink" href="#example" title="Link to this heading">¶</a></h2>
 <p>(&#64;&#64;TODO) <span class="xref std std-ref">wellutilsexample tototot</span></p>
 </section>
 </section>
@@ -265,8 +265,8 @@ This pointer should be passed to <code class="docutils literal notranslate"><spa
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2022, jodyxha.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.0.1.
+    &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
   </body>
 </html>

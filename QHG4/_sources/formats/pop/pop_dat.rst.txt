@@ -7,6 +7,9 @@ The Population DAT Format
 
    This page gives an overview of :index:`population DAT file format`
 
+.. |nbsp| unicode:: 0xA0 0xA0 0xA0 0xA0 0xA0 0xA0  0xA0 0xA0 0xA0 0xA0 0xA0 0xA0 0xA0 0xA0 0xA0 0xA0 0xA0 0xA0 0xA0 0xA0 0xA0 0xA0 0xA0 0xA0 0xA0 0xA0 0xA0 0xA0 0xA0 0xA0  0xA0 0xA0 0xA0 0xA0 0xA0 0xA
+.. |nbsp2| unicode:: 0xA0 0xA0 0xA0 0xA0 0xA0 0xA0 0xA0 0xA0  0xA0 0xA0 0xA0 0xA0 0xA0 0xA0 0xA0 0xA0 0xA0 0xA0 0xA0 0xA0 0xA0 0xA0 0xA0 0xA0 0xA0 0xA0 0xA0 0xA0 0xA0 0xA0 0xA0 0xA0  0xA0 0xA0 0xA0 0xA0 0xA0 0xA
+
 
 | Population dat files are only used to load agent properties onto QHG.
 | A population dat file is a text file,  essentially a CSV (comma separated values), where each line holds the data for one agent.
@@ -14,11 +17,13 @@ The Population DAT Format
 
 The format of a dat file:
 
-| ``qhgdat       ::= <commentline> | <line>*``
-| ``headerline   ::= "#" <fixedheaders> [";"<word>]*``
-| ``fixedheaders ::= "Longitude;Latitude;LifeState;AgentID;BirthTime;Gender;Age;LastBirth" [";"<name>]*``
-| ``dataline     ::= <fixedvalues> [";"<value>]*``
-| ``fixedvalues  ::= <lon>";"<lat>";"<lifestate>";"<agentID>";"<birthtime>";"<gender>";"<age>";"<lastbirth>``
+| ``qhgdat       ::= <headerline> | <dataline>*``
+| ``headerline   ::= "#" <fixedheaders> [";"<name>]*``
+| ``fixedheaders ::= "Longitude;Latitude;LifeState;AgentID;``
+| |nbsp2| ``BirthTime;Gender;Age;LastBirth"``
+| ``dataline     ::= <globvalues> [";"<value>]*``
+| ``globvalues   ::= <lon>";"<lat>";"<lifestate>";"<agentID>";"``
+| |nbsp| ``<birthtime>";"<gender>";"<age>";"<lastbirth>``
 | ``lon          :  longitude of agent's position in degrees``
 | ``lat          :  latitude of agent's position in degrees``
 | ``lifestate    :  agent's life state (0:dead, 1:alive, 5:fertile)``

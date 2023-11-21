@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../../">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>geomutils &#8212; QHG4 4.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../static/jody.css" />
+    <link rel="stylesheet" type="text/css" href="../../static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../static/jody.css?v=dac31e62" />
     
-    <script data-url_root="../../" id="documentation_options" src="../../static/documentation_options.js"></script>
-    <script src="../../static/doctools.js"></script>
-    <script src="../../static/sphinx_highlight.js"></script>
+    <script src="../../static/documentation_options.js?v=3b2dd2c4"></script>
+    <script src="../../static/doctools.js?v=888ff710"></script>
+    <script src="../../static/sphinx_highlight.js?v=dc90522c"></script>
     
     <link rel="icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -44,7 +44,7 @@
           <div class="body" role="main">
             
   <section id="geomutils">
-<span id="geomutils-ref"></span><h1>geomutils<a class="headerlink" href="#geomutils" title="Permalink to this heading">¶</a></h1>
+<span id="geomutils-ref"></span><h1>geomutils<a class="headerlink" href="#geomutils" title="Link to this heading">¶</a></h1>
 <p class="hidden">This page describes the module <span class="target" id="index-0"></span>geomutils</p>
 <p>The module <code class="docutils literal notranslate"><span class="pre">geomutils</span></code> contains functions for geometric calculations.</p>
 <p>Some of the functions  need the typ DPOINT
@@ -61,9 +61,9 @@
 </dd>
 </dl>
 <section id="functions">
-<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this heading">¶</a></h2>
+<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h2>
 <section id="spherinterpol">
-<h3><code class="docutils literal notranslate"><span class="pre">spherInterpol</span></code><a class="headerlink" href="#spherinterpol" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">spherInterpol</span></code><a class="headerlink" href="#spherinterpol" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">sphercoord</span><span class="w"> </span><span class="nf">spherInterpol</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">sphercoord</span><span class="w"> </span><span class="o">&amp;</span><span class="n">dP1</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">sphercoord</span><span class="w"> </span><span class="o">&amp;</span><span class="n">dP2</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dT</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -79,7 +79,7 @@
 <p>Returns the coordinates (longitude&amp;latitude) of the resulting point.</p>
 </section>
 <section id="id1">
-<h3><code class="docutils literal notranslate"><span class="pre">spherInterpol</span></code><a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">spherInterpol</span></code><a class="headerlink" href="#id1" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Vec3D</span><span class="w"> </span><span class="nf">spherInterpol</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Vec3D</span><span class="w"> </span><span class="o">&amp;</span><span class="n">v1</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Vec3D</span><span class="w"> </span><span class="o">&amp;</span><span class="n">v2</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dT</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -95,7 +95,7 @@
 <p>Returns the 3D vector to the resulting point.</p>
 </section>
 <section id="cart2polard">
-<h3><code class="docutils literal notranslate"><span class="pre">cart2polarD</span></code><a class="headerlink" href="#cart2polard" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">cart2polarD</span></code><a class="headerlink" href="#cart2polard" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">sphercoord</span><span class="w"> </span><span class="nf">cart2PolarD</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Vec3D</span><span class="w"> </span><span class="o">&amp;</span><span class="n">v</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -107,7 +107,7 @@
 <p>Returns  the coordinates (longitude&amp;latitude) corresponding to <code class="docutils literal notranslate"><span class="pre">v</span></code>.</p>
 </section>
 <section id="polard2cart">
-<h3><code class="docutils literal notranslate"><span class="pre">polarD2cart</span></code><a class="headerlink" href="#polard2cart" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">polarD2cart</span></code><a class="headerlink" href="#polard2cart" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Vec3D</span><span class="w"> </span><span class="nf">polarD2Cart</span><span class="p">(</span><span class="n">sphercoord</span><span class="w"> </span><span class="o">&amp;</span><span class="n">p</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -119,7 +119,7 @@
 <p>Returns 3D vector corresponding to the spherical coordinatesin <code class="docutils literal notranslate"><span class="pre">p</span></code>.</p>
 </section>
 <section id="cart2polar">
-<h3><code class="docutils literal notranslate"><span class="pre">cart2polar</span></code><a class="headerlink" href="#cart2polar" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">cart2polar</span></code><a class="headerlink" href="#cart2polar" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">sphercoord</span><span class="w"> </span><span class="nf">cart2Polar</span><span class="p">(</span><span class="n">cosnt</span><span class="w"> </span><span class="n">Vec3D</span><span class="w"> </span><span class="o">&amp;</span><span class="n">v</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -131,7 +131,7 @@
 <p>Returns the spherical coordinates (radians) corresponding to <code class="docutils literal notranslate"><span class="pre">v</span></code>.</p>
 </section>
 <section id="polar2cart">
-<h3><code class="docutils literal notranslate"><span class="pre">polar2cart</span></code><a class="headerlink" href="#polar2cart" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">polar2cart</span></code><a class="headerlink" href="#polar2cart" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Vec3D</span><span class="w"> </span><span class="nf">polar2Cart</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">sphercoord</span><span class="w"> </span><span class="o">&amp;</span><span class="n">p</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -143,7 +143,7 @@
 <p>Returns 3D ector corresponding to the spherical coordinates.</p>
 </section>
 <section id="spherdist">
-<h3><code class="docutils literal notranslate"><span class="pre">spherdist</span></code><a class="headerlink" href="#spherdist" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">spherdist</span></code><a class="headerlink" href="#spherdist" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span><span class="w"> </span><span class="nf">spherdist</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">dLon1</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w">  </span><span class="n">dLat1</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dLon2</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dLat2</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dR</span><span class="p">);</span>
 <span class="kt">double</span><span class="w"> </span><span class="nf">spherdist</span><span class="p">(</span><span class="n">Vec3D</span><span class="w"> </span><span class="o">*</span><span class="n">v1</span><span class="p">,</span><span class="w"> </span><span class="n">Vec3D</span><span class="w"> </span><span class="o">*</span><span class="n">v2</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dR</span><span class="p">);</span>
 <span class="kt">double</span><span class="w"> </span><span class="nf">spherdist</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">dX0</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dY0</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dZ0</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dX1</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dY1</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dZ1</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dR</span><span class="p">);</span>
@@ -166,7 +166,7 @@
 <p>Retrurns the distance between thee two points along a great circle.</p>
 </section>
 <section id="spherdistdeg">
-<h3><code class="docutils literal notranslate"><span class="pre">spherdistDeg</span></code><a class="headerlink" href="#spherdistdeg" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">spherdistDeg</span></code><a class="headerlink" href="#spherdistdeg" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span><span class="w"> </span><span class="nf">spherdistDeg</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">dLon1</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w">  </span><span class="n">dLat1</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dLon2</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dLat2</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dR</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -261,8 +261,8 @@
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2022, jodyxha.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.0.1.
+    &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
   </body>
 </html>

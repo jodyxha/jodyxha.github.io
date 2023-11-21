@@ -169,4 +169,4 @@ Set the list of bridges.
 ``iNumDists``
     Expected number of distances.
 
-(Debugging) Checks wether the calculated nujmbers agree withthe expected numbers.
+(Debugging) Checks wether the calculated numbers agree with the expected numbers.

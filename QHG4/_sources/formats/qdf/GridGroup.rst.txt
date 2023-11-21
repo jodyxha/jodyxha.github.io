@@ -8,7 +8,7 @@
    This page describes :index:`grid group`
 
 
-The **grid group**  contains data and attributes pertaining to the grid.
+The **grid group**  contains data and attributes pertaining to the grid. In particular, it is written by a :ref:`SCellGrid <SCellGrid_ref>` object.
 
 Attributes
 ^^^^^^^^^^
@@ -24,7 +24,7 @@ Depending on the surface type there are different additional attributes.
 For surface type "IEQ" (icosahedral grid):
 
 - **SUBDIV**
-    Number of subdivisions for icsahedral grids, 0 otherwise.
+    Number of subdivisions for icosahedral grids, 0 otherwise.
 
 For surface type "LTC" (lattice grid):
 

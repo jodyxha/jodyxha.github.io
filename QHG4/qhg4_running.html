@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="./">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Running QHG &#8212; QHG4 4.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="static/jody.css" />
+    <link rel="stylesheet" type="text/css" href="static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="static/jody.css?v=dac31e62" />
     
-    <script data-url_root="./" id="documentation_options" src="static/documentation_options.js"></script>
-    <script src="static/doctools.js"></script>
-    <script src="static/sphinx_highlight.js"></script>
+    <script src="static/documentation_options.js?v=3b2dd2c4"></script>
+    <script src="static/doctools.js?v=888ff710"></script>
+    <script src="static/sphinx_highlight.js?v=dc90522c"></script>
     
     <link rel="icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
     <link rel="index" title="Index" href="genindex.html" />
@@ -42,22 +42,22 @@
           <div class="body" role="main">
             
   <section id="running-qhg">
-<span id="running-qhg-re"></span><h1>Running QHG<a class="headerlink" href="#running-qhg" title="Permalink to this heading">¶</a></h1>
-<p>In this document we descriebe the various ways to run QHG.</p>
+<span id="running-qhg-re"></span><h1>Running QHG<a class="headerlink" href="#running-qhg" title="Link to this heading">¶</a></h1>
+<p>In this document we describe the various ways to run QHG.</p>
 <section id="description-of-options">
-<h2>Description of Options<a class="headerlink" href="#description-of-options" title="Permalink to this heading">¶</a></h2>
-<p>Whe calling QHG without any options,</p>
+<h2>Description of Options<a class="headerlink" href="#description-of-options" title="Link to this heading">¶</a></h2>
+<p>When calling QHG without any options,</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>QHGMain
 </pre></div>
 </div>
 <p>you will be presented with a list of possible options.
 To get detailed information about an option, use the <code class="docutils literal notranslate"><span class="pre">--help=</span></code> option:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>QHGMain<span class="w"> </span>--help<span class="o">=</span>reads-config
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>QHGMain<span class="w"> </span>--help<span class="o">=</span>read-config
 </pre></div>
 </div>
 <p>The same information can be found in the <a class="reference internal" href="code_doc/app/QHGMain.html#qhgmain-ref"><span class="std std-ref">code documentation QHGMain</span></a>.</p>
 <section id="running-with-explicit-options">
-<h3>Running with Explicit Options<a class="headerlink" href="#running-with-explicit-options" title="Permalink to this heading">¶</a></h3>
+<h3>Running with Explicit Options<a class="headerlink" href="#running-with-explicit-options" title="Link to this heading">¶</a></h3>
 <p>The basic way to run QHG is to list all options after the <code class="docutils literal notranslate"><span class="pre">QHGMain</span></code>.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>QHGMain<span class="w"> </span>-data-dirs<span class="o">=</span><span class="si">${</span><span class="nv">QHG4_DIR</span><span class="si">}</span>/tutorial_data/grids/<span class="w">   </span><span class="se">\</span>
 <span class="w">     </span>--events<span class="o">=</span><span class="s1">&#39;write|grid+geo+pop:sapiens@20000&#39;</span><span class="w"> </span><span class="se">\</span>
@@ -69,15 +69,15 @@ To get detailed information about an option, use the <code class="docutils liter
 </div>
 <p>This command could be on one line only - for better readbility it has been
 spread over several lines.</p>
-<p>It is veryx useful to capture the standard output seee additional information:</p>
+<p>It is very useful to capture the standard output to see additional information:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>QHGMain<span class="w"> </span>-data-dirs<span class="o">=</span>...<span class="w"> </span>...<span class="w"> </span>--start-time<span class="o">=</span><span class="m">0</span><span class="w"> </span>&gt;<span class="w"> </span>SimOutput.out
 </pre></div>
 </div>
 </section>
-<section id="using-a-configuraion-file">
-<h3>Using a Configuraion File<a class="headerlink" href="#using-a-configuraion-file" title="Permalink to this heading">¶</a></h3>
-<p>Since in normal use cases there are a lot of options, it might be usefule to us a configuration file.
-A configuration file is a simple text file containing all the options, one per lien,
+<section id="using-a-configuration-file">
+<h3>Using a Configuration File<a class="headerlink" href="#using-a-configuration-file" title="Link to this heading">¶</a></h3>
+<p>Since in normal use cases there are a lot of options, it might be useful to use a configuration file.
+A configuration file is a simple text file containing all the options, one per line,
 for example</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>--data-dirs=${QHG4_DIR}/tutorial_data/grids/
 --events=&#39;write|grid+geo+pop:sapiens@20000&#39;
@@ -91,7 +91,7 @@ for example</p>
 --start-time=0
 </pre></div>
 </div>
-<p>THen you can call HGQ like this:</p>
+<p>Then you can call QHG like this:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>QHGMain<span class="w"> </span>--read-config<span class="o">=</span>my_config.cfg<span class="w"> </span>&gt;<span class="w"> </span>SimOutput.out
 </pre></div>
 </div>
@@ -102,19 +102,19 @@ For instance,</p>
 </pre></div>
 </div>
 </div></blockquote>
-<p>Will run the simulation with the options defined in <code class="docutils literal notranslate"><span class="pre">my_config.cfg</span></code>,
+<p>This will run the simulation with the options defined in <code class="docutils literal notranslate"><span class="pre">my_config.cfg</span></code>,
 except for <code class="docutils literal notranslate"><span class="pre">--num_iters</span></code> which will be set to 600.</p>
 </section>
 <section id="working-with-plugins">
-<h3>Working with Plugins<a class="headerlink" href="#working-with-plugins" title="Permalink to this heading">¶</a></h3>
+<h3>Working with Plugins<a class="headerlink" href="#working-with-plugins" title="Link to this heading">¶</a></h3>
 <p>For this you will have to compile QHG like this:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">DYNAMIC_POPS</span><span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="nv">OPT</span><span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="nv">OUt</span><span class="o">=</span>QHGMainDyn<span class="w"> </span>make<span class="w"> </span>clean<span class="w"> </span>QHGMain
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">DYNAMIC_POPS</span><span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="nv">OPT</span><span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="nv">OUT</span><span class="o">=</span>QHGMainDyn<span class="w"> </span>make<span class="w"> </span>clean<span class="w"> </span>QHGMain
 </pre></div>
 </div>
 <p>(The “OUT=QHGMainDyn” will cause the compiled application to be renamed to “QHGMainDyn”.
 And you will have to have make some plugins,too
-(if xou have not built them already). For example</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">SHORT</span><span class="o">=</span>tut_08<span class="w"> </span><span class="nv">OPT</span><span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="nv">OUZT</span><span class="o">=</span>~/my_so_dir<span class="w"> </span>make<span class="w"> </span>plugina
+(if you have not built them already). For example</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">SHORT</span><span class="o">=</span>tut_08<span class="w"> </span><span class="nv">OPT</span><span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="nv">OUT</span><span class="o">=</span>~/my_so_dir<span class="w"> </span>make<span class="w"> </span>plugina
 </pre></div>
 </div>
 <p>This will build the so-files for the plugin and save
@@ -123,6 +123,13 @@ them in the specified directory.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>QHGMainDyn<span class="w"> </span>--read-config<span class="o">=</span>my_config.cfg<span class="w"> </span>--dyn-pops<span class="w"> </span>--so-dirs<span class="o">=</span>~/my_so_dir<span class="w"> </span>&gt;<span class="w"> </span>SimOutput.out
 </pre></div>
 </div>
+</section>
+<section id="exploiting-parallelism">
+<h3>Exploiting parallelism<a class="headerlink" href="#exploiting-parallelism" title="Link to this heading">¶</a></h3>
+<p>Time-critical parts of QHG4’s code are parallelized wirh OpenMP. The use of parallelsm noticeably speeds up QHG.</p>
+<p>To run a simulation with 8 threads:</p>
+<p>Note that above a certain number of threads additional threads will not yield any increase in performance.
+This limit is hardware dependent.</p>
 </section>
 </section>
 </section>
@@ -140,8 +147,9 @@ them in the specified directory.</p>
 <li><a class="reference internal" href="#">Running QHG</a><ul>
 <li><a class="reference internal" href="#description-of-options">Description of Options</a><ul>
 <li><a class="reference internal" href="#running-with-explicit-options">Running with Explicit Options</a></li>
-<li><a class="reference internal" href="#using-a-configuraion-file">Using a Configuraion File</a></li>
+<li><a class="reference internal" href="#using-a-configuration-file">Using a Configuration File</a></li>
 <li><a class="reference internal" href="#working-with-plugins">Working with Plugins</a></li>
+<li><a class="reference internal" href="#exploiting-parallelism">Exploiting parallelism</a></li>
 </ul>
 </li>
 </ul>
@@ -197,8 +205,8 @@ them in the specified directory.</p>
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2022, jodyxha.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.0.1.
+    &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
   </body>
 </html>

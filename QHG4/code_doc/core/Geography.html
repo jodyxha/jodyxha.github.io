@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../../">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Geography &#8212; QHG4 4.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../static/jody.css" />
+    <link rel="stylesheet" type="text/css" href="../../static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../static/jody.css?v=dac31e62" />
     
-    <script data-url_root="../../" id="documentation_options" src="../../static/documentation_options.js"></script>
-    <script src="../../static/doctools.js"></script>
-    <script src="../../static/sphinx_highlight.js"></script>
+    <script src="../../static/documentation_options.js?v=3b2dd2c4"></script>
+    <script src="../../static/doctools.js?v=888ff710"></script>
+    <script src="../../static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
     <link rel="icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
@@ -45,9 +45,9 @@
           <div class="body" role="main">
             
   <section id="geography">
-<span id="geography-ref"></span><h1>Geography<a class="headerlink" href="#geography" title="Permalink to this heading">¶</a></h1>
+<span id="geography-ref"></span><h1>Geography<a class="headerlink" href="#geography" title="Link to this heading">¶</a></h1>
 <p class="hidden">This page describes the class <span class="target" id="index-0"></span>Geography</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">Geography</span></code> incorporates geographical data such as lobitude, latitude, altitude, ice covering etc.
+<p>The <code class="docutils literal notranslate"><span class="pre">Geography</span></code> incorporates geographical data such as longitude, latitude, altitude, ice covering etc.
 All data items are associated with a node of the <a class="reference internal" href="SCellGrid.html#scellgrid-ref"><span class="std std-ref">SCellGrid</span></a>.</p>
 <dl>
 <dt>Code:</dt><dd><div class="line-block">
@@ -57,7 +57,7 @@ All data items are associated with a node of the <a class="reference internal" h
 </dd>
 </dl>
 <section id="public-members">
-<h2>Public Members<a class="headerlink" href="#public-members" title="Permalink to this heading">¶</a></h2>
+<h2>Public Members<a class="headerlink" href="#public-members" title="Link to this heading">¶</a></h2>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">uint</span><span class="w"> </span><span class="n">m_iNumCells</span><span class="p">;</span>
 </pre></div>
 </div>
@@ -93,7 +93,7 @@ All data items are associated with a node of the <a class="reference internal" h
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">geonumber</span><span class="w">  </span><span class="o">*</span><span class="n">m_adArea</span><span class="p">;</span>
 </pre></div>
 </div>
-<p>Area of cell.</p>
+<p>Areas of the cells.</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w">       </span><span class="o">*</span><span class="n">m_abIce</span><span class="p">;</span>
 </pre></div>
 </div>
@@ -124,9 +124,9 @@ All data items are associated with a node of the <a class="reference internal" h
 <p>Update flag.</p>
 </section>
 <section id="public-methods">
-<h2>Public Methods<a class="headerlink" href="#public-methods" title="Permalink to this heading">¶</a></h2>
+<h2>Public Methods<a class="headerlink" href="#public-methods" title="Link to this heading">¶</a></h2>
 <section id="constructors">
-<h3><code class="docutils literal notranslate"><span class="pre">constructors</span></code><a class="headerlink" href="#constructors" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">constructors</span></code><a class="headerlink" href="#constructors" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Geography</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">iNumCells</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="n">iMaxNeighbors</span><span class="p">,</span><span class="w"> </span><span class="n">geonumber</span><span class="w"> </span><span class="n">dRadius</span><span class="p">,</span><span class="w"> </span><span class="n">geonumber</span><span class="w"> </span><span class="n">dSeaLevel</span><span class="o">=</span><span class="mi">0</span><span class="p">);</span>
 <span class="n">Geography</span><span class="p">();</span>
 </pre></div>
@@ -144,14 +144,14 @@ All data items are associated with a node of the <a class="reference internal" h
 <p>The constructor allocates the arrays.</p>
 </section>
 <section id="destructor">
-<h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">Geography</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>The destructors deletes all allocated arrays.</p>
 </section>
 <section id="calcangles">
-<h3><code class="docutils literal notranslate"><span class="pre">calcAngles</span></code><a class="headerlink" href="#calcangles" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">calcAngles</span></code><a class="headerlink" href="#calcangles" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">calcAngles</span><span class="p">(</span><span class="n">SCellGrid</span><span class="o">*</span><span class="w"> </span><span class="n">pCG</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -159,7 +159,7 @@ All data items are associated with a node of the <a class="reference internal" h
 <dt><code class="docutils literal notranslate"><span class="pre">pCG</span></code></dt><dd><p><code class="docutils literal notranslate"><span class="pre">SCellGrid</span></code> object to calculate the angles on.</p>
 </dd>
 </dl>
-<p>Calculates the orientation of the direction each cell to each of its neoghbors.</p>
+<p>Calculates the orientation of the direction for each cell to each of its neighbors.</p>
 </section>
 </section>
 </section>
@@ -237,8 +237,8 @@ All data items are associated with a node of the <a class="reference internal" h
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2022, jodyxha.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.0.1.
+    &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
   </body>
 </html>

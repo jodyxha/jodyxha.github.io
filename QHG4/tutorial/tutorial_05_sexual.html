@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>QHG Tutorial 05 - Sexual Reproduction &#8212; QHG4 4.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../static/jody.css" />
+    <link rel="stylesheet" type="text/css" href="../static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../static/jody.css?v=dac31e62" />
     
-    <script data-url_root="../" id="documentation_options" src="../static/documentation_options.js"></script>
-    <script src="../static/doctools.js"></script>
-    <script src="../static/sphinx_highlight.js"></script>
+    <script src="../static/documentation_options.js?v=3b2dd2c4"></script>
+    <script src="../static/doctools.js?v=888ff710"></script>
+    <script src="../static/sphinx_highlight.js?v=dc90522c"></script>
     
     <link rel="icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -43,7 +43,7 @@
           <div class="body" role="main">
             
   <span class="target" id="tutorialsexual-ref"></span><section id="qhg-tutorial-05-sexual-reproduction">
-<h1>QHG Tutorial 05 - Sexual Reproduction<a class="headerlink" href="#qhg-tutorial-05-sexual-reproduction" title="Permalink to this heading">¶</a></h1>
+<h1>QHG Tutorial 05 - Sexual Reproduction<a class="headerlink" href="#qhg-tutorial-05-sexual-reproduction" title="Link to this heading">¶</a></h1>
 <p>In this chapter we describe a class whose agent can, in addition to dying and moving, perform sexual reproduction..</p>
 <p>For this we need to add one new action:  <a class="reference internal" href="../code_doc/actions/RandomPair.html#randompair-ref"><span class="std std-ref">RandomPair</span></a>.</p>
 <p><code class="docutils literal notranslate"><span class="pre">RandomPair</span></code> finds fertile males and females in each cell and pairs off as many as possible (by each agent’s mate index to index of its partner).
@@ -73,7 +73,7 @@ All othe mechanisms are the same as in the previous chapter, with the exception 
 </div>
 </div></blockquote>
 <section id="the-header-file">
-<h2>The Header File<a class="headerlink" href="#the-header-file" title="Permalink to this heading">¶</a></h2>
+<h2>The Header File<a class="headerlink" href="#the-header-file" title="Link to this heading">¶</a></h2>
 <p>This class must include the header files for the new action, but the agent structure remains the same as in the previous example.</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef __TUT_SEXUALPOP_H__</span>
 <span class="cp">#define __TUT_SEXUALPOP_H__</span>
@@ -126,7 +126,7 @@ The method <code class="docutils literal notranslate"><span class="pre">makePopS
 <p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_SexualPop.h">tut_SexualPop.h</a></p>
 </section>
 <section id="the-implementation">
-<h2>The Implementation<a class="headerlink" href="#the-implementation" title="Permalink to this heading">¶</a></h2>
+<h2>The Implementation<a class="headerlink" href="#the-implementation" title="Link to this heading">¶</a></h2>
 <p>In the implementation we have to include <code class="docutils literal notranslate"><span class="pre">hdf5.h</span></code> because we need to modify some HDF5 structures:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;omp.h&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;hdf5.h&gt;</span>
@@ -225,7 +225,7 @@ The method <code class="docutils literal notranslate"><span class="pre">makePopS
 <p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_SexualPop.cpp">tut_SexualPop.cpp</a></p>
 </section>
 <section id="xml-and-dat">
-<h2>XML and DAT<a class="headerlink" href="#xml-and-dat" title="Permalink to this heading">¶</a></h2>
+<h2>XML and DAT<a class="headerlink" href="#xml-and-dat" title="Link to this heading">¶</a></h2>
 <p>The xml file for the population attributes does not contain a new <code class="docutils literal notranslate"><span class="pre">&lt;module&gt;</span></code> entry, because <code class="docutils literal notranslate"><span class="pre">RandomPair</span></code> does not need any parameters.
 It must, however, be registerd for a priority level.</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;class</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;tut_SexualPop&quot;</span><span class="w"> </span><span class="na">species_name=</span><span class="s">&quot;sapiens&quot;</span><span class="w"> </span><span class="na">species_id=</span><span class="s">&quot;104&quot;</span><span class="nt">&gt;</span>
@@ -280,11 +280,11 @@ It is similar to the dat file in the previous example, except that the agents’
 <p>Feel free to modify the values in the xml file and see how this changes the outcome. But keep in mind that high calue for <code class="docutils literal notranslate"><span class="pre">RandomMove_prob</span></code> can cause the population to disperse and render pairing and reproduction impossible.</p>
 </section>
 <section id="grid">
-<h2>Grid<a class="headerlink" href="#grid" title="Permalink to this heading">¶</a></h2>
+<h2>Grid<a class="headerlink" href="#grid" title="Link to this heading">¶</a></h2>
 <p>For this example we use  a subdivided icosahedron</p>
 </section>
 <section id="compiling-and-running">
-<h2>Compiling and Running<a class="headerlink" href="#compiling-and-running" title="Permalink to this heading">¶</a></h2>
+<h2>Compiling and Running<a class="headerlink" href="#compiling-and-running" title="Link to this heading">¶</a></h2>
 <p>Again, we assume that you have created the tutorial directories with the script <a class="reference internal" href="../tools/build_tut_dirs.html#build-tut-dirs-ref"><span class="std std-ref">build_tut_dirs.py</span></a>.</p>
 <p>First lets create alternative population and action directories with the script <a class="reference internal" href="../tools/build_alt_modpop.html#build-alt-modpop-ref"><span class="std std-ref">build_alt_modpop.py</span></a>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="si">${</span><span class="nv">QHG4_DIR</span><span class="si">}</span>/useful_stuff/build_alt_modpop.py<span class="w"> </span>tut_05<span class="w"> </span>tut_SexualPop
@@ -338,7 +338,7 @@ It is similar to the dat file in the previous example, except that the agents’
 </dl>
 </section>
 <section id="the-output-file">
-<h2>The Output File<a class="headerlink" href="#the-output-file" title="Permalink to this heading">¶</a></h2>
+<h2>The Output File<a class="headerlink" href="#the-output-file" title="Link to this heading">¶</a></h2>
 <p>The output files, in this case <code class="docutils literal notranslate"><span class="pre">tutorial_05.out</span></code>, always have the same structure.
 First there are messages concerning the start of the program and intialisation.
 If the simulation does not run, there’s a chance that you find th readoon why here.</p>
@@ -449,8 +449,8 @@ Number of agents after last step
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2022, jodyxha.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.0.1.
+    &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
   </body>
 </html>

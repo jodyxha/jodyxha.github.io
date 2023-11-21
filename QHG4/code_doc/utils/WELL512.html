@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../../">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>WELL512 &#8212; QHG4 4.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../static/jody.css" />
+    <link rel="stylesheet" type="text/css" href="../../static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../static/jody.css?v=dac31e62" />
     
-    <script data-url_root="../../" id="documentation_options" src="../../static/documentation_options.js"></script>
-    <script src="../../static/doctools.js"></script>
-    <script src="../../static/sphinx_highlight.js"></script>
+    <script src="../../static/documentation_options.js?v=3b2dd2c4"></script>
+    <script src="../../static/doctools.js?v=888ff710"></script>
+    <script src="../../static/sphinx_highlight.js?v=dc90522c"></script>
     
     <link rel="icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -44,7 +44,7 @@
           <div class="body" role="main">
             
   <section id="well512">
-<span id="well512-ref"></span><h1>WELL512<a class="headerlink" href="#well512" title="Permalink to this heading">¶</a></h1>
+<span id="well512-ref"></span><h1>WELL512<a class="headerlink" href="#well512" title="Link to this heading">¶</a></h1>
 <p class="hidden">This page describes the class <span class="target" id="index-0"></span>WELL512</p>
 <p>The class <code class="docutils literal notranslate"><span class="pre">WELL512</span></code> is a pretty good pseudo randmom number generator based on a paper by Chris Lomont &lt;<a class="reference external" href="http://www.lomont.org/math/papers/2008/Lomont_PRNG_2008.pdf">http://www.lomont.org/math/papers/2008/Lomont_PRNG_2008.pdf</a>&gt;.</p>
 <p>The internal state is defined by a state vector of 16 uint_32 numbers  and an index.</p>
@@ -56,9 +56,9 @@
 </dd>
 </dl>
 <section id="public-methods">
-<h2>Public Methods<a class="headerlink" href="#public-methods" title="Permalink to this heading">¶</a></h2>
+<h2>Public Methods<a class="headerlink" href="#public-methods" title="Link to this heading">¶</a></h2>
 <section id="constructor">
-<h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#constructor" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#constructor" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">WELL512</span><span class="p">(</span><span class="kt">uint32_t</span><span class="w"> </span><span class="o">*</span><span class="n">aulState</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">uiIndex</span><span class="o">=</span><span class="mi">0</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -71,21 +71,21 @@
 </dl>
 </section>
 <section id="id1">
-<h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#id1" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">WELL512</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>The empty constructor.</p>
 </section>
 <section id="destructor">
-<h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="o">~</span><span class="n">WELL512</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>The destructor.</p>
 </section>
 <section id="seed">
-<h3><code class="docutils literal notranslate"><span class="pre">seed</span></code><a class="headerlink" href="#seed" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">seed</span></code><a class="headerlink" href="#seed" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">seed</span><span class="p">(</span><span class="kt">uint32_t</span><span class="w"> </span><span class="o">*</span><span class="n">aulState</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">uiIndex</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -98,28 +98,28 @@
 </dl>
 </section>
 <section id="wrand">
-<h3><code class="docutils literal notranslate"><span class="pre">wrand</span></code><a class="headerlink" href="#wrand" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">wrand</span></code><a class="headerlink" href="#wrand" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">uint32_t</span><span class="w"> </span><span class="nf">wrand</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>Returns a random uint32 in the interval [0, MAX_WRAND].</p>
 </section>
 <section id="wrandd">
-<h3><code class="docutils literal notranslate"><span class="pre">wrandd</span></code><a class="headerlink" href="#wrandd" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">wrandd</span></code><a class="headerlink" href="#wrandd" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span><span class="w">   </span><span class="nf">wrandd</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>Retruns a radom double in [0,1).</p>
 </section>
 <section id="wrandr">
-<h3><code class="docutils literal notranslate"><span class="pre">wrandr</span></code><a class="headerlink" href="#wrandr" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">wrandr</span></code><a class="headerlink" href="#wrandr" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span><span class="w">   </span><span class="nf">wrandr</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">b</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Return a random double in [a,b).</p>
 </section>
 <section id="wrandi">
-<h3><code class="docutils literal notranslate"><span class="pre">wrandi</span></code><a class="headerlink" href="#wrandi" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">wrandi</span></code><a class="headerlink" href="#wrandi" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">uint32_t</span><span class="w"> </span><span class="nf">wrandi</span><span class="p">(</span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">s</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -129,70 +129,70 @@
 </div>
 </section>
 <section id="wgauss">
-<h3><code class="docutils literal notranslate"><span class="pre">wgauss</span></code><a class="headerlink" href="#wgauss" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">wgauss</span></code><a class="headerlink" href="#wgauss" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span><span class="w">   </span><span class="nf">wgauss</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">dSigma</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Returns a random number with normal distribution around (0) with given sigma</p>
 </section>
 <section id="getstate">
-<h3><code class="docutils literal notranslate"><span class="pre">getState</span></code><a class="headerlink" href="#getstate" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">getState</span></code><a class="headerlink" href="#getstate" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="n">uint31_t</span><span class="w"> </span><span class="o">*</span><span class="nf">getState</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>Returns a pointer to the state vector.</p>
 </section>
 <section id="getindex">
-<h3><code class="docutils literal notranslate"><span class="pre">getIndex</span></code><a class="headerlink" href="#getindex" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">getIndex</span></code><a class="headerlink" href="#getindex" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w">  </span><span class="nf">getIndex</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Returns the current index.</p>
 </section>
 <section id="getcount">
-<h3><code class="docutils literal notranslate"><span class="pre">getCount</span></code><a class="headerlink" href="#getcount" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">getCount</span></code><a class="headerlink" href="#getcount" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="nf">getCount</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>Returns count of random numbers generated.</p>
 </section>
 <section id="getsigma">
-<h3><code class="docutils literal notranslate"><span class="pre">getSigma</span></code><a class="headerlink" href="#getsigma" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">getSigma</span></code><a class="headerlink" href="#getsigma" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span><span class="w"> </span><span class="nf">getSigma</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>Returns current sigma.</p>
 </section>
 <section id="getprevnormal">
-<h3><code class="docutils literal notranslate"><span class="pre">getPrevNormal</span></code><a class="headerlink" href="#getprevnormal" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">getPrevNormal</span></code><a class="headerlink" href="#getprevnormal" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span><span class="w"> </span><span class="nf">getPrevNormal</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>Returns the previously calculated normal random muber if it exists, else NaN.</p>
 </section>
 <section id="setgaussstates">
-<h3><code class="docutils literal notranslate"><span class="pre">setGaussStates</span></code><a class="headerlink" href="#setgaussstates" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">setGaussStates</span></code><a class="headerlink" href="#setgaussstates" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">setGaussStates</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">dPrevNormal</span><span class="p">,</span><span class="kt">double</span><span class="w"> </span><span class="n">dSigma</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Sets the gauss specific states.</p>
 </section>
 <section id="showstate">
-<h3><code class="docutils literal notranslate"><span class="pre">showState</span></code><a class="headerlink" href="#showstate" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">showState</span></code><a class="headerlink" href="#showstate" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">showState</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>Displays the current state</p>
 </section>
 <section id="state2string">
-<h3><code class="docutils literal notranslate"><span class="pre">state2String</span></code><a class="headerlink" href="#state2string" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">state2String</span></code><a class="headerlink" href="#state2string" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">state2String</span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">pString</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Converts the current state and index to a nice string.</p>
 </section>
 <section id="getlastrand">
-<h3><code class="docutils literal notranslate"><span class="pre">getLastRand</span></code><a class="headerlink" href="#getlastrand" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">getLastRand</span></code><a class="headerlink" href="#getlastrand" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">uint32_t</span><span class="w"> </span><span class="nf">getLastRand</span><span class="p">();</span>
 </pre></div>
 </div>
@@ -288,8 +288,8 @@
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2022, jodyxha.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.0.1.
+    &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
   </body>
 </html>

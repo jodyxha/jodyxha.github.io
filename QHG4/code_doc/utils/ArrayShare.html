@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../../">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>ArrayShare &#8212; QHG4 4.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../static/jody.css" />
+    <link rel="stylesheet" type="text/css" href="../../static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../static/jody.css?v=dac31e62" />
     
-    <script data-url_root="../../" id="documentation_options" src="../../static/documentation_options.js"></script>
-    <script src="../../static/doctools.js"></script>
-    <script src="../../static/sphinx_highlight.js"></script>
+    <script src="../../static/documentation_options.js?v=3b2dd2c4"></script>
+    <script src="../../static/doctools.js?v=888ff710"></script>
+    <script src="../../static/sphinx_highlight.js?v=dc90522c"></script>
     
     <link rel="icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -44,7 +44,7 @@
           <div class="body" role="main">
             
   <section id="arrayshare">
-<span id="arrayshare-ref"></span><h1>ArrayShare<a class="headerlink" href="#arrayshare" title="Permalink to this heading">¶</a></h1>
+<span id="arrayshare-ref"></span><h1>ArrayShare<a class="headerlink" href="#arrayshare" title="Link to this heading">¶</a></h1>
 <p class="hidden">This page describes the class <span class="target" id="index-0"></span>ArrayShare</p>
 <p>The class <code class="docutils literal notranslate"><span class="pre">ArrayShare</span></code> can be used to share arrays between different objects, e.g. populations or actions.</p>
 <p>The arrays must be registered in ArrayShare with a unique name. This name is subsequently used to access an array or to remove it.</p>
@@ -58,13 +58,13 @@
 </dd>
 </dl>
 <section id="typedefs">
-<h2>Typedefs<a class="headerlink" href="#typedefs" title="Permalink to this heading">¶</a></h2>
+<h2>Typedefs<a class="headerlink" href="#typedefs" title="Link to this heading">¶</a></h2>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">stringlist</span><span class="p">;</span>
 </pre></div>
 </div>
 </section>
 <section id="structures">
-<h2>Structures<a class="headerlink" href="#structures" title="Permalink to this heading">¶</a></h2>
+<h2>Structures<a class="headerlink" href="#structures" title="Link to this heading">¶</a></h2>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">arraystruct</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">m_iSize</span><span class="p">;</span>
 <span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">m_pdArr</span><span class="p">;</span>
@@ -75,23 +75,23 @@
 </div>
 </section>
 <section id="public-methods">
-<h2>Public Methods<a class="headerlink" href="#public-methods" title="Permalink to this heading">¶</a></h2>
+<h2>Public Methods<a class="headerlink" href="#public-methods" title="Link to this heading">¶</a></h2>
 <section id="constructor">
-<h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#constructor" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#constructor" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">ArrayShare</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>The constructor. It is usually not used directly.</p>
 </section>
 <section id="destructor">
-<h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="o">~</span><span class="n">ArrayShare</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>The destructor. It is usually not used directly.</p>
 </section>
 <section id="sharearray">
-<h3><code class="docutils literal notranslate"><span class="pre">shareArray</span></code><a class="headerlink" href="#sharearray" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">shareArray</span></code><a class="headerlink" href="#sharearray" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">shareArray</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sName</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iSize</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sType</span><span class="p">,</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">pdArr</span><span class="p">);</span>
 <span class="kt">int</span><span class="w"> </span><span class="nf">shareArray</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sName</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iSize</span><span class="p">,</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">pdArr</span><span class="p">);</span>
 </pre></div>
@@ -110,7 +110,7 @@
 <p>Returns 0 on success, -1 on failure</p>
 </section>
 <section id="getsize">
-<h3><code class="docutils literal notranslate"><span class="pre">getSize</span></code><a class="headerlink" href="#getsize" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">getSize</span></code><a class="headerlink" href="#getsize" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">getSize</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sName</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -122,7 +122,7 @@
 <p>Returns size.</p>
 </section>
 <section id="gettype">
-<h3><code class="docutils literal notranslate"><span class="pre">getType</span></code><a class="headerlink" href="#gettype" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">getType</span></code><a class="headerlink" href="#gettype" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">getType</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sName</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -134,7 +134,7 @@
 <p>Returns the type string.</p>
 </section>
 <section id="getarray">
-<h3><code class="docutils literal notranslate"><span class="pre">getArray</span></code><a class="headerlink" href="#getarray" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">getArray</span></code><a class="headerlink" href="#getarray" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="nf">getArray</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sName</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -146,7 +146,7 @@
 <p>Returns a void pointer to the array, or NuULL on failure.</p>
 </section>
 <section id="getarraystruct">
-<h3><code class="docutils literal notranslate"><span class="pre">getArrayStruct</span></code><a class="headerlink" href="#getarraystruct" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">getArrayStruct</span></code><a class="headerlink" href="#getarraystruct" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="n">arraystruct</span><span class="w"> </span><span class="o">*</span><span class="nf">getArrayStruct</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sName</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -158,7 +158,7 @@
 <p>Retruns an the ArrayStruct for the given name, or NULL on failure</p>
 </section>
 <section id="removearray">
-<h3><code class="docutils literal notranslate"><span class="pre">removeArray</span></code><a class="headerlink" href="#removearray" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">removeArray</span></code><a class="headerlink" href="#removearray" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">removeArray</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sName</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -170,7 +170,7 @@
 <p>Returns 0 on success, -1 on failure</p>
 </section>
 <section id="getnameslike">
-<h3><code class="docutils literal notranslate"><span class="pre">getNamesLike</span></code><a class="headerlink" href="#getnameslike" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">getNamesLike</span></code><a class="headerlink" href="#getnameslike" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="n">stringlist</span><span class="w"> </span><span class="o">&amp;</span><span class="nf">getNamesLike</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sNamePattern</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -182,27 +182,27 @@
 <p>Returns a vector of strings</p>
 </section>
 <section id="display">
-<h3><code class="docutils literal notranslate"><span class="pre">display</span></code><a class="headerlink" href="#display" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">display</span></code><a class="headerlink" href="#display" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">display</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>Prints a list of all registered arrays and their sizes.</p>
 </section>
 <section id="getinstance">
-<h3><code class="docutils literal notranslate"><span class="pre">getInstance</span></code><a class="headerlink" href="#getinstance" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">getInstance</span></code><a class="headerlink" href="#getinstance" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="n">ArrayShare</span><span class="w"> </span><span class="o">*</span><span class="nf">getInstance</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>Returns a pointer to the ArrayShare singleton. If it doesn’t exist yet, it is created</p>
 </section>
 <section id="freeinstance">
-<h3><code class="docutils literal notranslate"><span class="pre">freeInstance()</span></code><a class="headerlink" href="#freeinstance" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">freeInstance()</span></code><a class="headerlink" href="#freeinstance" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="nf">freeInstance</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>Deletes the singleton and frees resources.</p>
 <section id="example">
-<h4>Example<a class="headerlink" href="#example" title="Permalink to this heading">¶</a></h4>
+<h4>Example<a class="headerlink" href="#example" title="Link to this heading">¶</a></h4>
 <p>In this example, class A shares an integer array under the name “Array_A”, and class B gets the array and does something with it.</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">A</span><span class="w"> </span><span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
@@ -318,8 +318,8 @@
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2022, jodyxha.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.0.1.
+    &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
   </body>
 </html>

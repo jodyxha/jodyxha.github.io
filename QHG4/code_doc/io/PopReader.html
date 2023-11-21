@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../../">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>PopReader &#8212; QHG4 4.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../static/jody.css" />
+    <link rel="stylesheet" type="text/css" href="../../static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../static/jody.css?v=dac31e62" />
     
-    <script data-url_root="../../" id="documentation_options" src="../../static/documentation_options.js"></script>
-    <script src="../../static/doctools.js"></script>
-    <script src="../../static/sphinx_highlight.js"></script>
+    <script src="../../static/documentation_options.js?v=3b2dd2c4"></script>
+    <script src="../../static/doctools.js?v=888ff710"></script>
+    <script src="../../static/sphinx_highlight.js?v=dc90522c"></script>
     
     <link rel="icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -44,7 +44,7 @@
           <div class="body" role="main">
             
   <section id="popreader">
-<span id="popreader-ref"></span><h1>PopReader<a class="headerlink" href="#popreader" title="Permalink to this heading">¶</a></h1>
+<span id="popreader-ref"></span><h1>PopReader<a class="headerlink" href="#popreader" title="Link to this heading">¶</a></h1>
 <p class="hidden">This page desctibes the class <span class="target" id="index-0"></span>PopReader</p>
 <p>The class <code class="docutils literal notranslate"><span class="pre">PopReader</span></code> is used to write the <a class="reference internal" href="../core/SPopulation.html#spopulation-ref"><span class="std std-ref">population data</span></a> as a subgroup of the <a class="reference internal" href="../../formats/qdf/PopsGroup.html#popgroup-ref"><span class="std std-ref">populations group</span></a> in a qdf file.</p>
 <p>The information of found populations is stored in a vector of <code class="docutils literal notranslate"><span class="pre">popinfo</span></code> structures:</p>
@@ -65,9 +65,9 @@
 </dd>
 </dl>
 <section id="public-methods">
-<h2>Public Methods<a class="headerlink" href="#public-methods" title="Permalink to this heading">¶</a></h2>
+<h2>Public Methods<a class="headerlink" href="#public-methods" title="Link to this heading">¶</a></h2>
 <section id="create">
-<h3><code class="docutils literal notranslate"><span class="pre">create</span></code><a class="headerlink" href="#create" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">create</span></code><a class="headerlink" href="#create" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="n">PopReader</span><span class="w"> </span><span class="o">*</span><span class="nf">create</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sFileName</span><span class="p">);</span>
 <span class="k">static</span><span class="w"> </span><span class="n">PopReader</span><span class="w"> </span><span class="o">*</span><span class="n">create</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hFile</span><span class="p">)</span><span class="o">:</span>
 </pre></div>
@@ -82,14 +82,14 @@
 <p>Returns a pointer to the <code class="docutils literal notranslate"><span class="pre">PopReader</span></code> object.</p>
 </section>
 <section id="destructor">
-<h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="o">~</span><span class="n">PopReader</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>Closes open HDF handles.</p>
 </section>
 <section id="open">
-<h3><code class="docutils literal notranslate"><span class="pre">open</span></code><a class="headerlink" href="#open" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">open</span></code><a class="headerlink" href="#open" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">open</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sFilename</span><span class="p">);</span>
 <span class="kt">int</span><span class="w"> </span><span class="nf">open</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hFile</span><span class="p">);</span>
 </pre></div>
@@ -104,14 +104,14 @@
 <p>Returns 0 on success, or -1 on error.</p>
 </section>
 <section id="getpoplist">
-<h3><code class="docutils literal notranslate"><span class="pre">getPopList</span></code><a class="headerlink" href="#getpoplist" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">getPopList</span></code><a class="headerlink" href="#getpoplist" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="n">popinfolist</span><span class="w"> </span><span class="o">&amp;</span><span class="nf">getPopList</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>Returns the vector of <code class="docutils literal notranslate"><span class="pre">popinfo</span></code> structs.</p>
 </section>
 <section id="read">
-<h3><code class="docutils literal notranslate"><span class="pre">read</span></code><a class="headerlink" href="#read" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">read</span></code><a class="headerlink" href="#read" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">read</span><span class="p">(</span><span class="n">PopBase</span><span class="w"> </span><span class="o">*</span><span class="n">pPopBase</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sSpeciesName</span><span class="p">,</span>
 <span class="w">         </span><span class="kt">int</span><span class="w"> </span><span class="n">iNumCells</span><span class="p">,</span><span class="w">     </span><span class="kt">bool</span><span class="w"> </span><span class="n">bRestore</span><span class="p">);</span>
 </pre></div>
@@ -206,8 +206,8 @@
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2022, jodyxha.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.0.1.
+    &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
   </body>
 </html>

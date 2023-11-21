@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../../">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>L2List &#8212; QHG4 4.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../static/jody.css" />
+    <link rel="stylesheet" type="text/css" href="../../static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../static/jody.css?v=dac31e62" />
     
-    <script data-url_root="../../" id="documentation_options" src="../../static/documentation_options.js"></script>
-    <script src="../../static/doctools.js"></script>
-    <script src="../../static/sphinx_highlight.js"></script>
+    <script src="../../static/documentation_options.js?v=3b2dd2c4"></script>
+    <script src="../../static/doctools.js?v=888ff710"></script>
+    <script src="../../static/sphinx_highlight.js?v=dc90522c"></script>
     
     <link rel="icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -44,7 +44,7 @@
           <div class="body" role="main">
             
   <section id="l2list">
-<span id="l2list-ref"></span><h1>L2List<a class="headerlink" href="#l2list" title="Permalink to this heading">¶</a></h1>
+<span id="l2list-ref"></span><h1>L2List<a class="headerlink" href="#l2list" title="Link to this heading">¶</a></h1>
 <p class="hidden">This page describes the class <span class="target" id="index-0"></span>L2List</p>
 <p>The class <code class="docutils literal notranslate"><span class="pre">Test1</span></code> is pure virtual.</p>
 <div class="line-block">
@@ -64,7 +64,7 @@
 </dd>
 </dl>
 <section id="structures">
-<h2>Structures<a class="headerlink" href="#structures" title="Permalink to this heading">¶</a></h2>
+<h2>Structures<a class="headerlink" href="#structures" title="Link to this heading">¶</a></h2>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kt">int</span><span class="w">  </span><span class="n">iPrev</span><span class="p">;</span>
 <span class="w">    </span><span class="kt">int</span><span class="w">  </span><span class="n">iNext</span><span class="p">;</span>
@@ -74,37 +74,37 @@
 <p>Representation of a node for the doubly linked list</p>
 </section>
 <section id="public-methods">
-<h2>Public Methods<a class="headerlink" href="#public-methods" title="Permalink to this heading">¶</a></h2>
+<h2>Public Methods<a class="headerlink" href="#public-methods" title="Link to this heading">¶</a></h2>
 <section id="constructor">
-<h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#constructor" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#constructor" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">L2List</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iSize</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Create a list with specified number of nodes.</p>
 </section>
 <section id="id1">
-<h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#id1" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">L2List</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">L2List</span><span class="w"> </span><span class="o">*</span><span class="n">pL2L</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>The copy constructor</p>
 </section>
 <section id="destructor">
-<h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="o">~</span><span class="n">L2List</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>The destructor.</p>
 </section>
 <section id="clear">
-<h3><code class="docutils literal notranslate"><span class="pre">clear</span></code><a class="headerlink" href="#clear" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">clear</span></code><a class="headerlink" href="#clear" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">clear</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>Clears the list (all nodes are moved to the PASSIVE chain)</p>
 </section>
 <section id="reservespace2">
-<h3><code class="docutils literal notranslate"><span class="pre">reserveSpace2</span></code><a class="headerlink" href="#reservespace2" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">reserveSpace2</span></code><a class="headerlink" href="#reservespace2" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">reserveSpace2</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">iNum</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -116,21 +116,21 @@
 <p>Returns the index of the first node which was activated, or -1</p>
 </section>
 <section id="getnumendfree">
-<h3><code class="docutils literal notranslate"><span class="pre">getNumEndFree</span></code><a class="headerlink" href="#getnumendfree" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">getNumEndFree</span></code><a class="headerlink" href="#getnumendfree" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">getNumEndFree</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>Returns the number of nodes after the last ACTIVE node</p>
 </section>
 <section id="addelement">
-<h3><code class="docutils literal notranslate"><span class="pre">addElement</span></code><a class="headerlink" href="#addelement" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">addElement</span></code><a class="headerlink" href="#addelement" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">addElement</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>Remove a node to from the PASSIVE chain and add it to the ACTIVE chain.</p>
 </section>
 <section id="removeelement">
-<h3><code class="docutils literal notranslate"><span class="pre">removeElement</span></code><a class="headerlink" href="#removeelement" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">removeElement</span></code><a class="headerlink" href="#removeelement" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">removeElement</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iEl</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -141,7 +141,7 @@
 </dl>
 </section>
 <section id="getfirstindex">
-<h3><code class="docutils literal notranslate"><span class="pre">getFirstIndex</span></code><a class="headerlink" href="#getfirstindex" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">getFirstIndex</span></code><a class="headerlink" href="#getfirstindex" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">getFirstIndex</span><span class="p">(</span><span class="n">uchar</span><span class="w"> </span><span class="n">uState</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
 </pre></div>
 </div>
@@ -152,14 +152,14 @@
 </dl>
 </section>
 <section id="getlastindex">
-<h3><code class="docutils literal notranslate"><span class="pre">getLastIndex</span></code><a class="headerlink" href="#getlastindex" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">getLastIndex</span></code><a class="headerlink" href="#getlastindex" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">getLastIndex</span><span class="p">(</span><span class="n">uchar</span><span class="w"> </span><span class="n">uState</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Find index of last node in specified chain.</p>
 </section>
 <section id="int-getnext">
-<h3><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">getNext</span></code><a class="headerlink" href="#int-getnext" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">getNext</span></code><a class="headerlink" href="#int-getnext" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">getNext</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iCur</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
 </pre></div>
 </div>
@@ -170,7 +170,7 @@
 </dl>
 </section>
 <section id="countofstate">
-<h3><code class="docutils literal notranslate"><span class="pre">countOfState</span></code><a class="headerlink" href="#countofstate" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">countOfState</span></code><a class="headerlink" href="#countofstate" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">countOfState</span><span class="p">(</span><span class="n">uchar</span><span class="w"> </span><span class="n">uState</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -182,7 +182,7 @@
 <p>Returns count.</p>
 </section>
 <section id="collectfraginfo">
-<h3><code class="docutils literal notranslate"><span class="pre">collectFragInfo</span></code><a class="headerlink" href="#collectfraginfo" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">collectFragInfo</span></code><a class="headerlink" href="#collectfraginfo" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">uint</span><span class="w"> </span><span class="nf">collectFragInfo</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">iSize</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="o">*</span><span class="n">piHoles</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="o">*</span><span class="n">piActive</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -193,7 +193,7 @@
 <div class="line">The highest index of the selected PASSIVE nodes is less than the lowest index of the selected PASSIVE nodes.</div>
 </div>
 <section id="example">
-<h4>Example:<a class="headerlink" href="#example" title="Permalink to this heading">¶</a></h4>
+<h4>Example:<a class="headerlink" href="#example" title="Link to this heading">¶</a></h4>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Linked</span><span class="w"> </span><span class="n">list</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">ACTIVE</span><span class="p">,</span><span class="w"> </span><span class="n">o</span><span class="o">=</span><span class="n">PASSIVE</span><span class="p">)</span>
 <span class="mi">0</span><span class="w">         </span><span class="mi">1</span><span class="w">         </span><span class="mi">2</span>
 <span class="mo">01234567</span><span class="mi">89012345678901234567890</span>
@@ -217,7 +217,7 @@
 </section>
 </section>
 <section id="defragment">
-<h3><code class="docutils literal notranslate"><span class="pre">defragment</span></code><a class="headerlink" href="#defragment" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">defragment</span></code><a class="headerlink" href="#defragment" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">defragment</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">iSize</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="o">*</span><span class="n">piActive</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -230,7 +230,7 @@
 </dl>
 </section>
 <section id="setstate">
-<h3><code class="docutils literal notranslate"><span class="pre">setState</span></code><a class="headerlink" href="#setstate" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">setState</span></code><a class="headerlink" href="#setstate" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">setState</span><span class="p">(</span><span class="n">uchar</span><span class="w"> </span><span class="n">uState</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="n">iNum</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -243,7 +243,7 @@
 </dl>
 </section>
 <section id="getbufsize">
-<h3><code class="docutils literal notranslate"><span class="pre">getBufSize</span></code><a class="headerlink" href="#getbufsize" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">getBufSize</span></code><a class="headerlink" href="#getbufsize" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">getBufSize</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iDumpMode</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -255,7 +255,7 @@
 <p>Returns calculated size.</p>
 </section>
 <section id="serialize">
-<h3><code class="docutils literal notranslate"><span class="pre">serialize</span></code><a class="headerlink" href="#serialize" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">serialize</span></code><a class="headerlink" href="#serialize" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">uchar</span><span class="w"> </span><span class="o">*</span><span class="nf">serialize</span><span class="p">(</span><span class="n">uchar</span><span class="w"> </span><span class="o">*</span><span class="n">pBuf</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -267,7 +267,7 @@
 <p>Returns pointer to one position after the end of the serialized data.</p>
 </section>
 <section id="deserialize">
-<h3><code class="docutils literal notranslate"><span class="pre">deserialize</span></code><a class="headerlink" href="#deserialize" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">deserialize</span></code><a class="headerlink" href="#deserialize" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">uchar</span><span class="w"> </span><span class="o">*</span><span class="nf">deserialize</span><span class="p">(</span><span class="n">uchar</span><span class="w"> </span><span class="o">*</span><span class="n">pBuf</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -372,8 +372,8 @@
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2022, jodyxha.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.0.1.
+    &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
   </body>
 </html>

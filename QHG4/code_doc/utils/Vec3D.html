@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../../">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Vec3D &#8212; QHG4 4.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../static/jody.css" />
+    <link rel="stylesheet" type="text/css" href="../../static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../static/jody.css?v=dac31e62" />
     
-    <script data-url_root="../../" id="documentation_options" src="../../static/documentation_options.js"></script>
-    <script src="../../static/doctools.js"></script>
-    <script src="../../static/sphinx_highlight.js"></script>
+    <script src="../../static/documentation_options.js?v=3b2dd2c4"></script>
+    <script src="../../static/doctools.js?v=888ff710"></script>
+    <script src="../../static/sphinx_highlight.js?v=dc90522c"></script>
     
     <link rel="icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -44,7 +44,7 @@
           <div class="body" role="main">
             
   <section id="vec3d">
-<span id="vec3d-ref"></span><h1>Vec3D<a class="headerlink" href="#vec3d" title="Permalink to this heading">¶</a></h1>
+<span id="vec3d-ref"></span><h1>Vec3D<a class="headerlink" href="#vec3d" title="Link to this heading">¶</a></h1>
 <p class="hidden">This page describes the class <span class="target" id="index-0"></span>Vec3D</p>
 <p>The class <code class="docutils literal notranslate"><span class="pre">Vec3D</span></code> represents three-dimensional vectors and many useful operations.
 The operators allow you to use expressions such as</p>
@@ -59,9 +59,9 @@ The operators allow you to use expressions such as</p>
 </dd>
 </dl>
 <section id="public-methods">
-<h2>Public Methods<a class="headerlink" href="#public-methods" title="Permalink to this heading">¶</a></h2>
+<h2>Public Methods<a class="headerlink" href="#public-methods" title="Link to this heading">¶</a></h2>
 <section id="constructors">
-<h3><code class="docutils literal notranslate"><span class="pre">constructors</span></code><a class="headerlink" href="#constructors" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">constructors</span></code><a class="headerlink" href="#constructors" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Vec3D</span><span class="p">();</span>
 <span class="n">Vec3D</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">fX</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">fY</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">fZ</span><span class="p">);</span>
 <span class="n">Vec3D</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Vec3D</span><span class="w"> </span><span class="o">*</span><span class="n">pv</span><span class="p">);</span>
@@ -71,7 +71,7 @@ The operators allow you to use expressions such as</p>
 <p>Apart from the empty constructor, you can create <code class="docutils literal notranslate"><span class="pre">Vec3D</span></code> objects by passing the components, or use a copy constructor</p>
 </section>
 <section id="set">
-<h3><code class="docutils literal notranslate"><span class="pre">set</span></code><a class="headerlink" href="#set" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">set</span></code><a class="headerlink" href="#set" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">set</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">fX</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">fY</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">fZ</span><span class="p">);</span>
 <span class="kt">void</span><span class="w"> </span><span class="nf">set</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Vec3D</span><span class="w"> </span><span class="o">*</span><span class="n">pv</span><span class="p">);</span>
 <span class="kt">void</span><span class="w"> </span><span class="nf">set</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Vec3D</span><span class="w"> </span><span class="o">&amp;</span><span class="n">v</span><span class="p">);</span>
@@ -80,7 +80,7 @@ The operators allow you to use expressions such as</p>
 <p>Change the vector’s components,</p>
 </section>
 <section id="addition">
-<h3><code class="docutils literal notranslate"><span class="pre">addition</span></code><a class="headerlink" href="#addition" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">addition</span></code><a class="headerlink" href="#addition" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">add</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Vec3D</span><span class="w"> </span><span class="o">*</span><span class="n">pv</span><span class="p">);</span>
 <span class="kt">void</span><span class="w"> </span><span class="nf">add</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Vec3D</span><span class="w"> </span><span class="o">&amp;</span><span class="n">v</span><span class="p">);</span>
 <span class="n">Vec3D</span><span class="w"> </span><span class="o">&amp;</span><span class="k">operator</span><span class="o">+=</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Vec3D</span><span class="w"> </span><span class="o">&amp;</span><span class="n">v</span><span class="p">);</span>
@@ -91,7 +91,7 @@ The operators allow you to use expressions such as</p>
 The <code class="docutils literal notranslate"><span class="pre">operator+</span></code> returns a new vector.</p>
 </section>
 <section id="subtraction">
-<h3><code class="docutils literal notranslate"><span class="pre">subtraction</span></code><a class="headerlink" href="#subtraction" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">subtraction</span></code><a class="headerlink" href="#subtraction" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">subtract</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Vec3D</span><span class="w"> </span><span class="o">*</span><span class="n">pv</span><span class="p">);</span>
 <span class="kt">void</span><span class="w"> </span><span class="nf">subtract</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Vec3D</span><span class="w"> </span><span class="o">&amp;</span><span class="n">v</span><span class="p">);</span>
 <span class="n">Vec3D</span><span class="w"> </span><span class="o">&amp;</span><span class="k">operator</span><span class="o">-=</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Vec3D</span><span class="w"> </span><span class="o">&amp;</span><span class="n">v</span><span class="p">);</span>
@@ -102,7 +102,7 @@ The <code class="docutils literal notranslate"><span class="pre">operator+</span
 The <code class="docutils literal notranslate"><span class="pre">operator-</span></code> returns a new vector.</p>
 </section>
 <section id="scale">
-<h3><code class="docutils literal notranslate"><span class="pre">scale</span></code><a class="headerlink" href="#scale" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">scale</span></code><a class="headerlink" href="#scale" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">scale</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">f</span><span class="p">);</span>
 <span class="n">Vec3D</span><span class="w"> </span><span class="o">&amp;</span><span class="k">operator</span><span class="o">*=</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">f</span><span class="p">);</span>
 <span class="kt">double</span><span class="w"> </span><span class="nf">calcNorm</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
@@ -110,7 +110,7 @@ The <code class="docutils literal notranslate"><span class="pre">operator-</span
 </div>
 </section>
 <section id="scalar-product-dot">
-<h3><code class="docutils literal notranslate"><span class="pre">scalar</span> <span class="pre">product</span> <span class="pre">(dot)</span></code><a class="headerlink" href="#scalar-product-dot" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">scalar</span> <span class="pre">product</span> <span class="pre">(dot)</span></code><a class="headerlink" href="#scalar-product-dot" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kr">inline</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="nf">dotProduct</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Vec3D</span><span class="w"> </span><span class="o">*</span><span class="n">pv</span><span class="p">);</span>
 <span class="kr">inline</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="nf">dotProduct</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Vec3D</span><span class="w"> </span><span class="o">&amp;</span><span class="n">v</span><span class="p">);</span>
 <span class="n">Vec3D</span><span class="w"> </span><span class="k">operator</span><span class="o">*</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Vec3D</span><span class="w"> </span><span class="o">&amp;</span><span class="n">v1</span><span class="p">,</span><span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">f</span><span class="p">);</span>
@@ -121,7 +121,7 @@ The <code class="docutils literal notranslate"><span class="pre">operator-</span
 The two <code class="docutils literal notranslate"><span class="pre">operator*()</span></code> create a new vector.</p>
 </section>
 <section id="vector-product-cross">
-<h3><code class="docutils literal notranslate"><span class="pre">vector</span> <span class="pre">product</span> <span class="pre">(cross)</span></code><a class="headerlink" href="#vector-product-cross" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">vector</span> <span class="pre">product</span> <span class="pre">(cross)</span></code><a class="headerlink" href="#vector-product-cross" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Vec3D</span><span class="w"> </span><span class="o">*</span><span class="nf">crossProduct</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Vec3D</span><span class="w"> </span><span class="o">*</span><span class="n">pv</span><span class="p">);</span>
 <span class="n">Vec3D</span><span class="w"> </span><span class="k">operator</span><span class="o">*</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Vec3D</span><span class="w"> </span><span class="o">&amp;</span><span class="n">v1</span><span class="p">,</span><span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">Vec3D</span><span class="w"> </span><span class="o">&amp;</span><span class="n">v2</span><span class="p">);</span>
 </pre></div>
@@ -129,7 +129,7 @@ The two <code class="docutils literal notranslate"><span class="pre">operator*()
 <p>The methods <code class="docutils literal notranslate"><span class="pre">crossProduct()</span></code> allocates space for the result which must be deleted by the user.</p>
 </section>
 <section id="length-and-distance">
-<h3><code class="docutils literal notranslate"><span class="pre">Length</span> <span class="pre">and</span> <span class="pre">Distance</span></code><a class="headerlink" href="#length-and-distance" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">Length</span> <span class="pre">and</span> <span class="pre">Distance</span></code><a class="headerlink" href="#length-and-distance" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span><span class="w"> </span><span class="nf">dist</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Vec3D</span><span class="w"> </span><span class="o">*</span><span class="n">pv</span><span class="p">);</span>
 <span class="kt">double</span><span class="w"> </span><span class="nf">dist</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Vec3D</span><span class="w"> </span><span class="o">&amp;</span><span class="n">v</span><span class="p">);</span>
 <span class="kt">void</span><span class="w"> </span><span class="nf">normalize</span><span class="p">();</span>
@@ -139,7 +139,7 @@ The two <code class="docutils literal notranslate"><span class="pre">operator*()
 <p>The method <code class="docutils literal notranslate"><span class="pre">normalize()</span></code> scales the vector to unit length.</p>
 </section>
 <section id="other">
-<h3><code class="docutils literal notranslate"><span class="pre">Other</span></code><a class="headerlink" href="#other" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">Other</span></code><a class="headerlink" href="#other" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span><span class="w"> </span><span class="nf">getCrossSize</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Vec3D</span><span class="w"> </span><span class="o">*</span><span class="n">pv</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
 <span class="kt">double</span><span class="w"> </span><span class="nf">getCrossSize</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Vec3D</span><span class="w"> </span><span class="o">&amp;</span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
 <span class="kt">double</span><span class="w"> </span><span class="nf">getAngle</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Vec3D</span><span class="w"> </span><span class="o">*</span><span class="n">pv</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
@@ -155,7 +155,7 @@ The two <code class="docutils literal notranslate"><span class="pre">operator*()
 </section>
 </section>
 <section id="example">
-<h2>Example<a class="headerlink" href="#example" title="Permalink to this heading">¶</a></h2>
+<h2>Example<a class="headerlink" href="#example" title="Link to this heading">¶</a></h2>
 <p>Compile with</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>g++<span class="w"> </span>vec_example.cpp<span class="w"> </span>Vec3D.cpp<span class="w"> </span>-o<span class="w"> </span>vec_example
 </pre></div>
@@ -291,8 +291,8 @@ The two <code class="docutils literal notranslate"><span class="pre">operator*()
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2022, jodyxha.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.0.1.
+    &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
   </body>
 </html>

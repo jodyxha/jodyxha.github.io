@@ -9,7 +9,8 @@ Vegetation
 
 The ``Vegetation`` class contains some vegetation-related data.
 
-In earlier versions of QHG, different vegetation types (grass, shrub, tree) were estimated from climate data, and from them calculate net primary production.
+In earlier versions of QHG, different vegetation types (grass, shrub, tree) 
+were estimated from climate data, and from them, the net primary production was then calculated.
 
 Newer paleo simulations by Axel Timmermann directly provide Net Primary Production (NPP).
 

@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>QHG Tutorial 06 - Environment Interaction I &#8212; QHG4 4.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../static/jody.css" />
+    <link rel="stylesheet" type="text/css" href="../static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../static/jody.css?v=dac31e62" />
     
-    <script data-url_root="../" id="documentation_options" src="../static/documentation_options.js"></script>
-    <script src="../static/doctools.js"></script>
-    <script src="../static/sphinx_highlight.js"></script>
+    <script src="../static/documentation_options.js?v=3b2dd2c4"></script>
+    <script src="../static/doctools.js?v=888ff710"></script>
+    <script src="../static/sphinx_highlight.js?v=dc90522c"></script>
     
     <link rel="icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -43,7 +43,7 @@
           <div class="body" role="main">
             
   <span class="target" id="tutorialenvironalt-ref"></span><section id="qhg-tutorial-06-environment-interaction-i">
-<h1>QHG Tutorial 06 - Environment Interaction I<a class="headerlink" href="#qhg-tutorial-06-environment-interaction-i" title="Permalink to this heading">¶</a></h1>
+<h1>QHG Tutorial 06 - Environment Interaction I<a class="headerlink" href="#qhg-tutorial-06-environment-interaction-i" title="Link to this heading">¶</a></h1>
 <p>In this chapter we extend our example by making the agents aware of the environment, the altitude in particular.</p>
 <p>To do this we use a <a class="reference internal" href="../code_doc/actions/SingleEvaluator.html#singleevaluator-ref"><span class="std std-ref">SingleEvaluator</span></a>, and replace the <a class="reference internal" href="../code_doc/actions/RandomMove.html#randommove-ref"><span class="std std-ref">RandomMove</span></a> object by a <a class="reference internal" href="../code_doc/actions/WeightedMove.html#weightedmove-ref"><span class="std std-ref">WeightedMove</span></a> object.
 To each cell the <code class="docutils literal notranslate"><span class="pre">SingleEvaluator</span></code> assigns preference values (usually by means of a <a class="reference internal" href="../code_doc/utils/PolyLine.html#polyline-ref"><span class="std std-ref">PolyLine</span></a> object) to the cell itself and its neighbours. For each cell the preference values are cumulated which form the basis for a weighted random number drawn by <code class="docutils literal notranslate"><span class="pre">Weighted</span></code> move.</p>
@@ -55,7 +55,7 @@ The results are cumulated and are used as a lookup table to create a weighted ra
 In this example a uniform random number R between 0 and the highest number in the cumulated array is drawn,
 and the index of the smallest cumulated value greater than R is chosen.
 Here the random number 0.81 is less than the value at index 4, 0.95, so the chosen index is 4.
-Those indexes are selected with a probability proportional to the preference values of he corresponding cells</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+Those indexes are selected with a probability proportional to the preference values of he corresponding cells</span><a class="headerlink" href="#id3" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 <p><strong>Population code:</strong></p>
@@ -85,7 +85,7 @@ Those indexes are selected with a probability proportional to the preference val
 </div>
 </div></blockquote>
 <section id="the-header-file">
-<h2>The Header File<a class="headerlink" href="#the-header-file" title="Permalink to this heading">¶</a></h2>
+<h2>The Header File<a class="headerlink" href="#the-header-file" title="Link to this heading">¶</a></h2>
 <p>The include files reflect the addition of the <code class="docutils literal notranslate"><span class="pre">SingleEvaluator</span></code> and the replacing of <code class="docutils literal notranslate"><span class="pre">RandomMove</span></code> with <code class="docutils literal notranslate"><span class="pre">WeightedMove</span></code>, but the agent still has the same fields:</p>
 <p>The class now has a pointer to  <code class="docutils literal notranslate"><span class="pre">WeightedMove</span></code> instead of <code class="docutils literal notranslate"><span class="pre">RandomMove</span></code>, and an additional pointer to a <code class="docutils literal notranslate"><span class="pre">SingleEvaluator</span></code>:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">tut_EnvironAltPop</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">SPopulation</span><span class="o">&lt;</span><span class="n">tut_EnvironAltAgent</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
@@ -124,7 +124,7 @@ there are two new member functions <code class="docutils literal notranslate"><s
 <p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_EnvironAltPop.h">tut_EnvironAltPop.h</a></p>
 </section>
 <section id="the-implementation">
-<h2>The Implementation<a class="headerlink" href="#the-implementation" title="Permalink to this heading">¶</a></h2>
+<h2>The Implementation<a class="headerlink" href="#the-implementation" title="Link to this heading">¶</a></h2>
 <p>The include files, too,  reflect the changes in the actions:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;EventConsts.h&quot;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;SPopulation.cpp&quot;</span>
@@ -284,7 +284,7 @@ Subsequently, the deaths are actually performed, and several counts ar updated.<
 <p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_EnvironAltPop.cpp">tut_EnvironAltPop.cpp</a></p>
 </section>
 <section id="xml-and-dat">
-<h2>XML and DAT<a class="headerlink" href="#xml-and-dat" title="Permalink to this heading">¶</a></h2>
+<h2>XML and DAT<a class="headerlink" href="#xml-and-dat" title="Link to this heading">¶</a></h2>
 <p>The xml file for the population contains a new <code class="docutils literal notranslate"><span class="pre">&lt;module&gt;</span></code> for <code class="docutils literal notranslate"><span class="pre">SingleEvaluator</span></code>, and a <code class="docutils literal notranslate"><span class="pre">WeightedMove</span></code> module instead of a <code class="docutils literal notranslate"><span class="pre">RandomMove</span></code>:</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="w"> </span><span class="nt">&lt;class</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;tut_EnvironAltPop&quot;</span><span class="w"> </span><span class="na">species_name=</span><span class="s">&quot;sapiens&quot;</span><span class="w"> </span><span class="na">species_id=</span><span class="s">&quot;104&quot;</span><span class="nt">&gt;</span>
 
@@ -344,11 +344,11 @@ with the exception that we moved the starting point to South Africa.</p>
 </div>
 </section>
 <section id="grid">
-<h2>Grid<a class="headerlink" href="#grid" title="Permalink to this heading">¶</a></h2>
+<h2>Grid<a class="headerlink" href="#grid" title="Link to this heading">¶</a></h2>
 <p>For this example we use  a subdivided icosahedron with earths’s geography: there are oceans and continents.</p>
 </section>
 <section id="compiling-and-running">
-<h2>Compiling and Running<a class="headerlink" href="#compiling-and-running" title="Permalink to this heading">¶</a></h2>
+<h2>Compiling and Running<a class="headerlink" href="#compiling-and-running" title="Link to this heading">¶</a></h2>
 <p>Again, we assume that you have created the tutorial directories with the script <a class="reference internal" href="../tools/build_tut_dirs.html#build-tut-dirs-ref"><span class="std std-ref">build_tut_dirs.py</span></a>.</p>
 <p>First lets create alternative population and action directories with the script <a class="reference internal" href="../tools/build_alt_modpop.html#build-alt-modpop-ref"><span class="std std-ref">build_alt_modpop.py</span></a>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="si">${</span><span class="nv">QHG4_DIR</span><span class="si">}</span>/useful_stuff/build_alt_modpop.py<span class="w"> </span>tut_06<span class="w"> </span>tut_EnvironAltPop
@@ -402,11 +402,11 @@ with the exception that we moved the starting point to South Africa.</p>
 </dl>
 </section>
 <section id="visualization">
-<h2>Visualization<a class="headerlink" href="#visualization" title="Permalink to this heading">¶</a></h2>
+<h2>Visualization<a class="headerlink" href="#visualization" title="Link to this heading">¶</a></h2>
 <p>The configuration script (see above) provides a <code class="docutils literal notranslate"><span class="pre">--events</span></code> parameter which causes an output of grid, geography, and the agents every 1000 steps.
 These QDF files can be visualized in two ways:</p>
 <section id="qdf2pnfnew">
-<h3><code class="docutils literal notranslate"><span class="pre">QDF2PNFNew</span></code><a class="headerlink" href="#qdf2pnfnew" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">QDF2PNFNew</span></code><a class="headerlink" href="#qdf2pnfnew" title="Link to this heading">¶</a></h3>
 <p>The tool <a class="reference internal" href="../tools/QDF2PNGNew.html#qdf2pngnew-ref"><span class="std std-ref">QDF2PNGNew</span></a> projects data from the icosahedral grid to a plain rectilinear image.
 The images below were produced with calls like this:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="si">${</span><span class="nv">QHG4_DIR</span><span class="si">}</span>/tools_io/QDF2PNGNew<span class="w"> </span>-g<span class="w"> </span>~/tutorials/tutorial_06/output/tutorial_06/tut_pop-sapiens_SG_003000.qdf<span class="w"> </span><span class="se">\</span>
@@ -423,18 +423,18 @@ The images below were produced with calls like this:</p>
 <figcaption>
 <p><span class="caption-text">Sequence of snapshots at intervals of 1000 steps.
 The yellow dots represent the agents.
-In the first image the initial populaition sits at the center of the red circle.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+In the first image the initial populaition sits at the center of the red circle.</span><a class="headerlink" href="#id4" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="visit">
-<h3><code class="docutils literal notranslate"><span class="pre">VisIt</span></code><a class="headerlink" href="#visit" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">VisIt</span></code><a class="headerlink" href="#visit" title="Link to this heading">¶</a></h3>
 <p>With the visualization software <a class="reference internal" href="../visit_visualization.html#visit-visualization-ref"><span class="std std-ref">VisIt</span></a> we can create images showing the data on the sphere:</p>
 <figure class="align-default" id="id5">
 <img alt="../images/envalt.png" src="../images/envalt.png" />
 <figcaption>
 <p><span class="caption-text">Sequence of snapshots at intervals of 1000 steps.
-The yellow dots represent the agents.</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+The yellow dots represent the agents.</span><a class="headerlink" href="#id5" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 </section>
@@ -516,8 +516,8 @@ The yellow dots represent the agents.</span><a class="headerlink" href="#id5" ti
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2022, jodyxha.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.0.1.
+    &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
   </body>
 </html>

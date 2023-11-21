@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>The Source File for the Population Class VirusHostPop &#8212; QHG4 4.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../static/jody.css" />
+    <link rel="stylesheet" type="text/css" href="../static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../static/jody.css?v=dac31e62" />
     
-    <script data-url_root="../" id="documentation_options" src="../static/documentation_options.js"></script>
-    <script src="../static/doctools.js"></script>
-    <script src="../static/sphinx_highlight.js"></script>
+    <script src="../static/documentation_options.js?v=3b2dd2c4"></script>
+    <script src="../static/doctools.js?v=888ff710"></script>
+    <script src="../static/sphinx_highlight.js?v=dc90522c"></script>
     
     <link rel="icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -44,7 +44,7 @@
           <div class="body" role="main">
             
   <section id="the-source-file-for-the-population-class-virushostpop">
-<span id="howto-virushost-source-ref"></span><h1>The Source File for the Population Class <code class="docutils literal notranslate"><span class="pre">VirusHostPop</span></code><a class="headerlink" href="#the-source-file-for-the-population-class-virushostpop" title="Permalink to this heading">¶</a></h1>
+<span id="howto-virushost-source-ref"></span><h1>The Source File for the Population Class <code class="docutils literal notranslate"><span class="pre">VirusHostPop</span></code><a class="headerlink" href="#the-source-file-for-the-population-class-virushostpop" title="Link to this heading">¶</a></h1>
 <p>The first section contains the <code class="docutils literal notranslate"><span class="pre">#includes</span></code> for the required base classes, actions, and constants.</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;omp.h&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;hdf5.h&gt;</span>
@@ -68,7 +68,7 @@
 </div>
 <p>Most of these includea re needed to <code class="docutils literal notranslate"><span class="pre">close</span></code> the templates.</p>
 <section id="constructor">
-<h2>constructor<a class="headerlink" href="#constructor" title="Permalink to this heading">¶</a></h2>
+<h2>constructor<a class="headerlink" href="#constructor" title="Link to this heading">¶</a></h2>
 <p>Here we instantiate all actions and initialize the fields.</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">VirusHostPop</span><span class="o">::</span><span class="n">VirusHostPop</span><span class="p">(</span><span class="n">SCellGrid</span><span class="w"> </span><span class="o">*</span><span class="n">pCG</span><span class="p">,</span><span class="w"> </span><span class="n">PopFinder</span><span class="w"> </span><span class="o">*</span><span class="n">pPopFinder</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iLayerSize</span><span class="p">,</span><span class="w"> </span><span class="n">IDGen</span><span class="w"> </span><span class="o">**</span><span class="n">apIDG</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="o">*</span><span class="n">aulState</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="o">*</span><span class="n">aiSeeds</span><span class="p">)</span>
 <span class="w">    </span><span class="o">:</span><span class="w"> </span><span class="n">SPopulation</span><span class="o">&lt;</span><span class="n">VirusHostAgent</span><span class="o">&gt;</span><span class="p">(</span><span class="n">pCG</span><span class="p">,</span><span class="w"> </span><span class="n">pPopFinder</span><span class="p">,</span><span class="w"> </span><span class="n">iLayerSize</span><span class="p">,</span><span class="w"> </span><span class="n">apIDG</span><span class="p">,</span><span class="w"> </span><span class="n">aulState</span><span class="p">,</span><span class="w"> </span><span class="n">aiSeeds</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -99,7 +99,7 @@
 </div>
 </section>
 <section id="destructor">
-<h2>destructor<a class="headerlink" href="#destructor" title="Permalink to this heading">¶</a></h2>
+<h2>destructor<a class="headerlink" href="#destructor" title="Link to this heading">¶</a></h2>
 <p>The destructor deletes all action created in the constructor.</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">VirusHostPop</span><span class="o">::~</span><span class="n">VirusHostPop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 
@@ -131,7 +131,7 @@
 </div>
 </section>
 <section id="getpopparams">
-<h2>getPopParams<a class="headerlink" href="#getpopparams" title="Permalink to this heading">¶</a></h2>
+<h2>getPopParams<a class="headerlink" href="#getpopparams" title="Link to this heading">¶</a></h2>
 <p>This method tries to extract mutation rate and inheritance type from the
 stringmap created by the population XML reader.</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>int  VirusHostPop::getPopParams(const stringmap &amp;mVarDefs) {
@@ -187,7 +187,7 @@ stringmap created by the population XML reader.</p>
 </div>
 </section>
 <section id="makepopspecificoffspring">
-<h2>makePopSpecificOffspring<a class="headerlink" href="#makepopspecificoffspring" title="Permalink to this heading">¶</a></h2>
+<h2>makePopSpecificOffspring<a class="headerlink" href="#makepopspecificoffspring" title="Link to this heading">¶</a></h2>
 <p>This method is called when a baby is born in order to initialize it’s field.
 In particular, the baby’s immunity level is determined by the inhertiance type.</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">VirusHostPop::makePopSpecificOffspring</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iAgent</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iMother</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iFather</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -243,7 +243,7 @@ In particular, the baby’s immunity level is determined by the inhertiance type
 </div>
 </section>
 <section id="addpopspecificagentdata">
-<h2>addPopSpecificAgentData<a class="headerlink" href="#addpopspecificagentdata" title="Permalink to this heading">¶</a></h2>
+<h2>addPopSpecificAgentData<a class="headerlink" href="#addpopspecificagentdata" title="Link to this heading">¶</a></h2>
 <p>This method reads agent specific data from the <cite>population dat file&lt;pop_dat_ref&gt;</cite>.</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">VirusHostPop::addPopSpecificAgentData</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iAgentIndex</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">ppData</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 
@@ -271,7 +271,7 @@ In particular, the baby’s immunity level is determined by the inhertiance type
 </div>
 </section>
 <section id="addpopspecificagentdatatypeqdf">
-<h2>addPopSpecificAgentDataTypeQDF<a class="headerlink" href="#addpopspecificagentdatatypeqdf" title="Permalink to this heading">¶</a></h2>
+<h2>addPopSpecificAgentDataTypeQDF<a class="headerlink" href="#addpopspecificagentdatatypeqdf" title="Link to this heading">¶</a></h2>
 <p>This method creates a HDF data type to handlle I/O of agents.</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">VirusHostPop::addPopSpecificAgentDataTypeQDF</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="o">*</span><span class="n">hAgentDataType</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 
@@ -358,8 +358,8 @@ In particular, the baby’s immunity level is determined by the inhertiance type
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2022, jodyxha.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.0.1.
+    &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
   </body>
 </html>

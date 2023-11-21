@@ -19,8 +19,8 @@ This is the declaration of the ``SCell`` struct:
 
     typedef struct {
         gridtype  m_iGlobalID;
-        uchar   m_iNumNeighbors;
-        int     m_aNeighbors[MAX_NEIGH];
+        uchar     m_iNumNeighbors;
+        int       m_aNeighbors[MAX_NEIGH];
     } SCell;
 
 ``m_iGlobalID``
@@ -32,3 +32,5 @@ This is the declaration of the ``SCell`` struct:
 ``m_aNeighbors``
     Array of indexes of each cell's neighbors (if num neighbors is less then MAX_NEIGH, the remaining elements are set to -1).
 
+The type ``gridtype`` is an alias for ``int`` (defined in ``utils/types.h``). 
+The constant ``MAX_NEIGH`` has the value 6 (in order to handle icosahedral grids).

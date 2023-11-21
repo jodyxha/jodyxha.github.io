@@ -8,8 +8,10 @@ Color Lookup Tables
 
    This page describes the classes :index:`LookUp`, :index:`RainbowLookUp``, :index:`Rainbow2LookUp``, :index:`GeoLookUp``, :index:`Geo2LookUp``, :index:`TwoToneLookUp``, :index:`FadeOutLookUp``, :index:`FadeToLookUp``
 
-All Lookup classes are derived from the abtract base class ``LookUp``, which declares the methods `getColor()`` which translate a ``double`` value to a red value, a green value, a blue value.
-The all have a minimmum level and a maximum level which are used to calculate the colr fo a value.
+All Lookup classes are derived from the abtract base class ``LookUp``, 
+which declares the methods ``getColor()`` which translates a ``double`` value to 
+a red value, a green value, a blue value, and an alpha value.
+They all have a minimum level and a maximum level which are used to calculate the color for a value.
 
 LookUp
 ------
@@ -35,7 +37,7 @@ LookUp
    virtual void getColor(double dValue, double &dRed, double &dGreen, double &dBlue, double &dAlpha)=0;
    virtual void getColor(double dValue, unsigned char &uRed, unsigned char &uGreen, unsigned char &uBlue, unsigned char &uAlpha);
 
-These virtual functions are implemented by th derived classes.
+These virtual functions are implemented by the derived classes.
 
 ``dValue``
     The value to be translated.
@@ -107,7 +109,7 @@ GeoLookUp
 
     GeoLookUp(double dMinLevel, double dSeaLevel, double dMaxLevel);
 
-``dSeaLevel`` is the value where the colr switches from nluish to greenish.
+``dSeaLevel`` is the value where the color switches from bluish to greenish.
 
 .. -----------------------------------------------------------------------------
 
@@ -123,7 +125,7 @@ Geo2LookUp
 
     Geo2LookUp(double dMinLevel, double dSeaLevel, double dMaxLevel);
 
-Like ``GeoLookUp``, wuth the exception that high values are colored whitish.
+Like ``GeoLookUp``, with the exception that high values are colored whitish.
 
 .. -----------------------------------------------------------------------------
 
@@ -159,7 +161,7 @@ FadeOutLookUp
     FadeOutLookUp(double dMin, double dMax,
                   double dR, double dG, double dB, double dA);
 
-The color for low values i transparent and gradually changes to the specified color.
+The color for low values is transparent and gradually changes to the specified color.
 
 .. -----------------------------------------------------------------------------
 
@@ -174,7 +176,7 @@ FadeToLookUp
 .. code-block:: c++
 
     FadeToLookUp(double dMin, double dMax,
-                 double dR0, double dG0, double dB0, double dA0,
-                 double dR1, double dG1, double dB1, double dA1);
+                 double dR0,  double dG0,   double dB0,   double dA0,
+                 double dR1,  double dG1,   double dB1,   double dA1);
 
 The color linearly morphs from (dR0, dG0, dB0. dA0) to (dR1, dG1, dB1, dA1) as the value increases.

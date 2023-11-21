@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../../">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>AutoInterpolator &#8212; QHG4 4.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../static/jody.css" />
+    <link rel="stylesheet" type="text/css" href="../../static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../static/jody.css?v=dac31e62" />
     
-    <script data-url_root="../../" id="documentation_options" src="../../static/documentation_options.js"></script>
-    <script src="../../static/doctools.js"></script>
-    <script src="../../static/sphinx_highlight.js"></script>
+    <script src="../../static/documentation_options.js?v=3b2dd2c4"></script>
+    <script src="../../static/doctools.js?v=888ff710"></script>
+    <script src="../../static/sphinx_highlight.js?v=dc90522c"></script>
     
     <link rel="icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -44,7 +44,7 @@
           <div class="body" role="main">
             
   <section id="autointerpolator">
-<span id="autointerpolator-ref"></span><h1>AutoInterpolator<a class="headerlink" href="#autointerpolator" title="Permalink to this heading">¶</a></h1>
+<span id="autointerpolator-ref"></span><h1>AutoInterpolator<a class="headerlink" href="#autointerpolator" title="Link to this heading">¶</a></h1>
 <p class="hidden">This page describes the class <span class="target" id="index-0"></span>AutoInterpolator</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">AutoInterpolator</span></code> is used to interpolate between arrays in the environment files at different times.</p>
 <p>In particular <code class="docutils literal notranslate"><span class="pre">AutoInterpolator</span></code> uses an event file containing environment data loads.
@@ -59,7 +59,7 @@ In regular intervals, the differences are added to the arrays, and the populatio
 </dd>
 </dl>
 <section id="type-definitions">
-<h2>Type Definitions<a class="headerlink" href="#type-definitions" title="Permalink to this heading">¶</a></h2>
+<h2>Type Definitions<a class="headerlink" href="#type-definitions" title="Link to this heading">¶</a></h2>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">uint</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="o">*&gt;</span><span class="w">            </span><span class="n">length_array</span><span class="p">;</span>
 <span class="k">typedef</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">length_array</span><span class="o">&gt;</span><span class="w"> </span><span class="n">named_arrays</span><span class="p">;</span>
 
@@ -85,9 +85,9 @@ In regular intervals, the differences are added to the arrays, and the populatio
 <p>The type <code class="docutils literal notranslate"><span class="pre">target_info</span></code> holds information about an array in a QDF file. <code class="docutils literal notranslate"><span class="pre">sFullName</span></code> is the full path to the array, <code class="docutils literal notranslate"><span class="pre">sGroup</span></code> is the group containing the array, <code class="docutils literal notranslate"><span class="pre">sArray</span></code> is the name of the array,</p>
 </section>
 <section id="public-methods">
-<h2>Public Methods<a class="headerlink" href="#public-methods" title="Permalink to this heading">¶</a></h2>
+<h2>Public Methods<a class="headerlink" href="#public-methods" title="Link to this heading">¶</a></h2>
 <section id="createinstance">
-<h3><code class="docutils literal notranslate"><span class="pre">createInstance</span></code><a class="headerlink" href="#createinstance" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">createInstance</span></code><a class="headerlink" href="#createinstance" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="n">AutoInterpolator</span><span class="w"> </span><span class="o">*</span><span class="nf">createInstance</span><span class="p">(</span><span class="n">SCellGrid</span><span class="w"> </span><span class="o">*</span><span class="n">pCG</span><span class="p">,</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sEnvEventFile</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">fStartTime</span><span class="p">,</span><span class="w"> </span><span class="n">target_list</span><span class="w"> </span><span class="o">&amp;</span><span class="n">vTargets</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -104,14 +104,14 @@ In regular intervals, the differences are added to the arrays, and the populatio
 <p>Creates an <cite>AutoInterpolator`</cite> object from the rovided data.</p>
 </section>
 <section id="destructor">
-<h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">AutoInterpolator</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>The destructor deletes arrays that have been allocated.</p>
 </section>
 <section id="interpolate">
-<h3><code class="docutils literal notranslate"><span class="pre">interpolate</span></code><a class="headerlink" href="#interpolate" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">interpolate</span></code><a class="headerlink" href="#interpolate" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">interpolate</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iSteps</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -122,7 +122,7 @@ In regular intervals, the differences are added to the arrays, and the populatio
 <p>Adds the the differences calculated in <code class="docutils literal notranslate"><span class="pre">calcNextDIff()</span></code> to the arrays in question.</p>
 </section>
 <section id="startinterpolations">
-<h3><code class="docutils literal notranslate"><span class="pre">startInterpolations</span></code><a class="headerlink" href="#startinterpolations" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">startInterpolations</span></code><a class="headerlink" href="#startinterpolations" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">startInterpolations</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iFirstStep</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -131,28 +131,28 @@ the currently used arrays are loaded from the <code class="docutils literal notr
 Otherwise the file list is searched for the first file with a timestamp greater than the current time and its arrays are loaded.</p>
 </section>
 <section id="calcnextdiff">
-<h3><code class="docutils literal notranslate"><span class="pre">calcNextDiff</span></code><a class="headerlink" href="#calcnextdiff" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">calcNextDiff</span></code><a class="headerlink" href="#calcnextdiff" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">calcNextDiff</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>Calculatesthe  differences betwee the values of the next array and those of the current array,</p>
 </section>
 <section id="getcurstep">
-<h3><code class="docutils literal notranslate"><span class="pre">getCurStep</span></code><a class="headerlink" href="#getcurstep" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">getCurStep</span></code><a class="headerlink" href="#getcurstep" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">getCurStep</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>Returns the step of the next file to be loaded.</p>
 </section>
 <section id="getevents">
-<h3><code class="docutils literal notranslate"><span class="pre">getEvents</span></code><a class="headerlink" href="#getevents" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">getEvents</span></code><a class="headerlink" href="#getevents" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="n">event_list</span><span class="w"> </span><span class="o">&amp;</span><span class="nf">getEvents</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>Returns the current vector of events (basically a vector of integers such as EVENT_ID_GEO or EVENT_ID_VEG).</p>
 </section>
 <section id="checknewinterpolation">
-<h3><code class="docutils literal notranslate"><span class="pre">checkNewInterpolation</span></code><a class="headerlink" href="#checknewinterpolation" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">checkNewInterpolation</span></code><a class="headerlink" href="#checknewinterpolation" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">checkNewInterpolation</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iCheckStep</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -164,7 +164,7 @@ Otherwise the file list is searched for the first file with a timestamp greater 
 <p>Returns 0 if no new differences had to be calculated, 1 if there are new differences, -1 on error.</p>
 </section>
 <section id="displayfiles">
-<h3><code class="docutils literal notranslate"><span class="pre">displayFiles</span></code><a class="headerlink" href="#displayfiles" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">displayFiles</span></code><a class="headerlink" href="#displayfiles" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">displayFiles</span><span class="p">();</span>
 </pre></div>
 </div>
@@ -174,7 +174,7 @@ Otherwise the file list is searched for the first file with a timestamp greater 
 </div>
 </section>
 <section id="displayarrays">
-<h3><code class="docutils literal notranslate"><span class="pre">displayArrays</span></code><a class="headerlink" href="#displayarrays" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">displayArrays</span></code><a class="headerlink" href="#displayarrays" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">displayArrays</span><span class="p">();</span>
 </pre></div>
 </div>
@@ -266,8 +266,8 @@ Otherwise the file list is searched for the first file with a timestamp greater 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2022, jodyxha.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.0.1.
+    &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
   </body>
 </html>

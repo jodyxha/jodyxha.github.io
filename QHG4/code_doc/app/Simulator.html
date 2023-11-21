@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../../">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Simulator &#8212; QHG4 4.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../static/jody.css" />
+    <link rel="stylesheet" type="text/css" href="../../static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../static/jody.css?v=dac31e62" />
     
-    <script data-url_root="../../" id="documentation_options" src="../../static/documentation_options.js"></script>
-    <script src="../../static/doctools.js"></script>
-    <script src="../../static/sphinx_highlight.js"></script>
+    <script src="../../static/documentation_options.js?v=3b2dd2c4"></script>
+    <script src="../../static/doctools.js?v=888ff710"></script>
+    <script src="../../static/sphinx_highlight.js?v=dc90522c"></script>
     
     <link rel="icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -44,7 +44,7 @@
           <div class="body" role="main">
             
   <section id="simulator">
-<span id="simulator-ref"></span><h1>Simulator<a class="headerlink" href="#simulator" title="Permalink to this heading">¶</a></h1>
+<span id="simulator-ref"></span><h1>Simulator<a class="headerlink" href="#simulator" title="Link to this heading">¶</a></h1>
 <p class="hidden">This page describes the class <span class="target" id="index-0"></span>Simulator</p>
 <p>The class <code class="docutils literal notranslate"><span class="pre">Simulator</span></code> is derived from <a class="reference internal" href="SimParams.html#simparams-ref"><span class="std std-ref">SimParams</span></a> and contains the actual simulation loop and handles events.</p>
 <dl>
@@ -57,7 +57,7 @@
 <figure class="align-default" id="id1">
 <span id="simulator-processes-reg"></span><img alt="../../images/flowchart2.png" src="../../images/flowchart2.png" />
 <figcaption>
-<p><span class="caption-text">The processes of a simulation.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">The processes of a simulation.</span><a class="headerlink" href="#id1" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>The above figure shows the entire sprocess of a simulation (cf <code class="docutils literal notranslate"><span class="pre">Simulator::runSimulation()</span></code>).</p>
@@ -78,37 +78,37 @@ to ensure that the order of the actions is ensured.</p>
 </dd>
 </dl>
 <section id="public-methods">
-<h2>Public Methods<a class="headerlink" href="#public-methods" title="Permalink to this heading">¶</a></h2>
+<h2>Public Methods<a class="headerlink" href="#public-methods" title="Link to this heading">¶</a></h2>
 <section id="constructor">
-<h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#constructor" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#constructor" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Simulator</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>Some initialisation.</p>
 </section>
 <section id="destructor">
-<h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">Simulator</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>The destructor deletes some objects that have been created.</p>
 </section>
 <section id="isready">
-<h3><code class="docutils literal notranslate"><span class="pre">isReady</span></code><a class="headerlink" href="#isready" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">isReady</span></code><a class="headerlink" href="#isready" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="nf">isReady</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>Returns true if everything is ok  for the simulation to start (a valid cell grid exists and there is at least one non-empty population)</p>
 </section>
 <section id="runsimulation">
-<h3><code class="docutils literal notranslate"><span class="pre">runSimulation</span></code><a class="headerlink" href="#runsimulation" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">runSimulation</span></code><a class="headerlink" href="#runsimulation" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">runSimulation</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>This method runs the simulation. It calls <code class="docutils literal notranslate"><span class="pre">preLoop()</span></code>, <code class="docutils literal notranslate"><span class="pre">runLoop()</span></code> and <code class="docutils literal notranslate"><span class="pre">postLoop()</span></code>.</p>
 </section>
 <section id="writestate">
-<h3><code class="docutils literal notranslate"><span class="pre">writeState</span></code><a class="headerlink" href="#writestate" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">writeState</span></code><a class="headerlink" href="#writestate" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">writeState</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sQDFOut</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iWhat</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">vSub</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iDumpMode</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -209,14 +209,14 @@ to ensure that the order of the actions is ensured.</p>
 <p>This method is called to write environment and/or population data to a QDF file.</p>
 </section>
 <section id="showinput">
-<h3><code class="docutils literal notranslate"><span class="pre">showInput</span></code><a class="headerlink" href="#showinput" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">showInput</span></code><a class="headerlink" href="#showinput" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">showInputs</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>Displays the environment and population groups used in this simulation.</p>
 </section>
 <section id="setinterrupt">
-<h3><code class="docutils literal notranslate"><span class="pre">setInterrupt</span></code><a class="headerlink" href="#setinterrupt" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">setInterrupt</span></code><a class="headerlink" href="#setinterrupt" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">setInterrupt</span><span class="p">();</span>
 </pre></div>
 </div>
@@ -301,8 +301,8 @@ to ensure that the order of the actions is ensured.</p>
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2022, jodyxha.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.0.1.
+    &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
   </body>
 </html>

@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>QHG Tutorial 03 - Moving &#8212; QHG4 4.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../static/jody.css" />
+    <link rel="stylesheet" type="text/css" href="../static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../static/jody.css?v=dac31e62" />
     
-    <script data-url_root="../" id="documentation_options" src="../static/documentation_options.js"></script>
-    <script src="../static/doctools.js"></script>
-    <script src="../static/sphinx_highlight.js"></script>
+    <script src="../static/documentation_options.js?v=3b2dd2c4"></script>
+    <script src="../static/doctools.js?v=888ff710"></script>
+    <script src="../static/sphinx_highlight.js?v=dc90522c"></script>
     
     <link rel="icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -43,7 +43,7 @@
           <div class="body" role="main">
             
   <span class="target" id="tutorialmove-ref"></span><section id="qhg-tutorial-03-moving">
-<h1>QHG Tutorial 03 - Moving<a class="headerlink" href="#qhg-tutorial-03-moving" title="Permalink to this heading">¶</a></h1>
+<h1>QHG Tutorial 03 - Moving<a class="headerlink" href="#qhg-tutorial-03-moving" title="Link to this heading">¶</a></h1>
 <p>In this chapter we describe a class which, in addition to aging and dying also lets agents move randomly between cells.</p>
 <p>To get the agents moving we use the action class <a class="reference internal" href="../code_doc/actions/RandomMove.html#randommove-ref"><span class="std std-ref">RandomMove</span></a>.</p>
 <p><strong>Population code:</strong></p>
@@ -65,7 +65,7 @@
 </div>
 </div></blockquote>
 <section id="the-header-file">
-<h2>The Header File<a class="headerlink" href="#the-header-file" title="Permalink to this heading">¶</a></h2>
+<h2>The Header File<a class="headerlink" href="#the-header-file" title="Link to this heading">¶</a></h2>
 <p>This class must additionaly  include the header files for the <code class="docutils literal notranslate"><span class="pre">RandomMove</span></code> action.</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef __TUT_MOVEPOP_H__</span>
 <span class="cp">#define __TUT_MOVEPOP_H__</span>
@@ -109,7 +109,7 @@ So we use the same agent structure as in the previous chapter.</p>
 <p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_MovePop.h">tut_MovePop.h</a></p>
 </section>
 <section id="the-implementation">
-<h2>The Implementation<a class="headerlink" href="#the-implementation" title="Permalink to this heading">¶</a></h2>
+<h2>The Implementation<a class="headerlink" href="#the-implementation" title="Link to this heading">¶</a></h2>
 <p>The include files reflect the addition of the move action:</p>
 <p>The constructor must create instances of all the actions and
 add them to the priority list.</p>
@@ -180,7 +180,7 @@ They are the same as the ones in the previous chapter.</p>
 <p>Code: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/populations/tut_MovePop.cpp">tut_MovePop.cpp</a></p>
 </section>
 <section id="xml-and-dat">
-<h2>XML and DAT<a class="headerlink" href="#xml-and-dat" title="Permalink to this heading">¶</a></h2>
+<h2>XML and DAT<a class="headerlink" href="#xml-and-dat" title="Link to this heading">¶</a></h2>
 <p>Apart from the entries for <code class="docutils literal notranslate"><span class="pre">OldAgeDeath</span></code> there is also an entry for <code class="docutils literal notranslate"><span class="pre">RandomMove</span></code> in the xml file.
 The action <code class="docutils literal notranslate"><span class="pre">GetOld</span></code> requires no parameters.</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;class</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;tut_MovePop&quot;</span><span class="w"> </span><span class="na">species_name=</span><span class="s">&quot;sapiens&quot;</span><span class="w"> </span><span class="na">species_id=</span><span class="s">&quot;104&quot;</span><span class="nt">&gt;</span>
@@ -219,11 +219,11 @@ Apart from the postion and the basic parameters we have to add a parameter for t
 <p>Feel free to modify the values in the xml file and see how this changes the outcome.</p>
 </section>
 <section id="grid">
-<h2>Grid<a class="headerlink" href="#grid" title="Permalink to this heading">¶</a></h2>
+<h2>Grid<a class="headerlink" href="#grid" title="Link to this heading">¶</a></h2>
 <p>For this example we use a subdivided icosahedron</p>
 </section>
 <section id="compiling-and-running">
-<h2>Compiling and Running<a class="headerlink" href="#compiling-and-running" title="Permalink to this heading">¶</a></h2>
+<h2>Compiling and Running<a class="headerlink" href="#compiling-and-running" title="Link to this heading">¶</a></h2>
 <p>We assume that you have created the tutorial directories with the script <a class="reference internal" href="../tools/build_tut_dirs.html#build-tut-dirs-ref"><span class="std std-ref">build_tut_dirs.py</span></a>.
 This copies all relevant files to the tutorial subdirectories.</p>
 <p>First lets create alternative population and action directories with the script <a class="reference internal" href="../tools/build_alt_modpop.html#build-alt-modpop-ref"><span class="std std-ref">build_alt_modpop.py</span></a>:</p>
@@ -278,11 +278,11 @@ This copies all relevant files to the tutorial subdirectories.</p>
 </dl>
 </section>
 <section id="id1">
-<h2>Grid<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
+<h2>Grid<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h2>
 <p>For this example we use a subdivided icosahedron</p>
 </section>
 <section id="id2">
-<h2>Compiling and Running<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
+<h2>Compiling and Running<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h2>
 <p>We assume that you have created the tutorial directories with the script <a class="reference internal" href="../tools/build_tut_dirs.html#build-tut-dirs-ref"><span class="std std-ref">build_tut_dirs.py</span></a>.
 This copies all relevant files to the tutorial subdirectories.</p>
 <p>First lets create alternative population and action directories with the script <a class="reference internal" href="../tools/build_alt_modpop.html#build-alt-modpop-ref"><span class="std std-ref">build_alt_modpop.py</span></a>:</p>
@@ -337,7 +337,7 @@ This copies all relevant files to the tutorial subdirectories.</p>
 </dl>
 </section>
 <section id="the-output-file">
-<h2>The Output File<a class="headerlink" href="#the-output-file" title="Permalink to this heading">¶</a></h2>
+<h2>The Output File<a class="headerlink" href="#the-output-file" title="Link to this heading">¶</a></h2>
 <p>The output files, in this case <code class="docutils literal notranslate"><span class="pre">tutorial_03.out</span></code>, always have the same structure.
 First there are messages concerning the start of the program and intialisation.
 If the simulation does not run, there’s a chance that you find th readoon why here.</p>
@@ -454,8 +454,8 @@ Number of agents after last step
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2022, jodyxha.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.0.1.
+    &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
   </body>
 </html>

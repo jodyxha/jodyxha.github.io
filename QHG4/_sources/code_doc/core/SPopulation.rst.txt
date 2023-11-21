@@ -214,7 +214,7 @@ This method clears the birth, death and move registration lists.
 ``iFatherIndex``
     Index of the Father agent.
  
-Since births occur in the parallelized loop in ``doActions()`` we can't make the changes immediately, or else we have to deal with race conditions.
+Since births occur in the parallelized loop in ``doActions()`` we can't make the changes immediately, because of potential race conditions.
 For this reason, every birth is registered (i.e. the relevant data is put into a list), and only in ``finalizeStep()`` are the births performed.
 
 .. -----------------------------------------------------------------------------
@@ -231,7 +231,7 @@ For this reason, every birth is registered (i.e. the relevant data is put into a
 ``iAgentIndex``
     Index of the dead agent.
 
-Since deaths occur in the parallelized loop in ``doActions()`` we can't make the changes immediately, or else we have to deal with race conditions.
+Since deaths occur in the parallelized loop in ``doActions()`` we can't make the changes immediately, because of potential race conditions.
 For this reason, every death is registered (i.e. the relevant data is put into a list), and only in ``finalizeStep()`` are the deaths performed.
 
 .. -----------------------------------------------------------------------------
@@ -251,7 +251,7 @@ For this reason, every death is registered (i.e. the relevant data is put into a
 ``iCellIndexTo``
     Index of the cell the agent wants to move to.
 
-Since moves occur in the parallelized loop in ``doActions()`` we can't make the changes immediately, or else we have to deal with race conditions.
+Since moves occur in the parallelized loop in ``doActions()`` we can't make the changes immediately, because of potential race conditions.
 For this reason, every move is registered (i.e. the relevant data is put into a list), and only in ``finalizeStep()`` are the moves performed.
 
 .. -----------------------------------------------------------------------------
@@ -267,7 +267,7 @@ For this reason, every move is registered (i.e. the relevant data is put into a 
  
 Makes sure there are at least ``iNumAgents`` contiguous unused locations in the ACTIVE state.
 
-Rerturns the firt index of the reserved region.
+Rerturns the first index of the reserved region.
 
 .. -----------------------------------------------------------------------------
 
@@ -348,7 +348,7 @@ Returns a new unique Agent ID.
    virtual int readSpeciesData(ParamProvider2 *pPP);
 
 ``pPP`` 
-    A :ref:`ParamProvider2<ParamProvider2_ref>`
+    A pointer to a :ref:`ParamProvider2<ParamProvider2_ref>` object.
 
 Extracts class name, species name and priority levels from the ``ParamProvider2`` object.
 
@@ -378,7 +378,7 @@ Extracts class name, species name and priority levels from the ``ParamProvider2`
 ``ppData``
     Pointer to a C-style string containing the values for agent attributes.
 
-Tries to get the life state, the agent ID, the birth time and the gender from the string.
+Tries to get the life state, the agent ID, the birth time and the gender from the string pointed at by ``ppData``.
 
 On exit of this function ``*ppData`` points to the beginning of the next data item.
 
@@ -462,7 +462,7 @@ Copies the basic items of ``pBasic`` to the agent at the specified index.
 ``pPop``
     Pointer to a population object.
 
-If the population's callss and species names match, the agents have the same type, and the population's actions are all equal to this objects actions, then the populatiuon is merged to ``this``.
+If the population's class and species names match, the agents have the same type, and the population's actions are all equal to this objects actions, then the populatiuon is merged to ``this``.
 
 Useful if the agents of the same type are injected at a later phase of the simulation.
 
@@ -495,7 +495,7 @@ Return the species name.
 
     ulong *getNumAgentsArray();
 
-Returnsan array containing the number of agent in each cell.
+Returns an array containing the number of agent in each cell.
 
 .. -----------------------------------------------------------------------------
 
@@ -539,7 +539,7 @@ Return the total number of agents in the simulation (minus the number of agents 
 
    virtual ulong getNumAgentsMax();
 
-Returns the maximum nbumber of agents that can be held in the ``LayerBuf`` (without adding a new layer).
+Returns the maximum number of agents that can be held in the ``LayerBuf`` (without adding a new layer).
 
  
 .. -----------------------------------------------------------------------------
@@ -613,7 +613,7 @@ Returns the index of the last agent in the ACTIVE list.
 
     std::vector<int>** getMoveList();
 
-Returns the mmove lists. This is needed by actions who must read or manipulate the list of moving agents.
+Returns the move lists. This is needed by actions who must read or manipulate the list of moving agents.
 
  
 .. -----------------------------------------------------------------------------
@@ -645,7 +645,7 @@ Returns a ponter to the ``SCellGrid``.
 
     virtual void randomize(int i);
 
-Gets ``i`` random numbers from each WELL.
+Calculates ``i`` random numbers from each WELL.
 
 
 .. -----------------------------------------------------------------------------

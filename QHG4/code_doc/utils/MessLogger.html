@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../../">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>MessLogger &#8212; QHG4 4.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../static/jody.css" />
+    <link rel="stylesheet" type="text/css" href="../../static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../static/jody.css?v=dac31e62" />
     
-    <script data-url_root="../../" id="documentation_options" src="../../static/documentation_options.js"></script>
-    <script src="../../static/doctools.js"></script>
-    <script src="../../static/sphinx_highlight.js"></script>
+    <script src="../../static/documentation_options.js?v=3b2dd2c4"></script>
+    <script src="../../static/doctools.js?v=888ff710"></script>
+    <script src="../../static/sphinx_highlight.js?v=dc90522c"></script>
     
     <link rel="icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -44,7 +44,7 @@
           <div class="body" role="main">
             
   <section id="messlogger">
-<span id="messlogger-ref"></span><h1>MessLogger<a class="headerlink" href="#messlogger" title="Permalink to this heading">¶</a></h1>
+<span id="messlogger-ref"></span><h1>MessLogger<a class="headerlink" href="#messlogger" title="Link to this heading">¶</a></h1>
 <p class="hidden">This page describes the class <span class="target" id="index-0"></span>MessLogger</p>
 <p>The class <code class="docutils literal notranslate"><span class="pre">MessLogger</span></code> provides methods for logging messages of different types,
 “status”, “warning”, “error”, “display”.</p>
@@ -60,9 +60,9 @@
 </dd>
 </dl>
 <section id="methods">
-<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">¶</a></h2>
+<h2>Methods<a class="headerlink" href="#methods" title="Link to this heading">¶</a></h2>
 <section id="create">
-<h3><code class="docutils literal notranslate"><span class="pre">create</span></code><a class="headerlink" href="#create" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">create</span></code><a class="headerlink" href="#create" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="n">MessLogger</span><span class="w"> </span><span class="o">*</span><span class="n">create</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sFileName</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -73,14 +73,14 @@
 </dl>
 </section>
 <section id="free">
-<h3><code class="docutils literal notranslate"><span class="pre">free</span></code><a class="headerlink" href="#free" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">free</span></code><a class="headerlink" href="#free" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">free</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>Delete the singleton (closes the log file).</p>
 </section>
 <section id="logstatus">
-<h3><code class="docutils literal notranslate"><span class="pre">logStatus</span></code><a class="headerlink" href="#logstatus" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">logStatus</span></code><a class="headerlink" href="#logstatus" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="p">...</span><span class="w"> </span><span class="n">Args</span><span class="o">&gt;</span>
 <span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">logStatus</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sFormat</span><span class="p">,</span><span class="w"> </span><span class="n">Args</span><span class="p">...</span><span class="w"> </span><span class="n">args</span><span class="p">);</span>
 </pre></div>
@@ -91,7 +91,7 @@
 </div>
 </section>
 <section id="logwarning">
-<h3><code class="docutils literal notranslate"><span class="pre">logWarning</span></code><a class="headerlink" href="#logwarning" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">logWarning</span></code><a class="headerlink" href="#logwarning" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="p">...</span><span class="w"> </span><span class="n">Args</span><span class="o">&gt;</span>
 <span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">logWarning</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sFormat</span><span class="p">,</span><span class="w"> </span><span class="n">Args</span><span class="p">...</span><span class="w"> </span><span class="n">args</span><span class="p">);</span>
 </pre></div>
@@ -102,7 +102,7 @@
 </div>
 </section>
 <section id="logerror">
-<h3><code class="docutils literal notranslate"><span class="pre">logError</span></code><a class="headerlink" href="#logerror" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">logError</span></code><a class="headerlink" href="#logerror" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="p">...</span><span class="w"> </span><span class="n">Args</span><span class="o">&gt;</span>
 <span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">logError</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sFormat</span><span class="p">,</span><span class="w"> </span><span class="n">Args</span><span class="p">...</span><span class="w"> </span><span class="n">args</span><span class="p">);</span>
 </pre></div>
@@ -113,7 +113,7 @@
 </div>
 </section>
 <section id="logdisp">
-<h3><code class="docutils literal notranslate"><span class="pre">logDisp</span></code><a class="headerlink" href="#logdisp" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">logDisp</span></code><a class="headerlink" href="#logdisp" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="p">...</span><span class="w"> </span><span class="n">Args</span><span class="o">&gt;</span>
 <span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">logDisp</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sFormat</span><span class="p">,</span><span class="w"> </span><span class="n">Args</span><span class="p">...</span><span class="w"> </span><span class="n">args</span><span class="p">);</span>
 </pre></div>
@@ -124,7 +124,7 @@
 </div>
 </section>
 <section id="logstatus2">
-<h3><code class="docutils literal notranslate"><span class="pre">logStatus2</span></code><a class="headerlink" href="#logstatus2" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">logStatus2</span></code><a class="headerlink" href="#logstatus2" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="p">...</span><span class="w"> </span><span class="n">Args</span><span class="o">&gt;</span>
 <span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">logStatus2</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sFormat</span><span class="p">,</span><span class="w"> </span><span class="n">Args</span><span class="p">...</span><span class="w"> </span><span class="n">args</span><span class="p">);</span>
 </pre></div>
@@ -135,7 +135,7 @@
 </div>
 </section>
 <section id="logwarning2">
-<h3><code class="docutils literal notranslate"><span class="pre">logWarning2</span></code><a class="headerlink" href="#logwarning2" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">logWarning2</span></code><a class="headerlink" href="#logwarning2" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="p">...</span><span class="w"> </span><span class="n">Args</span><span class="o">&gt;</span>
 <span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">logWarning2</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sFormat</span><span class="p">,</span><span class="w"> </span><span class="n">Args</span><span class="p">...</span><span class="w"> </span><span class="n">args</span><span class="p">);</span>
 </pre></div>
@@ -146,7 +146,7 @@
 </div>
 </section>
 <section id="logerror2">
-<h3><code class="docutils literal notranslate"><span class="pre">logError2</span></code><a class="headerlink" href="#logerror2" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">logError2</span></code><a class="headerlink" href="#logerror2" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="p">...</span><span class="w"> </span><span class="n">Args</span><span class="o">&gt;</span>
 <span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">logError2</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sFormat</span><span class="p">,</span><span class="w"> </span><span class="n">Args</span><span class="p">...</span><span class="w"> </span><span class="n">args</span><span class="p">);</span>
 </pre></div>
@@ -157,7 +157,7 @@
 </div>
 </section>
 <section id="logdisp2">
-<h3><code class="docutils literal notranslate"><span class="pre">logDisp2</span></code><a class="headerlink" href="#logdisp2" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">logDisp2</span></code><a class="headerlink" href="#logdisp2" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="p">...</span><span class="w"> </span><span class="n">Args</span><span class="o">&gt;</span>
 <span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">logDisp2</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sFormat</span><span class="p">,</span><span class="w"> </span><span class="n">Args</span><span class="p">...</span><span class="w"> </span><span class="n">args</span><span class="p">);</span>
 </pre></div>
@@ -168,7 +168,7 @@
 </div>
 </section>
 <section id="showlog">
-<h3><code class="docutils literal notranslate"><span class="pre">showLog</span></code><a class="headerlink" href="#showlog" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">showLog</span></code><a class="headerlink" href="#showlog" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">showLog</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sLogFile</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iWhat</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -181,7 +181,7 @@
 </dl>
 </section>
 <section id="id1">
-<h3><code class="docutils literal notranslate"><span class="pre">showLog</span></code><a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">showLog</span></code><a class="headerlink" href="#id1" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">showLog</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iWhat</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -192,73 +192,73 @@
 </dl>
 </section>
 <section id="getnumstatus">
-<h3><code class="docutils literal notranslate"><span class="pre">getNumStatus</span></code><a class="headerlink" href="#getnumstatus" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">getNumStatus</span></code><a class="headerlink" href="#getnumstatus" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">getNumStatus</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>Returns the number of logged status messages.</p>
 </section>
 <section id="getnumwarning">
-<h3><code class="docutils literal notranslate"><span class="pre">getNumWarning</span></code><a class="headerlink" href="#getnumwarning" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">getNumWarning</span></code><a class="headerlink" href="#getnumwarning" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">getNumWarning</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>Returns the number of logged warning messages.</p>
 </section>
 <section id="getnumerror">
-<h3><code class="docutils literal notranslate"><span class="pre">getNumError</span></code><a class="headerlink" href="#getnumerror" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">getNumError</span></code><a class="headerlink" href="#getnumerror" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">getNumError</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>Returns the number of logged error messages.</p>
 </section>
 <section id="getnumdisp">
-<h3><code class="docutils literal notranslate"><span class="pre">getNumDisp</span></code><a class="headerlink" href="#getnumdisp" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">getNumDisp</span></code><a class="headerlink" href="#getnumdisp" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">getNumDisp</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>Returns the number of logged disp messages.</p>
 </section>
 <section id="protected-methods">
-<h3><code class="docutils literal notranslate"><span class="pre">Protected</span> <span class="pre">Methods</span></code><a class="headerlink" href="#protected-methods" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">Protected</span> <span class="pre">Methods</span></code><a class="headerlink" href="#protected-methods" title="Link to this heading">¶</a></h3>
 </section>
 <section id="constructor">
-<h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#constructor" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#constructor" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">MessLogger</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sLogFileName</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>The constructor open the output file for writing.</p>
 </section>
 <section id="destructor">
-<h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="o">~</span><span class="n">MessLogger</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>The destructor closes the output file.</p>
 </section>
 <section id="write">
-<h3><code class="docutils literal notranslate"><span class="pre">write</span></code><a class="headerlink" href="#write" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">write</span></code><a class="headerlink" href="#write" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">write</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sLine0</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sPre</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sPost</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Writes a line with specified prefx and suffix. Usually prefix and suffix arte color codes.</p>
 </section>
 <section id="coloredline">
-<h3><code class="docutils literal notranslate"><span class="pre">coloredLine</span></code><a class="headerlink" href="#coloredline" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">coloredLine</span></code><a class="headerlink" href="#coloredline" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">coloredLine</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sLine</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iWhat</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Colors a line depending on the prefix.</p>
 </section>
 <section id="logspecial">
-<h3><code class="docutils literal notranslate"><span class="pre">logSpecial</span></code><a class="headerlink" href="#logspecial" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">logSpecial</span></code><a class="headerlink" href="#logspecial" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="p">...</span><span class="w"> </span><span class="n">Args</span><span class="o">&gt;</span>
 <span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">logSpecial</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sHeader</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sColor</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sFormat</span><span class="p">,</span><span class="w"> </span><span class="n">Args</span><span class="p">...</span><span class="w"> </span><span class="n">args</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Writes a colored line to the log file.</p>
 <section id="example">
-<h4>Example<a class="headerlink" href="#example" title="Permalink to this heading">¶</a></h4>
+<h4>Example<a class="headerlink" href="#example" title="Link to this heading">¶</a></h4>
 <p>Compile with</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>g++<span class="w"> </span>ml_example.cpp<span class="w"> </span>stdstrutils.cpp<span class="w"> </span>stdstrutilsT.h<span class="w"> </span>-std<span class="o">=</span>c++20<span class="w"> </span>-o<span class="w"> </span>ml_example
 </pre></div>
@@ -415,8 +415,8 @@
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2022, jodyxha.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.0.1.
+    &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
   </body>
 </html>

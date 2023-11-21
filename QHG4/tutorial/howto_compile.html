@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Compiling QHG4 for Virus and VirusHostPop &#8212; QHG4 4.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../static/jody.css" />
+    <link rel="stylesheet" type="text/css" href="../static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../static/jody.css?v=dac31e62" />
     
-    <script data-url_root="../" id="documentation_options" src="../static/documentation_options.js"></script>
-    <script src="../static/doctools.js"></script>
-    <script src="../static/sphinx_highlight.js"></script>
+    <script src="../static/documentation_options.js?v=3b2dd2c4"></script>
+    <script src="../static/doctools.js?v=888ff710"></script>
+    <script src="../static/sphinx_highlight.js?v=dc90522c"></script>
     
     <link rel="icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -44,9 +44,9 @@
           <div class="body" role="main">
             
   <section id="compiling-qhg4-for-virus-and-virushostpop">
-<span id="howto-compile-ref"></span><h1>Compiling QHG4 for <code class="docutils literal notranslate"><span class="pre">Virus</span></code> and <code class="docutils literal notranslate"><span class="pre">VirusHostPop</span></code><a class="headerlink" href="#compiling-qhg4-for-virus-and-virushostpop" title="Permalink to this heading">¶</a></h1>
+<span id="howto-compile-ref"></span><h1>Compiling QHG4 for <code class="docutils literal notranslate"><span class="pre">Virus</span></code> and <code class="docutils literal notranslate"><span class="pre">VirusHostPop</span></code><a class="headerlink" href="#compiling-qhg4-for-virus-and-virushostpop" title="Link to this heading">¶</a></h1>
 <section id="alternative-population-and-action-directories">
-<h2>Alternative Population and Action Directories<a class="headerlink" href="#alternative-population-and-action-directories" title="Permalink to this heading">¶</a></h2>
+<h2>Alternative Population and Action Directories<a class="headerlink" href="#alternative-population-and-action-directories" title="Link to this heading">¶</a></h2>
 <p>We use the tool <code class="docutils literal notranslate"><span class="pre">build_alt_modpop.py</span></code> to create customized population and action directories:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>useful_stuff/build_alt_modpop.py<span class="w"> </span>vir_test<span class="w"> </span>VirusHostPop
 </pre></div>
@@ -54,14 +54,14 @@
 <p>This creates the directories <code class="docutils literal notranslate"><span class="pre">vir_test_mod</span></code> and <code class="docutils literal notranslate"><span class="pre">vir_test_pop</span></code>.</p>
 </section>
 <section id="compiling-qhgmain-for-plugins">
-<h2>Compiling QHGMain for plugins<a class="headerlink" href="#compiling-qhgmain-for-plugins" title="Permalink to this heading">¶</a></h2>
+<h2>Compiling QHGMain for plugins<a class="headerlink" href="#compiling-qhgmain-for-plugins" title="Link to this heading">¶</a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">DYNAMIC_POPS</span><span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="nv">OPT</span><span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="nv">OUT</span><span class="o">=</span>QHGMainDyn<span class="w"> </span>make<span class="w"> </span>clean<span class="w"> </span>QHGMain
 </pre></div>
 </div>
 <p>This creates the excutable <code class="docutils literal notranslate"><span class="pre">QHGMainDyn</span></code>.</p>
 </section>
 <section id="compiling-the-plugin">
-<h2>Compiling the plugin<a class="headerlink" href="#compiling-the-plugin" title="Permalink to this heading">¶</a></h2>
+<h2>Compiling the plugin<a class="headerlink" href="#compiling-the-plugin" title="Link to this heading">¶</a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">SHORT</span><span class="o">=</span>vir_test<span class="w"> </span>make<span class="w"> </span>plugins
 </pre></div>
 </div>
@@ -138,8 +138,8 @@
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2022, jodyxha.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.0.1.
+    &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
   </body>
 </html>

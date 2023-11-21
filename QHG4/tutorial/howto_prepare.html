@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Preparing the data for the Virus Simulation &#8212; QHG4 4.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../static/jody.css" />
+    <link rel="stylesheet" type="text/css" href="../static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../static/jody.css?v=dac31e62" />
     
-    <script data-url_root="../" id="documentation_options" src="../static/documentation_options.js"></script>
-    <script src="../static/doctools.js"></script>
-    <script src="../static/sphinx_highlight.js"></script>
+    <script src="../static/documentation_options.js?v=3b2dd2c4"></script>
+    <script src="../static/doctools.js?v=888ff710"></script>
+    <script src="../static/sphinx_highlight.js?v=dc90522c"></script>
     
     <link rel="icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -44,7 +44,7 @@
           <div class="body" role="main">
             
   <section id="preparing-the-data-for-the-virus-simulation">
-<span id="howto-prepare-ref"></span><h1>Preparing the data for the <code class="docutils literal notranslate"><span class="pre">Virus</span></code> Simulation<a class="headerlink" href="#preparing-the-data-for-the-virus-simulation" title="Permalink to this heading">¶</a></h1>
+<span id="howto-prepare-ref"></span><h1>Preparing the data for the <code class="docutils literal notranslate"><span class="pre">Virus</span></code> Simulation<a class="headerlink" href="#preparing-the-data-for-the-virus-simulation" title="Link to this heading">¶</a></h1>
 <p>In order to run this simulation we have to create an XML file for the Action attributes,
 as well as a DAT file for the positions and fields of the initial population.</p>
 <p>We will use a torus grid of dimensions 200x200.</p>
@@ -53,60 +53,60 @@ as well as a DAT file for the positions and fields of the initial population.</p
 By means of the configuration file we can add the infected agents at the beginning of the simulation
 or at a later time.</p>
 <section id="an-xml-population-file">
-<h2>An XML Population File<a class="headerlink" href="#an-xml-population-file" title="Permalink to this heading">¶</a></h2>
+<h2>An XML Population File<a class="headerlink" href="#an-xml-population-file" title="Link to this heading">¶</a></h2>
 <p>This is an exxample of an XML File (<code class="docutils literal notranslate"><span class="pre">VirusHost.xml</span></code>) for the virus simulation.
 Note that the times in the modules <code class="docutils literal notranslate"><span class="pre">ATanDeath</span></code> and <code class="docutils literal notranslate"><span class="pre">Fertility</span></code> are given in days.</p>
 <p>Also, the values in the module``Verhulst`` are much smaller compared to the values used in <a class="reference internal" href="tutorial_05_sexual.html#tutorialsexual-ref"><span class="std std-ref">tutorieal 05</span></a>.</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&lt;class name=&quot;VirusHostPop&quot; species_name=&quot;sapiens&quot; species_id=&quot;104&quot;&gt;
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;class</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;VirusHostPop&quot;</span><span class="w"> </span><span class="na">species_name=</span><span class="s">&quot;sapiens&quot;</span><span class="w"> </span><span class="na">species_id=</span><span class="s">&quot;104&quot;</span><span class="nt">&gt;</span>
 
-  &lt;module name=&quot;ATanDeath&quot;&gt;
-    &lt;param  name=&quot;ATanDeath_max_age&quot; value=&quot;22000.0&quot;/&gt;
-    &lt;param  name=&quot;ATanDeath_range&quot; value=&quot;2500.0&quot;/&gt;
-    &lt;param  name=&quot;ATanDeath_slope&quot; value=&quot;1.0&quot;/&gt;
-  &lt;/module&gt;
+<span class="w">  </span><span class="nt">&lt;module</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;ATanDeath&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;param</span><span class="w">  </span><span class="na">name=</span><span class="s">&quot;ATanDeath_max_age&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;22000.0&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;param</span><span class="w">  </span><span class="na">name=</span><span class="s">&quot;ATanDeath_range&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;2500.0&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;param</span><span class="w">  </span><span class="na">name=</span><span class="s">&quot;ATanDeath_slope&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;1.0&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/module&gt;</span>
 
-  &lt;module name=&quot;RandomMove&quot;&gt;
-    &lt;param  name=&quot;RandomMove_prob&quot; value=&quot;0.01&quot;/&gt;
-  &lt;/module&gt;
+<span class="w">  </span><span class="nt">&lt;module</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;RandomMove&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;param</span><span class="w">  </span><span class="na">name=</span><span class="s">&quot;RandomMove_prob&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0.01&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/module&gt;</span>
 
-  &lt;module name=&quot;Fertility&quot;&gt;
-    &lt;param  name=&quot;Fertility_interbirth&quot; value=&quot;800.0&quot;/&gt;
-    &lt;param  name=&quot;Fertility_max_age&quot;    value=&quot;18000.0&quot;/&gt;
-    &lt;param  name=&quot;Fertility_min_age&quot;    value=&quot;5000.0&quot;/&gt;
-  &lt;/module&gt;
+<span class="w">  </span><span class="nt">&lt;module</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Fertility&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;param</span><span class="w">  </span><span class="na">name=</span><span class="s">&quot;Fertility_interbirth&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;800.0&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;param</span><span class="w">  </span><span class="na">name=</span><span class="s">&quot;Fertility_max_age&quot;</span><span class="w">    </span><span class="na">value=</span><span class="s">&quot;18000.0&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;param</span><span class="w">  </span><span class="na">name=</span><span class="s">&quot;Fertility_min_age&quot;</span><span class="w">    </span><span class="na">value=</span><span class="s">&quot;5000.0&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/module&gt;</span>
 
-  &lt;module name=&quot;Verhulst&quot;&gt;
-    &lt;param  name=&quot;Verhulst_b0&quot; value=&quot;0.5&quot; /&gt;
-    &lt;param  name=&quot;Verhulst_d0&quot; value=&quot;0.00001&quot; /&gt;
-    &lt;param  name=&quot;Verhulst_theta&quot; value=&quot;0.001&quot; /&gt;
-    &lt;param  name=&quot;Verhulst_K&quot; value=&quot;40&quot; /&gt;
-  &lt;/module&gt;
+<span class="w">  </span><span class="nt">&lt;module</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Verhulst&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;param</span><span class="w">  </span><span class="na">name=</span><span class="s">&quot;Verhulst_b0&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0.5&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;param</span><span class="w">  </span><span class="na">name=</span><span class="s">&quot;Verhulst_d0&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0.00001&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;param</span><span class="w">  </span><span class="na">name=</span><span class="s">&quot;Verhulst_theta&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0.001&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;param</span><span class="w">  </span><span class="na">name=</span><span class="s">&quot;Verhulst_K&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;40&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/module&gt;</span>
 
-  &lt;module name=&quot;Virus&quot;&gt;
-    &lt;param  name=&quot;InfectionProb&quot;  value=&quot;0.9&quot; /&gt;
-    &lt;param  name=&quot;InitialLoad&quot;    value=&quot;0.1&quot; /&gt;
-    &lt;param  name=&quot;GrowthRate&quot;     value=&quot;0.05&quot; /&gt;
-    &lt;param  name=&quot;ContagionLevel&quot; value=&quot;0.12&quot; /&gt;
-    &lt;param  name=&quot;LethalityLevel&quot; value=&quot;0.9&quot; /&gt;
-  &lt;/module&gt;
+<span class="w">  </span><span class="nt">&lt;module</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Virus&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;param</span><span class="w">  </span><span class="na">name=</span><span class="s">&quot;InfectionProb&quot;</span><span class="w">  </span><span class="na">value=</span><span class="s">&quot;0.9&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;param</span><span class="w">  </span><span class="na">name=</span><span class="s">&quot;InitialLoad&quot;</span><span class="w">    </span><span class="na">value=</span><span class="s">&quot;0.1&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;param</span><span class="w">  </span><span class="na">name=</span><span class="s">&quot;GrowthRate&quot;</span><span class="w">     </span><span class="na">value=</span><span class="s">&quot;0.05&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;param</span><span class="w">  </span><span class="na">name=</span><span class="s">&quot;ContagionLevel&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0.12&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;param</span><span class="w">  </span><span class="na">name=</span><span class="s">&quot;LethalityLevel&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0.9&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/module&gt;</span>
 
 
-  &lt;priorities&gt;
-    &lt;prio  name=&quot;GetOld&quot; value=&quot;8&quot;/&gt;
-    &lt;prio  name=&quot;ATanDeath&quot; value=&quot;10&quot;/&gt;
-    &lt;prio  name=&quot;RandomMove&quot; value=&quot;7&quot;/&gt;
-    &lt;prio  name=&quot;Fertility&quot; value=&quot;2&quot;/&gt;
-    &lt;prio  name=&quot;RandomPair&quot; value=&quot;3&quot;/&gt;
-    &lt;prio  name=&quot;Verhulst&quot; value=&quot;6&quot;/&gt;
-    &lt;prio  name=&quot;Virus&quot; value=&quot;7&quot;/&gt;
-  &lt;/priorities&gt;
+<span class="w">  </span><span class="nt">&lt;priorities&gt;</span>
+<span class="w">    </span><span class="nt">&lt;prio</span><span class="w">  </span><span class="na">name=</span><span class="s">&quot;GetOld&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;8&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;prio</span><span class="w">  </span><span class="na">name=</span><span class="s">&quot;ATanDeath&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;10&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;prio</span><span class="w">  </span><span class="na">name=</span><span class="s">&quot;RandomMove&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;7&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;prio</span><span class="w">  </span><span class="na">name=</span><span class="s">&quot;Fertility&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;2&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;prio</span><span class="w">  </span><span class="na">name=</span><span class="s">&quot;RandomPair&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;3&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;prio</span><span class="w">  </span><span class="na">name=</span><span class="s">&quot;Verhulst&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;6&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;prio</span><span class="w">  </span><span class="na">name=</span><span class="s">&quot;Virus&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;7&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/priorities&gt;</span>
 
-  &lt;vardefs&gt;
-    &lt;var name=&quot;MutationRate&quot; value=&quot;0.00&quot;/&gt;
-    &lt;var vname=&quot;ImmunityInheritance&quot; value=&quot;min&quot;
-  &lt;/vardefs&gt;
+<span class="w">  </span><span class="nt">&lt;vardefs&gt;</span>
+<span class="w">    </span><span class="nt">&lt;var</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;MutationRate&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0.00&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;var</span><span class="w"> </span><span class="na">vname=</span><span class="s">&quot;ImmunityInheritance&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;min&quot;</span><span class="nt">&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/vardefs&gt;</span>
 
-&lt;/class&gt;
+<span class="nt">&lt;/class&gt;</span>
 </pre></div>
 </div>
 <p>Of particular interest are the values of the virus attributes in the module <code class="docutils literal notranslate"><span class="pre">Virus</span></code>:
@@ -117,7 +117,7 @@ and the inheritance is set to “min”, which means a baby inherits the lesser 
 values of it’s parents.</p>
 </section>
 <section id="a-dat-file-for-a-healthy-population-no-immunity">
-<h2>A DAT File for a Healthy Population (no immunity)<a class="headerlink" href="#a-dat-file-for-a-healthy-population-no-immunity" title="Permalink to this heading">¶</a></h2>
+<h2>A DAT File for a Healthy Population (no immunity)<a class="headerlink" href="#a-dat-file-for-a-healthy-population-no-immunity" title="Link to this heading">¶</a></h2>
 <p>Here is an example for a DAT file (<code class="docutils literal notranslate"><span class="pre">uninfected.dat</span></code>) for uninfected agents that have an immunity level of 0.
 (Remember that high immunity levels slow down the growth of the virus and reduces the infection risk).</p>
 <p>Note that the birth times and ages are given in days - this means that our agents are
@@ -147,7 +147,7 @@ almost 14 years old at the start of the simulation.</p>
 </div>
 </section>
 <section id="a-dat-file-for-a-infected-population-with-immunity">
-<h2>A DAT File for a Infected Population (with immunity)<a class="headerlink" href="#a-dat-file-for-a-infected-population-with-immunity" title="Permalink to this heading">¶</a></h2>
+<h2>A DAT File for a Infected Population (with immunity)<a class="headerlink" href="#a-dat-file-for-a-infected-population-with-immunity" title="Link to this heading">¶</a></h2>
 <p>This DAT file, <code class="docutils literal notranslate"><span class="pre">infected.dat</span></code>,  defines slightly infectious and totally immune agents
 which should be started after 60000 steps (all the agents will be more than 16 years old)</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>#Longitude;Latitude;LifeState;AgentID;BirthTime;Gender;Age;LastBirth;ViralLoad;Immunity
@@ -195,7 +195,7 @@ which should be started after 60000 steps (all the agents will be more than 16 y
 </div>
 </section>
 <section id="a-configuration-file">
-<h2>A Configuration File<a class="headerlink" href="#a-configuration-file" title="Permalink to this heading">¶</a></h2>
+<h2>A Configuration File<a class="headerlink" href="#a-configuration-file" title="Link to this heading">¶</a></h2>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>--data-dirs=${QHG4_DIR}/tutorial_data/grids/
 --events=&#39;write|grid+geo+pop:sapiens@1000,pop|sapiens:VirusHost.xml:infected.dat@[60000]&#39;
 --grid=torus_200x200.qdf
@@ -282,8 +282,8 @@ which is later (after 60000 days) joined by a colony of infected agents.</p>
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2022, jodyxha.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.0.1.
+    &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
   </body>
 </html>

@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="./">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Compiling QHG &#8212; QHG4 4.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="static/jody.css" />
+    <link rel="stylesheet" type="text/css" href="static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="static/jody.css?v=dac31e62" />
     
-    <script data-url_root="./" id="documentation_options" src="static/documentation_options.js"></script>
-    <script src="static/doctools.js"></script>
-    <script src="static/sphinx_highlight.js"></script>
+    <script src="static/documentation_options.js?v=3b2dd2c4"></script>
+    <script src="static/doctools.js?v=888ff710"></script>
+    <script src="static/sphinx_highlight.js?v=dc90522c"></script>
     
     <link rel="icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
     <link rel="index" title="Index" href="genindex.html" />
@@ -42,13 +42,13 @@
           <div class="body" role="main">
             
   <section id="compiling-qhg">
-<span id="compiling-qhg-ref"></span><h1>Compiling QHG<a class="headerlink" href="#compiling-qhg" title="Permalink to this heading">¶</a></h1>
+<span id="compiling-qhg-ref"></span><h1>Compiling QHG<a class="headerlink" href="#compiling-qhg" title="Link to this heading">¶</a></h1>
 <p>In this documentation we describe compilation with a gnu c++ compiler.
 QHG4 has been compiled and tested on several linux flavours,
-but so far not on WIndows or MAc.</p>
-<p>If anybody manages to compile and run QHG4 on Windows computer or on a mac please let us know</p>
+but so far not on Windows or Mac.</p>
+<p>If anybody manages to compile and run QHG4 on Windows computer or on a Mac please let us know</p>
 <section id="dependencies">
-<h2>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this heading">¶</a></h2>
+<h2>Dependencies<a class="headerlink" href="#dependencies" title="Link to this heading">¶</a></h2>
 <p>To compile and run QHG4, several libraries need to be installed:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">libm</span></code>: the math library (is usually already installed)</p></li>
@@ -94,28 +94,28 @@ but so far not on WIndows or MAc.</p>
 </div>
 </section>
 <section id="required-environment-variables">
-<h2>Required Environment Variables<a class="headerlink" href="#required-environment-variables" title="Permalink to this heading">¶</a></h2>
-<p>Make sure that the vairable QHG4_DIR is set to the root of the
+<h2>Required Environment Variables<a class="headerlink" href="#required-environment-variables" title="Link to this heading">¶</a></h2>
+<p>Make sure that the vairable <code class="docutils literal notranslate"><span class="pre">QHG4_DIR</span></code> is set to the root of the
 directory containing the QHG4 download.</p>
 <p>On the commandline this can be done by</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">QHG4_DIR</span><span class="o">=</span>/home/user17/progs/QHG4
 </pre></div>
 </div>
-<p>But this woule have to be done evry time a new terminal si opened.
-For this reason, it makes more sense to put this line into a file whic is
-executed when a shell is poened (e.g.``~/.bash_rc`` for bash shells)</p>
+<p>But this would have to be done every time a new terminal is opened.
+For this reason, it makes more sense to put this line into a file which is
+executed when a shell is opened (e.g. <code class="docutils literal notranslate"><span class="pre">~/.bash_rc</span></code> for bash shells)</p>
 </section>
 <section id="compile-targets">
-<h2>Compile targets<a class="headerlink" href="#compile-targets" title="Permalink to this heading">¶</a></h2>
+<h2>Compile targets<a class="headerlink" href="#compile-targets" title="Link to this heading">¶</a></h2>
 <p>There are various targets  to compile:</p>
 <dl class="simple">
-<dt><code class="docutils literal notranslate"><span class="pre">clean</span></code></dt><dd><p>Clean all directories</p>
+<dt><code class="docutils literal notranslate"><span class="pre">clean</span></code></dt><dd><p>Clean all directories.</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">QHGMain</span></code></dt><dd><p>The QHG simulator</p>
+<dt><code class="docutils literal notranslate"><span class="pre">QHGMain</span></code></dt><dd><p>The QHG simulator.</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">plugins</span></code></dt><dd><p>Build populaztion plugins.</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">tools_n</span></code></dt><dd><p>Recompile all tools</p>
+<dt><code class="docutils literal notranslate"><span class="pre">tools_n</span></code></dt><dd><p>Recompile all tools.</p>
 </dd>
 </dl>
 <p>Example</p>
@@ -129,7 +129,7 @@ executed when a shell is poened (e.g.``~/.bash_rc`` for bash shells)</p>
 <p>Compiles QHG from scratch.</p>
 </section>
 <section id="compile-options">
-<h2>Compile options<a class="headerlink" href="#compile-options" title="Permalink to this heading">¶</a></h2>
+<h2>Compile options<a class="headerlink" href="#compile-options" title="Link to this heading">¶</a></h2>
 <dl class="simple">
 <dt><code class="docutils literal notranslate"><span class="pre">OPT</span></code></dt><dd><p>If set to 1, optimize the compilation (<code class="docutils literal notranslate"><span class="pre">-O3</span></code>). Recognized by all targets.</p>
 </dd>
@@ -138,12 +138,13 @@ Used by targets <code class="docutils literal notranslate"><span class="pre">QHG
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">OUT</span></code></dt><dd><p>Sets the output name. Used by targets <code class="docutils literal notranslate"><span class="pre">QHGMain</span></code> and <code class="docutils literal notranslate"><span class="pre">plugins</span></code></p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">DYNAMIC_POPS</span></code></dt><dd><p>Create sa version QHGMain which can load plugins without statically linked actions or populations.
-To run actual simulations you must provided with compiled plugins (see “make plugins” below).
+<dt><code class="docutils literal notranslate"><span class="pre">DYNAMIC_POPS</span></code></dt><dd><p>Creates a version of QHGMain without statically linked actions or populations, which can load plugins.
+To run actual simulations you must provide it with compiled plugins (see “make plugins” below).
 Used by target <code class="docutils literal notranslate"><span class="pre">QHGMain</span></code></p>
 </dd>
 </dl>
-<p>Examples</p>
+<section id="examples">
+<h3>Examples<a class="headerlink" href="#examples" title="Link to this heading">¶</a></h3>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">OUT</span><span class="o">=</span>QHGTest<span class="w"> </span><span class="nv">OPT</span><span class="o">=</span><span class="m">1</span><span class="w"> </span>make<span class="w"> </span>clean<span class="w"> </span>QHGMain
 </pre></div>
 </div>
@@ -155,17 +156,18 @@ Used by target <code class="docutils literal notranslate"><span class="pre">QHGM
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">DYNAMIC_POPS</span><span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="nv">OPT</span><span class="o">=</span><span class="m">1</span><span class="w"> </span>make<span class="w"> </span>clean<span class="w"> </span>QHGMain
 </pre></div>
 </div>
-<p>Build an optimized QHG for the use with plugins  from scratch.</p>
+<p>Build an optimized QHG for the use with plugins from scratch.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">SHORT</span><span class="o">=</span>tut_08<span class="w"> </span>make<span class="w"> </span>plugins
 </pre></div>
 </div>
-<p>Build plugins for the populations found in the alternative compilation directory <code class="docutils literal notranslate"><span class="pre">tut_08</span></code>-</p>
+<p>Build plugins for the populations found in the alternative compilation directory <code class="docutils literal notranslate"><span class="pre">tut_08</span></code>.</p>
+</section>
 </section>
 <section id="alternative-populations-and-action-directories">
-<span id="compiling-qhg-alternate-ref"></span><h2>Alternative Populations and Action Directories<a class="headerlink" href="#alternative-populations-and-action-directories" title="Permalink to this heading">¶</a></h2>
+<span id="compiling-qhg-alternate-ref"></span><h2>Alternative Populations and Action Directories<a class="headerlink" href="#alternative-populations-and-action-directories" title="Link to this heading">¶</a></h2>
 <p>If there are many files for population classes in the <code class="docutils literal notranslate"><span class="pre">populations</span></code> subdirectory, it can be useful to set up alternative directories containing only the minimum number of files required to build QHG with a particular population class.</p>
-<p>There is a script in the subdirectory which you can use for this:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>build_alt_modpop.py<span class="w"> </span>&lt;prefix&gt;<span class="w"> </span>&lt;pop_name&gt;+
+<p>There is a script in the subdirectory <code class="docutils literal notranslate"><span class="pre">useful_stuff</span></code>  which you can use for this:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="si">${</span><span class="nv">QHG4_DIR</span><span class="si">}</span>/build_alt_modpop.py<span class="w"> </span>&lt;prefix&gt;<span class="w"> </span>&lt;pop_name&gt;+
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">prefix</span></code> is used to create the names of the alternatove directories, <code class="docutils literal notranslate"><span class="pre">pop_name</span></code> is the name of a population class in <code class="docutils literal notranslate"><span class="pre">populations</span></code>. The script expects that &lt;pop_name&gt;.h and &lt;pop_name&gt;.cpp exist in <code class="docutils literal notranslate"><span class="pre">populations</span></code></p>
@@ -185,19 +187,6 @@ DynPopFactory.cpp<span class="w">  </span>DynPopFactory.h<span class="w">  </spa
 </pre></div>
 </div>
 </section>
-<section id="build-alt-modpop-py">
-<h2><code class="docutils literal notranslate"><span class="pre">build_alt_modpop.py</span></code><a class="headerlink" href="#build-alt-modpop-py" title="Permalink to this heading">¶</a></h2>
-<p>You can also use the script <a class="reference internal" href="tools/build_alt_modpop.html#build-alt-modpop-ref"><span class="std std-ref">build_alt_modpop.py</span></a>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="si">${</span><span class="nv">QHG4_DIR</span><span class="si">}</span>/useful_stuff/build_alt_modpop.py<span class="w"> </span><span class="nb">test</span><span class="w"> </span>tut_StaticPop<span class="w"> </span>tut_MovePop
-</pre></div>
-</div>
-<p>This will create the directories <code class="docutils literal notranslate"><span class="pre">test_pop</span></code> and <code class="docutils literal notranslate"><span class="pre">test_mod</span></code> filled with
-the files required to build QHG whith the classes <code class="docutils literal notranslate"><span class="pre">tut_StaticPop</span></code> and  <code class="docutils literal notranslate"><span class="pre">tut_MovePop</span></code></p>
-<p>Now you can cd to the QHG root directory and compile like this</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">SHORT</span><span class="o">=</span><span class="nb">test</span><span class="w"> </span>make<span class="w"> </span>clean<span class="w"> </span>QHGMain
-</pre></div>
-</div>
-</section>
 </section>
 
 
@@ -214,9 +203,11 @@ the files required to build QHG whith the classes <code class="docutils literal 
 <li><a class="reference internal" href="#dependencies">Dependencies</a></li>
 <li><a class="reference internal" href="#required-environment-variables">Required Environment Variables</a></li>
 <li><a class="reference internal" href="#compile-targets">Compile targets</a></li>
-<li><a class="reference internal" href="#compile-options">Compile options</a></li>
+<li><a class="reference internal" href="#compile-options">Compile options</a><ul>
+<li><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#alternative-populations-and-action-directories">Alternative Populations and Action Directories</a></li>
-<li><a class="reference internal" href="#build-alt-modpop-py"><code class="docutils literal notranslate"><span class="pre">build_alt_modpop.py</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -270,8 +261,8 @@ the files required to build QHG whith the classes <code class="docutils literal 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2022, jodyxha.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.0.1.
+    &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
   </body>
 </html>

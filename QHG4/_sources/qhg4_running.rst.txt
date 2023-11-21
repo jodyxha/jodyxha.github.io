@@ -3,12 +3,12 @@
 Running QHG
 ===========
 
-In this document we descriebe the various ways to run QHG.
+In this document we describe the various ways to run QHG.
 
 Description of Options
 ~~~~~~~~~~~~~~~~~~~~~~
 
-Whe calling QHG without any options,
+When calling QHG without any options,
 
 .. code-block:: bash
 
@@ -19,7 +19,7 @@ To get detailed information about an option, use the ``--help=`` option:
 
 .. code-block:: bash
 
-    QHGMain --help=reads-config
+    QHGMain --help=read-config
 
 The same information can be found in the :ref:`code documentation QHGMain<QHGMain_ref>`.
 
@@ -40,18 +40,18 @@ The basic way to run QHG is to list all options after the ``QHGMain``.
 This command could be on one line only - for better readbility it has been 
 spread over several lines.
 
-It is veryx useful to capture the standard output seee additional information:
+It is very useful to capture the standard output to see additional information:
 
 .. code-block:: bash
 
    QHGMain -data-dirs=... ... --start-time=0 > SimOutput.out
 
 
-Using a Configuraion File
--------------------------
+Using a Configuration File
+--------------------------
 
-Since in normal use cases there are a lot of options, it might be usefule to us a configuration file.
-A configuration file is a simple text file containing all the options, one per lien,
+Since in normal use cases there are a lot of options, it might be useful to use a configuration file.
+A configuration file is a simple text file containing all the options, one per line,
 for example
 
 .. code-block:: text
@@ -67,7 +67,7 @@ for example
     --shuffle=92244 
     --start-time=0 
 
-THen you can call HGQ like this:
+Then you can call QHG like this:
 
 .. code-block:: bash
 
@@ -80,7 +80,7 @@ For instance,
 
     QHGMain --read-config=my_config.cfg --num-iters=600 > SimOutput.out
 
-Will run the simulation with the options defined in ``my_config.cfg``, 
+This will run the simulation with the options defined in ``my_config.cfg``, 
 except for ``--num_iters`` which will be set to 600.
 
 
@@ -91,15 +91,15 @@ For this you will have to compile QHG like this:
 
 .. code-block:: bash
 
-    DYNAMIC_POPS=1 OPT=1 OUt=QHGMainDyn make clean QHGMain
+    DYNAMIC_POPS=1 OPT=1 OUT=QHGMainDyn make clean QHGMain
 
 (The "OUT=QHGMainDyn" will cause the compiled application to be renamed to "QHGMainDyn".
 And you will have to have make some plugins,too
-(if xou have not built them already). For example 
+(if you have not built them already). For example 
 
 .. code-block:: bash
 
-    SHORT=tut_08 OPT=1 OUZT=~/my_so_dir make plugina
+    SHORT=tut_08 OPT=1 OUT=~/my_so_dir make plugina
 
 This will build the so-files for the plugin and save 
 them in the specified directory.
@@ -110,3 +110,17 @@ To run:
 
     QHGMainDyn --read-config=my_config.cfg --dyn-pops --so-dirs=~/my_so_dir > SimOutput.out
 
+
+Exploiting parallelism
+----------------------
+
+Time-critical parts of QHG4's code are parallelized wirh OpenMP. The use of parallelsm noticeably speeds up QHG. 
+
+To run a simulation with 8 threads:
+
+.. code-block:bash
+
+    OMP_NUM_THREADS=8 QHGMainDyn --read-config=my_config.cfg > SimPutput.out
+
+Note that above a certain number of threads additional threads will not yield any increase in performance. 
+This limit is hardware dependent.

@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../../">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>LayerArrBuf &#8212; QHG4 4.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../static/jody.css" />
+    <link rel="stylesheet" type="text/css" href="../../static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../static/jody.css?v=dac31e62" />
     
-    <script data-url_root="../../" id="documentation_options" src="../../static/documentation_options.js"></script>
-    <script src="../../static/doctools.js"></script>
-    <script src="../../static/sphinx_highlight.js"></script>
+    <script src="../../static/documentation_options.js?v=3b2dd2c4"></script>
+    <script src="../../static/doctools.js?v=888ff710"></script>
+    <script src="../../static/sphinx_highlight.js?v=dc90522c"></script>
     
     <link rel="icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -44,7 +44,7 @@
           <div class="body" role="main">
             
   <section id="layerarrbuf">
-<span id="layerarrbuf-ref"></span><h1>LayerArrBuf<a class="headerlink" href="#layerarrbuf" title="Permalink to this heading">¶</a></h1>
+<span id="layerarrbuf-ref"></span><h1>LayerArrBuf<a class="headerlink" href="#layerarrbuf" title="Link to this heading">¶</a></h1>
 <p class="hidden">This page describes the class <span class="target" id="index-0"></span>LayerArrBuf</p>
 <p><code class="docutils literal notranslate"><span class="pre">LayerArrBuf</span></code> is derived from <a class="reference internal" href="LayerBuf.html#layerbuf-ref"><span class="std std-ref">LayerBuf</span></a>, where each layer holds <code class="docutils literal notranslate"><span class="pre">iLayerSize</span> <span class="pre">*</span> <span class="pre">iArraySize</span></code> elements.</p>
 <p>Most of the functions do the calculation from array positions to actual element positions:</p>
@@ -64,9 +64,9 @@
 </dd>
 </dl>
 <section id="public-methods">
-<h2>Public Methods<a class="headerlink" href="#public-methods" title="Permalink to this heading">¶</a></h2>
+<h2>Public Methods<a class="headerlink" href="#public-methods" title="Link to this heading">¶</a></h2>
 <section id="constructor">
-<h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#constructor" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#constructor" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">LayerArrBuf</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">iLayerSize</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="n">iArraySize</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iStrategy</span><span class="o">=</span><span class="n">MB_DESTROY_DELAY1</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -98,14 +98,14 @@ The “real” layer size is <code class="docutils literal notranslate"><span cl
 </table>
 </section>
 <section id="id1">
-<h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#id1" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">LayerArrBuf</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>Empty constructor.</p>
 </section>
 <section id="init">
-<h3><code class="docutils literal notranslate"><span class="pre">init</span></code><a class="headerlink" href="#init" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">init</span></code><a class="headerlink" href="#init" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">init</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">iLayerSize</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="n">iArraySize</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iStrategy</span><span class="o">=</span><span class="n">MB_DESTROY_DELAY1</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -120,14 +120,14 @@ The “real” layer size is <code class="docutils literal notranslate"><span cl
 </dl>
 </section>
 <section id="destructor">
-<h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="o">~</span><span class="n">LayerArrBuf</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>Destructor.</p>
 </section>
 <section id="operator">
-<h3><code class="docutils literal notranslate"><span class="pre">operator[]</span></code><a class="headerlink" href="#operator" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">operator[]</span></code><a class="headerlink" href="#operator" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
 <span class="n">T</span><span class="w"> </span><span class="o">&amp;</span><span class="k">operator</span><span class="p">[](</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
 </pre></div>
@@ -135,21 +135,21 @@ The “real” layer size is <code class="docutils literal notranslate"><span cl
 <p>Transparent element access over all layers.</p>
 </section>
 <section id="size">
-<h3><code class="docutils literal notranslate"><span class="pre">size</span></code><a class="headerlink" href="#size" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">size</span></code><a class="headerlink" href="#size" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">size_t</span><span class="w"> </span><span class="nf">size</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>Returns total capacity of all layers.</p>
 </section>
 <section id="getlayersize">
-<h3><code class="docutils literal notranslate"><span class="pre">getLayerSize</span></code><a class="headerlink" href="#getlayersize" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">getLayerSize</span></code><a class="headerlink" href="#getlayersize" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">uint</span><span class="w"> </span><span class="nf">getLayerSize</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Returns layer size.</p>
 </section>
 <section id="elementshift">
-<h3><code class="docutils literal notranslate"><span class="pre">elementShift</span></code><a class="headerlink" href="#elementshift" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">elementShift</span></code><a class="headerlink" href="#elementshift" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">elementShift</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">iTo</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="n">iFrom</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -162,7 +162,7 @@ The “real” layer size is <code class="docutils literal notranslate"><span cl
 </dl>
 </section>
 <section id="moveelements">
-<h3><code class="docutils literal notranslate"><span class="pre">moveElements</span></code><a class="headerlink" href="#moveelements" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">moveElements</span></code><a class="headerlink" href="#moveelements" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">moveElements</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">iToLayer</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="n">iToIndex</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="n">iFromLayer</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="n">iFromIndex</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="n">iNum</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -181,7 +181,7 @@ The “real” layer size is <code class="docutils literal notranslate"><span cl
 </dl>
 </section>
 <section id="copyblock">
-<h3><code class="docutils literal notranslate"><span class="pre">copyBlock</span></code><a class="headerlink" href="#copyblock" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">copyBlock</span></code><a class="headerlink" href="#copyblock" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
 <span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">copyBlock</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">iStart</span><span class="p">,</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="o">*</span><span class="n">pBlock</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="n">iSize</span><span class="p">);</span>
 </pre></div>
@@ -197,7 +197,7 @@ The “real” layer size is <code class="docutils literal notranslate"><span cl
 </dl>
 </section>
 <section id="id2">
-<h3><code class="docutils literal notranslate"><span class="pre">copyBlock</span></code><a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">copyBlock</span></code><a class="headerlink" href="#id2" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
 <span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">copyBlock</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">iDest</span><span class="p">,</span><span class="w"> </span><span class="n">LayerArrBuf</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="o">*</span><span class="n">pBuf</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="n">iOrig</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="n">iSize</span><span class="p">);</span>
 </pre></div>
@@ -215,7 +215,7 @@ The “real” layer size is <code class="docutils literal notranslate"><span cl
 </dl>
 </section>
 <section id="copylayer">
-<h3><code class="docutils literal notranslate"><span class="pre">copyLayer</span></code><a class="headerlink" href="#copylayer" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">copyLayer</span></code><a class="headerlink" href="#copylayer" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">copyLayer</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iDestLayer</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="o">*</span><span class="n">pData</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -311,8 +311,8 @@ The “real” layer size is <code class="docutils literal notranslate"><span cl
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2022, jodyxha.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.0.1.
+    &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
   </body>
 </html>

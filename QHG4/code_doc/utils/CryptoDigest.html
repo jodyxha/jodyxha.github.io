@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../../">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>CryptoDigest &#8212; QHG4 4.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../static/jody.css" />
+    <link rel="stylesheet" type="text/css" href="../../static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../static/jody.css?v=dac31e62" />
     
-    <script data-url_root="../../" id="documentation_options" src="../../static/documentation_options.js"></script>
-    <script src="../../static/doctools.js"></script>
-    <script src="../../static/sphinx_highlight.js"></script>
+    <script src="../../static/documentation_options.js?v=3b2dd2c4"></script>
+    <script src="../../static/doctools.js?v=888ff710"></script>
+    <script src="../../static/sphinx_highlight.js?v=dc90522c"></script>
     
     <link rel="icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -44,7 +44,7 @@
           <div class="body" role="main">
             
   <section id="cryptodigest">
-<span id="cryptodigest-ref"></span><h1>CryptoDigest<a class="headerlink" href="#cryptodigest" title="Permalink to this heading">¶</a></h1>
+<span id="cryptodigest-ref"></span><h1>CryptoDigest<a class="headerlink" href="#cryptodigest" title="Link to this heading">¶</a></h1>
 <p>This page describes the class <span class="target" id="index-0"></span>CryptoDigest</p>
 <p>The class <code class="docutils literal notranslate"><span class="pre">CryptoDigest</span></code> provides some tools to calculate various digests for strigs files and generic data.</p>
 <dl>
@@ -55,15 +55,15 @@
 </dd>
 </dl>
 <section id="public-methods">
-<h2>Public Methods<a class="headerlink" href="#public-methods" title="Permalink to this heading">¶</a></h2>
+<h2>Public Methods<a class="headerlink" href="#public-methods" title="Link to this heading">¶</a></h2>
 <section id="destructor">
-<h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="o">~</span><span class="n">CryptoDigest</span><span class="p">();</span>
 </pre></div>
 </div>
 </section>
 <section id="adddata">
-<h3><code class="docutils literal notranslate"><span class="pre">addData</span></code><a class="headerlink" href="#adddata" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">addData</span></code><a class="headerlink" href="#adddata" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">addData</span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">pData</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iDataLen</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -76,7 +76,7 @@
 </dl>
 </section>
 <section id="getdigest">
-<h3><code class="docutils literal notranslate"><span class="pre">getDigest</span></code><a class="headerlink" href="#getdigest" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">getDigest</span></code><a class="headerlink" href="#getdigest" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="nf">getDigest</span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">piDigestLen</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -87,7 +87,7 @@
 </dl>
 </section>
 <section id="digeststring">
-<h3><code class="docutils literal notranslate"><span class="pre">digestString</span></code><a class="headerlink" href="#digeststring" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">digestString</span></code><a class="headerlink" href="#digeststring" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="nf">digestString</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sData</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">piDigestLen</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -101,9 +101,9 @@
 </section>
 </section>
 <section id="public-static-methods">
-<h2>Public Static Methods<a class="headerlink" href="#public-static-methods" title="Permalink to this heading">¶</a></h2>
+<h2>Public Static Methods<a class="headerlink" href="#public-static-methods" title="Link to this heading">¶</a></h2>
 <section id="createinstance">
-<h3><code class="docutils literal notranslate"><span class="pre">createInstance</span></code><a class="headerlink" href="#createinstance" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">createInstance</span></code><a class="headerlink" href="#createinstance" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="n">CryptoDigest</span><span class="w"> </span><span class="o">*</span><span class="nf">createInstance</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sType</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -114,7 +114,7 @@
 </dl>
 </section>
 <section id="md5sum-string">
-<h3><code class="docutils literal notranslate"><span class="pre">md5sum_string</span></code><a class="headerlink" href="#md5sum-string" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">md5sum_string</span></code><a class="headerlink" href="#md5sum-string" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="nf">md5sum_string</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sData</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">piDigestLen</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -127,7 +127,7 @@
 </dl>
 </section>
 <section id="sha256sum-string">
-<h3><code class="docutils literal notranslate"><span class="pre">sha256sum_string</span></code><a class="headerlink" href="#sha256sum-string" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">sha256sum_string</span></code><a class="headerlink" href="#sha256sum-string" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="nf">sha256sum_string</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sData</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">piDigestLen</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -140,7 +140,7 @@
 </dl>
 </section>
 <section id="sha512sum-string">
-<h3><code class="docutils literal notranslate"><span class="pre">sha512sum_string</span></code><a class="headerlink" href="#sha512sum-string" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">sha512sum_string</span></code><a class="headerlink" href="#sha512sum-string" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="nf">sha512sum_string</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sData</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">piDigestLen</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -153,7 +153,7 @@
 </dl>
 </section>
 <section id="md5sum-data">
-<h3><code class="docutils literal notranslate"><span class="pre">md5sum_data</span></code><a class="headerlink" href="#md5sum-data" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">md5sum_data</span></code><a class="headerlink" href="#md5sum-data" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="nf">md5sum_data</span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">pData</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iDataLen</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">piDigestLen</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -168,7 +168,7 @@
 </dl>
 </section>
 <section id="sha256sum-data">
-<h3><code class="docutils literal notranslate"><span class="pre">sha256sum_data</span></code><a class="headerlink" href="#sha256sum-data" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">sha256sum_data</span></code><a class="headerlink" href="#sha256sum-data" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="nf">sha256sum_data</span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">pData</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iDataLen</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">piDigestLen</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -183,7 +183,7 @@
 </dl>
 </section>
 <section id="sha512sum-data">
-<h3><code class="docutils literal notranslate"><span class="pre">sha512sum_data</span></code><a class="headerlink" href="#sha512sum-data" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">sha512sum_data</span></code><a class="headerlink" href="#sha512sum-data" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="nf">sha512sum_data</span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">pData</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iDataLen</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">piDigestLen</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -198,7 +198,7 @@
 </dl>
 </section>
 <section id="md5sum-file">
-<h3><code class="docutils literal notranslate"><span class="pre">md5sum_file</span></code><a class="headerlink" href="#md5sum-file" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">md5sum_file</span></code><a class="headerlink" href="#md5sum-file" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="nf">md5sum_file</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sFileName</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">piDigestLen</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -211,7 +211,7 @@
 </dl>
 </section>
 <section id="sha256sum-file">
-<h3><code class="docutils literal notranslate"><span class="pre">sha256sum_file</span></code><a class="headerlink" href="#sha256sum-file" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">sha256sum_file</span></code><a class="headerlink" href="#sha256sum-file" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="nf">sha256sum_file</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sFileName</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">piDigestLen</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -224,7 +224,7 @@
 </dl>
 </section>
 <section id="sha512sum-file">
-<h3><code class="docutils literal notranslate"><span class="pre">sha512sum_file</span></code><a class="headerlink" href="#sha512sum-file" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">sha512sum_file</span></code><a class="headerlink" href="#sha512sum-file" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="nf">sha512sum_file</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sFileName</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">piDigestLen</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -238,16 +238,16 @@
 </section>
 </section>
 <section id="protected-methods">
-<h2>Protected Methods<a class="headerlink" href="#protected-methods" title="Permalink to this heading">¶</a></h2>
+<h2>Protected Methods<a class="headerlink" href="#protected-methods" title="Link to this heading">¶</a></h2>
 <section id="constructor">
-<h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#constructor" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#constructor" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">CryptoDigest</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>Empty constructor.</p>
 </section>
 <section id="init">
-<h3><code class="docutils literal notranslate"><span class="pre">init</span></code><a class="headerlink" href="#init" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">init</span></code><a class="headerlink" href="#init" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">init</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sType</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -260,9 +260,9 @@
 </section>
 </section>
 <section id="protected-static-methods">
-<h2>Protected Static Methods<a class="headerlink" href="#protected-static-methods" title="Permalink to this heading">¶</a></h2>
+<h2>Protected Static Methods<a class="headerlink" href="#protected-static-methods" title="Link to this heading">¶</a></h2>
 <section id="genericsum-string">
-<h3><code class="docutils literal notranslate"><span class="pre">genericsum_string</span></code><a class="headerlink" href="#genericsum-string" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">genericsum_string</span></code><a class="headerlink" href="#genericsum-string" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="nf">genericsum_string</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sDigestName</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sData</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">piDigestLen</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -278,7 +278,7 @@ The length of the digest is returned in <code class="docutils literal notranslat
 </dl>
 </section>
 <section id="genericsum-file">
-<h3><code class="docutils literal notranslate"><span class="pre">genericsum_file</span></code><a class="headerlink" href="#genericsum-file" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">genericsum_file</span></code><a class="headerlink" href="#genericsum-file" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="nf">genericsum_file</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sDigestName</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sFileName</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">piDigestLen</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -294,7 +294,7 @@ The length of the digest is returned in <code class="docutils literal notranslat
 </dl>
 </section>
 <section id="genericsum-data">
-<h3><code class="docutils literal notranslate"><span class="pre">genericsum_data</span></code><a class="headerlink" href="#genericsum-data" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">genericsum_data</span></code><a class="headerlink" href="#genericsum-data" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="nf">genericsum_data</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sDigestName</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">pData</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iDataLen</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">piDigestLen</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -411,8 +411,8 @@ The length of the digest is returned in <code class="docutils literal notranslat
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2022, jodyxha.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.0.1.
+    &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
   </body>
 </html>

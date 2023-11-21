@@ -26,11 +26,11 @@ Priorities
 ----------
 
 The order in which actions are executed is often important. 
-For example, agents must be paired *before* they can make offspring, or, obviously, an agent should move before it dies (and not vide-versa).
+For example, agents must be paired *before* they can make offspring, or, obviously, an agent should move before it dies (and not vice-versa).
 To handle this issue, each action of a population has a priority level assigned to it
 (when starting a simulation from scratch, the priority levels must be set in the :ref:`xml initialisation file<pop_xml_example_ref>`).
 
-In QHG the actions with lower priority levels are executed before actions with higher priority levels. 
+Note: In QHG the actions with lower priority levels are executed before actions with higher priority levels. 
 If two actions have the same priority level, the order of execution is undefined.
 
 In each step during the simulation, first the actions with the lowest priority values are applied to all agents, then the action with second fighest priority level are applied to all agents, and so on.

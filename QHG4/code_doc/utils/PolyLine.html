@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../../">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>PolyLine &#8212; QHG4 4.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../static/jody.css" />
+    <link rel="stylesheet" type="text/css" href="../../static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../static/jody.css?v=dac31e62" />
     
-    <script data-url_root="../../" id="documentation_options" src="../../static/documentation_options.js"></script>
-    <script src="../../static/doctools.js"></script>
-    <script src="../../static/sphinx_highlight.js"></script>
+    <script src="../../static/documentation_options.js?v=3b2dd2c4"></script>
+    <script src="../../static/doctools.js?v=888ff710"></script>
+    <script src="../../static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
     <link rel="icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
@@ -45,7 +45,7 @@
           <div class="body" role="main">
             
   <section id="polyline">
-<span id="polyline-ref"></span><h1>PolyLine<a class="headerlink" href="#polyline" title="Permalink to this heading">¶</a></h1>
+<span id="polyline-ref"></span><h1>PolyLine<a class="headerlink" href="#polyline" title="Link to this heading">¶</a></h1>
 <p class="hidden">This page describes the class <span class="target" id="index-0"></span>PolyLine</p>
 <p>The class <code class="docutils literal notranslate"><span class="pre">PolyLine</span></code> implements a piecewise linear function.</p>
 <figure class="align-default">
@@ -66,9 +66,9 @@
 </dd>
 </dl>
 <section id="public-methods">
-<h2>Public Methods<a class="headerlink" href="#public-methods" title="Permalink to this heading">¶</a></h2>
+<h2>Public Methods<a class="headerlink" href="#public-methods" title="Link to this heading">¶</a></h2>
 <section id="constructors">
-<h3><code class="docutils literal notranslate"><span class="pre">constructors</span></code><a class="headerlink" href="#constructors" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">constructors</span></code><a class="headerlink" href="#constructors" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">PolyLine</span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iNumSegments</span><span class="p">);</span>
 <span class="n">PolyLine</span><span class="p">(</span><span class="n">PolyLine</span><span class="w"> </span><span class="o">*</span><span class="n">pPL</span><span class="p">);</span>
 </pre></div>
@@ -82,13 +82,13 @@
 <p>The constructors allocate memory for the x-cordinates, the y-coordinates and the slopes.</p>
 </section>
 <section id="destructor">
-<h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="o">~</span><span class="n">PolyLine</span><span class="p">();</span>
 </pre></div>
 </div>
 </section>
 <section id="addpoint">
-<h3><code class="docutils literal notranslate"><span class="pre">addPoint</span></code><a class="headerlink" href="#addpoint" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">addPoint</span></code><a class="headerlink" href="#addpoint" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">addPoint</span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">fX</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">fV</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -103,7 +103,7 @@
 <p>Adds the i-th point as (fX, fV), and calculates the slope of the line from the previous point.</p>
 </section>
 <section id="constructor">
-<h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#constructor" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#constructor" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span><span class="w"> </span><span class="nf">getVal</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">fX</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -114,7 +114,7 @@
 <p>Calculates the value of the poly line by interpolating the segment whose projection to the x-axis contains x.</p>
 </section>
 <section id="write">
-<h3><code class="docutils literal notranslate"><span class="pre">write</span></code><a class="headerlink" href="#write" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">write</span></code><a class="headerlink" href="#write" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">write</span><span class="p">(</span><span class="kt">FILE</span><span class="w"> </span><span class="o">*</span><span class="n">fOut</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -125,7 +125,7 @@
 <p>Writes a simple textfile containing the coordinate pairs of the poly line.</p>
 </section>
 <section id="diplay">
-<h3><code class="docutils literal notranslate"><span class="pre">diplay</span></code><a class="headerlink" href="#diplay" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">diplay</span></code><a class="headerlink" href="#diplay" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">display</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">pIndent</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sCaption</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -138,7 +138,7 @@
 <p>Writes the poly line data to screen (used for debugging)</p>
 </section>
 <section id="readfromstring">
-<h3><code class="docutils literal notranslate"><span class="pre">readFromString</span></code><a class="headerlink" href="#readfromstring" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">readFromString</span></code><a class="headerlink" href="#readfromstring" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="n">PolyLine</span><span class="w"> </span><span class="o">*</span><span class="nf">readFromString</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sData</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -226,8 +226,8 @@
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2022, jodyxha.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.0.1.
+    &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
   </body>
 </html>

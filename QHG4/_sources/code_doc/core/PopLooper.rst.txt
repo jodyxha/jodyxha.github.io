@@ -56,7 +56,7 @@ The destructor deletes all population managed by the ``PopLooper`` object.
 
      int tryMerge();
 
-Tries to merge as many popualtions as possible. 
+Tries to merge as many populations as possible. 
 Two populations can be merged if they have the same name, the same species ID, the same agent type and the same  actions.
 
 .. -----------------------------------------------------------------------------

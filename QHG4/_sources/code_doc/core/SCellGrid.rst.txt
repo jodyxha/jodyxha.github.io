@@ -10,7 +10,7 @@ SCellGrid
 The ``SCellGrid``  represents the grid on which the simulation is taking place. 
 QHG supports flat grids with 4 or 6 neighborhoods, as well as icosahedral grids.
 
-In principle it is also possible to use irregular grids - in principle any graph couls bd used.
+It is also possible to use irregular grids - in principle any graph could be used.
 
 
 .. figure:: ../../../images/some_grids.png

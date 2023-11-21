@@ -680,8 +680,8 @@ Visualizing the Results
 -----------------------
 
 A simulation with the attributes described above was run for 10'000 steps,
-starting from with a single sheep agent in the center of the field.
-Initially each grass agent has half of the maximum mass.
+starting with a single sheep agent in the center of the field.
+Initially each grass agent had half of the maximum mass.
 
 After every 10 time steps a snapshot of the simulation state was made.
 These snapshots were turned into a video using VisIt's "Save as Movie..." command.

@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../../">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Quat &#8212; QHG4 4.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../static/jody.css" />
+    <link rel="stylesheet" type="text/css" href="../../static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../static/jody.css?v=dac31e62" />
     
-    <script data-url_root="../../" id="documentation_options" src="../../static/documentation_options.js"></script>
-    <script src="../../static/doctools.js"></script>
-    <script src="../../static/sphinx_highlight.js"></script>
+    <script src="../../static/documentation_options.js?v=3b2dd2c4"></script>
+    <script src="../../static/doctools.js?v=888ff710"></script>
+    <script src="../../static/sphinx_highlight.js?v=dc90522c"></script>
     
     <link rel="icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -44,7 +44,7 @@
           <div class="body" role="main">
             
   <section id="quat">
-<span id="quat-ref"></span><h1>Quat<a class="headerlink" href="#quat" title="Permalink to this heading">¶</a></h1>
+<span id="quat-ref"></span><h1>Quat<a class="headerlink" href="#quat" title="Link to this heading">¶</a></h1>
 <p class="hidden">This page describes the class <span class="target" id="index-0"></span>Quat</p>
 <p>The class <code class="docutils literal notranslate"><span class="pre">Quat</span></code> represents quaternions.</p>
 <p>Quaternions are very handy to calculate and perform rotations.</p>
@@ -56,9 +56,9 @@
 </dd>
 </dl>
 <section id="public-methods">
-<h2>Public Methods<a class="headerlink" href="#public-methods" title="Permalink to this heading">¶</a></h2>
+<h2>Public Methods<a class="headerlink" href="#public-methods" title="Link to this heading">¶</a></h2>
 <section id="constructors">
-<h3><code class="docutils literal notranslate"><span class="pre">constructors</span></code><a class="headerlink" href="#constructors" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">constructors</span></code><a class="headerlink" href="#constructors" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Quat</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">fR</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">fI</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">fJ</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">fK</span><span class="p">);</span>
 <span class="n">Quat</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Quat</span><span class="w"> </span><span class="o">*</span><span class="n">pq</span><span class="p">);</span>
 <span class="n">Quat</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Quat</span><span class="w"> </span><span class="o">&amp;</span><span class="n">q</span><span class="p">);</span>
@@ -74,7 +74,7 @@ There are copy consturctors for <code class="docutils literal notranslate"><span
 The empty constructor is equivalent to <code class="docutils literal notranslate"><span class="pre">Quat(0)</span></code>.</p>
 </section>
 <section id="rotations">
-<h3><code class="docutils literal notranslate"><span class="pre">rotations</span></code><a class="headerlink" href="#rotations" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">rotations</span></code><a class="headerlink" href="#rotations" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Quat</span><span class="w"> </span><span class="o">*</span><span class="nf">createRotation</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">fAngle</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">fX</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">fY</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">fZ</span><span class="p">);</span>
 <span class="n">Quat</span><span class="w"> </span><span class="o">*</span><span class="nf">createRotation</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">fAngle</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Vec3D</span><span class="w"> </span><span class="o">&amp;</span><span class="n">v</span><span class="p">);</span>
 <span class="n">Quat</span><span class="w"> </span><span class="o">*</span><span class="nf">createRotation</span><span class="p">(</span><span class="k">const</span><span class="w">  </span><span class="n">Vec3D</span><span class="w"> </span><span class="o">*</span><span class="n">pvFrom</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Vec3D</span><span class="w"> </span><span class="o">*</span><span class="n">pvTo</span><span class="p">);</span>
@@ -87,7 +87,7 @@ The empty constructor is equivalent to <code class="docutils literal notranslate
 A rotation is given by rotation angle and axis (components or <code class="docutils literal notranslate"><span class="pre">Vec3D</span></code>), or else by two <code class="docutils literal notranslate"><span class="pre">Vec3D</span></code> ojects. in the latter case a quaternion  is returned which corresponds to a rotatio arund an axis perpendicular to both <code class="docutils literal notranslate"><span class="pre">vFrom</span></code> and <code class="docutils literal notranslate"><span class="pre">vTo</span></code>, which transforms <code class="docutils literal notranslate"><span class="pre">vFrom</span></code> to <code class="docutils literal notranslate"><span class="pre">vTo</span></code>.</p>
 </section>
 <section id="addition">
-<h3><code class="docutils literal notranslate"><span class="pre">addition</span></code><a class="headerlink" href="#addition" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">addition</span></code><a class="headerlink" href="#addition" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">add</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Quat</span><span class="w"> </span><span class="o">*</span><span class="n">q</span><span class="p">);</span>
 <span class="kr">inline</span><span class="w"> </span><span class="n">Quat</span><span class="w"> </span><span class="k">operator</span><span class="o">+=</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Quat</span><span class="w"> </span><span class="o">&amp;</span><span class="n">q</span><span class="p">);</span>
 <span class="kr">inline</span><span class="w"> </span><span class="n">Quat</span><span class="w"> </span><span class="k">operator</span><span class="o">+</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Quat</span><span class="w"> </span><span class="o">&amp;</span><span class="n">q1</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Quat</span><span class="w"> </span><span class="o">&amp;</span><span class="n">q2</span><span class="p">);</span>
@@ -96,7 +96,7 @@ A rotation is given by rotation angle and axis (components or <code class="docut
 <p>The <code class="docutils literal notranslate"><span class="pre">add()</span></code> function and <code class="docutils literal notranslate"><span class="pre">operator+=</span></code> change the value of <code class="docutils literal notranslate"><span class="pre">this</span></code>; <code class="docutils literal notranslate"><span class="pre">operator+</span></code> returns a new <code class="docutils literal notranslate"><span class="pre">Quat</span></code>.</p>
 </section>
 <section id="subtraction">
-<h3><code class="docutils literal notranslate"><span class="pre">subtraction</span></code><a class="headerlink" href="#subtraction" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">subtraction</span></code><a class="headerlink" href="#subtraction" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">sub</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Quat</span><span class="w"> </span><span class="o">*</span><span class="n">q</span><span class="p">);</span>
 <span class="kr">inline</span><span class="w"> </span><span class="n">Quat</span><span class="w"> </span><span class="k">operator</span><span class="o">-=</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Quat</span><span class="w"> </span><span class="o">&amp;</span><span class="n">q</span><span class="p">);</span>
 <span class="kr">inline</span><span class="w"> </span><span class="n">Quat</span><span class="w"> </span><span class="k">operator</span><span class="o">-</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Quat</span><span class="w"> </span><span class="o">&amp;</span><span class="n">q1</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Quat</span><span class="w"> </span><span class="o">&amp;</span><span class="n">q2</span><span class="p">);</span>
@@ -105,7 +105,7 @@ A rotation is given by rotation angle and axis (components or <code class="docut
 <p>The <code class="docutils literal notranslate"><span class="pre">sub()</span></code> function and <code class="docutils literal notranslate"><span class="pre">operator-=</span></code> change the value of <code class="docutils literal notranslate"><span class="pre">this</span></code>; <code class="docutils literal notranslate"><span class="pre">operator-</span></code> returns a new <code class="docutils literal notranslate"><span class="pre">Quat</span></code>.</p>
 </section>
 <section id="multiplication">
-<h3><code class="docutils literal notranslate"><span class="pre">multiplication</span></code><a class="headerlink" href="#multiplication" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">multiplication</span></code><a class="headerlink" href="#multiplication" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">mult</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Quat</span><span class="w"> </span><span class="o">*</span><span class="n">q</span><span class="p">);</span>
 <span class="n">Quat</span><span class="w"> </span><span class="k">operator</span><span class="o">*=</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Quat</span><span class="w"> </span><span class="o">&amp;</span><span class="n">q</span><span class="p">);</span>
 <span class="n">Quat</span><span class="w"> </span><span class="k">operator</span><span class="o">*</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Quat</span><span class="w"> </span><span class="o">&amp;</span><span class="n">q1</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Quat</span><span class="w"> </span><span class="o">&amp;</span><span class="n">q2</span><span class="p">);</span>
@@ -114,7 +114,7 @@ A rotation is given by rotation angle and axis (components or <code class="docut
 <p>The <code class="docutils literal notranslate"><span class="pre">mult()</span></code> function and <code class="docutils literal notranslate"><span class="pre">operator*=</span></code> change the value of <code class="docutils literal notranslate"><span class="pre">this</span></code>; <code class="docutils literal notranslate"><span class="pre">operator*</span></code> returns a new <code class="docutils literal notranslate"><span class="pre">Quat</span></code>.</p>
 </section>
 <section id="division">
-<h3><code class="docutils literal notranslate"><span class="pre">division</span></code><a class="headerlink" href="#division" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">division</span></code><a class="headerlink" href="#division" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Quat</span><span class="w"> </span><span class="k">operator</span><span class="o">/</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Quat</span><span class="w"> </span><span class="o">&amp;</span><span class="n">q1</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Quat</span><span class="w"> </span><span class="o">&amp;</span><span class="n">q2</span><span class="p">);</span>
 <span class="n">Quat</span><span class="w"> </span><span class="k">operator</span><span class="o">/=</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Quat</span><span class="w"> </span><span class="o">&amp;</span><span class="n">q</span><span class="p">);</span>
 </pre></div>
@@ -127,7 +127,7 @@ A rotation is given by rotation angle and axis (components or <code class="docut
 <p>The method <code class="docutils literal notranslate"><span class="pre">invert()</span></code> inverts <code class="docutils literal notranslate"><span class="pre">this</span></code>, while <code class="docutils literal notranslate"><span class="pre">operator!</span></code> returns the invers of this.</p>
 </section>
 <section id="scaling">
-<h3><code class="docutils literal notranslate"><span class="pre">scaling</span></code><a class="headerlink" href="#scaling" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">scaling</span></code><a class="headerlink" href="#scaling" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">scale</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">f</span><span class="p">);</span>
 <span class="n">Quat</span><span class="w"> </span><span class="k">operator</span><span class="o">*=</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">d</span><span class="p">);</span>
 <span class="kr">inline</span><span class="w"> </span><span class="n">Quat</span><span class="w"> </span><span class="k">operator</span><span class="o">*</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Quat</span><span class="w"> </span><span class="o">&amp;</span><span class="n">q</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">d</span><span class="p">);</span>
@@ -136,7 +136,7 @@ A rotation is given by rotation angle and axis (components or <code class="docut
 </div>
 </section>
 <section id="conjugation">
-<h3><code class="docutils literal notranslate"><span class="pre">conjugation</span></code><a class="headerlink" href="#conjugation" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">conjugation</span></code><a class="headerlink" href="#conjugation" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">conjugate</span><span class="p">();</span>
 <span class="n">Quat</span><span class="w"> </span><span class="k">operator</span><span class="o">^</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Quat</span><span class="w"> </span><span class="o">&amp;</span><span class="n">q1</span><span class="p">);</span>
 </pre></div>
@@ -144,7 +144,7 @@ A rotation is given by rotation angle and axis (components or <code class="docut
 <p>The method <code class="docutils literal notranslate"><span class="pre">conjugate()</span></code> inverts <code class="docutils literal notranslate"><span class="pre">this</span></code>, while <code class="docutils literal notranslate"><span class="pre">operator^</span></code> returns the conjugate of this.</p>
 </section>
 <section id="norm">
-<h3><code class="docutils literal notranslate"><span class="pre">norm</span></code><a class="headerlink" href="#norm" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">norm</span></code><a class="headerlink" href="#norm" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span><span class="w"> </span><span class="nf">calcNorm</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
 </pre></div>
 </div>
@@ -155,7 +155,7 @@ A rotation is given by rotation angle and axis (components or <code class="docut
 <p>Normalizes this quaternion (i.e. divides it by its norm).</p>
 </section>
 <section id="application">
-<h3><code class="docutils literal notranslate"><span class="pre">application</span></code><a class="headerlink" href="#application" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">application</span></code><a class="headerlink" href="#application" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Quat</span><span class="w"> </span><span class="o">*</span><span class="nf">apply</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Quat</span><span class="w"> </span><span class="o">*</span><span class="n">q</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
 <span class="n">Vec3D</span><span class="w"> </span><span class="o">*</span><span class="nf">apply</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Vec3D</span><span class="w"> </span><span class="o">*</span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
 <span class="n">Vec3D</span><span class="w"> </span><span class="k">operator</span><span class="o">^</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Vec3D</span><span class="w"> </span><span class="o">&amp;</span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
@@ -165,7 +165,7 @@ A rotation is given by rotation angle and axis (components or <code class="docut
 <p>In order to rotate a vector, you apply a (unit) quaternion to it.</p>
 <p>p’ = q * p * q <sup>-1</sup></p>
 <section id="example">
-<h4>Example<a class="headerlink" href="#example" title="Permalink to this heading">¶</a></h4>
+<h4>Example<a class="headerlink" href="#example" title="Link to this heading">¶</a></h4>
 <p>Compile with</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>g++<span class="w"> </span>quat_example.cpp<span class="w"> </span>Vec3D.cpp<span class="w"> </span>-o<span class="w"> </span>quat_example
 </pre></div>
@@ -319,8 +319,8 @@ A rotation is given by rotation angle and axis (components or <code class="docut
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2022, jodyxha.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.0.1.
+    &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
   </body>
 </html>

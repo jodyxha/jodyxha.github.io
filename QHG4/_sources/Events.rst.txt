@@ -158,10 +158,10 @@ The format of <cmd-file>
 | ``command-line   ::= <command> <NL>``
 
 | If the <cmd-file> has changed since the last triggered time the contents will be executed:
-|         iter_cmd:        set new iteration limit
-|         del_action_cmd:  remove action from prio list
-|         mod_pop_cmd:     hange parameter of population
-|         event:           add event to event manager's list
+|         ``iter_cmd``: set new iteration limit
+|         ``del_action_cmd``: remove action from prio list
+|         ``mod_pop_cmd``: change parameter of population
+|         ``event``: add event to event manager's list
 
 **for <event-type> == "check":**
 
@@ -188,7 +188,7 @@ Scrambles the order of connections between nodes
 Example
 """""""
 
-Here is a full example for an eventlist:
+Here is a full example for an event list:
 
 .. code-block:: bash
 

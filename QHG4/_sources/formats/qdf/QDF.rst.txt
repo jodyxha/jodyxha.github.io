@@ -33,7 +33,7 @@ The top level of a qdf file can contain the following groups:
   NavGroup
   PopsGroup 
    
-Apart from "Populations", all groups contain only data sets and attributes. "Populations" contains one group for each species involved.
+Apart from "Populations", all groups contain only data sets and attributes. "Populations" contains one subgroup for each species involved.
   
 
 Attributes
@@ -44,7 +44,7 @@ The top level of a qdf file usually contains the attributes
     Contains the string "A QHG4 Data File"
 
 - **Step**
-    For output files, the alue of this attribute is the simulation step for which the qdf file is wwritten.
+    For output files, the value of this attribute is the simulation step for which the qdf file is wwritten.
 
 - **StartTime** 
     The starting time of the simulation (e.g. "-75000").  
@@ -52,4 +52,4 @@ The top level of a qdf file usually contains the attributes
 - **Info**
     Arbitrary information
 
-The root may have additional attributes but generally, they are ignored.
+The root may have additional attributes but generally they are ignored.

@@ -7,7 +7,7 @@ Geography
 
     This page describes the class :index:`Geography`
 
-The ``Geography`` incorporates geographical data such as lobitude, latitude, altitude, ice covering etc.
+The ``Geography`` incorporates geographical data such as longitude, latitude, altitude, ice covering etc.
 All data items are associated with a node of the :ref:`SCellGrid<SCellGrid_ref>`.
 
 Code:
@@ -85,7 +85,7 @@ Distances to neighbors: distances from cell ``k`` at ``m_adDistances[N*k, N*k+N-
 
     geonumber  *m_adArea;       
 
-Area of cell.
+Areas of the cells.
 
 .. -----------------------------------------------------------------------------
 
@@ -182,4 +182,4 @@ The destructors deletes all allocated arrays.
 ``pCG``
     ``SCellGrid`` object to calculate the angles on.
 
-Calculates the orientation of the direction each cell to each of its neoghbors.
+Calculates the orientation of the direction for each cell to each of its neighbors.

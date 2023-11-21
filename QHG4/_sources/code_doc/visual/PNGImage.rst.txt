@@ -7,12 +7,12 @@ PNGImage
 
    This page describes the class :index:`PNGImage`
 
-The class ``PNGImage`` provides methods to create PNG files from data, as well as reading (non compressed) PNGfiles.
+The class ``PNGImage`` provides methods to create PNG files from data, as well as reading data from (non compressed) PNG files.
 
 Code:
-    | `PNGImage.h   <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/PNGImage.h>`_ 
-    | `PNGImage.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/PNGImage.cpp>`_
-
+    | `PNGImage.h   <https://github.com/jodyxha/QHG4/blob/main/QHG4/visual/PNGImage.h>`_ 
+    | `PNGImage.cpp <https://github.com/jodyxha/QHG4/blob/main/QHG4/visual/PNGImage.cpp>`_
+   
 
 Public Methods
 --------------
@@ -38,17 +38,17 @@ Public Methods
 ``iColorType``
      Color type of image. The following constants can be found in ``png.h``, the header file for the png library: 
 
-+---------------------------+-----------------------+
-| PNG_COLOR_TYPE_GRAY       | grayscale image       |
-+---------------------------+-----------------------+
-| PNG_COLOR_TYPE_PALETTE    | colors from palette   |
-+---------------------------+-----------------------+
-| PNG_COLOR_TYPE_RGB        | rgb image             |
-+---------------------------+-----------------------+
-| PNG_COLOR_TYPE_RGB_ALPHA  | rgba image            |
-+---------------------------+-----------------------+
-| PNG_COLOR_TYPE_GRAY_ALPHA | graysscale with alpha |
-+---------------------------+-----------------------+
++---------------------------+----------------------+
+| PNG_COLOR_TYPE_GRAY       | grayscale image      |
++---------------------------+----------------------+
+| PNG_COLOR_TYPE_PALETTE    | colors from palette  |
++---------------------------+----------------------+
+| PNG_COLOR_TYPE_RGB        | rgb image            |
++---------------------------+----------------------+
+| PNG_COLOR_TYPE_RGB_ALPHA  | rgba image           |
++---------------------------+----------------------+
+| PNG_COLOR_TYPE_GRAY_ALPHA | grayscale with alpha |
++---------------------------+----------------------+
 
 The constructor with no arguments is called when one intends to read a png file.
 
@@ -75,11 +75,11 @@ The destructor deletes various arrays and destroys some PNG-related structures.
     bool createPNGFromData(uchar  **aaucData, const std::string sOutputFile); 
 
 ``aadData``
-    An array holding the rgba values as ``double``s (``aaData[13][25][1]``: green value for pixel (13,25)).
+    An array holding the rgba values as ``double`` ( ``aaData[13][25][1]`` : green value for pixel (13,25)).
 
 ``aaucData``
-    An array holding the rgba values as ``uchar``s. The actual array format is ``iH x 4*iW``,
-    where the 4 rgba ``uchar``s are written one after the other. (``aucData[13][4*25]``: red value for pixel (13,25), ``aucData[13][4*25+2]``: blue value for pixel (13,25)).
+    An array holding the rgba values as ``uchar``. The actual array format is ``iH x 4*iW``,
+    where the 4 rgba ``uchar`` values are written one after the other (``aucData[13][4*25]``: red value for pixel (13,25), ``aucData[13][4*25+2]``: blue value for pixel (13,25)).
 
 Creates PNG data from the data provided and writes it to the output file.
 
@@ -126,7 +126,8 @@ image info
     int getNumChannels();
     int getText(char ***ppKeys, char ***ppValues);
 
-These methods return information about the curren PNG data. Usually called after reading a PNG file with ``readPNGFile()``.
+These methods return information about the current PNG data. Usually called after reading a PNG file with ``readPNGFile()``.
+
 .. -----------------------------------------------------------------------------
 
 
@@ -164,7 +165,7 @@ Returns the entire image data.
     Number of the row to replace.
 
 ``ucRow``
-    ``uchar`` color values for the row to replaced.
+    ``uchar`` color values for the row to be replaced.
 
 ``piRow``
     ``int`` color values for the row to be replaced.

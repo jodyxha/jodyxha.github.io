@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../../">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>stdstrutils &#8212; QHG4 4.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../static/jody.css" />
+    <link rel="stylesheet" type="text/css" href="../../static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../static/jody.css?v=dac31e62" />
     
-    <script data-url_root="../../" id="documentation_options" src="../../static/documentation_options.js"></script>
-    <script src="../../static/doctools.js"></script>
-    <script src="../../static/sphinx_highlight.js"></script>
+    <script src="../../static/documentation_options.js?v=3b2dd2c4"></script>
+    <script src="../../static/doctools.js?v=888ff710"></script>
+    <script src="../../static/sphinx_highlight.js?v=dc90522c"></script>
     
     <link rel="icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -44,7 +44,7 @@
           <div class="body" role="main">
             
   <section id="stdstrutils">
-<span id="stdstrutils-ref"></span><h1>stdstrutils<a class="headerlink" href="#stdstrutils" title="Permalink to this heading">¶</a></h1>
+<span id="stdstrutils-ref"></span><h1>stdstrutils<a class="headerlink" href="#stdstrutils" title="Link to this heading">¶</a></h1>
 <p class="hidden">This page describes the module <span class="target" id="index-0"></span>stdstrutils</p>
 <p>The module <code class="docutils literal notranslate"><span class="pre">stdstrutils</span></code> contains various string utilities that also accept <code class="docutils literal notranslate"><span class="pre">std::string</span></code>.</p>
 <p>The code is distributed across 3 files</p>
@@ -67,9 +67,9 @@
 </dd>
 </dl>
 <section id="functions">
-<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this heading">¶</a></h2>
+<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h2>
 <section id="splitstring">
-<h3><code class="docutils literal notranslate"><span class="pre">splitString</span></code><a class="headerlink" href="#splitstring" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">splitString</span></code><a class="headerlink" href="#splitstring" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">uint</span><span class="w"> </span><span class="nf">splitString</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sString</span><span class="p">,</span><span class="w"> </span><span class="n">stringvec</span><span class="w"> </span><span class="o">&amp;</span><span class="n">vParts</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sSeps</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">bKeepEmpty</span><span class="o">=</span><span class="nb">true</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -90,7 +90,7 @@
 <p>Returns the number of fragments saved.</p>
 </section>
 <section id="trim">
-<h3><code class="docutils literal notranslate"><span class="pre">trim</span></code><a class="headerlink" href="#trim" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">trim</span></code><a class="headerlink" href="#trim" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">trim</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">str</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -102,21 +102,21 @@
 <p>Returns the trimmed string.</p>
 </section>
 <section id="endswith">
-<h3><code class="docutils literal notranslate"><span class="pre">endsWith</span></code><a class="headerlink" href="#endswith" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">endsWith</span></code><a class="headerlink" href="#endswith" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="nf">endsWith</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sBig</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sEnd</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Returns <code class="docutils literal notranslate"><span class="pre">true</span></code> if the string <code class="docutils literal notranslate"><span class="pre">sBig</span></code> ends with <code class="docutils literal notranslate"><span class="pre">sEnd</span></code>.</p>
 </section>
 <section id="startswith">
-<h3><code class="docutils literal notranslate"><span class="pre">startsWith</span></code><a class="headerlink" href="#startswith" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">startsWith</span></code><a class="headerlink" href="#startswith" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="nf">startsWith</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sBig</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sStart</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Returns <code class="docutils literal notranslate"><span class="pre">true</span></code> if the string <code class="docutils literal notranslate"><span class="pre">sBig</span></code> starts with <code class="docutils literal notranslate"><span class="pre">sStart</span></code>.</p>
 </section>
 <section id="strreplace">
-<h3><code class="docutils literal notranslate"><span class="pre">strReplace</span></code><a class="headerlink" href="#strreplace" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">strReplace</span></code><a class="headerlink" href="#strreplace" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="nf">strReplace</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="n">sBig</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sOld</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sNew</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -124,7 +124,7 @@
 <p>Teturn <code class="docutils literal notranslate"><span class="pre">true</span></code> if a replacement has been made.</p>
 </section>
 <section id="join">
-<h3><code class="docutils literal notranslate"><span class="pre">join</span></code><a class="headerlink" href="#join" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">join</span></code><a class="headerlink" href="#join" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">join</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">stringvec</span><span class="w"> </span><span class="o">&amp;</span><span class="n">vStrings</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="n">sSep</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -137,7 +137,7 @@
 </dl>
 </section>
 <section id="readkeystring">
-<h3><code class="docutils literal notranslate"><span class="pre">readKeyString</span></code><a class="headerlink" href="#readkeystring" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">readKeyString</span></code><a class="headerlink" href="#readkeystring" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">readKeyString</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sLine</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sKey</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sSep</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -145,21 +145,21 @@
 ``   &lt;Key&gt; &lt;Sep&gt; &lt;Val&gt;``</p>
 </section>
 <section id="fileexists">
-<h3><code class="docutils literal notranslate"><span class="pre">fileExists</span></code><a class="headerlink" href="#fileexists" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">fileExists</span></code><a class="headerlink" href="#fileexists" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="nf">fileExists</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sFile</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Returns true if the file with name <code class="docutils literal notranslate"><span class="pre">sFile</span></code> exists.</p>
 </section>
 <section id="direxists">
-<h3><code class="docutils literal notranslate"><span class="pre">dirExists</span></code><a class="headerlink" href="#direxists" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">dirExists</span></code><a class="headerlink" href="#direxists" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="nf">dirExists</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sDir</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Returns true if the directory with name <code class="docutils literal notranslate"><span class="pre">sDir</span></code> exists.</p>
 </section>
 <section id="strtonum">
-<h3><code class="docutils literal notranslate"><span class="pre">strToNum</span></code><a class="headerlink" href="#strtonum" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">strToNum</span></code><a class="headerlink" href="#strtonum" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
 <span class="k">static</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">strToNum</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sData</span><span class="p">,</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="o">*</span><span class="n">t</span><span class="p">);</span>
 </pre></div>
@@ -174,7 +174,7 @@
 <p>Returns <code class="docutils literal notranslate"><span class="pre">true</span></code> if a conversion was possible.</p>
 </section>
 <section id="strtohex">
-<h3><code class="docutils literal notranslate"><span class="pre">strToHex</span></code><a class="headerlink" href="#strtohex" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">strToHex</span></code><a class="headerlink" href="#strtohex" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
 <span class="k">static</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">strToHex</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sData</span><span class="p">,</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="o">*</span><span class="n">t</span><span class="p">);</span>
 </pre></div>
@@ -182,7 +182,7 @@
 <p>Converts the hexadecimal string <code class="docutils literal notranslate"><span class="pre">sData</span></code> to a numerical value.</p>
 </section>
 <section id="stdprintf-family">
-<h3><code class="docutils literal notranslate"><span class="pre">stdprintf</span></code> family``<a class="headerlink" href="#stdprintf-family" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">stdprintf</span></code> family``<a class="headerlink" href="#stdprintf-family" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="p">...</span><span class="w"> </span><span class="n">Args</span><span class="o">&gt;</span>
 <span class="k">static</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">stdsprintf</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sFormat</span><span class="p">,</span><span class="w"> </span><span class="n">Args</span><span class="p">...</span><span class="w"> </span><span class="n">args</span><span class="p">);</span>
 
@@ -197,7 +197,7 @@
 <p>The format characters are the same as for <code class="docutils literal notranslate"><span class="pre">printf</span></code>, but ‘s’ can be used for std::strings, and there are new format characters <code class="docutils literal notranslate"><span class="pre">v</span></code> and <code class="docutils literal notranslate"><span class="pre">O</span></code>.</p>
 <p>All length modifiers (e.g. ‘l’ or ‘z`) and flag characters (e.g. ‘-’ or ‘ ‘) are treated correctly, as well as the format character ‘*’ (e.g. “%*d” or “%*.*f”).</p>
 <section id="new-format-characters">
-<h4>New format characters<a class="headerlink" href="#new-format-characters" title="Permalink to this heading">¶</a></h4>
+<h4>New format characters<a class="headerlink" href="#new-format-characters" title="Link to this heading">¶</a></h4>
 <dl>
 <dt><strong>s</strong></dt><dd><p>The corresponding parameter must be a <code class="docutils literal notranslate"><span class="pre">char*</span></code> or <code class="docutils literal notranslate"><span class="pre">std::string</span></code>.</p>
 </dd>
@@ -223,7 +223,7 @@
 </dl>
 </section>
 <section id="example-with-the-new-format-characters">
-<h4>Example with the new format characters<a class="headerlink" href="#example-with-the-new-format-characters" title="Permalink to this heading">¶</a></h4>
+<h4>Example with the new format characters<a class="headerlink" href="#example-with-the-new-format-characters" title="Link to this heading">¶</a></h4>
 <p>Compile with</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>g++<span class="w"> </span>su_example.cpp<span class="w"> </span>stdstrutils.cpp<span class="w"> </span>stdstrutilsT.h<span class="w"> </span>-std<span class="o">=</span>c++20<span class="w"> </span>-o<span class="w"> </span>su_example
 </pre></div>
@@ -379,8 +379,8 @@
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2022, jodyxha.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.0.1.
+    &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
   </body>
 </html>

@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../../">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>GridWriter &#8212; QHG4 4.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../static/jody.css" />
+    <link rel="stylesheet" type="text/css" href="../../static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../static/jody.css?v=dac31e62" />
     
-    <script data-url_root="../../" id="documentation_options" src="../../static/documentation_options.js"></script>
-    <script src="../../static/doctools.js"></script>
-    <script src="../../static/sphinx_highlight.js"></script>
+    <script src="../../static/documentation_options.js?v=3b2dd2c4"></script>
+    <script src="../../static/doctools.js?v=888ff710"></script>
+    <script src="../../static/sphinx_highlight.js?v=dc90522c"></script>
     
     <link rel="icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -44,7 +44,7 @@
           <div class="body" role="main">
             
   <section id="gridwriter">
-<span id="gridwriter-ref"></span><h1>GridWriter<a class="headerlink" href="#gridwriter" title="Permalink to this heading">¶</a></h1>
+<span id="gridwriter-ref"></span><h1>GridWriter<a class="headerlink" href="#gridwriter" title="Link to this heading">¶</a></h1>
 <p class="hidden">This page desctibes the class <span class="target" id="index-0"></span>GridWriter</p>
 <p>The class <code class="docutils literal notranslate"><span class="pre">GridWriter</span></code> is used to write the <a class="reference internal" href="../core/SCellGrid.html#scellgrid-ref"><span class="std std-ref">cell grid data</span></a> to a <a class="reference internal" href="../../formats/qdf/GridGroup.html#gridgroup-ref"><span class="std std-ref">grid group</span></a> in a qdf file.</p>
 <dl>
@@ -55,9 +55,9 @@
 </dd>
 </dl>
 <section id="public-methods">
-<h2>Public Methods<a class="headerlink" href="#public-methods" title="Permalink to this heading">¶</a></h2>
+<h2>Public Methods<a class="headerlink" href="#public-methods" title="Link to this heading">¶</a></h2>
 <section id="constructor">
-<h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#constructor" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#constructor" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">GridWriter</span><span class="p">(</span><span class="n">SCellGrid</span><span class="w"> </span><span class="o">*</span><span class="n">pCG</span><span class="p">,</span><span class="w"> </span><span class="n">stringmap</span><span class="w"> </span><span class="o">*</span><span class="n">psm</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -70,7 +70,7 @@
 </dl>
 </section>
 <section id="write">
-<h3><code class="docutils literal notranslate"><span class="pre">write</span></code><a class="headerlink" href="#write" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">write</span></code><a class="headerlink" href="#write" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">write</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hFile</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -82,7 +82,7 @@
 <p>Returns 0 on success, -1 on failure.</p>
 </section>
 <section id="writetoqdf">
-<h3><code class="docutils literal notranslate"><span class="pre">writeToQDF</span></code><a class="headerlink" href="#writetoqdf" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">writeToQDF</span></code><a class="headerlink" href="#writetoqdf" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">writeToQDF</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sFileName</span><span class="p">,</span><span class="w">   </span><span class="kt">int</span><span class="w"> </span><span class="n">iStep</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">fStartTime</span><span class="p">,</span>
 <span class="w">               </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">sInfoString</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">bNew</span><span class="p">);</span>
 </pre></div>
@@ -104,16 +104,16 @@
 </section>
 </section>
 <section id="protected-methods">
-<h2>Protected Methods<a class="headerlink" href="#protected-methods" title="Permalink to this heading">¶</a></h2>
+<h2>Protected Methods<a class="headerlink" href="#protected-methods" title="Link to this heading">¶</a></h2>
 <section id="createcelldatatype">
-<h3><code class="docutils literal notranslate"><span class="pre">createCellDataType</span></code><a class="headerlink" href="#createcelldatatype" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">createCellDataType</span></code><a class="headerlink" href="#createcelldatatype" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">hid_t</span><span class="w"> </span><span class="nf">createCellDataType</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>Creates and returns a hdf data type for the cell data.</p>
 </section>
 <section id="writecelldata">
-<h3><code class="docutils literal notranslate"><span class="pre">writeCellData</span></code><a class="headerlink" href="#writecelldata" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">writeCellData</span></code><a class="headerlink" href="#writecelldata" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">writeCellData</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hDataSpace</span><span class="p">,</span><span class="w"> </span><span class="n">hid_t</span><span class="w"> </span><span class="n">hDataSet</span><span class="p">,</span><span class="w"> </span><span class="n">hid_t</span><span class="w"> </span><span class="n">hCellType</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -129,7 +129,7 @@
 <p>Returns 0 on success, -1 on failure.</p>
 </section>
 <section id="writegridattributes">
-<h3><code class="docutils literal notranslate"><span class="pre">writeGridAttributes</span></code><a class="headerlink" href="#writegridattributes" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">writeGridAttributes</span></code><a class="headerlink" href="#writegridattributes" title="Link to this heading">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">writeGridAttributes</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hGridGroup</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -225,8 +225,8 @@
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2022, jodyxha.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.0.1.
+    &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
   </body>
 </html>

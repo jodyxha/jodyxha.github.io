@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../../">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Observable &#8212; QHG4 4.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../static/jody.css" />
+    <link rel="stylesheet" type="text/css" href="../../static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../static/jody.css?v=dac31e62" />
     
-    <script data-url_root="../../" id="documentation_options" src="../../static/documentation_options.js"></script>
-    <script src="../../static/doctools.js"></script>
-    <script src="../../static/sphinx_highlight.js"></script>
+    <script src="../../static/documentation_options.js?v=3b2dd2c4"></script>
+    <script src="../../static/doctools.js?v=888ff710"></script>
+    <script src="../../static/sphinx_highlight.js?v=dc90522c"></script>
     
     <link rel="icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -44,7 +44,7 @@
           <div class="body" role="main">
             
   <section id="observable">
-<span id="observable-ref"></span><h1>Observable<a class="headerlink" href="#observable" title="Permalink to this heading">¶</a></h1>
+<span id="observable-ref"></span><h1>Observable<a class="headerlink" href="#observable" title="Link to this heading">¶</a></h1>
 <p class="hidden">This page describes the class <span class="target" id="index-0"></span>Observable`</p>
 <p>The class <code class="docutils literal notranslate"><span class="pre">Observable</span></code> provides a minimal implementation needed for an observable in the  <a class="reference internal" href="../../ObserverPattern.html#observerpattern-ref"><span class="std std-ref">observer pattern</span></a>.</p>
 <p>An observable can have more than one <a class="reference internal" href="Observer.html#observer-ref"><span class="std std-ref">observer</span></a>.</p>
@@ -62,16 +62,16 @@
 </dl>
 </section>
 <section id="public-methods">
-<h1>Public Methods<a class="headerlink" href="#public-methods" title="Permalink to this heading">¶</a></h1>
+<h1>Public Methods<a class="headerlink" href="#public-methods" title="Link to this heading">¶</a></h1>
 <section id="constructor">
-<h2><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#constructor" title="Permalink to this heading">¶</a></h2>
+<h2><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#constructor" title="Link to this heading">¶</a></h2>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Observable</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>The constructor does nothing.</p>
 </section>
 <section id="addobserver">
-<h2><code class="docutils literal notranslate"><span class="pre">addObserver</span></code><a class="headerlink" href="#addobserver" title="Permalink to this heading">¶</a></h2>
+<h2><code class="docutils literal notranslate"><span class="pre">addObserver</span></code><a class="headerlink" href="#addobserver" title="Link to this heading">¶</a></h2>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">addObserver</span><span class="p">(</span><span class="n">Observer</span><span class="w"> </span><span class="o">*</span><span class="n">pObs</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -81,7 +81,7 @@
 </dl>
 </section>
 <section id="notifyobservers">
-<h2><code class="docutils literal notranslate"><span class="pre">notifyObservers</span></code><a class="headerlink" href="#notifyobservers" title="Permalink to this heading">¶</a></h2>
+<h2><code class="docutils literal notranslate"><span class="pre">notifyObservers</span></code><a class="headerlink" href="#notifyobservers" title="Link to this heading">¶</a></h2>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">notifyObservers</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iType</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">pCom</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -170,8 +170,8 @@
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2022, jodyxha.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.0.1.
+    &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
   </body>
 </html>

@@ -47,8 +47,8 @@ Environment
 | The environment consists of different layers. 
 | The basis of an environment is a cellgrid. 
 | The cellgrid holds pointers to the other environment layers such as geography, climate, vegetatiuon, navigation etc.
-| This way each grid node has its set of environment data.
-| Agents move from node to node and can access the environmental dat at these locations.
+| This way each grid node has its own set of environment data.
+| Agents move from node to node and can access the environmental data associates with these locations.
 
 The essential environment classes:
   * **SCellGrid** 
@@ -101,6 +101,6 @@ Events
 """"""
 
 In order to trigger specific actions, mainly reading and writing data, QHG4 uses so-called events.
-Usually a list of times, eventy types (what to do) and arguments (what to do it to) are passed to QHG4 as parameters. 
+Usually a list of times (when to do something), event types (what to do), and arguments (what to do it to) are passed to QHG4 as parameters. 
 During execution, whenever the current simulation time matches a time on the event list, the actions for corresponding event(s) are executed.
 

@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>The Source File for the Action Class Virus &#8212; QHG4 4.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../static/jody.css" />
+    <link rel="stylesheet" type="text/css" href="../static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../static/jody.css?v=dac31e62" />
     
-    <script data-url_root="../" id="documentation_options" src="../static/documentation_options.js"></script>
-    <script src="../static/doctools.js"></script>
-    <script src="../static/sphinx_highlight.js"></script>
+    <script src="../static/documentation_options.js?v=3b2dd2c4"></script>
+    <script src="../static/doctools.js?v=888ff710"></script>
+    <script src="../static/sphinx_highlight.js?v=dc90522c"></script>
     
     <link rel="icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -44,7 +44,7 @@
           <div class="body" role="main">
             
   <section id="the-source-file-for-the-action-class-virus">
-<span id="howto-virus-source-ref"></span><h1>The Source File for the Action Class <code class="docutils literal notranslate"><span class="pre">Virus</span></code><a class="headerlink" href="#the-source-file-for-the-action-class-virus" title="Permalink to this heading">¶</a></h1>
+<span id="howto-virus-source-ref"></span><h1>The Source File for the Action Class <code class="docutils literal notranslate"><span class="pre">Virus</span></code><a class="headerlink" href="#the-source-file-for-the-action-class-virus" title="Link to this heading">¶</a></h1>
 <p>At the beginning of <code class="docutils literal notranslate"><span class="pre">Virus.cpp</span></code> we must put the header files we need:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;omp.h&gt;</span>
 
@@ -72,7 +72,7 @@
 </pre></div>
 </div>
 <section id="constructor">
-<h2><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#constructor" title="Permalink to this heading">¶</a></h2>
+<h2><code class="docutils literal notranslate"><span class="pre">constructor</span></code><a class="headerlink" href="#constructor" title="Link to this heading">¶</a></h2>
 <p>There is not much to do in the constructor: intialisation of the variables,
 and saving the attribute names.</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
@@ -99,7 +99,7 @@ and saving the attribute names.</p>
 </div>
 </section>
 <section id="destructor">
-<h2><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Permalink to this heading">¶</a></h2>
+<h2><code class="docutils literal notranslate"><span class="pre">destructor</span></code><a class="headerlink" href="#destructor" title="Link to this heading">¶</a></h2>
 <p>The destructor deletes the arrays that were allocated in the constructor</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
 <span class="n">Virus</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::~</span><span class="n">Virus</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
@@ -111,7 +111,7 @@ and saving the attribute names.</p>
 </div>
 </section>
 <section id="initialize">
-<h2><code class="docutils literal notranslate"><span class="pre">initialize</span></code><a class="headerlink" href="#initialize" title="Permalink to this heading">¶</a></h2>
+<h2><code class="docutils literal notranslate"><span class="pre">initialize</span></code><a class="headerlink" href="#initialize" title="Link to this heading">¶</a></h2>
 <p>The method initialize is called before <code class="docutils literal notranslate"><span class="pre">execute()</span></code>.
 Here the array of maps relating cell indexes to agent indexes (<code class="docutils literal notranslate"><span class="pre">m_amCellAGents</span></code>) is filled,
 and the array of maps relating agent IDs to virus loads (<code class="docutils literal notranslate"><span class="pre">m_amAgentInfects</span></code>) is resaet.</p>
@@ -143,7 +143,7 @@ we can use parallelized loops with the full set of available threads.</p>
 </div>
 </section>
 <section id="execute">
-<h2><code class="docutils literal notranslate"><span class="pre">execute</span></code><a class="headerlink" href="#execute" title="Permalink to this heading">¶</a></h2>
+<h2><code class="docutils literal notranslate"><span class="pre">execute</span></code><a class="headerlink" href="#execute" title="Link to this heading">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">execute()</span></code> method is applied to every agent (in parallel).
 This method is usually the one most of the action’s work is done.
 Here is what we need the virus to do for each agent:
@@ -195,7 +195,7 @@ Here is what we need the virus to do for each agent:
 </div>
 </section>
 <section id="finalize">
-<h2><code class="docutils literal notranslate"><span class="pre">finalize</span></code><a class="headerlink" href="#finalize" title="Permalink to this heading">¶</a></h2>
+<h2><code class="docutils literal notranslate"><span class="pre">finalize</span></code><a class="headerlink" href="#finalize" title="Link to this heading">¶</a></h2>
 <p>The method <code class="docutils literal notranslate"><span class="pre">finalize</span></code> is called after all calls to <cite>execute()`</cite>.
 Here we finally add to each agent’s virus load the colllected virus load
 passed from its neighbors. During <code class="docutils literal notranslate"><span class="pre">execute()</span></code> several maps may have entries
@@ -220,7 +220,7 @@ for the same agent.</p>
 <p>The remaining methods deal with reading and writing the virus’ attributes.</p>
 </section>
 <section id="extractattributesqdf">
-<h2><code class="docutils literal notranslate"><span class="pre">extractAttributesQDF</span></code><a class="headerlink" href="#extractattributesqdf" title="Permalink to this heading">¶</a></h2>
+<h2><code class="docutils literal notranslate"><span class="pre">extractAttributesQDF</span></code><a class="headerlink" href="#extractattributesqdf" title="Link to this heading">¶</a></h2>
 <p>This method reads virus attributes from a QDF file.</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
 <span class="kt">int</span><span class="w"> </span><span class="n">Virus</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">extractAttributesQDF</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hSpeciesGroup</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -267,7 +267,7 @@ for the same agent.</p>
 </div>
 </section>
 <section id="writeattributesqdf">
-<h2><code class="docutils literal notranslate"><span class="pre">writeAttributesQDF</span></code><a class="headerlink" href="#writeattributesqdf" title="Permalink to this heading">¶</a></h2>
+<h2><code class="docutils literal notranslate"><span class="pre">writeAttributesQDF</span></code><a class="headerlink" href="#writeattributesqdf" title="Link to this heading">¶</a></h2>
 <p>This method writes the virus’ attributes to a QDF file.</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
 <span class="kt">int</span><span class="w"> </span><span class="n">Virus</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="w"> </span><span class="n">writeAttributesQDF</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="n">hSpeciesGroup</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -285,7 +285,7 @@ for the same agent.</p>
 </div>
 </section>
 <section id="trygetattributes">
-<h2><code class="docutils literal notranslate"><span class="pre">tryGetAttributes</span></code><a class="headerlink" href="#trygetattributes" title="Permalink to this heading">¶</a></h2>
+<h2><code class="docutils literal notranslate"><span class="pre">tryGetAttributes</span></code><a class="headerlink" href="#trygetattributes" title="Link to this heading">¶</a></h2>
 <p>This method reads the virus attributes passed via the <cite>xml population file&lt;pop_xml_ref&gt;</cite>.</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
 <span class="kt">int</span><span class="w"> </span><span class="n">Virus</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">tryGetAttributes</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">ModuleComplex</span><span class="w"> </span><span class="o">*</span><span class="n">pMC</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -306,11 +306,11 @@ for the same agent.</p>
 </div>
 <p>The entire file can be found here: <a class="reference external" href="https://github.com/jodyxha/QHG4/blob/main/QHG4/actions/Virus.cpp">Virus.cpp</a></p>
 <section id="implementation-of-the-population-class-virushostpop">
-<h3>Implementation of the population class <code class="docutils literal notranslate"><span class="pre">VirusHostPop</span></code><a class="headerlink" href="#implementation-of-the-population-class-virushostpop" title="Permalink to this heading">¶</a></h3>
+<h3>Implementation of the population class <code class="docutils literal notranslate"><span class="pre">VirusHostPop</span></code><a class="headerlink" href="#implementation-of-the-population-class-virushostpop" title="Link to this heading">¶</a></h3>
 <p>Since our <cite>Virus`</cite> action makes certain assumptions about the agents, we can’t use an arbitary population class.
 In particular, it needs fields for the virus load and immunity.</p>
 <section id="the-header-file">
-<h4>The header file<a class="headerlink" href="#the-header-file" title="Permalink to this heading">¶</a></h4>
+<h4>The header file<a class="headerlink" href="#the-header-file" title="Link to this heading">¶</a></h4>
 <p>First  we have the includes for the header files of all required
 actions (among them <code class="docutils literal notranslate"><span class="pre">Virus.h</span></code>), and the header file for the
 population’s base class <code class="docutils literal notranslate"><span class="pre">SPopulation</span></code></p>
@@ -393,7 +393,7 @@ and the variable for the mutation rate.</p>
 </section>
 </section>
 <section id="id1">
-<h2>constructor<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
+<h2>constructor<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h2>
 <p>Here we instantiate all actions and initialize the fields.</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">VirusHostPop</span><span class="o">::</span><span class="n">VirusHostPop</span><span class="p">(</span><span class="n">SCellGrid</span><span class="w"> </span><span class="o">*</span><span class="n">pCG</span><span class="p">,</span><span class="w"> </span><span class="n">PopFinder</span><span class="w"> </span><span class="o">*</span><span class="n">pPopFinder</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iLayerSize</span><span class="p">,</span><span class="w"> </span><span class="n">IDGen</span><span class="w"> </span><span class="o">**</span><span class="n">apIDG</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="o">*</span><span class="n">aulState</span><span class="p">,</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="o">*</span><span class="n">aiSeeds</span><span class="p">)</span>
 <span class="w">    </span><span class="o">:</span><span class="w"> </span><span class="n">SPopulation</span><span class="o">&lt;</span><span class="n">VirusHostAgent</span><span class="o">&gt;</span><span class="p">(</span><span class="n">pCG</span><span class="p">,</span><span class="w"> </span><span class="n">pPopFinder</span><span class="p">,</span><span class="w"> </span><span class="n">iLayerSize</span><span class="p">,</span><span class="w"> </span><span class="n">apIDG</span><span class="p">,</span><span class="w"> </span><span class="n">aulState</span><span class="p">,</span><span class="w"> </span><span class="n">aiSeeds</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -424,7 +424,7 @@ and the variable for the mutation rate.</p>
 </div>
 </section>
 <section id="id2">
-<h2>destructor<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
+<h2>destructor<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h2>
 <p>The destructor deletes all action created in the constructor.</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">VirusHostPop</span><span class="o">::~</span><span class="n">VirusHostPop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 
@@ -456,7 +456,7 @@ and the variable for the mutation rate.</p>
 </div>
 </section>
 <section id="getpopparams">
-<h2>getPopParams<a class="headerlink" href="#getpopparams" title="Permalink to this heading">¶</a></h2>
+<h2>getPopParams<a class="headerlink" href="#getpopparams" title="Link to this heading">¶</a></h2>
 <p>This method tries to extract mutation rate and inheritance type from the stringmap created by the population XML reader.</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>int  VirusHostPop::getPopParams(const stringmap &amp;mVarDefs) {
     int iResult = -1;
@@ -511,7 +511,7 @@ and the variable for the mutation rate.</p>
 </div>
 </section>
 <section id="makepopspecificoffspring">
-<h2>makePopSpecificOffspring<a class="headerlink" href="#makepopspecificoffspring" title="Permalink to this heading">¶</a></h2>
+<h2>makePopSpecificOffspring<a class="headerlink" href="#makepopspecificoffspring" title="Link to this heading">¶</a></h2>
 <p>This method is called when a baby is born in order to initialize it’s field.
 In particular, the baby’s immunity level is determined by the inhertiance type.</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">VirusHostPop::makePopSpecificOffspring</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iAgent</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iMother</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iFather</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -567,7 +567,7 @@ In particular, the baby’s immunity level is determined by the inhertiance type
 </div>
 </section>
 <section id="addpopspecificagentdata">
-<h2>addPopSpecificAgentData<a class="headerlink" href="#addpopspecificagentdata" title="Permalink to this heading">¶</a></h2>
+<h2>addPopSpecificAgentData<a class="headerlink" href="#addpopspecificagentdata" title="Link to this heading">¶</a></h2>
 <p>This method reads agent specific data from the <cite>population dat file&lt;pop_dat_ref&gt;</cite>.</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">VirusHostPop::addPopSpecificAgentData</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iAgentIndex</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">ppData</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 
@@ -595,7 +595,7 @@ In particular, the baby’s immunity level is determined by the inhertiance type
 </div>
 </section>
 <section id="addpopspecificagentdatatypeqdf">
-<h2>addPopSpecificAgentDataTypeQDF<a class="headerlink" href="#addpopspecificagentdatatypeqdf" title="Permalink to this heading">¶</a></h2>
+<h2>addPopSpecificAgentDataTypeQDF<a class="headerlink" href="#addpopspecificagentdatatypeqdf" title="Link to this heading">¶</a></h2>
 <p>This method creates a HDF data type to handlle I/O of agents.</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">VirusHostPop::addPopSpecificAgentDataTypeQDF</span><span class="p">(</span><span class="n">hid_t</span><span class="w"> </span><span class="o">*</span><span class="n">hAgentDataType</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 
@@ -696,8 +696,8 @@ In particular, the baby’s immunity level is determined by the inhertiance type
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2022, jodyxha.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.0.1.
+    &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
   </body>
 </html>

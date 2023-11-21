@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../../">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>QHGMain &#8212; QHG4 4.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../static/jody.css" />
+    <link rel="stylesheet" type="text/css" href="../../static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../static/jody.css?v=dac31e62" />
     
-    <script data-url_root="../../" id="documentation_options" src="../../static/documentation_options.js"></script>
-    <script src="../../static/doctools.js"></script>
-    <script src="../../static/sphinx_highlight.js"></script>
+    <script src="../../static/documentation_options.js?v=3b2dd2c4"></script>
+    <script src="../../static/doctools.js?v=888ff710"></script>
+    <script src="../../static/sphinx_highlight.js?v=dc90522c"></script>
     
     <link rel="icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -44,7 +44,7 @@
           <div class="body" role="main">
             
   <section id="qhgmain">
-<span id="qhgmain-ref"></span><h1>QHGMain<a class="headerlink" href="#qhgmain" title="Permalink to this heading">¶</a></h1>
+<span id="qhgmain-ref"></span><h1>QHGMain<a class="headerlink" href="#qhgmain" title="Link to this heading">¶</a></h1>
 <p class="hidden">This page describes the module <span class="target" id="index-0"></span>QHGMain</p>
 <p><code class="docutils literal notranslate"><span class="pre">QHGMain</span></code> is the executable which runs a QHG4 simulation.</p>
 <p><code class="docutils literal notranslate"><span class="pre">QHGMain.cpp</span></code> consists mainly of the <code class="docutils literal notranslate"><span class="pre">main()</span></code> function, in which the logfile is initialized, a <a class="reference internal" href="Simulator.html#simulator-ref"><span class="std std-ref">Simulator</span></a> object is created and the simulation loop is started.</p>
@@ -55,7 +55,7 @@
 </dd>
 </dl>
 <section id="calling-qhgmain">
-<h2>Calling QHGMain<a class="headerlink" href="#calling-qhgmain" title="Permalink to this heading">¶</a></h2>
+<h2>Calling QHGMain<a class="headerlink" href="#calling-qhgmain" title="Link to this heading">¶</a></h2>
 <p>QHGMain has a large number of command line parameters</p>
 <dl class="simple">
 <dt><a class="reference internal" href="#param-h-ref"><span class="std std-ref">-h</span></a></dt><dd><p>show this help</p>
@@ -121,56 +121,56 @@
 </dl>
 </section>
 <section id="parameter-description">
-<h2>Parameter description<a class="headerlink" href="#parameter-description" title="Permalink to this heading">¶</a></h2>
+<h2>Parameter description<a class="headerlink" href="#parameter-description" title="Link to this heading">¶</a></h2>
 <section id="h">
-<span id="param-h-ref"></span><h3>-h<a class="headerlink" href="#h" title="Permalink to this heading">¶</a></h3>
+<span id="param-h-ref"></span><h3>-h<a class="headerlink" href="#h" title="Link to this heading">¶</a></h3>
 <p>Show this help</p>
 </section>
 <section id="help-topic">
-<span id="param-help-ref"></span><h3>–help=&lt;topic&gt;<a class="headerlink" href="#help-topic" title="Permalink to this heading">¶</a></h3>
+<span id="param-help-ref"></span><h3>–help=&lt;topic&gt;<a class="headerlink" href="#help-topic" title="Link to this heading">¶</a></h3>
 <p>Show detailed help for specified topic (use name of option or “all”)</p>
 </section>
 <section id="log-file-filename">
-<span id="param-log-file-ref"></span><h3>–log-file=&lt;filename&gt;<a class="headerlink" href="#log-file-filename" title="Permalink to this heading">¶</a></h3>
+<span id="param-log-file-ref"></span><h3>–log-file=&lt;filename&gt;<a class="headerlink" href="#log-file-filename" title="Link to this heading">¶</a></h3>
 <p>Set name of log file.</p>
 </section>
 <section id="grid-grid-file">
-<span id="param-grid-file-ref"></span><h3>–grid=&lt;grid-file&gt;<a class="headerlink" href="#grid-grid-file" title="Permalink to this heading">¶</a></h3>
+<span id="param-grid-file-ref"></span><h3>–grid=&lt;grid-file&gt;<a class="headerlink" href="#grid-grid-file" title="Link to this heading">¶</a></h3>
 <p>(required)
 Specify name of initial grid-file to use.</p>
 <p><strong>grid-file</strong> must be a QDF file containing  a <a class="reference internal" href="../../formats/qdf/GridGroup.html#gridgroup-ref"><span class="std std-ref">grid group</span></a>, but may also contain other groups.</p>
 </section>
 <section id="num-iters-iters">
-<span id="param-num-iters-ref"></span><h3>–num-iters=&lt;iters&gt;<a class="headerlink" href="#num-iters-iters" title="Permalink to this heading">¶</a></h3>
+<span id="param-num-iters-ref"></span><h3>–num-iters=&lt;iters&gt;<a class="headerlink" href="#num-iters-iters" title="Link to this heading">¶</a></h3>
 <p>(required)
 Set number of iterations.</p>
 <p><strong>iters</strong> must be a positive number.</p>
 </section>
 <section id="geo-geo-file">
-<span id="param-geo-ref"></span><h3>–geo=&lt;geo-file&gt;<a class="headerlink" href="#geo-geo-file" title="Permalink to this heading">¶</a></h3>
+<span id="param-geo-ref"></span><h3>–geo=&lt;geo-file&gt;<a class="headerlink" href="#geo-geo-file" title="Link to this heading">¶</a></h3>
 <p>Set the initial geography file.</p>
 <p><strong>geo-file</strong> must be a QDF-file containing a <a class="reference internal" href="../../formats/qdf/GeoGroup.html#geogroup-ref"><span class="std std-ref">geography group</span></a>, but may also contain other groups.</p>
 <p>It must contain data for the same number of cells as the grid file</p>
 </section>
 <section id="climate-climate-file">
-<span id="param-climate-ref"></span><h3>–climate=&lt;climate-file&gt;<a class="headerlink" href="#climate-climate-file" title="Permalink to this heading">¶</a></h3>
+<span id="param-climate-ref"></span><h3>–climate=&lt;climate-file&gt;<a class="headerlink" href="#climate-climate-file" title="Link to this heading">¶</a></h3>
 <p>Set the initial climate file.</p>
 <p><strong>climate-file</strong> must be a QDF-file containing a <a class="reference internal" href="../../formats/qdf/ClimateGroup.html#climategroup-ref"><span class="std std-ref">climate group</span></a>, but may also contain other groups.</p>
 <p>It must contain data for the same number of cells as the grid file</p>
 </section>
 <section id="veg-veg-file">
-<span id="param-veg-ref"></span><h3>–veg=&lt;veg-file&gt;<a class="headerlink" href="#veg-veg-file" title="Permalink to this heading">¶</a></h3>
+<span id="param-veg-ref"></span><h3>–veg=&lt;veg-file&gt;<a class="headerlink" href="#veg-veg-file" title="Link to this heading">¶</a></h3>
 <p>Set the vegetation file.</p>
 <p><strong>veg-file</strong> must be a QDF file containing a <a class="reference internal" href="../../formats/qdf/VegGroup.html#veggroup-ref"><span class="std std-ref">vegetation group</span></a>, but may also contain othr groups.</p>
 <p>It must contain data for the same number of cells as the grid file</p>
 </section>
 <section id="nav-nav-file">
-<span id="param-nav-ref"></span><h3>–nav=&lt;nav-file&gt;<a class="headerlink" href="#nav-nav-file" title="Permalink to this heading">¶</a></h3>
+<span id="param-nav-ref"></span><h3>–nav=&lt;nav-file&gt;<a class="headerlink" href="#nav-nav-file" title="Link to this heading">¶</a></h3>
 <p>Set navigation file.</p>
 <p><strong>nav-file</strong> must be a QDF file containing a <a class="reference internal" href="../../formats/qdf/NavGroup.html#navgroup-ref"><span class="std std-ref">navigation group</span></a>, but may also contain other groups.</p>
 </section>
 <section id="pops-pop-list">
-<span id="param-pops-ref"></span><h3>–pops=&lt;pop-list&gt;<a class="headerlink" href="#pops-pop-list" title="Permalink to this heading">¶</a></h3>
+<span id="param-pops-ref"></span><h3>–pops=&lt;pop-list&gt;<a class="headerlink" href="#pops-pop-list" title="Link to this heading">¶</a></h3>
 <p>Set population files with QDF file.</p>
 <p><strong>pop-list</strong> is a comma-separated list of population definition files.</p>
 <div class="line-block">
@@ -183,25 +183,25 @@ Set number of iterations.</p>
 </div>
 </section>
 <section id="output-prefix-name">
-<span id="param-output-prefix-ref"></span><h3>–output-prefix=&lt;name&gt;<a class="headerlink" href="#output-prefix-name" title="Permalink to this heading">¶</a></h3>
+<span id="param-output-prefix-ref"></span><h3>–output-prefix=&lt;name&gt;<a class="headerlink" href="#output-prefix-name" title="Link to this heading">¶</a></h3>
 <p>Set prefix for output files (default: “output_”).</p>
 <p>This prefix is prepended to all output files</p>
 <p><strong>name</strong> ia an arbitrary string without special characters)</p>
 <span class="target" id="param-output-dir-ref"></span></section>
 <section id="output-dir-dirname">
-<h3>–output-dir=&lt;dirname&gt;<a class="headerlink" href="#output-dir-dirname" title="Permalink to this heading">¶</a></h3>
+<h3>–output-dir=&lt;dirname&gt;<a class="headerlink" href="#output-dir-dirname" title="Link to this heading">¶</a></h3>
 <p>Set output directory (default: “./”)</p>
 <p>If the output directory does not exist, it is created.</p>
 <p><strong>dirname</strong> is the path to the output</p>
 <span class="target" id="param-data-dirs-ref"></span></section>
 <section id="data-dirs-dirnames">
-<h3>–data-dirs=&lt;dirnames&gt;<a class="headerlink" href="#data-dirs-dirnames" title="Permalink to this heading">¶</a></h3>
+<h3>–data-dirs=&lt;dirnames&gt;<a class="headerlink" href="#data-dirs-dirnames" title="Link to this heading">¶</a></h3>
 <p>Set search-data directories for input files (default: “./”)</p>
 <p><strong>dir-names</strong> is a comma-separated list of directories.</p>
 <p>The order of the directoris in the list defines the search order.</p>
 <span class="target" id="param-read-config-ref"></span></section>
 <section id="read-config-conf">
-<h3>–read-config=&lt;conf&gt;<a class="headerlink" href="#read-config-conf" title="Permalink to this heading">¶</a></h3>
+<h3>–read-config=&lt;conf&gt;<a class="headerlink" href="#read-config-conf" title="Link to this heading">¶</a></h3>
 <p>Read config from a configuration file.</p>
 <dl class="simple">
 <dt>A configuration file must consist of lines each of which is a option setting of the form</dt><dd><p>–&lt;option-name&gt;=value</p>
@@ -210,12 +210,12 @@ Set number of iterations.</p>
 <p>Options passed as parameters to the application supercede the settings in the config file.</p>
 </section>
 <section id="write-config-conf">
-<span id="param-write-config-ref"></span><h3>–write-config=&lt;conf&gt;<a class="headerlink" href="#write-config-conf" title="Permalink to this heading">¶</a></h3>
+<span id="param-write-config-ref"></span><h3>–write-config=&lt;conf&gt;<a class="headerlink" href="#write-config-conf" title="Link to this heading">¶</a></h3>
 <p>Write config to file &lt;conf&gt;</p>
 <p>The configuration file created with this call can be used with the option “–read-config”</p>
 <span class="target" id="param-events-ref"></span></section>
 <section id="events-event-list">
-<h3>–events=&lt;event-list&gt;<a class="headerlink" href="#events-event-list" title="Permalink to this heading">¶</a></h3>
+<h3>–events=&lt;event-list&gt;<a class="headerlink" href="#events-event-list" title="Link to this heading">¶</a></h3>
 <p>Set event list.</p>
 <div class="line-block">
 <div class="line">The event-list string is a comma-separated list of events:</div>
@@ -226,26 +226,26 @@ Set number of iterations.</p>
 <p>For detailed information see  <a class="reference internal" href="../../Events.html#events-ref"><span class="std std-ref">Events</span></a>.</p>
 </section>
 <section id="start-time-time">
-<span id="param-start-time-ref"></span><h3>–start-time=&lt;time&gt;<a class="headerlink" href="#start-time-time" title="Permalink to this heading">¶</a></h3>
+<span id="param-start-time-ref"></span><h3>–start-time=&lt;time&gt;<a class="headerlink" href="#start-time-time" title="Link to this heading">¶</a></h3>
 <p>Set ‘real’ time for simulation step 0 (default: 0).
 If your simulation starts at 70’000 years before the present, you have to set  start-time to -70000.</p>
 </section>
 <section id="dyn-pops">
-<span id="param-dyn-pops-ref"></span><h3>–dyn-pops<a class="headerlink" href="#dyn-pops" title="Permalink to this heading">¶</a></h3>
+<span id="param-dyn-pops-ref"></span><h3>–dyn-pops<a class="headerlink" href="#dyn-pops" title="Link to this heading">¶</a></h3>
 <p>Use population plugins from so directory</p>
 </section>
 <section id="so-dirs-dirlist">
-<span id="param-so-dirs-ref"></span><h3>–so-dirs=&lt;dirlist&gt;<a class="headerlink" href="#so-dirs-dirlist" title="Permalink to this heading">¶</a></h3>
+<span id="param-so-dirs-ref"></span><h3>–so-dirs=&lt;dirlist&gt;<a class="headerlink" href="#so-dirs-dirlist" title="Link to this heading">¶</a></h3>
 <p>search directories for population so-files (default: “./”)</p>
 <p><strong>dirlist</strong> mujst be a comma-separated list of directories in which to look for population plugins</p>
 </section>
 <section id="interpol-step-step">
-<span id="param-interpol-step-ref"></span><h3>–interpol-step=&lt;step&gt;<a class="headerlink" href="#interpol-step-step" title="Permalink to this heading">¶</a></h3>
+<span id="param-interpol-step-ref"></span><h3>–interpol-step=&lt;step&gt;<a class="headerlink" href="#interpol-step-step" title="Link to this heading">¶</a></h3>
 <p>Set step size for interpolation (default: 1)</p>
 <p>This option only has any efffect if you have some interpolation events</p>
 </section>
 <section id="interpolation-params">
-<span id="param-interpolation-ref"></span><h3>–interpolation=&lt;params&gt;<a class="headerlink" href="#interpolation-params" title="Permalink to this heading">¶</a></h3>
+<span id="param-interpolation-ref"></span><h3>–interpolation=&lt;params&gt;<a class="headerlink" href="#interpolation-params" title="Link to this heading">¶</a></h3>
 <p>This option prepares the interpolation of the specified arrays params</p>
 <div class="line-block">
 <div class="line"><code class="docutils literal notranslate"><span class="pre">params</span>&#160;&#160; <span class="pre">::=</span> <span class="pre">&lt;arrays&gt;&quot;:&quot;&lt;evtfile&gt;&quot;:&quot;&lt;inter-step&gt;</span></code></div>
@@ -260,12 +260,12 @@ If your simulation starts at 70’000 years before the present, you have to set 
 </div>
 </section>
 <section id="layer-size-size">
-<span id="param-layer-size-ref"></span><h3>–layer-size=&lt;size&gt;<a class="headerlink" href="#layer-size-size" title="Permalink to this heading">¶</a></h3>
+<span id="param-layer-size-ref"></span><h3>–layer-size=&lt;size&gt;<a class="headerlink" href="#layer-size-size" title="Link to this heading">¶</a></h3>
 <p>(technical)</p>
 <p>Set the layer size of the resizable arrays  (default: 65536)</p>
 </section>
 <section id="shuffle-num">
-<span id="param-shuffle-ref"></span><h3>–shuffle=&lt;num&gt;<a class="headerlink" href="#shuffle-num" title="Permalink to this heading">¶</a></h3>
+<span id="param-shuffle-ref"></span><h3>–shuffle=&lt;num&gt;<a class="headerlink" href="#shuffle-num" title="Link to this heading">¶</a></h3>
 <p>(techical)</p>
 <p>Shift random generator’s sequence (default: 0).</p>
 <div class="line-block">
@@ -274,7 +274,7 @@ If your simulation starts at 70’000 years before the present, you have to set 
 </div>
 </section>
 <section id="seed-seedtype">
-<span id="param-seed-ref"></span><h3>–seed=&lt;seedtype&gt;<a class="headerlink" href="#seed-seedtype" title="Permalink to this heading">¶</a></h3>
+<span id="param-seed-ref"></span><h3>–seed=&lt;seedtype&gt;<a class="headerlink" href="#seed-seedtype" title="Link to this heading">¶</a></h3>
 <p>Set seed for random number generators.</p>
 <div class="line-block">
 <div class="line"><code class="docutils literal notranslate"><span class="pre">seedtype</span>&#160;&#160; <span class="pre">::=</span> <span class="pre">&quot;random&quot;</span> <span class="pre">|</span> <span class="pre">&quot;seq:&quot;&lt;sequence&gt;</span> <span class="pre">|</span> <span class="pre">&quot;file:&quot;&lt;seed-file&gt;</span> <span class="pre">|</span> <span class="pre">&quot;phrase:&quot;&lt;arbitrary&gt;</span></code></div>
@@ -298,7 +298,7 @@ If your simulation starts at 70’000 years before the present, you have to set 
 <p>In total, 16 8-digit hex numbers must be given between header and footer</p>
 </section>
 <section id="pop-params-paramstring">
-<span id="param-pop-params-ref"></span><h3>–pop-params=&lt;paramstring&gt;<a class="headerlink" href="#pop-params-paramstring" title="Permalink to this heading">¶</a></h3>
+<span id="param-pop-params-ref"></span><h3>–pop-params=&lt;paramstring&gt;<a class="headerlink" href="#pop-params-paramstring" title="Link to this heading">¶</a></h3>
 <p>Set special population parameters.</p>
 <div class="line-block">
 <div class="line"><code class="docutils literal notranslate"><span class="pre">param-strings</span>&#160;&#160; <span class="pre">::=</span> <span class="pre">&lt;param-string&gt;</span> <span class="pre">[&quot;,&quot;</span> <span class="pre">&lt;param-string&gt;]*</span></code></div>
@@ -308,15 +308,15 @@ If your simulation starts at 70’000 years before the present, you have to set 
 <p>Data provided this way will be passed to the parameter of the population’s <code class="docutils literal notranslate"><span class="pre">setParam(const</span> <span class="pre">char</span> <span class="pre">*pParam)</span></code> method.</p>
 </section>
 <section id="zip-output">
-<span id="param-zip-output-ref"></span><h3>–zip-output<a class="headerlink" href="#zip-output" title="Permalink to this heading">¶</a></h3>
+<span id="param-zip-output-ref"></span><h3>–zip-output<a class="headerlink" href="#zip-output" title="Link to this heading">¶</a></h3>
 <p>Use gzip to zip all output qdf files.</p>
 </section>
 <section id="info-string-infostring">
-<span id="param-info-string-ref"></span><h3>–info-string=&lt;infostring&gt;<a class="headerlink" href="#info-string-infostring" title="Permalink to this heading">¶</a></h3>
+<span id="param-info-string-ref"></span><h3>–info-string=&lt;infostring&gt;<a class="headerlink" href="#info-string-infostring" title="Link to this heading">¶</a></h3>
 <p>Add  &lt;infostring&gt; as the value of the attribute “info” of the root group of every output qdf.</p>
 </section>
 <section id="resume">
-<span id="param-resume-ref"></span><h3>–resume<a class="headerlink" href="#resume" title="Permalink to this heading">¶</a></h3>
+<span id="param-resume-ref"></span><h3>–resume<a class="headerlink" href="#resume" title="Link to this heading">¶</a></h3>
 <p>Resume simulation from previously <a class="reference internal" href="../../dumprestore.html#dump-restore-ref"><span class="std std-ref">dumped</span></a> env and pop files (created by a “dump” event).</p>
 <div class="line-block">
 <div class="line">Use the full environment dump as initial grid, and all dumped population qdfs for ‘–pops=’</div>
@@ -324,7 +324,7 @@ If your simulation starts at 70’000 years before the present, you have to set 
 </div>
 </section>
 <section id="no-merge-pops">
-<span id="param-no-merge-pops-ref"></span><h3>–no-merge-pops<a class="headerlink" href="#no-merge-pops" title="Permalink to this heading">¶</a></h3>
+<span id="param-no-merge-pops-ref"></span><h3>–no-merge-pops<a class="headerlink" href="#no-merge-pops" title="Link to this heading">¶</a></h3>
 <p>Don’t  merge compatible populations.</p>
 <dl class="simple">
 <dt>Two populations are compatible if they have the same class name, the same species name, the same actions , and the same agent structure.</dt><dd><p>ATTENTION: currently, the population read in more recently replacess the older one</p>
@@ -332,7 +332,7 @@ If your simulation starts at 70’000 years before the present, you have to set 
 </dl>
 </section>
 <section id="dump-on-interrupt">
-<span id="param-dump-on-interrupt-ref"></span><h3>–dump-on-interrupt<a class="headerlink" href="#dump-on-interrupt" title="Permalink to this heading">¶</a></h3>
+<span id="param-dump-on-interrupt-ref"></span><h3>–dump-on-interrupt<a class="headerlink" href="#dump-on-interrupt" title="Link to this heading">¶</a></h3>
 <p>Set interrupt handler for Ctrl-C (SIG_INT): write dump and exit gracefully.</p>
 </section>
 </section>
@@ -438,8 +438,8 @@ If your simulation starts at 70’000 years before the present, you have to set 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2022, jodyxha.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.0.1.
+    &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
   </body>
 </html>

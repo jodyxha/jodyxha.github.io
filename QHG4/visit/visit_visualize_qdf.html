@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Visualize QDF files with VisIt &#8212; QHG4 4.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../static/jody.css" />
+    <link rel="stylesheet" type="text/css" href="../static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../static/jody.css?v=dac31e62" />
     
-    <script data-url_root="../" id="documentation_options" src="../static/documentation_options.js"></script>
-    <script src="../static/doctools.js"></script>
-    <script src="../static/sphinx_highlight.js"></script>
+    <script src="../static/documentation_options.js?v=3b2dd2c4"></script>
+    <script src="../static/doctools.js?v=888ff710"></script>
+    <script src="../static/sphinx_highlight.js?v=dc90522c"></script>
     
     <link rel="icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -43,7 +43,7 @@
           <div class="body" role="main">
             
   <section id="visualize-qdf-files-with-visit">
-<span id="visit-visualize-qdf-ref"></span><h1>Visualize QDF files with VisIt<a class="headerlink" href="#visualize-qdf-files-with-visit" title="Permalink to this heading">¶</a></h1>
+<span id="visit-visualize-qdf-ref"></span><h1>Visualize QDF files with VisIt<a class="headerlink" href="#visualize-qdf-files-with-visit" title="Link to this heading">¶</a></h1>
 <p>Visit has a large variety of plots such as pseudocolor plots, vector plots and others.
 Every plot needs a particular set of data, so it can not plot an arbitrary unknown dataset.</p>
 <p>For the QDF data produced by QHG4 we mostly do mesh plots (for meshes and individuals) and pseudocolor plots (for value fields, like environment data).</p>
@@ -57,7 +57,7 @@ Every plot needs a particular set of data, so it can not plot an arbitrary unkno
 <img alt="../images/visit_layout.png" src="../images/visit_layout.png" />
 </figure>
 <section id="opening-files">
-<h2>Opening Files<a class="headerlink" href="#opening-files" title="Permalink to this heading">¶</a></h2>
+<h2>Opening Files<a class="headerlink" href="#opening-files" title="Link to this heading">¶</a></h2>
 <p>To load a QDF file click on the “Open” button on the upper left of the control window,
 This will open a file dialog:</p>
 <figure class="align-default">
@@ -71,7 +71,7 @@ VisIt does this to make it possible to load an entire group of similarly named f
 </figure>
 </section>
 <section id="visualizing-2d-data">
-<span id="visit-visualize-qdf-2d-ref"></span><h2>Visualizing 2D data<a class="headerlink" href="#visualizing-2d-data" title="Permalink to this heading">¶</a></h2>
+<span id="visit-visualize-qdf-2d-ref"></span><h2>Visualizing 2D data<a class="headerlink" href="#visualizing-2d-data" title="Link to this heading">¶</a></h2>
 <p>Now select a qdf file containing 2D data by double clicking it, for instance <code class="docutils literal notranslate"><span class="pre">tut_pop-grass_A_pop-sheep-P_SG_004960.qdf</span></code> (this file comes from a simulation where mobile sheep
 eat stationary grass. When there is no grass available in a cell, the sheep will starve unless it finds another cell with grass).</p>
 <p>After the file has been loaded, the button “Add” (middle left) in the control dialog becomes active.
@@ -106,7 +106,7 @@ Do a right-click on the sheep plot in the dialog’s list, and from there select
 To completely remove a plot, select it and press “Delete”.</p>
 </section>
 <section id="visualizing-3d-data">
-<h2>Visualizing 3D data<a class="headerlink" href="#visualizing-3d-data" title="Permalink to this heading">¶</a></h2>
+<h2>Visualizing 3D data<a class="headerlink" href="#visualizing-3d-data" title="Link to this heading">¶</a></h2>
 <p>Open a file dialog by pressing “Open”, and if the files appear grouped, ungroup them (see above how to do that).
 Then select a 3D data file, such as <code class="docutils literal notranslate"><span class="pre">tut_pop-sapiens_SG_005000.png</span></code>, press “Add” and select “sapiens” from the submenu of the Mesh plot. and then press “Draw”.</p>
 <p>This produces a 3D plot of all agents found in the data. You can rotate the plot by dragging the mouse around the plot window.</p>
@@ -146,7 +146,7 @@ and click on the big button in the middle of the dialog (initially this is label
 </figure>
 </section>
 <section id="installing-a-custom-color-table">
-<h2>Installing a custom color table<a class="headerlink" href="#installing-a-custom-color-table" title="Permalink to this heading">¶</a></h2>
+<h2>Installing a custom color table<a class="headerlink" href="#installing-a-custom-color-table" title="Link to this heading">¶</a></h2>
 <p>Please consult the <cite>color table chapter of the VisIt manual &lt;https://visit-sphinx-github-user-manual.readthedocs.io/en/develop/using_visit/MakingItPretty/Color_tables.html&gt;</cite>
 to get a basic understanding of color tables and how to create, modify, and export them.</p>
 <p>When you create and export a color table, visit saves this as a <code class="docutils literal notranslate"><span class="pre">.ct</span></code> file in the directory``~/.visit``.</p>
@@ -268,8 +268,8 @@ while positive values are drawn with greenish and brownish colors.</p>
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2022, jodyxha.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.0.1.
+    &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
   </body>
 </html>

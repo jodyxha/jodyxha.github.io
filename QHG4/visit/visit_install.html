@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Installing VisIt &#8212; QHG4 4.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../static/jody.css" />
+    <link rel="stylesheet" type="text/css" href="../static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../static/jody.css?v=dac31e62" />
     
-    <script data-url_root="../" id="documentation_options" src="../static/documentation_options.js"></script>
-    <script src="../static/doctools.js"></script>
-    <script src="../static/sphinx_highlight.js"></script>
+    <script src="../static/documentation_options.js?v=3b2dd2c4"></script>
+    <script src="../static/doctools.js?v=888ff710"></script>
+    <script src="../static/sphinx_highlight.js?v=dc90522c"></script>
     
     <link rel="icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -43,11 +43,11 @@
           <div class="body" role="main">
             
   <section id="installing-visit">
-<span id="visit-install-ref"></span><h1>Installing VisIt<a class="headerlink" href="#installing-visit" title="Permalink to this heading">¶</a></h1>
+<span id="visit-install-ref"></span><h1>Installing VisIt<a class="headerlink" href="#installing-visit" title="Link to this heading">¶</a></h1>
 <p>Because we want to implement plugins for VisIt, we can’t use a precompiled version,
 but must compile it from scratch.</p>
 <section id="download-the-sources">
-<h2>Download the Sources<a class="headerlink" href="#download-the-sources" title="Permalink to this heading">¶</a></h2>
+<h2>Download the Sources<a class="headerlink" href="#download-the-sources" title="Link to this heading">¶</a></h2>
 <p>Create a directory into the VisIt and 3rd party code are to be downloaded to. It is advantageous to have full read, write and execute rights to this directory.
 For this example let’s call it “~/visit_sources”.</p>
 <p>Go to the <a class="reference external" href="https://visit-dav.github.io/visit-website/releases-as-tables/#latest">download page of VisIt</a>
@@ -62,7 +62,7 @@ and in the table under “Series 3.3” select the leftmost “tgz” in the row
 </div>
 </section>
 <section id="build-visit">
-<h2>Build VisIt<a class="headerlink" href="#build-visit" title="Permalink to this heading">¶</a></h2>
+<h2>Build VisIt<a class="headerlink" href="#build-visit" title="Link to this heading">¶</a></h2>
 <p>Then start the build process</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./build_visit3_3_2
 </pre></div>
@@ -81,7 +81,7 @@ and in the table under “Series 3.3” select the leftmost “tgz” in the row
 <p>and then start the script again. Now it should finish without a problem.</p>
 </section>
 <section id="installing-the-visit-binaries">
-<span id="visit-install-bin-ref"></span><h2>Installing the VisIt binaries<a class="headerlink" href="#installing-the-visit-binaries" title="Permalink to this heading">¶</a></h2>
+<span id="visit-install-bin-ref"></span><h2>Installing the VisIt binaries<a class="headerlink" href="#installing-the-visit-binaries" title="Link to this heading">¶</a></h2>
 <p>Once the building of visit has completed, there’ll be a file <code class="docutils literal notranslate"><span class="pre">visit3_3_2.linux-x86_64.tar.gz</span></code>.
 The last lines of <code class="docutils literal notranslate"><span class="pre">build_visit3_3_2_log</span></code> will be a message regarding the installation of visit
 by calling <code class="docutils literal notranslate"><span class="pre">./visit-install</span> <span class="pre">VERSION</span> <span class="pre">ARCH</span> <span class="pre">DESTINATION</span></code>. Assuming we want to install it in the directory <code class="docutils literal notranslate"><span class="pre">/opt/visit_3.3.2</span></code> (make sure you have access),
@@ -170,8 +170,8 @@ this command would be</p>
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2022, jodyxha.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.0.1.
+    &#169; Copyright 2022, jodyxha.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
   </body>
 </html>

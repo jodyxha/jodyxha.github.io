@@ -15,6 +15,6 @@ In its constructor it creates objects for all the actions it requires and sets u
 Since ``SPopulation`` and the actions do most of the work "behind the scenes", 
 new population classes require only small amounts of new code: 
 mostly creation and deletion of action objects and arrays, adapting input and output for the agent strucure, 
-defining the start state of a new born agent.
+defining the start state of a new born agent, etc.
 
 The :ref:`tutorial<Tutorial_ref>` gives a simple overview how various populations are built up.
