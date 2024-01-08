@@ -14,7 +14,7 @@
     <script src="../../static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
-    <link rel="icon" href="http://aim-bigfoot.uzh.ch/~QHG/pmwiki/pub/skins/sinorca/gfx/favicon.png"/>
+    <link rel="icon" href="https://github.com/jodyxha/jodyxha.github.io/tree/main/QHG4/images/favicon.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="MoveStats" href="MoveStats.html" />
@@ -48,7 +48,9 @@
 <span id="navigate-ref"></span><h1>Navigate<a class="headerlink" href="#navigate" title="Link to this heading">¶</a></h1>
 <p class="hidden">This page describes the class <span class="target" id="index-0"></span>Navigate</p>
 <p>The class <code class="docutils literal notranslate"><span class="pre">Navigate</span></code> is derived from <code class="docutils literal notranslate"><span class="pre">Action</span></code> and handles the sea crossing of agents.
-It manages the “bridges” between landmasses and calculates the crossing probabilities using a sampling distance <span class="math notranslate nohighlight">\(d_0\)</span>, a crossing probability <span class="math notranslate nohighlight">\(p_0\)</span> for that distance and a decay <span class="math notranslate nohighlight">\(D\)</span>:</p>
+It manages the “bridges” between landmasses (obtained by the <a class="reference internal" href="../core/Navigation.html#navigation-ref"><span class="std std-ref">Navigation</span></a>)
+and calculates the crossing probabilities using a sampling distance <span class="math notranslate nohighlight">\(d_0\)</span>,
+a crossing probability <span class="math notranslate nohighlight">\(p_0\)</span> for that distance and a decay <span class="math notranslate nohighlight">\(D &lt; 1\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[p_C = A \cdot e^{D * d_0}\]</div>
 <p>where <span class="math notranslate nohighlight">\(A =  p_0/e^{D*d_0}\)</span></p>

@@ -1,7 +1,7 @@
 .. _VegGroup_ref:
 
-"Vegetation"
-------------
+Vegetation
+----------
 
 .. rst-class:: hidden
 
@@ -23,8 +23,8 @@ DataSets
 ^^^^^^^^
 
 **BaseNPP**
-    Net primary production (grams carbon per square meter and year) fo each cell
+    Net primary production (grams carbon per square meter and year) for each cell
 
 **NPP**
-    Net primary production plus contributions from fresh water and coast-
+    Net primary production plus contributions from fresh water and proximity of coastlines.
 

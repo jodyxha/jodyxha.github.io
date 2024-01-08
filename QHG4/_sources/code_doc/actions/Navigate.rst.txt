@@ -8,7 +8,9 @@ Navigate
     This page describes the class :index:`Navigate`
 
 The class ``Navigate`` is derived from ``Action`` and handles the sea crossing of agents.
-It manages the "bridges" between landmasses and calculates the crossing probabilities using a sampling distance :math:`d_0`, a crossing probability :math:`p_0` for that distance and a decay :math:`D`:
+It manages the "bridges" between landmasses (obtained by the :ref:`Navigation<Navigation_ref>`) 
+and calculates the crossing probabilities using a sampling distance :math:`d_0`, 
+a crossing probability :math:`p_0` for that distance and a decay :math:`D < 1`:
 
 .. math:: p_C = A \cdot e^{D * d_0}
 

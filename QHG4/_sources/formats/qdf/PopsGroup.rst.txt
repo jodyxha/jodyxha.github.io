@@ -1,7 +1,7 @@
 .. _PopGroup_ref:
 
-"Populations"
--------------
+Populations
+-----------
 
 .. rst-class:: hidden
 

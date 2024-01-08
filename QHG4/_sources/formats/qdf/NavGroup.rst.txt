@@ -1,7 +1,7 @@
 .. _NavGroup_ref:
 
-"Navigation"
-------------
+Navigation
+----------
 
 .. rst-class:: hidden
 

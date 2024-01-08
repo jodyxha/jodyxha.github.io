@@ -12,7 +12,7 @@ For some simulations it is important that agents can travel over thes sea to isl
 
 The class ``Navigation`` provides "tunnels" or "bridges" connecting points an different land masses.
 
-The action :ref:`Navigate<Navigate_ref>` provides means to assign crossing probabilities to bridges.
+The action :ref:`Navigate<Navigate_ref>` uses this data to assign crossing probabilities to bridges.
 
 The bridges are usually automatically calculated (with the tool "SeaWays"), but bridges  can also ne added manually
 

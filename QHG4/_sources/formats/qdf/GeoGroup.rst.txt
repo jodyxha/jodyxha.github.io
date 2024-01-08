@@ -1,7 +1,7 @@
 .. _GeoGroup_ref:
 
-"Geography"
------------
+Geography
+---------
 
 .. rst-class:: hidden
 

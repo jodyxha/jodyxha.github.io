@@ -1,7 +1,7 @@
 .. _GridGroup_ref:
 
-"Grid"
-------
+Grid
+----
 
 .. rst-class:: hidden
 

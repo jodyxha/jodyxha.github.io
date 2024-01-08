@@ -38,7 +38,7 @@ Usage
 
   ${QHG4_DIR}/tools_qdf/prio_edit.py change <qdf_file>[:<species>] <prio_name> <prio_val>
 
-** DElete Priority Entry**
+**Delete Priority Entry**
 
 .. code-block:: c++
 
