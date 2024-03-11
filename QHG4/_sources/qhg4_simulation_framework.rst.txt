@@ -101,6 +101,7 @@ Events
 """"""
 
 In order to trigger specific actions, mainly reading and writing data, QHG4 uses so-called events.
-Usually a list of times (when to do something), event types (what to do), and arguments (what to do it to) are passed to QHG4 as parameters. 
+An event consists of a time (when to do something), an event type (what to do) and arguments (what to do it to).
+Usually a list of events are passed to QHG4 as parameters. 
 During execution, whenever the current simulation time matches a time on the event list, the actions for corresponding event(s) are executed.
 
