@@ -190,12 +190,26 @@ Returns count.
 
     uint collectFragInfo(uint iSize, uint *piHoles, uint *piActive);
 
-| Collects data used to defragment.
-| After defragmentation, both chains have contiguous nodes.
+| Collects data which is needed to defragment the lists.
 | For this it gets the indexes of the first PASSIVE nodes, as well as the indexes of the lats ACTIVE nodes.
 | The highest index of the selected PASSIVE nodes is less than the lowest index of the selected PASSIVE nodes.
 
+``iSize``
+    Size of the arrays ``piHoles`` and ``piActive``
 
+Returns a value which gives information on the found ACTIVE and PASSIVE nodes fulfilling the above condition:
+
++--------------+------------------------------------------------------------------+
+| return value | description                                                      |
++--------------+------------------------------------------------------------------+
+|    0         | no holes found or no active nodes found                          |
++--------------+------------------------------------------------------------------+
+|    <= iSize  | number of pairable active and passive nodes; no more pairs exist |
++--------------+------------------------------------------------------------------+
+|    iSize+1   | the arrays are full, but there would be more  pairabl nodes      |
++--------------+------------------------------------------------------------------+
+
+If the return value is ``iSize+1``, there are more pairable nodes than fit into the arrays.
 Example:
 """"""""
 
