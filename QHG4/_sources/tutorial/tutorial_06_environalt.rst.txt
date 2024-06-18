@@ -14,7 +14,8 @@ To each cell the ``SingleEvaluator`` assigns preference values (usually by means
 
 .. figure:: ../../images/SingleEvalFull.png
 
-    The environment values (e.g. altitude) of a cell are copied to an array, to which a poly line function is applied. 
+    The environment values (e.g. altitude) of a cell and its neighbors are copied to an array, 
+    to which a poly line function is applied. 
     The results are cumulated and are used as a lookup table to create a weighted random number. 
     In this example a uniform random number R between 0 and the highest number in the cumulated array is drawn, 
     and the index of the smallest cumulated value greater than R is chosen. 
