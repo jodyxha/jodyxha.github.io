@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>QHG Tutorial 08 - Simple Predator-Prey &#8212; QHG4 4.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="../_static/jody.css?v=dac31e62" />
+    <link rel="stylesheet" type="text/css" href="../static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../static/jody.css?v=dac31e62" />
     
     <script src="../static/documentation_options.js?v=3b2dd2c4"></script>
     <script src="../static/doctools.js?v=888ff710"></script>
@@ -50,7 +50,7 @@ and moving agents representing sheep who like to eat grass.</p>
 <p>Sheep and grass populatins communcate with each other by means of
 shared arrays.</p>
 <figure class="align-default">
-<img alt="../_images/grasssheep_comm.png" src="../_images/grasssheep_comm.png" />
+<img alt="../images/grasssheep_comm.png" src="../images/grasssheep_comm.png" />
 </figure>
 <p>The Grass agents have a member variable mass, and an action <a class="reference internal" href="../code_doc/actions/GrassManager.html#grassmanager-ref"><span class="std std-ref">GrassManager</span></a>
 which increases the mass logistically to a maximum value.
@@ -359,11 +359,7 @@ object and used by the <a class="reference internal" href="../code_doc/actions/W
 The first element of such a tuple contains the preference value for the cell to which the tuple belongs.
 The following values contain the preference values for the neighboring cells.</p>
 <figure class="align-default">
-<<<<<<< HEAD
-<a class="reference internal image-reference" href="../_images/preferences.png"><img alt="../_images/preferences.png" src="../_images/preferences.png" style="width: 640.0px; height: 51.2px;" />
-=======
 <a class="reference internal image-reference" href="../images/preferences.png"><img alt="../images/preferences.png" src="../images/preferences.png" style="width: 640.0px; height: 51.2px;" />
->>>>>>> ba3928e (minor changes)
 </a>
 </figure>
 <p>Then the action objects (<a class="reference internal" href="../code_doc/actions/SingleEvaluator.html#singleevaluator-ref"><span class="std std-ref">SingleEvaluator</span></a>, <a class="reference internal" href="../code_doc/actions/WeightedMove.html#weightedmove-ref"><span class="std std-ref">WeightedMove</span></a>,  <a class="reference internal" href="../code_doc/actions/SheepManager.html#sheepmanager-ref"><span class="std std-ref">SheepManager</span></a>,
@@ -634,7 +630,7 @@ These snapshots were visualized in VisIt as a group, with all annotations remove
 then  turned into a video using VisIt’s “Save as Movie…” command in the “File” menu.</p>
 <p>The colors represent the maximum available grass mass in each cell (blue:0, red max).</p>
 <p>Each black dot represents a single sheep agent.</p>
-<video controls width="800" src=" ../_static/movie_500_G3.mp4" type="video/mp4"  ></video></section>
+<video controls width="800" src=" ../static/movie_500_G3.mp4" type="video/mp4"  ></video></section>
 </section>
 
 
